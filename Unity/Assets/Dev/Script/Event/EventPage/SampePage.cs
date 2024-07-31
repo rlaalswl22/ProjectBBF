@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace ProjectBBF.Event
+{
+    public static partial class EventPage
+    {
+        [EventHandler(typeof(CollisionEventCommand))]
+        public static void CollisionEventHandler(IEventCommand command)
+        {
+            if (command is not CollisionEventCommand cmd) return;
+
+            cmd.groups.ForEach(x =>
+            {
+                //.ForEach(y => Debug.Log(y));
+                //ebug.Log("--");
+            });
+        }
+    } 
+}
