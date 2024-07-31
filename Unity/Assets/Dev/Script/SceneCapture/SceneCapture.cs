@@ -17,10 +17,13 @@ public class SceneCapture : MonoBehaviour
     [SerializeField] private string _filePath;
     [SerializeField] private string _uniqueFileName;
     [SerializeField] private Vector2Int _resoultion;
+    [SerializeField] private int _ppu;
 
     [SerializeField] private Vector2Int _iteration;
 
     [SerializeField] private int _captureDelay = 100;
+
+    private float Unit => _resoultion.x * (0.5f / _ppu);
 
     [ButtonMethod]
     private void Capture()
@@ -29,12 +32,12 @@ public class SceneCapture : MonoBehaviour
         _camera.nearClipPlane = -999999f;
         /*
          * a = resolutions
-         * 0.5 : 100 = x : a
-         * 100x = 0.5a
-         * x = 0.005a
-         * a = 1024, x = 5.12
+         * 0.5 : ppu = x : a
+         * ppu * x = 0.5a
+         * x = 0.5a / ppu
+         * a = 1024, ppu = 100, x = 5.12
          * */
-        _camera.orthographicSize = (float)_resoultion.x * 0.005f;
+        _camera.orthographicSize = Unit;
         _camera.aspect = 1f;
         _camera.transform.position = new Vector3(_offset.x + _camera.orthographicSize,
             _offset.y + -_camera.orthographicSize, -10f);
@@ -46,8 +49,8 @@ public class SceneCapture : MonoBehaviour
         renderTexture.height = _resoultion.y;
         if (renderTexture.Create() == false) Debug.LogError("SceneCapture에서 RenderTexture의 resizing을 실패함.");
         _camera.targetTexture = renderTexture;
-
-
+        
+        
         // 에디터가 이미 Play 모드에 있는지 확인합니다
         if (!EditorApplication.isPlaying)
         {
@@ -188,7 +191,7 @@ public class SceneCapture : MonoBehaviour
 
     private void OnValidate()
     {
-        _camera.orthographicSize = (float)_resoultion.x * 0.005f;
+        _camera.orthographicSize = Unit;
 
         _colors = new Color[_iteration.x, _iteration.y];
 
