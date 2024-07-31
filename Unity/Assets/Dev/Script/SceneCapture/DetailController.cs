@@ -41,6 +41,8 @@ public class DetailController : MonoBehaviour
     [ButtonMethod]
     private void ApplyDetails()
     {
+        transform.position = Vector3.zero;
+
         var sprites = LoadSprites();
         var doubleList = SortSprites(sprites);
 
