@@ -6,57 +6,123 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using MyBox;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
 
 public class DetailController : MonoBehaviour
 {
-    [SerializeField] private string _detailsPath;
-    
+    [Serializable]
+    public class Item1
+    {
+        public List<Item2> List = new List<Item2>();
+    }
 
-    private const string PATRTERN = @"^MapDetail_\d+_\d+\.png$";
-    
-    
+    [Serializable]
+    public class Item2
+    {
+        public SpriteRenderer Renderer;
+        public int X;
+        public int Y;
+    }
+
+    [SerializeField] private string _detailsPath;
+    [SerializeField] private string _mapName;
+
+    [SerializeField] private Vector2Int _resolution;
+    [SerializeField] private Vector3 _offset;
+    [SerializeField] private Vector2Int _iteration;
+    [field: SerializeField, SortingLayer] private int _sortingLayer;
+    [SerializeField] private int _order;
+
+    [SerializeField] private List<Item1> _rendererList;
 
     [ButtonMethod]
     private void ApplyDetails()
     {
         var sprites = LoadSprites();
         var doubleList = SortSprites(sprites);
+
+        InitDetailRenderer(doubleList);
         
-        
-        
+        Debug.Log("디테일 로드 성공");
+    }
+
+    private void InitDetailRenderer(List<List<Sprite>> list)
+    {
+        if (_rendererList != null)
+        {
+            _rendererList.ForEach(x => x.List.ForEach(y =>
+            {
+                if (y.Renderer)
+                {
+                    DestroyImmediate(y.Renderer.gameObject);
+                }
+            }));
+        }
+
+        _rendererList = new List<Item1>();
+
+        foreach (var inList in list)
+        {
+            var rendererList = new Item1();
+            _rendererList.Add(rendererList);
+
+            foreach (var sprite in inList)
+            {
+                var matchCollection = Regex.Matches(sprite.name, @"\d+");
+                if (matchCollection.Count != 2) continue;
+
+                int y = Convert.ToInt32(matchCollection[1].Value);
+                int x = Convert.ToInt32(matchCollection[0].Value);
+
+                var renderer = new GameObject(sprite.name).AddComponent<SpriteRenderer>();
+                renderer.sortingOrder = _order;
+                renderer.sortingLayerID = _sortingLayer;
+                renderer.transform.SetParent(transform);
+                renderer.sprite = sprite;
+                rendererList.List.Add(new Item2()
+                {
+                    Renderer = renderer,
+                    X = x,
+                    Y = y
+                });
+
+                renderer.transform.position = new Vector3(
+                                                  _resolution.x* x, -_resolution.y * y, 0f) * 0.005f * 2f +
+                                              _offset +
+                                              new Vector3(_resolution.x, -_resolution.y, 0f) * 0.005f;
+            }
+        }
     }
 
     private List<List<Sprite>> SortSprites(List<Sprite> list)
     {
-        Regex regex = new Regex(PATRTERN);
-
         OrderedDictionary dict = new OrderedDictionary();
 
         foreach (var sprite in list)
         {
-            Match match = regex.Match(sprite.name);
-            if (match.Success == false) continue;
-            if (match.Groups.Count != 2) continue;
+            var matchCollection = Regex.Matches(sprite.name, @"\d+");
+            if (matchCollection.Count != 2) continue;
 
-            int y = Convert.ToInt32(match.Groups[1]);
-            int x= Convert.ToInt32(match.Groups[0]);
-            
+            int y = Convert.ToInt32(matchCollection[1].Value);
+            int x = Convert.ToInt32(matchCollection[0].Value);
+
             if (dict.Contains(y) == false)
             {
                 var targetList = new List<(int, Sprite)>();
-                dict.Add(y,targetList);
+                dict.Add(y, targetList);
                 targetList.Add((x, sprite));
             }
             else
             {
-                var targetList = dict[y] as  List<(int, Sprite)>;
-                targetList.Add((x, sprite));;
+                var targetList = dict[y] as List<(int, Sprite)>;
+                targetList.Add((x, sprite));
             }
         }
 
-        foreach (List<(int, Sprite)> targetList  in dict.Values)
+        foreach (List<(int, Sprite)> targetList in dict.Values)
         {
             targetList.Sort((x, y) =>
             {
@@ -76,22 +142,35 @@ public class DetailController : MonoBehaviour
 
         return newList;
     }
-    
+
     private List<Sprite> LoadSprites()
     {
-        var loadedObj = AssetDatabase.LoadAllAssetsAtPath(_detailsPath);
-        Regex regex = new Regex(PATRTERN);
-
         List<Sprite> sprites = new List<Sprite>(10);
-        
-        foreach (var obj in loadedObj)
+
+        for (int i = 0; i < _iteration.y; i++)
         {
-            if (obj is not Sprite sprite) continue;
-            if(regex.IsMatch(obj.name) == false) continue;
-            
-            sprites.Add(sprite);
+            for (int j = 0; j < _iteration.x; j++)
+            {
+                var obj = AssetDatabase.LoadAssetAtPath<Texture2D>(_detailsPath + $"/Detail_{_mapName}_{j}_{i}.png");
+                if (obj is null) continue;
+
+                var spr = ConvertTextureToSprite(obj);
+                spr.name = $"Detail_{j}_{i}";
+                sprites.Add(spr);
+            }
         }
 
         return sprites;
     }
+
+    private Sprite ConvertTextureToSprite(Texture2D texture)
+    {
+        // Texture2D를 Sprite로 변환
+        return Sprite.Create(
+            texture,
+            new Rect(0, 0, texture.width, texture.height),
+            new Vector2(0.5f, 0.5f)
+        );
+    }
 }
+#endif

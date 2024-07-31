@@ -9,11 +9,13 @@ using Cysharp.Threading.Tasks;
 #if UNITY_EDITOR
 using UnityEditor;
 
+
 public class SceneCapture : MonoBehaviour
 {
     [SerializeField] private Vector2 _offset;
     [SerializeField] private Camera _camera;
     [SerializeField] private string _filePath;
+    [SerializeField] private string _uniqueFileName;
     [SerializeField] private Vector2Int _resoultion;
 
     [SerializeField] private Vector2Int _iteration;
@@ -70,7 +72,7 @@ public class SceneCapture : MonoBehaviour
 
                     var texture2d = CopyRenderToTexture2D();
                     Gamma2Linear(ref texture2d);
-                    SaveCapturedTexture(texture2d, $"MapDetail_{j}_{i}");
+                    SaveCapturedTexture(texture2d, $"Map_{_uniqueFileName}_{j}_{i}");
                 }
 
                 _camera.transform.position = backupPos;
@@ -153,8 +155,16 @@ public class SceneCapture : MonoBehaviour
     private void SaveCapturedTexture(Texture2D texture2D, string fileName)
     {
         byte[] pngData = texture2D.EncodeToPNG();
-        string path = _filePath + "\\" + fileName + ".png";
 
+        string target = "Assets";
+
+        var newFilePath = _filePath;
+        if (_filePath.StartsWith(target))
+        {
+            newFilePath = newFilePath.Substring(target.Length);
+        }
+
+        string path = Application.dataPath + newFilePath + "\\" + fileName + ".png";
         try
         {
             if (pngData != null)
