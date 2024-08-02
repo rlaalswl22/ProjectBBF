@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ItemData : ScriptableObject
+
+[CreateAssetMenu(menuName = "ProjectBBF/ItemData", fileName = "NewItemData")]
+public class ItemData : ScriptableObject
 {
     [SerializeField] protected string _itemName;
     [SerializeField] protected Sprite _itemSprite;

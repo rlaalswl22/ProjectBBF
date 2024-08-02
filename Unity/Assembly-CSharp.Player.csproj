@@ -66,7 +66,6 @@
     <Compile Include="Assets\Dev\Script\Player\PlayerVisual.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Test\DialogueRuntimeTreeTester.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Core\DialogueNodeData.cs" />
-    <Compile Include="Assets\Dev\Script\Item\Item.cs" />
     <Compile Include="Assets\Dev\Script\Player\PlayerStateTranslator.cs" />
     <Compile Include="Assets\Dev\Script\PropertyDrawer\SortingLayerAttribute.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\DynamicScaleTextbox.cs" />
@@ -75,7 +74,6 @@
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\RuntimeNode\EntryPointRuntimeNode.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Test\DialogueControllerTest.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\TextUtil.cs" />
-    <Compile Include="Assets\Dev\Script\Item\CountableItem.cs" />
     <Compile Include="Assets\Dev\Script\InputSystem\DefaultKey.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Core\DialogueItem.cs" />
     <Compile Include="Assets\Dev\Script\InputSystem\InputManager.cs" />
@@ -89,15 +87,16 @@
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\DialogueContextUnit.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\DialogueView.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\RuntimeNode\ConditionRuntimeNode.cs" />
+    <Compile Include="Assets\Dev\Script\Item\FieldItem.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\DialogueHandler.cs" />
     <Compile Include="Assets\Dev\Script\InteractiveObject\CollectingObjectData.cs" />
     <Compile Include="Assets\Dev\Script\UniTaskEX\GlobalCancelation.cs" />
     <Compile Include="Assets\Dev\Script\Player\PlayerCollector.cs" />
-    <Compile Include="Assets\Dev\Script\Item\CountableItemData.cs" />
+    <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\FarmlandController.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\DialogueFlow.cs" />
     <Compile Include="Assets\Dev\Script\Player\PlayerMove.cs" />
     <Compile Include="Assets\Dev\Script\InteractiveObject\Behaviour\BurnBehaviour.cs" />
-    <Compile Include="Assets\Dev\Script\Item\InventoryData.cs" />
+    <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\FarmlandTile.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\DialogueRuntimeTree.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.37f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\Variations\mono\Managed\UnityEngine.dll</HintPath>

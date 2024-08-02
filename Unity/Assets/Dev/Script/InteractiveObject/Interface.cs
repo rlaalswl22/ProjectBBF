@@ -16,5 +16,5 @@ public interface IBOBurn : IObjectBehaviour
 }
 public interface IBOCollect : IObjectBehaviour
 {
-    public UniTask<List<Item>> Collect();
+    public UniTask<List<FieldItem>> Collect();
 }

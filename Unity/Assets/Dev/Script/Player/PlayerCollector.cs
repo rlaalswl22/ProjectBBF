@@ -58,9 +58,9 @@ public class PlayerCollector : MonoBehaviour, IPlayerStrategy
 
     private async UniTaskVoid Collect(IBOCollect collect)
     {
-        List<Item> itemList = await collect.Collect();
+        List<FieldItem> itemList = await collect.Collect();
 
-        foreach (Item item in itemList)
+        foreach (FieldItem item in itemList)
         {
             Debug.Log(item.ItemData.name);
         }

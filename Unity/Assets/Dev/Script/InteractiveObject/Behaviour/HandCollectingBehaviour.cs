@@ -7,14 +7,14 @@ using ProjectBBF.Event;
 using MyBox;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "IndieLINY/InteractiveObject/Behaviour/HandCollecting", fileName = "HandCollecting")]
+[CreateAssetMenu(menuName = "ProjectBBF/InteractiveObject/Behaviour/HandCollecting", fileName = "HandCollecting")]
 public class HandCollectingBehaviour : CollectingObjectBehaviour, IBOCollect
 {
     [Serializable]
     private struct ItemSet
     {
         [field: SerializeField, OverrideLabel("아이템 데이터"), InitializationField, MustBeAssigned]
-        public CountableItemData Data;
+        public ItemData Data;
 
         [field: SerializeField, OverrideLabel("아이템 개수"), InitializationField, MustBeAssigned, MinValue(1)]
         public int Count;
@@ -27,24 +27,11 @@ public class HandCollectingBehaviour : CollectingObjectBehaviour, IBOCollect
 
     private CollectingObjectData _data;
 
-    public async UniTask<List<Item>> Collect()
+    public async UniTask<List<FieldItem>> Collect()
     {
         await UniTask.Delay((int)(_data.CollectingTime * 1000f));
 
-
-        List<Item> tempList = new List<Item>(2);
-        return _itemList
-            .SelectMany(x =>
-            {
-                tempList.Clear();
-                for (int i = 0; i < x.Count; i++)
-                {
-                    tempList.Add(new CountableItem(x.Data, 1) as Item);
-                }
-
-                return tempList;
-            })
-            .ToList();
+        return new List<FieldItem>();
     }
 
     public override void InitBehaviour(CollectingObjectData data, CollisionInteraction interaction,
