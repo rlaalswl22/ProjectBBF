@@ -17,4 +17,5 @@ public class FarmlandTile : Tile
     public ItemData DropItem => _dropItem;
 
     public int DropItemCount => _dropItemCount;
+
 }

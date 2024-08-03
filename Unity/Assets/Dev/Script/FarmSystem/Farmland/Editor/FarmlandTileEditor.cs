@@ -20,12 +20,12 @@ public class FarmlandTileEditor : Editor
 
 
 
-
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Farmland Tile 정보");
 
-        serializedObject.FindProperty("_isCultivate").boolValue =
-            EditorGUILayout.Toggle("IsCultivate", obj.IsCultivate); 
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("_isCultivate")); 
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("_dropItem")); 
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("_dropItemCount")); 
         
         
         if (GUI.changed)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class DialogueEditorResourcesPath
 {
-    private const string COMMON_PATH = "Assets/Dev/Feature/Dialogue/Editor/USS";
+    private const string COMMON_PATH = "Assets/Dev/Script/Dialogue/Editor/USS";
     
     public const string DIALOGUE_TOOLBAR_STYLESHEET_PATH = COMMON_PATH + "/DialogueToolbar.uss";
     public const string DIALOGUE_GRAPH_STYLESHEET_PATH = COMMON_PATH + "/DialogueGraph.uss";

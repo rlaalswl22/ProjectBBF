@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5621de97731b8b4cac1366ff20e5fe5, type: 3}
-  m_Name: TestCultivationTile
+  m_Script: {fileID: 11500000, guid: 1e003564d0a0a3845838d96cf524eb21, type: 3}
+  m_Name: NewGrowingTile2
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -1617240735, guid: 652e277b3f099894692126990928332c, type: 3}
+  m_Sprite: {fileID: -261883531, guid: f575061737d8abc4d947079b627e385d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -34,4 +34,6 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  _isCultivate: 1
+  _isCultivate: 0
+  _dropItem: {fileID: 11400000, guid: d2a5e91abe4793b488c3da50b6604fd5, type: 2}
+  _dropItemCount: 1

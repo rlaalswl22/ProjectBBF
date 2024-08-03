@@ -45,17 +45,21 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.37f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\Editor\GrowingTileEditor.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Editor\DialogueEditorNode.cs" />
+    <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\Editor\FullyGrownTileEditor.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Editor\Node\ConditionEditorNode.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\Editor\FarmlandTileEditor.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Editor\Node\TextEditorNode.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Editor\DialogueEditorResourcesPath.cs" />
+    <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\Editor\SeedTileEditor.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Editor\Node\EntryPointEditorNode.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Editor\DialogueGraph.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Editor\GraphSaveUtility.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Editor\Node\BranchEditorNode.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Editor\DialogueNodeFactory.cs" />
     <Compile Include="Assets\Dev\Script\PropertyDrawer\Editor\SortingLayerPropertyDrawer.cs" />
+    <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\Editor\GrownDefinitionEditor.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Editor\DialogueGraphView.cs" />
     <None Include="Library\PackageCache\com.unity.collab-proxy@2.4.3\Lib\Editor\PlasticSCM\Localization\plastic-gui.zh-Hans.txt" />
     <None Include="Library\PackageCache\com.unity.collab-proxy@2.4.3\Lib\Editor\PlasticSCM\Localization\configurehelper.zh-Hant.txt" />
