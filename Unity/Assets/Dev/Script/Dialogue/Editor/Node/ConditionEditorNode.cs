@@ -141,7 +141,7 @@ namespace DS.Editor
             RefreshPorts();
         }
 
-        private void AddTitleTextField()
+        private new void AddTitleTextField()
         {
             RemoveLabel(titleContainer, "title-label");
             
