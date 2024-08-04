@@ -64,6 +64,7 @@
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\DialogueContext.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\SeedTile.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Core\NodeLinkData.cs" />
+    <Compile Include="Assets\Dev\Script\Player\PlayerCoordinate.cs" />
     <Compile Include="Assets\Dev\Script\Player\PlayerMovementData.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\FullyGrownTile.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\DialogueController.cs" />
@@ -98,6 +99,8 @@
     <Compile Include="Assets\Dev\Script\UniTaskEX\GlobalCancelation.cs" />
     <Compile Include="Assets\Dev\Script\Player\PlayerCollector.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\GrowingTile.cs" />
+    <Compile Include="Assets\Dev\Script\UniTaskEX\WaitTask.cs" />
+    <Compile Include="Assets\Dev\Script\Player\PlayerDestroy.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\DialogueFlow.cs" />
     <Compile Include="Assets\Dev\Script\Player\PlayerMove.cs" />
     <Compile Include="Assets\Dev\Script\InteractiveObject\Behaviour\BurnBehaviour.cs" />

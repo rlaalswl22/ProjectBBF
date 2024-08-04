@@ -53,7 +53,7 @@ public enum EInputType
     Pressed,
 }
 
-[UnitCategory("IndieLINY/InputAction")]
+[UnitCategory("ProjectBBF/InputAction")]
 public class InputActionUnit : Unit
 {
     private ControlInput _input;

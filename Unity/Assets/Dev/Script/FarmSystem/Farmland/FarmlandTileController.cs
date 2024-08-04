@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using ProjectBBF.Event;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
-public class FarmlandTileController : MonoBehaviour
+public class FarmlandTileController : MonoBehaviour, IBODestoryTile
 {
-    
+    [SerializeField] protected CollisionInteraction _interaction;
     [SerializeField] protected Tilemap _platformTilemap;
     [SerializeField] protected Tilemap _plantTilemap;
     
@@ -23,6 +24,11 @@ public class FarmlandTileController : MonoBehaviour
     private void Awake()
     {
         Init();
+
+        var info = ObjectContractInfo.Create(() => gameObject);
+        _interaction.SetContractInfo(info, this);
+
+        info.AddBehaivour<IBODestoryTile>(this);
     }
 
     private void Update()
@@ -147,6 +153,30 @@ public class FarmlandTileController : MonoBehaviour
         
         ResetPlantTile(cellPos);
     }
+
+    public void DestroyPlatformTile(Vector3Int cellPos, List<ItemData> list)
+    {
+        var tile = _platformTilemap.GetTile<FarmlandTile>(cellPos);
+
+        if (tile is null) return;
+
+        for (int i = 0; i < tile.DropItemCount; i++)
+        {
+            // 필드에 아이템 드랍되게 하면 이 코드 사용
+            //var r = FieldItem.Create(new FieldItem.FieldItemInitParameter()
+            //{
+            //    ItemData = tile.DropItem,
+            //    Position = _plantTilemap.CellToWorld(cellPos)
+            //});
+
+            if (list is not null && tile.DropItem is not null)
+            {
+                list.Add(tile.DropItem);
+            }
+        }
+        
+        ResetPlatformTile(cellPos);
+    }
     
     public void ResetPlantTile(Vector3Int cellPos)
     {
@@ -250,5 +280,34 @@ public class FarmlandTileController : MonoBehaviour
         
         tilemap.SetTile(cellPos, tile);
 
+    }
+
+    public CollisionInteraction Interaction => _interaction;
+    public List<ItemData> Destory(Vector3 worldPos)
+    {
+        FarmlandTile tile = null;
+        Vector3Int cellPos = Vector3Int.zero;
+        List<ItemData> list = new List<ItemData>(2);
+        
+        cellPos = _plantTilemap.WorldToCell(worldPos);
+        tile = _plantTilemap.GetTile<FarmlandTile>(cellPos);
+        
+
+        if (tile is not null)
+        {
+            DestroyPlantTile(cellPos, list);
+            return list;
+        }
+        
+        cellPos = _platformTilemap.WorldToCell(worldPos);
+        tile = _platformTilemap.GetTile<FarmlandTile>(cellPos);
+
+        if (tile is not null)
+        {
+            DestroyPlatformTile(cellPos, list);
+            return list;
+        }
+
+        return list;
     }
 }

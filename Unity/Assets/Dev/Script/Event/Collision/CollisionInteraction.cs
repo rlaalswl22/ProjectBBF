@@ -25,7 +25,7 @@ namespace ProjectBBF.Event
         [SerializeField] private bool _listeningOnly;
         [SerializeField] private bool _detectedOnly;
 
-        private List<CollisionInteractionProxy> _proxies;
+        private List<CollisionInteractionProxy> _proxies = new();
         public IReadOnlyCollection<CollisionInteractionProxy> Proxies => _proxies;
         
         public void SetContractInfo(BaseContractInfo info, object owner)

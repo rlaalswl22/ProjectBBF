@@ -27,11 +27,9 @@ public class HandCollectingBehaviour : CollectingObjectBehaviour, IBOCollect
 
     private CollectingObjectData _data;
 
-    public async UniTask<List<FieldItem>> Collect()
+    public List<ItemData> Collect()
     {
-        await UniTask.Delay((int)(_data.CollectingTime * 1000f));
-
-        return new List<FieldItem>();
+        return new List<ItemData>();
     }
 
     public override void InitBehaviour(CollectingObjectData data, CollisionInteraction interaction,

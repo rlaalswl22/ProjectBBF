@@ -28,9 +28,8 @@ public class PlayerCollector : MonoBehaviour, IPlayerStrategy
 
         CollisionInteractionUtil
             .CreateState()
-            .Bind<IBOCollect>(x=>Collect(x).Forget())
+            .Bind<IBOCollect>(Collect)
             .Execute(minInteraction.ContractInfo);
-
     }
 
     [CanBeNull]
@@ -56,13 +55,13 @@ public class PlayerCollector : MonoBehaviour, IPlayerStrategy
         return minInteraction;
     }
 
-    private async UniTaskVoid Collect(IBOCollect collect)
+    private void Collect(IBOCollect collect)
     {
-        List<FieldItem> itemList = await collect.Collect();
+        List<ItemData> itemList = collect.Collect();
 
-        foreach (FieldItem item in itemList)
+        foreach (var item in itemList)
         {
-            Debug.Log(item.ItemData.name);
+            Debug.Log(item.ItemName);
         }
 
         CanMoveNext = true;

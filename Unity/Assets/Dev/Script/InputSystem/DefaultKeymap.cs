@@ -98,6 +98,15 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DestroyObject"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a61ab1f-d552-456e-b080-856e8b62fffe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -254,6 +263,17 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""action"": ""MoveRightIngredientSelection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c53c89b-1df0-4e25-adcc-0c1157f539cb"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""WinPCScheme"",
+                    ""action"": ""DestroyObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -287,6 +307,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         m_PlayerControl_DialogueSkip = m_PlayerControl.FindAction("DialogueSkip", throwIfNotFound: true);
         m_PlayerControl_MoveLeftIngredientSelection = m_PlayerControl.FindAction("MoveLeftIngredientSelection", throwIfNotFound: true);
         m_PlayerControl_MoveRightIngredientSelection = m_PlayerControl.FindAction("MoveRightIngredientSelection", throwIfNotFound: true);
+        m_PlayerControl_DestroyObject = m_PlayerControl.FindAction("DestroyObject", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -356,6 +377,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControl_DialogueSkip;
     private readonly InputAction m_PlayerControl_MoveLeftIngredientSelection;
     private readonly InputAction m_PlayerControl_MoveRightIngredientSelection;
+    private readonly InputAction m_PlayerControl_DestroyObject;
     public struct PlayerControlActions
     {
         private @DefaultKeymap m_Wrapper;
@@ -368,6 +390,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         public InputAction @DialogueSkip => m_Wrapper.m_PlayerControl_DialogueSkip;
         public InputAction @MoveLeftIngredientSelection => m_Wrapper.m_PlayerControl_MoveLeftIngredientSelection;
         public InputAction @MoveRightIngredientSelection => m_Wrapper.m_PlayerControl_MoveRightIngredientSelection;
+        public InputAction @DestroyObject => m_Wrapper.m_PlayerControl_DestroyObject;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControl; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -401,6 +424,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @MoveRightIngredientSelection.started += instance.OnMoveRightIngredientSelection;
             @MoveRightIngredientSelection.performed += instance.OnMoveRightIngredientSelection;
             @MoveRightIngredientSelection.canceled += instance.OnMoveRightIngredientSelection;
+            @DestroyObject.started += instance.OnDestroyObject;
+            @DestroyObject.performed += instance.OnDestroyObject;
+            @DestroyObject.canceled += instance.OnDestroyObject;
         }
 
         private void UnregisterCallbacks(IPlayerControlActions instance)
@@ -429,6 +455,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @MoveRightIngredientSelection.started -= instance.OnMoveRightIngredientSelection;
             @MoveRightIngredientSelection.performed -= instance.OnMoveRightIngredientSelection;
             @MoveRightIngredientSelection.canceled -= instance.OnMoveRightIngredientSelection;
+            @DestroyObject.started -= instance.OnDestroyObject;
+            @DestroyObject.performed -= instance.OnDestroyObject;
+            @DestroyObject.canceled -= instance.OnDestroyObject;
         }
 
         public void RemoveCallbacks(IPlayerControlActions instance)
@@ -465,5 +494,6 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         void OnDialogueSkip(InputAction.CallbackContext context);
         void OnMoveLeftIngredientSelection(InputAction.CallbackContext context);
         void OnMoveRightIngredientSelection(InputAction.CallbackContext context);
+        void OnDestroyObject(InputAction.CallbackContext context);
     }
 }

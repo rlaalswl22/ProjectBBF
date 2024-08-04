@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
     private Animator _animator;
     private static readonly int HashMovement = Animator.StringToHash("F_Movement");
 
+    public Vector2 LastMovedDirection { get; set; }
     
     public void Init(PlayerController controller)
     {
@@ -37,11 +38,19 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
             input.y
         );
 
+
         dir *= _movementData.MovementSpeed;
 
         _rigidbody.velocity = dir;
 
         _animator.SetFloat(HashMovement, dir.magnitude);
+        
+        
+        if (Mathf.Approximately(Mathf.Abs(input.x) + Mathf.Abs(input.y), 0f) == false)
+        {
+            LastMovedDirection = input.normalized;
+        }
+        
     }
 
     public void ResetVelocity()

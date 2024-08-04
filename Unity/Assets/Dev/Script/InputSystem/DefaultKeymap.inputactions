@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "DestroyObject",
+                    "type": "Button",
+                    "id": "5a61ab1f-d552-456e-b080-856e8b62fffe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -230,6 +239,17 @@
                     "processors": "",
                     "groups": "WinPCScheme",
                     "action": "MoveRightIngredientSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c53c89b-1df0-4e25-adcc-0c1157f539cb",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WinPCScheme",
+                    "action": "DestroyObject",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

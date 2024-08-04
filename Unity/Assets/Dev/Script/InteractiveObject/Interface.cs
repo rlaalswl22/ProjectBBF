@@ -16,5 +16,13 @@ public interface IBOBurn : IObjectBehaviour
 }
 public interface IBOCollect : IObjectBehaviour
 {
-    public UniTask<List<FieldItem>> Collect();
+    public List<ItemData> Collect();
+}
+public interface IBODestory : IObjectBehaviour
+{
+    public List<ItemData> Destory();
+}
+public interface IBODestoryTile : IObjectBehaviour
+{
+    public List<ItemData> Destory(Vector3 worldPos);
 }

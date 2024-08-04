@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
 
 
-
     #region Getter/Setter
     public PlayerMovementData MovementData => _movementData;
     public Rigidbody2D Rigidbody => _rigidbody;
@@ -29,25 +28,26 @@ public class PlayerController : MonoBehaviour
     public PlayerVisual VisualStrategy { get; private set; }
     public PlayerStateTranslator Translator { get; private set; }
     public PlayerCollector Collector { get; private set; }
+    public PlayerDestroy Destroyer { get; private set; }
+    public PlayerCoordinate Coordinate { get; private set; }
     #endregion
 
     private void Awake()
     {
-        MoveStrategy = gameObject.AddComponent<PlayerMove>();
-        VisualStrategy = gameObject.AddComponent<PlayerVisual>();
-        Translator = gameObject.AddComponent<PlayerStateTranslator>();
-        Collector = gameObject.AddComponent<PlayerCollector>();
-        
-        MoveStrategy.Init(this);
-        VisualStrategy.Init(this);
-        Translator.Init(this);
-        Collector.Init(this);
+        MoveStrategy = Bind<PlayerMove>();
+        VisualStrategy =Bind<PlayerVisual>();
+        Translator = Bind<PlayerStateTranslator>();
+        Collector = Bind<PlayerCollector>();
+        Destroyer = Bind<PlayerDestroy>();
+        Coordinate = Bind<PlayerCoordinate>();
     }
 
-    
-    // TODO: dummy 코드,
-    private void Update()
+    private T Bind<T>() where T : MonoBehaviour, IPlayerStrategy
     {
-        MoveStrategy.OnMove();
+        var obj = gameObject.AddComponent<T>();
+        obj.Init(this);
+
+        return obj;
     }
+    
 }
