@@ -1,12 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerQuickInventorySlotView : MonoBehaviour
 {
     [SerializeField] private Image _slotImage;
+    [SerializeField] private TMP_Text _text;
     private IInventorySlot _slotController;
+
+    private void Awake()
+    {
+        _text.text = "";
+    }
 
     public IInventorySlot SlotController
     {
@@ -19,6 +27,10 @@ public class PlayerQuickInventorySlotView : MonoBehaviour
             {
                 _slotController.Chnaged -= OnChanged;
             }
+            else
+            {
+                _text.text = "";
+            }
             
             _slotController = value;
             _slotController.Chnaged += OnChanged;
@@ -29,5 +41,13 @@ public class PlayerQuickInventorySlotView : MonoBehaviour
     private void OnChanged(IInventorySlot slot)
     {
         _slotImage.sprite = slot.Data != null ? slot.Data.ItemSprite : null;
+
+        if (slot.Data is not null && slot.Data.ActionCategoryType == ActionCategoryType.Tool)
+        {
+            _text.text = "";
+            return;
+        }
+        _text.text = slot.Count == 0 ? "" : slot.Count.ToString();
+        print(slot.Count);
     }
 }

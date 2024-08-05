@@ -46,6 +46,7 @@ public class WaitTask : Unit
                 yield return Succeeded;
                 break;
             case UniTaskStatus.Faulted:
+                Debug.LogException(task.AsTask().Exception);
                 yield return Faulted;
                 break;
             case UniTaskStatus.Canceled:
