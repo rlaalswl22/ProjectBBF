@@ -35,13 +35,11 @@ public class FarmlandManager : MonoBehaviour
     [SerializeField] private FarmlandTileController _controller;
     
     
-    private async void Awake()
+    private void Update()
     {
-        while (true)
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            await UniTask.Delay(1000, DelayType.DeltaTime, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
-
-            GrowUp();
+            GrowUp(1);
         }
     }
 

@@ -8,15 +8,12 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
-public class FarmlandTileController : MonoBehaviour, IBODestoryTile
+public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivateTile, IBOPlantTile
 {
     [SerializeField] protected CollisionInteraction _interaction;
     [SerializeField] protected Tilemap _platformTilemap;
     [SerializeField] protected Tilemap _plantTilemap;
-    
-    // testcode
-    [SerializeField] private FarmlandTile _tile;
-    [SerializeField] private GrownDefinition _definition;
+    [SerializeField] protected FarmlandTile _defaultCultivationTile;
 
     private Dictionary<Vector3Int, FarmlandTile> _originTable = new();
     private Dictionary<Vector3Int, FarmlandGrownInfo> _grownInfos = new();
@@ -29,6 +26,8 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile
         _interaction.SetContractInfo(info, this);
 
         info.AddBehaivour<IBODestoryTile>(this);
+        info.AddBehaivour<IBOCultivateTile>(this);
+        info.AddBehaivour<IBOPlantTile>(this);
     }
 
     private void Update()
@@ -36,27 +35,6 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile
         if (Input.GetKeyDown(KeyCode.G))
         {
             ResetAllTile();
-        }
-
-        var pos = WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        if (Input.GetMouseButtonDown(0))
-        {
-            TryCultivateTile(pos, _tile);
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (GetPlantTile(pos))
-            {
-                ResetPlantTile(pos);
-            }
-            else
-            {
-                Plant(pos, _definition);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            DestroyPlantTile(pos, null);
         }
     }
 
@@ -84,6 +62,11 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile
     public bool TryCultivateTile(Vector3Int cellPos, FarmlandTile tile)
     {
         if (CanCultivate(cellPos) == false) return false;
+
+        if (tile is null)
+        {
+            tile = _defaultCultivationTile;
+        }
         
         SetTile(cellPos, tile);
         return true;
@@ -130,11 +113,16 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile
     public List<FarmlandGrownInfo> GetAllGrownInfo()
         => _grownInfos.Values.ToList();
 
-    public void DestroyPlantTile(Vector3Int cellPos, List<ItemData> list)
+    public bool DestroyPlantTile(Vector3Int cellPos, ItemTypeInfo itemTypeInfo, List<ItemData> list)
     {
         var tile = _plantTilemap.GetTile<GrowingTile>(cellPos);
 
-        if (tile is null) return;
+        if (tile is null) return false;
+
+        if (ToolTypeUtil.IsCompetible(tile.RequireTools, itemTypeInfo.Sets) == false)
+        {
+            return false;
+        }
 
         for (int i = 0; i < tile.DropItemCount; i++)
         {
@@ -152,13 +140,20 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile
         }
         
         ResetPlantTile(cellPos);
+
+        return true;
     }
 
-    public void DestroyPlatformTile(Vector3Int cellPos, List<ItemData> list)
+    public bool DestroyPlatformTile(Vector3Int cellPos, ItemTypeInfo itemTypeInfo, List<ItemData> list)
     {
         var tile = _platformTilemap.GetTile<FarmlandTile>(cellPos);
 
-        if (tile is null) return;
+        if (tile is null) return false;
+
+        if (ToolTypeUtil.IsCompetible(tile.RequireTools, itemTypeInfo.Sets) == false)
+        {
+            return false;
+        }
 
         for (int i = 0; i < tile.DropItemCount; i++)
         {
@@ -176,6 +171,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile
         }
         
         ResetPlatformTile(cellPos);
+        return true;
     }
     
     public void ResetPlantTile(Vector3Int cellPos)
@@ -283,7 +279,16 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile
     }
 
     public CollisionInteraction Interaction => _interaction;
-    public List<ItemData> Destory(Vector3 worldPos)
+
+    public bool TryCultivateTile(Vector3 worldPos, FarmlandTile tile)
+        => TryCultivateTile(WorldToCell(worldPos), tile);
+
+    public bool Plant(Vector3 worldPos, GrownDefinition definition)
+        => Plant(WorldToCell(worldPos), definition);
+
+    /// 
+    [CanBeNull]
+    public List<ItemData> Destory(Vector3 worldPos, ItemTypeInfo itemTypeInfo)
     {
         FarmlandTile tile = null;
         Vector3Int cellPos = Vector3Int.zero;
@@ -295,7 +300,11 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile
 
         if (tile is not null)
         {
-            DestroyPlantTile(cellPos, list);
+            if (DestroyPlantTile(cellPos, itemTypeInfo, list) == false)
+            {
+                return null;
+            }
+            
             return list;
         }
         
@@ -304,7 +313,11 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile
 
         if (tile is not null)
         {
-            DestroyPlatformTile(cellPos, list);
+            if (DestroyPlatformTile(cellPos, itemTypeInfo, list) == false)
+            {
+                return null;
+            }
+            
             return list;
         }
 

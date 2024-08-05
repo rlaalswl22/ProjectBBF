@@ -11,7 +11,7 @@ namespace ProjectBBF.Event
     }
     
     public sealed class InteractionStateCallback<T> : BaseInteractionStateCallback
-    where T : IBaseBehaviour
+        where T : IBaseBehaviour
     {
         public Action<T> Callback;
         public override bool Invoke(IBaseBehaviour behaviour)
@@ -23,6 +23,77 @@ namespace ProjectBBF.Event
             }
 
             return false;
+        }
+    }
+    public sealed class SelectInteractionStateCallback<T> : BaseInteractionStateCallback
+        where T : IBaseBehaviour
+    {
+        public Func<T, bool> Callback;
+        public override bool Invoke(IBaseBehaviour behaviour)
+        {
+            if (behaviour is T b && Callback is not null)
+            {
+                return Callback!.Invoke(b);
+            }
+
+            return false;
+        }
+    }
+
+    public sealed class SelectInteractionState
+    {
+        private List<BaseInteractionStateCallback> _callbacks = new(2);
+
+        public SelectInteractionState Bind<T>(Func<T, bool> callback)
+            where T : IBaseBehaviour
+        {
+            _callbacks.Add(new SelectInteractionStateCallback<T>()
+            {
+                Callback = callback,
+                Type = typeof(T)
+            });
+            
+            return this;
+        }
+
+        public SelectInteractionState Execute(BaseContractInfo info)
+        {
+            Debug.Assert(info != null, "ContractInfo must be not null");
+
+            Inner_Execute(info);
+            
+            return this;
+        }
+
+        public SelectInteractionState Execute<TContractInfo>(GameObject gameObject) 
+            where TContractInfo : BaseContractInfo
+        {
+            Debug.Assert(gameObject != null, "GameObject must be not null");
+            
+            if (gameObject.TryGetComponent<CollisionInteraction>(out var com) &&
+                com.TryGetContractInfo<TContractInfo>(out var info))
+            {
+                Inner_Execute(info);
+            }
+            else
+            {
+                Debug.Assert(false, "failed acquire contractInfo");
+            }
+
+            return this;
+        }
+
+        private void Inner_Execute(BaseContractInfo info)
+        {
+            foreach (BaseInteractionStateCallback callback in _callbacks)
+            {
+                var behaviour = info.GetBehaviourOrNull(callback.Type);
+
+                if (behaviour != null)
+                {
+                    if (callback.Invoke(behaviour)) return;
+                }
+            }
         }
     }
     
@@ -88,6 +159,14 @@ namespace ProjectBBF.Event
         public static InteractionState CreateState()
         {
             var state = new InteractionState()
+            {
+            };
+
+            return state;
+        }
+        public static SelectInteractionState CreateSelectState()
+        {
+            var state = new SelectInteractionState()
             {
             };
 

@@ -26,6 +26,7 @@ public class FarmlandTileEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("_isCultivate")); 
         EditorGUILayout.PropertyField(serializedObject.FindProperty("_dropItem")); 
         EditorGUILayout.PropertyField(serializedObject.FindProperty("_dropItemCount")); 
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("_requireTools")); 
         
         
         if (GUI.changed)

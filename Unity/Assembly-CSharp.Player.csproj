@@ -49,6 +49,7 @@
     <Compile Include="Assets\Dev\Script\InteractiveObject\Behaviour\HandCollectingBehaviour.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\DialogueSetter.cs" />
     <Compile Include="Assets\Dev\Script\SceneCapture\SceneCapture.cs" />
+    <Compile Include="Assets\Dev\Script\Item\GrownItemData.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\DialogueManager.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\NodeData\BranchNodeData.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\NodeTypes.cs" />
@@ -63,7 +64,11 @@
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\NodeData\TextNodeData.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\DialogueContext.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\SeedTile.cs" />
+    <Compile Include="Assets\Dev\Script\Player\Inventory\View\PlayerQuickInventorySlotView.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Core\NodeLinkData.cs" />
+    <Compile Include="Assets\Dev\Script\Item\CultivationItemData.cs" />
+    <Compile Include="Assets\Dev\Script\Item\ItemType.cs" />
+    <Compile Include="Assets\Dev\Script\Player\PlayerInteracter.cs" />
     <Compile Include="Assets\Dev\Script\Player\PlayerCoordinate.cs" />
     <Compile Include="Assets\Dev\Script\Player\PlayerMovementData.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\FullyGrownTile.cs" />
@@ -83,6 +88,7 @@
     <Compile Include="Assets\Dev\Script\Dialogue\Core\DialogueItem.cs" />
     <Compile Include="Assets\Dev\Script\InputSystem\InputManager.cs" />
     <Compile Include="Assets\Dev\Script\Player\Define.cs" />
+    <Compile Include="Assets\Dev\Script\Player\Inventory\Controller\PlayerQuickInventoryController.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\MultiDialogueHandler.cs" />
     <Compile Include="Assets\Dev\Script\Item\ItemData.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\DialogueAnimator.cs" />
@@ -97,14 +103,18 @@
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\DialogueHandler.cs" />
     <Compile Include="Assets\Dev\Script\InteractiveObject\CollectingObjectData.cs" />
     <Compile Include="Assets\Dev\Script\UniTaskEX\GlobalCancelation.cs" />
+    <Compile Include="Assets\Dev\Script\Player\Inventory\GridBaseInventory.cs" />
     <Compile Include="Assets\Dev\Script\Player\PlayerCollector.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\GrowingTile.cs" />
+    <Compile Include="Assets\Dev\Script\Item\ToolType.cs" />
+    <Compile Include="Assets\Dev\Script\Player\Inventory\View\PlayerQuickInventoryView.cs" />
     <Compile Include="Assets\Dev\Script\UniTaskEX\WaitTask.cs" />
-    <Compile Include="Assets\Dev\Script\Player\PlayerDestroy.cs" />
+    <Compile Include="Assets\Dev\Script\Player\Inventory\Inventory.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\DialogueFlow.cs" />
     <Compile Include="Assets\Dev\Script\Player\PlayerMove.cs" />
     <Compile Include="Assets\Dev\Script\InteractiveObject\Behaviour\BurnBehaviour.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\FarmlandTile.cs" />
+    <Compile Include="Assets\Dev\Script\Player\Inventory\MirrorInventory.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\DialogueRuntimeTree.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.37f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\Variations\mono\Managed\UnityEngine.dll</HintPath>

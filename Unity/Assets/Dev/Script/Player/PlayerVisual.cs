@@ -17,7 +17,7 @@ public class PlayerVisual : MonoBehaviour, IPlayerStrategy
         _rigidbody = controller.Rigidbody;
         _animator = controller.Animator;
     }
-
+    
     public void UpdateFlip()
     {
         if (Mathf.Approximately(_rigidbody.velocity.x, 0f))

@@ -107,6 +107,24 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuickSlotScroll"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""8de32bb8-4940-4d21-ab65-5f8c42879b7e"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuickSlotScrollButton"",
+                    ""type"": ""Value"",
+                    ""id"": ""038c79a3-707f-420e-8739-50d47db3c0e0"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -274,6 +292,127 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""action"": ""DestroyObject"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""644ecf5c-139e-4942-8a51-fee02b3ea77e"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": ""Invert"",
+                    ""groups"": ""WinPCScheme"",
+                    ""action"": ""QuickSlotScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""608c7edb-0bfd-4655-a0ea-3778c189688b"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""QuickSlotScrollButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34879d20-6597-4562-a779-d651c2fcfba5"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": """",
+                    ""action"": ""QuickSlotScrollButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""367c4166-6ce4-486f-96c3-c1f68998b0a3"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""groups"": """",
+                    ""action"": ""QuickSlotScrollButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e32d8a83-1a1d-4b69-b25b-8f90702f27db"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=4)"",
+                    ""groups"": """",
+                    ""action"": ""QuickSlotScrollButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2b24ba5-75eb-4477-8376-25d811eea5a0"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=5)"",
+                    ""groups"": """",
+                    ""action"": ""QuickSlotScrollButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0468866-70a7-46f0-829d-19ff6eea8472"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=6)"",
+                    ""groups"": """",
+                    ""action"": ""QuickSlotScrollButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7abcd911-2a27-41c6-a423-ab275cb335f0"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=7)"",
+                    ""groups"": """",
+                    ""action"": ""QuickSlotScrollButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50d8f083-2b32-42c2-b7c7-7d4d6dbadf40"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=8)"",
+                    ""groups"": """",
+                    ""action"": ""QuickSlotScrollButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77e3e6f3-741b-4fb9-8f38-dd471a33194a"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=9)"",
+                    ""groups"": """",
+                    ""action"": ""QuickSlotScrollButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d35e34f-6eed-48d4-8541-78f3bb3f425c"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=10)"",
+                    ""groups"": """",
+                    ""action"": ""QuickSlotScrollButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -308,6 +447,8 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         m_PlayerControl_MoveLeftIngredientSelection = m_PlayerControl.FindAction("MoveLeftIngredientSelection", throwIfNotFound: true);
         m_PlayerControl_MoveRightIngredientSelection = m_PlayerControl.FindAction("MoveRightIngredientSelection", throwIfNotFound: true);
         m_PlayerControl_DestroyObject = m_PlayerControl.FindAction("DestroyObject", throwIfNotFound: true);
+        m_PlayerControl_QuickSlotScroll = m_PlayerControl.FindAction("QuickSlotScroll", throwIfNotFound: true);
+        m_PlayerControl_QuickSlotScrollButton = m_PlayerControl.FindAction("QuickSlotScrollButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -378,6 +519,8 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControl_MoveLeftIngredientSelection;
     private readonly InputAction m_PlayerControl_MoveRightIngredientSelection;
     private readonly InputAction m_PlayerControl_DestroyObject;
+    private readonly InputAction m_PlayerControl_QuickSlotScroll;
+    private readonly InputAction m_PlayerControl_QuickSlotScrollButton;
     public struct PlayerControlActions
     {
         private @DefaultKeymap m_Wrapper;
@@ -391,6 +534,8 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         public InputAction @MoveLeftIngredientSelection => m_Wrapper.m_PlayerControl_MoveLeftIngredientSelection;
         public InputAction @MoveRightIngredientSelection => m_Wrapper.m_PlayerControl_MoveRightIngredientSelection;
         public InputAction @DestroyObject => m_Wrapper.m_PlayerControl_DestroyObject;
+        public InputAction @QuickSlotScroll => m_Wrapper.m_PlayerControl_QuickSlotScroll;
+        public InputAction @QuickSlotScrollButton => m_Wrapper.m_PlayerControl_QuickSlotScrollButton;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControl; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -427,6 +572,12 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @DestroyObject.started += instance.OnDestroyObject;
             @DestroyObject.performed += instance.OnDestroyObject;
             @DestroyObject.canceled += instance.OnDestroyObject;
+            @QuickSlotScroll.started += instance.OnQuickSlotScroll;
+            @QuickSlotScroll.performed += instance.OnQuickSlotScroll;
+            @QuickSlotScroll.canceled += instance.OnQuickSlotScroll;
+            @QuickSlotScrollButton.started += instance.OnQuickSlotScrollButton;
+            @QuickSlotScrollButton.performed += instance.OnQuickSlotScrollButton;
+            @QuickSlotScrollButton.canceled += instance.OnQuickSlotScrollButton;
         }
 
         private void UnregisterCallbacks(IPlayerControlActions instance)
@@ -458,6 +609,12 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @DestroyObject.started -= instance.OnDestroyObject;
             @DestroyObject.performed -= instance.OnDestroyObject;
             @DestroyObject.canceled -= instance.OnDestroyObject;
+            @QuickSlotScroll.started -= instance.OnQuickSlotScroll;
+            @QuickSlotScroll.performed -= instance.OnQuickSlotScroll;
+            @QuickSlotScroll.canceled -= instance.OnQuickSlotScroll;
+            @QuickSlotScrollButton.started -= instance.OnQuickSlotScrollButton;
+            @QuickSlotScrollButton.performed -= instance.OnQuickSlotScrollButton;
+            @QuickSlotScrollButton.canceled -= instance.OnQuickSlotScrollButton;
         }
 
         public void RemoveCallbacks(IPlayerControlActions instance)
@@ -495,5 +652,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         void OnMoveLeftIngredientSelection(InputAction.CallbackContext context);
         void OnMoveRightIngredientSelection(InputAction.CallbackContext context);
         void OnDestroyObject(InputAction.CallbackContext context);
+        void OnQuickSlotScroll(InputAction.CallbackContext context);
+        void OnQuickSlotScrollButton(InputAction.CallbackContext context);
     }
 }

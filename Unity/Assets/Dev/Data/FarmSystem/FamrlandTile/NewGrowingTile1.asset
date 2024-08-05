@@ -35,5 +35,8 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 1
   _isCultivate: 0
-  _dropItem: {fileID: 11400000, guid: d726ec132b3bb6a4592e0099db02bad1, type: 2}
+  _dropItem: {fileID: 11400000, guid: b063ffbc1ffe55c4ead176532a042f2e, type: 2}
   _dropItemCount: 1
+  _requireTools:
+  - _requireToolTypes: 1
+    _requireToolRank: 1

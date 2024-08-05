@@ -17,6 +17,12 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField, MustBeAssigned, AutoProperty(AutoPropertyMode.Children)]
     private Animator _animator;
 
+    [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
+    private PlayerQuickInventoryController _quickInventory;
+
+    [field: SerializeField] private ItemData _testTool;
+    [field: SerializeField] private GrownItemData _testSeed;
+
 
     #region Getter/Setter
     public PlayerMovementData MovementData => _movementData;
@@ -27,9 +33,12 @@ public class PlayerController : MonoBehaviour
     public PlayerMove MoveStrategy { get; private set; }
     public PlayerVisual VisualStrategy { get; private set; }
     public PlayerStateTranslator Translator { get; private set; }
-    public PlayerCollector Collector { get; private set; }
-    public PlayerDestroy Destroyer { get; private set; }
+    public PlayerInteracter Interactor { get; private set; }
     public PlayerCoordinate Coordinate { get; private set; }
+    
+    
+    public GridInventory Inventory { get; private set; }
+    public PlayerQuickInventoryController QuickInventory => _quickInventory;
     #endregion
 
     private void Awake()
@@ -37,9 +46,15 @@ public class PlayerController : MonoBehaviour
         MoveStrategy = Bind<PlayerMove>();
         VisualStrategy =Bind<PlayerVisual>();
         Translator = Bind<PlayerStateTranslator>();
-        Collector = Bind<PlayerCollector>();
-        Destroyer = Bind<PlayerDestroy>();
+        Interactor = Bind<PlayerInteracter>();
         Coordinate = Bind<PlayerCoordinate>();
+        
+        
+        Inventory = new GridInventory(new Vector2Int(10, 3));
+        QuickInventory.Init(this);
+
+        Inventory.PushItem(_testTool, 1);
+        Inventory.PushItem(_testSeed, 4);
     }
 
     private T Bind<T>() where T : MonoBehaviour, IPlayerStrategy
