@@ -42,13 +42,15 @@ public class DialogueContext
                 new CancellationToken()
             );
         }
-        
-        begin:
-        
-        var item = CurrentNode.CreateItem();
+
+        DialogueItem item = null;
         IsRunning = true;
         try
         {
+            begin:
+        
+            item = CurrentNode.CreateItem();
+            
             if (item is TextItem textItem)
             {
                 await TextUtil.DoTextUniTask(_textInput, textItem.Text, _duration, _source.Token);
@@ -64,6 +66,12 @@ public class DialogueContext
                 
                 CurrentNode = branchItem.Node.GetNext(index);
 
+                goto begin;
+            }
+            else if (item is ExecutionItem executionItem)
+            {
+                executionItem.Execution();
+                CurrentNode = executionItem.Node.NextNode;
                 goto begin;
             }
         }

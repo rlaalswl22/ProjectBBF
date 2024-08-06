@@ -56,6 +56,7 @@
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\RuntimeNode\TextRuntimeNode.cs" />
     <Compile Include="Assets\Dev\Script\InputSystem\DefaultKeymap.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\FarmlandManager.cs" />
+    <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Item\ExecutionItem.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\RuntimeNode\BranchRuntimeNode.cs" />
     <Compile Include="Assets\Dev\Script\SceneCapture\DetailController.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Core\DialogueContainer.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\NodeData\TextNodeData.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\DialogueContext.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\SeedTile.cs" />
+    <Compile Include="Assets\Dev\Script\Dialogue\Runtime\ExecutionDescriptor\FavorabilityDescriptor.cs" />
     <Compile Include="Assets\Dev\Script\Player\Inventory\View\PlayerQuickInventorySlotView.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Core\NodeLinkData.cs" />
     <Compile Include="Assets\Dev\Script\Item\CultivationItemData.cs" />
@@ -85,11 +87,13 @@
     <Compile Include="Assets\Dev\Script\Dialogue\Test\DialogueControllerTest.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\TextUtil.cs" />
     <Compile Include="Assets\Dev\Script\InputSystem\DefaultKey.cs" />
+    <Compile Include="Assets\Dev\Script\Dialogue\Runtime\ExecutionDescriptor\ExecutionDescriptor.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Core\DialogueItem.cs" />
     <Compile Include="Assets\Dev\Script\InputSystem\InputManager.cs" />
     <Compile Include="Assets\Dev\Script\Player\Define.cs" />
     <Compile Include="Assets\Dev\Script\Player\Inventory\Controller\PlayerQuickInventoryController.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\MultiDialogueHandler.cs" />
+    <Compile Include="Assets\Dev\Script\Dialogue\Runtime\NodeData\ExecutionNodeData.cs" />
     <Compile Include="Assets\Dev\Script\Item\ItemData.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\DialogueAnimator.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\NodeData\ConditionNodeData.cs" />
@@ -100,6 +104,7 @@
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\RuntimeNode\ConditionRuntimeNode.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\GrownDefinition.cs" />
     <Compile Include="Assets\Dev\Script\Item\FieldItem.cs" />
+    <Compile Include="Assets\Dev\Script\Dialogue\Runtime\RuntimeNode\ExecutionRuntimeNode.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Item\TextItem.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\DialogueHandler.cs" />
     <Compile Include="Assets\Dev\Script\InteractiveObject\CollectingObjectData.cs" />

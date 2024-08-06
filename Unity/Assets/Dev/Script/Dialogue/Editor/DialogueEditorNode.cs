@@ -4,6 +4,8 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 using DS.Core;
+using DS.Runtime;
+using UnityEditor.UIElements;
 
 namespace DS.Editor
 {
@@ -64,6 +66,18 @@ namespace DS.Editor
             mainContainer.Add(textField);
             
             return textField;
+        }
+        public virtual ObjectField AddObjectField(EventCallback<ChangeEvent<UnityEngine.Object>> changeCallback, string styleClass)
+        {
+            RemoveLabel(titleContainer, "title-label");
+            
+            var propertyField = new ObjectField();
+            propertyField.RegisterCallback(changeCallback);
+            propertyField.AddToClassList(styleClass);
+            propertyField.objectType = typeof(ExecutionDescriptor);
+            mainContainer.Add(propertyField);
+            
+            return propertyField;
         }
         
         public FloatField AddFloatField(EventCallback<ChangeEvent<float>> changeCallback, string styleClass, string fieldName, float defaultValue=default)

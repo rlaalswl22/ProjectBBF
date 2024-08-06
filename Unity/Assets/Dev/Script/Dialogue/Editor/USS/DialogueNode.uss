@@ -51,6 +51,30 @@ BranchEditorNode .delete-choice-button {
     color: #ff4b4b;
 }
 
+/* ExecutionNode */
+
+ExecutionEditorNode {
+    background-color: #111;
+}
+
+ExecutionEditorNode #title {
+    background-color: darkslateblue;
+}
+
+ExecutionEditorNode .output-objectField > .unity-property-field__input {
+    height: 20px;
+}
+
+ExecutionEditorNode .choice-button {
+    font-size: 15px;
+}
+
+ExecutionEditorNode .delete-choice-button {
+    font-size: 15px;
+    width: 18px;
+    color: #ff4b4b;
+}
+
 /* ConditionEditorNode */
 
 ConditionEditorNode {
