@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DS.Core;
+using UnityEngine;
 
 namespace DS.Runtime
 {
     [Serializable]
-    public class BranchNodeData : DialogueNodeDataT<BranchRuntimeNode>
+    public class BranchNodeData : DialogueNodeData
     {
         public override DialogueNodeData Clone()
         {
@@ -16,6 +19,23 @@ namespace DS.Runtime
             data.Position = Position;
             
             return data;
+        }
+
+        public override DialogueRuntimeNode CreateRuntimeNode(List<DialogueNodeData> datas, List<NodeLinkData> links)
+        {
+            var nextNodes = links
+                .Where(x => x.BaseNodeGuid == GUID)
+                .Select(x =>
+                {
+                    DialogueNodeData data = datas.FirstOrDefault(y => y.GUID == x.TargetNodeGuid);
+                    Debug.Assert(data is not null);
+
+                    DialogueRuntimeNode nextNode = data.CreateRuntimeNode(datas, links);
+                    return new BranchRuntimeNode.BranchItem(nextNode, x.PortName);
+                })
+                .ToList();
+
+            return new BranchRuntimeNode(nextNodes);
         }
 
         public override bool IsEqual(DialogueNodeData other)

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed507e00ab63144f976694caab7934e, type: 3}
+  m_Name: OnlyText
+  m_EditorClassIdentifier: 
+  NodeLinks:
+  - BaseNodeGuid: d35c1fc0-c775-43df-8cb9-f3bfb5d777df
+    PortName: Execute
+    TargetNodeGuid: 19957d31-bc6f-4022-a67c-4b3784a99734
+  - BaseNodeGuid: 19957d31-bc6f-4022-a67c-4b3784a99734
+    PortName: Next
+    TargetNodeGuid: a9045e20-d954-4f05-a492-a762b20ef2ea
+  - BaseNodeGuid: a9045e20-d954-4f05-a492-a762b20ef2ea
+    PortName: Next
+    TargetNodeGuid: 8430794d-a192-4643-bafa-2b62a2bcad27
+  NodeData:
+  - rid: 9140223798809722954
+  - rid: 9140223798809722955
+  - rid: 9140223798809722956
+  references:
+    version: 2
+    RefIds:
+    - rid: 9140223798809722954
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 19957d31-bc6f-4022-a67c-4b3784a99734
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 409, y: 262}
+        DialogueText: 111
+    - rid: 9140223798809722955
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: a9045e20-d954-4f05-a492-a762b20ef2ea
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 820, y: 244}
+        DialogueText: 222
+    - rid: 9140223798809722956
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 8430794d-a192-4643-bafa-2b62a2bcad27
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1114, y: 244}
+        DialogueText: 333

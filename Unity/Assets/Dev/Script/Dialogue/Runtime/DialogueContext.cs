@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DS.Core;
+using DS.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,61 +15,78 @@ public class DialogueContext
     private float _duration;
     private Action<string> _textInput;
 
-    //TODO: ÇâÈÄ »èÁ¦ ¹Ù¶÷
+    //TODO: í–¥í›„ ì‚­ì œ ë°”ëžŒ
     //private NpcController _controller;
 
     private DialogueView _view;
 
-    private int _index;
-
     private CancellationTokenSource _source;
 
-    public bool CanNext => _tree.IsEnd == false && _source != null;
+    public bool CanNext => CurrentNode is not null;
 
-    public string CurrentText { get; private set; }
+    public DialogueRuntimeNode CurrentNode { get; private set; }
+    
+    public bool IsRunning { get; private set; }
 
-    private UniTask _prevTask = UniTask.CompletedTask;
-
-    public void Setup(/**NpcController npcController*/)
+    public async UniTask Next()
     {
-        //_controller = npcController;
-    }
+        if (CanNext == false) return;
+        if (IsRunning) return;
 
-    public UniTask Next()
-    {
-        if (CanNext == false) return UniTask.CompletedTask;
-
-        string str = string.Empty;
-        if (_prevTask.Status == UniTaskStatus.Pending)
-        {
-            str = CurrentText;
-        }
-            
-        _source.Cancel();
-        _source = new CancellationTokenSource();
-
-        if (string.IsNullOrEmpty(str) == false)
-        {
-            _textInput(str);
-            return UniTask.CompletedTask;
-        }
-
-        var item = _tree.NextItem();
-        if (item == null) return UniTask.CompletedTask;
-        CurrentText = item.Text;
-
-        _view.ArrowDirection = item.IsMaster ? DialogueView.EArrowDirection.Master : DialogueView.EArrowDirection.Npc;
+        _source?.Cancel();
         
-        var task = TextUtil.DoTextUniTask(_textInput, CurrentText, _duration, _source.Token);
-        _prevTask = task;
+        if (_source is null)
+        {
+            _source = CancellationTokenSource.CreateLinkedTokenSource(
+                GlobalCancelation.PlayMode,
+                new CancellationToken()
+            );
+        }
+        
+        begin:
+        
+        var item = CurrentNode.CreateItem();
+        IsRunning = true;
+        try
+        {
+            if (item is TextItem textItem)
+            {
+                await TextUtil.DoTextUniTask(_textInput, textItem.Text, _duration, _source.Token);
+                CurrentNode = textItem.Node.GetNext();
+            }
+            else if (item is BranchItem branchItem)
+            {
+                _view.SetBranchButtonsVisible(true, branchItem.BranchTexts.Length);
+                _view.SetTextVisible(false);
+                int index = await _view.GetPressedButtonIndexAsync(branchItem.BranchTexts);
+                _view.SetBranchButtonsVisible(false, 0);
+                _view.SetTextVisible(true);
+                
+                CurrentNode = branchItem.Node.GetNext(index);
 
-        //TODO: ÇâÈÄ »èÁ¦ ¹Ù¶÷
-        //if (_controller)
-        //{
-        //    _controller.GetNpcAll().ForEach(x=>x.PlayAnimation(item.PoseKey));
-        //}
-
-        return task;
+                goto begin;
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            if (item is TextItem textItem)
+            {
+                _textInput(textItem.Text);
+                CurrentNode = textItem.Node.GetNext();
+            }
+            else if (item is BranchItem branchItem)
+            {
+                _view.SetBranchButtonsVisible(false, 0);
+                _view.SetTextVisible(true);
+                CurrentNode = branchItem.Node.GetNext(0);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+        IsRunning = false;
+        
     }
 
     public void Cancel()
@@ -84,5 +102,6 @@ public class DialogueContext
         _duration = duration;
         _view = view;
         _source = new();
+        CurrentNode = tree.EntryPoint;
     }
 }

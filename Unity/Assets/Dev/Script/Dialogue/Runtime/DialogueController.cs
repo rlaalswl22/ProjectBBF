@@ -24,6 +24,18 @@ public class DialogueController : MonoBehaviour
     private void Awake()
     {
         ResetDialogue();
+        
+        //for (int i = 0; i < _view.BranchButtons.Count; i++)
+        //{
+        //    int index = i;
+        //    _view.BranchButtons[i].onClick.AddListener(() =>
+        //    {
+        //        if (LastestContext is null) return;
+        //        
+        //        LastestContext.
+        //    });
+        //}
+        
     }
 
     public void ResetDialogue()

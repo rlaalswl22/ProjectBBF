@@ -1,17 +1,28 @@
-﻿using DS.Core;
+﻿using System;
+using System.Collections.Generic;
+using DS.Core;
 
 namespace DS.Runtime
 {
-    public class ConditionRuntimeNode : DialogueRuntimeNodeT<ConditionNodeData>
+    public class ConditionRuntimeNode : DialogueRuntimeNode
     {
-        public override DialogueItem CreateItem()
+        public DialogueRuntimeNode TrueNode { get; private set; }
+        public DialogueRuntimeNode FalseNode { get; private set; }
+
+        public override bool IsLeaf => TrueNode is null && FalseNode is null;
+
+        public ConditionRuntimeNode(DialogueRuntimeNode trueNode, DialogueRuntimeNode falseNode)
         {
-            throw new System.NotImplementedException();
+            TrueNode = trueNode;
+            FalseNode = falseNode;
         }
 
-        public override DialogueRuntimeNode GetNext()
+        public override DialogueItem CreateItem()
+            => null;
+
+        public DialogueRuntimeNode GetNext()
         {
-            throw new System.NotImplementedException();
+            throw new Exception();
         }
     }
 }

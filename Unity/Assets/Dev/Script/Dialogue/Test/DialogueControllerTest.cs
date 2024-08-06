@@ -32,15 +32,14 @@ public class DialogueControllerTest : MonoBehaviour
     {
         if (_context == null) return;
 
-        // TODO: inputaction 설정하지 않아서 일단 주석처리. 향후 변경된 트리거로 변경하고 코드 활성화 바람
-        //if (InputManager.Actions.DialogueSkip.triggered)
-        //{
-        //    _context.Next();
-        //    if (_context.CanNext == false)
-        //    {
-        //        _context = null;
-        //        CreateContext();
-        //    }
-        //}
+        if (InputManager.Actions.DialogueSkip.triggered)
+        {
+            _context.Next();
+            if (_context.CanNext == false)
+            {
+                _context = null;
+                CreateContext();
+            }
+        }
     }
 }

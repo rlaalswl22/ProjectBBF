@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DS.Core
@@ -14,7 +15,7 @@ namespace DS.Core
 
         public abstract DialogueNodeData Clone();
 
-        public abstract DialogueRuntimeNode CreateRuntimeNode();
+        public abstract DialogueRuntimeNode CreateRuntimeNode(List<DialogueNodeData> datas, List<NodeLinkData> links);
         
         public virtual bool IsEqual(DialogueNodeData other)
         {
@@ -32,18 +33,6 @@ namespace DS.Core
                 return false;
 
             return true;
-        }
-    }
-
-    public abstract class DialogueNodeDataT<T> : DialogueNodeData
-        where T : DialogueRuntimeNode, new()
-    {
-        public override DialogueRuntimeNode CreateRuntimeNode()
-        {
-            var t = new T();
-            t.SetData(this);
-
-            return t;
         }
     }
 }

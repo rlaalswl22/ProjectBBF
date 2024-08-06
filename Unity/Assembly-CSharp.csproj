@@ -100,6 +100,7 @@
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\RuntimeNode\ConditionRuntimeNode.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\GrownDefinition.cs" />
     <Compile Include="Assets\Dev\Script\Item\FieldItem.cs" />
+    <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Item\TextItem.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\DialogueHandler.cs" />
     <Compile Include="Assets\Dev\Script\InteractiveObject\CollectingObjectData.cs" />
     <Compile Include="Assets\Dev\Script\UniTaskEX\GlobalCancelation.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Assets\Dev\Script\Player\PlayerMove.cs" />
     <Compile Include="Assets\Dev\Script\InteractiveObject\Behaviour\BurnBehaviour.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\FarmlandTile.cs" />
+    <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Item\BranchItem.cs" />
     <Compile Include="Assets\Dev\Script\Player\Inventory\MirrorInventory.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\DialogueRuntimeTree.cs" />
     <None Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0\package.json" />

@@ -18,14 +18,5 @@ public class DialogueRuntimeTreeTester : MonoBehaviour
 
     private void Traval(int depth, DialogueRuntimeNode node)
     {
-        print($"depth({depth}), title({node.Data.NodeTitle}), guid({node.Data.GUID}), remained({node.NextNodes.Count})");
-
-        if (node.IsLeaf) return;
-
-        depth++;
-        foreach (DialogueRuntimeNode next in node.NextNodes)
-        {
-            Traval(depth, next);
-        }
     }
 }

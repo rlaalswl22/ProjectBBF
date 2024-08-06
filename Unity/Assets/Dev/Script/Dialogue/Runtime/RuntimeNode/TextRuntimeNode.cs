@@ -2,16 +2,24 @@
 
 namespace DS.Runtime
 {
-    public class TextRuntimeNode : DialogueRuntimeNodeT<TextNodeData>
+    public class TextRuntimeNode : DialogueRuntimeNode
     {
-        
+        public string Text { get; private set; }
+        public DialogueRuntimeNode NextNode { get; private set; }
+        public override bool IsLeaf => NextNode is null;
+
+        public TextRuntimeNode(string text, DialogueRuntimeNode nextNode)
+        {
+            Text = text;
+            NextNode = nextNode;
+        }
 
         public override DialogueItem CreateItem()
         {
-            return new DialogueItem(MyData.DialogueText, false, "default", "default");
+            return new TextItem(this, Text, "default", "None");
         }
 
-        public override DialogueRuntimeNode GetNext()
-            => FirstNode;
+        public DialogueRuntimeNode GetNext()
+            => NextNode;
     }
 }

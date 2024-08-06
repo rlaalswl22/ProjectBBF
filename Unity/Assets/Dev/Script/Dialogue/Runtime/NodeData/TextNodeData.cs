@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DS.Core;
 using UnityEngine;
 
 namespace DS.Runtime
 {
     [Serializable]
-    public class TextNodeData : DialogueNodeDataT<TextRuntimeNode>
+    public class TextNodeData : DialogueNodeData
     {
         public string DialogueText;
 
@@ -21,6 +23,19 @@ namespace DS.Runtime
             data.DialogueText = DialogueText;
 
             return data;
+        }
+
+        public override DialogueRuntimeNode CreateRuntimeNode(List<DialogueNodeData> datas, List<NodeLinkData> links)
+        {
+            NodeLinkData result = links.FirstOrDefault(x => x.BaseNodeGuid == GUID);
+            if (result is null) return new TextRuntimeNode(DialogueText, null);
+
+            DialogueNodeData nextData = datas.FirstOrDefault(x => x.GUID == result.TargetNodeGuid);
+            if (nextData is null) return new TextRuntimeNode(DialogueText, null);
+
+            DialogueRuntimeNode nextNode = nextData.CreateRuntimeNode(datas, links);
+
+            return new TextRuntimeNode(DialogueText, nextNode);
         }
 
         public override bool IsEqual(DialogueNodeData other)

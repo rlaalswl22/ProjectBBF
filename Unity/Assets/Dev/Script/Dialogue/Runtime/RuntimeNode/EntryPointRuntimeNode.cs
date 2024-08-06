@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DS.Core;
 using JetBrains.Annotations;
@@ -9,14 +10,18 @@ namespace DS.Runtime
 {
     public class EntryPointRuntimeNode : DialogueRuntimeNode
     {
-        public EntryPointRuntimeNode(DialogueNodeData data, params DialogueRuntimeNode[] nexts) : base(data, nexts)
+        public DialogueRuntimeNode NextNode { get; private set; }
+        public override bool IsLeaf => NextNode is null;
+
+        public EntryPointRuntimeNode(DialogueRuntimeNode nextNode)
         {
+            NextNode = nextNode;
         }
 
         public override DialogueItem CreateItem()
-            => DialogueItem.Default;
+            => throw new NotImplementedException();
 
-        public override DialogueRuntimeNode GetNext()
-            => FirstNode;
+        public DialogueRuntimeNode GetNext()
+            => NextNode;
     }
 }
