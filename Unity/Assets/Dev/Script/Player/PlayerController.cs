@@ -8,8 +8,10 @@ using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-    [field: SerializeField, Foldout("데이터"), InitializationField, OverrideLabel("플레이어 이동 데이터"), MustBeAssigned, DisplayInspector]
+    [field: SerializeField, Foldout("데이터"), OverrideLabel("플레이어 이동 데이터"), MustBeAssigned, DisplayInspector]
     private PlayerMovementData _movementData;
+    [field: SerializeField, Foldout("데이터"), OverrideLabel("플레이어 이동 데이터"), MustBeAssigned, DisplayInspector]
+    private PlayerAnimationData _animationData;
     
     [field: SerializeField, Separator("컴포넌트"), MustBeAssigned, AutoProperty(AutoPropertyMode.Children)]
     private Rigidbody2D _rigidbody;
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     #region Getter/Setter
     public PlayerMovementData MovementData => _movementData;
+    public PlayerAnimationData AnimationData => _animationData;
     public Rigidbody2D Rigidbody => _rigidbody;
     public Animator Animator => _animator;
     
