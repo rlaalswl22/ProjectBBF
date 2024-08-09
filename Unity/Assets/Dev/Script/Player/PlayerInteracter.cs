@@ -37,15 +37,28 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     private async UniTask Interact()
     {
         var interaction = FindCloserObject();
-
         if (interaction is null) return;
         
+        Farmland(interaction);
+        
+        await Dialogue(interaction);
+                
+        DialogueController.Instance.ResetDialogue();
+        _controller.QuickInventory.Visible = true;
+    }
+
+    private void Farmland(CollisionInteractionMono interaction)
+    {
         CollisionInteractionUtil
             .CreateSelectState()
             .Bind<IBODestoryTile>(DestroyTile)
             .Bind<IBOCultivateTile>(CultivateTile)
             .Bind<IBOPlantTile>(PlantTile)
             .Execute(interaction.ContractInfo);
+    }
+
+    private async UniTask Dialogue(CollisionInteractionMono interaction)
+    {
 
         if (interaction.TryGetContractInfo(out ActorContractInfo actorInfo) &&
             actorInfo.TryGetBehaviour(out IBAMove move) &&
@@ -120,10 +133,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 await UniTask.WaitUntil(() => InputManager.Actions.DialogueSkip.triggered, PlayerLoopTiming.Update,
                     GlobalCancelation.PlayMode);
             }
-                
-            instance.ResetDialogue();
-            _controller.QuickInventory.Visible = true;
-
         }
     }
 
