@@ -1,19 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using DS.Core;
 using JetBrains.Annotations;
+using ProjectBBF.Singleton;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
-
-public class DialogueController : MonoBehaviour
+[Singleton(ESingletonType.Global)]
+public class DialogueController : MonoBehaviourSingleton<DialogueController>
 {
-    [SerializeField] private DialogueView _view;
-    
-    [SerializeField] private float _textCompletionDuration = 0.35f;
-    
+    private DialogueView _view;
+    private ActorDataTable _table;
+
     private DialogueContext LastestContext { get; set; }
+
+    private const string VIEW_PATH = "Feature/DialogueView";
+    private const string DATA_PATH = "Data/ActorDataTable";
 
     public bool Visible
     {
@@ -21,21 +26,57 @@ public class DialogueController : MonoBehaviour
         set => _view.Visible = value;
     }
 
-    private void Awake()
+    public void SetTextVisible(bool value)
+        => _view.SetTextVisible(value);
+
+    public bool SetPortrait(string portraitKey)
     {
+        Sprite spr = _table.GetPortraitFromKey(portraitKey);
+        _view.SetPortrait(spr);
+
+        return spr is not null;
+    }
+
+    public bool SetPortrait(string actorKey, string portraitKey)
+    {
+        if (_table.Table.TryGetValue(actorKey, out var data) &&
+            data.PortraitTable.Table.TryGetValue(portraitKey, out var sprite))
+        {
+            _view.SetPortrait(sprite);
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool SetDisplayName(string actorKey)
+    {
+        if (_table.Table.TryGetValue(actorKey, out var data))
+        {
+            _view.DisplayName = data.ActorName;
+            return true;
+        }
+
+        return false;
+    }
+
+    public override void PostInitialize()
+    {
+        _view = Resources.Load<DialogueView>(VIEW_PATH);
+        Debug.Assert(_view is not null);
+
+        _view = Instantiate(_view, transform, true);
+        _view.gameObject.SetActive(true);
+
+        _table = Resources.Load<ActorDataTable>(DATA_PATH);
+        Debug.Assert(_table is not null);
+
         ResetDialogue();
-        
-        //for (int i = 0; i < _view.BranchButtons.Count; i++)
-        //{
-        //    int index = i;
-        //    _view.BranchButtons[i].onClick.AddListener(() =>
-        //    {
-        //        if (LastestContext is null) return;
-        //        
-        //        LastestContext.
-        //    });
-        //}
-        
+    }
+
+    public override void PostRelease()
+    {
+        _view = null;
     }
 
     public void ResetDialogue()
@@ -45,7 +86,27 @@ public class DialogueController : MonoBehaviour
 
         LastestContext?.Cancel();
         LastestContext = null;
+        
+        _view.SetPortrait(null);
     }
+
+    public string DialogueText
+    {
+        get => _view.DialogueText;
+        set => _view.DialogueText = value;
+    }
+
+    public async UniTask<int> GetBranchResultAsync(params string[] texts)
+    {
+        SetBranchButtonsVisible(true, texts.Length);
+        int index = await _view.GetPressedButtonIndexAsync(texts);
+        SetBranchButtonsVisible(false);
+
+        return index;
+    }
+
+    public void SetBranchButtonsVisible(bool value, int enableCountIfValueIsTrue = 0)
+        => _view.SetBranchButtonsVisible(value, enableCountIfValueIsTrue);
 
     public DialogueContext CreateContext(DialogueContainer container)
         => CreateContext(DialogueRuntimeTree.Build(container));
@@ -57,15 +118,14 @@ public class DialogueController : MonoBehaviour
         {
             return null;
         }
-        
+
         var context = new DialogueContext(
             tree,
-            _textCompletionDuration,
-            _view
+            _view.TextCompletionDuration,
+            this
         );
 
         LastestContext = context;
         return context;
     }
 }
-

@@ -55,6 +55,8 @@
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Legacy\NodeTypes.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\RuntimeNode\TextRuntimeNode.cs" />
     <Compile Include="Assets\Dev\Script\InputSystem\DefaultKeymap.cs" />
+    <Compile Include="Assets\Dev\Script\Actor\Actor.cs" />
+    <Compile Include="Assets\Dev\Script\Actor\PortraitTable.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\FarmlandManager.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Item\ExecutionItem.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\RuntimeNode\BranchRuntimeNode.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Assets\Dev\Script\Item\CultivationItemData.cs" />
     <Compile Include="Assets\Dev\Script\Item\ItemType.cs" />
     <Compile Include="Assets\Dev\Script\Player\PlayerInteracter.cs" />
+    <Compile Include="Assets\Dev\Script\Actor\FavorabilityEvent.cs" />
     <Compile Include="Assets\Dev\Script\Player\PlayerCoordinate.cs" />
     <Compile Include="Assets\Dev\Script\Player\PlayerMovementData.cs" />
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\FullyGrownTile.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\RuntimeNode\EntryPointRuntimeNode.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Test\DialogueControllerTest.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\TextUtil.cs" />
+    <Compile Include="Assets\Dev\Script\Actor\ActorDataTable.cs" />
     <Compile Include="Assets\Dev\Script\InputSystem\DefaultKey.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\ExecutionDescriptor\ExecutionDescriptor.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Core\DialogueItem.cs" />
@@ -123,6 +127,7 @@
     <Compile Include="Assets\Dev\Script\FarmSystem\Farmland\FarmlandTile.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\Item\BranchItem.cs" />
     <Compile Include="Assets\Dev\Script\Player\Inventory\MirrorInventory.cs" />
+    <Compile Include="Assets\Dev\Script\Actor\Interface.cs" />
     <Compile Include="Assets\Dev\Script\Dialogue\Runtime\DialogueRuntimeTree.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.37f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\Variations\mono\Managed\UnityEngine.dll</HintPath>

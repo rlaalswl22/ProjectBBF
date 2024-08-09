@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using DS.Core;
 using JetBrains.Annotations;
 using ProjectBBF.Event;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -20,12 +22,19 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
 
-        Interact();
+        try
+        {
+            await Interact();
+        }
+        catch(Exception e) when(e is not OperationCanceledException)
+        {
+            Debug.LogException(e);
+        }
 
         await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
     }
 
-    private void Interact()
+    private async UniTask Interact()
     {
         var interaction = FindCloserObject();
 
@@ -37,8 +46,84 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             .Bind<IBOCultivateTile>(CultivateTile)
             .Bind<IBOPlantTile>(PlantTile)
             .Execute(interaction.ContractInfo);
+
+        if (interaction.TryGetContractInfo(out ActorContractInfo actorInfo) &&
+            actorInfo.TryGetBehaviour(out IBAMove move) &&
+            actorInfo.TryGetBehaviour(out IBAFavorablity favorablity) &&
+            actorInfo.TryGetBehaviour(out IBANameKey nameKey))
+        {
+            //move.SetMoveLock(false);
+            
+            
+            var favorablityContainer = favorablity.GetFavorablityContainer();
+            
+            //TODO: test code, delete this
+            favorablityContainer.CurrentFavorablity = 3;
+            
+            var eventItems = favorablityContainer.GetExecutableDialogues();
+
+            var instance = DialogueController.Instance;
+            instance.ResetDialogue();
+            instance.Visible = true;
+            instance.SetDisplayName(nameKey.GetActorKey());
+
+            var index = await instance.GetBranchResultAsync(
+                "대화",
+                "선물",
+                "떠나기"
+            );
+
+            switch (index)
+            {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    instance.ResetDialogue();
+                    return;
+                default:
+                    instance.ResetDialogue();
+                    return;
+            }
+            
+            
+            // 한번만 실행해야하는 이벤트는 블랙리스트에 등록
+            foreach (FavorabilityEventItem item in eventItems)
+            {
+                if (item.Once)
+                {
+                    favorablityContainer.AddExecutedDialogueGuid(item.Container.Guid);
+                }
+
+                DialogueContext context =instance.CreateContext(item.Container);
+                
+                await UniTask.Yield();
+                await context.Next();
+                
+                while (context.CanNext)
+                {
+                    await UniTask.Yield();
+                    if (InputManager.Actions.DialogueSkip.triggered)
+                    {
+                        await UniTask.Yield();
+                        await context.Next();
+                    }
+                }
+
+                await UniTask.WaitUntil(() => InputManager.Actions.DialogueSkip.triggered, PlayerLoopTiming.Update,
+                    GlobalCancelation.PlayMode);
+            }
+                
+            instance.ResetDialogue();
+
+        }
     }
 
+    #region Actor
+    #endregion
+
+    #region Object
     public bool PlantTile(IBOPlantTile action)
     {
         var targetPos = _controller.Coordinate.GetFront();
@@ -105,6 +190,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         _controller.QuickInventory.ViewRefresh();
         return true;
     }
+    #endregion
 
     public CollisionInteractionMono FindCloserObject()
     {
@@ -115,8 +201,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         CollisionInteractionMono minInteraction = null;
         foreach (var col in colliders)
         {
-            if (col.TryGetComponent(out CollisionInteractionMono interaction) &&
-                interaction.ContractInfo is ObjectContractInfo info
+            if (col.TryGetComponent(out CollisionInteractionMono interaction)
                )
             {
                 float dis = (transform.position - col.transform.position).sqrMagnitude;

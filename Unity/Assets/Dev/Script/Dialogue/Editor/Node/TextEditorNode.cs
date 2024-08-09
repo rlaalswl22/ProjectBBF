@@ -21,6 +21,8 @@ namespace DS.Editor
         private TextNodeData _data = new();
 
         private TextField _dialogueTextField;
+        private TextField _portraitTextField;
+        private TextField _actorKeyTextField;
 
         public string DialogueText
         {
@@ -90,6 +92,10 @@ namespace DS.Editor
                 "DialogueText-textfield",
                 "Dialogue Text"
             );
+            _portraitTextField = AddTextField(str => _data.PortraitKey = str.newValue,
+                "output-textfield", "Portrait Key");
+            _actorKeyTextField = AddTextField(str => _data.ActorKey = str.newValue,
+                "output-textfield", "ActorKey Key");
 
             RefreshExpandedState();
             RefreshPorts();
@@ -112,6 +118,8 @@ namespace DS.Editor
             _data = myData;
 
             _dialogueTextField.value = _data.DialogueText;
+            _portraitTextField.value = myData.PortraitKey;
+            _actorKeyTextField.value = myData.ActorKey;
             
             _dialogueGraphView.AddElement(this);
         }

@@ -9,10 +9,12 @@ using UnityEngine.UI;
 
 public class DialogueView : MonoBehaviour
 {
+    [SerializeField] private float _textCompletionDuration = 0.35f;
     
     [SerializeField] private RectTransform _skipArrow;
     [SerializeField] private TMP_Text _dialogueText;
-    [SerializeField] private GameObject _content;
+    [SerializeField] private TMP_Text _displayNameText;
+    [SerializeField] private Image _portrait;
 
     [SerializeField] private float _skipTwinkleDuration = 0.5f;
     [SerializeField] private float _skipTwinkleX = 0.35f;
@@ -22,16 +24,28 @@ public class DialogueView : MonoBehaviour
 
     public List<Button> BranchButtons => _branchButtons;
 
+    public float TextCompletionDuration => _textCompletionDuration;
+
     public string DialogueText
     {
         get => _dialogueText.text;
         set => _dialogueText.text = value;
     }
+    public string DisplayName
+    {
+        get => _displayNameText.text;
+        set => _displayNameText.text = value;
+    }
 
     public bool Visible
     {
-        get => _content.activeSelf;
-        set => _content.SetActive(value);
+        get => gameObject.activeSelf;
+        set => gameObject.SetActive(value);
+    }
+
+    public void SetTextVisible(bool value)
+    {
+        _dialogueText.gameObject.SetActive(value);
     }
 
     private void Awake()
@@ -66,7 +80,14 @@ public class DialogueView : MonoBehaviour
         return resultIndex;
     }
 
-    public void SetBranchButtonsVisible(bool value, int enableCountIfValueIsTrue)
+    public void SetPortrait(Sprite sprite)
+    {
+        _portrait.sprite = sprite;
+
+        _portrait.gameObject.SetActive(sprite is not null);
+    }
+
+    public void SetBranchButtonsVisible(bool value, int enableCountIfValueIsTrue = 0)
     {
         int count = value ? Mathf.Min(_branchButtons.Count, enableCountIfValueIsTrue) : _branchButtons.Count;
         
@@ -74,11 +95,6 @@ public class DialogueView : MonoBehaviour
         {
             _branchButtons[i].gameObject.SetActive(value);
         }
-    }
-
-    public void SetTextVisible(bool value)
-    {
-        _dialogueText.gameObject.SetActive(value);
     }
     
     private IEnumerator CoAnimateSkipArrow()

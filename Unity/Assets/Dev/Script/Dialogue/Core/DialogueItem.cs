@@ -7,12 +7,12 @@ using UnityEngine;
 
 public abstract class DialogueItem
 {
-    public string CharacterDisplayName { get; private set; }
+    public string ActorKey { get; private set; }
     public string PortraitKey { get; private set; }
 
-    protected DialogueItem(string characterDisplayName, string portraitKey)
+    protected DialogueItem(string actorKey, string portraitKey)
     {
-        CharacterDisplayName = characterDisplayName;
+        ActorKey = actorKey;
         PortraitKey = portraitKey;
     }
 }
@@ -20,8 +20,8 @@ public abstract class DialogueItem
 public abstract class DialogueItemT<T> : DialogueItem where T : DialogueRuntimeNode
 {
     public readonly T Node;
-    protected DialogueItemT(T node, string characterDisplayName, string portraitKey)
-        : base(characterDisplayName, portraitKey)
+    protected DialogueItemT(T node, string actorKey, string portraitKey)
+        : base(actorKey, portraitKey)
     {
         Node = node;
     }

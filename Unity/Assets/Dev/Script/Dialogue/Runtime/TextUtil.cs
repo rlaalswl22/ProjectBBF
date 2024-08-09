@@ -8,18 +8,18 @@ using UnityEngine;
 
 public static class TextUtil
 {
-    public static UniTask DoTextUniTask(this TMP_Text text, string endValue, float duration,
+    public static UniTask DoTextUniTask(this TMP_Text text, string endValue, float duration, bool stepDuration,
         CancellationToken? token = null)
     {
-        return _DoText(str => text.text = str, endValue, duration, token);
+        return _DoText(str => text.text = str, endValue, duration, stepDuration, token);
     }
-    public static UniTask DoTextUniTask(Action<string> stringInput, string endValue, float duration,
+    public static UniTask DoTextUniTask(Action<string> stringInput, string endValue, float duration,bool stepDuration,
         CancellationToken? token = null)
     {
-        return _DoText(stringInput, endValue, duration, token);
+        return _DoText(stringInput, endValue, duration, stepDuration, token);
     }
 
-    private static async UniTask _DoText(Action<string> stringInput, string endValue, float duration,
+    private static async UniTask _DoText(Action<string> stringInput, string endValue, float duration, bool stepDuration,
         CancellationToken? token = null)
     {
         string tempString = "";
@@ -41,9 +41,17 @@ public static class TextUtil
                 {
                     temp += tt;
                     stringInput(tempString + beginTag + temp + endTag);
-                    
-                    await UniTask.Delay((int)(duration / endValue.Length * 1000f), DelayType.DeltaTime, PlayerLoopTiming.Update,
-                        t);
+
+                    if (stepDuration)
+                    {
+                        await UniTask.Delay((int)(duration * 1000f), DelayType.DeltaTime, PlayerLoopTiming.Update,
+                            t);
+                    }
+                    else
+                    {
+                        await UniTask.Delay((int)(duration / endValue.Length * 1000f), DelayType.DeltaTime, PlayerLoopTiming.Update,
+                            t);
+                    }
                 }
 
                 tempString += beginTag + temp + endTag;
@@ -52,8 +60,18 @@ public static class TextUtil
             {
                 tempString += endValue[i];
                 stringInput(tempString);
-                await UniTask.Delay((int)(duration / endValue.Length * 1000f), DelayType.DeltaTime, PlayerLoopTiming.Update,
-                    t);
+                
+
+                if (stepDuration)
+                {
+                    await UniTask.Delay((int)(duration * 1000f), DelayType.DeltaTime, PlayerLoopTiming.Update,
+                        t);
+                }
+                else
+                {
+                    await UniTask.Delay((int)(duration / endValue.Length * 1000f), DelayType.DeltaTime, PlayerLoopTiming.Update,
+                        t);
+                }
             }
             
 

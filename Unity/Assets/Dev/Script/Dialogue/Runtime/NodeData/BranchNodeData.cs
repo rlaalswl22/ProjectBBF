@@ -9,6 +9,10 @@ namespace DS.Runtime
     [Serializable]
     public class BranchNodeData : DialogueNodeData
     {
+        public string DialogueText;
+        public string PortraitKey;
+        public string ActorKey;
+        
         public override DialogueNodeData Clone()
         {
             var data = new BranchNodeData();
@@ -17,6 +21,10 @@ namespace DS.Runtime
             data.NodeTitle = NodeTitle;
             data.TypeName = TypeName;
             data.Position = Position;
+
+            data.DialogueText = DialogueText;
+            data.PortraitKey = PortraitKey;
+            data.ActorKey = ActorKey;
             
             return data;
         }
@@ -35,7 +43,7 @@ namespace DS.Runtime
                 })
                 .ToList();
 
-            return new BranchRuntimeNode(nextNodes);
+            return new BranchRuntimeNode(DialogueText, ActorKey, PortraitKey, nextNodes);
         }
 
         public override bool IsEqual(DialogueNodeData other)
@@ -43,7 +51,11 @@ namespace DS.Runtime
             if (!base.IsEqual(other))
                 return false;
 
-            var otherNode = other as BranchNodeData;
+            if (other is not BranchNodeData otherNode) return false;
+
+            if (DialogueText != otherNode.DialogueText) return false;
+            if (PortraitKey != otherNode.PortraitKey) return false;
+            if (ActorKey != otherNode.ActorKey) return false;
             
             return true;
         }

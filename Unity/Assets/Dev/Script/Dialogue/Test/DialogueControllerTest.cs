@@ -13,7 +13,12 @@ public class DialogueControllerTest : MonoBehaviour
     public DialogueContainer Container;
 
     private DialogueContext _context;
-    
+
+    private void Awake()
+    {
+        Controller = DialogueController.Instance;
+    }
+
     private void CreateContext()
     {
         if (Application.isPlaying == false) return;
@@ -34,7 +39,7 @@ public class DialogueControllerTest : MonoBehaviour
 
         if (InputManager.Actions.DialogueSkip.triggered)
         {
-            _context.Next();
+            _ = _context.Next();
             if (_context.CanNext == false)
             {
                 _context = null;

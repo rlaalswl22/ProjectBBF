@@ -18,7 +18,7 @@ public class DialogueContext
     //TODO: 향후 삭제 바람
     //private NpcController _controller;
 
-    private DialogueView _view;
+    private DialogueController _controller;
 
     private CancellationTokenSource _source;
 
@@ -33,8 +33,6 @@ public class DialogueContext
         if (CanNext == false) return;
         if (IsRunning) return;
 
-        _source?.Cancel();
-        
         if (_source is null)
         {
             _source = CancellationTokenSource.CreateLinkedTokenSource(
@@ -53,16 +51,46 @@ public class DialogueContext
             
             if (item is TextItem textItem)
             {
-                await TextUtil.DoTextUniTask(_textInput, textItem.Text, _duration, _source.Token);
+                _controller.SetPortrait(textItem.PortraitKey);
+                _controller.SetDisplayName(textItem.ActorKey);
+                
+               var link = CancellationTokenSource.CreateLinkedTokenSource(
+                   GlobalCancelation.PlayMode,
+                   _source.Token
+               );
+               
+               await UniTask.WhenAny(
+                   TextUtil.DoTextUniTask(_textInput, textItem.Text, _duration, true, link.Token),
+                   UniTask.WaitUntil(() => InputManager.Actions.DialogueSkip.triggered, PlayerLoopTiming.Update, link.Token
+                       )
+               );
+               
+               link.Cancel();
+                _textInput(textItem.Text);
                 CurrentNode = textItem.Node.GetNext();
             }
             else if (item is BranchItem branchItem)
             {
-                _view.SetBranchButtonsVisible(true, branchItem.BranchTexts.Length);
-                _view.SetTextVisible(false);
-                int index = await _view.GetPressedButtonIndexAsync(branchItem.BranchTexts);
-                _view.SetBranchButtonsVisible(false, 0);
-                _view.SetTextVisible(true);
+                _controller.SetPortrait(branchItem.PortraitKey);
+                _controller.SetDisplayName(branchItem.ActorKey);
+                
+                var link = CancellationTokenSource.CreateLinkedTokenSource(
+                    GlobalCancelation.PlayMode,
+                    _source.Token
+                );
+               
+                await UniTask.WhenAny(
+                    TextUtil.DoTextUniTask(_textInput, branchItem.Text, _duration, true, link.Token),
+                    UniTask.WaitUntil(() => InputManager.Actions.DialogueSkip.triggered, PlayerLoopTiming.Update, link.Token
+                    )
+                );
+               
+                link.Cancel();
+                _textInput(branchItem.Text);
+                
+                _controller.SetBranchButtonsVisible(true, branchItem.BranchTexts.Length);
+                int index = await _controller.GetBranchResultAsync(branchItem.BranchTexts);
+                _controller.SetBranchButtonsVisible(false, 0);
                 
                 CurrentNode = branchItem.Node.GetNext(index);
 
@@ -79,15 +107,19 @@ public class DialogueContext
         {
             if (item is TextItem textItem)
             {
+                Debug.Log("canceld text");
                 _textInput(textItem.Text);
                 CurrentNode = textItem.Node.GetNext();
             }
             else if (item is BranchItem branchItem)
             {
-                _view.SetBranchButtonsVisible(false, 0);
-                _view.SetTextVisible(true);
+                _textInput(branchItem.Text);
+                _controller.SetBranchButtonsVisible(false, 0);
+                _controller.SetTextVisible(true);
                 CurrentNode = branchItem.Node.GetNext(0);
             }
+            
+            _source = null;
         }
         catch (Exception e)
         {
@@ -103,12 +135,12 @@ public class DialogueContext
         _source = null;
     }
 
-    public DialogueContext(DialogueRuntimeTree tree, float duration, DialogueView view)
+    public DialogueContext(DialogueRuntimeTree tree, float duration, DialogueController controller)
     {
         _tree = tree;
-        _textInput = str => view.DialogueText = str;
+        _textInput = str => controller.DialogueText = str;
         _duration = duration;
-        _view = view;
+        _controller = controller;
         _source = new();
         CurrentNode = tree.EntryPoint;
     }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb0c613b74242169b7a240a9cabf65b, type: 3}
+  m_Name: NewPortraitTable
+  m_EditorClassIdentifier: 
+  _list:
+  - Key: TEST_PORT_0
+    Portrait: {fileID: -2046978158, guid: 652e277b3f099894692126990928332c, type: 3}
+  - Key: TEST_PORT_1
+    Portrait: {fileID: -164771240, guid: 652e277b3f099894692126990928332c, type: 3}

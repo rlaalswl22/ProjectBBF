@@ -22,16 +22,22 @@ namespace DS.Runtime
         }
 
         public override bool IsLeaf => NextNodes.Count == 0;
-        public IReadOnlyList<BranchItem> NextNodes { get; private set; } 
+        public IReadOnlyList<BranchItem> NextNodes { get; private set; }
+        public readonly string Text;
+        public readonly string PortraitKey;
+        public readonly string Actorkey;
 
         
-        public BranchRuntimeNode(IReadOnlyList<BranchItem> nextNodes)
+        public BranchRuntimeNode(string text, string actorKey, string portraitKey, IReadOnlyList<BranchItem> nextNodes)
         {
             NextNodes = nextNodes;
+            Text = text;
+            PortraitKey = portraitKey;
+            Actorkey = actorKey;
         }
         
         public override DialogueItem CreateItem()
-            => new Runtime.BranchItem(this, "Default", "None", NextNodes.Select(x=>x.Text).ToArray());
+            => new Runtime.BranchItem(this, Actorkey, PortraitKey, Text, NextNodes.Select(x=>x.Text).ToArray());
 
         public DialogueRuntimeNode GetNext(int index)
             => NextNodes[index].NextNode;

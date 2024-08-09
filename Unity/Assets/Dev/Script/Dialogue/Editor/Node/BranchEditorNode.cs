@@ -24,6 +24,10 @@ namespace DS.Editor
             return _data;
         }
 
+        private TextField _dialogueTextField;
+        private TextField _portraitTextField;
+        private TextField _actorKeyTextField;
+
         public override string GUID
         {
             get => _data.GUID;
@@ -66,8 +70,14 @@ namespace DS.Editor
             LoadStyleSheet();
 
             AddTitleTextField();
-            
             AddNewChoiceButton();
+            _dialogueTextField = AddTextField(str => _data.DialogueText = str.newValue,
+                "output-textfield", "Dialogue Text");
+            _portraitTextField = AddTextField(str => _data.PortraitKey = str.newValue,
+                "output-textfield", "Portrait Key");
+            _actorKeyTextField = AddTextField(str => _data.ActorKey = str.newValue,
+                "output-textfield", "ActorKey Key");
+            
             RefreshExpandedState();
             RefreshPorts();
             
@@ -81,6 +91,10 @@ namespace DS.Editor
             if (data is not BranchNodeData myData) return;
 
             _data = myData;
+
+            _dialogueTextField.value = myData.DialogueText;
+            _portraitTextField.value = myData.PortraitKey;
+            _actorKeyTextField.value = myData.ActorKey;
             
             _dialogueGraphView.AddElement(this);
             var nodePorts = containerCache.NodeLinks.Where(x => x.BaseNodeGuid == data.GUID).ToList();
