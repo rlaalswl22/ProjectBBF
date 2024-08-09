@@ -68,6 +68,11 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             instance.Visible = true;
             instance.SetDisplayName(nameKey.GetActorKey());
 
+            if (ActorDataManager.Instance.Table.Table.TryGetValue(nameKey.GetActorKey(), out var data))
+            {
+                instance.SetPortrait(data.ActorKey, data.DefaultPortraitKey);
+            }
+
             var index = await instance.GetBranchResultAsync(
                 "대화",
                 "선물",
