@@ -32,6 +32,12 @@ public class PlayerQuickInventoryView : MonoBehaviour, IInventoryView
         InputManager.Actions.QuickSlotScroll.performed -= MoveCursorScroll;
         InputManager.Actions.QuickSlotScrollButton.performed -= MoveCursorButton;
     }
+    
+    public bool Visible
+    {
+        get => gameObject.activeSelf;
+        set => gameObject.SetActive(value);
+    }
 
     private void MoveCursorScroll(InputAction.CallbackContext ctx)
     {

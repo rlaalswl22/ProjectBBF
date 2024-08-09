@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ProjectBBF.Singleton;
 using UnityEngine;
 
 
@@ -41,18 +42,19 @@ public class ActorDataTable : ScriptableObject
     }
 }
 
-[System.Serializable]
-public class ActorData
+[Singleton(ESingletonType.Global, -10)]
+public class ActorDataManager : MonoBehaviourSingleton<ActorDataManager>
 {
-    [SerializeField] private string _actorKey;
+    public ActorDataTable Table { get; private set; }
 
-    [SerializeField] private string _actorName;
-    [SerializeField] private FavorabilityEvent _favorabilityEvent;
-    [SerializeField] private PortraitTable _portraitTable;
+    public override void PostInitialize()
+    {
+        Table = Resources.Load<ActorDataTable>("Data/ActorDataTable");
+        Debug.Assert(Table is not null);
+    }
 
-    public string ActorKey => _actorKey;
-
-    public string ActorName => _actorName;
-    public FavorabilityEvent FavorabilityEvent => _favorabilityEvent;
-    public PortraitTable PortraitTable => _portraitTable;
+    public override void PostRelease()
+    {
+        Table = null;
+    }
 }

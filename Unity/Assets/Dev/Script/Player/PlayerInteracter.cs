@@ -53,7 +53,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             actorInfo.TryGetBehaviour(out IBANameKey nameKey))
         {
             //move.SetMoveLock(false);
-            
+
+            _controller.QuickInventory.Visible = false;
             
             var favorablityContainer = favorablity.GetFavorablityContainer();
             
@@ -116,6 +117,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             }
                 
             instance.ResetDialogue();
+            _controller.QuickInventory.Visible = true;
 
         }
     }

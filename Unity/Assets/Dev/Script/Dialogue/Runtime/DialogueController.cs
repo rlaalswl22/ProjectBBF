@@ -68,7 +68,7 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
         _view = Instantiate(_view, transform, true);
         _view.gameObject.SetActive(true);
 
-        _table = Resources.Load<ActorDataTable>(DATA_PATH);
+        _table = ActorDataManager.Instance.Table;
         Debug.Assert(_table is not null);
 
         ResetDialogue();

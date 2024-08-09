@@ -9,6 +9,12 @@ public class PlayerQuickInventoryController : MonoBehaviour, IInventory
     
     private PlayerController _playerController;
     private MirrorInventory _inventory;
+    
+    public bool Visible
+    {
+        get => _view.Visible;
+        set => _view.Visible = value;
+    }
 
     public void Init(PlayerController controller)
     {

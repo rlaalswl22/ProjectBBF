@@ -57,8 +57,8 @@ namespace ProjectBBF.Singleton
 
                     if (att1 is SingletonAttribute sAtt1 && att2 is SingletonAttribute sAtt2)
                     {
-                        if (sAtt1.InitializeOrder < sAtt2.InitializeOrder) return 1;
-                        if (sAtt1.InitializeOrder > sAtt2.InitializeOrder) return -1;
+                        if (sAtt1.InitializeOrder < sAtt2.InitializeOrder) return -1;
+                        if (sAtt1.InitializeOrder > sAtt2.InitializeOrder) return 1;
                         else return 0;
                     }
 

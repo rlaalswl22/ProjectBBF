@@ -12,9 +12,6 @@ public class Actor : MonoBehaviour, IBAMove, IBAFavorablity, IBANameKey
     
     [field: SerializeField, AutoProperty, MustBeAssigned, InitializationField]
     private CollisionInteraction _interaction;
-
-    [field: SerializeField, MustBeAssigned, InitializationField]
-    private FavorabilityEvent _favorabilityEvent;
     
     
     private FavorablityContainer _favorablityContainer;
@@ -31,7 +28,15 @@ public class Actor : MonoBehaviour, IBAMove, IBAFavorablity, IBANameKey
         
         _interaction.SetContractInfo(info, this);
 
-        _favorablityContainer = new FavorablityContainer(_favorabilityEvent, 0, null);
+        if (ActorDataManager.Instance.Table.Table.TryGetValue(_actorKey, out var data))
+        {
+            _favorablityContainer = new FavorablityContainer(data.FavorabilityEvent, 0, null);
+        }
+        else
+        {
+            Debug.LogError($"actor key({_actorKey})를 찾을 수 없음");
+        }
+        
     }
 
     public void SetMoveLock(bool value)

@@ -22,8 +22,8 @@ public class FavorabilityEventItem
     public bool Once => _once;
 }
 
-[CreateAssetMenu(menuName = "ProjectBBF/Actor/FavorabilityEvent", fileName = "NewFavorabilityEvent")]
-public class FavorabilityEvent : ScriptableObject
+[System.Serializable]
+public class FavorabilityEvent
 {
 
     [SerializeField] private List<FavorabilityEventItem> _eventItems;

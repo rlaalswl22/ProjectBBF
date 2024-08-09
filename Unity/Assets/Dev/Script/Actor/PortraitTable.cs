@@ -3,8 +3,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ProjectBBF/Actor/PortraitTable", fileName = "NewPortraitTable")]
-public class PortraitTable : ScriptableObject
+[System.Serializable]
+public class PortraitTable
 {
     [System.Serializable]
     private class Item
