@@ -492,7 +492,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorKey: Dummy
   _interaction: {fileID: 33354386}
-  _favorabilityEvent: {fileID: 11400000, guid: ae9b97d60ed758a4597605b64cd393d0, type: 2}
 --- !u!4 &133938919
 Transform:
   m_ObjectHideFlags: 0
@@ -1717,6 +1716,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!4 &966378526 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3038444993280322950, guid: 581b30cc99b6ce641ac4dad904263393, type: 3}
+  m_PrefabInstance: {fileID: 1056179196}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1046576284
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,7 +2476,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1962025269}
+  - {fileID: 966378526}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1823286835
@@ -2808,11 +2812,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!4 &1962025269 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1914062834763979673, guid: 581b30cc99b6ce641ac4dad904263393, type: 3}
-  m_PrefabInstance: {fileID: 1056179196}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2035536428
 GameObject:
   m_ObjectHideFlags: 0
