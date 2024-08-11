@@ -24,6 +24,14 @@ public class PlayerController : MonoBehaviour
 
     [field: SerializeField] private ItemData _testTool;
     [field: SerializeField] private GrownItemData _testSeed;
+    [field: SerializeField] private Vector2 _interactionOffset;
+    [field: SerializeField] private Vector2 _interactionDirFactor;
+    [field: SerializeField] private float _interactionRadius;
+
+    public Vector2 InteractionOffset => _interactionOffset;
+    public float InteractionRadius => _interactionRadius;
+
+    public Vector2 InteractionDirFactor => _interactionDirFactor;
 
 
     #region Getter/Setter
@@ -55,6 +63,10 @@ public class PlayerController : MonoBehaviour
         
         Inventory = new GridInventory(new Vector2Int(10, 3));
         QuickInventory.Init(this);
+    }
+
+    private void Start()
+    {
 
         Inventory.PushItem(_testTool, 1);
         Inventory.PushItem(_testSeed, 4);

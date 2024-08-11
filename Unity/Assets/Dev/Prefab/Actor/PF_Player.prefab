@@ -56,6 +56,9 @@ MonoBehaviour:
   _quickInventory: {fileID: 5186966046427546130}
   _testTool: {fileID: 11400000, guid: 71b1b695fda60734da691c8b0e4464e3, type: 2}
   _testSeed: {fileID: 11400000, guid: b063ffbc1ffe55c4ead176532a042f2e, type: 2}
+  _interactionOffset: {x: 0.98, y: 0.38}
+  _interactionDirFactor: {x: 0, y: 0.63}
+  _interactionRadius: 0.5
 --- !u!114 &2645362918304912930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,12 +193,12 @@ SpriteRenderer:
   m_SortingLayerID: 708701679
   m_SortingLayer: 2
   m_SortingOrder: 15
-  m_Sprite: {fileID: 1505865981, guid: e1eb69d06f4a63f4eb1c0860dadc73a2, type: 3}
+  m_Sprite: {fileID: 1413282459, guid: e1eb69d06f4a63f4eb1c0860dadc73a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.1875, y: 2.8125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

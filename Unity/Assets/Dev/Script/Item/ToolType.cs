@@ -40,7 +40,7 @@ public class ToolRequireSet
 [System.Serializable]
 public class ItemTypeInfo
 {
-    [SerializeField] private ToolRequireSet[] _sets;
+    [SerializeField] private ToolRequireSet[] _sets = new ToolRequireSet[0];
 
     public ToolRequireSet[] Sets => _sets;
 

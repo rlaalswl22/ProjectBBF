@@ -14,6 +14,7 @@ public class PlayerQuickInventorySlotView : MonoBehaviour
     private void Awake()
     {
         _text.text = "";
+        _slotImage.sprite = null;
     }
 
     public IInventorySlot SlotController
