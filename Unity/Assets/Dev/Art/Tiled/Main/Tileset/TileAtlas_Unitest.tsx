@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.11.0" name="topdown" tilewidth="32" tileheight="32" tilecount="25" columns="5">
- <image source="automap_example6.png" width="164" height="164"/>
+ <image source="../Image/TileAtlas_Unitest.png" width="164" height="164"/>
  <wangsets>
   <wangset name="Unnamed Set" type="corner" tile="-1">
    <wangcolor name="Grass" color="#ff0000" tile="-1" probability="1"/>
