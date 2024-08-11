@@ -20,8 +20,6 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         _controller = controller;
         
         BindInputAction();
-
-        Application.targetFrameRate = 60;
     }
 
     private void BindInputAction()
