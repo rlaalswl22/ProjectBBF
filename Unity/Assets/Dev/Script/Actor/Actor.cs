@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using MyBox;
 using ProjectBBF.Event;
 using UnityEngine;
@@ -14,6 +15,10 @@ public class Actor : MonoBehaviour, IBAMove, IBAFavorablity, IBANameKey
     
     [field: SerializeField, AutoProperty, MustBeAssigned, InitializationField]
     private CollisionInteraction _interaction;
+
+    [SerializeField] private Transform pivot1;
+    [SerializeField] private Transform pivot2;
+    [SerializeField] private float speed;
     
     
     private FavorablityContainer _favorablityContainer;
@@ -46,6 +51,8 @@ public class Actor : MonoBehaviour, IBAMove, IBAFavorablity, IBANameKey
         _defaultClip = overrideController[PLAYER_ANI_STATE];
         
         ChangeClip(_aniData.IdleDown, true);
+
+        CoUpdate().Forget();
     }
     
     [SerializeField]
@@ -63,6 +70,29 @@ public class Actor : MonoBehaviour, IBAMove, IBAFavorablity, IBANameKey
         {
             overrideController[_defaultClip] = newClip;
             _beforeClip = newClip;
+        }
+    }
+
+    private async UniTask CoUpdate()
+    {
+        while (true)
+        {
+            ChangeClip(_aniData.MovementUp);
+            await UniTask.WaitUntil(() =>
+            {
+                transform.position = Vector2.MoveTowards(transform.position, pivot1.position, Time.deltaTime * speed);
+
+                return Vector2.Distance(transform.position, pivot1.position) < 0.0001f;
+            }, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
+            
+            
+            ChangeClip(_aniData.MovementDown);
+            await UniTask.WaitUntil(() =>
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, pivot2.position, Time.deltaTime * speed);
+
+                    return Vector2.Distance(transform.position, pivot2.position) < 0.0001f;
+                }, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
         }
     }
 

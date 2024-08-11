@@ -211,7 +211,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     public CollisionInteractionMono FindCloserObject()
     {
         var targetPos = _controller.Coordinate.GetFront();
-        var colliders = Physics2D.OverlapCircleAll(targetPos, 0.15f);
+        var colliders = Physics2D.OverlapCircleAll(targetPos, 2F);
 
         float minDis = Mathf.Infinity;
         CollisionInteractionMono minInteraction = null;

@@ -29,6 +29,6 @@ public class PlayerCoordinate : MonoBehaviour, IPlayerStrategy
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(GetFront(), 0.15f);
+        Gizmos.DrawWireSphere(GetFront(), 2f);
     }
 }

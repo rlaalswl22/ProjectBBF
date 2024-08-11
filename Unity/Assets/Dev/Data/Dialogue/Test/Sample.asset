@@ -24,13 +24,13 @@ MonoBehaviour:
     PortName: "\uC624\uB298\uB530\uB77C \uC608\uC058\uB124? \uC774\uC05C\uC774?"
     TargetNodeGuid: 82d3a070-3309-4a46-aa42-031007c29a21
   NodeData:
-  - rid: 9140223875366780934
-  - rid: 9140223875366780935
-  - rid: 9140223875366780936
+  - rid: 9140223923375046656
+  - rid: 9140223923375046657
+  - rid: 9140223923375046658
   references:
     version: 2
     RefIds:
-    - rid: 9140223875366780934
+    - rid: 9140223923375046656
       type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: bd3c68ec-912a-4cf8-b43a-6f2c5bb486db
@@ -40,7 +40,7 @@ MonoBehaviour:
         DialogueText: "\uC548\uB155\uD558\uC138\uC694!"
         PortraitKey: TEST_PORT_0
         ActorKey: Dummy
-    - rid: 9140223875366780935
+    - rid: 9140223923375046657
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: e644e83f-217b-4821-8140-b5b99d6df197
@@ -53,14 +53,13 @@ MonoBehaviour:
           \uC608\uC05C \uB9C8\uC744\uC774 \uC81C \uC790\uB791\uC774\uB78D\uB2C8\uB2E4!"
         PortraitKey: TEST_PORT_0
         ActorKey: Dummy
-    - rid: 9140223875366780936
+    - rid: 9140223923375046658
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 82d3a070-3309-4a46-aa42-031007c29a21
         NodeTitle: Text
         TypeName: Text
         Position: {x: 909, y: 438}
-        DialogueText: "\uC6B0\uC6E8\uC5D0\uC5D0\uC5D1...!<br>\uB9D0 \uAC78\uC9C0
-          \uB9C8\uC138\uC694!<br>\uC548\uB3FC\uC694\uC2EB\uC5B4\uC694\uC774\uB7EC\uC9C0\uB9C8\uC138\uC694\uB0B4\uBAB8\uC5D0\uC190\uB300\uC9C0\uB9C8\uC138\uC694"
+        DialogueText: "\uC73C, \uB9D0 \uAC78\uC9C0 \uB9C8\uC138\uC694"
         PortraitKey: TEST_PORT_0
         ActorKey: Dummy
