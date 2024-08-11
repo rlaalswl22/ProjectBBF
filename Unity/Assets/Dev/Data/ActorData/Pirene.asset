@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94576a3af06543efac7d22c9a606f6fb, type: 3}
-  m_Name: Dummy
+  m_Name: Pirene
   m_EditorClassIdentifier: 
-  _actorKey: Dummy
-  _actorName: Dummy
+  _actorKey: Pirene
+  _actorName: "\uD53C\uB808\uB124"
+  _defaultPortraitKey: TEST_PORT_0
   _favorabilityEvent:
     _eventItems:
     - _container: {fileID: 11400000, guid: 23d77cd7abb336746b089b77355a443e, type: 2}
@@ -22,6 +23,6 @@ MonoBehaviour:
   _portraitTable:
     _list:
     - Key: TEST_PORT_0
-      Portrait: {fileID: -1617240735, guid: 652e277b3f099894692126990928332c, type: 3}
+      Portrait: {fileID: 21300000, guid: 3a4e01c047d2d434bbb55932071e46ea, type: 3}
     - Key: TEST_PORT_1
-      Portrait: {fileID: 2126619786, guid: f575061737d8abc4d947079b627e385d, type: 3}
+      Portrait: {fileID: 21300000, guid: 3a4e01c047d2d434bbb55932071e46ea, type: 3}

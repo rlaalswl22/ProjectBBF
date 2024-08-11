@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5621de97731b8b4cac1366ff20e5fe5, type: 3}
   m_Name: CultivationTile
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -206052429, guid: 652e277b3f099894692126990928332c, type: 3}
+  m_Sprite: {fileID: -1612161972, guid: 652e277b3f099894692126990928332c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.12941177}
   m_Transform:
     e00: 1
@@ -37,3 +37,6 @@ MonoBehaviour:
   _isCultivate: 1
   _dropItem: {fileID: 0}
   _dropItemCount: 0
+  _requireTools:
+  - _requireToolTypes: 0
+    _requireToolRank: 1
