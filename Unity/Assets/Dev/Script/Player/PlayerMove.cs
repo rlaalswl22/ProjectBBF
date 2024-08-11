@@ -20,6 +20,8 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         _controller = controller;
         
         BindInputAction();
+
+        Application.targetFrameRate = 60;
     }
 
     private void BindInputAction()
@@ -38,7 +40,11 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
 
 
         dir = dir.normalized;
-        _rigidbody.velocity = dir * _movementData.MovementSpeed;
+
+        Vector2 velDir = Vector2.zero;
+        velDir = dir * _movementData.MovementSpeed;
+
+        _rigidbody.velocity = velDir;
         
         if (Mathf.Approximately(Mathf.Abs(input.x) + Mathf.Abs(input.y), 0f) == false)
         {
@@ -50,6 +56,23 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
             ChangeClip(LastMovedDirection, true);
         }
         
+    }
+
+    private int GetCloserFactor(float x)
+    {
+        float j = x / (1f / 16f);
+
+        float up = Mathf.Abs(Mathf.Ceil(1/j) - 1/j);
+        float down = Mathf.Abs(Mathf.Floor(1/j) - 1/j);
+
+        if (up < down)
+        {
+            return Mathf.RoundToInt(1 / up);
+        }
+        else
+        {
+            return Mathf.RoundToInt(1 / down);
+        }
     }
 
     private void ChangeClip(Vector2 dir, bool isIdle)
