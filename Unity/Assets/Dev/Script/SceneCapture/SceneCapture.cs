@@ -9,6 +9,8 @@ using System.Text;
 
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 
 public class SceneCapture : MonoBehaviour
@@ -113,6 +115,17 @@ public class SceneCapture : MonoBehaviour
     {
         if (OnPlay == false) return;
         OnPlay = false;
+
+        float backupScale = 0f;
+        if (GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset asset)
+        {
+            backupScale = asset.renderScale;
+asset.renderScale= 1;
+        }
+        else
+        {
+            Debug.LogError("UniversalRenderPipelineAsset을 불러오지 못했음");
+        }
         
         UniTask.Create(async () =>
         {
@@ -132,6 +145,7 @@ public class SceneCapture : MonoBehaviour
 
                     var texture2d = CopyRenderToTexture2D();
                     Gamma2Linear(ref texture2d);
+                    //texture2d = ScaleTexture(texture2d, _resoultion.x, _resoultion.y);
                     (bool, string) result = SaveCapturedTexture(texture2d, $"Map_{_uniqueFileName}_{j}_{i}");
 
                     if (result.Item1)
@@ -157,7 +171,18 @@ public class SceneCapture : MonoBehaviour
             Debug.Log(infoBuilder.ToString());
 
             EditorApplication.isPlaying = false;
+
+        if (GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset asset1)
+        {
+            asset1.renderScale = backupScale;
+        }
+        else
+        {
+            Debug.LogError("UniversalRenderPipelineAsset을 불러오지 못했음");
+        }
         });
+        
+        
     }
 
     private Texture2D CopyRenderToTexture2D()
@@ -228,6 +253,35 @@ public class SceneCapture : MonoBehaviour
         return croppedTexture;
     }
 
+    public Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)
+    {
+        // 새로운 크기의 Texture2D 생성
+        Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, false);
+
+        // 스케일 비율 계산
+        float scaleX = (float)source.width / targetWidth;
+        float scaleY = (float)source.height / targetHeight;
+
+        for (int y = 0; y < targetHeight; y++)
+        {
+            for (int x = 0; x < targetWidth; x++)
+            {
+                // 원본 텍스처에서의 좌표 계산 (가장 가까운 픽셀을 선택)
+                int pixelX = Mathf.FloorToInt(x * scaleX);
+                int pixelY = Mathf.FloorToInt(y * scaleY);
+
+                // 원본 텍스처의 색상 가져오기
+                Color color = source.GetPixel(pixelX, pixelY);
+
+                // 결과 텍스처에 색상 설정
+                result.SetPixel(x, y, color);
+            }
+        }
+
+        // 텍스처 적용
+        result.Apply();
+        return result;
+    }
     private (bool, string) SaveCapturedTexture(Texture2D texture2D, string fileName)
     {
         byte[] pngData = texture2D.EncodeToPNG();

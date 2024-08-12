@@ -11,7 +11,6 @@ using UnityEditor;
 [RequireComponent(typeof(SceneCapture), typeof(DetailLoader))]
 public class DetailGenerator : MonoBehaviour
 {
-    
     [SerializeField] private Camera _camera;
     [SerializeField] private string _captureSaveFilePath;
     [SerializeField] private string _detailToLoadFilePath;
