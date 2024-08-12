@@ -5,8 +5,8 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text.RegularExpressions;
 using MyBox;
-using Unity.VisualScripting;
 using UnityEngine;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -31,6 +31,7 @@ public class DetailController : MonoBehaviour
     [SerializeField] private string _mapName;
 
     [SerializeField] private Vector2Int _resolution;
+    [SerializeField] private float _ppu;
     [SerializeField] private Vector3 _offset;
     [SerializeField] private Vector2Int _iteration;
     [field: SerializeField, SortingLayer] private int _sortingLayer;
@@ -38,6 +39,8 @@ public class DetailController : MonoBehaviour
 
     [SerializeField] private List<Item1> _rendererList;
 
+    public float Unit => SceneCaptureUtility.CalculateUnit(_resolution.x, _ppu);
+    
     [ButtonMethod]
     private void ApplyDetails()
     {
@@ -91,10 +94,12 @@ public class DetailController : MonoBehaviour
                     Y = y
                 });
 
-                renderer.transform.position = new Vector3(
-                                                  _resolution.x* x, -_resolution.y * y, 0f) * 0.005f * 2f +
-                                              _offset +
-                                              new Vector3(_resolution.x, -_resolution.y, 0f) * 0.005f;
+               //renderer.transform.position = 
+               //    new Vector3(
+               //        _resolution.x* x, 
+               //        -_resolution.y * y, 0f) * Unit * 2f + _offset +  new Vector3(_resolution.x, -_resolution.y, 0f)
+               //    * Unit;
+               renderer.transform.position = new Vector3(x, -y) * Unit + _offset +  new Vector3(Unit, -Unit, 0f) * 0.5f;
             }
         }
     }
@@ -153,10 +158,9 @@ public class DetailController : MonoBehaviour
         {
             for (int j = 0; j < _iteration.x; j++)
             {
-                var obj = AssetDatabase.LoadAssetAtPath<Texture2D>(_detailsPath + $"/Detail_{_mapName}_{j}_{i}.png");
-                if (obj is null) continue;
+                var spr = AssetDatabase.LoadAssetAtPath<Sprite>(_detailsPath + $"/Detail_{_mapName}_{j}_{i}.png");
+                if (spr is null) continue;
 
-                var spr = ConvertTextureToSprite(obj);
                 spr.name = $"Detail_{j}_{i}";
                 sprites.Add(spr);
             }
@@ -165,14 +169,16 @@ public class DetailController : MonoBehaviour
         return sprites;
     }
 
-    private Sprite ConvertTextureToSprite(Texture2D texture)
+private Color[,] _colors;
+
+    private void OnValidate()
     {
-        // Texture2D를 Sprite로 변환
-        return Sprite.Create(
-            texture,
-            new Rect(0, 0, texture.width, texture.height),
-            new Vector2(0.5f, 0.5f)
-        );
+        SceneCaptureUtility.Redraw(Unit, _iteration, out _colors);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        SceneCaptureUtility.DrawGizmos(_offset, Unit, _iteration, _colors);
     }
 }
 #endif

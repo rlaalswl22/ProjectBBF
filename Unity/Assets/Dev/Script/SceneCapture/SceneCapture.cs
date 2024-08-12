@@ -23,24 +23,18 @@ public class SceneCapture : MonoBehaviour
 
     [SerializeField] private int _captureDelay = 100;
 
-    private float Unit => _resoultion.x * (0.5f / _ppu);
+    private float Unit => SceneCaptureUtility.CalculateUnit(_resoultion.x, _ppu);
+    private float HalfUnit => Unit * 0.5f;
 
     [ButtonMethod]
     private void Capture()
     {
         _camera.farClipPlane = 999999f;
         _camera.nearClipPlane = -999999f;
-        /*
-         * a = resolutions
-         * 0.5 : ppu = x : a
-         * ppu * x = 0.5a
-         * x = 0.5a / ppu
-         * a = 1024, ppu = 100, x = 5.12
-         * */
-        _camera.orthographicSize = Unit;
+        _camera.orthographicSize = Unit * 0.5f; // orthographicSize 화면 세로 높이의 절반이기 때문에 2로 나눔
         _camera.aspect = 1f;
-        _camera.transform.position = new Vector3(_offset.x + _camera.orthographicSize,
-            _offset.y + -_camera.orthographicSize, -10f);
+        _camera.transform.position = new Vector3(_offset.x + HalfUnit,
+            _offset.y + -HalfUnit, -10f);
 
         RenderTexture renderTexture = _camera.targetTexture;
         _camera.targetTexture = null;
@@ -71,7 +65,7 @@ public class SceneCapture : MonoBehaviour
                 for (int j = 0; j < _iteration.x; j++)
                 {
                     await UniTask.Delay(_captureDelay);
-                    _camera.transform.position += new Vector3(_camera.orthographicSize * 2f, 0f, 0f);
+                    _camera.transform.position += new Vector3(Unit, 0f, 0f);
 
                     var texture2d = CopyRenderToTexture2D();
                     Gamma2Linear(ref texture2d);
@@ -79,7 +73,7 @@ public class SceneCapture : MonoBehaviour
                 }
 
                 _camera.transform.position = backupPos;
-                _camera.transform.position += new Vector3(0f, -_camera.orthographicSize * 2f, 0f);
+                _camera.transform.position += new Vector3(0f, -Unit, 0f);
             }
 
 
@@ -191,52 +185,13 @@ public class SceneCapture : MonoBehaviour
 
     private void OnValidate()
     {
-        _camera.orthographicSize = Unit;
-
-        _colors = new Color[_iteration.x, _iteration.y];
-
-        for (int i = 0; i < _iteration.y; i++)
-        {
-            for (int j = 0; j < _iteration.x; j++)
-            {
-                Color color = UnityEngine.Random.ColorHSV();
-                color.a = 0.8f;
-                _colors[j, i] = color;
-            }
-        }
+        _camera.orthographicSize = HalfUnit;
+        SceneCaptureUtility.Redraw(Unit, _iteration, out _colors);
     }
 
     private void OnDrawGizmosSelected()
     {
-        var color = Color.red;
-        color.a = 0.5f;
-        Gizmos.color = color;
-        Gizmos.DrawWireCube(new Vector3(
-                _offset.x + _camera.orthographicSize * _iteration.x,
-                _offset.y + _camera.orthographicSize * -_iteration.y,
-                -10f),
-            new Vector3(
-                _camera.orthographicSize * _iteration.x * 2f,
-                _camera.orthographicSize * _iteration.y * 2f,
-                1f
-            ));
-
-        Vector3 pos = new Vector3(_offset.x + _camera.orthographicSize, _offset.y + -_camera.orthographicSize, -10f);
-
-        for (int i = 0; i < _iteration.y; i++)
-        {
-            var backupPos = pos;
-            for (int j = 0; j < _iteration.x; j++)
-            {
-                Gizmos.color = _colors[j, i];
-                Gizmos.DrawCube(pos, new Vector3(_camera.orthographicSize * 2f, _camera.orthographicSize * 2f, 1f));
-                pos += new Vector3(_camera.orthographicSize * 2f, 0f, 0f);
-            }
-
-            pos = backupPos;
-            pos += new Vector3(0f, -_camera.orthographicSize * 2f, 0f);
-        }
+        SceneCaptureUtility.DrawGizmos(_offset, Unit, _iteration, _colors);
     }
 }
-
 #endif
