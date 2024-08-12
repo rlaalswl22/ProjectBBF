@@ -11,7 +11,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 
-public class DetailController : MonoBehaviour
+public class DetailLoader : MonoBehaviour
 {
     [Serializable]
     public class Item1
@@ -27,22 +27,84 @@ public class DetailController : MonoBehaviour
         public int Y;
     }
 
-    [SerializeField] private string _detailsPath;
-    [SerializeField] private string _mapName;
+    private string _detailsPath;
+    private string _mapsPath;
+    
+    private string _mapName;
 
-    [SerializeField] private Vector2Int _resolution;
-    [SerializeField] private float _ppu;
-    [SerializeField] private Vector3 _offset;
-    [SerializeField] private Vector2Int _iteration;
-    [field: SerializeField, SortingLayer] private int _sortingLayer;
-    [SerializeField] private int _order;
+    private Vector2Int _resolution;
+    private float _ppu;
+    private Vector3 _offset;
+    private Vector2Int _iteration;
+    private int _sortingLayer;
+    private int _order;
+     private Transform _content;
 
-    [SerializeField] private List<Item1> _rendererList;
+     public Transform Content
+     {
+         get => _content;
+         set => _content = value;
+     }
+
+     public string DetailsPath
+    {
+        get => _detailsPath;
+        set => _detailsPath = value;
+    }
+
+    public string MapName
+    {
+        get => _mapName;
+        set => _mapName = value;
+    }
+
+    public Vector2Int Resolution
+    {
+        get => _resolution;
+        set => _resolution = value;
+    }
+
+    public float PPU
+    {
+        get => _ppu;
+        set => _ppu = value;
+    }
+
+    public Vector3 Offset
+    {
+        get => _offset;
+        set => _offset = value;
+    }
+
+    public Vector2Int Iteration
+    {
+        get => _iteration;
+        set => _iteration = value;
+    }
+
+    public int SortingLayer
+    {
+        get => _sortingLayer;
+        set => _sortingLayer = value;
+    }
+
+    public string MapsPath
+    {
+        get => _mapsPath;
+        set => _mapsPath = value;
+    }
+
+    public int Order
+    {
+        get => _order;
+        set => _order = value;
+    }
+
+    [field: SerializeField, HideInInspector] private List<Item1> _rendererList;
 
     public float Unit => SceneCaptureUtility.CalculateUnit(_resolution.x, _ppu);
     
-    [ButtonMethod]
-    private void ApplyDetails()
+    public void LoadDetails()
     {
         transform.position = Vector3.zero;
 
@@ -85,7 +147,7 @@ public class DetailController : MonoBehaviour
                 var renderer = new GameObject(sprite.name).AddComponent<SpriteRenderer>();
                 renderer.sortingOrder = _order;
                 renderer.sortingLayerID = _sortingLayer;
-                renderer.transform.SetParent(transform);
+                renderer.transform.SetParent(_content);
                 renderer.sprite = sprite;
                 rendererList.List.Add(new Item2()
                 {
@@ -93,6 +155,8 @@ public class DetailController : MonoBehaviour
                     X = x,
                     Y = y
                 });
+                EditorUtility.SetDirty(this);
+
 
                //renderer.transform.position = 
                //    new Vector3(
@@ -167,18 +231,6 @@ public class DetailController : MonoBehaviour
         }
 
         return sprites;
-    }
-
-private Color[,] _colors;
-
-    private void OnValidate()
-    {
-        SceneCaptureUtility.Redraw(Unit, _iteration, out _colors);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        SceneCaptureUtility.DrawGizmos(_offset, Unit, _iteration, _colors);
     }
 }
 #endif

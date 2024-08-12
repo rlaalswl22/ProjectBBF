@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.11.0" name="alltile_1" tilewidth="16" tileheight="16" tilecount="625" columns="25">
- <image source="../Image/alltile_1.png" width="400" height="400"/>
+ <image source="../Image/TileAtals_Prototype_0.png" width="400" height="400"/>
  <tile id="12">
   <objectgroup draworder="index" id="3">
    <object id="6" x="3" y="7" width="13" height="9"/>

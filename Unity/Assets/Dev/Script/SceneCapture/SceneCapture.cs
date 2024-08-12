@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Cysharp.Threading.Tasks;
+using System.Text;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,22 +13,77 @@ using UnityEditor;
 
 public class SceneCapture : MonoBehaviour
 {
-    [SerializeField] private Vector2 _offset;
-    [SerializeField] private Camera _camera;
-    [SerializeField] private string _filePath;
-    [SerializeField] private string _uniqueFileName;
-    [SerializeField] private Vector2Int _resoultion;
-    [SerializeField] private int _ppu;
+    private Vector2 _offset;
+    private Camera _camera;
+    private string _filePath;
+    private string _uniqueFileName;
+    private Vector2Int _resoultion;
+    private int _ppu;
 
-    [SerializeField] private Vector2Int _iteration;
+    private Vector2Int _iteration;
 
-    [SerializeField] private int _captureDelay = 100;
+    private int _captureDelay = 1;
+
+    [field: SerializeField, HideInInspector] private bool _onPlay;
+
+    public bool OnPlay
+    {
+        get => _onPlay;
+        set => _onPlay = value;
+    }
+
+    public Vector2 Offset
+    {
+        get => _offset;
+        set => _offset = value;
+    }
+
+    public Camera Camera
+    {
+        get => _camera;
+        set => _camera = value;
+    }
+
+    public string FilePath
+    {
+        get => _filePath;
+        set => _filePath = value;
+    }
+
+    public string UniqueFileName
+    {
+        get => _uniqueFileName;
+        set => _uniqueFileName = value;
+    }
+
+    public Vector2Int Resoultion
+    {
+        get => _resoultion;
+        set => _resoultion = value;
+    }
+
+    public Vector2Int Iteration
+    {
+        get => _iteration;
+        set => _iteration = value;
+    }
+
+    public int PPU
+    {
+        get => _ppu;
+        set => _ppu = value;
+    }
+
+    public int CaptureDelay
+    {
+        get => _captureDelay;
+        set => _captureDelay = value;
+    }
 
     private float Unit => SceneCaptureUtility.CalculateUnit(_resoultion.x, _ppu);
     private float HalfUnit => Unit * 0.5f;
 
-    [ButtonMethod]
-    private void Capture()
+    public void Capture()
     {
         _camera.farClipPlane = 999999f;
         _camera.nearClipPlane = -999999f;
@@ -55,9 +111,16 @@ public class SceneCapture : MonoBehaviour
 
     private void Awake()
     {
+        if (OnPlay == false) return;
+        OnPlay = false;
+        
         UniTask.Create(async () =>
         {
             await UniTask.Delay(300);
+
+            StringBuilder errorBuilder = new StringBuilder();
+            StringBuilder infoBuilder = new StringBuilder();
+            bool onError = false;
 
             for (int i = 0; i < _iteration.y; i++)
             {
@@ -69,13 +132,29 @@ public class SceneCapture : MonoBehaviour
 
                     var texture2d = CopyRenderToTexture2D();
                     Gamma2Linear(ref texture2d);
-                    SaveCapturedTexture(texture2d, $"Map_{_uniqueFileName}_{j}_{i}");
+                    (bool, string) result = SaveCapturedTexture(texture2d, $"Map_{_uniqueFileName}_{j}_{i}");
+
+                    if (result.Item1)
+                    {
+                        infoBuilder.AppendLine(result.Item2);
+                    }
+                    else
+                    {
+                        onError = true;
+                        errorBuilder.AppendLine(result.Item2);
+                    }
                 }
 
                 _camera.transform.position = backupPos;
                 _camera.transform.position += new Vector3(0f, -Unit, 0f);
             }
 
+            if (onError)
+            {
+                Debug.LogError(errorBuilder.ToString());
+            }
+            
+            Debug.Log(infoBuilder.ToString());
 
             EditorApplication.isPlaying = false;
         });
@@ -149,7 +228,7 @@ public class SceneCapture : MonoBehaviour
         return croppedTexture;
     }
 
-    private void SaveCapturedTexture(Texture2D texture2D, string fileName)
+    private (bool, string) SaveCapturedTexture(Texture2D texture2D, string fileName)
     {
         byte[] pngData = texture2D.EncodeToPNG();
 
@@ -167,31 +246,19 @@ public class SceneCapture : MonoBehaviour
             if (pngData != null)
             {
                 File.WriteAllBytes(path, pngData);
-                Debug.Log("Texture2D saved as PNG at: " + path);
+                return (true, "Texture2D saved as PNG at: " + path);
             }
             else
             {
-                Debug.LogError("Failed to encode Texture2D to PNG.");
+                return (false, "Failed to encode Texture2D to PNG.");
             }
         }
         catch (System.Exception e)
         {
             Debug.LogException(e);
         }
-    }
 
-
-    private Color[,] _colors;
-
-    private void OnValidate()
-    {
-        _camera.orthographicSize = HalfUnit;
-        SceneCaptureUtility.Redraw(Unit, _iteration, out _colors);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        SceneCaptureUtility.DrawGizmos(_offset, Unit, _iteration, _colors);
+        return (false, "");
     }
 }
 #endif
