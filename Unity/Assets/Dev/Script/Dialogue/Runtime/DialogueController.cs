@@ -13,7 +13,7 @@ using UnityEngine.EventSystems;
 public class DialogueController : MonoBehaviourSingleton<DialogueController>
 {
     private DialogueView _view;
-    private ActorDataTable _table;
+    private FavorabilityDataTable _table;
 
     private DialogueContext LastestContext { get; set; }
 

@@ -61,14 +61,5 @@ public class PatrolPointPath : MonoBehaviour
 
     [SerializeField] internal List<PatrolPoint> _patrollPoints = new();
 
-    [ButtonMethod]
-    private void Clear()
-    {
-        Undo.RecordObject(this, "Path set");
-        Points.Clear();
-        SelectedGuid = "";
-            
-    }
-
     public IReadOnlyList<PatrolPoint> PatrollPoints => _patrollPoints;
 }

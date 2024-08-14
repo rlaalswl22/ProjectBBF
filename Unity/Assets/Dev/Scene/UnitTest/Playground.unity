@@ -4496,7 +4496,7 @@ MonoBehaviour:
     IsStartPoint: 0
     Position: {x: 10.504321, y: -13.25918, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
-  SelectedGuid: b4de477b1ef536c40a9aa5392a86d089
+  SelectedGuid: 
   _patrollPoints:
   - _interactiveDecoratedPoint: {fileID: 0}
     _position: {x: 9.84, y: -15.25, z: 0}
@@ -15893,6 +15893,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1997115275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3853384873456405071, guid: 7b6b5fd5f91a41f4480b52bdf678e179, type: 3}
+  m_PrefabInstance: {fileID: 4330218723855295291}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1997115280
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997115275}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &2007525929
 GameObject:
   m_ObjectHideFlags: 0
@@ -16315,13 +16347,24 @@ PrefabInstance:
       value: PActor_Pirene
       objectReference: {fileID: 0}
     - target: {fileID: 8655818287580140978, guid: 7b6b5fd5f91a41f4480b52bdf678e179, type: 3}
+      propertyPath: _rigid
+      value: 
+      objectReference: {fileID: 1997115280}
+    - target: {fileID: 8655818287580140978, guid: 7b6b5fd5f91a41f4480b52bdf678e179, type: 3}
       propertyPath: _patrolPath
       value: 
       objectReference: {fileID: 1715252273}
+    - target: {fileID: 8655818287580140978, guid: 7b6b5fd5f91a41f4480b52bdf678e179, type: 3}
+      propertyPath: _movementData
+      value: 
+      objectReference: {fileID: 11400000, guid: 877b8076e7d08144db3d78f9023e4817, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3853384873456405071, guid: 7b6b5fd5f91a41f4480b52bdf678e179, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1997115280}
   m_SourcePrefab: {fileID: 100100000, guid: 7b6b5fd5f91a41f4480b52bdf678e179, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

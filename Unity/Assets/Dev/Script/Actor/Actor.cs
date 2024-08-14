@@ -6,105 +6,68 @@ using MyBox;
 using ProjectBBF.Event;
 using UnityEngine;
 
-public class Actor : MonoBehaviour, IBAMove, IBAFavorablity, IBANameKey
+public class Actor : MonoBehaviour, IBANameKey
 {
-    [field: SerializeField, MustBeAssigned, InitializationField]
+    [field: SerializeField, Foldout("데이터"), MustBeAssigned, InitializationField]
     private string _actorKey;
+    [field: SerializeField, Foldout("데이터")] private AnimationData _aniData;
+    [field: SerializeField, Foldout("데이터")] private ActorMovementData _movementData;
 
-    [SerializeField] private PatrolPointPath _patrolPath;
-
-    [field: SerializeField] private AnimationData _aniData;
-    
-    [field: SerializeField, AutoProperty, MustBeAssigned, InitializationField]
+    [field: SerializeField, Foldout("컴포넌트"), AutoProperty, MustBeAssigned, InitializationField]
     private CollisionInteraction _interaction;
 
-    [SerializeField] private float speed;
-
-    [SerializeField] private StateTransitionHandler _transitionHandler;
+    [field: SerializeField, Foldout("컴포넌트")] private StateTransitionHandler _transitionHandler;
+    [field: SerializeField, Foldout("컴포넌트")] private Animator _animator;
+    [field: SerializeField, Foldout("컴포넌트")] private Rigidbody2D _rigid;
     
+    [field: SerializeField, Foldout("월드 데이터")] private PatrolPointPath _patrolPath;
     
-    private FavorablityContainer _favorablityContainer;
 
-    public FavorablityContainer FavorablityContainer => _favorablityContainer;
+    #region Getter/Setter
+    public ActorMovementData MovementData => _movementData;
+    public AnimationData AniData => _aniData;
+
+    public Rigidbody2D Rigid => _rigid;
+
+    public Animator Animator => _animator;
 
     public PatrolPointPath PatrolPath => _patrolPath;
 
     public CollisionInteraction Interaction => _interaction;
+
+    public string ActorKey => _actorKey;
+    #endregion
+
+    #region Strategy
+    public ActorMove MoveStrategy { get; private set; }
+    public ActorVisual Visual { get; private set; }
+    public ActorFavorablity Favorablity { get; private set; } 
+    #endregion
+    
     private void Awake()
     {
+        //* Strategy binding */
+        MoveStrategy = gameObject.AddComponent<ActorMove>();
+        MoveStrategy.Init(this);
+        Visual = gameObject.AddComponent<ActorVisual>();
+        Visual.Init(Animator);
+        Favorablity = gameObject.AddComponent<ActorFavorablity>();
+        Favorablity.Init(this);
+        
+        
+        /* Collision interaction */
         var info = ActorContractInfo.Create(() => gameObject);
-        info.AddBehaivour<IBAMove>(this);
-        info.AddBehaivour<IBAFavorablity>(this);
+        info.AddBehaivour<IBAMove>(MoveStrategy);
+        info.AddBehaivour<IBAFavorablity>(Favorablity);
         info.AddBehaivour<IBANameKey>(this);
         
         _interaction.SetContractInfo(info, this);
-
-        if (ActorDataManager.Instance.Table.Table.TryGetValue(_actorKey, out var data))
-        {
-            _favorablityContainer = new FavorablityContainer(data.FavorabilityEvent, 0, null);
-        }
-        else
-        {
-            Debug.LogError($"actor key({_actorKey})를 찾을 수 없음");
-        }
         
-        RuntimeAnimatorController ac = _animator.runtimeAnimatorController;
-        AnimatorOverrideController overrideController = new AnimatorOverrideController(ac);
-        _animator.runtimeAnimatorController = overrideController;
-
-        _defaultClip = overrideController[PLAYER_ANI_STATE];
         
-        ChangeClip(_aniData.IdleDown, true);
-
+        /* State handler */
         _transitionHandler.AddHandleCallback("DailyRoutine", ToDailyRoutine);
         _transitionHandler.AddHandleCallback("TalkingForPlayer", ToTalkingForPlayer);
     }
-    
-    [SerializeField]
-    private Animator _animator;
-
-    private const string PLAYER_ANI_STATE = "DefaultMovement";
-
-    private AnimationClip _defaultClip = null;
-    private AnimationClip _beforeClip = null;
-    public void ChangeClip(AnimationClip newClip, bool force = false)
-    {
-        if (force == false && _beforeClip == newClip) return;
-        
-        if (_animator.runtimeAnimatorController is AnimatorOverrideController overrideController)
-        {
-            overrideController[_defaultClip] = newClip;
-            _beforeClip = newClip;
-        }
-    }
-    
-    public async UniTask<Vector2> MoveToPoint(Vector2 pos)
-    {
-        await UniTask.WaitUntil(() =>
-        {
-            transform.position = Vector2.MoveTowards(transform.position, pos, Time.deltaTime * speed);
-
-            return Vector2.Distance(transform.position, pos) < 0.001f;
-        }, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
-
-        return pos;
-    }
-    
-    public void SetMoveLock(bool value)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool GetMoveLock()
-    {
-        throw new NotImplementedException();
-    }
-
-    public FavorablityContainer GetFavorablityContainer()
-        => FavorablityContainer;
-
-    public string GetActorKey() 
-        => _actorKey;
 
 
     #region StatehandleCallback
@@ -118,5 +81,4 @@ public class Actor : MonoBehaviour, IBAMove, IBAFavorablity, IBANameKey
     }
 
     #endregion
-
 }
