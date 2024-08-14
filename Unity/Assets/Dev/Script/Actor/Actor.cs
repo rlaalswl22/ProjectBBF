@@ -22,6 +22,7 @@ public class Actor : MonoBehaviour, IBANameKey
     
     [field: SerializeField, Foldout("월드 데이터")] private PatrolPointPath _patrolPath;
     
+    
 
     #region Getter/Setter
     public ActorMovementData MovementData => _movementData;
