@@ -47,6 +47,7 @@ public class PlayerStateTranslator : MonoBehaviour, IPlayerStrategy
     }
 }
 
+[System.Serializable]
 public enum EInputType
 {
     Trigger,

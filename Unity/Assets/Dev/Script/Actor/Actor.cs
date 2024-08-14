@@ -11,19 +11,23 @@ public class Actor : MonoBehaviour, IBAMove, IBAFavorablity, IBANameKey
     [field: SerializeField, MustBeAssigned, InitializationField]
     private string _actorKey;
 
+    [SerializeField] private PatrolPointPath _patrolPath;
+
     [field: SerializeField] private AnimationData _aniData;
     
     [field: SerializeField, AutoProperty, MustBeAssigned, InitializationField]
     private CollisionInteraction _interaction;
 
-    [SerializeField] private Transform pivot1;
-    [SerializeField] private Transform pivot2;
     [SerializeField] private float speed;
+
+    [SerializeField] private StateTransitionHandler _transitionHandler;
     
     
     private FavorablityContainer _favorablityContainer;
 
     public FavorablityContainer FavorablityContainer => _favorablityContainer;
+
+    public PatrolPointPath PatrolPath => _patrolPath;
 
     public CollisionInteraction Interaction => _interaction;
     private void Awake()
@@ -52,7 +56,8 @@ public class Actor : MonoBehaviour, IBAMove, IBAFavorablity, IBANameKey
         
         ChangeClip(_aniData.IdleDown, true);
 
-        CoUpdate().Forget();
+        _transitionHandler.AddHandleCallback("DailyRoutine", ToDailyRoutine);
+        _transitionHandler.AddHandleCallback("TalkingForPlayer", ToTalkingForPlayer);
     }
     
     [SerializeField]
@@ -72,30 +77,19 @@ public class Actor : MonoBehaviour, IBAMove, IBAFavorablity, IBANameKey
             _beforeClip = newClip;
         }
     }
-
-    private async UniTask CoUpdate()
+    
+    public async UniTask<Vector2> MoveToPoint(Vector2 pos)
     {
-        while (true)
+        await UniTask.WaitUntil(() =>
         {
-            ChangeClip(_aniData.MovementUp);
-            await UniTask.WaitUntil(() =>
-            {
-                transform.position = Vector2.MoveTowards(transform.position, pivot1.position, Time.deltaTime * speed);
+            transform.position = Vector2.MoveTowards(transform.position, pos, Time.deltaTime * speed);
 
-                return Vector2.Distance(transform.position, pivot1.position) < 0.0001f;
-            }, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
-            
-            
-            ChangeClip(_aniData.MovementDown);
-            await UniTask.WaitUntil(() =>
-                {
-                    transform.position = Vector2.MoveTowards(transform.position, pivot2.position, Time.deltaTime * speed);
+            return Vector2.Distance(transform.position, pos) < 0.001f;
+        }, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
 
-                    return Vector2.Distance(transform.position, pivot2.position) < 0.0001f;
-                }, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
-        }
+        return pos;
     }
-
+    
     public void SetMoveLock(bool value)
     {
         throw new NotImplementedException();
@@ -111,5 +105,18 @@ public class Actor : MonoBehaviour, IBAMove, IBAFavorablity, IBANameKey
 
     public string GetActorKey() 
         => _actorKey;
+
+
+    #region StatehandleCallback
+    private bool ToDailyRoutine()
+    {
+        return false;
+    }
+    private bool ToTalkingForPlayer()
+    {
+        return false;
+    }
+
+    #endregion
 
 }
