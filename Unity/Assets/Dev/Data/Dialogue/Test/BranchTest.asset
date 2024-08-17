@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed507e00ab63144f976694caab7934e, type: 3}
   m_Name: BranchTest
   m_EditorClassIdentifier: 
+  _guid: a1a33ed4a2e533b439f9144fcced7ace
   NodeLinks:
   - BaseNodeGuid: 9499b3fe-822e-4ee7-94c4-598ad2c08bb3
     PortName: Execute
     TargetNodeGuid: 96efcac6-195a-4776-a2ca-cc8c2c31057d
+  - BaseNodeGuid: 11020a70-59c6-4792-afbc-f953fb8611ee
+    PortName: Next
+    TargetNodeGuid: 09fdb09c-dc3e-49e3-a425-8429fbce6f34
   - BaseNodeGuid: 2c88e651-cac5-4d79-a76f-558fc8eecf46
     PortName: Next
     TargetNodeGuid: 70f4e0b0-dccd-4247-bfbf-1eae5aa168c3
@@ -28,43 +32,67 @@ MonoBehaviour:
   - BaseNodeGuid: 96efcac6-195a-4776-a2ca-cc8c2c31057d
     PortName: Next
     TargetNodeGuid: 901320e8-59a6-4ed3-a30c-8be0288a0832
-  - BaseNodeGuid: 11020a70-59c6-4792-afbc-f953fb8611ee
-    PortName: Next
-    TargetNodeGuid: 09fdb09c-dc3e-49e3-a425-8429fbce6f34
   NodeData:
-  - rid: 9140223798809722967
-  - rid: 9140223798809722969
-  - rid: 9140223798809722970
-  - rid: 9140223798809722971
-  - rid: 9140223798809722968
-  - rid: 9140223798809722972
+  - rid: 9140224060430746184
+  - rid: 9140224060430746185
+  - rid: 9140224060430746186
+  - rid: 9140224060430746187
+  - rid: 9140224060430746188
+  - rid: 9140224060430746189
   references:
     version: 2
     RefIds:
-    - rid: 9140223798809722967
+    - rid: 9140224060430746184
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
-        GUID: 2c88e651-cac5-4d79-a76f-558fc8eecf46
+        GUID: 09fdb09c-dc3e-49e3-a425-8429fbce6f34
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 911, y: 233}
-        DialogueText: The weather is nice today.
-    - rid: 9140223798809722968
+        Position: {x: 1237, y: 386}
+        DialogueText: Go to hell. please.
+        PortraitKey: 
+        ActorKey: 
+    - rid: 9140224060430746185
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 11020a70-59c6-4792-afbc-f953fb8611ee
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 925, y: 357}
+        Position: {x: 949, y: 415}
         DialogueText: Asshole
-    - rid: 9140223798809722969
+        PortraitKey: 
+        ActorKey: 
+    - rid: 9140224060430746186
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 2c88e651-cac5-4d79-a76f-558fc8eecf46
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 928, y: 125}
+        DialogueText: The weather is nice today.
+        PortraitKey: 
+        ActorKey: 
+    - rid: 9140224060430746187
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 70f4e0b0-dccd-4247-bfbf-1eae5aa168c3
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1265, y: 114}
+        DialogueText: It was nice to meet you.
+        PortraitKey: 
+        ActorKey: 
+    - rid: 9140224060430746188
       type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 901320e8-59a6-4ed3-a30c-8be0288a0832
         NodeTitle: Branch
         TypeName: Branch
         Position: {x: 596, y: 200}
-    - rid: 9140223798809722970
+        DialogueText: 
+        PortraitKey: 
+        ActorKey: 
+    - rid: 9140224060430746189
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 96efcac6-195a-4776-a2ca-cc8c2c31057d
@@ -72,19 +100,5 @@ MonoBehaviour:
         TypeName: Text
         Position: {x: 309, y: 200}
         DialogueText: Hi!
-    - rid: 9140223798809722971
-      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
-      data:
-        GUID: 70f4e0b0-dccd-4247-bfbf-1eae5aa168c3
-        NodeTitle: Text
-        TypeName: Text
-        Position: {x: 1220, y: 233}
-        DialogueText: It was nice to meet you.
-    - rid: 9140223798809722972
-      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
-      data:
-        GUID: 09fdb09c-dc3e-49e3-a425-8429fbce6f34
-        NodeTitle: Text
-        TypeName: Text
-        Position: {x: 1174, y: 357}
-        DialogueText: Go to hell. please.
+        PortraitKey: 
+        ActorKey: 

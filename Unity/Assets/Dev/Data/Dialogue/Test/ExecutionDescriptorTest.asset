@@ -17,76 +17,46 @@ MonoBehaviour:
   - BaseNodeGuid: d37b5d9d-5098-45e9-acbb-b652352337e6
     PortName: Execute
     TargetNodeGuid: 1a2bc106-2b52-46bb-952a-7e4c0f01cc22
-  - BaseNodeGuid: 46257075-9c17-471c-9397-b91952016d71
-    PortName: Next
-    TargetNodeGuid: 09386a71-9c89-4749-8d87-4607e2db739c
   - BaseNodeGuid: 09386a71-9c89-4749-8d87-4607e2db739c
     PortName: Choice 1
     TargetNodeGuid: 715e88c3-de16-40b7-83d2-9c2231f89fbb
   - BaseNodeGuid: 09386a71-9c89-4749-8d87-4607e2db739c
     PortName: Choice 2
     TargetNodeGuid: d7671da9-e34f-43a6-bd1c-f525b3698dfa
-  - BaseNodeGuid: d7671da9-e34f-43a6-bd1c-f525b3698dfa
-    PortName: Next
-    TargetNodeGuid: 7251a273-dbd8-44e5-aece-396b6690a525
   - BaseNodeGuid: 1a2bc106-2b52-46bb-952a-7e4c0f01cc22
     PortName: Next
     TargetNodeGuid: 46257075-9c17-471c-9397-b91952016d71
+  - BaseNodeGuid: 46257075-9c17-471c-9397-b91952016d71
+    PortName: Next
+    TargetNodeGuid: 09386a71-9c89-4749-8d87-4607e2db739c
   - BaseNodeGuid: 715e88c3-de16-40b7-83d2-9c2231f89fbb
     PortName: Next
     TargetNodeGuid: a0ce7fb5-a07d-4578-afbe-a8c112b5f9ae
+  - BaseNodeGuid: d7671da9-e34f-43a6-bd1c-f525b3698dfa
+    PortName: Next
+    TargetNodeGuid: 7251a273-dbd8-44e5-aece-396b6690a525
   NodeData:
-  - rid: 9140224060430745715
-  - rid: 9140224060430745716
-  - rid: 9140224060430745717
-  - rid: 9140224060430745718
-  - rid: 9140224060430745719
-  - rid: 9140224060430745720
-  - rid: 9140224060430745721
+  - rid: 9140224060430746177
+  - rid: 9140224060430746178
+  - rid: 9140224060430746179
+  - rid: 9140224060430746180
+  - rid: 9140224060430746181
+  - rid: 9140224060430746182
+  - rid: 9140224060430746183
   references:
     version: 2
     RefIds:
-    - rid: 9140224060430745715
-      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
-      data:
-        GUID: 46257075-9c17-471c-9397-b91952016d71
-        NodeTitle: Text
-        TypeName: Text
-        Position: {x: 639, y: 200}
-        DialogueText: d21d12
-        PortraitKey: 
-        ActorKey: 
-    - rid: 9140224060430745716
+    - rid: 9140224060430746177
       type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 09386a71-9c89-4749-8d87-4607e2db739c
         NodeTitle: Branch
         TypeName: Branch
-        Position: {x: 885, y: 200}
+        Position: {x: 890, y: 155}
         DialogueText: 
         PortraitKey: 
         ActorKey: 
-    - rid: 9140224060430745717
-      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
-      data:
-        GUID: d7671da9-e34f-43a6-bd1c-f525b3698dfa
-        NodeTitle: Text
-        TypeName: Text
-        Position: {x: 1268, y: 344}
-        DialogueText: dsadsa
-        PortraitKey: 
-        ActorKey: 
-    - rid: 9140224060430745718
-      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
-      data:
-        GUID: a0ce7fb5-a07d-4578-afbe-a8c112b5f9ae
-        NodeTitle: Text
-        TypeName: Text
-        Position: {x: 1589, y: 124}
-        DialogueText: d21d21
-        PortraitKey: 
-        ActorKey: 
-    - rid: 9140224060430745719
+    - rid: 9140224060430746178
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 1a2bc106-2b52-46bb-952a-7e4c0f01cc22
@@ -99,7 +69,17 @@ MonoBehaviour:
           IntValue: 555
           FloatValue: 0
           StringValue: 
-    - rid: 9140224060430745720
+    - rid: 9140224060430746179
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 46257075-9c17-471c-9397-b91952016d71
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 644, y: 236}
+        DialogueText: d21d12
+        PortraitKey: 
+        ActorKey: 
+    - rid: 9140224060430746180
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 715e88c3-de16-40b7-83d2-9c2231f89fbb
@@ -112,16 +92,36 @@ MonoBehaviour:
           IntValue: 444
           FloatValue: 0
           StringValue: 
-    - rid: 9140224060430745721
+    - rid: 9140224060430746181
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7251a273-dbd8-44e5-aece-396b6690a525
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 1615, y: 382}
+        Position: {x: 1565, y: 441}
         Handler: {fileID: 11400000, guid: 6fa070aff2e9b4c448b4bfda338eaae4, type: 2}
         Warps:
         - Target: Int
           IntValue: 455
           FloatValue: 0
           StringValue: 
+    - rid: 9140224060430746182
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: a0ce7fb5-a07d-4578-afbe-a8c112b5f9ae
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1589, y: 124}
+        DialogueText: d21d21
+        PortraitKey: 
+        ActorKey: 
+    - rid: 9140224060430746183
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: d7671da9-e34f-43a6-bd1c-f525b3698dfa
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1201, y: 441}
+        DialogueText: dsadsa
+        PortraitKey: 
+        ActorKey: 

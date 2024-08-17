@@ -35,7 +35,9 @@ namespace DS.Core
         
         public bool IsEqual(DialogueContainer other)
         {
-            if (Guid != other.Guid) return false;
+            // GraphSaveUtility의 CheckAnyChange 함수 로직상, 이 코드를 주석처리해야함.
+            // 아니면, 다른 처리를 해서 호환되도록 수정해야함
+            //if (Guid != other.Guid) return false;
             
             // NodeLinks 리스트 비교
             if (NodeLinks.Count != other.NodeLinks.Count)

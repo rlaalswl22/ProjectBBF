@@ -14,27 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guid: ae5e6cd5023068443bc476e5c391aac9
   NodeLinks:
-  - BaseNodeGuid: 88d7fcc0-4509-40b1-a5ad-b12d4c72a0f0
-    PortName: Execute
-    TargetNodeGuid: ea266594-3e30-447a-95ef-95d5159ceabd
-  - BaseNodeGuid: ea266594-3e30-447a-95ef-95d5159ceabd
-    PortName: Next
-    TargetNodeGuid: 779d3e4c-3961-4bce-82ad-396314bc1265
   - BaseNodeGuid: 779d3e4c-3961-4bce-82ad-396314bc1265
     PortName: True
     TargetNodeGuid: db0c688e-a8e1-4df5-b8d5-5bedebd41533
-  - BaseNodeGuid: 779d3e4c-3961-4bce-82ad-396314bc1265
-    PortName: False
-    TargetNodeGuid: 27727495-b676-4091-9c08-b97f2d63615f
   NodeData:
-  - rid: 9140224060430745740
-  - rid: 9140224060430745741
-  - rid: 9140224060430745742
-  - rid: 9140224060430745743
+  - rid: 9140224060430746170
+  - rid: 9140224060430746171
+  - rid: 9140224060430746172
+  - rid: 9140224060430746173
   references:
     version: 2
     RefIds:
-    - rid: 9140224060430745740
+    - rid: 9140224060430746170
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 779d3e4c-3961-4bce-82ad-396314bc1265
@@ -47,7 +38,7 @@ MonoBehaviour:
           IntValue: 0
           FloatValue: 0
           StringValue: 
-    - rid: 9140224060430745741
+    - rid: 9140224060430746171
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 27727495-b676-4091-9c08-b97f2d63615f
@@ -57,17 +48,7 @@ MonoBehaviour:
         DialogueText: False
         PortraitKey: Default
         ActorKey: Dummy
-    - rid: 9140224060430745742
-      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
-      data:
-        GUID: ea266594-3e30-447a-95ef-95d5159ceabd
-        NodeTitle: Text
-        TypeName: Text
-        Position: {x: 258, y: 191}
-        DialogueText: Begin
-        PortraitKey: Default
-        ActorKey: Dummy
-    - rid: 9140224060430745743
+    - rid: 9140224060430746172
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: db0c688e-a8e1-4df5-b8d5-5bedebd41533
@@ -75,5 +56,15 @@ MonoBehaviour:
         TypeName: Text
         Position: {x: 959, y: 239}
         DialogueText: True
+        PortraitKey: Default
+        ActorKey: Dummy
+    - rid: 9140224060430746173
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: ea266594-3e30-447a-95ef-95d5159ceabd
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 258, y: 191}
+        DialogueText: Begin
         PortraitKey: Default
         ActorKey: Dummy
