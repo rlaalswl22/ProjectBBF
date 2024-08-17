@@ -8,11 +8,8 @@ namespace DS.Runtime
 {
     
     [Serializable]
-    public class ConditionNodeData : DialogueNodeData
+    public class ConditionNodeData : ParameterNodeData
     {
-        public string ItemID;
-        public int EqualOrMany;
-
         public override DialogueNodeData Clone()
         {
             var data = new ConditionNodeData();
@@ -22,8 +19,9 @@ namespace DS.Runtime
             data.TypeName = TypeName;
             data.Position = Position;
 
-            data.ItemID = ItemID;
-            data.EqualOrMany = EqualOrMany;
+
+            data.Handler = Handler;
+            data.Warps = Warps;
 
             return data;
         }
@@ -57,7 +55,7 @@ namespace DS.Runtime
             Debug.Assert(trueNextNode is not null);
             Debug.Assert(falseNextNode is not null);
 
-            return new ConditionRuntimeNode(trueNextNode, falseNextNode);
+            return new ConditionRuntimeNode(trueNextNode, falseNextNode, Handler, GetArgs());
         }
 
         public override bool IsEqual(DialogueNodeData other)
@@ -67,11 +65,6 @@ namespace DS.Runtime
 
             var otherNode = other as ConditionNodeData;
             
-            if (ItemID != otherNode.ItemID)
-                return false;
-            
-            if (EqualOrMany != otherNode.EqualOrMany)
-                return false;
 
             return true;
         }

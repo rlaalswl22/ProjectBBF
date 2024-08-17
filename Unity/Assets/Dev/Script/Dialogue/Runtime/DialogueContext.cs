@@ -102,6 +102,11 @@ public class DialogueContext
                 CurrentNode = executionItem.Node.NextNode;
                 goto begin;
             }
+            else if (item is ConditionItem conditionItem)
+            {
+                CurrentNode = conditionItem.GetNextNode();
+                goto begin;
+            }
         }
         catch (OperationCanceledException)
         {

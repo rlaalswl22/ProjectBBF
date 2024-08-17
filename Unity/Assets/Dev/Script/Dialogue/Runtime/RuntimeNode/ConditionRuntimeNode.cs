@@ -1,28 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using DS.Core;
+using UnityEngine;
 
 namespace DS.Runtime
 {
     public class ConditionRuntimeNode : DialogueRuntimeNode
     {
-        public DialogueRuntimeNode TrueNode { get; private set; }
-        public DialogueRuntimeNode FalseNode { get; private set; }
+        public readonly DialogueRuntimeNode TrueNode;
+        public readonly DialogueRuntimeNode FalseNode;
+        public readonly ParameterHandler Handler;
+        public readonly object[] Args;
 
         public override bool IsLeaf => TrueNode is null && FalseNode is null;
 
-        public ConditionRuntimeNode(DialogueRuntimeNode trueNode, DialogueRuntimeNode falseNode)
+        public ConditionRuntimeNode(DialogueRuntimeNode trueNode, DialogueRuntimeNode falseNode, ParameterHandler handler, object[] args)
         {
             TrueNode = trueNode;
             FalseNode = falseNode;
+            Handler = handler;
+            Args = args;
         }
 
         public override DialogueItem CreateItem()
-            => null;
+            => new ConditionItem(this, () =>
+            {
+                var rtv = Handler.Execute(Args);
+                Debug.Assert(rtv is bool);
 
-        public DialogueRuntimeNode GetNext()
-        {
-            throw new Exception();
-        }
+                return (bool)rtv ? TrueNode : FalseNode;
+            });
     }
 }

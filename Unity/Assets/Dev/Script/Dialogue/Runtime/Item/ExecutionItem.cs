@@ -6,7 +6,7 @@ namespace DS.Runtime
     {
         public readonly Action Execution;
         
-        public ExecutionItem(ExecutionRuntimeNode node, Action execution, string characterDisplayName, string portraitKey) : base(node, characterDisplayName, portraitKey)
+        public ExecutionItem(ExecutionRuntimeNode node, Action execution) : base(node, "Default", "None")
         {
             Execution = execution;
         }

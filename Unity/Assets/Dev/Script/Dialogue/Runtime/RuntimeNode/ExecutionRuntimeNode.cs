@@ -8,17 +8,17 @@ namespace DS.Runtime
     {
         public override bool IsLeaf => NextNode is null;
         public readonly DialogueRuntimeNode NextNode;
-        public readonly ExecutionDescriptor Descriptor;
+        public readonly ParameterHandler Handler;
         public readonly object[] Arguments;
 
-        public ExecutionRuntimeNode(DialogueRuntimeNode nextNode, ExecutionDescriptor descriptor, object[] arguments)
+        public ExecutionRuntimeNode(DialogueRuntimeNode nextNode, ParameterHandler handler, object[] arguments)
         {
             NextNode = nextNode;
-            Descriptor = descriptor;
+            Handler = handler;
             Arguments = arguments;
         }
 
         public override DialogueItem CreateItem()
-            => new ExecutionItem(this, () => Descriptor.Execute(Arguments), "Default", "None");
+            => new ExecutionItem(this, () => _ = Handler.Execute(Arguments));
     }
 }
