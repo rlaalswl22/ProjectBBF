@@ -14,57 +14,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guid: ae5e6cd5023068443bc476e5c391aac9
   NodeLinks:
-  - BaseNodeGuid: 779d3e4c-3961-4bce-82ad-396314bc1265
+  - BaseNodeGuid: fa6c36ed-6628-4bc3-b020-80f27f6ab3d9
+    PortName: Execute
+    TargetNodeGuid: cc6b1df4-9bcb-49ab-9740-64f8dfe7ceb5
+  - BaseNodeGuid: 4bc99f8d-0111-488d-90cd-7bae7e8ea8e1
+    PortName: Next
+    TargetNodeGuid: 9bea9f18-33ff-42c1-bbc2-71d6c66dd0af
+  - BaseNodeGuid: 91dec3d4-dba0-49e2-8c30-57ef725d7f7a
     PortName: True
-    TargetNodeGuid: db0c688e-a8e1-4df5-b8d5-5bedebd41533
+    TargetNodeGuid: 4bc99f8d-0111-488d-90cd-7bae7e8ea8e1
+  - BaseNodeGuid: 91dec3d4-dba0-49e2-8c30-57ef725d7f7a
+    PortName: False
+    TargetNodeGuid: ff69a5e2-6038-4292-9119-562f8b9599a1
+  - BaseNodeGuid: cc6b1df4-9bcb-49ab-9740-64f8dfe7ceb5
+    PortName: Next
+    TargetNodeGuid: 91dec3d4-dba0-49e2-8c30-57ef725d7f7a
   NodeData:
-  - rid: 9140224060430746170
-  - rid: 9140224060430746171
-  - rid: 9140224060430746172
-  - rid: 9140224060430746173
+  - rid: 9140224060430746265
+  - rid: 9140224060430746266
+  - rid: 9140224060430746267
+  - rid: 9140224060430746268
+  - rid: 9140224060430746269
   references:
     version: 2
     RefIds:
-    - rid: 9140224060430746170
-      type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+    - rid: 9140224060430746265
+      type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
-        GUID: 779d3e4c-3961-4bce-82ad-396314bc1265
-        NodeTitle: Condition
-        TypeName: Condition
-        Position: {x: 584, y: 200}
-        Handler: {fileID: 11400000, guid: 2a5a4a3e32c9701459312cb724a93aa1, type: 2}
+        GUID: 4bc99f8d-0111-488d-90cd-7bae7e8ea8e1
+        NodeTitle: Execution
+        TypeName: Execution
+        Position: {x: 1038, y: 115}
+        Handler: {fileID: 11400000, guid: 6fa070aff2e9b4c448b4bfda338eaae4, type: 2}
         Warps:
         - Target: Int
           IntValue: 0
           FloatValue: 0
           StringValue: 
-    - rid: 9140224060430746171
+    - rid: 9140224060430746266
+      type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 91dec3d4-dba0-49e2-8c30-57ef725d7f7a
+        NodeTitle: Condition
+        TypeName: Condition
+        Position: {x: 707, y: 217}
+        Handler: {fileID: 11400000, guid: 2a5a4a3e32c9701459312cb724a93aa1, type: 2}
+        Warps:
+        - Target: Int
+          IntValue: 1
+          FloatValue: 0
+          StringValue: 
+    - rid: 9140224060430746267
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
-        GUID: 27727495-b676-4091-9c08-b97f2d63615f
+        GUID: 9bea9f18-33ff-42c1-bbc2-71d6c66dd0af
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 959, y: 435}
-        DialogueText: False
-        PortraitKey: Default
-        ActorKey: Dummy
-    - rid: 9140224060430746172
+        Position: {x: 1360, y: 158}
+        DialogueText: "\uCEF7\uC52C \uC2DC\uC791!"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 9140224060430746268
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
-        GUID: db0c688e-a8e1-4df5-b8d5-5bedebd41533
+        GUID: cc6b1df4-9bcb-49ab-9740-64f8dfe7ceb5
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 959, y: 239}
-        DialogueText: True
-        PortraitKey: Default
-        ActorKey: Dummy
-    - rid: 9140224060430746173
+        Position: {x: 389, y: 207}
+        DialogueText: "\uC2DC\uC791!"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 9140224060430746269
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
-        GUID: ea266594-3e30-447a-95ef-95d5159ceabd
+        GUID: ff69a5e2-6038-4292-9119-562f8b9599a1
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 258, y: 191}
-        DialogueText: Begin
-        PortraitKey: Default
-        ActorKey: Dummy
+        Position: {x: 1019, y: 414}
+        DialogueText: "\uAC70\uC9D3!"
+        PortraitKey: 
+        ActorKey: 

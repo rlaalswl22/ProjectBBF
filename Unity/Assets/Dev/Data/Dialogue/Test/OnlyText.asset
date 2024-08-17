@@ -24,13 +24,13 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 8430794d-a192-4643-bafa-2b62a2bcad27
   NodeData:
-  - rid: 9140224060430746174
-  - rid: 9140224060430746175
-  - rid: 9140224060430746176
+  - rid: 9140224060430746277
+  - rid: 9140224060430746278
+  - rid: 9140224060430746279
   references:
     version: 2
     RefIds:
-    - rid: 9140224060430746174
+    - rid: 9140224060430746277
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 19957d31-bc6f-4022-a67c-4b3784a99734
@@ -40,7 +40,7 @@ MonoBehaviour:
         DialogueText: 111
         PortraitKey: 
         ActorKey: 
-    - rid: 9140224060430746175
+    - rid: 9140224060430746278
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 8430794d-a192-4643-bafa-2b62a2bcad27
@@ -50,7 +50,7 @@ MonoBehaviour:
         DialogueText: 333
         PortraitKey: 
         ActorKey: 
-    - rid: 9140224060430746176
+    - rid: 9140224060430746279
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a9045e20-d954-4f05-a492-a762b20ef2ea

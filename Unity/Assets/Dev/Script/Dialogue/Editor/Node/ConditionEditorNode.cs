@@ -89,8 +89,8 @@ namespace DS.Editor
             
             _data = myData;
             
-            var nodePorts = containerCache.NodeLinks.Where(x => x.BaseNodeGuid == data.GUID).ToList();
-            nodePorts.ForEach(x => this.AddConditionPort(x.PortName));
+            //var nodePorts = containerCache.NodeLinks.Where(x => x.BaseNodeGuid == data.GUID).ToList();
+            //nodePorts.ForEach(x => this.AddConditionPort(x.PortName));
         }
         
         public void AddConditionPort(string portName)

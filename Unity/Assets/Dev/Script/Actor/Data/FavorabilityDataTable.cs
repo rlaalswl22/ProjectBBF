@@ -29,6 +29,8 @@ public class FavorabilityDataTable : ScriptableObject
 
     public Sprite GetPortraitFromKey(string portraitKey)
     {
+        if (string.IsNullOrEmpty(portraitKey)) return null;
+        
         foreach (FavorabilityData data in Table.Values)
         {
             if (data.PortraitTable.Table.TryGetValue(portraitKey, out var sprite))

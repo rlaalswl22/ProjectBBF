@@ -36,17 +36,17 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 7251a273-dbd8-44e5-aece-396b6690a525
   NodeData:
-  - rid: 9140224060430746177
-  - rid: 9140224060430746178
-  - rid: 9140224060430746179
-  - rid: 9140224060430746180
-  - rid: 9140224060430746181
-  - rid: 9140224060430746182
-  - rid: 9140224060430746183
+  - rid: 9140224060430746270
+  - rid: 9140224060430746271
+  - rid: 9140224060430746272
+  - rid: 9140224060430746273
+  - rid: 9140224060430746274
+  - rid: 9140224060430746275
+  - rid: 9140224060430746276
   references:
     version: 2
     RefIds:
-    - rid: 9140224060430746177
+    - rid: 9140224060430746270
       type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 09386a71-9c89-4749-8d87-4607e2db739c
@@ -56,7 +56,7 @@ MonoBehaviour:
         DialogueText: 
         PortraitKey: 
         ActorKey: 
-    - rid: 9140224060430746178
+    - rid: 9140224060430746271
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 1a2bc106-2b52-46bb-952a-7e4c0f01cc22
@@ -69,7 +69,7 @@ MonoBehaviour:
           IntValue: 555
           FloatValue: 0
           StringValue: 
-    - rid: 9140224060430746179
+    - rid: 9140224060430746272
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 46257075-9c17-471c-9397-b91952016d71
@@ -79,7 +79,7 @@ MonoBehaviour:
         DialogueText: d21d12
         PortraitKey: 
         ActorKey: 
-    - rid: 9140224060430746180
+    - rid: 9140224060430746273
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 715e88c3-de16-40b7-83d2-9c2231f89fbb
@@ -92,7 +92,7 @@ MonoBehaviour:
           IntValue: 444
           FloatValue: 0
           StringValue: 
-    - rid: 9140224060430746181
+    - rid: 9140224060430746274
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7251a273-dbd8-44e5-aece-396b6690a525
@@ -105,7 +105,7 @@ MonoBehaviour:
           IntValue: 455
           FloatValue: 0
           StringValue: 
-    - rid: 9140224060430746182
+    - rid: 9140224060430746275
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a0ce7fb5-a07d-4578-afbe-a8c112b5f9ae
@@ -115,7 +115,7 @@ MonoBehaviour:
         DialogueText: d21d21
         PortraitKey: 
         ActorKey: 
-    - rid: 9140224060430746183
+    - rid: 9140224060430746276
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d7671da9-e34f-43a6-bd1c-f525b3698dfa

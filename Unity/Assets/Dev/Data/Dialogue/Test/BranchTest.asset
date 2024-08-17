@@ -33,16 +33,16 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 901320e8-59a6-4ed3-a30c-8be0288a0832
   NodeData:
-  - rid: 9140224060430746184
-  - rid: 9140224060430746185
-  - rid: 9140224060430746186
-  - rid: 9140224060430746187
-  - rid: 9140224060430746188
-  - rid: 9140224060430746189
+  - rid: 9140224060430746259
+  - rid: 9140224060430746260
+  - rid: 9140224060430746261
+  - rid: 9140224060430746262
+  - rid: 9140224060430746263
+  - rid: 9140224060430746264
   references:
     version: 2
     RefIds:
-    - rid: 9140224060430746184
+    - rid: 9140224060430746259
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 09fdb09c-dc3e-49e3-a425-8429fbce6f34
@@ -52,7 +52,7 @@ MonoBehaviour:
         DialogueText: Go to hell. please.
         PortraitKey: 
         ActorKey: 
-    - rid: 9140224060430746185
+    - rid: 9140224060430746260
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 11020a70-59c6-4792-afbc-f953fb8611ee
@@ -62,7 +62,7 @@ MonoBehaviour:
         DialogueText: Asshole
         PortraitKey: 
         ActorKey: 
-    - rid: 9140224060430746186
+    - rid: 9140224060430746261
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 2c88e651-cac5-4d79-a76f-558fc8eecf46
@@ -72,7 +72,7 @@ MonoBehaviour:
         DialogueText: The weather is nice today.
         PortraitKey: 
         ActorKey: 
-    - rid: 9140224060430746187
+    - rid: 9140224060430746262
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 70f4e0b0-dccd-4247-bfbf-1eae5aa168c3
@@ -82,7 +82,7 @@ MonoBehaviour:
         DialogueText: It was nice to meet you.
         PortraitKey: 
         ActorKey: 
-    - rid: 9140224060430746188
+    - rid: 9140224060430746263
       type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 901320e8-59a6-4ed3-a30c-8be0288a0832
@@ -92,7 +92,7 @@ MonoBehaviour:
         DialogueText: 
         PortraitKey: 
         ActorKey: 
-    - rid: 9140224060430746189
+    - rid: 9140224060430746264
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 96efcac6-195a-4776-a2ca-cc8c2c31057d

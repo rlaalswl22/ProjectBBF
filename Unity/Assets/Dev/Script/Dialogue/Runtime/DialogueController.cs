@@ -39,6 +39,9 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
 
     public bool SetPortrait(string actorKey, string portraitKey)
     {
+        if (string.IsNullOrEmpty(actorKey)) return false;
+        if (string.IsNullOrEmpty(portraitKey)) return false;
+        
         if (_table.Table.TryGetValue(actorKey, out var data) &&
             data.PortraitTable.Table.TryGetValue(portraitKey, out var sprite))
         {
@@ -51,6 +54,8 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
 
     public bool SetDisplayName(string actorKey)
     {
+        if (string.IsNullOrEmpty(actorKey)) return false;
+        
         if (_table.Table.TryGetValue(actorKey, out var data))
         {
             _view.DisplayName = data.ActorName;
