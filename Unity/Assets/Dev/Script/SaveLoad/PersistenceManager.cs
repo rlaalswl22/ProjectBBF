@@ -15,8 +15,6 @@ namespace ProjectBBF.Persistence
         public IPersistenceDescriptor Descriptor { get; set; }
         public bool IsEmpty => _saveQueue.Any() == false;
 
-        private PersistenceTable _keyTable;
-
         private Dictionary<string, IPersistenceObject> _objTable;
         public IReadOnlyDictionary<string, IPersistenceObject> Table => _objTable;
 
@@ -26,8 +24,6 @@ namespace ProjectBBF.Persistence
 
             _saveQueue = new Queue<(string, IPersistenceObject)>(10);
             _loadQueue = new Queue<(string, IPersistenceObject)>(10);
-
-            _keyTable = Resources.Load<PersistenceTable>("Data/PersistenceTable");
         }
 
         public override void PostRelease()
@@ -63,16 +59,20 @@ namespace ProjectBBF.Persistence
             }
         }
 
-        public void LoadWithTable()
+        private string[] _tempKeyArr = new string[1];
+        private (string, IPersistenceObject)[] _tempTupleArr = new (string, IPersistenceObject)[1];
+        public IPersistenceObject Load(string key)
         {
-            var list = Descriptor.LoadPersistenceObject(_keyTable.Keys);
+            _tempKeyArr[0] = key;
+            var list = Descriptor.LoadPersistenceObject(_tempKeyArr);
 
-            _objTable.Clear();
+            return list.FirstOrDefault();
+        }
 
-            for (int i = 0; i < _keyTable.Keys.Count; i++)
-            {
-                _objTable[_keyTable.Keys[i]] = list[i];
-            }
+        public void Load(string key, IPersistenceObject obj)
+        {
+            _tempTupleArr[0] = (key, obj);
+            Descriptor.LoadPersistenceObject(_tempTupleArr);
         }
 
         public void EnqueueSaveObject(string key, IPersistenceObject obj)

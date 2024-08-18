@@ -34,7 +34,6 @@ namespace ProjectBBF.Persistence.Test
             _objList.Add(new PersistenceTestObject());
             LoadWithQueue();
             Clear();
-            LoadWithTable();
         }
 
         [ButtonMethod]
@@ -75,24 +74,6 @@ namespace ProjectBBF.Persistence.Test
             instance.Descriptor = Descriptor;
             instance.LoadWithQueue(false);  
             instance.FlushLoadObject();
-        }
-        
-        [ButtonMethod]
-        private void LoadWithTable()
-        {
-            if (Application.isPlaying == false) return;
-            
-            var instance = PersistenceManager.Instance;
-            instance.Descriptor = Descriptor;
-            
-            instance.LoadWithTable();
-
-            Clear();
-            for (int i = 0; i < _keyList.Count; i++)
-            {
-                var obj = instance.Table[_keyList[i]];
-                _objList.Add(obj as PersistenceTestObject);
-            }
         }
     }
 
