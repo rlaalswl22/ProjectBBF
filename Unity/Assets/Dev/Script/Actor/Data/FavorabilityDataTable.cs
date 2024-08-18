@@ -4,7 +4,7 @@ using ProjectBBF.Singleton;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "ProjectBBF/Data/Actor/FavorabilityDataTable", fileName = "FavorabilityDataTable")]
+[CreateAssetMenu(menuName = "ProjectBBF/Project/FavorabilityDataTable", fileName = "FavorabilityDataTable")]
 public class FavorabilityDataTable : ScriptableObject
 {
     [SerializeField] private List<FavorabilityData> _datas = new();
