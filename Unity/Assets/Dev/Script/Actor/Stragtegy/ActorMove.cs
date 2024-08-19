@@ -36,6 +36,8 @@ public class ActorMove : MonoBehaviour, IActorStrategy
     {
         await UniTask.WaitUntil(() =>
         {
+            if (_rigid == false) return true;
+            
             _rigid.position = Vector2.MoveTowards(_rigid.position, pos, Time.deltaTime * _data.MovementSpeed);
             _actor.Visual.LookAt(pos - _rigid.position, false);
             

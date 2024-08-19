@@ -3,19 +3,14 @@
 using UnityEditor;
 using UnityEngine;
  
-[CustomEditor(typeof(EditorChildSceneLoader))]
+[CustomEditor(typeof(RootSceneLoader))]
 public class ChildSceneLoaderInspectorGUI : Editor
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
  
-        var currentInspectorObject = (EditorChildSceneLoader)target;
- 
-        if (GUILayout.Button("Save scene setup to config"))
-        {
-            currentInspectorObject.SaveSceneSetup();
-        }
+        var currentInspectorObject = (RootSceneLoader)target;
  
         if (GUILayout.Button("Reset scene setup from config..."))
         {

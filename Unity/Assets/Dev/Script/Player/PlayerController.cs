@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using MyBox;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
@@ -63,11 +64,20 @@ public class PlayerController : MonoBehaviour
         
         Inventory = new GridInventory(new Vector2Int(10, 3));
         QuickInventory.Init(this);
+        
+        GameObjectStorage.Instance.AddGameObject(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (GameObjectStorage.Instance)
+        {
+            GameObjectStorage.Instance.RemoveGameObject(gameObject);
+        }
     }
 
     private void Start()
     {
-
         Inventory.PushItem(_testTool, 1);
         Inventory.PushItem(_testSeed, 4);
     }
