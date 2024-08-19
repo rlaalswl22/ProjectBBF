@@ -200,6 +200,8 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
             await UniTask.WhenAll(loadedScenes.Select(x =>
                 x.Item2.ToUniTask(null, PlayerLoopTiming.Update, GlobalCancelation.PlayMode)));
 
+            Resources.UnloadUnusedAssets();
+
             WorldLoaded?.Invoke(worldSceneName);
             await UniTask.Yield();
             WorldPostLoaded?.Invoke(worldSceneName);

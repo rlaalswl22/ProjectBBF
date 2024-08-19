@@ -50,9 +50,17 @@ public class RootSceneLoader : MonoBehaviour
 #if UNITY_EDITOR
     [SerializeField] public List<SceneAsset> ChildScenesToLoadConfig;
 
+    private static bool _autoPlayMode;
+    
+    [MenuItem("Scene/AutoPlayMode")]
+    private static void OnAutoPlayMode()
+    {
+        _autoPlayMode = !_autoPlayMode;
+    }
+
     private void Start()
     {
-        if (SceneLoader.Instance.IsLoadedImmutableScenes == false)
+        if (_autoPlayMode && SceneLoader.Instance.IsLoadedImmutableScenes == false)
         {
             string worldSceneName = gameObject.scene.name;
             _ = SceneLoader.Instance

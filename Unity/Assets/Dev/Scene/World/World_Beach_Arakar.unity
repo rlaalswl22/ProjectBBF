@@ -122,7 +122,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1044441633
+--- !u!1 &775148948
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,8 +130,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1044441634}
-  - component: {fileID: 1044441635}
+  - component: {fileID: 775148950}
+  - component: {fileID: 775148949}
   m_Layer: 0
   m_Name: SceneMerger
   m_TagString: Untagged
@@ -139,28 +139,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1044441634
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044441633}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4, y: -6.1, z: 0.31257385}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1044441635
+--- !u!114 &775148949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044441633}
+  m_GameObject: {fileID: 775148948}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51158af71664a7e4384a9f63d57166eb, type: 3}
@@ -168,16 +153,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadImmutableScene: 1
   _scenes:
-  - BMap_DaffodilLake_Arakar
-  - VMap_DaffodilLake_Arakar
-  - DMap_DaffodilLake_Arakar
+  - BMap_Beach_Arakar
+  - DMap_Beach_Arakar
+  - VMap_Beach_Arakar
   ChildScenesToLoadConfig:
-  - {fileID: 102900000, guid: 2802097b12f5b99479e67706b158964c, type: 3}
-  - {fileID: 102900000, guid: a459b398897759c4f9801df8035413bc, type: 3}
-  - {fileID: 102900000, guid: 709811b668b8c374ea43391cbbfbf34e, type: 3}
-  - {fileID: 102900000, guid: 30e5d127f803cd14c95de9311d095080, type: 3}
+  - {fileID: 102900000, guid: ba3a9d7f76088e84abfbfc83a36ffdd4, type: 3}
+  - {fileID: 102900000, guid: 6e1aa9a15c047e84c99187354ba29e68, type: 3}
+  - {fileID: 102900000, guid: ca97f96ad570bc94a9fb76d1a25810b0, type: 3}
+  - {fileID: 102900000, guid: 74d3fa2e057476f4d9bd4fd61fbd8db0, type: 3}
+--- !u!4 &775148950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775148948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.5, y: -64.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1044441634}
+  - {fileID: 775148950}

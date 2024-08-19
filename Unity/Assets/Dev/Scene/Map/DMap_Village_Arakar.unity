@@ -122,6 +122,95 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &502144349
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 904802373}
+    m_Modifications:
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: scene
+      value: World_Beach_Arakar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _portalKey
+      value: Bottom_DaffodilLake_Arakar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: ba3a9d7f76088e84abfbfc83a36ffdd4, type: 3}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _alivePosition.x
+      value: 10.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _alivePosition.y
+      value: -57.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _targetPortalKey
+      value: Top_Beach_Arakar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -60.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7345704435760909805, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_Name
+      value: ToBeach
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503124009771332718, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_Size.x
+      value: 4.1785192
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503124009771332718, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_Offset.x
+      value: -1.0127468
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
 --- !u!1001 &779732068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
       propertyPath: _portalKey
-      value: Top_Village_Arakar
+      value: TopRight_Village_Arakar
       objectReference: {fileID: 0}
     - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
       propertyPath: _sceneAsset
@@ -156,7 +245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
       propertyPath: _targetPortalKey
-      value: Bottom_DaffodilLake_Arakar
+      value: BottomRight_DaffodilLake_Arakar
       objectReference: {fileID: 0}
     - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -200,7 +289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7345704435760909805, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
       propertyPath: m_Name
-      value: ToDaffodilLake
+      value: ToDaffodilLakeRight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -211,6 +300,108 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
   m_PrefabInstance: {fileID: 779732068}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &876050708
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 904802373}
+    m_Modifications:
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: scene
+      value: World_Borderland_Arakar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _portalKey
+      value: Right_Village_Arakar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 577671e3abfa0d345aae74108b2b91e9, type: 3}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _alivePosition.x
+      value: 27.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _alivePosition.y
+      value: -42.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _targetPortalKey
+      value: Left_Borderland_Arakar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -42.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7345704435760909805, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_Name
+      value: ToBorderland
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503124009771332718, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_Size.x
+      value: 1.0984898
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503124009771332718, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_Size.y
+      value: 13.850422
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503124009771332718, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.71115017
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503124009771332718, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.1841793
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+--- !u!4 &876050709 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+  m_PrefabInstance: {fileID: 876050708}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &904802372
 GameObject:
@@ -242,8 +433,101 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 779732069}
+  - {fileID: 913308258}
+  - {fileID: 1612609647}
+  - {fileID: 876050709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &913308257
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 904802373}
+    m_Modifications:
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: scene
+      value: World_DaffodilLake_Arakar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _scene
+      value: World_DaffodilLake_Arakar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _portalKey
+      value: TopLeft_Village_Arakar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 2802097b12f5b99479e67706b158964c, type: 3}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _alivePosition.x
+      value: -52.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _alivePosition.y
+      value: -15.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: _targetPortalKey
+      value: BottomLeft_DaffodilLake_Arakar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -52.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7345704435760909805, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+      propertyPath: m_Name
+      value: ToDaffodilLakeLeft
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+--- !u!4 &913308258 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+  m_PrefabInstance: {fileID: 913308257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1354874452
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +588,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1612609647 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
+  m_PrefabInstance: {fileID: 502144349}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1844922718
 GameObject:
   m_ObjectHideFlags: 0
