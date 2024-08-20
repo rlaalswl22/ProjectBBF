@@ -82,7 +82,7 @@ public class RootSceneLoader : MonoBehaviour
             
                                 if (root)
                                 {
-                                    var t = GameObjectStorage.Instance.List.FirstOrDefault(z =>
+                                    var t = GameObjectStorage.Instance.StoredObjects.FirstOrDefault(z =>
                                         z.GetComponent<PlayerController>());
                                     
                                     if(t)

@@ -27,7 +27,7 @@ public class ConfinerBinder : MonoBehaviour
 
     private void OnLoaded(string worldSceneName)
     {
-        var obj = GameObjectStorage.Instance.List.FirstOrDefault(x => x.CompareTag("Confiner"));
+        var obj = GameObjectStorage.Instance.StoredObjects.FirstOrDefault(x => x.CompareTag("Confiner"));
         
         if (obj is null || _cinemachine == false) return;
         if (obj.TryGetComponent(out PolygonCollider2D col))

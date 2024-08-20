@@ -26,6 +26,8 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
 
     private Dictionary<string, ScreenDirector> _directors;
     
+    public string CurrentWorldScene { get; private set; }
+    
     public override void PostInitialize()
     {
         ImmutableSceneTable = Resources.Load<ImmutableSceneTable>("Data/ImmutableSceneTable");
@@ -200,7 +202,7 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
             await UniTask.WhenAll(loadedScenes.Select(x =>
                 x.Item2.ToUniTask(null, PlayerLoopTiming.Update, GlobalCancelation.PlayMode)));
 
-            Resources.UnloadUnusedAssets();
+            _ = Resources.UnloadUnusedAssets().WithCancellation(GlobalCancelation.PlayMode);
 
             WorldLoaded?.Invoke(worldSceneName);
             await UniTask.Yield();
@@ -221,6 +223,8 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
         {
             IsProgress = false;
         }
+
+        CurrentWorldScene = worldSceneName;
 
         return true;
     }
