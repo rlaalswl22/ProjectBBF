@@ -69,6 +69,11 @@ public class GameObjectStorage : MonoBehaviourSingleton<GameObjectStorage>
 
     private bool ObjectLoop(GameObject obj, Func<GameObject, bool> callback)
     {
+        if (callback(obj) is false)
+        {
+            return false;
+        }
+        
         _objTemp.Clear();
         _objTemp.Enqueue(obj.transform);
 
@@ -83,6 +88,7 @@ public class GameObjectStorage : MonoBehaviourSingleton<GameObjectStorage>
                 {
                     if (callback(temp.gameObject) is false)
                     {
+                        _objTemp.Clear();
                         return false;
                     }
                 

@@ -176,21 +176,15 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
 
             _loadedAddtiveScenes.Add(worldSceneName);
 
-            var loaders = GameObject.FindObjectsOfType<RootSceneLoader>();
-            if (loaders.Length > 1)
+            var loader = GetRootLoader(SceneManager.GetSceneByName(worldSceneName).GetRootGameObjects());
+
+            if (loader == false)
             {
-                Debug.LogError("Loader는 Root이어야 합니다.");
+                Debug.LogError($"RootSceneLoader를 찾지 못했습니다. WorldSceneName({worldSceneName})");
                 IsProgress = false;
                 return false;
             }
-
-            if (loaders.Length < 1)
-            {
-                IsProgress = false;
-                return false;
-            }
-
-            var loader = loaders[0];
+            
             List<(string, AsyncOperation)> loadedScenes = await loader.LoadAsync();
 
             _loadedAddtiveScenes.AddRange(loadedScenes.Select(x=>x.Item1));
@@ -233,5 +227,45 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
         
         if (currentSceneName == "EntryScene") return;
         SceneManager.LoadScene("EntryScene", LoadSceneMode.Single);
+    }
+
+
+    private readonly Queue<Transform> _objTemp = new(50);
+    private RootSceneLoader GetRootLoader(GameObject[] objs)
+    {
+        foreach (var obj in objs)
+        {
+            var first = obj.GetComponent<RootSceneLoader>();
+            if (first)
+            {
+                return first;
+            }
+            
+            _objTemp.Clear();
+            _objTemp.Enqueue(obj.transform);
+
+            while (_objTemp.Any())
+            {
+                int length = _objTemp.Count;
+                for (int i = 0; i < length; i++)
+                {
+                    var temp = _objTemp.Dequeue();
+                    
+                    for (int j = 0; j < temp.childCount; j++)
+                    {
+                        var com = temp.GetComponent<RootSceneLoader>();
+                        if (com)
+                        {
+                            _objTemp.Clear();
+                            return com;
+                        }
+                
+                        _objTemp.Enqueue(temp.GetChild(i));
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 }
