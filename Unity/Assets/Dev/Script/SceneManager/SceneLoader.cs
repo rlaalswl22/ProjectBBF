@@ -33,8 +33,6 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
         ImmutableSceneTable = Resources.Load<ImmutableSceneTable>("Data/ImmutableSceneTable");
         var directorList = Resources.LoadAll<ScreenDirector>("Feature/ScreenDirector");
         
-        print(directorList.Length);
-
         _directors = new();
         directorList.ForEach(x =>
         {

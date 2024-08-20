@@ -49,6 +49,5 @@ public class PlayerQuickInventorySlotView : MonoBehaviour
             return;
         }
         _text.text = slot.Count == 0 ? "" : slot.Count.ToString();
-        print(slot.Count);
     }
 }
