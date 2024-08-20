@@ -25,7 +25,7 @@ namespace ProjectBBF.Persistence.Test
         [SerializeField] private List<string> _keyList;
         [SerializeField] private List<PersistenceTestObject> _objList;
 
-        private readonly IPersistenceDescriptor Descriptor = new BinaryDescriptor();
+        private readonly IPersistenceDescriptor Descriptor = new JsonDescriptor();
 
         private void Awake()
         {

@@ -31,8 +31,8 @@ namespace ProjectBBF.Persistence
                     }
 
 
+                    //TODO: binary 파일의 IO 기능을 구현하면 이 코드를 삭제. 
                     string encorded = Convert.ToBase64String(arr);
-
                     PlayerPrefs.SetString(tuple.Item1, encorded);
                 }
                 finally
@@ -41,6 +41,7 @@ namespace ProjectBBF.Persistence
                 }
             }
 
+            //TODO: binary 파일의 IO 기능을 구현하면 이 코드를 삭제.
             PlayerPrefs.Save();
         }
 
@@ -48,6 +49,7 @@ namespace ProjectBBF.Persistence
         {
             foreach ((string, IPersistenceObject) objTuple in toLoadObject)
             {
+                //TODO: binary 파일의 IO 기능을 구현하면 이 코드를 삭제.
                 string str = PlayerPrefs.GetString(objTuple.Item1, "");
 
                 if (string.IsNullOrEmpty(str))
@@ -56,6 +58,7 @@ namespace ProjectBBF.Persistence
                     continue;
                 }
 
+                //TODO: binary 파일의 IO 기능을 구현하면 이 코드를 삭제.
                 byte[] arr = Convert.FromBase64String(str);
 
                 if (BitConverter.IsLittleEndian)
