@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using ProjectBBF.Singleton;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -40,13 +41,13 @@ public class MapPortalManager : MonoBehaviourSingleton<MapPortalManager>
     private string _targetPortalKey;
     private Transform _playerTransform;
     
-    public void Move(string worldSceneName, string targetPortalKey, Transform playerTransform)
+    public UniTask Move(string worldSceneName, string targetPortalKey, Transform playerTransform)
     {
         var inst = SceneLoader.Instance;
-        if(inst.IsProgress) return;
+        if(inst.IsProgress) return new UniTask<bool>(false);
 
         _targetPortalKey = targetPortalKey;
         _playerTransform = playerTransform;
-        _ = inst.LoadWorldAsync(worldSceneName);
+        return inst.LoadWorldAsync(worldSceneName);
     }
 }

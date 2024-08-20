@@ -48,7 +48,9 @@ public class MapPortal : MonoBehaviour
         
         if (other.TryGetComponent(out PlayerController c))
         {
-            MapPortalManager.Instance.Move(scene, _targetPortalKey, c.transform);
+            c.StateHandler.TranslateState("DoNothing");
+            _ = MapPortalManager.Instance.Move(scene, _targetPortalKey, c.transform)
+                .ContinueWith(()=>c.StateHandler.TranslateState("EndOfDoNothing"));
         }
     }
 }

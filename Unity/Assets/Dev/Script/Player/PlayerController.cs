@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using MyBox;
+using ProjectBBF.Event;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -19,6 +20,10 @@ public class PlayerController : MonoBehaviour
 
     [field: SerializeField, MustBeAssigned, AutoProperty(AutoPropertyMode.Children)]
     private Animator _animator;
+    [field: SerializeField, MustBeAssigned, AutoProperty(AutoPropertyMode.Children)]
+    private StateTransitionHandler _stateHandler;
+    [field: SerializeField, MustBeAssigned, AutoProperty(AutoPropertyMode.Children)]
+    private CollisionInteraction _interaction;
 
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
     private PlayerQuickInventoryController _quickInventory;
@@ -33,6 +38,10 @@ public class PlayerController : MonoBehaviour
     public float InteractionRadius => _interactionRadius;
 
     public Vector2 InteractionDirFactor => _interactionDirFactor;
+
+    public StateTransitionHandler StateHandler => _stateHandler;
+
+    public CollisionInteraction Interaction => _interaction;
 
 
     #region Getter/Setter
@@ -66,6 +75,12 @@ public class PlayerController : MonoBehaviour
         QuickInventory.Init(this);
         
         GameObjectStorage.Instance.AddGameObject(gameObject);
+
+
+        var info = ActorContractInfo.Create(() => gameObject);
+        Interaction.SetContractInfo(info, this);
+        
+        StateHandler.Init(Interaction);
     }
 
     private void OnDestroy()
