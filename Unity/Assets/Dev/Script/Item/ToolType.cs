@@ -6,7 +6,9 @@ using UnityEngine.Serialization;
 public enum ToolType
 {
     Absolute,
-    Hoe
+    Hoe,
+    Fertilizer,
+    WaterSpray,
 }
 
 public enum ToolRank : int

@@ -8,25 +8,34 @@ using UnityEngine;
 
 public class FarmlandGrownInfo
 {
-    private GrownDefinition _definition;
-    private Vector3Int _cellPos;
 
-    public bool Empty => _definition == false;
+    public bool Empty => Definition == false;
 
     public PlantTile CurrentTile { get; set; }
-    public GrownDefinition Definition => _definition;
-    public Vector3Int CellPos => _cellPos;
+    public FertilizerTile FertilizerTile { get; set; }
+    public GrownDefinition Definition { get; set; }
+    public Vector3Int CellPos { get; private set; }
     public int TotalStep { get; set; }
 
     public int GrownStep { get; set; }
+    public bool IsWet { get; set; }
 
-    public FarmlandGrownInfo(GrownDefinition definition, Vector3Int cellPos)
+    public FarmlandGrownInfo(Vector3Int cellPos)
     {
-        CurrentTile = definition.FirstTile;
-        _definition = definition;
-        _cellPos = cellPos;
+        CellPos = cellPos;
         TotalStep = 0;
         GrownStep = 0;
+        IsWet = false;
+    }
+
+    public void Reset()
+    {
+        Definition = null;
+        FertilizerTile = null;
+        CurrentTile = null;
+        TotalStep = 0;
+        GrownStep = 0;
+        IsWet = false;
     }
 }
 
@@ -40,6 +49,7 @@ public class FarmlandManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             GrowUp(1);
+            _controller.ResetAllWet();
         }
     }
 
@@ -49,13 +59,21 @@ public class FarmlandManager : MonoBehaviour
 
         foreach (FarmlandGrownInfo info in grownInfos)
         {
-            SetGrownState(info, info.TotalStep + 1);
+            if (info.IsWet is false) continue;
+            
+            int buffGrowingSpeed = info.FertilizerTile ? info.FertilizerTile.BuffGrowingSpeed : 0;
+            
+            SetGrownState(
+                info, 
+                info.TotalStep + 1 + buffGrowingSpeed
+                );
         }
     }
 
     public void SetGrownState(FarmlandGrownInfo info, int step)
     {
         var def = info.Definition;
+        if (def is null) return;
         
         step = Mathf.Clamp(step, 0, def.NeedGrowingToNextGrowingStep.Count - 1);
         info.TotalStep = step;

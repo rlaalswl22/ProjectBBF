@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 
-[CreateAssetMenu(menuName = "ProjectBBF/ItemData", fileName = "NewItemData")]
+[CreateAssetMenu(menuName = "ProjectBBF/Data/Item/Default item", fileName = "New Default item data")]
 public class ItemData : ScriptableObject
 {
     [SerializeField] private string _itemName;

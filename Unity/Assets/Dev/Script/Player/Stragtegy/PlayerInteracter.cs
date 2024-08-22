@@ -52,6 +52,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         CollisionInteractionUtil
             .CreateSelectState()
             .Bind<IBODestoryTile>(DestroyTile)
+            .Bind<IBOFertilizerTile>(FertilizerTile)
+            .Bind<IBOSprinkleWaterTile>(SprinkleWater)
             .Bind<IBOCultivateTile>(CultivateTile)
             .Bind<IBOPlantTile>(PlantTile)
             .Execute(interaction.ContractInfo);
@@ -157,7 +159,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         
         bool success = false;
         
-        if (data is GrownItemData grownData && action.Plant(targetPos, grownData.Definition))
+        if (data is PlantItemData grownData && action.Plant(targetPos, grownData.Definition))
         {
             success = slot.TrySetCount(slot.Count - 1, true);
         }
@@ -168,12 +170,39 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         return success;
     }
 
-    public bool CultivateTile(IBOCultivateTile action)
+    private bool FertilizerTile(IBOFertilizerTile action)
     {
         var targetPos = _controller.Coordinate.GetFront();
         ItemData data = _controller.QuickInventory.CurrentItemData;
         IInventorySlot slot = _controller.QuickInventory.CurrentItemSlot;
 
+        if (data is null) return false;
+        if (slot is null) return false;
+
+        bool success = false;
+
+        if (data.Info.Contains(ToolType.Fertilizer))
+        {
+            if (slot.Data is FertilizerItemData fertilizerItem)
+            {
+                slot.TrySetCount(slot.Count - 1, true);
+                success = action.PlantFertilizer(targetPos, fertilizerItem.TargetTile);
+            }
+
+        }
+
+        _controller.QuickInventory.ViewRefresh();
+        _controller.Inventory.ViewRefresh();
+        
+        return success;
+    }
+
+    public bool CultivateTile(IBOCultivateTile action)
+    {
+        var targetPos = _controller.Coordinate.GetFront();
+        ItemData data = _controller.QuickInventory.CurrentItemData;
+
+        if (data is null) return false;
 
         bool success = false;
         
@@ -184,6 +213,23 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         
         _controller.QuickInventory.ViewRefresh();
         _controller.Inventory.ViewRefresh();
+        
+        return success;
+    }
+
+    private bool SprinkleWater(IBOSprinkleWaterTile action)
+    {
+        var targetPos = _controller.Coordinate.GetFront();
+        ItemData data = _controller.QuickInventory.CurrentItemData;
+
+        if (data is null) return false;
+
+        bool success = false;
+        
+        if (data.Info.Contains(ToolType.WaterSpray))
+        {
+            success = action.SprinkleWater(targetPos);
+        }
         
         return success;
     }

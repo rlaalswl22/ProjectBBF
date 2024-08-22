@@ -29,7 +29,9 @@ public class PlayerController : MonoBehaviour
     private PlayerQuickInventoryController _quickInventory;
 
     [field: SerializeField] private ItemData _testTool;
-    [field: SerializeField] private GrownItemData _testSeed;
+    [field: SerializeField] private ItemData _testWaterSpray;
+    [field: SerializeField] private PlantItemData _testSeed;
+    [field: SerializeField] private FertilizerItemData _testFertilizer;
     [field: SerializeField] private Vector2 _interactionOffset;
     [field: SerializeField] private Vector2 _interactionDirFactor;
     [field: SerializeField] private float _interactionRadius;
@@ -94,7 +96,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Inventory.PushItem(_testTool, 1);
+        Inventory.PushItem(_testWaterSpray, 1);
         Inventory.PushItem(_testSeed, 4);
+        Inventory.PushItem(_testFertilizer, 4);
     }
 
     private T Bind<T>() where T : MonoBehaviour, IPlayerStrategy

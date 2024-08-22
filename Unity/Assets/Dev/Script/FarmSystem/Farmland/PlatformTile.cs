@@ -6,8 +6,7 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(menuName = "ProjectBBF/FarmSystem/Farmland/PlatformTile", fileName = "New PlatformTile")]
 public class PlatformTile : Tile, IFarmlandTile
 {
-    [SerializeField]
-    private ToolRequireSet[] _requireTools;
+    private static ToolRequireSet[] _requireTools = new []{new ToolRequireSet(ToolType.Hoe, ToolRank.R1)};
     public ToolRequireSet[] RequireTools => _requireTools;
     public ItemData DropItem => null;
     public int DropItemCount => 0;
