@@ -45,5 +45,5 @@ public interface IBOPlantTile : IObjectBehaviour
 }
 public interface IBOCultivateTile : IObjectBehaviour
 {
-    public bool TryCultivateTile(Vector3 worldPos, FarmlandTile tile);
+    public bool TryCultivateTile(Vector3 worldPos, CultivationTile tile);
 }

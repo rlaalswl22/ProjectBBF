@@ -12,28 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e003564d0a0a3845838d96cf524eb21, type: 3}
   m_Name: NewGrowingTile3
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 738f0ce526ff2e44b825f6023ab7f9c6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Transform:
-    e00: 1
-    e01: 0
-    e02: 0
-    e03: 0
-    e10: 0
-    e11: 1
-    e12: 0
-    e13: 0
-    e20: 0
-    e21: 0
-    e22: 1
-    e23: 0
-    e30: 0
-    e31: 0
-    e32: 0
-    e33: 1
-  m_InstancedGameObject: {fileID: 0}
-  m_Flags: 1
-  m_ColliderType: 1
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 738f0ce526ff2e44b825f6023ab7f9c6, type: 3}
+  m_MinSpeed: 1
+  m_MaxSpeed: 1
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
   _isCultivate: 0
   _dropItem: {fileID: 11400000, guid: d2a5e91abe4793b488c3da50b6604fd5, type: 2}
   _dropItemCount: 2

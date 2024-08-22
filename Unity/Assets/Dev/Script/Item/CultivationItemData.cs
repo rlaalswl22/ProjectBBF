@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "ProjectBBF/CultivationTile", fileName = "NewCultivationTile")]
 public class CultivationItemData : ItemData
 {
-    [SerializeField] private FarmlandTile _farmlandTile;
+    [FormerlySerializedAs("_farmlandTile")] [SerializeField] private CultivationTile _cultivationTile;
 
-    public FarmlandTile FarmlandTile => _farmlandTile;
+    public CultivationTile CultivationTile => _cultivationTile;
 }

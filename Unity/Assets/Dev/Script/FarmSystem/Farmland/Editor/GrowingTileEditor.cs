@@ -4,20 +4,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEditor;
+using UnityEditor.Tilemaps;
 
 [CustomEditor(typeof(GrowingTile))]
-public class GrowingTileEditor : FarmlandTileEditor
+public class GrowingTileEditor : AnimatedTileEditor
 {
-
     public override void OnInspectorGUI()
     {
+        var obj = (GrowingTile)target;
+        obj.DefaultEditorSprite = EditorGUILayout.ObjectField("Preview", obj.DefaultEditorSprite, typeof(Sprite), false) as Sprite;
         base.OnInspectorGUI();
 
-        //EditorGUILayout.PropertyField(serializedObject.FindProperty("_growingSprites"));
-
+        FarmlandTileEditorUtils.DrawPropertyFarmlandBase(serializedObject);
+        
         if (GUI.changed)
         {
+            EditorUtility.SetDirty(target);
             serializedObject.ApplyModifiedProperties();
         }
+    }
+
+    public override Texture2D RenderStaticPreview(string assetPath, Object[] subAssets, int width, int height)
+    {
+        var obj = (GrowingTile)target;
+
+        Sprite spr = obj.DefaultEditorSprite;
+        
+        if (spr == false && obj.m_AnimatedSprites.Length > 0)
+        {
+            spr = obj.m_AnimatedSprites[0];
+        }
+
+        var tex = FarmlandTileEditorUtils.RenderStaticPreview(spr, width, height);
+        
+        return tex ? tex : base.RenderStaticPreview(assetPath, subAssets, width, height);
     }
 }

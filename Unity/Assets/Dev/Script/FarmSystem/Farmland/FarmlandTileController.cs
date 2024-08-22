@@ -13,9 +13,9 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
     [SerializeField] protected CollisionInteraction _interaction;
     [SerializeField] protected Tilemap _platformTilemap;
     [SerializeField] protected Tilemap _plantTilemap;
-    [SerializeField] protected FarmlandTile _defaultCultivationTile;
+    [SerializeField] protected CultivationTile _defaultCultivationTile;
 
-    private Dictionary<Vector3Int, FarmlandTile> _originTable = new();
+    private Dictionary<Vector3Int, IFarmlandTile> _originTable = new();
     private Dictionary<Vector3Int, FarmlandGrownInfo> _grownInfos = new();
 
     private void Awake()
@@ -50,7 +50,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
                     var cellPos = new Vector3Int(i, j, k);
                     var tile = _platformTilemap.GetTile(cellPos);                    
                     
-                    if (tile is not FarmlandTile farmlandTile) continue;
+                    if (tile is not IFarmlandTile farmlandTile) continue;
 
                     _originTable[cellPos] = farmlandTile;
                 }
@@ -59,7 +59,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
         }
     }
     
-    public bool TryCultivateTile(Vector3Int cellPos, FarmlandTile tile)
+    public bool TryCultivateTile(Vector3Int cellPos, CultivationTile tile)
     {
         if (CanCultivate(cellPos) == false) return false;
 
@@ -69,6 +69,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
         }
         
         SetTile(cellPos, tile);
+        _platformTilemap.RefreshAllTiles();
         return true;
     }
     
@@ -76,7 +77,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
     {
         var list = new List<FieldItem>();
 
-        var tile = _platformTilemap.GetTile<FarmlandTile>(cellPos);
+        var tile = _platformTilemap.GetTile<TileBase>(cellPos) as IFarmlandTile;
 
         if (tile is null) return new List<FieldItem>();
 
@@ -146,7 +147,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
 
     public bool DestroyPlatformTile(Vector3Int cellPos, ItemTypeInfo itemTypeInfo, List<ItemData> list)
     {
-        var tile = _platformTilemap.GetTile<FarmlandTile>(cellPos);
+        var tile = _platformTilemap.GetTile<TileBase>(cellPos) as IFarmlandTile;
 
         if (tile is null) return false;
 
@@ -183,7 +184,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
     {
         if (_originTable.TryGetValue(cellPos, out var tile))
         {
-            _platformTilemap.SetTile(cellPos, tile);
+            _platformTilemap.SetTile(cellPos, tile as TileBase);
         }
         else
         {
@@ -199,13 +200,13 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
         foreach (var pair in _originTable)
         {
             Vector3Int cellPos = pair.Key;
-            FarmlandTile tile = pair.Value;
+            IFarmlandTile tile = pair.Value;
             
-            _platformTilemap.SetTile(cellPos, tile);
+            _platformTilemap.SetTile(cellPos, tile as TileBase);
         }
     }
 
-    public void ForceCultivateTile(Vector3Int cellPos, FarmlandTile tile)
+    public void ForceCultivateTile(Vector3Int cellPos, IFarmlandTile tile)
     {
         SetTile(cellPos, tile);
     }
@@ -214,20 +215,14 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
 
     public bool CanCultivate(Vector3Int cellPos)
     {
-        var tile = _platformTilemap.GetTile<FarmlandTile>(cellPos);
-
-        if (tile is null) return false;
-        
-        return tile.IsCultivate;
+        var tile = _platformTilemap.GetTile<TileBase>(cellPos) as PlatformTile;
+        return tile is not null;
     }
 
     public bool CanPlant(Vector3Int cellPos)
     {
-        var tile = _platformTilemap.GetTile<FarmlandTile>(cellPos);
-
-        if (tile is null) return false;
-        
-        return tile.IsCultivate == false;
+        var tile = _platformTilemap.GetTile<TileBase>(cellPos) as CultivationTile;
+        return tile is not null;
     }
 
     public void RefeshPlantTile(Vector3Int cellPos)
@@ -258,7 +253,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
 
         return true;
     }
-    private void SetTile(Vector3Int cellPos, FarmlandTile tile)
+    private void SetTile(Vector3Int cellPos, IFarmlandTile tile)
     {
         Tilemap tilemap = null;
         
@@ -274,13 +269,13 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
         
         Debug.Assert(tilemap is not null);
         
-        tilemap.SetTile(cellPos, tile);
+        tilemap.SetTile(cellPos, tile as TileBase);
 
     }
 
     public CollisionInteraction Interaction => _interaction;
 
-    public bool TryCultivateTile(Vector3 worldPos, FarmlandTile tile)
+    public bool TryCultivateTile(Vector3 worldPos, CultivationTile tile)
         => TryCultivateTile(WorldToCell(worldPos), tile);
 
     public bool Plant(Vector3 worldPos, GrownDefinition definition)
@@ -290,12 +285,12 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
     [CanBeNull]
     public List<ItemData> Destory(Vector3 worldPos, ItemTypeInfo itemTypeInfo)
     {
-        FarmlandTile tile = null;
+        IFarmlandTile tile = null;
         Vector3Int cellPos = Vector3Int.zero;
         List<ItemData> list = new List<ItemData>(2);
         
         cellPos = _plantTilemap.WorldToCell(worldPos);
-        tile = _plantTilemap.GetTile<FarmlandTile>(cellPos);
+        tile = _plantTilemap.GetTile<TileBase>(cellPos) as IFarmlandTile;
         
 
         if (tile is not null)
@@ -309,7 +304,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
         }
         
         cellPos = _platformTilemap.WorldToCell(worldPos);
-        tile = _platformTilemap.GetTile<FarmlandTile>(cellPos);
+        tile = _platformTilemap.GetTile<TileBase>(cellPos) as IFarmlandTile;
 
         if (tile is not null)
         {
