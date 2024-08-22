@@ -13,7 +13,7 @@ public class FarmlandGrownInfo
 
     public bool Empty => _definition == false;
 
-    public GrowingTile CurrentTile { get; set; }
+    public PlantTile CurrentTile { get; set; }
     public GrownDefinition Definition => _definition;
     public Vector3Int CellPos => _cellPos;
     public int TotalStep { get; set; }
@@ -59,7 +59,7 @@ public class FarmlandManager : MonoBehaviour
         
         step = Mathf.Clamp(step, 0, def.NeedGrowingToNextGrowingStep.Count - 1);
         info.TotalStep = step;
-        GrowingTile nextTile = info.CurrentTile;
+        PlantTile nextTile = info.CurrentTile;
         
         for (int i = 0; i < def.NeedGrowingToNextGrowingStep.Count; i++)
         {

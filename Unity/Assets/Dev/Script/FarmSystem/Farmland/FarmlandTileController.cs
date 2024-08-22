@@ -95,9 +95,9 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
         return list;
     }
 
-    public GrowingTile GetPlantTile(Vector3Int cellPos)
+    public PlantTile GetPlantTile(Vector3Int cellPos)
     {
-        return _plantTilemap.GetTile<GrowingTile>(cellPos);
+        return _plantTilemap.GetTile<PlantTile>(cellPos);
     }
 
     [CanBeNull]
@@ -116,7 +116,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
 
     public bool DestroyPlantTile(Vector3Int cellPos, ItemTypeInfo itemTypeInfo, List<ItemData> list)
     {
-        var tile = _plantTilemap.GetTile<GrowingTile>(cellPos);
+        var tile = _plantTilemap.GetTile<PlantTile>(cellPos);
 
         if (tile is null) return false;
 
@@ -259,7 +259,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
         
         switch (tile)
         {
-            case GrowingTile:
+            case PlantTile:
                 tilemap = _plantTilemap;
                 break;
             default: // FarmlandTile case

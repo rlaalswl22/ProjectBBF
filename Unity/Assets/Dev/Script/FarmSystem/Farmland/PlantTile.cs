@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(menuName = "ProjectBBF/FarmSystem/Farmland/GrowingTile", fileName = "NewGrowingTile")]
-public class GrowingTile : AnimatedTile, IFarmlandTile
+[CreateAssetMenu(menuName = "ProjectBBF/FarmSystem/Farmland/PlantTile", fileName = "New Plant tile")]
+public class PlantTile : AnimatedTile, IFarmlandTile
 {
     [SerializeField] public Sprite _defaultEditorSprite;
     [SerializeField] private ItemData _dropItem;

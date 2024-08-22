@@ -6,12 +6,12 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Tilemaps;
 
-[CustomEditor(typeof(GrowingTile))]
+[CustomEditor(typeof(PlantTile))]
 public class GrowingTileEditor : AnimatedTileEditor
 {
     public override void OnInspectorGUI()
     {
-        var obj = (GrowingTile)target;
+        var obj = (PlantTile)target;
         obj.DefaultEditorSprite = EditorGUILayout.ObjectField("Preview", obj.DefaultEditorSprite, typeof(Sprite), false) as Sprite;
         base.OnInspectorGUI();
 
@@ -26,7 +26,7 @@ public class GrowingTileEditor : AnimatedTileEditor
 
     public override Texture2D RenderStaticPreview(string assetPath, Object[] subAssets, int width, int height)
     {
-        var obj = (GrowingTile)target;
+        var obj = (PlantTile)target;
 
         Sprite spr = obj.DefaultEditorSprite;
         

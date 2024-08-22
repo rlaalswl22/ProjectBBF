@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e003564d0a0a3845838d96cf524eb21, type: 3}
-  m_Name: NewGrowingTile3
+  m_Name: Dat_Plant_Potato_1
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 21300000, guid: 738f0ce526ff2e44b825f6023ab7f9c6, type: 3}
+  - {fileID: 21300000, guid: 279d662b41cc82c47afa280cffdbcc48, type: 3}
   m_MinSpeed: 1
   m_MaxSpeed: 1
   m_AnimationStartTime: 0
@@ -21,8 +21,8 @@ MonoBehaviour:
   m_TileColliderType: 0
   m_TileAnimationFlags: 0
   _isCultivate: 0
-  _dropItem: {fileID: 11400000, guid: d2a5e91abe4793b488c3da50b6604fd5, type: 2}
-  _dropItemCount: 2
+  _dropItem: {fileID: 11400000, guid: b063ffbc1ffe55c4ead176532a042f2e, type: 2}
+  _dropItemCount: 1
   _requireTools:
   - _requireToolTypes: 1
     _requireToolRank: 1
