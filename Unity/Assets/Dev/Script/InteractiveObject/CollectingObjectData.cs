@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MyBox;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "IndieLINY/InteractiveObject/CollectingObjectData", fileName = "CollectingObjectData")]
+[CreateAssetMenu(menuName = "ProjectBBF/Data/InteractiveObject/CollectingObjectData", fileName = "CollectingObjectData")]
 public class CollectingObjectData : ScriptableObject
 {
     [field: SerializeField, OverrideLabel("채집 시간(초)")] 

@@ -11,6 +11,16 @@ public class FarmlandGrownInfo
 
     public bool Empty => Definition == false;
 
+    public bool CanHarvest
+    {
+        get
+        {
+            if (Definition is null) return false;
+
+            return GrownStep >= Definition.TotalNeedStep;
+        }
+    }
+
     public PlantTile CurrentTile { get; set; }
     public FertilizerTile FertilizerTile { get; set; }
     public GrownDefinition Definition { get; set; }
@@ -19,13 +29,13 @@ public class FarmlandGrownInfo
 
     public int GrownStep { get; set; }
     public bool IsWet { get; set; }
+    public int ContinuousCount { get; set; }
 
     public FarmlandGrownInfo(Vector3Int cellPos)
     {
         CellPos = cellPos;
-        TotalStep = 0;
-        GrownStep = 0;
-        IsWet = false;
+        
+        Reset();
     }
 
     public void Reset()
@@ -35,6 +45,7 @@ public class FarmlandGrownInfo
         CurrentTile = null;
         TotalStep = 0;
         GrownStep = 0;
+        ContinuousCount = 0;
         IsWet = false;
     }
 }
@@ -63,30 +74,30 @@ public class FarmlandManager : MonoBehaviour
             
             int buffGrowingSpeed = info.FertilizerTile ? info.FertilizerTile.BuffGrowingSpeed : 0;
             
-            SetGrownState(
+            UpdateGrownState(
                 info, 
-                info.TotalStep + 1 + buffGrowingSpeed
+                step + buffGrowingSpeed
                 );
         }
     }
 
-    public void SetGrownState(FarmlandGrownInfo info, int step)
+    public void UpdateGrownState(FarmlandGrownInfo info, int step)
     {
         var def = info.Definition;
         if (def is null) return;
         
         step = Mathf.Clamp(step, 0, def.NeedGrowingToNextGrowingStep.Count - 1);
-        info.TotalStep = step;
+        info.TotalStep += step;
+        info.GrownStep += step;
         PlantTile nextTile = info.CurrentTile;
         
         for (int i = 0; i < def.NeedGrowingToNextGrowingStep.Count; i++)
         {
             var set = def.NeedGrowingToNextGrowingStep.ElementAtOrDefault(i);
                 
-            if (set is not null && step >= set.NeedStep)
+            if (set is not null && info.GrownStep >= set.NeedStep)
             {
                 nextTile = set.Tile;
-                info.GrownStep = Mathf.Max(i, def.NeedGrowingToNextGrowingStep.Count - 1);
             }
         }
 

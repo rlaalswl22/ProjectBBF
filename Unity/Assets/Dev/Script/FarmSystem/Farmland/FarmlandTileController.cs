@@ -8,7 +8,8 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
-public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivateTile, IBOPlantTile, IBOFertilizerTile, IBOSprinkleWaterTile
+public class FarmlandTileController : MonoBehaviour, 
+    IBODestoryTile, IBOCultivateTile, IBOPlantTile, IBOFertilizerTile, IBOSprinkleWaterTile, IBOCollectPlant
 {
     [SerializeField] protected CollisionInteraction _interaction;
     [SerializeField] protected Tilemap _platformTilemap;
@@ -33,6 +34,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
         info.AddBehaivour<IBOPlantTile>(this);
         info.AddBehaivour<IBOFertilizerTile>(this);
         info.AddBehaivour<IBOSprinkleWaterTile>(this);
+        info.AddBehaivour<IBOCollectPlant>(this);
     }
 
     private void Update()
@@ -99,8 +101,8 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
         var tile = _plantTilemap.GetTile<PlantTile>(cellPos);
 
         if (tile is null) return false;
-
-        if (ToolTypeUtil.IsCompetible(tile.RequireTools, itemTypeInfo.Sets) == false)
+        
+        if (ToolTypeUtil.Contains(tile.RequireTools, itemTypeInfo.Sets) is false)
         {
             return false;
         }
@@ -132,7 +134,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
 
         if (tile is null) return false;
 
-        if (ToolTypeUtil.IsCompetible(tile.RequireTools, itemTypeInfo.Sets) == false)
+        if (ToolTypeUtil.Contains(tile.RequireTools, itemTypeInfo.Sets) is false)
         {
             return false;
         }
@@ -167,6 +169,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
             info.CurrentTile = null;
             info.GrownStep = 0;
             info.TotalStep = 0;
+            info.ContinuousCount = 0;
         }
     }
     public void ResetPlatformTile(Vector3Int cellPos)
@@ -246,7 +249,7 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
 
     public bool CanPlantFertilizer(Vector3Int cellPos)
     {
-        var tile = _platformTilemap.GetTile<FertilizerTile>(cellPos);
+        var tile = _fertilizerTilemap.GetTile<FertilizerTile>(cellPos);
         return tile is null;
     }
 
@@ -330,6 +333,49 @@ public class FarmlandTileController : MonoBehaviour, IBODestoryTile, IBOCultivat
     }
 
     public CollisionInteraction Interaction => _interaction;
+    public bool Collect(Vector3 worldPos, List<ItemData> itemList)
+    {
+        var cellPos = WorldToCell(worldPos);
+
+        if (_grownInfos.TryGetValue(cellPos, out FarmlandGrownInfo info))
+        {
+            if (info.CanHarvest is false) return false;
+            if (info.Definition is null) return false;
+            
+            info.GrownStep = 0;
+            info.CurrentTile = info.Definition.FirstTile;
+            info.ContinuousCount += 1;
+
+            if (info.Definition.LasTile is not null && info.Definition.LasTile.DropItem)
+            {
+                for (int i = 0; i < info.Definition.LasTile.DropItemCount; i++)
+                {
+                    itemList.Add(info.Definition.LasTile.DropItem);
+                }
+            }
+            
+
+            if (info.ContinuousCount > info.Definition.ContinuousCount)
+            {
+                info.Reset();
+            }
+            else
+            {
+                int index = info.Definition.ContinueAndStepIndex;
+                GrownDefinition.GrowingSet set = info.Definition.NeedGrowingToNextGrowingStep[index];
+
+                info.CurrentTile = set.Tile;
+                info.GrownStep = set.NeedStep;
+            }
+            
+            _plantTilemap.SetTile(cellPos, info.CurrentTile);
+            SetTile(cellPos, info.CurrentTile);
+
+            return true;
+        }
+
+        return false;
+    }
 
     public bool TryCultivateTile(Vector3 worldPos, CultivationTile tile)
         => TryCultivateTile(WorldToCell(worldPos), tile);

@@ -41,3 +41,8 @@ public interface IBOSprinkleWaterTile : IObjectBehaviour
 {
     public bool SprinkleWater(Vector3 worldPos);
 }
+
+public interface IBOCollectPlant : IObjectBehaviour
+{
+    public bool Collect(Vector3 worldPos, List<ItemData> itemList);
+}

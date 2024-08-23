@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-[CustomEditor(typeof(GrownDefinition))]
+//[CustomEditor(typeof(GrownDefinition))]
 public class GrownDefinitionEditor : Editor
 {
     public override void OnInspectorGUI()

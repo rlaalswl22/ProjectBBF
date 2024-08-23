@@ -18,7 +18,3 @@ public interface IBOCollect : IObjectBehaviour
 {
     public List<ItemData> Collect();
 }
-public interface IBODestory : IObjectBehaviour
-{
-    public List<ItemData> Destory();
-}
