@@ -51,7 +51,7 @@ namespace ProjectBBF.Event
             {
                 Debug.LogException(Tcs.Task.AsTask().Exception);
             }
-            
+
             await UniTask.Yield();
             
             return await Tcs.Task;

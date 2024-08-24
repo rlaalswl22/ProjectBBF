@@ -17,12 +17,18 @@ public class TimeHud : MonoBehaviour
 
     private IEnumerator CoUpdate()
     {
+        GameTime before = new GameTime(-1, -1);
+        
         while (true)
         {
-            yield return _event.WaitAsync().WithCancellation(GlobalCancelation.PlayMode);
+            var cur = TimeManager.Instance.GetGameTime();
+            if (cur != before)
+            {
+                _text.text = $"{cur.Hour:D2}:{cur.Min:D2} {cur.TimeOfDay}";
+                before = cur;
+            }
 
-            var time = TimeManager.Instance.GetGameTime();
-            _text.text = $"{time.Hour:D2}:{time.Min:D2} {time.TimeOfDay}";
+            yield return null;
         }
     }
 }
