@@ -31,19 +31,30 @@ namespace ProjectBBF.Event
 
         public bool IsTriggered { get; set; }
 
-        public void Signal(T1 arg)
+        public void Signal(T1 arg1)
         {
-            if (Tcs.TrySetResult(arg) is false)
+            if (IsTriggered) return;
+            IsTriggered = true;
+            
+            if (Tcs.TrySetResult((arg1)) is false)
             {
                 Debug.LogError($"'{name}' 에러");
             }
 
-            OnSignal?.Invoke(arg);
+            _tcs = null;
+            OnSignal?.Invoke(arg1);
         }
 
-        public UniTask<T1> WaitAsync()
+        public async UniTask<T1> WaitAsync()
         {
-            return Tcs.Task;
+            if (Tcs.Task.Status == UniTaskStatus.Faulted)
+            {
+                Debug.LogException(Tcs.Task.AsTask().Exception);
+            }
+            
+            await UniTask.Yield();
+            
+            return await Tcs.Task;
         }
 
         public override void Release()
@@ -76,17 +87,28 @@ namespace ProjectBBF.Event
 
         public void Signal(T1 arg1, T2 arg2)
         {
+            if (IsTriggered) return;
+            IsTriggered = true;
+            
             if (Tcs.TrySetResult((arg1, arg2)) is false)
             {
                 Debug.LogError($"'{name}' 에러");
             }
 
+            _tcs = null;
             OnSignal?.Invoke(arg1, arg2);
         }
 
-        public UniTask<(T1, T2)> WaitAsync()
+        public async UniTask<(T1, T2)> WaitAsync()
         {
-            return Tcs.Task;
+            if (Tcs.Task.Status == UniTaskStatus.Faulted)
+            {
+                Debug.LogException(Tcs.Task.AsTask().Exception);
+            }
+            
+            await UniTask.Yield();
+            
+            return await Tcs.Task;
         }
 
         public override void Release()
@@ -119,17 +141,28 @@ namespace ProjectBBF.Event
 
         public void Signal(T1 arg1, T2 arg2, T3 arg3)
         {
+            if (IsTriggered) return;
+            IsTriggered = true;
+
             if (Tcs.TrySetResult((arg1, arg2, arg3)) is false)
             {
                 Debug.LogError($"'{name}' 에러");
             }
 
+            _tcs = null;
             OnSignal?.Invoke(arg1, arg2, arg3);
         }
 
-        public UniTask<(T1, T2, T3)> WaitAsync()
+        public async UniTask<(T1, T2, T3)> WaitAsync()
         {
-            return Tcs.Task;
+            if (Tcs.Task.Status == UniTaskStatus.Faulted)
+            {
+                Debug.LogException(Tcs.Task.AsTask().Exception);
+            }
+            
+            await UniTask.Yield();
+            
+            return await Tcs.Task;
         }
 
         public override void Release()
@@ -162,17 +195,28 @@ namespace ProjectBBF.Event
 
         public void Signal(T1 arg1, T2 arg2, T3 arg3, T4 arg4)
         {
+            if (IsTriggered) return;
+            IsTriggered = true;
+
             if (Tcs.TrySetResult((arg1, arg2, arg3, arg4)) is false)
             {
                 Debug.LogError($"'{name}' 에러");
             }
 
+            _tcs = null;
             OnSignal?.Invoke(arg1, arg2, arg3, arg4);
         }
 
-        public UniTask<(T1, T2, T3, T4)> WaitAsync()
+        public async UniTask<(T1, T2, T3, T4)> WaitAsync()
         {
-            return Tcs.Task;
+            if (Tcs.Task.Status == UniTaskStatus.Faulted)
+            {
+                Debug.LogException(Tcs.Task.AsTask().Exception);
+            }
+            
+            await UniTask.Yield();
+            
+            return await Tcs.Task;
         }
 
         public override void Release()
@@ -205,17 +249,28 @@ namespace ProjectBBF.Event
 
         public void Signal(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
         {
+            if (IsTriggered) return;
+            IsTriggered = true;
+
             if (Tcs.TrySetResult((arg1, arg2, arg3, arg4, arg5)) is false)
             {
                 Debug.LogError($"'{name}' 에러");
             }
 
+            _tcs = null;
             OnSignal?.Invoke(arg1, arg2, arg3, arg4, arg5);
         }
 
-        public UniTask<(T1, T2, T3, T4, T5)> WaitAsync()
+        public async UniTask<(T1, T2, T3, T4, T5)> WaitAsync()
         {
-            return Tcs.Task;
+            if (Tcs.Task.Status == UniTaskStatus.Faulted)
+            {
+                Debug.LogException(Tcs.Task.AsTask().Exception);
+            }
+            
+            await UniTask.Yield();
+            
+            return await Tcs.Task;
         }
 
         public override void Release()

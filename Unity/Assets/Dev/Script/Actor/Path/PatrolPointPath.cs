@@ -45,6 +45,8 @@ public class PatrolPointPath : MonoBehaviour
         [SerializeField] [HideInInspector]  internal List<PointInfo> Points= new();
         [SerializeField] [HideInInspector] internal string SelectedGuid;
 
+        [SerializeField] internal bool Edit;
+        
         [CanBeNull]
         internal PointInfo Selected
         {

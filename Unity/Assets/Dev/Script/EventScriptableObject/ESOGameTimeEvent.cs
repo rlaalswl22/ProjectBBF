@@ -9,8 +9,8 @@ public class ESOGameTimeEvent : EventScriptableObjectT<GameTime>
     [System.Serializable]
     public enum Operation
     {
-        Equal,
-        NotEqual,
+        //Equal,
+        //NotEqual,
         GreaterThenEqual,
         Greater,
         Less,

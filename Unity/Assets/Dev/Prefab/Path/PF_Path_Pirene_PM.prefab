@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1132368144263532997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2332716677000338976}
+  - component: {fileID: 7378047751325394854}
+  m_Layer: 0
+  m_Name: PF_Path_Pirene_PM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2332716677000338976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132368144263532997}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7378047751325394854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132368144263532997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0cce2f7759bbd74b959671933600ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Points:
+  - Neighbors:
+    - f10105b9417360f4cbc1d02614ccdea4
+    Guid: 3e087052b56a8f0418f4faa8b613373f
+    IsStartPoint: 1
+    Position: {x: -7.459195, y: -0.22765642, z: 0}
+    _interactiveDecoratedPoint: {fileID: 0}
+  - Neighbors:
+    - 3e087052b56a8f0418f4faa8b613373f
+    - fcd431a3033f30643a2012236e78ddcc
+    Guid: f10105b9417360f4cbc1d02614ccdea4
+    IsStartPoint: 0
+    Position: {x: -7.736829, y: -43.02928, z: 0}
+    _interactiveDecoratedPoint: {fileID: 0}
+  - Neighbors:
+    - f10105b9417360f4cbc1d02614ccdea4
+    - ec193446b5f735c4f92ff530b8dc790a
+    Guid: fcd431a3033f30643a2012236e78ddcc
+    IsStartPoint: 0
+    Position: {x: -69.46566, y: -43.042137, z: 0}
+    _interactiveDecoratedPoint: {fileID: 0}
+  - Neighbors:
+    - fcd431a3033f30643a2012236e78ddcc
+    - cd589d752899bf54885834b24fd01729
+    Guid: ec193446b5f735c4f92ff530b8dc790a
+    IsStartPoint: 0
+    Position: {x: -69.9994, y: -71.045456, z: 0}
+    _interactiveDecoratedPoint: {fileID: 0}
+  - Neighbors:
+    - ec193446b5f735c4f92ff530b8dc790a
+    - e01c8e99465a308449226c3a0f334652
+    Guid: cd589d752899bf54885834b24fd01729
+    IsStartPoint: 0
+    Position: {x: -8.362923, y: -70.94809, z: 0}
+    _interactiveDecoratedPoint: {fileID: 0}
+  - Neighbors:
+    - cd589d752899bf54885834b24fd01729
+    Guid: e01c8e99465a308449226c3a0f334652
+    IsStartPoint: 0
+    Position: {x: -7.194502, y: -0.2560234, z: 0}
+    _interactiveDecoratedPoint: {fileID: 0}
+  SelectedGuid: 
+  Edit: 0
+  _patrollPoints:
+  - _interactiveDecoratedPoint: {fileID: 0}
+    _position: {x: -7.459195, y: -0.22765642, z: 0}
+    _nextPosition: {x: -7.736829, y: -43.02928, z: 0}
+  - _interactiveDecoratedPoint: {fileID: 0}
+    _position: {x: -7.736829, y: -43.02928, z: 0}
+    _nextPosition: {x: -69.46566, y: -43.042137, z: 0}
+  - _interactiveDecoratedPoint: {fileID: 0}
+    _position: {x: -69.46566, y: -43.042137, z: 0}
+    _nextPosition: {x: -69.9994, y: -71.045456, z: 0}
+  - _interactiveDecoratedPoint: {fileID: 0}
+    _position: {x: -69.9994, y: -71.045456, z: 0}
+    _nextPosition: {x: -8.362923, y: -70.94809, z: 0}
+  - _interactiveDecoratedPoint: {fileID: 0}
+    _position: {x: -8.362923, y: -70.94809, z: 0}
+    _nextPosition: {x: -7.194502, y: -0.2560234, z: 0}
+  - _interactiveDecoratedPoint: {fileID: 0}
+    _position: {x: -7.194502, y: -0.2560234, z: 0}
+    _nextPosition: {x: 0, y: 0, z: 0}

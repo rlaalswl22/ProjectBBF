@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using MyBox;
 using ProjectBBF.Event;
@@ -20,8 +21,6 @@ public class Actor : MonoBehaviour, IBANameKey
     [field: SerializeField, Foldout("컴포넌트")] private Animator _animator;
     [field: SerializeField, Foldout("컴포넌트")] private Rigidbody2D _rigid;
     
-    [field: SerializeField, Foldout("월드 데이터")] private PatrolPointPath _patrolPath;
-    
     
 
     #region Getter/Setter
@@ -32,7 +31,7 @@ public class Actor : MonoBehaviour, IBANameKey
 
     public Animator Animator => _animator;
 
-    public PatrolPointPath PatrolPath => _patrolPath;
+    public PatrolPointPath PatrolPath { get; private set; }
 
     public CollisionInteraction Interaction => _interaction;
 
@@ -67,19 +66,46 @@ public class Actor : MonoBehaviour, IBANameKey
         
         /* State handler */
         _transitionHandler.Init(Interaction);
-        _transitionHandler.AddHandleCallback("DailyRoutine", ToDailyRoutine);
-        _transitionHandler.AddHandleCallback("TalkingForPlayer", ToTalkingForPlayer);
-    }
 
 
-    #region StatehandleCallback
-    private bool ToDailyRoutine()
-    {
-        return false;
+        PatrolPath = _movementData.DefaultPath.GetComponent<PatrolPointPath>();
+        PathEvent().Forget();
     }
-    private bool ToTalkingForPlayer()
+    
+
+    #region Private
+
+    private async UniTask PathEvent()
     {
-        return false;
+        
+        List<UniTask<PatrolPointPath>> list = new List<UniTask<PatrolPointPath>>(_movementData.Paths.Count);
+        while (true)
+        {
+            try
+            {
+                list.Clear();
+
+                foreach (ActorMovementData.PathItem item in _movementData.Paths)
+                {
+                    var i = item;
+                    if(i.ChangeTimeEvent == false)continue;
+                    
+                    list.Add(UniTask.Create(async () =>
+                    {
+                        await i.ChangeTimeEvent.WaitAsync();
+                        return i.Path.GetComponent<PatrolPointPath>();
+                    }));
+                }
+
+                var path = await UniTask.WhenAny(list).WithCancellation(GlobalCancelation.PlayMode);
+
+                PatrolPath = path.result;
+            }
+            catch (Exception e) when (e is not OperationCanceledException)
+            {
+                Debug.LogException(e);
+            }
+        }
     }
 
     #endregion

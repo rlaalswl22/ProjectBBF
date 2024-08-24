@@ -20,10 +20,9 @@ public class TimeHud : MonoBehaviour
         while (true)
         {
             yield return _event.WaitAsync().WithCancellation(GlobalCancelation.PlayMode);
-            yield return null;
 
             var time = TimeManager.Instance.GetGameTime();
-            _text.text = $"{time.Hour:D2}:{time.Min:D2}";
+            _text.text = $"{time.Hour:D2}:{time.Min:D2} {time.TimeOfDay}";
         }
     }
 }

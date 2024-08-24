@@ -11,11 +11,17 @@ using UnityEngine.AI;
 public class PatrollPointPathFinder : StateBehaviour
 {
     private int? _currentIndex;
+    private PatrolPointPath _before;
 
     [CanBeNull]
     public PatrolPoint GetNextPoint(PatrolPointPath path)
     {
         if (path is null) return null;
+        if (_before != path)
+        {
+            _currentIndex = null;
+            _before = path;
+        }
         
         if (_currentIndex == null)
         {

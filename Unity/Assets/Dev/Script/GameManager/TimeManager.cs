@@ -36,7 +36,7 @@ public struct GameTime
         return $"Game time((h){Hour} : (m){Min}, ({TimeOfDay}))";
     }
 
-    private int TotalMinutes()
+    public int TotalMinutes()
     {
         return Hour * 60 + Min;
     }
@@ -52,13 +52,12 @@ public struct GameTime
 
     public bool Equals(GameTime other)
     {
-        return TotalMinutes() == other.TotalMinutes() &&
-               TimeOfDay == other.TimeOfDay;
+        return TotalMinutes() == other.TotalMinutes();
     }
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(TotalMinutes(), TimeOfDay);
+        return HashCode.Combine(TotalMinutes());
     }
 
     public static bool operator ==(GameTime lhs, GameTime rhs)
@@ -73,32 +72,23 @@ public struct GameTime
 
     public static bool operator <(GameTime lhs, GameTime rhs)
     {
-        if (lhs.TotalMinutes() == rhs.TotalMinutes())
-        {
-            // If times are equal, compare TimeOfDay
-            if (lhs.TimeOfDay.HasValue && rhs.TimeOfDay.HasValue)
-            {
-                return lhs.TimeOfDay.Value < rhs.TimeOfDay.Value;
-            }
-            return false;
-        }
         return lhs.TotalMinutes() < rhs.TotalMinutes();
     }
 
     public static bool operator <=(GameTime lhs, GameTime rhs)
     {
-        return lhs < rhs || lhs == rhs;
+        return lhs.TotalMinutes() <= rhs.TotalMinutes();
     }
 
     public static bool operator >(GameTime lhs, GameTime rhs)
     {
-        return !(lhs <= rhs);
+        return lhs.TotalMinutes() > rhs.TotalMinutes();
     }
 
 
     public static bool operator >=(GameTime lhs, GameTime rhs)
     {
-        return !(lhs < rhs);
+        return lhs.TotalMinutes() >= rhs.TotalMinutes();
     }
 }
 
@@ -187,6 +177,7 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
 
     public void Reset()
     {
+        _timeData._dirty = false;
         _realTimer = 0f;
         _beforeTime = new GameTime(-1, -1);
         _esoEvents.ForEach(x=>x.Release());
@@ -207,19 +198,25 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
             {
                 if (eso.IsTriggered) continue;
 
-                eso.IsTriggered = false;
+                bool flag = false;
 
-                eso.IsTriggered |= eso.OperationType == ESOGameTimeEvent.Operation.Equal               && newGameTime == eso.TargetGameTime;
-                eso.IsTriggered |= eso.OperationType == ESOGameTimeEvent.Operation.NotEqual            && newGameTime != eso.TargetGameTime;
-                eso.IsTriggered |= eso.OperationType == ESOGameTimeEvent.Operation.GreaterThenEqual    && newGameTime >= eso.TargetGameTime;
-                eso.IsTriggered |= eso.OperationType == ESOGameTimeEvent.Operation.Greater             && newGameTime >  eso.TargetGameTime;
-                eso.IsTriggered |= eso.OperationType == ESOGameTimeEvent.Operation.Less                && newGameTime <  eso.TargetGameTime;
-                eso.IsTriggered |= eso.OperationType == ESOGameTimeEvent.Operation.LessThenEqual       && newGameTime <= eso.TargetGameTime;
-                eso.IsTriggered |= eso.OperationType == ESOGameTimeEvent.Operation.AllTicks;
+                //flag |= eso.OperationType == ESOGameTimeEvent.Operation.Equal               && newGameTime == eso.TargetGameTime;
+                //flag |= eso.OperationType == ESOGameTimeEvent.Operation.NotEqual            && newGameTime != eso.TargetGameTime;
+                flag |= eso.OperationType == ESOGameTimeEvent.Operation.GreaterThenEqual    && newGameTime >= eso.TargetGameTime;
+                flag |= eso.OperationType == ESOGameTimeEvent.Operation.Greater             && newGameTime >  eso.TargetGameTime;
+                flag |= eso.OperationType == ESOGameTimeEvent.Operation.Less                && newGameTime <  eso.TargetGameTime;
+                flag |= eso.OperationType == ESOGameTimeEvent.Operation.LessThenEqual       && newGameTime <= eso.TargetGameTime;
+                flag |= eso.OperationType == ESOGameTimeEvent.Operation.AllTicks;
                 
-                if (eso.IsTriggered)
+                
+                if (flag)
                 {
                     eso.Signal(newGameTime);
+                    
+                    if (eso.OperationType == ESOGameTimeEvent.Operation.AllTicks)
+                    {
+                        eso.IsTriggered = false;
+                    }
                 }
             }
         }
@@ -254,6 +251,14 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
     }
     public GameTime GetGameTime()
     {
+        if (_timeData._dirty)
+        {
+            _timeData._dirty = false;
+
+            var curTime = _beforeTime;
+            SetTime(curTime);
+        }
+        
         /*
          * r: realTime, x: totalTime of game time, a: totalTime of real time
          * 10 : r = x : a

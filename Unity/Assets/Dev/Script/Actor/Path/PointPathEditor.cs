@@ -97,6 +97,8 @@ using Debug = UnityEngine.Debug;
 
         private void OnSceneGUI()
         {
+            if (((PatrolPointPath)target).Edit is false) return;
+            
             Undo.RecordObject(target, "Path set");
                 
             _sceneSize = SceneView.lastActiveSceneView.position;

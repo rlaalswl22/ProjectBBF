@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -11,6 +12,8 @@ public class TimeData : ScriptableObject
     [SerializeField] private GameTime _definitionNight;
     [SerializeField] private GameTime _definitionEndOfDay;
 
+    [NonSerialized] public bool _dirty;
+
     public float Scale => _scale;
 
     public GameTime MorningTime => _morningTime;
@@ -20,4 +23,14 @@ public class TimeData : ScriptableObject
     public GameTime DefinitionNight => _definitionNight;
 
     public GameTime DefinitionEndOfDay => _definitionEndOfDay;
+
+    private void OnValidate()
+    {
+        _dirty = true;
+
+        if (Mathf.Approximately(Scale, 0f))
+        {
+            _scale = 0.01f;
+        }
+    }
 }
