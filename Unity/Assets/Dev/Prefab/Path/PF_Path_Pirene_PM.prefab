@@ -46,63 +46,73 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Points:
   - Neighbors:
-    - f10105b9417360f4cbc1d02614ccdea4
-    Guid: 3e087052b56a8f0418f4faa8b613373f
+    - 702dbb7960c316c47afd725a2e8a621e
+    Guid: 0bd1d7e6d33ec2f40a167253b48654fe
     IsStartPoint: 1
-    Position: {x: -7.459195, y: -0.22765642, z: 0}
+    Position: {x: -6.4915094, y: -42.443466, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
-    - 3e087052b56a8f0418f4faa8b613373f
-    - fcd431a3033f30643a2012236e78ddcc
-    Guid: f10105b9417360f4cbc1d02614ccdea4
+    - 0bd1d7e6d33ec2f40a167253b48654fe
+    - bddce4d994c2ef94a9a6c1fe97177cd6
+    Guid: 702dbb7960c316c47afd725a2e8a621e
     IsStartPoint: 0
-    Position: {x: -7.736829, y: -43.02928, z: 0}
+    Position: {x: -13.769544, y: -42.464542, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
-    - f10105b9417360f4cbc1d02614ccdea4
-    - ec193446b5f735c4f92ff530b8dc790a
-    Guid: fcd431a3033f30643a2012236e78ddcc
+    - 702dbb7960c316c47afd725a2e8a621e
+    - 19cd48ae50b3f524a9abe5ed725dfa0d
+    Guid: bddce4d994c2ef94a9a6c1fe97177cd6
     IsStartPoint: 0
-    Position: {x: -69.46566, y: -43.042137, z: 0}
+    Position: {x: -69.42797, y: -42.86328, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
-    - fcd431a3033f30643a2012236e78ddcc
-    - cd589d752899bf54885834b24fd01729
-    Guid: ec193446b5f735c4f92ff530b8dc790a
+    - bddce4d994c2ef94a9a6c1fe97177cd6
+    - 76e2d8af4dbe19041871b617bcacbf9a
+    Guid: 19cd48ae50b3f524a9abe5ed725dfa0d
     IsStartPoint: 0
-    Position: {x: -69.9994, y: -71.045456, z: 0}
+    Position: {x: -69.55165, y: -70.86877, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
-    - ec193446b5f735c4f92ff530b8dc790a
-    - e01c8e99465a308449226c3a0f334652
-    Guid: cd589d752899bf54885834b24fd01729
+    - 19cd48ae50b3f524a9abe5ed725dfa0d
+    - 2a6f4f62ab025c143a38ab927d2e5014
+    Guid: 76e2d8af4dbe19041871b617bcacbf9a
     IsStartPoint: 0
-    Position: {x: -8.362923, y: -70.94809, z: 0}
+    Position: {x: -8.727099, y: -70.89053, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
-    - cd589d752899bf54885834b24fd01729
-    Guid: e01c8e99465a308449226c3a0f334652
+    - 76e2d8af4dbe19041871b617bcacbf9a
+    - 9a2cef1e512522445a7526bed0ca46e1
+    Guid: 2a6f4f62ab025c143a38ab927d2e5014
     IsStartPoint: 0
-    Position: {x: -7.194502, y: -0.2560234, z: 0}
+    Position: {x: -8.625182, y: -46.05995, z: 0}
+    _interactiveDecoratedPoint: {fileID: 0}
+  - Neighbors:
+    - 2a6f4f62ab025c143a38ab927d2e5014
+    Guid: 9a2cef1e512522445a7526bed0ca46e1
+    IsStartPoint: 0
+    Position: {x: -6.314742, y: -43.239334, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   SelectedGuid: 
   Edit: 0
   _patrollPoints:
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -7.459195, y: -0.22765642, z: 0}
-    _nextPosition: {x: -7.736829, y: -43.02928, z: 0}
+    _position: {x: -6.4915094, y: -42.443466, z: 0}
+    _nextPosition: {x: -13.769544, y: -42.464542, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -7.736829, y: -43.02928, z: 0}
-    _nextPosition: {x: -69.46566, y: -43.042137, z: 0}
+    _position: {x: -13.769544, y: -42.464542, z: 0}
+    _nextPosition: {x: -69.42797, y: -42.86328, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -69.46566, y: -43.042137, z: 0}
-    _nextPosition: {x: -69.9994, y: -71.045456, z: 0}
+    _position: {x: -69.42797, y: -42.86328, z: 0}
+    _nextPosition: {x: -69.55165, y: -70.86877, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -69.9994, y: -71.045456, z: 0}
-    _nextPosition: {x: -8.362923, y: -70.94809, z: 0}
+    _position: {x: -69.55165, y: -70.86877, z: 0}
+    _nextPosition: {x: -8.727099, y: -70.89053, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -8.362923, y: -70.94809, z: 0}
-    _nextPosition: {x: -7.194502, y: -0.2560234, z: 0}
+    _position: {x: -8.727099, y: -70.89053, z: 0}
+    _nextPosition: {x: -8.625182, y: -46.05995, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -7.194502, y: -0.2560234, z: 0}
+    _position: {x: -8.625182, y: -46.05995, z: 0}
+    _nextPosition: {x: -6.314742, y: -43.239334, z: 0}
+  - _interactiveDecoratedPoint: {fileID: 0}
+    _position: {x: -6.314742, y: -43.239334, z: 0}
     _nextPosition: {x: 0, y: 0, z: 0}

@@ -50,7 +50,7 @@ public class Actor : MonoBehaviour, IBANameKey
         MoveStrategy = gameObject.AddComponent<ActorMove>();
         MoveStrategy.Init(this);
         Visual = gameObject.AddComponent<ActorVisual>();
-        Visual.Init(Animator, AniData);
+        Visual.Init(Animator, AniData, GetComponentInChildren<SpriteRenderer>());
         Favorablity = gameObject.AddComponent<ActorFavorablity>();
         Favorablity.Init(this);
         
@@ -100,6 +100,7 @@ public class Actor : MonoBehaviour, IBANameKey
                 var path = await UniTask.WhenAny(list).WithCancellation(GlobalCancelation.PlayMode);
 
                 PatrolPath = path.result;
+                MoveStrategy.ResetMove();
             }
             catch (Exception e) when (e is not OperationCanceledException)
             {

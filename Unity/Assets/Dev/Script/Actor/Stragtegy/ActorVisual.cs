@@ -7,16 +7,24 @@ public class ActorVisual : MonoBehaviour, IActorStrategy
 {
     private Animator _animator;
     private AnimationData _animationData;
+    private SpriteRenderer _renderer;
 
     private const string DEFAULT_ANI_STATE = "DefaultMovement";
 
     private AnimationClip _defaultClip = null;
     private AnimationClip _beforeClip = null;
 
-    public void Init(Animator animator, AnimationData animationData)
+    public bool IsVisible
+    {
+        get => _renderer.enabled;
+        set => _renderer.enabled = value;
+    }
+
+    public void Init(Animator animator, AnimationData animationData, SpriteRenderer renderer)
     {
         _animator = animator;
         _animationData = animationData;
+        _renderer = renderer;
         
         RuntimeAnimatorController ac = _animator.runtimeAnimatorController;
         AnimatorOverrideController overrideController = new AnimatorOverrideController(ac);

@@ -15,22 +15,27 @@ using UnityEngine;
         {
             var obj = target as InteractiveDecoratedPoint;
 
+            if (obj.InteractingPosition == Vector2.zero)
+            {
+                obj.InteractingPosition = obj.transform.position;
+            }
+
             Handles.DotHandleCap(
                 1,
-                obj.InteractingPositionWorld,
+                obj.InteractingPosition,
                 Quaternion.identity,
                 0.1f,
                 EventType.Repaint
             );
             
             var pos = Handles.FreeMoveHandle(
-                obj.InteractingPositionWorld,
+                obj.InteractingPosition,
                 0.1f,
                 Vector3.zero,
                 Handles.RectangleHandleCap
             );
 
-            obj.InteractingPositionWorld = pos;
+            obj.InteractingPosition = pos;
         }
     }
 #endif

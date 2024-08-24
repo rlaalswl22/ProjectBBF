@@ -172,7 +172,7 @@ using Debug = UnityEngine.Debug;
                 {
                     if (interactiveDecoratedPoint)
                     {
-                        pos = interactiveDecoratedPoint.InteractingPositionWorld;
+                        pos = interactiveDecoratedPoint.InteractingPosition;
                     }
 
                     var newInfo = OnAddPoint(pos);
@@ -336,7 +336,7 @@ using Debug = UnityEngine.Debug;
 
             GUILayout.BeginArea(rect);
 
-            if (point.Neighbors.Count <= 1 && GUILayout.Button("Add"))
+            if ((point.IsStartPoint is false && point.Neighbors.Count <= 1 || point.IsStartPoint && point.Neighbors.Count == 0) && GUILayout.Button("Add"))
             {
                 _isAdding = true;
             }
@@ -354,15 +354,15 @@ using Debug = UnityEngine.Debug;
                 }
             }
 
-            if (point._interactiveDecoratedPoint == true)
+            if (point._interactiveDecoratedPoint)
             {
                 if (GUILayout.Button("Move to object"))
                 {
-                    point.Position = point._interactiveDecoratedPoint.InteractingPositionWorld;
+                    point.Position = point._interactiveDecoratedPoint.InteractingPosition;
                 }
             }
 
-            if (point._interactiveDecoratedPoint == true)
+            if (point._interactiveDecoratedPoint)
             {
                 if (GUILayout.Button("clear object"))
                 {
@@ -374,10 +374,10 @@ using Debug = UnityEngine.Debug;
                 .Select(x => x.GetComponent<InteractiveDecoratedPoint>())
                 .Where(x => x != null)
                 .ToList();
-            if (arr.Any() && GUILayout.Button("Set object"))
+            if (point._interactiveDecoratedPoint == false && arr.Any() && GUILayout.Button("Set object"))
             {
                 point._interactiveDecoratedPoint = arr[0];
-                point.Position = point._interactiveDecoratedPoint.InteractingPositionWorld;
+                point.Position = point._interactiveDecoratedPoint.InteractingPosition;
             }
 
             GUILayout.EndArea();
