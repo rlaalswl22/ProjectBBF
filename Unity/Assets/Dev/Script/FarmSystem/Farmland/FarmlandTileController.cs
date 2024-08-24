@@ -249,6 +249,8 @@ public class FarmlandTileController : MonoBehaviour,
 
     public bool CanPlantFertilizer(Vector3Int cellPos)
     {
+        if (_platformTilemap.GetTile<CultivationTile>(cellPos) == false) return false;
+        
         var tile = _fertilizerTilemap.GetTile<FertilizerTile>(cellPos);
         return tile is null;
     }
@@ -370,6 +372,8 @@ public class FarmlandTileController : MonoBehaviour,
             
             _plantTilemap.SetTile(cellPos, info.CurrentTile);
             SetTile(cellPos, info.CurrentTile);
+            
+            ResetFertilizerTile(cellPos);
 
             return true;
         }
