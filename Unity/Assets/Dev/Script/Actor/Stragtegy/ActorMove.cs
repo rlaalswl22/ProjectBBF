@@ -41,8 +41,12 @@ public class ActorMove : MonoBehaviour, IActorStrategy
             if (_agent == false) return true;
             if (TimeManager.Instance is not null && TimeManager.Instance.IsRunning is false)
             {
+                _agent.isStopped = true;
                 return false;
             }
+            
+            
+            _agent.isStopped = false;
 
             Vector3 pos = point.Position;
             if (point.InteractiveDecoratedPoint)
@@ -64,6 +68,7 @@ public class ActorMove : MonoBehaviour, IActorStrategy
         }, PlayerLoopTiming.Update, _moveCancel.Token);
 
         bool backupVisible = _actor.Visual.IsVisible;
+        _agent.isStopped = false;
         await InteractPoint(point);
         _actor.Visual.IsVisible = backupVisible;
 
