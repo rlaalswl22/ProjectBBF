@@ -140,6 +140,7 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
     private GameTime _beforeTime;
 
     public bool IsRunning { get; private set; }
+    public bool IsBegin { get; private set; }
     private List<ESOGameTimeEvent> _esoEvents = new List<ESOGameTimeEvent>(10);
 
     public override void PostInitialize()
@@ -148,27 +149,39 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
         var events = Resources.LoadAll<ESOGameTimeEvent>(EVENT_PATH);
         
         _esoEvents.AddRange(events);
-        
-        //test
-        Begin();
     }
 
     public override void PostRelease()
     {
         _esoEvents.ForEach(x=>x.Release());
+        _esoEvents.Clear();
+        _esoEvents = null;
     }
 
     public void Begin()
     {
         Reset();
-        
+        IsBegin = true;
         IsRunning = true;
         SetTime(_timeData.MorningTime);
+    }
+
+    public void Pause()
+    {
+        if (IsBegin is false) return;
+        IsRunning = false;
+    }
+
+    public void Resume()
+    {
+        if (IsBegin is false) return;
+        IsRunning = true;
     }
 
     public void End()
     {
         Reset();
+        IsBegin = false;
         IsRunning = false;
     }
 
@@ -176,6 +189,7 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
     {
         _realTimer = 0f;
         _beforeTime = new GameTime(-1, -1);
+        _esoEvents.ForEach(x=>x.Release());
     }
     
     private void Update()
@@ -201,6 +215,7 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
                 eso.IsTriggered |= eso.OperationType == ESOGameTimeEvent.Operation.Greater             && newGameTime >  eso.TargetGameTime;
                 eso.IsTriggered |= eso.OperationType == ESOGameTimeEvent.Operation.Less                && newGameTime <  eso.TargetGameTime;
                 eso.IsTriggered |= eso.OperationType == ESOGameTimeEvent.Operation.LessThenEqual       && newGameTime <= eso.TargetGameTime;
+                eso.IsTriggered |= eso.OperationType == ESOGameTimeEvent.Operation.AllTicks;
                 
                 if (eso.IsTriggered)
                 {

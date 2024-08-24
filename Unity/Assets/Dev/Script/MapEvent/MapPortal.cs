@@ -39,7 +39,7 @@ public class MapPortal : MonoBehaviour
 #endif
     private void Awake()
     {
-        MapPortalManager.Instance.TryAdd(_portalKey, AlivePosition);
+         MapPortalManager.Instance.TryAdd(_portalKey, AlivePosition);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -48,9 +48,15 @@ public class MapPortal : MonoBehaviour
         
         if (other.TryGetComponent(out PlayerController c))
         {
+            TimeManager.Instance.Pause();
+            
             c.StateHandler.TranslateState("DoNothing");
             _ = MapPortalManager.Instance.Move(scene, _targetPortalKey, c.transform)
-                .ContinueWith(()=>c.StateHandler.TranslateState("EndOfDoNothing"));
+                .ContinueWith(()=>
+                {
+                    TimeManager.Instance.Resume();
+                    c.StateHandler.TranslateState("EndOfDoNothing");
+                });
         }
     }
 }

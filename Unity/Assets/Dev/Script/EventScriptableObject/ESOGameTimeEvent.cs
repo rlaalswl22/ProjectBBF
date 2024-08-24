@@ -14,7 +14,8 @@ public class ESOGameTimeEvent : EventScriptableObjectT<GameTime>
         GreaterThenEqual,
         Greater,
         Less,
-        LessThenEqual
+        LessThenEqual,
+        AllTicks
     }
 
     [SerializeField] private Operation _operation;
