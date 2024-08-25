@@ -25,10 +25,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         try
         {
-            if (_blackboard.Energy < 1)
-            {
-                return;
-            }
             
             ItemData currentData = _controller.QuickInventory.CurrentItemData;
             
@@ -37,6 +33,10 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 currentData.Info.Contains(ToolType.WaterSpray)
                ))
             {
+                if (_blackboard.Energy < 1)
+                {
+                    return;
+                }
                 _blackboard.Energy--;
             }
 

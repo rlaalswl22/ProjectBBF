@@ -22,9 +22,10 @@ public class TimeHud : MonoBehaviour
         while (true)
         {
             var cur = TimeManager.Instance.GetGameTime();
+            int curDay = TimeManager.Instance.SaveData.Day;
             if (cur != before)
             {
-                _text.text = $"{cur.Hour:D2}:{cur.Min:D2} {cur.TimeOfDay}";
+                _text.text = $"Day {curDay:D3}\n{cur.Hour:D2}:{cur.Min:D2} {cur.TimeOfDay}";
                 before = cur;
             }
 
