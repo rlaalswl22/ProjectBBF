@@ -47,11 +47,11 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         if (Mathf.Approximately(Mathf.Abs(input.x) + Mathf.Abs(input.y), 0f) == false)
         {
             LastMovedDirection = input.normalized;
-            ChangeClip(dir, false);
+            ChangeClip(dir, AnimationData.Movement.Walk);
         }
         else
         {
-            ChangeClip(LastMovedDirection, true);
+            ChangeClip(LastMovedDirection, AnimationData.Movement.Idle);
         }
         
     }
@@ -73,108 +73,56 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         }
     }
 
-    private void ChangeClip(Vector2 dir, bool isIdle)
+    private void ChangeClip(Vector2 dir, AnimationData.Movement movementType)
     {
         var aniData = _controller.AnimationData;
         var visual = _controller.VisualStrategy;
 
+        AnimationClip clip = null;
+        
         // 왼쪽 위
         if (dir is { x: < 0, y: > 0 })
         {
-            if (isIdle)
-            {
-                visual.ChangeClip(aniData.IdleLeftUp);
-            }
-            else
-            {
-                visual.ChangeClip(aniData.MovementLeftUp);
-            }
+            clip = aniData.GetClip(movementType, AnimationData.Direction.LeftUp);
         }
         // 오른쪽 위
         else if (dir is { x: > 0, y: > 0 })
         {
-            if (isIdle)
-            {
-                visual.ChangeClip(aniData.IdleRightUp);
-            }
-            else
-            {
-                visual.ChangeClip(aniData.MovementRightUp);
-            }
+            clip = aniData.GetClip(movementType, AnimationData.Direction.RightUp);
         }
         // 왼쪽 아래
         else if (dir is { x: < 0, y: < 0 })
         {
-            if (isIdle)
-            {
-                visual.ChangeClip(aniData.IdleLeft);
-            }
-            else
-            {
-                visual.ChangeClip(aniData.MovementLeft);
-            }
+            clip = aniData.GetClip(movementType, AnimationData.Direction.Left);
         }
         // 오른쪽 아래
         else if (dir is { x: > 0, y: < 0 })
         {
-            if (isIdle)
-            {
-                visual.ChangeClip(aniData.IdleRight);
-            }
-            else
-            {
-                visual.ChangeClip(aniData.MovementRight);
-            }
+            clip = aniData.GetClip(movementType, AnimationData.Direction.Right);
         }
         
         // 위
         else if (dir is { x:  0, y: > 0 })
         {
-            if (isIdle)
-            {
-                visual.ChangeClip(aniData.IdleUp);
-            }
-            else
-            {
-                visual.ChangeClip(aniData.MovementUp);
-            }
+            clip = aniData.GetClip(movementType, AnimationData.Direction.Up);
         }
         // 아래
         else if (dir is { x:  0, y: < 0 })
         {
-            if (isIdle)
-            {
-                visual.ChangeClip(aniData.IdleDown);
-            }
-            else
-            {
-                visual.ChangeClip(aniData.MovementDown);
-            }
+            clip = aniData.GetClip(movementType, AnimationData.Direction.Down);
         }
         // 왼쪽
         else if (dir is { x: < 0, y:  0 })
         {
-            if (isIdle)
-            {
-                visual.ChangeClip(aniData.IdleLeft);
-            }
-            else
-            {
-                visual.ChangeClip(aniData.MovementLeft);
-            }
+            clip = aniData.GetClip(movementType, AnimationData.Direction.Left);
         }
         // 오른쪽
         else if (dir is { x: > 0, y: 0 })
         {
-            if (isIdle)
-            {
-                visual.ChangeClip(aniData.IdleRight);
-            }
-            else
-            {
-                visual.ChangeClip(aniData.MovementRight);
-            }
+            clip = aniData.GetClip(movementType, AnimationData.Direction.RightUp);
         }
+        
+        visual.ChangeClip(clip);
     }
 
     public void ResetVelocity()
@@ -185,6 +133,6 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         var aniData = _controller.AnimationData;
         var visual = _controller.VisualStrategy;
 
-        ChangeClip(LastMovedDirection.normalized, true);
+        ChangeClip(LastMovedDirection.normalized, AnimationData.Movement.Idle);
     }
 }

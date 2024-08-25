@@ -52,37 +52,40 @@ public class ActorVisual : MonoBehaviour, IActorStrategy
         return Mathf.Acos(Vector2.Dot(targetDir, dir)) * Mathf.Rad2Deg <= angle;
     }
     
-    public void LookAt(Vector2 toPlayerDir, bool isIdle)
+    public void LookAt(Vector2 toPlayerDir, AnimationData.Movement movementType)
     {
+        AnimationClip clip = null;
         // up
         if (ContainsDirection(toPlayerDir, Quaternion.Euler(0f, 0f, 90f) * Vector2.right, 30f))
         {
-            ChangeClip(isIdle ? _animationData.IdleUp : _animationData.MovementUp);
+            clip = _animationData.GetClip(movementType, AnimationData.Direction.Up);
         }
         // left
         else if (ContainsDirection(toPlayerDir, Quaternion.Euler(0f, 0f, 25f) * Vector2.left, 30f))
         {
-            ChangeClip(isIdle ? _animationData.IdleLeft : _animationData.MovementLeft);
+            clip = _animationData.GetClip(movementType, AnimationData.Direction.Left);
         }
         // leftup
         else if (ContainsDirection(toPlayerDir, Quaternion.Euler(0f, 0f, -30f) * Vector2.left, 30f))
         {
-            ChangeClip(isIdle ? _animationData.IdleLeftUp : _animationData.MovementLeftUp);
+            clip = _animationData.GetClip(movementType, AnimationData.Direction.LeftUp);
         }
         // right
         else if (ContainsDirection(toPlayerDir, Quaternion.Euler(0f, 0f, -25f) * Vector2.right, 30f))
         {
-            ChangeClip(isIdle ? _animationData.IdleRight : _animationData.MovementRight);
+            clip = _animationData.GetClip(movementType, AnimationData.Direction.Right);
         }
         // rightUp
         else if (ContainsDirection(toPlayerDir, Quaternion.Euler(0f, 0f, 30f) * Vector2.right, 30f))
         {
-            ChangeClip(isIdle ? _animationData.IdleRightUp : _animationData.MovementRightUp);
+            clip = _animationData.GetClip(movementType, AnimationData.Direction.RightUp);
         }
         // down
         else if (ContainsDirection(toPlayerDir, Quaternion.Euler(0f, 0f, -90f) * Vector2.right, 30f))
         {
-            ChangeClip(isIdle ? _animationData.IdleDown : _animationData.MovementDown);
+            clip = _animationData.GetClip(movementType, AnimationData.Direction.Down);
         }
+
+        ChangeClip(clip);
     }
 }

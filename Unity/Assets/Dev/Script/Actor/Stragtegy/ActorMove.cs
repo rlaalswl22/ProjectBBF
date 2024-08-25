@@ -73,13 +73,13 @@ public class ActorMove : MonoBehaviour, IActorStrategy
                     {
                         _agent.transform.position = (Vector2)point.Position;
                         _agent.SetDestination(point.Position);
-                        _actor.Visual.LookAt(_agent.desiredVelocity, false);
+                        _actor.Visual.LookAt(_agent.desiredVelocity, AnimationData.Movement.Idle);
                         break;
                     }
                 }
 
                 _agent.SetDestination(pos);
-                _actor.Visual.LookAt(_agent.desiredVelocity, false);
+                _actor.Visual.LookAt(_agent.desiredVelocity, AnimationData.Movement.Walk);
 
                 if (Vector2.Distance(_agent.transform.position, pos) <= _agent.stoppingDistance)
                 {
@@ -116,7 +116,7 @@ public class ActorMove : MonoBehaviour, IActorStrategy
 
         _actor.Visual.IsVisible = !decoPoint.VisitAndHide;
 
-        _actor.Visual.LookAt(_agent.desiredVelocity, true);
+        _actor.Visual.LookAt(_agent.desiredVelocity, AnimationData.Movement.Idle);
         float timer = 0f;
         while (timer < decoPoint.WaitDuration)
         {

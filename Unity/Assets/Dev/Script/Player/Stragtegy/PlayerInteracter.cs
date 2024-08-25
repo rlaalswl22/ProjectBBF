@@ -105,7 +105,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
             if (actorInfo.Interaction.Owner is Actor actor)
             {
-                actor.Visual.LookAt(_controller.transform.position - actor.transform.position, true);
+                actor.Visual.LookAt(_controller.transform.position - actor.transform.position, AnimationData.Movement.Idle);
             }
             
             var favorablityContainer = favorablity.FavorablityContainer;
