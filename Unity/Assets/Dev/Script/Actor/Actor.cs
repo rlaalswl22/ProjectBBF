@@ -92,12 +92,12 @@ public class Actor : MonoBehaviour, IBANameKey
                     
                     list.Add(UniTask.Create(async () =>
                     {
-                        await i.ChangeTimeEvent.WaitAsync();
+                        await i.ChangeTimeEvent.WaitAsync(this.GetCancellationTokenOnDestroy());
                         return i.Path.GetComponent<PatrolPointPath>();
                     }));
                 }
 
-                var path = await UniTask.WhenAny(list).WithCancellation(GlobalCancelation.PlayMode);
+                var path = await UniTask.WhenAny(list).WithCancellation(this.GetCancellationTokenOnDestroy());
 
                 PatrolPath = path.result;
                 MoveStrategy.ResetMove();

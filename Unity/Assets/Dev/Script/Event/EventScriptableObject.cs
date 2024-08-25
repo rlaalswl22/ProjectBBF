@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using ProjectBBF.Event;
 using UnityEngine;
@@ -45,16 +46,17 @@ namespace ProjectBBF.Event
             OnSignal?.Invoke(arg1);
         }
 
-        public async UniTask<T1> WaitAsync()
+        public async UniTask<T1> WaitAsync(CancellationToken token = default)
         {
             if (Tcs.Task.Status == UniTaskStatus.Faulted)
             {
                 Debug.LogException(Tcs.Task.AsTask().Exception);
             }
 
-            await UniTask.Yield();
+            await UniTask.Yield(PlayerLoopTiming.Update, token);
+            var v = await Tcs.Task;
             
-            return await Tcs.Task;
+            return v;
         }
 
         public override void Release()

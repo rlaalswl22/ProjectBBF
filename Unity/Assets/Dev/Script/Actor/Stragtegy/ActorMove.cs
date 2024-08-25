@@ -22,6 +22,23 @@ public class ActorMove : MonoBehaviour, IActorStrategy
         _data = actor.MovementData;
         _actor = actor;
         Interaction = actor.Interaction;
+
+        UniTask.Create(async () =>
+        {
+            while (true)
+            {
+                if (_agent.isOnOffMeshLink)
+                {
+                    _agent.speed = _data.MovementSpeed * 0.45f;
+                }
+                else
+                {
+                    _agent.speed = _data.MovementSpeed;
+                }
+
+                await UniTask.Yield(PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+            }
+        }).Forget();
         
         _moveCancel = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
     }
@@ -35,7 +52,6 @@ public class ActorMove : MonoBehaviour, IActorStrategy
     public async UniTask<Vector2> MoveToPoint(PatrolPoint point)
     {
         bool backupVisible = _actor.Visual.IsVisible;
-        
         try
         {
             while (true)
@@ -62,7 +78,6 @@ public class ActorMove : MonoBehaviour, IActorStrategy
                     }
                 }
 
-                _agent.speed = _data.MovementSpeed;
                 _agent.SetDestination(pos);
                 _actor.Visual.LookAt(_agent.desiredVelocity, false);
 
