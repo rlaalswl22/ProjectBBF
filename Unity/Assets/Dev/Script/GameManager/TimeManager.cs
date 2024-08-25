@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using ProjectBBF.Event;
+using ProjectBBF.Persistence;
 using ProjectBBF.Singleton;
 using UnityEngine;
 
@@ -119,6 +120,18 @@ public struct RealTime
     }
 }
 
+[System.Serializable]
+public class TimePersistenceObject : IPersistenceObject
+{
+    [SerializeField] private int _day = 1;
+
+    public int Day
+    {
+        get => _day;
+        set => _day = value;
+    }
+}
+
 [Singleton(ESingletonType.Global)]
 public class TimeManager : MonoBehaviourSingleton<TimeManager>
 {
@@ -128,10 +141,14 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
     private TimeData _timeData;
     private float _realTimer;
     private GameTime _beforeTime;
+    private List<ESOGameTimeEvent> _esoEvents = new List<ESOGameTimeEvent>(10);
 
     public bool IsRunning { get; private set; }
     public bool IsBegin { get; private set; }
-    private List<ESOGameTimeEvent> _esoEvents = new List<ESOGameTimeEvent>(10);
+    public TimePersistenceObject SaveData { get; private set; }
+
+    public TimeData TimeData => _timeData;
+
 
     public override void PostInitialize()
     {
@@ -151,6 +168,9 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
     public void Begin()
     {
         Reset();
+
+        SaveData = PersistenceManager.Instance.LoadOrCreate<TimePersistenceObject>("TimeManager_GameTime");
+        
         IsBegin = true;
         IsRunning = true;
         SetTime(_timeData.MorningTime);

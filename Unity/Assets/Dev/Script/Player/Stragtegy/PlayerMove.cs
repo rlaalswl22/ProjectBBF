@@ -1,15 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ProjectBBF.Persistence;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour, IPlayerStrategy
 {
     private InputAction _movementAction;
+    private InputAction _sprintAction;
     private PlayerController _controller;
     private Rigidbody2D _rigidbody;
     private PlayerMovementData _movementData;
+    private PlayerBlackboard _blackboard;
 
     public Vector2 LastMovedDirection { get; set; }
     
@@ -18,13 +22,55 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         _movementData = controller.MovementData;
         _rigidbody = controller.Rigidbody;
         _controller = controller;
+        _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
         
         BindInputAction();
+
+        StartCoroutine(CoSteminaUpdate());
     }
 
     private void BindInputAction()
     {
         _movementAction = InputManager.Actions.Movement;
+        _sprintAction = InputManager.Actions.Sprint;
+    }
+
+    private IEnumerator CoSteminaUpdate()
+    {
+        bool beforeSprint = false;
+        while (true)
+        {
+            if (TimeManager.Instance.IsRunning is false)
+            {
+                yield return null;
+                continue;
+            }
+
+            if (_sprintAction.IsPressed() is false && beforeSprint is false && _blackboard.Energy > 0)
+            {
+                _blackboard.Stemina += Time.deltaTime * _movementData.SteminaIncreasePerSec;
+                yield return null;
+                continue;
+            }
+            
+            if (_sprintAction.IsPressed() && _blackboard.Stemina > 0f)
+            {
+                _blackboard.Stemina -= Time.deltaTime * _movementData.SteminaDecreasePerSec;
+                beforeSprint = true;
+                yield return null;
+                continue;
+            }
+
+            float waitTimer = 0f;
+            while (_sprintAction.IsPressed() is false && waitTimer < _movementData.SteminaIncreaseWaitDuration)
+            {
+                waitTimer += Time.deltaTime;
+                yield return null;
+            }
+
+            beforeSprint = false;
+            yield return null;
+        }
     }
     
     public void OnMove()
@@ -38,9 +84,16 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
 
 
         dir = dir.normalized;
-
         Vector2 velDir = Vector2.zero;
-        velDir = dir * _movementData.MovementSpeed;
+        
+        if (_sprintAction.IsPressed() && _blackboard.Stemina > 0f)
+        {
+            velDir = dir * _movementData.SprintSpeed;
+        }
+        else
+        {
+            velDir = dir * _movementData.MovementSpeed;
+        }
 
         _rigidbody.velocity = velDir;
         

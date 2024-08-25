@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MyBox;
 using ProjectBBF.Event;
+using ProjectBBF.Persistence;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
     public StateTransitionHandler StateHandler => _stateHandler;
 
     public CollisionInteraction Interaction => _interaction;
+    public PlayerBlackboard Blackboard { get; private set; }
 
 
     #region Getter/Setter
@@ -83,8 +85,18 @@ public class PlayerController : MonoBehaviour
         Interaction.SetContractInfo(info, this);
         
         StateHandler.Init(Interaction);
+
+        DataInit();
     }
 
+    private void DataInit()
+    {
+        Blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
+
+        Blackboard.MaxStemina = _movementData.DefaultStemina;
+        Blackboard.Stemina = _movementData.DefaultStemina;
+    }
+    
     private void OnDestroy()
     {
         if (GameObjectStorage.Instance)

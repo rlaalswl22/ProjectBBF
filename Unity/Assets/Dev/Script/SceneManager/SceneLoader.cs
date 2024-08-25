@@ -21,13 +21,14 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
     public event Action<string> WorldPreLoaded;
     public event Action<string> WorldLoaded;
     public event Action<string> WorldPostLoaded;
+    public event Action FadeoutComplete;
+    public event Action FadeinComplete;
 
-    public string DirectorKey { get; set; } = "BlackAlpha";
+    public string DefaultDirectorKey { get; } = "BlackAlpha";
 
     private Dictionary<string, ScreenDirector> _directors;
     
     public string CurrentWorldScene { get; private set; }
-    
     public override void PostInitialize()
     {
         ImmutableSceneTable = Resources.Load<ImmutableSceneTable>("Data/ImmutableSceneTable");
@@ -57,7 +58,7 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
     //    }
     //}
 
-    private async UniTask UnloadAllAdditiveSceneAsync()
+    private async UniTask Internal_UnloadAllAdditiveSceneAsync()
     {
         List<UniTask> tasks = new List<UniTask>(_loadedAddtiveScenes.Count);
         
@@ -80,10 +81,57 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
         _loadedAddtiveScenes.Clear();
     }
 
-    public async UniTask LoadImmutableScenesAsync()
+    public async UniTask<bool> UnloadAllMapAsync()
     {
-        if (IsProgress) return;
-        if (IsLoadedImmutableScenes) return;
+        if (IsProgress) return false;
+        IsProgress = true;
+        
+        List<UniTask> tasks = new List<UniTask>(_loadedAddtiveScenes.Count);
+        
+        foreach (string sceneName in _loadedAddtiveScenes)
+        {
+            if (ImmutableSceneTable.Scenes.Contains(sceneName)) continue;
+            if (sceneName == CurrentWorldScene) continue;
+            
+            AsyncOperation oper = SceneManager.UnloadSceneAsync(sceneName);
+            if (oper is null) continue;
+            
+            oper.allowSceneActivation = true;
+
+            var task = oper
+                .ToUniTask(null, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
+            
+            tasks.Add(task);
+        }
+        
+        await UniTask.WhenAll(tasks);
+        _loadedAddtiveScenes.Clear();
+        
+        IsProgress = false;
+        return true;
+    }
+    public async UniTask<bool> LoadAllMapAsync()
+    {
+        if (IsProgress) return false;
+        IsProgress = true;
+        
+        var loader = GetRootLoader(SceneManager.GetSceneByName(CurrentWorldScene).GetRootGameObjects());
+        var list = await loader.LoadAsync();
+
+        foreach ((string, AsyncOperation) tuple in list)
+        {
+            _loadedAddtiveScenes.Add(tuple.Item1);
+            tuple.Item2.allowSceneActivation = true;
+        }
+        
+        IsProgress = false;
+        return true;
+    }
+
+    public async UniTask<bool> LoadImmutableScenesAsync()
+    {
+        if (IsProgress) return false;
+        if (IsLoadedImmutableScenes) return false;
 
         IsProgress = true;
         
@@ -107,12 +155,13 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
 
         IsLoadedImmutableScenes = true;
         IsProgress = false;
+        return true;
     }
 
-    public async UniTask UnloadImmutableScenesAsync()
+    public async UniTask<bool> UnloadImmutableScenesAsync()
     {
-        if (IsProgress) return;
-        if (IsLoadedImmutableScenes == false) return;
+        if (IsProgress) return false;
+        if (IsLoadedImmutableScenes == false) return false;
 
         IsProgress = true;
         
@@ -133,21 +182,46 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
 
         IsLoadedImmutableScenes = false;
         IsProgress = false;
+        return true;
     }
 
-    public async UniTask<bool> LoadWorldAsync(string worldSceneName, bool skipDirector = false)
+    public async UniTask<bool> WorkDirectorAsync(bool fadeIn, string key = null)
+    {
+        if (key is null)
+        {
+            key = DefaultDirectorKey;
+        }
+        if (_directors.TryGetValue(key, out var director) == false)
+        {
+            Debug.LogError($"SceneLoader에서 Director key({key})를 찾을 수 없습니다.");
+            return false;
+        }
+        
+        Debug.Assert(director is not null);
+
+        if (fadeIn)
+        {
+            await director.Fadein();
+            director.Enabled = false;
+            FadeinComplete?.Invoke();
+        }
+        else
+        {
+            director.Enabled = true;
+            await director.Fadeout();
+            FadeoutComplete?.Invoke();
+        }
+
+        return true;
+    }
+    
+    public async UniTask<bool> LoadWorldAsync(string worldSceneName)
     {
         if (IsProgress) return false;
         IsProgress = true;
 
         try
         {
-            if (_directors.TryGetValue(DirectorKey, out var director) && skipDirector == false)
-            {
-                director.Enabled = true;
-                await director.Fadeout();
-            }
-            
             if (ImmutableSceneTable.Scenes.Contains(worldSceneName))
             {
                 Debug.LogError("Immutable scene은 single로 불러올 수 없습니다.");
@@ -160,7 +234,7 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
 
             TryLoadEntryScene();
 
-            await UnloadAllAdditiveSceneAsync();
+            await Internal_UnloadAllAdditiveSceneAsync();
 
             var oper = SceneManager.LoadSceneAsync(worldSceneName, LoadSceneMode.Additive);
 
@@ -187,6 +261,7 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
             
             List<(string, AsyncOperation)> loadedScenes = await loader.LoadAsync();
 
+            
             _loadedAddtiveScenes.AddRange(loadedScenes.Select(x=>x.Item1));
 
             loadedScenes.ForEach(x => x.Item2.allowSceneActivation = true);
@@ -199,12 +274,6 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
             WorldLoaded?.Invoke(worldSceneName);
             await UniTask.Yield();
             WorldPostLoaded?.Invoke(worldSceneName);
-        
-            if (skipDirector == false && director)
-            {
-                await director.Fadein();
-                director.Enabled = false;
-            }
 
         }
         catch (Exception e) when (e is not OperationCanceledException)

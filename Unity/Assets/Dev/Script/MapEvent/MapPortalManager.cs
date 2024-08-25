@@ -35,19 +35,26 @@ public class MapPortalManager : MonoBehaviourSingleton<MapPortalManager>
 
             _playerTransform.position = pos;
         }
+
+        _playerTransform = null;
     }
 
     
     private string _targetPortalKey;
     private Transform _playerTransform;
     
-    public UniTask Move(string worldSceneName, string targetPortalKey, Transform playerTransform)
+    public async UniTask<bool> Move(string worldSceneName, string targetPortalKey, Transform playerTransform)
     {
         var inst = SceneLoader.Instance;
-        if(inst.IsProgress) return new UniTask<bool>(false);
+        if (inst.IsProgress) return false;
 
         _targetPortalKey = targetPortalKey;
         _playerTransform = playerTransform;
-        return inst.LoadWorldAsync(worldSceneName);
+
+        _ = await inst.WorkDirectorAsync(false);
+        _ = await inst.LoadWorldAsync(worldSceneName);
+        _ = await inst.WorkDirectorAsync(true);
+
+        return true;
     }
 }

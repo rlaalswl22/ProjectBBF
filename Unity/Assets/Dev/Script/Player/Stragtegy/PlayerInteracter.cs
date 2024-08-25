@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using DS.Core;
 using JetBrains.Annotations;
 using ProjectBBF.Event;
+using ProjectBBF.Persistence;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,18 +13,36 @@ using UnityEngine;
 public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 {
     private PlayerController _controller;
+    private PlayerBlackboard _blackboard;
 
     public void Init(PlayerController controller)
     {
         _controller = controller;
+        _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
     }
 
     public async UniTask OnToolAction()
     {
-        await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
-
         try
         {
+            if (_blackboard.Energy < 1)
+            {
+                return;
+            }
+            
+            ItemData currentData = _controller.QuickInventory.CurrentItemData;
+            
+            if (currentData &&  (
+                currentData.Info.Contains(ToolType.Hoe) ||
+                currentData.Info.Contains(ToolType.WaterSpray)
+               ))
+            {
+                _blackboard.Energy--;
+            }
+
+            
+            await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
+            
             var interaction = FindCloserObject();
             if (interaction is null) return;
         
@@ -269,7 +288,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         {
             success = action.SprinkleWater(targetPos);
         }
-        
+
         return success;
     }
 

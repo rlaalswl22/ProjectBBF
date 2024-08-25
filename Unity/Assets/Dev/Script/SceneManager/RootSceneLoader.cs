@@ -83,12 +83,12 @@ public class RootSceneLoader : MonoBehaviour
         {
             string worldSceneName = gameObject.scene.name;
             _ = SceneLoader.Instance
-                .LoadWorldAsync(worldSceneName, true)
+                .LoadWorldAsync(worldSceneName)
                 .ContinueWith(x=>
                 {
                     if (x && _loadImmutableScene)
                     {
-                        _ = SceneLoader.Instance.LoadImmutableScenesAsync().ContinueWith(() =>
+                        _ = SceneLoader.Instance.LoadImmutableScenesAsync().ContinueWith(x =>
                         {
                             SceneManager.GetSceneByName(worldSceneName).GetRootGameObjects().ForEach(y =>
                             {

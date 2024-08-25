@@ -92,7 +92,7 @@ public class GameObjectStorage : MonoBehaviourSingleton<GameObjectStorage>
                         return false;
                     }
                 
-                    _objTemp.Enqueue(temp.GetChild(i));
+                    _objTemp.Enqueue(temp.GetChild(j));
                 }
             }
         }

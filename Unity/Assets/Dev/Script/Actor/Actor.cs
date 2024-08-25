@@ -20,8 +20,7 @@ public class Actor : MonoBehaviour, IBANameKey
     [field: SerializeField, Foldout("컴포넌트")] private StateTransitionHandler _transitionHandler;
     [field: SerializeField, Foldout("컴포넌트")] private Animator _animator;
     [field: SerializeField, Foldout("컴포넌트")] private Rigidbody2D _rigid;
-    
-    
+
 
     #region Getter/Setter
     public ActorMovementData MovementData => _movementData;
@@ -70,8 +69,15 @@ public class Actor : MonoBehaviour, IBANameKey
 
         PatrolPath = _movementData.DefaultPath.GetComponent<PatrolPointPath>();
         PathEvent().Forget();
+        
+        GameObjectStorage.Instance.AddGameObject(gameObject);
     }
-    
+
+    private void OnDestroy()
+    {
+        if (GameObjectStorage.Instance == false) return;
+        GameObjectStorage.Instance.RemoveGameObject(gameObject);
+    }
 
     #region Private
 

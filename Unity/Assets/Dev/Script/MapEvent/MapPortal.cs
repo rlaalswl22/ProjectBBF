@@ -52,7 +52,7 @@ public class MapPortal : MonoBehaviour
             
             c.StateHandler.TranslateState("DoNothing");
             _ = MapPortalManager.Instance.Move(scene, _targetPortalKey, c.transform)
-                .ContinueWith(()=>
+                .ContinueWith(_ =>
                 {
                     TimeManager.Instance.Resume();
                     c.StateHandler.TranslateState("EndOfDoNothing");

@@ -9,90 +9,60 @@ namespace ProjectBBF.Persistence
     [Singleton(ESingletonType.Global)]
     public class PersistenceManager : MonoBehaviourSingleton<PersistenceManager>
     {
-        private Queue<(string, IPersistenceObject)> _saveQueue;
-        private Queue<(string, IPersistenceObject)> _loadQueue;
-
-        public IPersistenceDescriptor Descriptor { get; set; }
-        public bool IsEmpty => _saveQueue.Any() == false;
+        public IPersistenceDescriptor Descriptor { get; set; } = new JsonDescriptor();
 
         private Dictionary<string, IPersistenceObject> _objTable;
-        public IReadOnlyDictionary<string, IPersistenceObject> Table => _objTable;
 
         public override void PostInitialize()
         {
             _objTable = new Dictionary<string, IPersistenceObject>();
-
-            _saveQueue = new Queue<(string, IPersistenceObject)>(10);
-            _loadQueue = new Queue<(string, IPersistenceObject)>(10);
         }
 
         public override void PostRelease()
         {
-            _saveQueue.Clear();
-            _loadQueue.Clear();
-
+            _objTable.Clear();
             _objTable = null;
-
-            _saveQueue = null;
-            _loadQueue = null;
 
             Descriptor = null;
         }
 
-        public void Save(bool saveAndFlush = true)
-        {
-            Descriptor.Save(_saveQueue);
-
-            if (saveAndFlush)
-            {
-                FlushSaveObject();
-            }
-        }
-
-        public void LoadWithQueue(bool loadAndFlush = true)
-        {
-            Descriptor.LoadPersistenceObject(_loadQueue);
-
-            if (loadAndFlush)
-            {
-                FlushLoadObject();
-            }
-        }
-
         private string[] _tempKeyArr = new string[1];
-        private (string, IPersistenceObject)[] _tempTupleArr = new (string, IPersistenceObject)[1];
-        public IPersistenceObject Load(string key)
+        
+        public void Save()
         {
-            _tempKeyArr[0] = key;
-            var list = Descriptor.LoadPersistenceObject(_tempKeyArr);
+            Descriptor.Save(_objTable.Select(x => (x.Key, x.Value)));
+        }
+        
+        public T LoadOrCreate<T>(string key) where T : class, IPersistenceObject, new()
+        {
+            IPersistenceObject cachedObj = GetCachedPersistenceObj(ref key);
+            if (cachedObj is null)
+            {
+                _tempKeyArr[0] = key;       
+                var list = Descriptor.LoadPersistenceObject(_tempKeyArr);
+                
+                cachedObj = list.FirstOrDefault();
 
-            return list.FirstOrDefault();
+                if (cachedObj is null)
+                {
+                    cachedObj = new T();
+                    Debug.Log($"PersistenceManager object 생성(key: {typeof(T)}, type: {key})");
+                }
+                
+                _objTable[key] = cachedObj;
+            }
+
+            return (T)cachedObj;
         }
 
-        public void Load(string key, IPersistenceObject obj)
+        public IPersistenceObject GetCachedPersistenceObj(ref string key)
         {
-            _tempTupleArr[0] = (key, obj);
-            Descriptor.LoadPersistenceObject(_tempTupleArr);
-        }
+            if (_objTable.TryGetValue(key, out var value))
+            {
+                return value;
+            }
 
-        public void EnqueueSaveObject(string key, IPersistenceObject obj)
-        {
-            _saveQueue.Enqueue((key, obj));
-        }
-
-        public void EnqueueLoadObject(string key, IPersistenceObject obj)
-        {
-            _loadQueue.Enqueue((key, obj));
-        }
-
-        public void FlushSaveObject()
-        {
-            _saveQueue.Clear();
-        }
-
-        public void FlushLoadObject()
-        {
-            _loadQueue.Clear();
+            return null;
         }
     }
 }

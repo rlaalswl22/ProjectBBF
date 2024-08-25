@@ -76,7 +76,7 @@ namespace ProjectBBF.Persistence
                 
                 if (string.IsNullOrEmpty(json))
                 {
-                    Debug.LogError($"key({key}) 데이터를 불러오는데 실패");
+                    list.Add(null);
                     continue;
                 }
                 
@@ -86,6 +86,7 @@ namespace ProjectBBF.Persistence
                 if (type is null)
                 {
                     Debug.LogError($"key({key}) 데이터를 불러오는데 실패");
+                    list.Add(null);
                     continue;
                 }
 
@@ -94,6 +95,7 @@ namespace ProjectBBF.Persistence
                 if(rtv is null)
                 {
                     Debug.LogError($"key({key}) 데이터를 불러오는데 실패");
+                    list.Add(null);
                     continue;
                 }
                 
