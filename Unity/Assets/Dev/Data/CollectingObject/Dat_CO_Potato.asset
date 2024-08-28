@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c846c0c231a3ae418d5a898aceaca45, type: 3}
-  m_Name: CollectingObjectData
+  m_Name: Dat_CO_Potato
   m_EditorClassIdentifier: 
-  _collectingTime: 1
-  _buringTime: 5
-  _playerAnimationType: 0
+  _defaultSprite: {fileID: 21300000, guid: 738f0ce526ff2e44b825f6023ab7f9c6, type: 3}
+  _collectedSprite: {fileID: 21300000, guid: 5b01b78f91bc49e4faa5338c2b5890b8, type: 3}
+  _dropItems:
+  - Data: {fileID: 11400000, guid: d2a5e91abe4793b488c3da50b6604fd5, type: 2}
+    Count: 3

@@ -142,10 +142,23 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
     private float _realTimer;
     private GameTime _beforeTime;
     private List<ESOGameTimeEvent> _esoEvents = new List<ESOGameTimeEvent>(10);
+    public TimePersistenceObject _saveData;
 
     public bool IsRunning { get; private set; }
     public bool IsBegin { get; private set; }
-    public TimePersistenceObject SaveData { get; private set; }
+
+    public TimePersistenceObject SaveData
+    {
+        get
+        {
+            if (_saveData is null)
+            {
+                _saveData= PersistenceManager.Instance.LoadOrCreate<TimePersistenceObject>("TimeManager_GameTime");
+            }
+
+            return _saveData;
+        }
+    }
 
     public TimeData TimeData => _timeData;
 
@@ -168,8 +181,6 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
     public void Begin()
     {
         Reset();
-
-        SaveData = PersistenceManager.Instance.LoadOrCreate<TimePersistenceObject>("TimeManager_GameTime");
         
         IsBegin = true;
         IsRunning = true;

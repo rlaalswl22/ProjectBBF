@@ -68,6 +68,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             CollisionInteractionUtil
                 .CreateSelectState()
                 .Bind<IBOCollectPlant>(CollectPlant)
+                .Bind<IBOCollect>(CollectObject)
                 .Execute(interaction.ContractInfo);
         }
         catch(Exception e) when(e is not OperationCanceledException)
@@ -77,6 +78,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
         await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
     }
+
+
     public async UniTask OnDialogueAction()
     {
         await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
@@ -332,6 +335,22 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         if (action.Collect(targetPos, items) is false) return false;
 
         foreach (var item in items)
+        {
+            _controller.Inventory.PushItem(item, 1);
+        }
+        
+        _controller.Inventory.ViewRefresh();
+        _controller.QuickInventory.ViewRefresh();
+
+        return true;
+    }
+    
+    private bool CollectObject(IBOCollect action)
+    {
+        var list = action.Collect();
+        if (list is null) return false;
+
+        foreach (ItemData item in list)
         {
             _controller.Inventory.PushItem(item, 1);
         }

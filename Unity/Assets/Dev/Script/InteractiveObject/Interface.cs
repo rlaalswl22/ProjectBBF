@@ -10,10 +10,6 @@ public enum EPlayerCollectingAnimation : int
     Shovels
 }
 
-public interface IBOBurn : IObjectBehaviour
-{
-    public UniTaskVoid DoFire();
-}
 public interface IBOCollect : IObjectBehaviour
 {
     public List<ItemData> Collect();
