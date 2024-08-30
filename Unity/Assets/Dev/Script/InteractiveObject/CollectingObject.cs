@@ -57,7 +57,8 @@ public class CollectingObject : MonoBehaviour, IBOCollect
         return list;
     }
 
-    public void OnValidate()
+    [ButtonMethod]
+    private void ApplyData()
     {
         if (_renderer == false) return;
         if (Data == false) return;

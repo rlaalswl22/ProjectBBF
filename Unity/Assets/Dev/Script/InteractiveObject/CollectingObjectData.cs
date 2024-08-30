@@ -22,9 +22,4 @@ public class CollectingObjectData : ScriptableObject
     public Sprite CollectedSprite => _collectedSprite;
 
     public IReadOnlyList<Item> DropItems => _dropItems;
-
-    private void OnValidate()
-    {
-        
-    }
 }
