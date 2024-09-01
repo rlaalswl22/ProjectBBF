@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,10 +21,15 @@ public class ItemData : ScriptableObject
     public Sprite ItemSprite => _itemSprite;
     public float LootingTime => _lootingTime;
     public string ItemDescription => _itemDescription;
-    public int MaxStackCount => _maxStackCount;
+    public int MaxStackCount => Mathf.Max(1, _maxStackCount);
     public ItemTypeInfo Info => _itemTypeInfo;
 
     public ActionCategoryType ActionCategoryType => _actionCategoryType;
 
     public ActionAnimationType ActionAnimationType => _actionAnimationType;
+
+    private void OnValidate()
+    {
+        _maxStackCount = Mathf.Max(1, _maxStackCount);
+    }
 }

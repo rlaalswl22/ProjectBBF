@@ -26,7 +26,7 @@ public class PlayerQuickInventorySlotView : MonoBehaviour
 
             if (_slotController is not null)
             {
-                _slotController.Chnaged -= OnChanged;
+                _slotController.OnChanged -= OnChanged;
             }
             else
             {
@@ -34,7 +34,7 @@ public class PlayerQuickInventorySlotView : MonoBehaviour
             }
             
             _slotController = value;
-            _slotController.Chnaged += OnChanged;
+            _slotController.OnChanged += OnChanged;
         }
     }
     public ItemData ItemData => SlotController.Data;

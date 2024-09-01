@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class GridInventorySlot : InventorySlot
+public class GridInventorySlot : DefaultInventorySlot
 {
     public Vector2Int Position { get; private set; }
 
@@ -13,14 +13,14 @@ public class GridInventorySlot : InventorySlot
     }
 }
 
-public class GridInventory : IInventory
+public class GridInventoryModel : IInventoryModel
 {
     public GridInventorySlot[,] Slots { get; private set; }
     public Vector2Int Size { get; private set; }
     
     public bool IsFull => GetFirstEmptySlotPosition() is null;
 
-    public GridInventory(Vector2Int defaultSize)
+    public GridInventoryModel(Vector2Int defaultSize)
     {
         Alloc(defaultSize);
     }
@@ -136,7 +136,15 @@ public class GridInventory : IInventory
         
 
         var slot = Slots[slotPos!.Value.y, slotPos!.Value.x];
-        return slot.TrySet(itemData, count, method);
+
+        if (method == InventorySlotSetMethod.Add)
+        {
+            return slot.TryAdd(count);
+        }
+        else
+        {
+            return slot.TrySet(itemData, count);
+        }
     }
 
     public int MaxSize => Size.sqrMagnitude;
@@ -152,8 +160,20 @@ public class GridInventory : IInventory
         return iter.Current as IInventorySlot;
     }
 
-    public void ViewRefresh()
+    public IEnumerator<IInventorySlot> GetEnumerator()
+        => Slots.GetEnumerator() as IEnumerator<IInventorySlot>;
+
+    public bool Contains(ItemData itemData)
     {
-        
+        var eumerator = Slots.GetEnumerator();
+        while (eumerator.MoveNext())
+        {
+            if (eumerator.Current is IInventorySlot slot)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

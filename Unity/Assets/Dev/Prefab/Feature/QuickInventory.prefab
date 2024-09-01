@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7951223276963793669}
   - component: {fileID: 3263242486269980622}
   - component: {fileID: 299884806764500027}
-  - component: {fileID: 8947873115621646163}
   m_Layer: 5
   m_Name: QuickInventory
   m_TagString: Untagged
@@ -129,19 +128,6 @@ MonoBehaviour:
   - {fileID: 8030577415586460686}
   - {fileID: 1436341321984055966}
   _cursor: {fileID: 4242917652932285374}
---- !u!114 &8947873115621646163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348312654162677784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad60d5630e5253f429290381e4980cae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _view: {fileID: 299884806764500027}
 --- !u!1 &2373075447916059963
 GameObject:
   m_ObjectHideFlags: 0

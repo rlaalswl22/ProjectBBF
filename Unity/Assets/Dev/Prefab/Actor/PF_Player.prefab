@@ -58,7 +58,7 @@ MonoBehaviour:
   _animator: {fileID: 6133982080927662466}
   _stateHandler: {fileID: 4878991871154345875}
   _interaction: {fileID: 5484448434690136902}
-  _quickInventory: {fileID: 5186966046427546130}
+  _quickInventoryView: {fileID: 4611565860007102842}
   _testTool: {fileID: 11400000, guid: 71b1b695fda60734da691c8b0e4464e3, type: 2}
   _testWaterSpray: {fileID: 11400000, guid: e4a919c6e0400c24593ce3eb50f6180c, type: 2}
   _testSeed: {fileID: 11400000, guid: b063ffbc1ffe55c4ead176532a042f2e, type: 2}
@@ -566,15 +566,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f038b2a52610fbd45baaddbc45e4d678, type: 3}
---- !u!114 &5186966046427546130 stripped
+--- !u!114 &4611565860007102842 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8947873115621646163, guid: f038b2a52610fbd45baaddbc45e4d678, type: 3}
+  m_CorrespondingSourceObject: {fileID: 299884806764500027, guid: f038b2a52610fbd45baaddbc45e4d678, type: 3}
   m_PrefabInstance: {fileID: 4311903159044201793}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad60d5630e5253f429290381e4980cae, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a3838108a06d384e8b57491771d5e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &7729782041570067595 stripped

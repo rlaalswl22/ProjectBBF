@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private CollisionInteraction _interaction;
 
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
-    private PlayerQuickInventoryController _quickInventory;
+    private PlayerQuickInventoryView _quickInventoryView;
 
     [field: SerializeField] private ItemData _testTool;
     [field: SerializeField] private ItemData _testWaterSpray;
@@ -62,8 +62,7 @@ public class PlayerController : MonoBehaviour
     public PlayerCoordinate Coordinate { get; private set; }
     
     
-    public GridInventory Inventory { get; private set; }
-    public PlayerQuickInventoryController QuickInventory => _quickInventory;
+    public PlayerInventoryController Inventory { get; private set; }
     #endregion
 
     private void Awake()
@@ -74,9 +73,10 @@ public class PlayerController : MonoBehaviour
         Interactor = Bind<PlayerInteracter>();
         Coordinate = Bind<PlayerCoordinate>();
         
-        
-        Inventory = new GridInventory(new Vector2Int(10, 3));
-        QuickInventory.Init(this);
+        Inventory = new PlayerInventoryController(
+            new GridInventoryModel(new Vector2Int(10, 3)),
+            _quickInventoryView
+            );
         
         GameObjectStorage.Instance.AddGameObject(gameObject);
 
@@ -107,10 +107,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Inventory.PushItem(_testTool, 1);
-        Inventory.PushItem(_testWaterSpray, 1);
-        Inventory.PushItem(_testSeed, 4);
-        Inventory.PushItem(_testFertilizer, 4);
+        Inventory.Model.PushItem(_testTool, 1);
+        Inventory.Model.PushItem(_testWaterSpray, 1);
+        Inventory.Model.PushItem(_testSeed, 4);
+        Inventory.Model.PushItem(_testFertilizer, 4);
     }
 
     private T Bind<T>() where T : MonoBehaviour, IPlayerStrategy

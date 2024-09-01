@@ -13,13 +13,6 @@ public class PlayerQuickInventoryView : MonoBehaviour, IInventoryView
 
     public int CurrentItemIndex => _currentCursor;
     public int MaxSlotCount => _slots.Length;
-    private IInventory _targetInventory;
-
-    public void Init(IInventory targetInventory)
-    {
-        _targetInventory = targetInventory;
-        Refresh();
-    }
 
     private void OnEnable()
     {
@@ -64,11 +57,11 @@ public class PlayerQuickInventoryView : MonoBehaviour, IInventoryView
         _cursor.position = (_slots[_currentCursor].transform as RectTransform)!.position;
     }
 
-    public void Refresh()
+    public void Refresh(IInventoryModel model)
     {
         for (int i = 0; i < _slots.Length; i++)
         {
-            var slot = _targetInventory.GetSlotSequentially(i);
+            var slot = model.GetSlotSequentially(i);
             if (slot is null)
             {
                 _slots[i].SlotController = null;

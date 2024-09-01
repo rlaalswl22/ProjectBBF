@@ -26,7 +26,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         try
         {
             
-            ItemData currentData = _controller.QuickInventory.CurrentItemData;
+            ItemData currentData = _controller.Inventory.CurrentItemData;
             
             if (currentData &&  (
                 currentData.Info.Contains(ToolType.Hoe) ||
@@ -92,7 +92,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             await Dialogue(interaction);
                 
             DialogueController.Instance.ResetDialogue();
-            _controller.QuickInventory.Visible = true;
+            _controller.Inventory.QuickInvVisible = true;
         }
         catch(Exception e) when(e is not OperationCanceledException)
         {
@@ -123,7 +123,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             actorInfo.TryGetBehaviour(out IBANameKey nameKey))
         {
             stateTransfer.TranslateState("TalkingForPlayer");
-            _controller.QuickInventory.Visible = false;
+            _controller.Inventory.HideAll();
 
             if (actorInfo.Interaction.Owner is Actor actor)
             {
@@ -210,18 +210,17 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         print("PlantTile");
         var targetPos = _controller.Coordinate.GetFront();
-        ItemData data = _controller.QuickInventory.CurrentItemData;
-        IInventorySlot slot = _controller.QuickInventory.CurrentItemSlot;
+        ItemData data = _controller.Inventory.CurrentItemData;
+        IInventorySlot slot = _controller.Inventory.CurrentItemSlot;
         
         bool success = false;
         
         if (data is PlantItemData grownData && action.Plant(targetPos, grownData.Definition))
         {
-            success = slot.TrySetCount(slot.Count - 1, true);
+            success = slot.TryAdd(-1, true);
         }
         
-        _controller.QuickInventory.ViewRefresh();
-        _controller.Inventory.ViewRefresh();
+        _controller.Inventory.Refresh();
         
         return success;
     }
@@ -230,8 +229,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         print("FertilizerTile");
         var targetPos = _controller.Coordinate.GetFront();
-        ItemData data = _controller.QuickInventory.CurrentItemData;
-        IInventorySlot slot = _controller.QuickInventory.CurrentItemSlot;
+        ItemData data = _controller.Inventory.CurrentItemData;
+        IInventorySlot slot = _controller.Inventory.CurrentItemSlot;
 
         if (data is null) return false;
         if (slot is null) return false;
@@ -245,13 +244,12 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 success = action.PlantFertilizer(targetPos, fertilizerItem.TargetTile);
                 
                 if(success)
-                    slot.TrySetCount(slot.Count - 1, true);
+                    slot.TryAdd(-1, true);
             }
 
         }
 
-        _controller.QuickInventory.ViewRefresh();
-        _controller.Inventory.ViewRefresh();
+        _controller.Inventory.Refresh();
         
         return success;
     }
@@ -260,7 +258,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         print("CultivateTile");
         var targetPos = _controller.Coordinate.GetFront();
-        ItemData data = _controller.QuickInventory.CurrentItemData;
+        ItemData data = _controller.Inventory.CurrentItemData;
 
         if (data is null) return false;
 
@@ -271,8 +269,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             success = action.TryCultivateTile(targetPos, null);
         }
         
-        _controller.QuickInventory.ViewRefresh();
-        _controller.Inventory.ViewRefresh();
+        _controller.Inventory.Refresh();
         
         return success;
     }
@@ -281,7 +278,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         print("SprinkleWater");
         var targetPos = _controller.Coordinate.GetFront();
-        ItemData data = _controller.QuickInventory.CurrentItemData;
+        ItemData data = _controller.Inventory.CurrentItemData;
 
         if (data is null) return false;
 
@@ -299,7 +296,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         print("DestroyTile");
         var targetPos = _controller.Coordinate.GetFront();
-        var data = _controller.QuickInventory.CurrentItemData;
+        var data = _controller.Inventory.CurrentItemData;
 
         if (data is null) return false;
         var list = destoryTile.Destory(targetPos, data.Info);
@@ -309,7 +306,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         list.ForEach(item =>
         {
             // 아이템 획득에 실패하면 필드에 아이템 드랍
-            if (_controller.Inventory.PushItem(item, 1) == false)
+            if (_controller.Inventory.Model.PushItem(item, 1) == false)
             {
                 FieldItem.Create(new FieldItem.FieldItemInitParameter()
                 {
@@ -319,8 +316,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             }
         });
 
-        _controller.Inventory.ViewRefresh();
-        _controller.QuickInventory.ViewRefresh();
+        _controller.Inventory.Refresh();
         return true;
     }
 
@@ -328,7 +324,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         print("CollectPlant");
         var targetPos = _controller.Coordinate.GetFront();
-        var data = _controller.QuickInventory.CurrentItemData;
+        var data = _controller.Inventory.CurrentItemData;
 
         List<ItemData> items = new List<ItemData>(2);
 
@@ -336,11 +332,10 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
         foreach (var item in items)
         {
-            _controller.Inventory.PushItem(item, 1);
+            _controller.Inventory.Model.PushItem(item, 1);
         }
         
-        _controller.Inventory.ViewRefresh();
-        _controller.QuickInventory.ViewRefresh();
+        _controller.Inventory.Refresh();
 
         return true;
     }
@@ -352,11 +347,10 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
         foreach (ItemData item in list)
         {
-            _controller.Inventory.PushItem(item, 1);
+            _controller.Inventory.Model.PushItem(item, 1);
         }
         
-        _controller.Inventory.ViewRefresh();
-        _controller.QuickInventory.ViewRefresh();
+        _controller.Inventory.Refresh();
 
         return true;
     }
