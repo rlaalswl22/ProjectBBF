@@ -32,8 +32,8 @@ public class LinearInventoryModel : IInventoryModel
             slot = new DefaultInventorySlot(true);
         }
         
-        bool success = slot.TryAdd(count);
-        Debug.Assert(success);
+        SlotStatus status = slot.TryAdd(count);
+        Debug.Assert(status is SlotStatus.Success);
             
         _slots.Add(slot);
     }
@@ -44,7 +44,7 @@ public class LinearInventoryModel : IInventoryModel
 
         while (iter.MoveNext())
         {
-            if (iter.Current is not null && iter.Current.CanAdd(count))
+            if (iter.Current is not null && iter.Current.CanAdd(count) is SlotStatus.Success)
             {
                 return iter.Current;
             }

@@ -24,27 +24,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "BuilderMode",
-                    "type": "Button",
-                    "id": "2a2a3034-9b6b-411e-9456-a6d73a735b34",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Collect",
                     "type": "Button",
                     "id": "5bb6e3fe-0e7f-46c4-84ab-0423b6fde981",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ShakingMiniGameInteraction",
-                    "type": "Button",
-                    "id": "9dd94aa4-44a8-45d1-9612-51c8c02574a7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -58,24 +40,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "MoveLeftIngredientSelection",
-                    "type": "Button",
-                    "id": "b18ce12a-00bb-47bf-b046-0294ff010ec3",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "MoveRightIngredientSelection",
-                    "type": "Button",
-                    "id": "f87f2400-9937-4a86-90a6-a60f98493195",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 },
                 {
                     "name": "DestroyObject",
@@ -103,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "529f9887-26fe-4a02-9cad-a130fe4e7135",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -174,34 +147,12 @@
                 },
                 {
                     "name": "",
-                    "id": "7ed886e7-4c6e-4f49-8ebb-ad5a37594b0c",
-                    "path": "<Keyboard>/b",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "WinPCScheme",
-                    "action": "BuilderMode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "109f2777-561c-45fb-acf6-4c913737fc3a",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "WinPCScheme",
                     "action": "Collect",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a064210b-bcf6-419d-bb76-d811aa971ffe",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "WinPCScheme",
-                    "action": "ShakingMiniGameInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -235,28 +186,6 @@
                     "processors": "",
                     "groups": "WinPCScheme",
                     "action": "DialogueSkip",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6b5099e9-86b9-4fc7-b520-cc553e322b9e",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "WinPCScheme",
-                    "action": "MoveLeftIngredientSelection",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1e9ad895-3356-4a12-adcb-3cbb2d670543",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "WinPCScheme",
-                    "action": "MoveRightIngredientSelection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -389,6 +318,17 @@
                     "processors": "Scale(factor=10)",
                     "groups": "",
                     "action": "QuickSlotScrollButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "577d238a-bd39-4c53-b259-74216fd803ec",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WinPCScheme",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

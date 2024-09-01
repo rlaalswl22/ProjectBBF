@@ -46,27 +46,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""BuilderMode"",
-                    ""type"": ""Button"",
-                    ""id"": ""2a2a3034-9b6b-411e-9456-a6d73a735b34"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Collect"",
                     ""type"": ""Button"",
                     ""id"": ""5bb6e3fe-0e7f-46c4-84ab-0423b6fde981"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ShakingMiniGameInteraction"",
-                    ""type"": ""Button"",
-                    ""id"": ""9dd94aa4-44a8-45d1-9612-51c8c02574a7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -80,24 +62,6 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MoveLeftIngredientSelection"",
-                    ""type"": ""Button"",
-                    ""id"": ""b18ce12a-00bb-47bf-b046-0294ff010ec3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""MoveRightIngredientSelection"",
-                    ""type"": ""Button"",
-                    ""id"": ""f87f2400-9937-4a86-90a6-a60f98493195"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""DestroyObject"",
@@ -125,6 +89,15 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""529f9887-26fe-4a02-9cad-a130fe4e7135"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -196,34 +169,12 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7ed886e7-4c6e-4f49-8ebb-ad5a37594b0c"",
-                    ""path"": ""<Keyboard>/b"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""WinPCScheme"",
-                    ""action"": ""BuilderMode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""109f2777-561c-45fb-acf6-4c913737fc3a"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""WinPCScheme"",
                     ""action"": ""Collect"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a064210b-bcf6-419d-bb76-d811aa971ffe"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""WinPCScheme"",
-                    ""action"": ""ShakingMiniGameInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -257,28 +208,6 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""WinPCScheme"",
                     ""action"": ""DialogueSkip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6b5099e9-86b9-4fc7-b520-cc553e322b9e"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""WinPCScheme"",
-                    ""action"": ""MoveLeftIngredientSelection"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1e9ad895-3356-4a12-adcb-3cbb2d670543"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""WinPCScheme"",
-                    ""action"": ""MoveRightIngredientSelection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -413,6 +342,17 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""action"": ""QuickSlotScrollButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""577d238a-bd39-4c53-b259-74216fd803ec"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""WinPCScheme"",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -440,15 +380,12 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         m_PlayerControl = asset.FindActionMap("PlayerControl", throwIfNotFound: true);
         m_PlayerControl_Movement = m_PlayerControl.FindAction("Movement", throwIfNotFound: true);
         m_PlayerControl_Sprint = m_PlayerControl.FindAction("Sprint", throwIfNotFound: true);
-        m_PlayerControl_BuilderMode = m_PlayerControl.FindAction("BuilderMode", throwIfNotFound: true);
         m_PlayerControl_Collect = m_PlayerControl.FindAction("Collect", throwIfNotFound: true);
-        m_PlayerControl_ShakingMiniGameInteraction = m_PlayerControl.FindAction("ShakingMiniGameInteraction", throwIfNotFound: true);
         m_PlayerControl_DialogueSkip = m_PlayerControl.FindAction("DialogueSkip", throwIfNotFound: true);
-        m_PlayerControl_MoveLeftIngredientSelection = m_PlayerControl.FindAction("MoveLeftIngredientSelection", throwIfNotFound: true);
-        m_PlayerControl_MoveRightIngredientSelection = m_PlayerControl.FindAction("MoveRightIngredientSelection", throwIfNotFound: true);
         m_PlayerControl_DestroyObject = m_PlayerControl.FindAction("DestroyObject", throwIfNotFound: true);
         m_PlayerControl_QuickSlotScroll = m_PlayerControl.FindAction("QuickSlotScroll", throwIfNotFound: true);
         m_PlayerControl_QuickSlotScrollButton = m_PlayerControl.FindAction("QuickSlotScrollButton", throwIfNotFound: true);
+        m_PlayerControl_Inventory = m_PlayerControl.FindAction("Inventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -512,30 +449,24 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     private List<IPlayerControlActions> m_PlayerControlActionsCallbackInterfaces = new List<IPlayerControlActions>();
     private readonly InputAction m_PlayerControl_Movement;
     private readonly InputAction m_PlayerControl_Sprint;
-    private readonly InputAction m_PlayerControl_BuilderMode;
     private readonly InputAction m_PlayerControl_Collect;
-    private readonly InputAction m_PlayerControl_ShakingMiniGameInteraction;
     private readonly InputAction m_PlayerControl_DialogueSkip;
-    private readonly InputAction m_PlayerControl_MoveLeftIngredientSelection;
-    private readonly InputAction m_PlayerControl_MoveRightIngredientSelection;
     private readonly InputAction m_PlayerControl_DestroyObject;
     private readonly InputAction m_PlayerControl_QuickSlotScroll;
     private readonly InputAction m_PlayerControl_QuickSlotScrollButton;
+    private readonly InputAction m_PlayerControl_Inventory;
     public struct PlayerControlActions
     {
         private @DefaultKeymap m_Wrapper;
         public PlayerControlActions(@DefaultKeymap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerControl_Movement;
         public InputAction @Sprint => m_Wrapper.m_PlayerControl_Sprint;
-        public InputAction @BuilderMode => m_Wrapper.m_PlayerControl_BuilderMode;
         public InputAction @Collect => m_Wrapper.m_PlayerControl_Collect;
-        public InputAction @ShakingMiniGameInteraction => m_Wrapper.m_PlayerControl_ShakingMiniGameInteraction;
         public InputAction @DialogueSkip => m_Wrapper.m_PlayerControl_DialogueSkip;
-        public InputAction @MoveLeftIngredientSelection => m_Wrapper.m_PlayerControl_MoveLeftIngredientSelection;
-        public InputAction @MoveRightIngredientSelection => m_Wrapper.m_PlayerControl_MoveRightIngredientSelection;
         public InputAction @DestroyObject => m_Wrapper.m_PlayerControl_DestroyObject;
         public InputAction @QuickSlotScroll => m_Wrapper.m_PlayerControl_QuickSlotScroll;
         public InputAction @QuickSlotScrollButton => m_Wrapper.m_PlayerControl_QuickSlotScrollButton;
+        public InputAction @Inventory => m_Wrapper.m_PlayerControl_Inventory;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControl; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -551,24 +482,12 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
-            @BuilderMode.started += instance.OnBuilderMode;
-            @BuilderMode.performed += instance.OnBuilderMode;
-            @BuilderMode.canceled += instance.OnBuilderMode;
             @Collect.started += instance.OnCollect;
             @Collect.performed += instance.OnCollect;
             @Collect.canceled += instance.OnCollect;
-            @ShakingMiniGameInteraction.started += instance.OnShakingMiniGameInteraction;
-            @ShakingMiniGameInteraction.performed += instance.OnShakingMiniGameInteraction;
-            @ShakingMiniGameInteraction.canceled += instance.OnShakingMiniGameInteraction;
             @DialogueSkip.started += instance.OnDialogueSkip;
             @DialogueSkip.performed += instance.OnDialogueSkip;
             @DialogueSkip.canceled += instance.OnDialogueSkip;
-            @MoveLeftIngredientSelection.started += instance.OnMoveLeftIngredientSelection;
-            @MoveLeftIngredientSelection.performed += instance.OnMoveLeftIngredientSelection;
-            @MoveLeftIngredientSelection.canceled += instance.OnMoveLeftIngredientSelection;
-            @MoveRightIngredientSelection.started += instance.OnMoveRightIngredientSelection;
-            @MoveRightIngredientSelection.performed += instance.OnMoveRightIngredientSelection;
-            @MoveRightIngredientSelection.canceled += instance.OnMoveRightIngredientSelection;
             @DestroyObject.started += instance.OnDestroyObject;
             @DestroyObject.performed += instance.OnDestroyObject;
             @DestroyObject.canceled += instance.OnDestroyObject;
@@ -578,6 +497,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @QuickSlotScrollButton.started += instance.OnQuickSlotScrollButton;
             @QuickSlotScrollButton.performed += instance.OnQuickSlotScrollButton;
             @QuickSlotScrollButton.canceled += instance.OnQuickSlotScrollButton;
+            @Inventory.started += instance.OnInventory;
+            @Inventory.performed += instance.OnInventory;
+            @Inventory.canceled += instance.OnInventory;
         }
 
         private void UnregisterCallbacks(IPlayerControlActions instance)
@@ -588,24 +510,12 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
-            @BuilderMode.started -= instance.OnBuilderMode;
-            @BuilderMode.performed -= instance.OnBuilderMode;
-            @BuilderMode.canceled -= instance.OnBuilderMode;
             @Collect.started -= instance.OnCollect;
             @Collect.performed -= instance.OnCollect;
             @Collect.canceled -= instance.OnCollect;
-            @ShakingMiniGameInteraction.started -= instance.OnShakingMiniGameInteraction;
-            @ShakingMiniGameInteraction.performed -= instance.OnShakingMiniGameInteraction;
-            @ShakingMiniGameInteraction.canceled -= instance.OnShakingMiniGameInteraction;
             @DialogueSkip.started -= instance.OnDialogueSkip;
             @DialogueSkip.performed -= instance.OnDialogueSkip;
             @DialogueSkip.canceled -= instance.OnDialogueSkip;
-            @MoveLeftIngredientSelection.started -= instance.OnMoveLeftIngredientSelection;
-            @MoveLeftIngredientSelection.performed -= instance.OnMoveLeftIngredientSelection;
-            @MoveLeftIngredientSelection.canceled -= instance.OnMoveLeftIngredientSelection;
-            @MoveRightIngredientSelection.started -= instance.OnMoveRightIngredientSelection;
-            @MoveRightIngredientSelection.performed -= instance.OnMoveRightIngredientSelection;
-            @MoveRightIngredientSelection.canceled -= instance.OnMoveRightIngredientSelection;
             @DestroyObject.started -= instance.OnDestroyObject;
             @DestroyObject.performed -= instance.OnDestroyObject;
             @DestroyObject.canceled -= instance.OnDestroyObject;
@@ -615,6 +525,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @QuickSlotScrollButton.started -= instance.OnQuickSlotScrollButton;
             @QuickSlotScrollButton.performed -= instance.OnQuickSlotScrollButton;
             @QuickSlotScrollButton.canceled -= instance.OnQuickSlotScrollButton;
+            @Inventory.started -= instance.OnInventory;
+            @Inventory.performed -= instance.OnInventory;
+            @Inventory.canceled -= instance.OnInventory;
         }
 
         public void RemoveCallbacks(IPlayerControlActions instance)
@@ -645,14 +558,11 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnBuilderMode(InputAction.CallbackContext context);
         void OnCollect(InputAction.CallbackContext context);
-        void OnShakingMiniGameInteraction(InputAction.CallbackContext context);
         void OnDialogueSkip(InputAction.CallbackContext context);
-        void OnMoveLeftIngredientSelection(InputAction.CallbackContext context);
-        void OnMoveRightIngredientSelection(InputAction.CallbackContext context);
         void OnDestroyObject(InputAction.CallbackContext context);
         void OnQuickSlotScroll(InputAction.CallbackContext context);
         void OnQuickSlotScrollButton(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
     }
 }

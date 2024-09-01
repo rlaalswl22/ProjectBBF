@@ -100,14 +100,14 @@ public class GridInventoryModel : IInventoryModel
     }
 
 
-    public Vector2Int? GetAdditionalSlotPosition(ItemData itemData, int count)
+    public Vector2Int? GetAdditionalSlotPosition(ItemData itemData)
     {
         for (int i = 0; i < Size.y; i++)
         {
             for (int j = 0; j < Size.x; j++)
             {
                 var slot = Slots[i, j];
-                if (slot.Data == itemData && itemData.MaxStackCount >= slot.Count + count)
+                if (slot.Data == itemData && slot.Count < slot.Data.MaxStackCount)
                 {
                     return new Vector2Int(j, i);
                 }
@@ -119,43 +119,64 @@ public class GridInventoryModel : IInventoryModel
 
     public bool PushItem(ItemData itemData, int count)
     {
-        Vector2Int? slotPos = GetAdditionalSlotPosition(itemData, count);
-        InventorySlotSetMethod method;
+        int remaingCount = count;
 
-        if (slotPos is not null)
+        while (remaingCount > 0)
         {
-            method = InventorySlotSetMethod.Add;
-        }
-        else
-        {
-            slotPos = GetFirstEmptySlotPosition();
+            Vector2Int? slotPos = GetAdditionalSlotPosition(itemData);
+            InventorySlotSetMethod method;
 
-            if (slotPos is null) return false;
-            method = InventorySlotSetMethod.Set;
-        }
+            if (slotPos is not null)
+            {
+                method = InventorySlotSetMethod.Add;
+            }
+            else
+            {
+                slotPos = GetFirstEmptySlotPosition();
+
+                if (slotPos is null) return false;
+                method = InventorySlotSetMethod.Set;
+            }
 
 
-        var slot = Slots[slotPos!.Value.y, slotPos!.Value.x];
+            var slot = Slots[slotPos!.Value.y, slotPos!.Value.x];
 
-        if (method == InventorySlotSetMethod.Add)
-        {
-            return slot.TryAdd(count);
+            SlotStatus status;
+
+            if (method == InventorySlotSetMethod.Add)
+            {
+                status = slot.TryAdd(remaingCount);
+            }
+            else
+            {
+                status = slot.TrySet(itemData, remaingCount);
+            }
+
+            if (SlotChecker.Contains(status, SlotStatus.OverMaxStack))
+            {
+                remaingCount -= (itemData.MaxStackCount - slot.Count);
+                slot.ForceSet(itemData, itemData.MaxStackCount);
+                continue;
+            }
+
+            if (SlotChecker.Contains(status, SlotStatus.Success))
+            {
+                return true;
+            }
+
         }
-        else
-        {
-            return slot.TrySet(itemData, count);
-        }
+        
+        return true;
     }
 
     public int MaxSize => Size.sqrMagnitude;
 
     public IInventorySlot GetSlotSequentially(int index)
     {
-        int y = index / Size.y;
+        int y = index / Size.x;
         int x = index % Size.x;
-        
+
         if (index < 0 || index >= MaxSize) return null;
-        if (x < 0 || x >= Size.x || y < 0 || y >= Size.y) return null;
 
         return Slots[y, x];
     }

@@ -13,21 +13,25 @@ public class PlayerController : MonoBehaviour
 {
     [field: SerializeField, Foldout("데이터"), OverrideLabel("플레이어 이동 데이터"), MustBeAssigned, DisplayInspector]
     private PlayerMovementData _movementData;
+
     [field: SerializeField, Foldout("데이터"), OverrideLabel("플레이어 이동 데이터"), MustBeAssigned, DisplayInspector]
     private PlayerAnimationData _animationData;
-    
+
     [field: SerializeField, Separator("컴포넌트"), MustBeAssigned, AutoProperty(AutoPropertyMode.Children)]
     private Rigidbody2D _rigidbody;
 
     [field: SerializeField, MustBeAssigned, AutoProperty(AutoPropertyMode.Children)]
     private Animator _animator;
+
     [field: SerializeField, MustBeAssigned, AutoProperty(AutoPropertyMode.Children)]
     private StateTransitionHandler _stateHandler;
+
     [field: SerializeField, MustBeAssigned, AutoProperty(AutoPropertyMode.Children)]
     private CollisionInteraction _interaction;
 
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
     private PlayerQuickInventoryView _quickInventoryView;
+
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
     private PlayerMainInventoryView _mainInventoryView;
 
@@ -51,47 +55,49 @@ public class PlayerController : MonoBehaviour
 
 
     #region Getter/Setter
+
     public PlayerMovementData MovementData => _movementData;
     public PlayerAnimationData AnimationData => _animationData;
     public Rigidbody2D Rigidbody => _rigidbody;
     public Animator Animator => _animator;
-    
-    
+
+
     public PlayerMove MoveStrategy { get; private set; }
     public PlayerVisual VisualStrategy { get; private set; }
     public PlayerStateTranslator Translator { get; private set; }
     public PlayerInteracter Interactor { get; private set; }
     public PlayerCoordinate Coordinate { get; private set; }
-    
-    
+
+
     public PlayerInventoryController Inventory { get; private set; }
+
     #endregion
 
     private void Awake()
     {
         MoveStrategy = Bind<PlayerMove>();
-        VisualStrategy =Bind<PlayerVisual>();
+        VisualStrategy = Bind<PlayerVisual>();
         Translator = Bind<PlayerStateTranslator>();
         Interactor = Bind<PlayerInteracter>();
         Coordinate = Bind<PlayerCoordinate>();
-        
+
         Inventory = new PlayerInventoryController(
-            new GridInventoryModel(new Vector2Int(5, 4)),
+            new GridInventoryModel(new Vector2Int(10, 3)),
             _mainInventoryView,
             _quickInventoryView
-            );
-        
+        );
+
         GameObjectStorage.Instance.AddGameObject(gameObject);
 
 
         var info = ActorContractInfo.Create(() => gameObject);
         Interaction.SetContractInfo(info, this);
-        
+
         StateHandler.Init(Interaction);
 
         DataInit();
     }
-
+    
     private void DataInit()
     {
         Blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
@@ -99,7 +105,7 @@ public class PlayerController : MonoBehaviour
         Blackboard.MaxStemina = _movementData.DefaultStemina;
         Blackboard.Stemina = _movementData.DefaultStemina;
     }
-    
+
     private void OnDestroy()
     {
         if (GameObjectStorage.Instance)
@@ -113,7 +119,7 @@ public class PlayerController : MonoBehaviour
         Inventory.Model.PushItem(_testTool, 1);
         Inventory.Model.PushItem(_testWaterSpray, 1);
         Inventory.Model.PushItem(_testSeed, 4);
-        Inventory.Model.PushItem(_testFertilizer, 4);
+        Inventory.Model.PushItem(_testFertilizer, 5);
     }
 
     private T Bind<T>() where T : MonoBehaviour, IPlayerStrategy
@@ -123,5 +129,4 @@ public class PlayerController : MonoBehaviour
 
         return obj;
     }
-    
 }

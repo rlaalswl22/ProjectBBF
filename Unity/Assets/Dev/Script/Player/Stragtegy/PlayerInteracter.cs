@@ -223,7 +223,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         
         if (data is PlantItemData grownData && action.Plant(targetPos, grownData.Definition))
         {
-            success = slot.TryAdd(-1, true);
+            success = slot.TryAdd(-1, true) is SlotStatus.Success;
         }
         
         _controller.Inventory.Refresh();

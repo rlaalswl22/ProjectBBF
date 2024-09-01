@@ -26,18 +26,6 @@ public class PlayerStateTranslator : MonoBehaviour, IPlayerStrategy
 
     public void OnUpdate()
     {
-        // builder mode
-        if (InputManager.Actions.BuilderMode.triggered)
-        {
-            if (PeekState != EPlayerControlState.Builder)
-            {
-                PeekState = EPlayerControlState.Builder;
-            }
-            else
-            {
-                PeekState = EPlayerControlState.Normal;
-            }
-        }
         
         // collecting
         if (InputManager.Actions.Collect.triggered)
