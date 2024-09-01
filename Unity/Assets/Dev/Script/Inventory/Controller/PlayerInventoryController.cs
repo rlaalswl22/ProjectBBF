@@ -7,7 +7,7 @@ public class PlayerInventoryController : IInventoryController<GridInventoryModel
 {
     public GridInventoryModel Model { get; private set; }
     private PlayerQuickInventoryView _quickView;
-    // TODO: 나중에 메인 inventory view 추가.
+    private PlayerMainInventoryView _mainView;
     
     public bool QuickInvVisible
     {
@@ -15,19 +15,24 @@ public class PlayerInventoryController : IInventoryController<GridInventoryModel
         set => _quickView.Visible = value;
     }
     
-    // TODO: 나중에 메인 Inventory visible 추가
     public bool MainInvVisible
     {
-        get => _quickView.Visible;
-        set => _quickView.Visible = value;
+        get => _mainView.Visible;
+        set => _mainView.Visible = value;
     }
 
-    public PlayerInventoryController(GridInventoryModel model, PlayerQuickInventoryView quickView)
+    public PlayerInventoryController(GridInventoryModel model, PlayerMainInventoryView mainView, PlayerQuickInventoryView quickView)
     {
         Model = model;
+        
+        _mainView = mainView;
         _quickView = quickView;
         
+        _mainView.Refresh(Model);
         _quickView.Refresh(Model);
+
+        QuickInvVisible = true;
+        MainInvVisible = true;
     }
 
     public ItemData CurrentItemData => CurrentItemSlot.Data;
@@ -35,13 +40,13 @@ public class PlayerInventoryController : IInventoryController<GridInventoryModel
 
     public void Refresh()
     {
+        _mainView.Refresh(Model);
         _quickView.Refresh(Model);
-        // TODO: 나중에 메인 Inventory refresh 추가. 
     }
 
     public void HideAll()
     {
-        QuickInvVisible = false;
         MainInvVisible = false;
+        QuickInvVisible = false;
     }
 }

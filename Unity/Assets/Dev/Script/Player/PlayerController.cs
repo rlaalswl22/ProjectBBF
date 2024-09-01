@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
     private PlayerQuickInventoryView _quickInventoryView;
+    [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
+    private PlayerMainInventoryView _mainInventoryView;
 
     [field: SerializeField] private ItemData _testTool;
     [field: SerializeField] private ItemData _testWaterSpray;
@@ -74,7 +76,8 @@ public class PlayerController : MonoBehaviour
         Coordinate = Bind<PlayerCoordinate>();
         
         Inventory = new PlayerInventoryController(
-            new GridInventoryModel(new Vector2Int(10, 3)),
+            new GridInventoryModel(new Vector2Int(5, 4)),
+            _mainInventoryView,
             _quickInventoryView
             );
         

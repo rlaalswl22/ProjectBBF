@@ -17,7 +17,7 @@ public class GridInventoryModel : IInventoryModel
 {
     public GridInventorySlot[,] Slots { get; private set; }
     public Vector2Int Size { get; private set; }
-    
+
     public bool IsFull => GetFirstEmptySlotPosition() is null;
 
     public GridInventoryModel(Vector2Int defaultSize)
@@ -29,19 +29,19 @@ public class GridInventoryModel : IInventoryModel
     {
         var newSlot = new GridInventorySlot[newSize.y, newSize.x];
         Size = newSize;
-        
+
         for (int i = 0; i < Size.y; i++)
         {
             for (int j = 0; j < Size.x; j++)
             {
-                GridInventorySlot gridSlot= new GridInventorySlot(new Vector2Int(j, i));
+                GridInventorySlot gridSlot = new GridInventorySlot(new Vector2Int(j, i));
                 newSlot[i, j] = gridSlot;
             }
         }
 
         Slots = newSlot;
     }
-    
+
     /// <summary>
     /// 인벤토리의 크기를 재할당함.
     /// </summary>
@@ -53,19 +53,19 @@ public class GridInventoryModel : IInventoryModel
         {
             return false;
         }
-        
+
         var originSlot = Slots;
         var newSlot = new GridInventorySlot[newSize.x, newSize.y];
 
         var eumerator = Slots.GetEnumerator();
-        
+
         for (int i = 0; i < newSize.y; i++)
         {
             for (int j = 0; j < newSize.x; j++)
             {
-                GridInventorySlot gridSlot= new GridInventorySlot(new Vector2Int(j, i));
+                GridInventorySlot gridSlot = new GridInventorySlot(new Vector2Int(j, i));
                 newSlot[i, j] = gridSlot;
-                
+
                 if (eumerator.MoveNext() && eumerator.Current is GridInventorySlot originGridSlot)
                 {
                     gridSlot.Swap(originGridSlot);
@@ -75,10 +75,10 @@ public class GridInventoryModel : IInventoryModel
 
         Slots = newSlot;
         Size = newSize;
-        
+
         return true;
     }
-    
+
     /// <summary>
     /// 인벤토리에서 가장 첫번째로 비어있는 슬롯의 포지션을 반환.
     /// </summary>
@@ -129,11 +129,11 @@ public class GridInventoryModel : IInventoryModel
         else
         {
             slotPos = GetFirstEmptySlotPosition();
-            
+
             if (slotPos is null) return false;
             method = InventorySlotSetMethod.Set;
         }
-        
+
 
         var slot = Slots[slotPos!.Value.y, slotPos!.Value.x];
 
@@ -151,17 +151,24 @@ public class GridInventoryModel : IInventoryModel
 
     public IInventorySlot GetSlotSequentially(int index)
     {
-        var iter = Slots.GetEnumerator();
-        for (int i = 0; i <= index; i++)
-        {
-            if (iter.MoveNext() == false) return null;
-        }
+        int y = index / Size.y;
+        int x = index % Size.x;
+        
+        if (index < 0 || index >= MaxSize) return null;
+        if (x < 0 || x >= Size.x || y < 0 || y >= Size.y) return null;
 
-        return iter.Current as IInventorySlot;
+        return Slots[y, x];
     }
 
     public IEnumerator<IInventorySlot> GetEnumerator()
-        => Slots.GetEnumerator() as IEnumerator<IInventorySlot>;
+    {
+        for (int i = 0; i < MaxSize; i++)
+        {
+            var slot = GetSlotSequentially(i);
+
+            yield return slot;
+        }
+    }
 
     public bool Contains(ItemData itemData)
     {

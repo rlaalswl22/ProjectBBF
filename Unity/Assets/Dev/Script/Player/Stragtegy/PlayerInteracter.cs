@@ -21,6 +21,12 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
     }
 
+    public bool MainInventoryVisible
+    {
+        get => _controller.Inventory.MainInvVisible;
+        set => _controller.Inventory.MainInvVisible = value;
+    }
+    
     public async UniTask OnToolAction()
     {
         try
