@@ -71,11 +71,13 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
         }
         else if (notification is BranchTimelineMarker)
         {
+            _director.stopped -= OnStopped;
             var timelineAsset = TimelineAssetHandler.TimelineAsset;
 
             if (timelineAsset == false)
             {
                 _director.Stop();
+                _director.stopped += OnStopped;
                 return;
             }
             
@@ -83,6 +85,8 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
             TimelineAssetHandler.TimelineAsset = null;
             _director.time = 0;
             _director.Play();
+            
+            _director.stopped += OnStopped;
         }
         else if (notification is DirectorTimelineMarker directorMarker)
         {

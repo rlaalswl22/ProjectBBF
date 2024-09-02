@@ -55,30 +55,3 @@ public class DialogueMarker : Marker, INotification
         }
     }
 }
-
-public class BranchTimelineMarker : Marker, INotification
-{
-    public PropertyName id => "Branch";
-}
-public class DirectorTimelineMarker : Marker, INotification
-{
-    public PropertyName id => "Director";
-
-    [SerializeField] private bool _fadein = true;
-    [SerializeField] private string _directorKey;
-    
-
-    public async UniTask OnPlay(PlayableDirector director)
-    {
-        try
-        {
-            director.Pause();
-            await SceneLoader.Instance.WorkDirectorAsync(_fadein, string.IsNullOrEmpty(_directorKey) ? null : _directorKey);
-            director.Resume();
-        }
-        catch (Exception e) when (e is not OperationCanceledException)
-        {
-            Debug.LogException(e);
-        }
-    }
-}

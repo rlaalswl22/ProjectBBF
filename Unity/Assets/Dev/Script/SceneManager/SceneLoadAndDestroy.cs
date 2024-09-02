@@ -7,7 +7,7 @@ public class SceneLoadAndDestroy : MonoBehaviour
 {
     private static bool _isLoaded;
 
-    [RuntimeInitializeOnLoadMethod]
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void OnInit()
     {
         _isLoaded = false;
@@ -20,5 +20,7 @@ public class SceneLoadAndDestroy : MonoBehaviour
         }
 
         _isLoaded = true;
+        transform.SetParent(null);
+        DontDestroyOnLoad(gameObject);
     }
 }
