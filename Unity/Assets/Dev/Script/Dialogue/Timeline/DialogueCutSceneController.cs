@@ -29,9 +29,10 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
         var loaderInst = SceneLoader.Instance;
         var persistenceInst = PersistenceManager.Instance;
 
+        if (loaderInst == false || persistenceInst == false) return;
+
         var blackboard = persistenceInst.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
         string scene = blackboard.CurrentWorld;
-        Vector2 pos = blackboard.CurrentPosition;
 
         _ = loaderInst
             .WorkDirectorAsync(false, _fadeoutDirectorKey)
@@ -42,7 +43,6 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
                 {
                     if (x.CompareTag("Player") && x.TryGetComponent(out PlayerController pc))
                     {
-                        x.transform.position = pos;
                         pc.StateHandler.TranslateState("EndOfCutScene");
                     }
                 });

@@ -93,8 +93,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
     public async UniTask OnDialogueAction()
     {
-        await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
-
         try
         {
             var interaction = FindCloserObject();
@@ -109,8 +107,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         {
             Debug.LogException(e);
         }
-
-        await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
     }
 
     private void Farmland(CollisionInteractionMono interaction)

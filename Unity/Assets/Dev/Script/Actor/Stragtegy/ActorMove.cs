@@ -102,7 +102,6 @@ public class ActorMove : MonoBehaviour, IActorStrategy
             if (_actor)
             {
                 _actor.Visual.IsVisible = backupVisible;
-                _agent.isStopped = false;
             }
         }
         

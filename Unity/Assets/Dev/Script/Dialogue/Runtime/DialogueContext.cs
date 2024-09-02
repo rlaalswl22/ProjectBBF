@@ -155,7 +155,7 @@ public class DialogueContext
     public DialogueContext(DialogueRuntimeTree tree, float duration, DialogueController controller)
     {
         _tree = tree;
-        _textInput = str => controller.DialogueText = str;
+        _textInput = str =>controller.DialogueText = str;
         _duration = duration;
         _controller = controller;
         _source = new();

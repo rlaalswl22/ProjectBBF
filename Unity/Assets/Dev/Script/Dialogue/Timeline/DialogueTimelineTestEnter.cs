@@ -23,12 +23,15 @@ public class DialogueTimelineTestEnter : MonoBehaviour
             
             blackboard.CurrentWorld = loaderInst.CurrentWorldScene;
             blackboard.CurrentPosition = _rollbackPos;
+
+            Transform pt = null;
             
             GameObjectStorage.Instance.StoredObjects.ForEach(x =>
             {
                 if (x.CompareTag("Player") && x.TryGetComponent(out PlayerController pc))
                 {
                     pc.StateHandler.TranslateState("ToCutScene");
+                    pt = pc.transform;
                 }
             });
             
@@ -36,7 +39,8 @@ public class DialogueTimelineTestEnter : MonoBehaviour
 
             _ = loaderInst
                     .WorkDirectorAsync(false, _fadeoutDirectorKey)
-                    .ContinueWith(_ => SceneLoader.Instance.LoadWorldAsync(_scene))
+                    .ContinueWith(_ => pt?.SetXY(_rollbackPos.x, _rollbackPos.y))
+                    .ContinueWith(() => SceneLoader.Instance.LoadWorldAsync(_scene))
                     .ContinueWith(_ => SceneLoader.Instance.WorkDirectorAsync(true, _fadeoutDirectorKey))
                 ;
         }

@@ -1179,17 +1179,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2645362918304912930, guid: 5ec0000e7a5946a4db7720af654bd72e, type: 3}
-      propertyPath: _data._json
-      value: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"PlayerController","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"PlayerController,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"StateTransitionHandler","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"StateTransitionHandler,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"HUD","value":{"$content":2,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645362918304912930, guid: 5ec0000e7a5946a4db7720af654bd72e, type: 3}
-      propertyPath: _data._objectReferences.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645362918304912930, guid: 5ec0000e7a5946a4db7720af654bd72e, type: 3}
       propertyPath: _data._objectReferences.Array.data[2]
       value: 
       objectReference: {fileID: 197275540}
@@ -9303,10 +9292,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 567183739}
     m_Modifications:
-    - target: {fileID: 749146518737011847, guid: 7b6b5fd5f91a41f4480b52bdf678e179, type: 3}
-      propertyPath: m_Speed
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 3026065139521650602, guid: 7b6b5fd5f91a41f4480b52bdf678e179, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.47

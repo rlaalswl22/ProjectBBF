@@ -6,7 +6,7 @@ using UnityEngine.Timeline;
 namespace DS.Runtime
 {
     [CreateAssetMenu(menuName = "ProjectBBF/Dialogue/Execution handler/TimelineAsset", fileName = "New TimelineAsset")]
-    public class TimelineAssetHandler : ParameterHandlerArgsT<TimelineAsset, int>
+    public class TimelineAssetHandler : ParameterHandlerArgsT<TimelineAsset>
     {
         public static TimelineAsset TimelineAsset { get; set; }
 
@@ -16,7 +16,7 @@ namespace DS.Runtime
             TimelineAsset = null;
         }
 
-        protected override object OnExecute(TimelineAsset arg0, int arg1)
+        protected override object OnExecute(TimelineAsset arg0)
         {
             if (arg0 == false) return null;
 
