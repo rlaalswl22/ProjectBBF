@@ -10,6 +10,7 @@ using Debug = UnityEngine.Debug;
 
 #if UNITY_EDITOR
     using UnityEditor;
+    using UnityEngine.Rendering.VirtualTexturing;
 
     [CustomEditor(typeof(PatrolPointPath))]
     internal class PointPathEditor : Editor
@@ -33,8 +34,6 @@ using Debug = UnityEngine.Debug;
         private void OnDisable()
         {
             _isAdding = false;
-            
-            Save();
         }
 
         private void GeneratePath()
@@ -94,15 +93,23 @@ using Debug = UnityEngine.Debug;
             _pointPath._patrollPoints = patrollPoints;
         }
 
-
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            if (GUILayout.Button("Save Path"))
+            {
+                Save();
+            }
+            
+        }
+        
         private void OnSceneGUI()
         {
             if (((PatrolPointPath)target).Edit is false) return;
             
             Undo.RecordObject(target, "Path set");
-                
+            
             _sceneSize = SceneView.lastActiveSceneView.position;
-            SceneView.lastActiveSceneView.Focus();
             
             var pointPath = _pointPath;
             
@@ -135,6 +142,7 @@ using Debug = UnityEngine.Debug;
                 DrawButton(selected);
             }
 
+            SceneView.RepaintAll();
         }
 
         private bool OnPointClickAdd()
