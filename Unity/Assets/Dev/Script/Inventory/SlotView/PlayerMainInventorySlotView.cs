@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PlayerMainInventorySlotView : MonoBehaviour, IPointerClickHandler
+public class PlayerMainInventorySlotView : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private Image _slotImage;
     [SerializeField] private TMP_Text _text;
@@ -54,7 +54,7 @@ public class PlayerMainInventorySlotView : MonoBehaviour, IPointerClickHandler
         _text.text = slot.Count == 0 ? "" : slot.Count.ToString();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    private void OnClick(PointerEventData eventData)
     {
         Debug.Assert(_slotController is not null);
         
@@ -136,5 +136,10 @@ public class PlayerMainInventorySlotView : MonoBehaviour, IPointerClickHandler
     private void SwapItem(IInventorySlot selected, IInventorySlot my)
     {
         selected.Swap(my);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        OnClick(eventData);
     }
 }
