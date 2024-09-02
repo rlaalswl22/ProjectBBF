@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using DS.Core;
 using UnityEditor;
+using Object = UnityEngine.Object;
 
 namespace DS.Editor
 {
@@ -130,6 +131,11 @@ namespace DS.Editor
                     var t = AddTextField(_ => { }, "", "text");
                     _argumentElements.Add(t);
                 }
+                else if (type.IsSubclassOf(typeof(Object)))
+                {
+                    var t = AddObjectField(_ => { }, type, "","Object");
+                    _argumentElements.Add(t);
+                }
             }
         }
 
@@ -160,6 +166,12 @@ namespace DS.Editor
                             Target = "String",
                             StringValue = stringField.value
                         };
+                    case ObjectField objectField:
+                        return new ParameterNodeData.Warp()
+                        {
+                            Target = "Object",
+                            ObjectValue = objectField.value
+                        };
                     default:
                         return null;
                 }
@@ -189,6 +201,9 @@ namespace DS.Editor
                         break;
                     case TextField stringField:
                         stringField.value = warp.StringValue;
+                        break;
+                    case ObjectField objectField:
+                        objectField.value = warp.ObjectValue;
                         break;
                 }
             }

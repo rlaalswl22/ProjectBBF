@@ -46,6 +46,12 @@ public class DialogueContext
         try
         {
             begin:
+
+            if (CurrentNode is null)
+            {
+                IsRunning = false;
+                return;
+            }
         
             item = CurrentNode.CreateItem();
             
@@ -68,6 +74,11 @@ public class DialogueContext
                link.Cancel();
                 _textInput(textItem.Text);
                 CurrentNode = textItem.Node.GetNext();
+
+                if (CurrentNode is ExecutionRuntimeNode or ConditionRuntimeNode)
+                {
+                    goto begin;
+                }
             }
             else if (item is BranchItem branchItem)
             {
@@ -100,6 +111,7 @@ public class DialogueContext
             {
                 executionItem.Execution();
                 CurrentNode = executionItem.Node.NextNode;
+
                 goto begin;
             }
             else if (item is ConditionItem conditionItem)

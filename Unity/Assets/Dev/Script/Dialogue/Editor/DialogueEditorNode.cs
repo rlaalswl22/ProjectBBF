@@ -67,11 +67,11 @@ namespace DS.Editor
             
             return textField;
         }
-        public virtual ObjectField AddObjectField(EventCallback<ChangeEvent<UnityEngine.Object>> changeCallback, Type objectType, string styleClass)
+        public virtual ObjectField AddObjectField(EventCallback<ChangeEvent<UnityEngine.Object>> changeCallback, Type objectType, string styleClass, string fieldName = "")
         {
             RemoveLabel(titleContainer, "title-label");
             
-            var propertyField = new ObjectField();
+            var propertyField = new ObjectField(fieldName);
             propertyField.RegisterCallback(changeCallback);
             propertyField.AddToClassList(styleClass);
             propertyField.objectType = objectType;

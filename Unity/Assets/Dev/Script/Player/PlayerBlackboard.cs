@@ -11,6 +11,9 @@ public class PlayerBlackboard : IPersistenceObject
     [SerializeField] private int _energy = 50;
     [SerializeField] private int _maxEnergy = 50;
 
+    [SerializeField] private string _currentWorld;
+    [SerializeField] private Vector2 _currentPosition;
+
     public float Stemina
     {
         get => _stemina;
@@ -33,5 +36,17 @@ public class PlayerBlackboard : IPersistenceObject
     {
         get => _maxEnergy;
         set => _maxEnergy = value;
+    }
+
+    public string CurrentWorld
+    {
+        get => _currentWorld;
+        set => _currentWorld = value;
+    }
+
+    public Vector2 CurrentPosition
+    {
+        get => _currentPosition;
+        set => _currentPosition = value;
     }
 }

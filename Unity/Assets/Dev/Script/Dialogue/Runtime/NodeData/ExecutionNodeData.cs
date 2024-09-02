@@ -27,18 +27,15 @@ namespace DS.Runtime
 
         public override DialogueRuntimeNode CreateRuntimeNode(List<DialogueNodeData> datas, List<NodeLinkData> links)
         {
-            var data = datas.FirstOrDefault(x =>
-            {
-                var link = links.FirstOrDefault(y => y.BaseNodeGuid == GUID);
-                Debug.Assert(link is not null);
+            NodeLinkData result = links.FirstOrDefault(x => x.BaseNodeGuid == GUID);
+            if (result is null) return new ExecutionRuntimeNode(null, Handler, GetArgs());
 
-                return x.GUID == link.TargetNodeGuid;
-            });
+            DialogueNodeData nextData = datas.FirstOrDefault(x => x.GUID == result.TargetNodeGuid);
+            if (nextData is null) return new ExecutionRuntimeNode(null, Handler, GetArgs());
+
+            DialogueRuntimeNode nextNode = nextData.CreateRuntimeNode(datas, links);
             
-            Debug.Assert(data is not null);
-
-            var runtimeNode = data.CreateRuntimeNode(datas, links);
-            return new ExecutionRuntimeNode(runtimeNode, Handler, GetArgs());
+            return new ExecutionRuntimeNode(nextNode, Handler, GetArgs());
         }
             
         public override bool IsEqual(DialogueNodeData other)

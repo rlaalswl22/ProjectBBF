@@ -4,6 +4,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using DS.Core;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace DS.Runtime
 {
@@ -16,6 +17,7 @@ namespace DS.Runtime
             public int IntValue;
             public float FloatValue;
             public string StringValue;
+            public Object ObjectValue;
             
             public bool IsEqual(Warp other)
             {
@@ -23,6 +25,7 @@ namespace DS.Runtime
                 if (IntValue != other.IntValue) return false;
                 if (FloatValue != other.FloatValue) return false;
                 if (StringValue != other.StringValue) return false;
+                if (ObjectValue != other.ObjectValue) return false;
                 
                 return true;
             }
@@ -41,6 +44,8 @@ namespace DS.Runtime
                     return x.FloatValue;
                 case "String":
                     return x.StringValue;
+                case "Object":
+                    return x.ObjectValue;
                 default:
                     return "ERROR";
             }

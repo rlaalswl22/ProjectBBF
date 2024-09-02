@@ -201,6 +201,7 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
 
         if (fadeIn)
         {
+            director.Enabled = true;
             await director.Fadein();
             director.Enabled = false;
             FadeinComplete?.Invoke();

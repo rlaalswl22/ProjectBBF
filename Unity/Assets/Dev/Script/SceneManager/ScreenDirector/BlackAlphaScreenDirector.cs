@@ -8,12 +8,13 @@ using UnityEngine.UI;
 
 public class BlackAlphaScreenDirector : ScreenDirector
 {
+    [SerializeField] private string _key;
     [SerializeField] private Image _panel;
     [SerializeField] private float _fadeoutDuration;
     [SerializeField] private float _fadeinDuration;
     [SerializeField] private float _waitDuration;
 
-    public override string Key => "BlackAlpha";
+    public override string Key => _key;
 
     public override bool Enabled
     {
@@ -28,7 +29,7 @@ public class BlackAlphaScreenDirector : ScreenDirector
         var c = Color.black;
         c.a = 0f;
         return _panel
-            .DOColor(c, _fadeinDuration)
+            .DOColor(c, _fadeinDuration).SetEase(Ease.Linear)
             .SetDelay(_waitDuration)
             .AsyncWaitForCompletion()
             .AsUniTask()
@@ -44,7 +45,7 @@ public class BlackAlphaScreenDirector : ScreenDirector
         
         c.a = 1f;
         return _panel
-                .DOColor(c, _fadeoutDuration)
+                .DOColor(c, _fadeoutDuration).SetEase(Ease.Linear)
                 .AsyncWaitForCompletion()
                 .AsUniTask()
                 .WithCancellation(GlobalCancelation.PlayMode)

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 335915191103736244}
   - component: {fileID: -727682205851819540}
   m_Layer: 5
-  m_Name: BlackAlpha
+  m_Name: CutSceneBlackAlpha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,10 +115,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0812624c90d4715b1b85b955ac0b5bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key: BlackAlpha
+  _key: CutSceneBlackAlpha
   _panel: {fileID: 4128506403662649424}
-  _fadeoutDuration: 0.5
-  _fadeinDuration: 0.25
+  _fadeoutDuration: 2
+  _fadeinDuration: 1.5
   _waitDuration: 0.15
 --- !u!1 &7639765911588760577
 GameObject:
