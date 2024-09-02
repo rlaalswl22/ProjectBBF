@@ -31,6 +31,8 @@ public class DialogueTimelineTestEnter : MonoBehaviour
                     pc.StateHandler.TranslateState("DoNothing");
                 }
             });
+            
+            TimeManager.Instance.Pause();
 
             _ = loaderInst
                     .WorkDirectorAsync(false, _fadeoutDirectorKey)

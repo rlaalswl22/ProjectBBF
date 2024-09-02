@@ -32,11 +32,11 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
         var blackboard = persistenceInst.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
         string scene = blackboard.CurrentWorld;
         Vector2 pos = blackboard.CurrentPosition;
-    
+
         _ = loaderInst
             .WorkDirectorAsync(false, _fadeoutDirectorKey)
             .ContinueWith(_ => loaderInst.LoadImmutableScenesAsync())
-            .ContinueWith(_ =>loaderInst.LoadWorldAsync(scene))
+            .ContinueWith(_ => loaderInst.LoadWorldAsync(scene))
             .ContinueWith(_ =>
             {
                 GameObjectStorage.Instance.StoredObjects.ForEach(x =>
@@ -49,6 +49,7 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
                 });
             })
             .ContinueWith(() => loaderInst.WorkDirectorAsync(true, _fadeinDirectorKey))
+            .ContinueWith(_ => TimeManager.Instance.Resume())
             ;
     }
 

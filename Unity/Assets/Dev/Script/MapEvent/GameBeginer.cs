@@ -10,11 +10,4 @@ public class GameBeginer : MonoBehaviour
     {
         TimeManager.Instance.Begin();
     }
-
-    private void OnDestroy()
-    {
-        if (TimeManager.Instance == false) return;
-        
-        TimeManager.Instance.End();
-    }
 }

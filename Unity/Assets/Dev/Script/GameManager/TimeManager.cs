@@ -180,6 +180,11 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
 
     public void Begin()
     {
+        if (IsBegin)
+        {
+            return;
+        }
+        
         Reset();
         
         IsBegin = true;
