@@ -439,11 +439,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 44.583782, y: 70.49432}
-      - {x: -17.841236, y: 70.78166}
-      - {x: -17.84846, y: -31.835905}
-      - {x: -17.33526, y: -31.60639}
-      - {x: 43.973854, y: -31.71879}
+    - - {x: 84.48125, y: 53.124718}
+      - {x: 10.687042, y: 53.201515}
+      - {x: 10.469263, y: -31.835905}
+      - {x: 13.719507, y: -31.816927}
+      - {x: 84.292404, y: -31.824053}
   m_UseDelaunayMesh: 0
 --- !u!114 &646668383
 MonoBehaviour:
@@ -490,11 +490,11 @@ PrefabInstance:
       objectReference: {fileID: 102900000, guid: 7bd4e3a93e858e4458618d98e77b8888, type: 3}
     - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
       propertyPath: _alivePosition.x
-      value: 35.3
+      value: 59.7
       objectReference: {fileID: 0}
     - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
       propertyPath: _alivePosition.y
-      value: -43.7
+      value: -39.8
       objectReference: {fileID: 0}
     - target: {fileID: 2283182040537280197, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
       propertyPath: _targetPortalKey
@@ -502,7 +502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.42
+      value: 59.7
       objectReference: {fileID: 0}
     - target: {fileID: 6757383670644396021, guid: d9c307128ba3d54439a325d0e9bf17ce, type: 3}
       propertyPath: m_LocalPosition.y
