@@ -35,7 +35,6 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
 
         _ = loaderInst
             .WorkDirectorAsync(false, _fadeoutDirectorKey)
-            .ContinueWith(_ => loaderInst.LoadImmutableScenesAsync())
             .ContinueWith(_ => loaderInst.LoadWorldAsync(scene))
             .ContinueWith(_ =>
             {
@@ -44,7 +43,7 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
                     if (x.CompareTag("Player") && x.TryGetComponent(out PlayerController pc))
                     {
                         x.transform.position = pos;
-                        pc.StateHandler.TranslateState("EndOfDoNothing");
+                        pc.StateHandler.TranslateState("EndOfCutScene");
                     }
                 });
             })

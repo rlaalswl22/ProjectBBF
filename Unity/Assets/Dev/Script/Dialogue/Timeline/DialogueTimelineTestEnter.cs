@@ -28,7 +28,7 @@ public class DialogueTimelineTestEnter : MonoBehaviour
             {
                 if (x.CompareTag("Player") && x.TryGetComponent(out PlayerController pc))
                 {
-                    pc.StateHandler.TranslateState("DoNothing");
+                    pc.StateHandler.TranslateState("ToCutScene");
                 }
             });
             
@@ -36,7 +36,6 @@ public class DialogueTimelineTestEnter : MonoBehaviour
 
             _ = loaderInst
                     .WorkDirectorAsync(false, _fadeoutDirectorKey)
-                    .ContinueWith(_ => SceneLoader.Instance.UnloadImmutableScenesAsync())
                     .ContinueWith(_ => SceneLoader.Instance.LoadWorldAsync(_scene))
                     .ContinueWith(_ => SceneLoader.Instance.WorkDirectorAsync(true, _fadeoutDirectorKey))
                 ;

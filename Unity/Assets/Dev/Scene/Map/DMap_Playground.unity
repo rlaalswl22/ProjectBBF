@@ -470,6 +470,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47b3b2a2e4d7aaa49866713f9a210006, type: 3}
+--- !u!1 &197275540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 144419925886643988, guid: 47b3b2a2e4d7aaa49866713f9a210006, type: 3}
+  m_PrefabInstance: {fileID: 197275539}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &209649384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1178,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2645362918304912930, guid: 5ec0000e7a5946a4db7720af654bd72e, type: 3}
+      propertyPath: _data._json
+      value: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"PlayerController","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"PlayerController,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"StateTransitionHandler","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"StateTransitionHandler,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"HUD","value":{"$content":2,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2645362918304912930, guid: 5ec0000e7a5946a4db7720af654bd72e, type: 3}
+      propertyPath: _data._objectReferences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2645362918304912930, guid: 5ec0000e7a5946a4db7720af654bd72e, type: 3}
+      propertyPath: _data._objectReferences.Array.data[2]
+      value: 
+      objectReference: {fileID: 197275540}
     - target: {fileID: 3143927647461139805, guid: 5ec0000e7a5946a4db7720af654bd72e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

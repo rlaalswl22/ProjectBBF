@@ -26,6 +26,11 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         get => _controller.Inventory.MainInvVisible;
         set => _controller.Inventory.MainInvVisible = value;
     }
+    public bool QuickInventoryVisible
+    {
+        get => _controller.Inventory.QuickInvVisible;
+        set => _controller.Inventory.QuickInvVisible = value;
+    }
     
     public async UniTask OnToolAction()
     {
