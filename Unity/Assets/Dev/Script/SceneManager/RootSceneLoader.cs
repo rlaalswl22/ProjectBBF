@@ -50,36 +50,40 @@ public class RootSceneLoader : MonoBehaviour
 #if UNITY_EDITOR
     [SerializeField] public List<SceneAsset> ChildScenesToLoadConfig;
 
-    private static bool _autoPlayMode;
-    
     [MenuItem("Scene/AutoPlayModeOn", false)]
     private static void OnAutoPlayModeOn()
     {
-        _autoPlayMode = true;
+        if (Application.isPlaying) return;
+        
+        EditorPrefs.SetBool("__AUTO_PLAY_MODE__", true);
     }
     
     [MenuItem("Scene/AutoPlayModeOff", false)]
     private static void OnAutoPlayModeOff()
     {
-        _autoPlayMode = false;
+        if (Application.isPlaying) return;
+        
+        EditorPrefs.SetBool("__AUTO_PLAY_MODE__", false);
     }
     
     [MenuItem("Scene/AutoPlayModeOn", true)]
     private static bool ValidateOnAutoPlayModeOn()
     {
-        return _autoPlayMode is false;
+        if (Application.isPlaying) return false;
+
+        return EditorPrefs.GetBool("__AUTO_PLAY_MODE__") is false;
     }
     
     [MenuItem("Scene/AutoPlayModeOff", true)]
     private static bool ValidateOnAutoPlayModeOff()
     {
-        return _autoPlayMode;
+        return EditorPrefs.GetBool("__AUTO_PLAY_MODE__");
     }
 
     private void Start()
     {
         // 에디터에서 playmode 진입했을 때, 씬이 플레이 가능 상태가 아니면, 플레이 가능으로 만들어주는 로직
-        if (_autoPlayMode && SceneLoader.Instance.IsLoadedImmutableScenes == false)
+        if (EditorPrefs.GetBool("__AUTO_PLAY_MODE__") && SceneLoader.Instance.IsLoadedImmutableScenes == false)
         {
             string worldSceneName = gameObject.scene.name;
             _ = SceneLoader.Instance
