@@ -32,22 +32,44 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     [SerializeField] private float _lineHeightFactor;
     
     [SerializeField] private int _lineIteraction = 20 ;
+
+
+    [SerializeField] private float _fishingMaxDistance; 
     
     [SerializeField] private Transform _handle;
+    [SerializeField] private FishingView _view; 
 
-    public Transform _testHandle;
     [SerializeField] SplineContainer _splineContainer;
 
     private IEnumerator _co;
+
+    private PlayerInventoryController _invController;
+    private PlayerCoordinate _coordinate;
+    private PlayerMove _move;
+
+    public bool CanFishing
+    {
+        get
+        {
+            ItemData curItem = _invController.CurrentItemData;
+            if (curItem is null) return false;
+
+            return curItem.Info.Contains(ToolType.FishingRod);
+        }
+    }
     
     public void Init(PlayerController controller)
     {
+        _invController = controller.Inventory;
+        _coordinate = controller.Coordinate;
+        _move = controller.MoveStrategy;
     }
 
     [ButtonMethod]
     private void LeftDirSet()
     {
-        var spline = GetCalculatedSpline(Direction.Left, _testHandle.position);
+        var front = _coordinate.GetFrontPureDir();
+        var spline = GetCalculatedSpline(Direction.Left, transform.position + front * _fishingMaxDistance);
         _splineContainer.Spline = spline;
         
     }
@@ -55,7 +77,8 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     [ButtonMethod]
     private void RightDirSet()
     {
-        var spline = GetCalculatedSpline(Direction.Right, _testHandle.position);
+        var front = _coordinate.GetFrontPureDir();
+        var spline = GetCalculatedSpline(Direction.Right, transform.position + front * _fishingMaxDistance);
         _splineContainer.Spline = spline;
         
     }
@@ -63,7 +86,8 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     [ButtonMethod]
     private void UpDirSet()
     {
-        var spline = GetCalculatedSpline(Direction.Up, _testHandle.position);
+        var front = _coordinate.GetFrontPureDir();
+        var spline = GetCalculatedSpline(Direction.Up, transform.position + front * _fishingMaxDistance);
         _splineContainer.Spline = spline;
         
     }
@@ -71,29 +95,81 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     [ButtonMethod]
     private void DownDirSet()
     {
-        var spline = GetCalculatedSpline(Direction.Down, _testHandle.position);
+        var front = _coordinate.GetFrontPureDir();
+        var spline = GetCalculatedSpline(Direction.Down, transform.position + front * _fishingMaxDistance);
         _splineContainer.Spline = spline;
         
     }
 
-    private void Update()
+    public async UniTask Fishing()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        float factor = await _view.Fishing(1f);
+        var front = _coordinate.GetFrontPureDir();
+        Direction dir;
+
+        switch (_move.LastDirection)
         {
-            Fishing(Direction.Up, _testHandle.position);
+            case AnimationData.Direction.Up:
+                dir = Direction.Up;
+                break;
+            case AnimationData.Direction.Down:
+                dir = Direction.Down;
+                break;
+            case AnimationData.Direction.Left:
+                dir = Direction.Left;
+                break;
+            case AnimationData.Direction.Right:
+                dir = Direction.Right;
+                break;
+            case AnimationData.Direction.LeftUp:
+                front.y = 0f;
+                dir = Direction.Left;
+                break;
+            case AnimationData.Direction.RightUp:
+                front.y = 0f;
+                dir = Direction.Right;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+
+        var pos = transform.position + (front * factor * _fishingMaxDistance);
+
+        Fishing(dir, pos);
+
+        await UniTask.WaitUntil(() => _co is not null, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+        await UniTask.WaitUntil(() =>  InputManager.Actions.Fishing.triggered, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+        
+        await UnFishing(dir, pos);
+
+    }
+
+    private async UniTask UnFishing(Direction dir, Vector3 targetPoint)
+    {
+        
+        var spline = GetCalculatedSpline(dir, targetPoint);
+        float t = 1f;
+        var wPos = transform.position;
+        
+        _handle.gameObject.SetActive(true);
+        float toTargetPointDis = Vector2.Distance(transform.position, targetPoint);
+
+        var lineSpline = new Spline();
+
+        while (t > 0f)
         {
-            Fishing(Direction.Down, _testHandle.position);
+            var pos = (Vector3)spline.EvaluatePosition(t);
+            t -= Time.deltaTime * _speed / toTargetPointDis;
+
+            _handle.position = pos + wPos;
+
+            DrawLine(lineSpline, dir, targetPoint);
+            
+            await UniTask.Yield(PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            Fishing(Direction.Left, _testHandle.position);
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            Fishing(Direction.Right, _testHandle.position);
-        }
+        
+        _handle.gameObject.SetActive(false);
+        _line.gameObject.SetActive(false);
     }
 
     public void Fishing(Direction direction, Vector3 targetPosition)
@@ -115,14 +191,9 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         var wPos = _handle.position;
         
         _handle.gameObject.SetActive(true);
-        _line.positionCount = _lineIteraction;
+        _line.gameObject.SetActive(true);
 
         var lineSpline = new Spline();
-        lineSpline.Add(new BezierKnot(transform.position, float3.zero, float3.zero, quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)), TangentMode.AutoSmooth );
-        lineSpline.Add(new BezierKnot(transform.position, float3.zero, float3.zero, quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)), TangentMode.AutoSmooth );
-        lineSpline.Add(new BezierKnot(transform.position, float3.zero, float3.zero, quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)), 
-            dir == Direction.Up || dir == Direction.Down? TangentMode.AutoSmooth : TangentMode.Broken );
-        
         float toTargetPointDis = Vector2.Distance(transform.position, targetPoint);
         
         while (t <= 1f)
@@ -132,46 +203,57 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
             
             _handle.position = pos + wPos;
 
-            lineSpline.SetKnot(0,
-                new BezierKnot(transform.position, float3.zero, float3.zero,
-                    quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)));
-
-            Vector3 toHandleDir = (_handle.position - transform.position);
-            float toHandleDis = Mathf.Lerp(0f, _lineHeightFactor, Mathf.Clamp(Mathf.Abs(toHandleDir.x) - _beginLineLength, 0, _maxLineLength- _beginLineLength) / (_maxLineLength- _beginLineLength));
-
-            float handleToTargetDis = Vector3.Distance(targetPoint, _handle.position);
-
-            if (handleToTargetDis <= _maxHandleInTagent)
-            {
-                handleToTargetDis /= _maxHandleInTagent;
-            }
-            else
-            {
-                handleToTargetDis = 1f;
-            }
-
-            Vector3 middlePos =
-                Vector3.Lerp(transform.position, _handle.position, 0.5f) + Vector3.down * toHandleDis;
-            
-            lineSpline.SetKnot(1,
-                new BezierKnot(middlePos, float3.zero, float3.zero,
-                    quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)));
-            
-            lineSpline.SetKnot(2,
-                new BezierKnot(_handle.position, new float3(2.19f, 3.26f, 0f) * handleToTargetDis, float3.zero,
-                    quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)));
-
-            for (int i = 0; i < _lineIteraction; i++)
-            {
-                var linePos = lineSpline.EvaluatePosition(i / (float)(_lineIteraction - 1));
-                
-                _line.SetPosition(i, linePos);
-            }
-            
+            DrawLine(lineSpline, dir, targetPoint);
             yield return null;
         }
-        _handle.gameObject.SetActive(false);
-        _handle.transform.position = wPos;
+    }
+
+    private void DrawLine(Spline lineSpline, Direction dir, Vector3 targetPoint)
+    {
+        _line.positionCount = _lineIteraction;
+
+        lineSpline.Clear();
+        lineSpline.Add(new BezierKnot(transform.position, float3.zero, float3.zero, quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)), TangentMode.AutoSmooth );
+        lineSpline.Add(new BezierKnot(transform.position, float3.zero, float3.zero, quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)), TangentMode.AutoSmooth );
+        lineSpline.Add(new BezierKnot(transform.position, float3.zero, float3.zero, quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)), 
+            dir == Direction.Up || dir == Direction.Down? TangentMode.AutoSmooth : TangentMode.Broken );
+
+        lineSpline.SetKnot(0,
+            new BezierKnot(transform.position, float3.zero, float3.zero,
+                quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)));
+
+        Vector3 toHandleDir = (_handle.position - transform.position);
+        float toHandleDis = Mathf.Lerp(0f, _lineHeightFactor, Mathf.Clamp(Mathf.Abs(toHandleDir.x) - _beginLineLength, 0, _maxLineLength- _beginLineLength) / (_maxLineLength- _beginLineLength));
+
+        float handleToTargetDis = Vector3.Distance(targetPoint, _handle.position);
+
+        if (handleToTargetDis <= _maxHandleInTagent)
+        {
+            handleToTargetDis /= _maxHandleInTagent;
+        }
+        else
+        {
+            handleToTargetDis = 1f;
+        }
+
+        Vector3 middlePos =
+            Vector3.Lerp(transform.position, _handle.position, 0.5f) + Vector3.down * toHandleDis;
+            
+        lineSpline.SetKnot(1,
+            new BezierKnot(middlePos, float3.zero, float3.zero,
+                quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)));
+            
+        lineSpline.SetKnot(2,
+            new BezierKnot(_handle.position, new float3(2.19f, 3.26f, 0f) * handleToTargetDis, float3.zero,
+                quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)));
+
+        for (int i = 0; i < _lineIteraction; i++)
+        {
+            var linePos = lineSpline.EvaluatePosition(i / (float)(_lineIteraction - 1));
+                
+            _line.SetPosition(i, linePos);
+        }
+
     }
     
 

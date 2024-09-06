@@ -5,6 +5,13 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 
+[Serializable]
+public struct ItemDataSerializedSet
+{
+    public ItemData Item;
+    public int Count;
+}
+
 [CreateAssetMenu(menuName = "ProjectBBF/Data/Item/Default item", fileName = "New Default item data")]
 public class ItemData : ScriptableObject
 {

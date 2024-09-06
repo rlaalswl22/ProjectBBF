@@ -98,6 +98,15 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fishing"",
+                    ""type"": ""Button"",
+                    ""id"": ""bf848985-0be4-4eb9-9a2b-a24e80494ac9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -353,6 +362,17 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3a084c0-4769-4084-a75e-3704eb8bb21b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""WinPCScheme"",
+                    ""action"": ""Fishing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -386,6 +406,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         m_PlayerControl_QuickSlotScroll = m_PlayerControl.FindAction("QuickSlotScroll", throwIfNotFound: true);
         m_PlayerControl_QuickSlotScrollButton = m_PlayerControl.FindAction("QuickSlotScrollButton", throwIfNotFound: true);
         m_PlayerControl_Inventory = m_PlayerControl.FindAction("Inventory", throwIfNotFound: true);
+        m_PlayerControl_Fishing = m_PlayerControl.FindAction("Fishing", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -455,6 +476,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControl_QuickSlotScroll;
     private readonly InputAction m_PlayerControl_QuickSlotScrollButton;
     private readonly InputAction m_PlayerControl_Inventory;
+    private readonly InputAction m_PlayerControl_Fishing;
     public struct PlayerControlActions
     {
         private @DefaultKeymap m_Wrapper;
@@ -467,6 +489,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         public InputAction @QuickSlotScroll => m_Wrapper.m_PlayerControl_QuickSlotScroll;
         public InputAction @QuickSlotScrollButton => m_Wrapper.m_PlayerControl_QuickSlotScrollButton;
         public InputAction @Inventory => m_Wrapper.m_PlayerControl_Inventory;
+        public InputAction @Fishing => m_Wrapper.m_PlayerControl_Fishing;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControl; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -500,6 +523,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
+            @Fishing.started += instance.OnFishing;
+            @Fishing.performed += instance.OnFishing;
+            @Fishing.canceled += instance.OnFishing;
         }
 
         private void UnregisterCallbacks(IPlayerControlActions instance)
@@ -528,6 +554,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
+            @Fishing.started -= instance.OnFishing;
+            @Fishing.performed -= instance.OnFishing;
+            @Fishing.canceled -= instance.OnFishing;
         }
 
         public void RemoveCallbacks(IPlayerControlActions instance)
@@ -564,5 +593,6 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         void OnQuickSlotScroll(InputAction.CallbackContext context);
         void OnQuickSlotScrollButton(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
+        void OnFishing(InputAction.CallbackContext context);
     }
 }

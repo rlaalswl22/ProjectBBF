@@ -17,6 +17,9 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
 
     public Vector2 LastMovedDirection { get; set; }
     
+    public AnimationData.Direction LastDirection { get; private set; }
+    public AnimationData.Movement LastMovement { get; private set; }
+    
     public void Init(PlayerController controller)
     {
         _movementData = controller.MovementData;
@@ -27,6 +30,10 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         BindInputAction();
 
         StartCoroutine(CoSteminaUpdate());
+        
+        
+        LastDirection = AnimationData.Direction.Down;
+        LastMovement = AnimationData.Movement.Idle;
     }
 
     private void BindInputAction()
@@ -131,50 +138,59 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         var aniData = _controller.AnimationData;
         var visual = _controller.VisualStrategy;
 
+        AnimationData.Direction direction;
         AnimationClip clip = null;
         
         // 왼쪽 위
         if (dir is { x: < 0, y: > 0 })
         {
-            clip = aniData.GetClip(movementType, AnimationData.Direction.LeftUp);
+            direction = AnimationData.Direction.LeftUp;
         }
         // 오른쪽 위
         else if (dir is { x: > 0, y: > 0 })
         {
-            clip = aniData.GetClip(movementType, AnimationData.Direction.RightUp);
+            direction = AnimationData.Direction.RightUp;
         }
         // 왼쪽 아래
         else if (dir is { x: < 0, y: < 0 })
         {
-            clip = aniData.GetClip(movementType, AnimationData.Direction.Left);
+            direction = AnimationData.Direction.Left;
         }
         // 오른쪽 아래
         else if (dir is { x: > 0, y: < 0 })
         {
-            clip = aniData.GetClip(movementType, AnimationData.Direction.Right);
+            direction = AnimationData.Direction.Right;
         }
         
         // 위
         else if (dir is { x:  0, y: > 0 })
         {
-            clip = aniData.GetClip(movementType, AnimationData.Direction.Up);
+            direction = AnimationData.Direction.Up;
         }
         // 아래
         else if (dir is { x:  0, y: < 0 })
         {
-            clip = aniData.GetClip(movementType, AnimationData.Direction.Down);
+            direction = AnimationData.Direction.Down;
         }
         // 왼쪽
         else if (dir is { x: < 0, y:  0 })
         {
-            clip = aniData.GetClip(movementType, AnimationData.Direction.Left);
+            direction = AnimationData.Direction.Left;
         }
         // 오른쪽
         else if (dir is { x: > 0, y: 0 })
         {
-            clip = aniData.GetClip(movementType, AnimationData.Direction.RightUp);
+            direction = AnimationData.Direction.RightUp;
+        }
+        else
+        {
+            direction = AnimationData.Direction.Down;
         }
         
+        LastDirection = direction;
+        LastMovement = movementType;
+
+        clip = aniData.GetClip(movementType, direction);
         visual.ChangeClip(clip);
     }
 

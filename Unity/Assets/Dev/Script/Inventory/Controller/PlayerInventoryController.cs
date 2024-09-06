@@ -35,7 +35,7 @@ public class PlayerInventoryController : IInventoryController<GridInventoryModel
         MainInvVisible = false;
     }
 
-    public ItemData CurrentItemData => CurrentItemSlot.Data;
+    public ItemData CurrentItemData => CurrentItemSlot?.Data;
     public IInventorySlot CurrentItemSlot =>  Model.GetSlotSequentially(_quickView.CurrentItemIndex);
 
     public void Refresh()

@@ -20,7 +20,6 @@ public class PlayerCoordinate : MonoBehaviour, IPlayerStrategy
     public Vector3 GetFront()
     {
         var worldPos = _controller.transform.position;
-
         Vector3 dir = Vector3.zero;
 
         if (Mathf.Approximately(_controller.MoveStrategy.LastMovedDirection.y, 0f) == false)
@@ -37,8 +36,20 @@ public class PlayerCoordinate : MonoBehaviour, IPlayerStrategy
                 _controller.MoveStrategy.LastMovedDirection.y + _controller.InteractionOffset.y,
                 0f);
         }
-        
+
         return worldPos + dir;
+    }
+
+    public Vector3 GetFrontPureDir()
+    {
+        Vector3 dir = new Vector3
+            (
+                _controller.MoveStrategy.LastMovedDirection.x,
+                _controller.MoveStrategy.LastMovedDirection.y,
+                0f
+            );
+        
+        return dir.normalized;
     }
     
     private Vector2 RotateVector(Vector2 vector, float angleRadians)

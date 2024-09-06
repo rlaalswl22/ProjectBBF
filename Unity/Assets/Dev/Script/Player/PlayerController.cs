@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
+
 public class PlayerController : MonoBehaviour
 {
     [field: SerializeField, Foldout("데이터"), OverrideLabel("플레이어 이동 데이터"), MustBeAssigned, DisplayInspector]
@@ -35,10 +36,10 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
     private PlayerMainInventoryView _mainInventoryView;
 
-    [field: SerializeField] private ItemData _testTool;
-    [field: SerializeField] private ItemData _testWaterSpray;
-    [field: SerializeField] private PlantItemData _testSeed;
-    [field: SerializeField] private FertilizerItemData _testFertilizer;
+    [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
+    private PlayerFishing _fishing;
+
+    [field: SerializeField] private List<ItemDataSerializedSet> _testItems;
     [field: SerializeField] private Vector2 _interactionOffset;
     [field: SerializeField] private Vector2 _interactionDirFactor;
     [field: SerializeField] private float _interactionRadius;
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
     public PlayerStateTranslator Translator { get; private set; }
     public PlayerInteracter Interactor { get; private set; }
     public PlayerCoordinate Coordinate { get; private set; }
+    public PlayerFishing Fishing => _fishing;
 
 
     public PlayerInventoryController Inventory { get; private set; }
@@ -86,6 +88,7 @@ public class PlayerController : MonoBehaviour
             _mainInventoryView,
             _quickInventoryView
         );
+        Fishing.Init(this);
 
         GameObjectStorage.Instance.AddGameObject(gameObject);
 
@@ -116,10 +119,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Inventory.Model.PushItem(_testTool, 1);
-        Inventory.Model.PushItem(_testWaterSpray, 1);
-        Inventory.Model.PushItem(_testSeed, 4);
-        Inventory.Model.PushItem(_testFertilizer, 5);
+        foreach (var item in _testItems)
+        {
+            Inventory.Model.PushItem(item.Item, item.Count);
+        }
     }
 
     private T Bind<T>() where T : MonoBehaviour, IPlayerStrategy
