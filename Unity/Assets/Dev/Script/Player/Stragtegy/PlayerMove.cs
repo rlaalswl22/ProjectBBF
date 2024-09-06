@@ -180,7 +180,7 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         // 오른쪽
         else if (dir is { x: > 0, y: 0 })
         {
-            direction = AnimationData.Direction.RightUp;
+            direction = AnimationData.Direction.Right;
         }
         else
         {
