@@ -14,10 +14,12 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 {
     private PlayerController _controller;
     private PlayerBlackboard _blackboard;
+    private PlayerMove _move;
 
     public void Init(PlayerController controller)
     {
         _controller = controller;
+        _move = controller.MoveStrategy;
         _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
     }
 
@@ -26,90 +28,123 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         get => _controller.Inventory.MainInvVisible;
         set => _controller.Inventory.MainInvVisible = value;
     }
+
     public bool QuickInventoryVisible
     {
         get => _controller.Inventory.QuickInvVisible;
         set => _controller.Inventory.QuickInvVisible = value;
     }
     
-    public async UniTask OnToolAction()
+    public async UniTask<bool> OnToolAction()
     {
         try
         {
-            
             ItemData currentData = _controller.Inventory.CurrentItemData;
-            
-            if (currentData &&  (
-                currentData.Info.Contains(ToolType.Hoe) ||
-                currentData.Info.Contains(ToolType.WaterSpray)
-               ))
+
+            if (currentData && (
+                    currentData.Info.Contains(ToolType.Hoe) ||
+                    currentData.Info.Contains(ToolType.WaterSpray) ||
+                    currentData.Info.Contains(ToolType.Fertilizer) ||
+                    currentData.Info.Contains(ToolType.Seed) 
+                ))
             {
                 if (_blackboard.Energy < 1)
                 {
-                    return;
+                    return false;
                 }
+                
+                _move.ResetVelocity();
                 _blackboard.Energy--;
             }
+            else
+            {
+                return false;
+            }
 
-            
-            await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
-            
             var interaction = FindCloserObject();
-            if (interaction is null) return;
-        
-            Farmland(interaction);
+            if (interaction is null)
+            {
+                await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+                return false;
+            }
+
+            if (Farmland(interaction) is false)
+            {
+                await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+                return false;
+            }
+            
+            await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+
         }
-        catch(Exception e) when(e is not OperationCanceledException)
+        catch (Exception e) when (e is not OperationCanceledException)
         {
             Debug.LogException(e);
+            return false;
         }
-
-        await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
+        
+        return true;
     }
 
-    public async UniTask OnCollectAction()
+    public async UniTask<bool> OnCollectAction()
     {
-        await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
-
         try
         {
             var interaction = FindCloserObject();
-            if (interaction is null) return;
+            if (interaction is null) return false;
 
             CollisionInteractionUtil
                 .CreateSelectState()
                 .Bind<IBOCollectPlant>(CollectPlant)
                 .Bind<IBOCollect>(CollectObject)
-                .Execute(interaction.ContractInfo);
+                .Execute(interaction.ContractInfo, out bool executedAny);
+
+            if (executedAny)
+            {
+                _move.ResetVelocity();
+                await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+            }
+            
+            return executedAny;
         }
-        catch(Exception e) when(e is not OperationCanceledException)
+        catch (Exception e) when (e is not OperationCanceledException)
         {
             Debug.LogException(e);
+            return false;
         }
 
-        await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, GlobalCancelation.PlayMode);
+        return false;
     }
 
 
-    public async UniTask OnDialogueAction()
+    public async UniTask<bool> OnDialogueAction()
     {
         try
         {
             var interaction = FindCloserObject();
-            if (interaction is null) return;
+            if (interaction is null) return false;
+
+            _move.ResetVelocity();
             
-            await Dialogue(interaction);
-                
+            bool success = await Dialogue(interaction);
+
             DialogueController.Instance.ResetDialogue();
             _controller.Inventory.QuickInvVisible = true;
+
+            if (success)
+            {
+                return true;
+            }
         }
-        catch(Exception e) when(e is not OperationCanceledException)
+        catch (Exception e) when (e is not OperationCanceledException)
         {
             Debug.LogException(e);
         }
+
+        return false;
     }
 
-    private void Farmland(CollisionInteractionMono interaction)
+    private bool Farmland(CollisionInteractionMono interaction)
     {
         CollisionInteractionUtil
             .CreateSelectState()
@@ -118,12 +153,13 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             .Bind<IBOSprinkleWaterTile>(SprinkleWater)
             .Bind<IBOCultivateTile>(CultivateTile)
             .Bind<IBOPlantTile>(PlantTile)
-            .Execute(interaction.ContractInfo);
+            .Execute(interaction.ContractInfo, out bool executedAny);
+
+        return executedAny;
     }
 
-    private async UniTask Dialogue(CollisionInteractionMono interaction)
+    private async UniTask<bool> Dialogue(CollisionInteractionMono interaction)
     {
-
         if (interaction.TryGetContractInfo(out ActorContractInfo actorInfo) &&
             actorInfo.TryGetBehaviour(out IBAStateTransfer stateTransfer) &&
             actorInfo.TryGetBehaviour(out IBAFavorablity favorablity) &&
@@ -134,14 +170,15 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
             if (actorInfo.Interaction.Owner is Actor actor)
             {
-                actor.Visual.LookAt(_controller.transform.position - actor.transform.position, AnimationData.Movement.Idle);
+                actor.Visual.LookAt(_controller.transform.position - actor.transform.position,
+                    AnimationData.Movement.Idle);
             }
-            
+
             var favorablityContainer = favorablity.FavorablityContainer;
-            
+
             //TODO: test code, delete this
             favorablityContainer.CurrentFavorablity = 3;
-            
+
             var eventItems = favorablityContainer.GetExecutableDialogues();
 
             var instance = DialogueController.Instance;
@@ -169,14 +206,14 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 case 2:
                     instance.ResetDialogue();
                     stateTransfer.TranslateState("DailyRoutine");
-                    return;
+                    return false;
                 default:
                     instance.ResetDialogue();
                     stateTransfer.TranslateState("DailyRoutine");
-                    return;
+                    return false;
             }
-            
-            
+
+
             // 한번만 실행해야하는 이벤트는 블랙리스트에 등록
             foreach (FavorabilityEventItem item in eventItems)
             {
@@ -185,11 +222,11 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                     favorablityContainer.AddExecutedDialogueGuid(item.Container.Guid);
                 }
 
-                DialogueContext context =instance.CreateContext(item.Container);
-                
+                DialogueContext context = instance.CreateContext(item.Container);
+
                 await UniTask.Yield();
                 await context.Next();
-                
+
                 while (context.CanNext)
                 {
                     await UniTask.Yield();
@@ -206,29 +243,35 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
 
             stateTransfer.TranslateState("DailyRoutine");
+            return true;
         }
+        
+        
+        return false;
     }
 
     #region Actor
+
     #endregion
 
     #region Object
+
     public bool PlantTile(IBOPlantTile action)
     {
         print("PlantTile");
         var targetPos = _controller.Coordinate.GetFront();
         ItemData data = _controller.Inventory.CurrentItemData;
         IInventorySlot slot = _controller.Inventory.CurrentItemSlot;
-        
+
         bool success = false;
-        
+
         if (data is PlantItemData grownData && action.Plant(targetPos, grownData.Definition))
         {
             success = slot.TryAdd(-1, true) is SlotStatus.Success;
         }
-        
+
         _controller.Inventory.Refresh();
-        
+
         return success;
     }
 
@@ -249,15 +292,14 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             if (slot.Data is FertilizerItemData fertilizerItem)
             {
                 success = action.PlantFertilizer(targetPos, fertilizerItem.TargetTile);
-                
-                if(success)
+
+                if (success)
                     slot.TryAdd(-1, true);
             }
-
         }
 
         _controller.Inventory.Refresh();
-        
+
         return success;
     }
 
@@ -270,14 +312,14 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         if (data is null) return false;
 
         bool success = false;
-        
+
         if (data.Info.Contains(ToolType.Hoe))
         {
             success = action.TryCultivateTile(targetPos, null);
         }
-        
+
         _controller.Inventory.Refresh();
-        
+
         return success;
     }
 
@@ -290,7 +332,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         if (data is null) return false;
 
         bool success = false;
-        
+
         if (data.Info.Contains(ToolType.WaterSpray))
         {
             success = action.SprinkleWater(targetPos);
@@ -341,12 +383,12 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         {
             _controller.Inventory.Model.PushItem(item, 1);
         }
-        
+
         _controller.Inventory.Refresh();
 
         return true;
     }
-    
+
     private bool CollectObject(IBOCollect action)
     {
         var list = action.Collect();
@@ -356,17 +398,19 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         {
             _controller.Inventory.Model.PushItem(item, 1);
         }
-        
+
         _controller.Inventory.Refresh();
 
         return true;
     }
+
     #endregion
 
     public CollisionInteractionMono FindCloserObject()
     {
         var targetPos = _controller.Coordinate.GetFront();
-        var colliders = Physics2D.OverlapCircleAll(targetPos, _controller.InteractionRadius, ~LayerMask.GetMask("Player"));
+        var colliders =
+            Physics2D.OverlapCircleAll(targetPos, _controller.InteractionRadius, ~LayerMask.GetMask("Player"));
 
         float minDis = Mathf.Infinity;
         CollisionInteractionMono minInteraction = null;

@@ -101,12 +101,13 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         
     }
 
-    public async UniTask Fishing()
+    public async UniTask<bool> Fishing()
     {
         float factor = await _view.Fishing(1f);
         var front = _coordinate.GetFrontPureDir();
         Direction dir;
 
+        
         switch (_move.LastDirection)
         {
             case AnimationData.Direction.Up:
@@ -116,9 +117,11 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
                 dir = Direction.Down;
                 break;
             case AnimationData.Direction.Left:
+                front.y = 0f;
                 dir = Direction.Left;
                 break;
             case AnimationData.Direction.Right:
+                front.y = 0f;
                 dir = Direction.Right;
                 break;
             case AnimationData.Direction.LeftUp:
@@ -142,6 +145,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         
         await UnFishing(dir, pos);
 
+        return true;
     }
 
     private async UniTask UnFishing(Direction dir, Vector3 targetPoint)

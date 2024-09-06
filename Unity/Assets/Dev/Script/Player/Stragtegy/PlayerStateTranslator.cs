@@ -47,17 +47,23 @@ public class InputActionUnit : Unit
 {
     private ControlInput _input;
     private ControlOutput _outputSuccess;
+    private ControlOutput _outputFail;
 
     private ValueInput _action;
     private ValueInput _type;
     
+    private ValueOutput _vSuccess;
+    
     protected override void Definition()
     {
         _input = ControlInput("", Execute);
-        _outputSuccess = ControlOutput("Key Input");
+        _outputSuccess = ControlOutput("Success");
+        _outputFail = ControlOutput("Fail");
 
         _action = ValueInput<string>("Input Action");
         _type = ValueInput<EInputType>("Input Type");
+        
+        _vSuccess = ValueOutput<bool>("IsSuccess");
     }
 
     private ControlOutput Execute(Flow flow)
@@ -67,23 +73,24 @@ public class InputActionUnit : Unit
         var action= InputManager.Actions.Get().FindAction(actionStr);
         Debug.Assert(action != null, $"'{action}' input action을 찾을 수 없습니다.");
         
-        if (action == null)
-        {
-            return null;
-        }
-
         var type = flow.GetValue<EInputType>(_type);
+
+        ControlOutput output = null;
 
         switch (type)
         {
             case EInputType.Trigger:
-                return action.triggered ? _outputSuccess : null; 
+                output = action.triggered ? _outputSuccess : _outputFail;
+                break;
             case EInputType.Pressed:
-                return action.IsPressed() ? _outputSuccess : null;
+                output = action.IsPressed() ? _outputSuccess : _outputFail;
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
         
+        flow.SetValue(_vSuccess, output == _outputSuccess);
+        return output;
     }
 }
 

@@ -56,24 +56,25 @@ namespace ProjectBBF.Event
             return this;
         }
 
-        public SelectInteractionState Execute(BaseContractInfo info)
+        public SelectInteractionState Execute(BaseContractInfo info, out bool executedAny)
         {
             Debug.Assert(info != null, "ContractInfo must be not null");
 
-            Inner_Execute(info);
+            executedAny = Inner_Execute(info);
             
             return this;
         }
 
-        public SelectInteractionState Execute<TContractInfo>(GameObject gameObject) 
+        public SelectInteractionState Execute<TContractInfo>(GameObject gameObject, out bool executedAny) 
             where TContractInfo : BaseContractInfo
         {
+            executedAny = false;
             Debug.Assert(gameObject != null, "GameObject must be not null");
             
             if (gameObject.TryGetComponent<CollisionInteraction>(out var com) &&
                 com.TryGetContractInfo<TContractInfo>(out var info))
             {
-                Inner_Execute(info);
+                executedAny = Inner_Execute(info);
             }
             else
             {
@@ -83,7 +84,7 @@ namespace ProjectBBF.Event
             return this;
         }
 
-        private void Inner_Execute(BaseContractInfo info)
+        private bool Inner_Execute(BaseContractInfo info)
         {
             foreach (BaseInteractionStateCallback callback in _callbacks)
             {
@@ -91,9 +92,11 @@ namespace ProjectBBF.Event
 
                 if (behaviour != null)
                 {
-                    if (callback.Invoke(behaviour)) return;
+                    if (callback.Invoke(behaviour)) return true;
                 }
             }
+
+            return false;
         }
     }
     

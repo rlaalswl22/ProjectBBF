@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -10,7 +11,12 @@ public class FishingView : MonoBehaviour
     [SerializeField] private Image _fillImage;
 
     private IEnumerator _co;
-    
+
+    private void Awake()
+    {
+        gameObject.SetActive(false);
+    }
+
     public async UniTask<float> Fishing(float pressTime, CancellationToken token = default)
     {
         _fillImage.fillAmount = 0f;
@@ -20,6 +26,7 @@ public class FishingView : MonoBehaviour
         
         var cancelToken = CancellationTokenSource.CreateLinkedTokenSource(token, this.GetCancellationTokenOnDestroy())
             .Token;
+        
         
         float t = 0f;
         float sign = 1;
