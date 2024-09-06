@@ -7,6 +7,8 @@ using MyBox;
 using ProjectBBF.Event;
 using UnityEngine;
 
+
+[RequireComponent(typeof(CollisionInteraction))]
 public class Actor : MonoBehaviour, IBANameKey
 {
     [field: SerializeField, Foldout("데이터"), MustBeAssigned, InitializationField]
@@ -14,13 +16,17 @@ public class Actor : MonoBehaviour, IBANameKey
     [field: SerializeField, Foldout("데이터")] private AnimationData _aniData;
     [field: SerializeField, Foldout("데이터")] private ActorMovementData _movementData;
 
+    
+    
+    [field: SerializeField, Foldout("컴포넌트")] private List<ActorComponent> _actorComponents;
+
     [field: SerializeField, Foldout("컴포넌트"), AutoProperty, MustBeAssigned, InitializationField]
     private CollisionInteraction _interaction;
 
     [field: SerializeField, Foldout("컴포넌트")] private StateTransitionHandler _transitionHandler;
     [field: SerializeField, Foldout("컴포넌트")] private Animator _animator;
     [field: SerializeField, Foldout("컴포넌트")] private Rigidbody2D _rigid;
-
+    
 
     #region Getter/Setter
     public ActorMovementData MovementData => _movementData;
@@ -40,10 +46,13 @@ public class Actor : MonoBehaviour, IBANameKey
     #region Strategy
     public ActorMove MoveStrategy { get; private set; }
     public ActorVisual Visual { get; private set; }
-    public ActorFavorablity Favorablity { get; private set; } 
+    public ActorFavorablity Favorablity { get; private set; }
+
+    public StateTransitionHandler TransitionHandler => _transitionHandler;
+
     #endregion
     
-    private void Awake()
+    protected virtual void Awake()
     {
         //* Strategy binding */
         MoveStrategy = gameObject.AddComponent<ActorMove>();
@@ -66,14 +75,20 @@ public class Actor : MonoBehaviour, IBANameKey
         /* State handler */
         _transitionHandler.Init(Interaction);
 
-
-        PatrolPath = _movementData.DefaultPath.GetComponent<PatrolPointPath>();
         PathEvent().Forget();
         
         GameObjectStorage.Instance.AddGameObject(gameObject);
+
+        foreach (var com in _actorComponents)
+        {
+            if (com)
+            {
+                com.Init(this);
+            }
+        }
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         if (GameObjectStorage.Instance == false) return;
         GameObjectStorage.Instance.RemoveGameObject(gameObject);

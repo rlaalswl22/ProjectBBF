@@ -9,29 +9,42 @@ public class FavorabilityDataTable : ScriptableObject
 {
     [SerializeField] private List<FavorabilityData> _datas = new();
 
-    private Dictionary<string, FavorabilityData> _table;
-
-    public Dictionary<string, FavorabilityData> Table
+    public Dictionary<string, FavorabilityData> CreateCachedTable()
     {
-        get
-        {
-            if (_table is null)
-            {
-                _table = new Dictionary<string, FavorabilityData>();
+        var table = new Dictionary<string, FavorabilityData>();
                 
-                _datas.ForEach(x=>_table.Add(x.ActorKey, x));
-            }
+        _datas.ForEach(x=>table.Add(x.ActorKey, x));
 
-            return _table;
-        }
+        return table;
+    }
+}
+
+[Singleton(ESingletonType.Global, -10)]
+public class ActorDataManager : MonoBehaviourSingleton<ActorDataManager>
+{
+    public FavorabilityDataTable Table { get; private set; }
+    private Dictionary<string, FavorabilityData> _cachedTable;
+
+    public Dictionary<string, FavorabilityData> CachedDict=> _cachedTable;
+
+    public override void PostInitialize()
+    {
+        Table = Resources.Load<FavorabilityDataTable>("Data/FavorabilityTable");
+        Debug.Assert(Table is not null);
+        
+        _cachedTable = Table.CreateCachedTable();
     }
 
-
+    public override void PostRelease()
+    {
+        Table = null;
+    }
+    
     public Sprite GetPortraitFromKey(string portraitKey)
     {
         if (string.IsNullOrEmpty(portraitKey)) return null;
         
-        foreach (FavorabilityData data in Table.Values)
+        foreach (FavorabilityData data in _cachedTable.Values)
         {
             if (data.PortraitTable.Table.TryGetValue(portraitKey, out var sprite))
             {
@@ -40,22 +53,5 @@ public class FavorabilityDataTable : ScriptableObject
         }
 
         return null;
-    }
-}
-
-[Singleton(ESingletonType.Global, -10)]
-public class ActorDataManager : MonoBehaviourSingleton<ActorDataManager>
-{
-    public FavorabilityDataTable Table { get; private set; }
-
-    public override void PostInitialize()
-    {
-        Table = Resources.Load<FavorabilityDataTable>("Data/FavorabilityTable");
-        Debug.Assert(Table is not null);
-    }
-
-    public override void PostRelease()
-    {
-        Table = null;
     }
 }

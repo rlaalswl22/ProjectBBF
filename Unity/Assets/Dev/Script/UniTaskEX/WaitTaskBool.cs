@@ -46,7 +46,6 @@ public class WaitTaskBool : Unit
                 break;
             case UniTaskStatus.Succeeded:
                 _result = task.GetAwaiter().GetResult();
-                Debug.Log(_result);
                 break;
             case UniTaskStatus.Faulted:
                 Debug.LogException(task.AsTask().Exception);

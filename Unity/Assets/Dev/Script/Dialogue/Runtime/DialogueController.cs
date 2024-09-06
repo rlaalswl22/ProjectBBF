@@ -13,7 +13,7 @@ using UnityEngine.EventSystems;
 public class DialogueController : MonoBehaviourSingleton<DialogueController>
 {
     private DialogueView _view;
-    private FavorabilityDataTable _table;
+    private ActorDataManager _actorDataManager;
 
     private DialogueContext LastestContext { get; set; }
 
@@ -31,7 +31,7 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
 
     public bool SetPortrait(string portraitKey)
     {
-        Sprite spr = _table.GetPortraitFromKey(portraitKey);
+        Sprite spr = _actorDataManager.GetPortraitFromKey(portraitKey);
         _view.SetPortrait(spr);
 
         return spr is not null;
@@ -42,7 +42,7 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
         if (string.IsNullOrEmpty(actorKey)) return false;
         if (string.IsNullOrEmpty(portraitKey)) return false;
         
-        if (_table.Table.TryGetValue(actorKey, out var data) &&
+        if (_actorDataManager.CachedDict.TryGetValue(actorKey, out var data) &&
             data.PortraitTable.Table.TryGetValue(portraitKey, out var sprite))
         {
             _view.SetPortrait(sprite);
@@ -56,7 +56,7 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
     {
         if (string.IsNullOrEmpty(actorKey)) return false;
         
-        if (_table.Table.TryGetValue(actorKey, out var data))
+        if (_actorDataManager.CachedDict.TryGetValue(actorKey, out var data))
         {
             _view.DisplayName = data.ActorName;
             return true;
@@ -73,8 +73,8 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
         _view = Instantiate(_view, transform, true);
         _view.gameObject.SetActive(true);
 
-        _table = ActorDataManager.Instance.Table;
-        Debug.Assert(_table is not null);
+        _actorDataManager = ActorDataManager.Instance;
+        Debug.Assert(_actorDataManager is not null);
 
         ResetDialogue();
     }

@@ -51,6 +51,8 @@ public class ActorMove : MonoBehaviour, IActorStrategy
     
     public async UniTask<Vector2> MoveToPoint(PatrolPoint point)
     {
+        if(point is null)return transform.position;
+        
         bool backupVisible = _actor.Visual.IsVisible;
         try
         {

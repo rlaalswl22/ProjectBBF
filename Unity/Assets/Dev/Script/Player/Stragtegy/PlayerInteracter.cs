@@ -97,6 +97,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 .CreateSelectState()
                 .Bind<IBOCollectPlant>(CollectPlant)
                 .Bind<IBOCollect>(CollectObject)
+                .Bind<IBACollect>(CollectObject)
                 .Execute(interaction.ContractInfo, out bool executedAny);
 
             if (executedAny)
@@ -165,6 +166,19 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             actorInfo.TryGetBehaviour(out IBAFavorablity favorablity) &&
             actorInfo.TryGetBehaviour(out IBANameKey nameKey))
         {
+            var favorablityContainer = favorablity.FavorablityContainer;
+
+            //TODO: test code, delete this
+            favorablityContainer.CurrentFavorablity = 3;
+
+            var eventItems = favorablityContainer.GetExecutableDialogues();
+
+            if (eventItems.Count == 0)
+            {
+                stateTransfer.TranslateState("DailyRoutine");
+                return false;
+            }
+
             stateTransfer.TranslateState("TalkingForPlayer");
             _controller.Inventory.HideAll();
 
@@ -173,20 +187,13 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 actor.Visual.LookAt(_controller.transform.position - actor.transform.position,
                     AnimationData.Movement.Idle);
             }
-
-            var favorablityContainer = favorablity.FavorablityContainer;
-
-            //TODO: test code, delete this
-            favorablityContainer.CurrentFavorablity = 3;
-
-            var eventItems = favorablityContainer.GetExecutableDialogues();
-
+            
             var instance = DialogueController.Instance;
             instance.ResetDialogue();
             instance.Visible = true;
             instance.SetDisplayName(nameKey.ActorKey);
 
-            if (ActorDataManager.Instance.Table.Table.TryGetValue(nameKey.ActorKey, out var data))
+            if (ActorDataManager.Instance.CachedDict.TryGetValue(nameKey.ActorKey, out var data))
             {
                 instance.SetPortrait(data.ActorKey, data.DefaultPortraitKey);
             }
@@ -394,14 +401,44 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         var list = action.Collect();
         if (list is null) return false;
 
-        foreach (ItemData item in list)
+        if (action.Interaction.Owner is Actor actor)
+        {
+            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationData.Movement.Idle);
+            actor.TransitionHandler.TranslateState("ToWait");
+        }
+
+        ColectObject(list);
+
+        return true;
+    }
+
+    private bool CollectObject(IBACollect action)
+    {
+        var list = action.Collect();
+        if (list is null) return false;
+
+
+        if (action.Interaction.Owner is Actor actor)
+        {
+            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationData.Movement.Idle);
+            actor.TransitionHandler.TranslateState("ToWait");
+        }
+        
+        ColectObject(list);
+
+        return true;
+    }
+
+    private void ColectObject(List<ItemData> items)
+    {
+        if (items is null) return;
+
+        foreach (ItemData item in items)
         {
             _controller.Inventory.Model.PushItem(item, 1);
         }
 
         _controller.Inventory.Refresh();
-
-        return true;
     }
 
     #endregion

@@ -35,9 +35,9 @@ public class BehaviourBinder : MonoBehaviour
         _table = null;
     }
 
-    public static BehaviourBinder GetBinder(Flow flow)
+    public static BehaviourBinder GetBinder(GameObject gameObject)
     {
-        VariableDeclarations declarations = flow.stack.gameObject.GetComponent<Variables>()?.declarations;
+        VariableDeclarations declarations =gameObject.GetComponent<Variables>()?.declarations;
 
         Debug.Assert(declarations != null);
 
@@ -60,6 +60,11 @@ public class BehaviourBinder : MonoBehaviour
         declarations.Set(DECLARATION, com);
 
         return com;
+    }
+
+    public static BehaviourBinder GetBinder(Flow flow)
+    {
+        return GetBinder(flow.stack.gameObject);
     }
 
     public void GetBehaviour<T>(out T value)

@@ -7,9 +7,11 @@ using UnityEngine;
 
 public class PlayerCollector : MonoBehaviour, IPlayerStrategy
 {
+    private PlayerInventoryController _playerInventory;
+    
     public void Init(PlayerController controller)
     {
-        
+        _playerInventory = controller.Inventory;   
     }
     
     public bool CanMoveNext { get; private set; }
@@ -29,6 +31,7 @@ public class PlayerCollector : MonoBehaviour, IPlayerStrategy
         CollisionInteractionUtil
             .CreateState()
             .Bind<IBOCollect>(Collect)
+            .Bind<IBACollect>(Collect)
             .Execute(minInteraction.ContractInfo);
     }
 
@@ -58,13 +61,23 @@ public class PlayerCollector : MonoBehaviour, IPlayerStrategy
     private void Collect(IBOCollect collect)
     {
         List<ItemData> itemList = collect.Collect();
+        
+        Collect(itemList);
+        CanMoveNext = true;
+    }
 
+    private void Collect(IBACollect collect)
+    {
+        List<ItemData> itemList = collect.Collect();
+        Collect(itemList);
+        CanMoveNext = true;
+    }
+
+    private void Collect(List<ItemData> itemList)
+    {
         foreach (var item in itemList)
         {
-            Debug.Log(item.ItemName);
+            _playerInventory.Model.PushItem(item, 1);
         }
-
-        CanMoveNext = true;
-
     }
 }

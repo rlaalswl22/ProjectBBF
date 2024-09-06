@@ -17,8 +17,7 @@ public class ActorFavorablity: MonoBehaviour, IActorStrategy, IBAFavorablity
     {
         _actor = actor;
         
-        
-        if (ActorDataManager.Instance.Table.Table.TryGetValue(actor.ActorKey, out var data))
+        if (ActorDataManager.Instance.CachedDict.TryGetValue(actor.ActorKey, out var data))
         {
             FavorablityContainer = new FavorablityContainer(data.FavorabilityEvent, 0, null);
         }

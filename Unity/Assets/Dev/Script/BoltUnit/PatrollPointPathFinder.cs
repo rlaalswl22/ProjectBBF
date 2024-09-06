@@ -13,6 +13,15 @@ public class PatrollPointPathFinder : StateBehaviour
     private int? _currentIndex;
     private PatrolPointPath _before;
 
+
+    public void Reduce()
+    {
+        if (_currentIndex.HasValue)
+        {
+            _currentIndex = Mathf.Max(_currentIndex.Value - 1, 0);
+        }
+    }
+
     [CanBeNull]
     public PatrolPoint GetNextPoint(PatrolPointPath path)
     {
@@ -54,6 +63,7 @@ public class PatrolPointPathFinderUnit : Unit
     private ValueOutput _vPoint;
 
     private ControlInput _cStart;
+    private ControlInput _cReduce;
     private ControlOutput _cOutput;
 
     private PatrolPoint _lastPoint;
@@ -65,13 +75,23 @@ public class PatrolPointPathFinderUnit : Unit
             .GetNextPoint(
                 flow.GetValue<PatrolPointPath>(_vPatrollPointPath)
             );
-
+        
         if (_lastPoint is null)
         {
             return null;
         }
         
         return _cOutput;
+    }
+
+    private ControlOutput OnReduce(Flow flow)
+    {
+        BehaviourBinder.GetBinder(flow)
+            .GetBehaviour<PatrollPointPathFinder>()
+            .Reduce()
+            ;
+
+        return null;
     }
 
     protected override void Definition()
@@ -81,5 +101,6 @@ public class PatrolPointPathFinderUnit : Unit
 
         _cOutput = ControlOutput("");
         _cStart = ControlInput("OnEnterState", OnExecute);
+        _cReduce = ControlInput("Reduce", OnReduce);
     }
 }

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f0db78054be3cc4db123eaa17171df3, type: 3}
+  m_Name: Dat_Ani_Cow
+  m_EditorClassIdentifier: 
+  _idleUp: {fileID: 7400000, guid: aba5bc3e2a7cf284ca47e9eb13f250e6, type: 2}
+  _idleDown: {fileID: 7400000, guid: 692391a3bcdc5c141bcad9a892413d31, type: 2}
+  _idleLeft: {fileID: 7400000, guid: a65a4f33e0135094c9e95b34c22c368a, type: 2}
+  _idleRight: {fileID: 7400000, guid: 810dbd5eb4bb15043a16c046560ea262, type: 2}
+  _idleLeftUp: {fileID: 0}
+  _idleRightUp: {fileID: 0}
+  _movementUp: {fileID: 7400000, guid: 749a551bf4303554d824df19db644a40, type: 2}
+  _movementDown: {fileID: 7400000, guid: fcd3ab4a5c4415246a539aed5a361e44, type: 2}
+  _movementLeft: {fileID: 7400000, guid: f4f9529ca00285642aac549c19b30480, type: 2}
+  _movementRight: {fileID: 7400000, guid: 7fdab7d2d7fca2a4984ce03b0c5ba655, type: 2}
+  _movementLeftUp: {fileID: 0}
+  _movementRightUp: {fileID: 0}
+  _sprintUp: {fileID: 0}
+  _sprintDown: {fileID: 0}
+  _sprintLeft: {fileID: 0}
+  _sprintRight: {fileID: 0}
+  _sprintLeftUp: {fileID: 0}
+  _sprintRightUp: {fileID: 0}

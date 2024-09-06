@@ -15,12 +15,10 @@ public class ActorMovementData : ScriptableObject
 
     [SerializeField] private float _movementSpeed;
 
-    [SerializeField] private GameObject _defaultPath;
     [SerializeField] private List<PathItem> _paths;
 
 
     public float MovementSpeed => _movementSpeed;
     public IReadOnlyList<PathItem> Paths => _paths;
 
-    public GameObject DefaultPath => _defaultPath;
 }

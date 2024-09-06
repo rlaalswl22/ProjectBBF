@@ -16,10 +16,13 @@ public class CollectingObjectData : ScriptableObject
 
     [SerializeField] private Sprite _defaultSprite;
     [SerializeField] private Sprite _collectedSprite;
+    [SerializeField] private int _maxCollectCount;
     [SerializeField] private List<Item> _dropItems;
 
     public Sprite DefaultSprite => _defaultSprite;
     public Sprite CollectedSprite => _collectedSprite;
+
+    public int MaxCollectCount => _maxCollectCount;
 
     public IReadOnlyList<Item> DropItems => _dropItems;
 }

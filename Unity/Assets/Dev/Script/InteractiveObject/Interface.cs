@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public enum EPlayerCollectingAnimation : int
@@ -12,5 +13,17 @@ public enum EPlayerCollectingAnimation : int
 
 public interface IBOCollect : IObjectBehaviour
 {
-    public List<ItemData> Collect();
+    /// <summary>
+    /// Collect에 성공하면 List를 반환하고, 실패하면 null을 반환합니다.
+    /// </summary>
+    /// <returns></returns>
+    [CanBeNull] public List<ItemData> Collect();
+}
+public interface IBACollect : IActorBehaviour
+{
+    /// <summary>
+    /// Collect에 성공하면 List를 반환하고, 실패하면 null을 반환합니다.
+    /// </summary>
+    /// <returns></returns>
+    [CanBeNull] public List<ItemData> Collect();
 }

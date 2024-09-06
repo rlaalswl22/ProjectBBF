@@ -19,3 +19,9 @@ public interface IBAStateTransfer : IActorBehaviour
 {
     public void TranslateState(string stateKey);
 }
+
+
+public abstract class ActorComponent: MonoBehaviour
+{
+    public abstract void Init(Actor actor);
+}
