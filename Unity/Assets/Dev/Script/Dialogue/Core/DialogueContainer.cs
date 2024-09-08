@@ -19,7 +19,7 @@ namespace DS.Core
         public string Guid => _guid;
     
 #if UNITY_EDITOR
-        private void OnEnable()
+        private void Awake()
         {
             if (string.IsNullOrEmpty(_guid))
             {

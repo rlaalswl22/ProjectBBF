@@ -59,7 +59,6 @@ public class FavorablityContainer
     public List<FavorabilityEventItem> GetExecutableDialogues()
     {
         return Event.EventItems
-            .Where(x => x.Favorablity <= CurrentFavorablity)
             .Where(x => _executedDialogueGuid.Contains(x.Container.Guid) == false)
             .ToList();
     }

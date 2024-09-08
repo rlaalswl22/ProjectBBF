@@ -65,7 +65,7 @@ public class Actor : MonoBehaviour, IBANameKey
         
         /* Collision interaction */
         var info = ActorContractInfo.Create(() => gameObject);
-        info.AddBehaivour<IBAFavorablity>(Favorablity);
+        info.AddBehaivour<IBADialogue>(Favorablity);
         info.AddBehaivour<IBANameKey>(this);
         info.AddBehaivour<IBAStateTransfer>(_transitionHandler);
         

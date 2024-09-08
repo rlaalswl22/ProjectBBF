@@ -37,17 +37,7 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
         _ = loaderInst
             .WorkDirectorAsync(false, _fadeoutDirectorKey)
             .ContinueWith(_ => loaderInst.LoadWorldAsync(scene))
-            .ContinueWith(_ =>
-            {
-                GameObjectStorage.Instance.StoredObjects.ForEach(x =>
-                {
-                    if (x.CompareTag("Player") && x.TryGetComponent(out PlayerController pc))
-                    {
-                        pc.StateHandler.TranslateState("EndOfCutScene");
-                    }
-                });
-            })
-            .ContinueWith(() => loaderInst.WorkDirectorAsync(true, _fadeinDirectorKey))
+            .ContinueWith(_ => loaderInst.WorkDirectorAsync(true, _fadeinDirectorKey))
             .ContinueWith(_ => TimeManager.Instance.Resume())
             ;
     }

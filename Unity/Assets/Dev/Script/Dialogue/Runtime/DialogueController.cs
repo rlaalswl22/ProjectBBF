@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using DS.Core;
 using JetBrains.Annotations;
@@ -8,6 +9,14 @@ using ProjectBBF.Singleton;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[Flags]
+public enum DialogueBranchType : int
+{
+    None = 0,
+    Exit = 1,
+    Dialogue = 2,
+    Gift = 4,
+}
 
 [Singleton(ESingletonType.Global)]
 public class DialogueController : MonoBehaviourSingleton<DialogueController>
@@ -132,5 +141,35 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
 
         LastestContext = context;
         return context;
+    }
+    public async UniTask<DialogueBranchType> GetBranchResultAsync(DialogueBranchType type)
+    {
+        if (type == DialogueBranchType.Dialogue) return DialogueBranchType.Dialogue;
+        
+        var branches = GetBranchText(type);
+
+        int index = await GetBranchResultAsync(branches.Select(x => x.Item1).ToArray());
+
+        return branches[index].Item2;
+    }
+
+    private List<(string, DialogueBranchType)> GetBranchText(DialogueBranchType type)
+    {
+        List<(string, DialogueBranchType)> texts = new List<(string, DialogueBranchType)>(3);
+        
+        if ((type & DialogueBranchType.Dialogue) == DialogueBranchType.Dialogue)
+        {
+            texts.Add(("대화", DialogueBranchType.Dialogue));
+        }
+        if ((type & DialogueBranchType.Gift) == DialogueBranchType.Gift)
+        {
+            texts.Add(("선물하기", DialogueBranchType.Gift));
+        }
+        if ((type & DialogueBranchType.Exit) == DialogueBranchType.Exit)
+        {
+            texts.Add(("나가기", DialogueBranchType.Exit));
+        }
+        
+        return texts;
     }
 }

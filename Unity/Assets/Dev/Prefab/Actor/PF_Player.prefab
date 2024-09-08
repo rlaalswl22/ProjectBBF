@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6363802113969981774}
   - component: {fileID: 5881046297284461093}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6809109810969975544}
   - component: {fileID: 6651855928972664081}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LineRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 389601174058625348}
   - component: {fileID: 9181868122090767744}
   - component: {fileID: 808908259159016748}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 173535397373006188}
   - component: {fileID: 6085147169449383347}
   - component: {fileID: 8611976090592582029}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fishing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,12 +591,10 @@ MonoBehaviour:
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"PlayerController","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"PlayerController,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"StateTransitionHandler","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"StateTransitionHandler,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"HUD","value":{"$content":2,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 2513654603892107888}
     - {fileID: 4878991871154345875}
-    - {fileID: 0}
 --- !u!114 &4878991871154345875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,7 +724,7 @@ GameObject:
   - component: {fileID: 1341110297875142447}
   - component: {fileID: 3426069925918621772}
   - component: {fileID: 8703281070832990748}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -907,7 +905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1555846027804912462}
   - component: {fileID: 6773744445356970243}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FishingRodRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -993,7 +991,7 @@ GameObject:
   - component: {fileID: 6970180556904003864}
   - component: {fileID: 6459736885174536280}
   - component: {fileID: 8620064222485014888}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

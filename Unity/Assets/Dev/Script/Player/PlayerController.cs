@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MyBox;
 using ProjectBBF.Event;
 using ProjectBBF.Persistence;
@@ -53,6 +54,31 @@ public class PlayerController : MonoBehaviour
 
     public CollisionInteraction Interaction => _interaction;
     public PlayerBlackboard Blackboard { get; private set; }
+    private HudController _hudController;
+
+    public HudController HudController
+    {
+        get
+        {
+            if (_hudController)
+            {
+                return _hudController;
+            }
+
+            GameObjectStorage.Instance.ForEach(obj =>
+            {
+                if (obj.gameObject.TryGetComponent<HudController>(out var com))
+                {
+                    _hudController = com;
+                    return false;
+                }
+
+                return true;
+            });
+
+            return _hudController;
+        }
+    }
 
 
     #region Getter/Setter
@@ -69,6 +95,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInteracter Interactor { get; private set; }
     public PlayerCoordinate Coordinate { get; private set; }
     public PlayerFishing Fishing => _fishing;
+    public PlayerDialogue Dialogue { get; private set; }
 
 
     public PlayerInventoryController Inventory { get; private set; }
@@ -82,6 +109,7 @@ public class PlayerController : MonoBehaviour
         Translator = Bind<PlayerStateTranslator>();
         Interactor = Bind<PlayerInteracter>();
         Coordinate = Bind<PlayerCoordinate>();
+        Dialogue = Bind<PlayerDialogue>();
 
         Inventory = new PlayerInventoryController(
             new GridInventoryModel(new Vector2Int(10, 3)),
