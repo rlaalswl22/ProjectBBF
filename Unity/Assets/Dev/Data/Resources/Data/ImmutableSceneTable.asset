@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: ImmutableSceneTable
   m_EditorClassIdentifier: 
   _scenes:
-  - DMap_Playground
+  - Immutable_Playground
+  - Immutable_UI
   SceneAssets:
   - {fileID: 102900000, guid: f598e378b07a88e478563ee48cc1eb37, type: 3}
+  - {fileID: 102900000, guid: eaf5ca75644c2ca4e91ec99b0cdb56d4, type: 3}
