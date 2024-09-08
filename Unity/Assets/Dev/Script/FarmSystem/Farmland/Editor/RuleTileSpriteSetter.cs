@@ -37,7 +37,6 @@ public class RuleTileSpriteSetter : ScriptableObject
         if (_ruleTile is null) return;
         if (_sprs.Length == 0) return;
 
-        int i = 0;
         foreach (var rule in _ruleTile.m_TilingRules)
         {
             for (int r = 0; r < rule.m_Sprites.Length; r++)

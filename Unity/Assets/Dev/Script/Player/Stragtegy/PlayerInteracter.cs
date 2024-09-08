@@ -113,8 +113,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             Debug.LogException(e);
             return false;
         }
-
-        return false;
     }
 
 

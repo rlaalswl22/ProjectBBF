@@ -15,19 +15,29 @@ public struct ItemDataSerializedSet
 [CreateAssetMenu(menuName = "ProjectBBF/Data/Item/Default item", fileName = "New Default item data")]
 public class ItemData : ScriptableObject
 {
-    [SerializeField] private string _itemName;
-    [SerializeField] private Sprite _itemSprite;
-    [SerializeField] private float _lootingTime;
-    [SerializeField] private string _itemDescription;
-    [SerializeField] private int _maxStackCount = 1;
-    [SerializeField] private ItemTypeInfo _itemTypeInfo;
-    [SerializeField] private ActionCategoryType _actionCategoryType;
-    [SerializeField] private ActionAnimationType _actionAnimationType;
-    
+    [field: SerializeField, Header("아이템 키")]
+    private string _itemKey;
+
+    [field: SerializeField, Header("아이템 화면 이름")]
+    private string _itemName;
+
+    [field: SerializeField, Header("아이템 이미지")]
+    private Sprite _itemSprite;
+
+    [field: SerializeField, Header("최대 겹치기 개수")]
+    private int _maxStackCount = 1;
+
+    [field: SerializeField, Header("아이템 메타데이터")]
+    private ItemTypeInfo _itemTypeInfo;
+
+    [field: SerializeField, Header("건들 ㄴㄴ")]
+    private ActionCategoryType _actionCategoryType;
+
+    [field: SerializeField, Header("건들 ㄴㄴ")]
+    private ActionAnimationType _actionAnimationType;
+
     public string ItemName => _itemName;
     public Sprite ItemSprite => _itemSprite;
-    public float LootingTime => _lootingTime;
-    public string ItemDescription => _itemDescription;
     public int MaxStackCount => Mathf.Max(1, _maxStackCount);
     public ItemTypeInfo Info => _itemTypeInfo;
 
