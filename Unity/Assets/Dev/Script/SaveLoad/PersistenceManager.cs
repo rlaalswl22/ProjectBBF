@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +53,13 @@ namespace ProjectBBF.Persistence
                 _objTable[key] = cachedObj;
             }
 
-            return (T)cachedObj;
+            if (cachedObj is T t)
+            {
+                return t;
+            }
+
+            throw new Exception(
+                $"Persistence 에러! Key({key}), cachedObject Type({cachedObj.GetType()}), Acquire Type({typeof(T)})");
         }
 
         public IPersistenceObject GetCachedPersistenceObj(ref string key)
