@@ -21,7 +21,7 @@ public class SceneName
     public static implicit operator string(SceneName name)
     {
         if(name is null) return string.Empty;
-        
-        return name._sceneAsset.name;
+
+        return name._sceneName;
     }
 }
