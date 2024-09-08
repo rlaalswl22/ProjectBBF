@@ -23,4 +23,9 @@ public class ESOGameTimeEvent : EventScriptableObjectT<GameTime>
 
     public Operation OperationType => _operation;
     public GameTime TargetGameTime => _targetGameTime;
+
+    private void OnValidate()
+    {
+        _targetGameTime.Min = Mathf.Clamp(_targetGameTime.Min - _targetGameTime.Min % 10, 0, 50);
+    }
 }
