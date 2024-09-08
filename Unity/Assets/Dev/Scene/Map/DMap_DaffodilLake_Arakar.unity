@@ -641,7 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a1c5e9991f69f488348503713ceab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapEventKey: Test
+  _mapEventKey: CutScene_Receiver_Test
   _scene:
     _sceneAsset: {fileID: 102900000, guid: 50ed8563bb3ea264c85c75486b5024bc, type: 3}
     _sceneName: World_DaffodiLake_Arakar_CutScene
@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959efb6e63d739644874ea153d8006bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventKey: Test
+  _eventKey: Dialogue_Receiver_Test
   _once: 1
   _container: {fileID: 11400000, guid: 23d77cd7abb336746b089b77355a443e, type: 2}
 --- !u!1001 &1988786058
