@@ -21,6 +21,9 @@ public class ItemData : ScriptableObject
     [field: SerializeField, Header("아이템 화면 이름")]
     private string _itemName;
 
+    [field: SerializeField, Header("아이템 화면 설명")]
+    private string _itemDescription;
+
     [field: SerializeField, Header("아이템 이미지")]
     private Sprite _itemSprite;
 
@@ -36,7 +39,10 @@ public class ItemData : ScriptableObject
     [field: SerializeField, Header("건들 ㄴㄴ")]
     private ActionAnimationType _actionAnimationType;
 
+    public string ItemKey => _itemKey;
     public string ItemName => _itemName;
+    public string ItemDescription => _itemDescription;
+
     public Sprite ItemSprite => _itemSprite;
     public int MaxStackCount => Mathf.Max(1, _maxStackCount);
     public ItemTypeInfo Info => _itemTypeInfo;

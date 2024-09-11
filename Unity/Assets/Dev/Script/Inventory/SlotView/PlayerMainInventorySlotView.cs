@@ -6,11 +6,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PlayerMainInventorySlotView : MonoBehaviour, IPointerDownHandler
+public class PlayerMainInventorySlotView : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
     [SerializeField] private Image _slotImage;
     [SerializeField] private TMP_Text _text;
     private IInventorySlot _slotController;
+
+    public event Action<IInventorySlot> OnDown;
+    public event Action<IInventorySlot> OnHoverEnter;
+    public event Action<IInventorySlot> OnHoverExit;
+    public event Action<IInventorySlot, PointerEventData> OnMove;
 
     private void Awake()
     {
@@ -137,9 +142,24 @@ public class PlayerMainInventorySlotView : MonoBehaviour, IPointerDownHandler
     {
         selected.Swap(my);
     }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         OnClick(eventData);
+        
+        OnDown?.Invoke(SlotController);
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OnHoverEnter?.Invoke(SlotController);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        OnHoverExit?.Invoke(SlotController);
+    }
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        OnMove?.Invoke(SlotController, eventData);
     }
 }

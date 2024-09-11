@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
     private PlayerMainInventoryView _mainInventoryView;
 
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
+    private PlayerPannelController _pannelController;
+
+    [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
     private PlayerFishing _fishing;
 
     [field: SerializeField] private List<ItemDataSerializedSet> _testItems;
@@ -114,7 +117,8 @@ public class PlayerController : MonoBehaviour
         Inventory = new PlayerInventoryController(
             new GridInventoryModel(new Vector2Int(10, 3)),
             _mainInventoryView,
-            _quickInventoryView
+            _quickInventoryView,
+            _pannelController
         );
         Fishing.Init(this);
 

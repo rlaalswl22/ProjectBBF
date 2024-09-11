@@ -2,12 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PlayerMainInventoryView : MonoBehaviour, IInventoryView
 {
+    [SerializeField] private ItemToolTipView _toolTipView;
+    [SerializeField] private Vector2 _toolTipOffset;
+    
     [SerializeField] private Transform _content;
     [SerializeField] private int _colCount = 4;
 
@@ -24,6 +28,9 @@ public class PlayerMainInventoryView : MonoBehaviour, IInventoryView
 
     private void Awake()
     {
+        _toolTipView.Clear();
+        _toolTipView.Visible = false;
+        
         int length = _content.childCount;
         Row = length / _colCount + length % _colCount;
         Col = _colCount;
@@ -51,12 +58,44 @@ public class PlayerMainInventoryView : MonoBehaviour, IInventoryView
             else
             {
                 _slotViews[i, j] = slotView;
+                slotView.OnHoverEnter += OnHoverEnter;
+                slotView.OnHoverExit += OnHoverExit;
+                slotView.OnMove += OnMove;
+                slotView.OnDown += OnDown;
             }
 
             j++;
         }
     }
 
+    private void OnDown(IInventorySlot obj)
+    {
+        _toolTipView.Visible = false;
+        _toolTipView.Clear();
+    }
+
+    private void OnHoverEnter(IInventorySlot slot)
+    {
+        if (SelectItemController.Instance.Model.IsEmpty is false) return;
+        if (slot is null) return;
+        if (slot.Data == false) return;
+        
+        _toolTipView.Visible = true;
+        _toolTipView.SetText(slot.Data);
+        
+    }
+    private void OnHoverExit(IInventorySlot slot)
+    {
+        if (SelectItemController.Instance.Model.IsEmpty is false) return;
+        _toolTipView.Visible = false;
+        _toolTipView.Clear();
+    }
+
+    private void OnMove(IInventorySlot obj, PointerEventData eventData)
+    {
+        _toolTipView.transform.position = _toolTipView.ToValidPosition(eventData.position + _toolTipOffset);
+    }
+    
     public void Refresh(IInventoryModel model)
     {
        using var modelEnumerator = model.GetEnumerator();
