@@ -21,7 +21,6 @@ public class PlayerPannelController : MonoBehaviour
         get => _viewState;
         set
         {
-            if (_viewState == value) return;
             _viewState = value;
 
             _settingView.Visible = false;
@@ -50,10 +49,12 @@ public class PlayerPannelController : MonoBehaviour
     {
         ViewState = (ViewType)type;
     }
-    
-    private void Start()
+
+    private void Awake()
     {
+        _invView.Init();
+        _settingView.Init();
+        
         ViewState = ViewType.Close;
-        gameObject.SetActive(false);
     }
 }

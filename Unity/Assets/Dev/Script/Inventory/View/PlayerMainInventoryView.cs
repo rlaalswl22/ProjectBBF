@@ -26,7 +26,7 @@ public class PlayerMainInventoryView : MonoBehaviour, IInventoryView
         set => gameObject.SetActive(value);
     }
 
-    private void Awake()
+    public void Init()
     {
         _toolTipView.Clear();
         _toolTipView.Visible = false;

@@ -139,6 +139,14 @@ public class PlayerController : MonoBehaviour
 
         Blackboard.MaxStemina = _movementData.DefaultStemina;
         Blackboard.Stemina = _movementData.DefaultStemina;
+        
+        
+        foreach (var item in _testItems)
+        {
+            Inventory.Model.PushItem(item.Item, item.Count);
+        }
+        
+        Inventory.Refresh();
     }
 
     private void OnDestroy()
@@ -146,14 +154,6 @@ public class PlayerController : MonoBehaviour
         if (GameObjectStorage.Instance)
         {
             GameObjectStorage.Instance.RemoveGameObject(gameObject);
-        }
-    }
-
-    private void Start()
-    {
-        foreach (var item in _testItems)
-        {
-            Inventory.Model.PushItem(item.Item, item.Count);
         }
     }
 
