@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameBeginer : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
         TimeManager.Instance.Begin();
     }

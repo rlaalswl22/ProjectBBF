@@ -98,8 +98,9 @@ public class Actor : MonoBehaviour, IBANameKey
 
     private async UniTask PathEvent()
     {
-        
+        HashSet<ESOGameTimeEvent> _invokedEvents = new();
         List<UniTask<PatrolPointPath>> list = new List<UniTask<PatrolPointPath>>(_movementData.Paths.Count);
+
         while (true)
         {
             try
@@ -108,6 +109,8 @@ public class Actor : MonoBehaviour, IBANameKey
 
                 foreach (ActorMovementData.PathItem item in _movementData.Paths)
                 {
+                    if (_invokedEvents.Contains(item.ChangeTimeEvent)) continue;
+
                     var i = item;
                     if(i.ChangeTimeEvent == false)continue;
                     
@@ -118,16 +121,26 @@ public class Actor : MonoBehaviour, IBANameKey
                     }));
                 }
 
+                if(list.Any() is false)
+                {
+                    await UniTask.Yield(PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+                    continue;
+                }
+
                 var path = await UniTask.WhenAny(list).WithCancellation(this.GetCancellationTokenOnDestroy());
+                _invokedEvents.Add(_movementData.Paths[path.winArgumentIndex].ChangeTimeEvent);
 
                 PatrolPath = path.result;
                 MoveStrategy.ResetMove();
             }
             catch (Exception e) when (e is not OperationCanceledException)
             {
+                print("e");
                 Debug.LogException(e);
             }
         }
+
+        print("end");
     }
 
     #endregion

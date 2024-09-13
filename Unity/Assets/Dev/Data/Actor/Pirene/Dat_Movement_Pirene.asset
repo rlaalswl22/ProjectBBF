@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6780d0ee07b34a7c96e7a865461cf924, type: 3}
   m_Name: Dat_Movement_Pirene
   m_EditorClassIdentifier: 
-  _movementSpeed: 9
-  _defaultPath: {fileID: 1619438057120121989, guid: 526ee572ad4a68a41bca0bae8706c616, type: 3}
+  _movementSpeed: 3
   _paths:
   - Path: {fileID: 1619438057120121989, guid: 526ee572ad4a68a41bca0bae8706c616, type: 3}
     ChangeTimeEvent: {fileID: 11400000, guid: 454255f92bf4ed54a986ff8dca5d87cd, type: 2}

@@ -31,13 +31,13 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField, MustBeAssigned, AutoProperty(AutoPropertyMode.Children)]
     private CollisionInteraction _interaction;
 
-    [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
+    [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Scene)]
     private PlayerQuickInventoryView _quickInventoryView;
 
-    [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
+    [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Scene)]
     private PlayerMainInventoryView _mainInventoryView;
 
-    [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
+    [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Scene)]
     private PlayerPannelController _pannelController;
 
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
@@ -113,13 +113,6 @@ public class PlayerController : MonoBehaviour
         Interactor = Bind<PlayerInteracter>();
         Coordinate = Bind<PlayerCoordinate>();
         Dialogue = Bind<PlayerDialogue>();
-
-        Inventory = new PlayerInventoryController(
-            new GridInventoryModel(new Vector2Int(10, 3)),
-            _mainInventoryView,
-            _quickInventoryView,
-            _pannelController
-        );
         Fishing.Init(this);
 
         GameObjectStorage.Instance.AddGameObject(gameObject);
@@ -129,10 +122,20 @@ public class PlayerController : MonoBehaviour
         Interaction.SetContractInfo(info, this);
 
         StateHandler.Init(Interaction);
+    }
+
+    private void Start()
+    {
+        Inventory = new PlayerInventoryController(
+            new GridInventoryModel(new Vector2Int(10, 3)),
+            _mainInventoryView,
+            _quickInventoryView,
+            _pannelController
+        );
 
         DataInit();
     }
-    
+
     private void DataInit()
     {
         Blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
