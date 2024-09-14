@@ -15,7 +15,7 @@ public class PlayerMainInventoryView : MonoBehaviour, IInventoryView
     [SerializeField] private Transform _content;
     [SerializeField] private int _colCount = 4;
 
-    private PlayerMainInventorySlotView[,] _slotViews;
+    private InventorySlotView[,] _slotViews;
 
     public int Row { get; private set; }
     public int Col { get; private set; }
@@ -35,7 +35,7 @@ public class PlayerMainInventoryView : MonoBehaviour, IInventoryView
         Row = length / _colCount + length % _colCount;
         Col = _colCount;
         
-        _slotViews = new PlayerMainInventorySlotView
+        _slotViews = new InventorySlotView
         [
             Row,
             Col
@@ -51,7 +51,7 @@ public class PlayerMainInventoryView : MonoBehaviour, IInventoryView
                 j = 0;
             }
 
-            if (_content.GetChild(iter).TryGetComponent(out PlayerMainInventorySlotView slotView) is false)
+            if (_content.GetChild(iter).TryGetComponent(out InventorySlotView slotView) is false)
             {
                 Debug.LogError("컴포넌트가 존재하지 않음");
             }
@@ -93,7 +93,13 @@ public class PlayerMainInventoryView : MonoBehaviour, IInventoryView
 
     private void OnMove(IInventorySlot obj, PointerEventData eventData)
     {
-        _toolTipView.transform.position = _toolTipView.ToValidPosition(eventData.position + _toolTipOffset);
+        var offset = ItemToolTipView.ToWorldSpaceOffset(_toolTipOffset);
+
+        var pos = ItemToolTipView.ScreenToOrthogonal(eventData.position);
+        pos = _toolTipView.ToValidPosition(pos);
+        pos = ItemToolTipView.OrthogonalToScreen(pos);
+
+        _toolTipView.transform.position = pos;
     }
     
     public void Refresh(IInventoryModel model)

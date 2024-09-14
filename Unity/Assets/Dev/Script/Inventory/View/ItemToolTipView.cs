@@ -57,18 +57,20 @@ public class ItemToolTipView : MonoBehaviour
         set => gameObject.SetActive(value);
     }
 
-    public static Direction GetOverlappedDirectionScreen(Vector2 worldPos, Vector2 size)
+    public static Direction GetOverlappedDirectionScreen(Vector2 orthogonalPos, Vector2 size)
     {
         Camera cam = Camera.main;
 
         var cameraSize = new Vector2(cam.scaledPixelWidth, cam.scaledPixelHeight);
-
         
-        Bounds myBounds = new Bounds(new Vector3(worldPos.x - cameraSize.x * 0.5f, worldPos.y - cameraSize.y * 0.5f), size);
+        Bounds myBounds = new Bounds(orthogonalPos, size);
         Bounds leftScreenBounds = new Bounds(Vector3.left * cameraSize.x, cameraSize);
         Bounds rightScreenBounds = new Bounds(Vector3.right * cameraSize.x, cameraSize);
         Bounds upScreenBounds = new Bounds(Vector3.up * cameraSize.y, cameraSize);
         Bounds downScreenBounds = new Bounds(Vector3.down * cameraSize.y, cameraSize);
+
+
+        print(myBounds + "====" + downScreenBounds);
 
         Direction dir = Direction.None;
 
@@ -92,17 +94,7 @@ public class ItemToolTipView : MonoBehaviour
         return dir;
     }
 
-    private static Vector2 WorldToScreen(Vector2 screenPoint)
-    {
-        Camera cam = Camera.main;
-        var cameraSize = new Vector2(cam.scaledPixelWidth, cam.scaledPixelHeight);
-        return new Vector3
-        (
-            screenPoint.x - cameraSize.x * 0.5f,
-            screenPoint.y - cameraSize.y * 0.5f
-        );
-    }
-    private static Vector2 ScreenToWorld(Vector2 screenPoint)
+    public static Vector2 OrthogonalToScreen(Vector2 screenPoint)
     {
         Camera cam = Camera.main;
         var cameraSize = new Vector2(cam.scaledPixelWidth, cam.scaledPixelHeight);
@@ -112,34 +104,51 @@ public class ItemToolTipView : MonoBehaviour
             screenPoint.y + cameraSize.y * 0.5f
         );
     }
-
-    public Vector2 ToValidPosition(Vector3 pos)
+    public static Vector2 ScreenToOrthogonal(Vector2 screenPoint)
     {
         Camera cam = Camera.main;
-        var dir = GetOverlappedDirectionScreen(pos, _boundTransform.rect.size * 2f);
-        var size = _boundTransform.rect.size * 2f;
+        var cameraSize = new Vector2(cam.scaledPixelWidth, cam.scaledPixelHeight);
+        return new Vector3
+        (
+            screenPoint.x - cameraSize.x * 0.5f,
+            screenPoint.y - cameraSize.y * 0.5f
+        );
+    }
+
+    public Vector2 ToValidPosition(Vector3 orthogonalPos)
+    {
+        Camera cam = Camera.main;
+        var size = _boundTransform.rect.size;
+        var dir = GetOverlappedDirectionScreen(orthogonalPos, size);
         var cameraSize = new Vector2(cam.scaledPixelWidth, cam.scaledPixelHeight);
 
-        pos = WorldToScreen(pos);
         
         if ((dir & Direction.Left) == Direction.Left)
         {
-            pos.x = -cameraSize.x * 0.5f + size.x * 0.5f;
+            orthogonalPos.x = -cameraSize.x * 0.5f + size.x * 0.5f;
         }
         if ((dir & Direction.Right) == Direction.Right)
         {
-            pos.x = cameraSize.x * 0.5f - size.x * 0.5f;
+            orthogonalPos.x = cameraSize.x * 0.5f - size.x * 0.5f;
         }
         if ((dir & Direction.Up) == Direction.Up)
         {
-            pos.y = cameraSize.y * 0.5f - size.y * 0.5f;
+            orthogonalPos.y = cameraSize.y * 0.5f - size.y * 0.5f;
         }
         if ((dir & Direction.Down) == Direction.Down)
         {
-            pos.y = -cameraSize.y * 0.5f + size.y * 0.5f;
+            orthogonalPos.y = -cameraSize.y * 0.5f + size.y * 0.5f;
         }
 
-        return ScreenToWorld(pos);
+        return orthogonalPos;
+    }
+
+    public  static Vector2 ToWorldSpaceOffset(Vector2 normalizedOffset)
+    {
+        Camera cam = Camera.main;
+        var cameraSize = new Vector2(cam.scaledPixelWidth * 0.5f, cam.scaledPixelHeight * 0.5f);
+
+        return new Vector2(cameraSize.x * normalizedOffset.x, cameraSize.y * normalizedOffset.y);
     }
 
     private void Awake()
