@@ -13,7 +13,6 @@ public class Actor : MonoBehaviour, IBANameKey
 {
     [field: SerializeField, Foldout("데이터"), MustBeAssigned, InitializationField]
     private string _actorKey;
-    [field: SerializeField, Foldout("데이터")] private AnimationData _aniData;
     [field: SerializeField, Foldout("데이터")] private ActorMovementData _movementData;
 
     
@@ -30,8 +29,6 @@ public class Actor : MonoBehaviour, IBANameKey
 
     #region Getter/Setter
     public ActorMovementData MovementData => _movementData;
-    public AnimationData AniData => _aniData;
-
     public Rigidbody2D Rigid => _rigid;
 
     public Animator Animator => _animator;
@@ -58,7 +55,7 @@ public class Actor : MonoBehaviour, IBANameKey
         MoveStrategy = gameObject.AddComponent<ActorMove>();
         MoveStrategy.Init(this);
         Visual = gameObject.AddComponent<ActorVisual>();
-        Visual.Init(Animator, AniData, GetComponentInChildren<SpriteRenderer>());
+        Visual.Init(Animator, GetComponentInChildren<SpriteRenderer>());
         Favorablity = gameObject.AddComponent<ActorFavorablity>();
         Favorablity.Init(this);
         
@@ -135,12 +132,9 @@ public class Actor : MonoBehaviour, IBANameKey
             }
             catch (Exception e) when (e is not OperationCanceledException)
             {
-                print("e");
                 Debug.LogException(e);
             }
         }
-
-        print("end");
     }
 
     #endregion

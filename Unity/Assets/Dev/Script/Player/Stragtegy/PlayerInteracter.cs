@@ -278,7 +278,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
         if (action.Interaction.Owner is Actor actor)
         {
-            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationData.Movement.Idle);
+            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Movement.Idle);
             actor.TransitionHandler.TranslateState("ToWait");
         }
 
@@ -295,7 +295,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
         if (action.Interaction.Owner is Actor actor)
         {
-            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationData.Movement.Idle);
+            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Movement.Idle);
             actor.TransitionHandler.TranslateState("ToWait");
         }
         

@@ -6,13 +6,9 @@ using UnityEngine;
 public class ActorVisual : MonoBehaviour, IActorStrategy
 {
     private Animator _animator;
-    private AnimationData _animationData;
     private SpriteRenderer _renderer;
 
-    private const string DEFAULT_ANI_STATE = "DefaultMovement";
-
-    private AnimationClip _defaultClip = null;
-    private AnimationClip _beforeClip = null;
+    private int _beforeAniHash = -1;
 
     public bool IsVisible
     {
@@ -20,28 +16,18 @@ public class ActorVisual : MonoBehaviour, IActorStrategy
         set => _renderer.enabled = value;
     }
 
-    public void Init(Animator animator, AnimationData animationData, SpriteRenderer renderer)
+    public void Init(Animator animator, SpriteRenderer renderer)
     {
         _animator = animator;
-        _animationData = animationData;
         _renderer = renderer;
-        
-        RuntimeAnimatorController ac = _animator.runtimeAnimatorController;
-        AnimatorOverrideController overrideController = new AnimatorOverrideController(ac);
-        _animator.runtimeAnimatorController = overrideController;
-
-        _defaultClip = overrideController[DEFAULT_ANI_STATE];
     }
     
-    public void ChangeClip(AnimationClip newClip, bool force = false)
+    public virtual void ChangeClip(int aniHash, bool force = false)
     {
-        if (force == false && _beforeClip == newClip) return;
-        
-        if (_animator.runtimeAnimatorController is AnimatorOverrideController overrideController)
-        {
-            overrideController[_defaultClip] = newClip;
-            _beforeClip = newClip;
-        }
+        if (force is false && _beforeAniHash == aniHash) return;
+
+        _beforeAniHash = aniHash;
+        _animator.SetTrigger(aniHash);
     }
 
     private bool ContainsDirection(Vector2 targetDir, Vector2 dir, float angle)
@@ -52,40 +38,43 @@ public class ActorVisual : MonoBehaviour, IActorStrategy
         return Mathf.Acos(Vector2.Dot(targetDir, dir)) * Mathf.Rad2Deg <= angle;
     }
     
-    public void LookAt(Vector2 toPlayerDir, AnimationData.Movement movementType)
+    public void LookAt(Vector2 toTargetDir, AnimationActorKey.Movement movementType)
     {
-        AnimationClip clip = null;
+        int? aniHash = null;
+
         // up
-        if (ContainsDirection(toPlayerDir, Quaternion.Euler(0f, 0f, 90f) * Vector2.right, 30f))
+        if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, 90f) * Vector2.right, 30f))
         {
-            clip = _animationData.GetClip(movementType, AnimationData.Direction.Up);
+            aniHash = AnimationActorKey.GetAniHash(movementType, AnimationActorKey.Direction.Up);
         }
         // left
-        else if (ContainsDirection(toPlayerDir, Quaternion.Euler(0f, 0f, 25f) * Vector2.left, 30f))
+        else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, 25f) * Vector2.left, 30f))
         {
-            clip = _animationData.GetClip(movementType, AnimationData.Direction.Left);
+            aniHash = AnimationActorKey.GetAniHash(movementType, AnimationActorKey.Direction.Left);
         }
         // leftup
-        else if (ContainsDirection(toPlayerDir, Quaternion.Euler(0f, 0f, -30f) * Vector2.left, 30f))
+        else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, -30f) * Vector2.left, 30f))
         {
-            clip = _animationData.GetClip(movementType, AnimationData.Direction.LeftUp);
+            aniHash = AnimationActorKey.GetAniHash(movementType, AnimationActorKey.Direction.LeftUp);
         }
         // right
-        else if (ContainsDirection(toPlayerDir, Quaternion.Euler(0f, 0f, -25f) * Vector2.right, 30f))
+        else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, -25f) * Vector2.right, 30f))
         {
-            clip = _animationData.GetClip(movementType, AnimationData.Direction.Right);
+            aniHash = AnimationActorKey.GetAniHash(movementType, AnimationActorKey.Direction.Right);
         }
         // rightUp
-        else if (ContainsDirection(toPlayerDir, Quaternion.Euler(0f, 0f, 30f) * Vector2.right, 30f))
+        else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, 30f) * Vector2.right, 30f))
         {
-            clip = _animationData.GetClip(movementType, AnimationData.Direction.RightUp);
+            aniHash = AnimationActorKey.GetAniHash(movementType, AnimationActorKey.Direction.RightUp);
         }
         // down
-        else if (ContainsDirection(toPlayerDir, Quaternion.Euler(0f, 0f, -90f) * Vector2.right, 30f))
+        else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, -90f) * Vector2.right, 30f))
         {
-            clip = _animationData.GetClip(movementType, AnimationData.Direction.Down);
+            aniHash = AnimationActorKey.GetAniHash(movementType, AnimationActorKey.Direction.Down);
         }
 
-        ChangeClip(clip);
+        if (aniHash is null) return;
+
+        ChangeClip(aniHash.Value);
     }
 }

@@ -552,7 +552,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementData: {fileID: 11400000, guid: 20a717c5a409c004ea9eccff2c15d4a7, type: 2}
-  _animationData: {fileID: 11400000, guid: e266da6d2e1067946b79379b40139f83, type: 2}
   _rigidbody: {fileID: 1588533005212955071}
   _animator: {fileID: 6133982080927662466}
   _stateHandler: {fileID: 4878991871154345875}
@@ -561,6 +560,7 @@ MonoBehaviour:
   _mainInventoryView: {fileID: 0}
   _pannelController: {fileID: 0}
   _fishing: {fileID: 8611976090592582029}
+  _bodyRenderer: {fileID: 7975097241645119651}
   _testItems:
   - Item: {fileID: 11400000, guid: 71b1b695fda60734da691c8b0e4464e3, type: 2}
     Count: 1
@@ -883,7 +883,7 @@ Animator:
   m_GameObject: {fileID: 4343325126028486478}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9daaf9ddb9fc2af4e8c6b44ad78aed5b, type: 2}
+  m_Controller: {fileID: 22100000, guid: fbff177bc683ae44aa5723546f748030, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

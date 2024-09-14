@@ -110,25 +110,25 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         
         switch (_move.LastDirection)
         {
-            case AnimationData.Direction.Up:
+            case AnimationActorKey.Direction.Up:
                 dir = Direction.Up;
                 break;
-            case AnimationData.Direction.Down:
+            case AnimationActorKey.Direction.Down:
                 dir = Direction.Down;
                 break;
-            case AnimationData.Direction.Left:
+            case AnimationActorKey.Direction.Left:
                 front.y = 0f;
                 dir = Direction.Left;
                 break;
-            case AnimationData.Direction.Right:
+            case AnimationActorKey.Direction.Right:
                 front.y = 0f;
                 dir = Direction.Right;
                 break;
-            case AnimationData.Direction.LeftUp:
+            case AnimationActorKey.Direction.LeftUp:
                 front.y = 0f;
                 dir = Direction.Left;
                 break;
-            case AnimationData.Direction.RightUp:
+            case AnimationActorKey.Direction.RightUp:
                 front.y = 0f;
                 dir = Direction.Right;
                 break;

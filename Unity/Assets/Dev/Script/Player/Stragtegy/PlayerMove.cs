@@ -17,8 +17,8 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
 
     public Vector2 LastMovedDirection { get; set; }
     
-    public AnimationData.Direction LastDirection { get; private set; }
-    public AnimationData.Movement LastMovement { get; private set; }
+    public AnimationActorKey.Direction LastDirection { get; private set; }
+    public AnimationActorKey.Movement LastMovement { get; private set; }
     
     public void Init(PlayerController controller)
     {
@@ -32,8 +32,8 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         StartCoroutine(CoSteminaUpdate());
         
         
-        LastDirection = AnimationData.Direction.Down;
-        LastMovement = AnimationData.Movement.Idle;
+        LastDirection = AnimationActorKey.Direction.Down;
+        LastMovement = AnimationActorKey.Movement.Idle;
     }
 
     private void BindInputAction()
@@ -107,11 +107,11 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         if (Mathf.Approximately(Mathf.Abs(input.x) + Mathf.Abs(input.y), 0f) == false)
         {
             LastMovedDirection = input.normalized;
-            ChangeClip(dir, AnimationData.Movement.Walk);
+            ChangeClip(dir, AnimationActorKey.Movement.Walk);
         }
         else
         {
-            ChangeClip(LastMovedDirection, AnimationData.Movement.Idle);
+            ChangeClip(LastMovedDirection, AnimationActorKey.Movement.Idle);
         }
         
     }
@@ -133,75 +133,69 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         }
     }
 
-    private void ChangeClip(Vector2 dir, AnimationData.Movement movementType)
+    private void ChangeClip(Vector2 dir, AnimationActorKey.Movement movementType)
     {
-        var aniData = _controller.AnimationData;
         var visual = _controller.VisualStrategy;
 
-        AnimationData.Direction direction;
-        AnimationClip clip = null;
+        AnimationActorKey.Direction direction;
         
         // 왼쪽 위
         if (dir is { x: < 0, y: > 0 })
         {
-            direction = AnimationData.Direction.LeftUp;
+            direction = AnimationActorKey.Direction.LeftUp;
         }
         // 오른쪽 위
         else if (dir is { x: > 0, y: > 0 })
         {
-            direction = AnimationData.Direction.RightUp;
+            direction = AnimationActorKey.Direction.RightUp;
         }
         // 왼쪽 아래
         else if (dir is { x: < 0, y: < 0 })
         {
-            direction = AnimationData.Direction.Left;
+            direction = AnimationActorKey.Direction.Left;
         }
         // 오른쪽 아래
         else if (dir is { x: > 0, y: < 0 })
         {
-            direction = AnimationData.Direction.Right;
+            direction = AnimationActorKey.Direction.Right;
         }
         
         // 위
         else if (dir is { x:  0, y: > 0 })
         {
-            direction = AnimationData.Direction.Up;
+            direction = AnimationActorKey.Direction.Up;
         }
         // 아래
         else if (dir is { x:  0, y: < 0 })
         {
-            direction = AnimationData.Direction.Down;
+            direction = AnimationActorKey.Direction.Down;
         }
         // 왼쪽
         else if (dir is { x: < 0, y:  0 })
         {
-            direction = AnimationData.Direction.Left;
+            direction = AnimationActorKey.Direction.Left;
         }
         // 오른쪽
         else if (dir is { x: > 0, y: 0 })
         {
-            direction = AnimationData.Direction.Right;
+            direction = AnimationActorKey.Direction.Right;
         }
         else
         {
-            direction = AnimationData.Direction.Down;
+            direction = AnimationActorKey.Direction.Down;
         }
         
         LastDirection = direction;
         LastMovement = movementType;
 
-        clip = aniData.GetClip(movementType, direction);
-        visual.ChangeClip(clip);
+        int hash = AnimationActorKey.GetAniHash(movementType, direction);
+        visual.ChangeClip(hash);
     }
 
     public void ResetVelocity()
     {
         _rigidbody.velocity = Vector3.zero;
-        
-        
-        var aniData = _controller.AnimationData;
-        var visual = _controller.VisualStrategy;
 
-        ChangeClip(LastMovedDirection.normalized, AnimationData.Movement.Idle);
+        ChangeClip(LastMovedDirection.normalized, AnimationActorKey.Movement.Idle);
     }
 }

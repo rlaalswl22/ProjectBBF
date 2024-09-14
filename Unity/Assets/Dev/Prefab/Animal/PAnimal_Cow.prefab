@@ -32,6 +32,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PAnimal_Cow
       objectReference: {fileID: 0}
+    - target: {fileID: 8331719994581572156, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 89bcba5374e3fbc47abde02eb877ba75, type: 2}
     - target: {fileID: 8612635081641424140, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_LocalPosition.x
       value: -33.5
