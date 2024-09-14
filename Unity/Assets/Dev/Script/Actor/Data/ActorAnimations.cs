@@ -17,7 +17,7 @@ using System.IO;
 public static class AnimationActorKey
 {
     /*
-     * Actor 공통
+     * Movement
      */
     public static readonly int Up_Idle          = Animator.StringToHash("Up_Idle");
     public static readonly int Down_Idle        = Animator.StringToHash("Down_Idle");
@@ -40,6 +40,13 @@ public static class AnimationActorKey
     public static readonly int LeftUp_Sprint    = Animator.StringToHash("LeftUp_Sprint");
     public static readonly int RightUp_Sprint   = Animator.StringToHash("RightUp_Sprint");
 
+    /*
+     * Action
+     */
+    public static readonly int Hoe              = Animator.StringToHash("Hoe");
+    public static readonly int Pickaxe          = Animator.StringToHash("Pickaxe");
+    public static readonly int Collect          = Animator.StringToHash("Collect");
+
 
     [Serializable]
     public enum Movement
@@ -59,6 +66,27 @@ public static class AnimationActorKey
         LeftUp,
         RightUp
     }
+
+    [Serializable]
+    public enum Action
+    {
+        Hoe,
+        Pickaxe,
+        Collect,
+    }
+
+    public static int GetAniHash(Action action)
+    {
+        switch (action)
+        {
+            case Action.Hoe: return Hoe;
+            case Action.Pickaxe: return Pickaxe;
+            case Action.Collect: return Collect;
+        }
+
+        throw new ArgumentException($"Invalid combination of Action: {action}");
+    }
+
     public static int GetAniHash(Movement movement, Direction direction)
     {
         switch (movement)

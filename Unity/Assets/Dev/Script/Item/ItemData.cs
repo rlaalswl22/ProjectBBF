@@ -37,7 +37,7 @@ public class ItemData : ScriptableObject
     private ActionCategoryType _actionCategoryType;
 
     [field: SerializeField, Header("건들 ㄴㄴ")]
-    private ActionAnimationType _actionAnimationType;
+    private AnimationActorKey.Action _actionAnimationType;
 
     public string ItemKey => _itemKey;
     public string ItemName => _itemName;
@@ -49,7 +49,8 @@ public class ItemData : ScriptableObject
 
     public ActionCategoryType ActionCategoryType => _actionCategoryType;
 
-    public ActionAnimationType ActionAnimationType => _actionAnimationType;
+    public AnimationActorKey.Action ActionAnimationType => _actionAnimationType;
+    public int ActionAnimationAniHash => AnimationActorKey.GetAniHash(ActionAnimationType);
 
     private void OnValidate()
     {

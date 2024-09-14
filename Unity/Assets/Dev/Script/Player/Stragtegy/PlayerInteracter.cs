@@ -13,12 +13,14 @@ using UnityEngine;
 public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 {
     private PlayerController _controller;
+    private ActorVisual _visual;
     private PlayerBlackboard _blackboard;
     private PlayerMove _move;
 
     public void Init(PlayerController controller)
     {
         _controller = controller;
+        _visual = controller.VisualStrategy;
         _move = controller.MoveStrategy;
         _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
     }
@@ -45,16 +47,18 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                     currentData.Info.Contains(ToolType.Hoe) ||
                     currentData.Info.Contains(ToolType.WaterSpray) ||
                     currentData.Info.Contains(ToolType.Fertilizer) ||
-                    currentData.Info.Contains(ToolType.Seed) 
+                    currentData.Info.Contains(ToolType.Seed)
                 ))
             {
                 if (_blackboard.Energy < 1)
                 {
                     return false;
                 }
-                
+
                 _move.ResetVelocity();
                 _blackboard.Energy--;
+
+                _visual.ChangeClip(currentData.ActionAnimationAniHash);
             }
             else
             {
@@ -103,6 +107,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             if (executedAny)
             {
                 _move.ResetVelocity();
+                _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Collect));
                 await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
             }
             
