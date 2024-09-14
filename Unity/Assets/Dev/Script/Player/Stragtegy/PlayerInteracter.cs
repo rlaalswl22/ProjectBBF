@@ -140,7 +140,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
     public bool PlantTile(IBOPlantTile action)
     {
-        print("PlantTile");
         var targetPos = _controller.Coordinate.GetFront();
         ItemData data = _controller.Inventory.CurrentItemData;
         IInventorySlot slot = _controller.Inventory.CurrentItemSlot;
@@ -159,7 +158,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
     private bool FertilizerTile(IBOFertilizerTile action)
     {
-        print("FertilizerTile");
         var targetPos = _controller.Coordinate.GetFront();
         ItemData data = _controller.Inventory.CurrentItemData;
         IInventorySlot slot = _controller.Inventory.CurrentItemSlot;
@@ -187,7 +185,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
     public bool CultivateTile(IBOCultivateTile action)
     {
-        print("CultivateTile");
         var targetPos = _controller.Coordinate.GetFront();
         ItemData data = _controller.Inventory.CurrentItemData;
 
@@ -207,7 +204,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
     private bool SprinkleWater(IBOSprinkleWaterTile action)
     {
-        print("SprinkleWater");
         var targetPos = _controller.Coordinate.GetFront();
         ItemData data = _controller.Inventory.CurrentItemData;
 
@@ -225,7 +221,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
     public bool DestroyTile(IBODestoryTile destoryTile)
     {
-        print("DestroyTile");
         var targetPos = _controller.Coordinate.GetFront();
         var data = _controller.Inventory.CurrentItemData;
 
@@ -253,7 +248,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
     private bool CollectPlant(IBOCollectPlant action)
     {
-        print("CollectPlant");
         var targetPos = _controller.Coordinate.GetFront();
         var data = _controller.Inventory.CurrentItemData;
 
