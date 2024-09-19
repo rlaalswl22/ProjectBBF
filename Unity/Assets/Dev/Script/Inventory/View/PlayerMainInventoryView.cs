@@ -106,8 +106,6 @@ public class PlayerMainInventoryView : MonoBehaviour, IInventoryView
     {
        using var modelEnumerator = model.GetEnumerator();
         
-        print(modelEnumerator);
-        
         for (int i = 0; i < Row; i++)
         {
             for (int j = 0; j < Col; j++)

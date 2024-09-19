@@ -70,8 +70,6 @@ public class ItemToolTipView : MonoBehaviour
         Bounds downScreenBounds = new Bounds(Vector3.down * cameraSize.y, cameraSize);
 
 
-        print(myBounds + "====" + downScreenBounds);
-
         Direction dir = Direction.None;
 
         if (leftScreenBounds.Intersects(myBounds))
