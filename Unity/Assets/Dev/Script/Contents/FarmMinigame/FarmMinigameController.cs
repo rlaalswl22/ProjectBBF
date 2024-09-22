@@ -20,111 +20,13 @@ public class FarmMinigameController : MinigameBase
 
     private int _currentItemCount = 0;
 
-    private PlayerController _pc;
-    
-    protected override async UniTask OnSignalAsync()
-    {
-        foreach (var obj in GameObjectStorage.Instance.StoredObjects)
-        {
-            if (obj.CompareTag("Player") && obj.TryGetComponent(out PlayerController pc))
-            {
-                var data = Data as FarmMinigameData;
-                _pc = pc;
-                DialogueController.Instance.ResetDialogue();
-                await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
-                
-                pc.transform.position = _startPoint.position;
-                _currentItemCount = 0;
-
-                pc.Inventory.Model.OnPushItem += OnItemCount;
-                
-                await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
-                
-                
-                _pc.StateHandler.TranslateState("ToDialogue");
-                await _pc.Dialogue.RunDialogue(data.DialogueTutorial).ContinueWith(_ =>
-                {
-                    _pc.StateHandler.TranslateState("EndOfDialogue");
-                });
-                
-                StartCoroutine(CoUpdate(pc));
-                StartCoroutine(OnObserveItemCount(pc));
-                
-                break;
-            }
-        }
-    }
-
-    protected override async UniTask OnEndSignalAsync()
-    {
-        if (_pc)
-        {
-            var data = Data as FarmMinigameData;
-            
-            await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey).ToCoroutine();
-            ResetGame(_pc);
-            await  SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey).ToCoroutine();
-            
-            _pc.StateHandler.TranslateState("ToDialogue");
-            _ = _pc.Dialogue.RunDialogue(data.DialogueAfterGameExit).ContinueWith(_ =>
-            {
-                _pc.StateHandler.TranslateState("EndOfDialogue");
-            });
-        }
-    }
-
-    private void OnItemCount(ItemData itemData, int count, GridInventoryModel model)
-    {
-        var gameData = Data as FarmMinigameData;
-        
-        if (itemData == false) return;
-        if (itemData == gameData.GoalItem)
-        {
-            _currentItemCount += count;
-        }
-    }
-
     protected override void Awake()
     {
         base.Awake();
         _light.gameObject.SetActive(false);
     }
 
-    private IEnumerator OnObserveItemCount(PlayerController pc)
-    {
-        var data = Data as FarmMinigameData;
-        while (_currentItemCount < data.GoalItemCount)
-        {
-            yield return null;
-        }
-        
-        
-        pc.Inventory.Model.OnPushItem -= OnItemCount;
-        
-        yield return SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey).ToCoroutine();
-        ResetGame(pc);
-        yield return SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey).ToCoroutine();
-
-        
-        pc.StateHandler.TranslateState("ToDialogue");
-        _ = pc.Dialogue.RunDialogue(data.DialogueAfterGameEnd).ContinueWith(_ =>
-        {
-            pc.StateHandler.TranslateState("EndOfDialogue");
-        });
-        StopAllCoroutines();
-        Release();
-    }
-
-    private void ResetGame(PlayerController pc)
-    {
-        pc.transform.position = _endPoint.position;
-        _light.gameObject.SetActive(false);
-        DOTween.Kill(this);
-        _farmlandManager.ResetFarm();
-        DialogueController.Instance.ResetDialogue();
-    }
-
-    private IEnumerator CoUpdate(PlayerController pc)
+    private IEnumerator CoUpdate()
     {
         var data = Data as FarmMinigameData;
         
@@ -167,4 +69,57 @@ public class FarmMinigameController : MinigameBase
             yield return sequence;
         }
     }
+
+
+    private void OnItemCount(ItemData itemData, int count, GridInventoryModel model)
+    {
+        var gameData = Data as FarmMinigameData;
+        
+        if (itemData == false) return;
+        if (itemData == gameData.GoalItem)
+        {
+            _currentItemCount += count;
+        }
+    }
+    protected override void OnGameInit()
+    {
+        var data = Data as FarmMinigameData;
+
+        Player.transform.position = _startPoint.position;
+        _light.transform.position = _lightOffPoint.position;
+        _light.intensity = data.LightOffIntensity;
+        Player.Inventory.Model.OnPushItem += OnItemCount;
+    }
+
+    protected override async UniTask OnTutorial()
+    {
+        var data = Data as FarmMinigameData;
+        await RunDialogue(data.DialogueTutorial);
+    }
+
+    protected override void OnGameBegin()
+    {
+        StartCoroutine(CoUpdate());
+    }
+
+    protected override void OnGameRelease()
+    {
+        Player.transform.position = _endPoint.position;
+        _light.gameObject.SetActive(false);
+        DOTween.Kill(this);
+        _farmlandManager.ResetFarm();
+        DialogueController.Instance.ResetDialogue();
+        Player.Inventory.Model.OnPushItem -= OnItemCount;
+        _currentItemCount = 0;
+        
+        StopAllCoroutines();
+    }
+
+    protected override bool IsGameEnd()
+    {
+        var data = Data as FarmMinigameData;
+
+        return _currentItemCount >= data.GoalItemCount;
+    }
+    
 }

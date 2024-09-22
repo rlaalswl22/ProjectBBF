@@ -12,10 +12,10 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Splines;
 
-public class PlayerDialogue: MonoBehaviour, IPlayerStrategy
+public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
 {
     private PlayerController _controller;
-    
+
     public void Init(PlayerController controller)
     {
         _controller = controller;
@@ -53,14 +53,14 @@ public class PlayerDialogue: MonoBehaviour, IPlayerStrategy
 
 
             if (interaction.TryGetContractInfo(out ActorContractInfo actorInfo) &&
-                actorInfo.TryGetBehaviour(out IBADialogue dialogue) && 
+                actorInfo.TryGetBehaviour(out IBADialogue dialogue) &&
                 dialogue.PeekDialogueEvent().IsEmpty)
             {
                 return false;
             }
 
             _controller.MoveStrategy.ResetVelocity();
-            
+
             bool success = await BranchDialogue(interaction);
 
             DialogueController.Instance.ResetDialogue();
@@ -78,17 +78,17 @@ public class PlayerDialogue: MonoBehaviour, IPlayerStrategy
 
         return false;
     }
-    
+
     public async UniTask<bool> RunDialogue(DialogueContainer container)
     {
         _controller.MoveStrategy.ResetVelocity();
-        
+
         var token = this.GetCancellationTokenOnDestroy();
-        
+
         var instance = DialogueController.Instance;
         instance.ResetDialogue();
         instance.Visible = true;
-        
+
         DialogueContext context = instance.CreateContext(container);
 
         await context.Next();
@@ -96,16 +96,9 @@ public class PlayerDialogue: MonoBehaviour, IPlayerStrategy
         while (context.CanNext)
         {
             await UniTask.Yield(PlayerLoopTiming.Update, token);
-            if (InputManager.Map.UI.DialogueSkip.triggered)
-            {
-                await UniTask.Yield(PlayerLoopTiming.Update, token);
-                await context.Next();
-            }
+            await context.Next();
         }
 
-        await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
-            token);
-        
         instance.Visible = false;
 
         return true;
@@ -118,9 +111,9 @@ public class PlayerDialogue: MonoBehaviour, IPlayerStrategy
         {
             var stateTransfer = actorInfo.GetBehaviourOrNull<IBAStateTransfer>();
             var nameKey = actorInfo.GetBehaviourOrNull<IBANameKey>();
-            
+
             var dialogueEvent = dialogue.DequeueDialogueEvent();
-            
+
             if (dialogueEvent.IsEmpty)
             {
                 stateTransfer?.TranslateState("DailyRoutine");
@@ -135,7 +128,7 @@ public class PlayerDialogue: MonoBehaviour, IPlayerStrategy
                 actor.Visual.LookAt(_controller.transform.position - actor.transform.position,
                     AnimationActorKey.Movement.Idle);
             }
-            
+
             var instance = DialogueController.Instance;
             instance.ResetDialogue();
             instance.Visible = true;
@@ -156,10 +149,11 @@ public class PlayerDialogue: MonoBehaviour, IPlayerStrategy
             stateTransfer?.TranslateState("DailyRoutine");
             return true;
         }
-        
-        
+
+
         return false;
     }
+
     public CollisionInteractionMono FindCloserObject()
     {
         var targetPos = _controller.Coordinate.GetFront();

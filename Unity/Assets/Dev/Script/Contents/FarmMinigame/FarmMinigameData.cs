@@ -18,8 +18,6 @@ public class FarmMinigameData : MinigameData
     [SerializeField] private int _goalItemCount;
     [SerializeField] private ItemData _goalItem;
 
-    [SerializeField] private DialogueContainer _dialogueAfterGameEnd;
-    [SerializeField] private DialogueContainer _dialogueAfterGameExit;
     [SerializeField] private DialogueContainer _dialogueTutorial;
     public float LightIgnitionBeginWaveTime => _lightIgnitionBeginWaveTime;
 
@@ -37,9 +35,6 @@ public class FarmMinigameData : MinigameData
     public int GoalItemCount => _goalItemCount;
 
     public ItemData GoalItem => _goalItem;
-
-    public DialogueContainer DialogueAfterGameEnd => _dialogueAfterGameEnd;
-    public DialogueContainer DialogueAfterGameExit => _dialogueAfterGameExit;
 
     public DialogueContainer DialogueTutorial => _dialogueTutorial;
 }

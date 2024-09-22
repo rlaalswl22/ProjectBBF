@@ -350,14 +350,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 842471380}
     m_Modifications:
-    - target: {fileID: 4279989081591631932, guid: a4e94f1c4826f884fb9f23ed1b832f36, type: 3}
-      propertyPath: _actorKey
-      value: FarmNpc
-      objectReference: {fileID: 0}
-    - target: {fileID: 4279989081591631932, guid: a4e94f1c4826f884fb9f23ed1b832f36, type: 3}
-      propertyPath: _movementData
-      value: 
-      objectReference: {fileID: 11400000, guid: 4173a29824b8e0b4fafb2aa65e9bda92, type: 2}
     - target: {fileID: 7675410906334624292, guid: a4e94f1c4826f884fb9f23ed1b832f36, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.459999

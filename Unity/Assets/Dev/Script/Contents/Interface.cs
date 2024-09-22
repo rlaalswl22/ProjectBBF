@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using DS.Core;
 using UnityEngine;
 
 public abstract class MinigameBase : MonoBehaviour
@@ -9,6 +11,9 @@ public abstract class MinigameBase : MonoBehaviour
 
     public MinigameData Data => _data;
 
+    protected PlayerController Player { get; private set; }
+    private bool _isRequestEnd;
+    
     protected virtual void Awake()
     {
         MinigameController.Instance.OnSignalMinigameStart += OnStart;
@@ -17,7 +22,7 @@ public abstract class MinigameBase : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-            MinigameController.Instance.OnSignalMinigameStart -= OnStart;
+        MinigameController.Instance.OnSignalMinigameStart -= OnStart;
         MinigameController.Instance.OnSignalMinigameEnd -= OnEnd;
     }
 
@@ -25,9 +30,20 @@ public abstract class MinigameBase : MonoBehaviour
     {
         if (_data.MinigameKey != obj) return;
 
-        MinigameController.Instance.CurrentGameKey = _data.MinigameKey;
+        if (Player == false)
+        {
+            foreach (var storedObject in GameObjectStorage.Instance.StoredObjects)
+            {
+                if (storedObject.CompareTag("Player") && storedObject.TryGetComponent(out PlayerController pc))
+                {
+                    Player = pc;
+                    break;
+                }
+            }
+        }
         
-        OnSignal();
+        MinigameController.Instance.CurrentGameKey = _data.MinigameKey;
+
         _ = OnSignalAsync();
     }
 
@@ -40,8 +56,7 @@ public abstract class MinigameBase : MonoBehaviour
             MinigameController.Instance.CurrentGameKey = null;
         }
 
-        OnEndSignal();
-        _ = OnEndSignalAsync();
+        _isRequestEnd = true;
     }
 
     protected void Release()
@@ -50,25 +65,76 @@ public abstract class MinigameBase : MonoBehaviour
         {
             MinigameController.Instance.CurrentGameKey = null;
         }
-    }
-    
-    protected virtual void OnSignal()
-    {
+        
+        _isRequestEnd = false;
     }
 
-    protected virtual UniTask OnSignalAsync()
+    private async UniTask OnSignalAsync()
     {
-        return UniTask.CompletedTask;
-    }
-    
-    protected virtual void OnEndSignal()
-    {
+        try
+        {
+            DialogueController.Instance.ResetDialogue();
+            Player.StateHandler.TranslateState("EndOfInteractionDialogue");
+            Player.StateHandler.TranslateState("ToDialogue");
+            await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
+            OnGameInit();
+            await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
+            Player.StateHandler.TranslateState("EndOfDialogue");
+
+            await OnTutorial();
+
+            OnGameBegin();
+
+            while (IsGameEnd() is false && _isRequestEnd is false)
+            {
+                await UniTask.Yield(PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+            }
+
+            if (_isRequestEnd)
+            {
+                Player.StateHandler.TranslateState("EndOfInteractionDialogue");
+            }
+            Player.StateHandler.TranslateState("ToDialogue");
+            await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
+            OnGameRelease();
+            await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
+            Player.StateHandler.TranslateState("EndOfDialogue");
+
+            if (_isRequestEnd)
+            {
+                await RunDialogue(Data.DialogueAfterGameEnd);
+            }
+            else
+            {
+                await RunDialogue(Data.DialogueAfterGameExit);
+            }
+
+            Release();
+        }
+        catch (Exception e)when (e is OperationCanceledException)
+        {
+            Debug.LogException(e);
+            throw;
+        }
+       
     }
 
-    protected virtual UniTask OnEndSignalAsync()
+    protected UniTask RunDialogue(DialogueContainer container)
     {
-        return UniTask.CompletedTask;
+        DialogueController.Instance.ResetDialogue();
+        Player.StateHandler.TranslateState("ToDialogue");
+        return Player.Dialogue.RunDialogue(container).ContinueWith(_ =>
+        {
+            Player.StateHandler.TranslateState("EndOfDialogue");
+        });
     }
+
+    protected abstract void OnGameInit();
+    protected abstract UniTask OnTutorial();
+    protected abstract void OnGameBegin();
+    protected abstract void OnGameRelease();
+    protected abstract bool IsGameEnd();
+    
 }
 
 public abstract class MinigameData : ScriptableObject
@@ -76,6 +142,11 @@ public abstract class MinigameData : ScriptableObject
     [SerializeField] private string _minigameKey;
     [SerializeField] private string _directorKey;
 
+    [SerializeField] private DialogueContainer _dialogueAfterGameEnd;
+    [SerializeField] private DialogueContainer _dialogueAfterGameExit;
     public string MinigameKey => _minigameKey;
     public string DirectorKey => _directorKey;
+
+    public DialogueContainer DialogueAfterGameEnd => _dialogueAfterGameEnd;
+    public DialogueContainer DialogueAfterGameExit => _dialogueAfterGameExit;
 }

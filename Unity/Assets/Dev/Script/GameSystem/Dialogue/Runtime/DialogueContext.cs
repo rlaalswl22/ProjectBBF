@@ -64,21 +64,28 @@ public class DialogueContext
                    GlobalCancelation.PlayMode,
                    _source.Token
                );
-               
-               await UniTask.WhenAny(
-                   TextUtil.DoTextUniTask(_textInput, textItem.Text, _duration, true, link.Token),
-                   UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update, link.Token
-                       )
-               );
-               
+
+               var textTask = TextUtil.DoTextUniTask(_textInput, textItem.Text, _duration, true, link.Token);
+
+               await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
+                   link.Token);
+
+               bool skipped = textTask.Status == UniTaskStatus.Pending;
                link.Cancel();
                 _textInput(textItem.Text);
                 CurrentNode = textItem.Node.GetNext();
 
-                if (CurrentNode is ExecutionRuntimeNode or ConditionRuntimeNode)
+                if (CurrentNode is null && skipped)
                 {
-                    goto begin;
+                    await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
+                        _source.Token);
                 }
+
+                // TODO: 이 코드 왜 추가했었더라?
+                //if (CurrentNode is ExecutionRuntimeNode or ConditionRuntimeNode)
+                //{
+                //    goto begin;
+                //}
             }
             else if (item is BranchItem branchItem)
             {
