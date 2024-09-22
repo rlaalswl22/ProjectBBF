@@ -97,4 +97,9 @@ public class PatrolPointPath : MonoBehaviour
     [SerializeField] internal List<PatrolPoint> _patrollPoints = new();
 
     public IReadOnlyList<PatrolPoint> PatrollPoints => _patrollPoints;
+
+    public void SetPatrollPoints(IReadOnlyList<PatrolPoint> patrollPoints)
+    {
+        _patrollPoints = new List<PatrolPoint>(patrollPoints);
+    }
 }

@@ -54,13 +54,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _actorKey: Pirene
-  _aniData: {fileID: 11400000, guid: e9e8a77bc55e36245920750967fc6dd7, type: 2}
   _movementData: {fileID: 11400000, guid: 877b8076e7d08144db3d78f9023e4817, type: 2}
   _actorComponents: []
   _interaction: {fileID: 1672321309576992059}
   _transitionHandler: {fileID: 1636151492688819390}
   _animator: {fileID: 657897982702387281}
   _rigid: {fileID: 6952242945448404742}
+  _agent: {fileID: 3358667785332266060}
 --- !u!114 &1636151492688819390
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,14 +8,17 @@ namespace ProjectBBF.Event
 {
     public abstract class EventScriptableObject : ScriptableObject
     {
-        public abstract void Release();
+        public bool IsTriggered { get; set; }
+
+        public virtual void Release()
+        {
+            IsTriggered = false;
+        }
     }
 
     public abstract class EventScriptableObjectT<T1> : EventScriptableObject
     {
         public event Action<T1> OnSignal;
-
-        public bool IsTriggered { get; set; }
         T1 _arg1;
 
         public void Signal(T1 arg1)
@@ -45,7 +48,8 @@ namespace ProjectBBF.Event
 
         public override void Release()
         {
-            IsTriggered = false;
+            base.Release();
+            _arg1 = default;
         }
     }
 }
