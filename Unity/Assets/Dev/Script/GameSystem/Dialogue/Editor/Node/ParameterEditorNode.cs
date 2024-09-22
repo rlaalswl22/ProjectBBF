@@ -123,7 +123,7 @@ namespace DS.Editor
                 }
                 else if (type == typeof(bool))
                 {
-                    var t = AddTextField(_ => { }, "", "bool");
+                    var t = AddBoolField(_ => { }, "", "bool");
                     _argumentElements.Add(t);
                 }
                 else if (type == typeof(string))
@@ -172,6 +172,12 @@ namespace DS.Editor
                             Target = "Object",
                             ObjectValue = objectField.value
                         };
+                    case Toggle boolField:
+                        return new ParameterNodeData.Warp()
+                        {
+                            Target = "Bool",
+                            BoolValue = boolField.value
+                        };
                     default:
                         return null;
                 }
@@ -204,6 +210,9 @@ namespace DS.Editor
                         break;
                     case ObjectField objectField:
                         objectField.value = warp.ObjectValue;
+                        break;
+                    case Toggle boolField:
+                        boolField.value = warp.BoolValue;
                         break;
                 }
             }

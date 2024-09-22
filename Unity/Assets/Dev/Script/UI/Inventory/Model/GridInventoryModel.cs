@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,8 @@ public class GridInventoryModel : IInventoryModel
     public Vector2Int Size { get; private set; }
 
     public bool IsFull => GetFirstEmptySlotPosition() is null;
-
+    public event Action<ItemData, int, GridInventoryModel> OnPushItem;
+    
     public GridInventoryModel(Vector2Int defaultSize)
     {
         Alloc(defaultSize);
@@ -156,17 +158,19 @@ public class GridInventoryModel : IInventoryModel
             {
                 remaingCount -= (itemData.MaxStackCount - slot.Count);
                 slot.ForceSet(itemData, itemData.MaxStackCount);
+                OnPushItem?.Invoke(itemData, itemData.MaxStackCount, this);
                 continue;
             }
 
             if (SlotChecker.Contains(status, SlotStatus.Success))
             {
+                OnPushItem?.Invoke(itemData, remaingCount, this);
                 return true;
             }
 
         }
         
-        return true;
+        return false;
     }
 
     public int MaxSize => Size.sqrMagnitude;

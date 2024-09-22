@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369c961c3f8237a43b60c6ace0d9b87c, type: 3}
+  m_Name: Dat_Minigame_Farm
+  m_EditorClassIdentifier: 
+  _minigameKey: Farm
+  _directorKey: BlackAlpha
+  _lightIgnitionBeginWaveTime: 5
+  _lightIgnitionEndWaveTime: 5
+  _lightOffMoveSpeed: 0.2
+  _lightOnMoveSpeed: 0.2
+  _lightOnIntensity: 10
+  _lightOffIntensity: 0.1
+  _goalItemCount: 1
+  _goalItem: {fileID: 11400000, guid: d2a5e91abe4793b488c3da50b6604fd5, type: 2}
+  _dialogueAfterGameEnd: {fileID: 11400000, guid: 23d77cd7abb336746b089b77355a443e, type: 2}

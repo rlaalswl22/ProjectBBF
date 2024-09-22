@@ -60,7 +60,6 @@ public class FarmlandManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             GrowUp(1);
-            _controller.ResetAllWet();
         }
     }
 
@@ -79,6 +78,13 @@ public class FarmlandManager : MonoBehaviour
                 step + buffGrowingSpeed
                 );
         }
+        
+        _controller.ResetAllWet();
+    }
+
+    public void ResetFarm()
+    {
+        _controller.ResetAllTile();
     }
 
     public void UpdateGrownState(FarmlandGrownInfo info, int step)

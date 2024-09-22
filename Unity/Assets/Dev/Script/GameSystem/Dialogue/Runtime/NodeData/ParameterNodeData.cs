@@ -18,6 +18,7 @@ namespace DS.Runtime
             public float FloatValue;
             public string StringValue;
             public Object ObjectValue;
+            public bool BoolValue;
             
             public bool IsEqual(Warp other)
             {
@@ -26,6 +27,7 @@ namespace DS.Runtime
                 if (FloatValue != other.FloatValue) return false;
                 if (StringValue != other.StringValue) return false;
                 if (ObjectValue != other.ObjectValue) return false;
+                if (BoolValue != other.BoolValue) return false;
                 
                 return true;
             }
@@ -46,6 +48,8 @@ namespace DS.Runtime
                     return x.StringValue;
                 case "Object":
                     return x.ObjectValue;
+                case "Bool":
+                    return x.BoolValue;
                 default:
                     return "ERROR";
             }

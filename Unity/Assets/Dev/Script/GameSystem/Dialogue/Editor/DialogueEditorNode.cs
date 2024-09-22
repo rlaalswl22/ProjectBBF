@@ -91,7 +91,6 @@ namespace DS.Editor
             return field;
         }
 
-
         public IntegerField AddIntField(EventCallback<ChangeEvent<int>> changeCallback, string styleClass, string fieldName, int defaultValue=default)
         {
             var field = new IntegerField(fieldName);
@@ -100,9 +99,23 @@ namespace DS.Editor
             field.SetValueWithoutNotify(defaultValue);
             field.AddToClassList(styleClass);
             mainContainer.Add(field);
-
+            
             return field;
         }
+        
+        public Toggle AddBoolField(EventCallback<ChangeEvent<bool>> changeCallback, string styleClass, string fieldName, bool defaultValue=default)
+        {
+            var field = new Toggle(fieldName);
+            field = new Toggle(fieldName);
+            field.RegisterValueChangedCallback(changeCallback);
+            field.SetValueWithoutNotify(defaultValue);
+            field.AddToClassList(styleClass);
+            mainContainer.Add(field);
+            
+            return field;
+        }
+        
+        
         
         public abstract void Initialize(Vector2 position);
         public abstract void FromSerializedData(DialogueNodeData data, DialogueContainer containerCache);
