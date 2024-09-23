@@ -88,6 +88,8 @@ namespace DS.Editor
             if (data is not ConditionNodeData myData) return;
             
             _data = myData;
+            RefreshExpandedState();
+            RefreshPorts();
             
             //var nodePorts = containerCache.NodeLinks.Where(x => x.BaseNodeGuid == data.GUID).ToList();
             //nodePorts.ForEach(x => this.AddConditionPort(x.PortName));

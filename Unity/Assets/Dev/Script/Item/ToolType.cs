@@ -10,7 +10,8 @@ public enum ToolType
     Fertilizer,
     WaterSpray,
     FishingRod,
-    Seed
+    Seed,
+    Pickaxe,
 }
 
 public enum ToolRank : int

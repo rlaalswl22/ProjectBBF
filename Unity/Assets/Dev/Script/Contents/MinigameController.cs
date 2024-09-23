@@ -18,7 +18,9 @@ public class MinigameController : MonoBehaviourSingleton<MinigameController>
     public event Action<string> OnSignalMinigameStart;
     public event Action<string> OnSignalMinigameEnd;
     public string CurrentGameKey { get; set; }
-
+    public HashSet<string> PlayOnceTable { get; private set; } = new();
+    
+    
     public void StartMinigame(string key)
     {
         OnSignalMinigameStart?.Invoke(key);

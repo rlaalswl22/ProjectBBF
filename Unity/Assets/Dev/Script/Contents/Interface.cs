@@ -5,12 +5,18 @@ using Cysharp.Threading.Tasks;
 using DS.Core;
 using UnityEngine;
 
-public abstract class MinigameBase : MonoBehaviour
+public abstract class MinigameBase<T> : MonoBehaviour where T : MinigameData
 {
-    [SerializeField] private MinigameData _data;
+    [SerializeField] private T _data;
+    
+    [SerializeField] private Transform _playerStartPoint;
+    [SerializeField] private Transform _playerEndPoint;
 
-    public MinigameData Data => _data;
+    [SerializeField] private bool _playOnce;
 
+
+    public T Data => _data;
+    
     protected PlayerController Player { get; private set; }
     private bool _isRequestEnd;
     
@@ -22,6 +28,8 @@ public abstract class MinigameBase : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
+        if (MinigameController.Instance == false) return;
+        
         MinigameController.Instance.OnSignalMinigameStart -= OnStart;
         MinigameController.Instance.OnSignalMinigameEnd -= OnEnd;
     }
@@ -73,10 +81,12 @@ public abstract class MinigameBase : MonoBehaviour
     {
         try
         {
+            
             DialogueController.Instance.ResetDialogue();
             Player.StateHandler.TranslateState("EndOfInteractionDialogue");
             Player.StateHandler.TranslateState("ToDialogue");
             await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
+            Player.transform.position = (Vector2)_playerStartPoint.position;
             OnGameInit();
             await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
             Player.StateHandler.TranslateState("EndOfDialogue");
@@ -96,6 +106,7 @@ public abstract class MinigameBase : MonoBehaviour
             }
             Player.StateHandler.TranslateState("ToDialogue");
             await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
+            Player.transform.position = (Vector2)_playerEndPoint.position;
             OnGameRelease();
             await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
             Player.StateHandler.TranslateState("EndOfDialogue");
@@ -106,12 +117,21 @@ public abstract class MinigameBase : MonoBehaviour
             }
             else
             {
+                if (_playOnce)
+                {
+                    MinigameController.Instance.PlayOnceTable.Add(Data.MinigameKey);
+                }
                 await RunDialogue(Data.DialogueAfterGameExit);
+
+                foreach (var rewardItemSet in Data.Rewards)
+                {
+                    Player.Inventory.Model.PushItem(rewardItemSet.Item, rewardItemSet.Count);
+                }
             }
 
             Release();
         }
-        catch (Exception e)when (e is OperationCanceledException)
+        catch (Exception e)when (e is not OperationCanceledException)
         {
             Debug.LogException(e);
             throw;
@@ -137,10 +157,13 @@ public abstract class MinigameBase : MonoBehaviour
     
 }
 
+// sample -> [CreateAssetMenu(menuName = "ProjectBBF/Data/Minigame/Farm", fileName = "FarmMinigameData")]
 public abstract class MinigameData : ScriptableObject
 {
     [SerializeField] private string _minigameKey;
     [SerializeField] private string _directorKey;
+    
+    [SerializeField] private List<ItemDataSerializedSet> _rewards;
 
     [SerializeField] private DialogueContainer _dialogueAfterGameEnd;
     [SerializeField] private DialogueContainer _dialogueAfterGameExit;
@@ -149,4 +172,6 @@ public abstract class MinigameData : ScriptableObject
 
     public DialogueContainer DialogueAfterGameEnd => _dialogueAfterGameEnd;
     public DialogueContainer DialogueAfterGameExit => _dialogueAfterGameExit;
+
+    public IReadOnlyList<ItemDataSerializedSet> Rewards => _rewards;
 }

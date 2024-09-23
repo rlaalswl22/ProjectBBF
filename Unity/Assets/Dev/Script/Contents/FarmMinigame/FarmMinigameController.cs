@@ -7,7 +7,7 @@ using DS.Core;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class FarmMinigameController : MinigameBase
+public class FarmMinigameController : MinigameBase<FarmMinigameData>
 {
     [SerializeField] private FarmlandManager _farmlandManager;
     
@@ -28,41 +28,39 @@ public class FarmMinigameController : MinigameBase
 
     private IEnumerator CoUpdate()
     {
-        var data = Data as FarmMinigameData;
-        
-        Debug.Assert(data is not null);
+        Debug.Assert(Data is not null);
         
         _light.gameObject.SetActive(true);
-        _light.intensity = data.LightOffIntensity;
+        _light.intensity = Data.LightOffIntensity;
         _light.transform.position = (Vector2)_lightOffPoint.position;
 
         while (true)
         {
-            yield return new WaitForSeconds(data.LightIgnitionBeginWaveTime);
+            yield return new WaitForSeconds(Data.LightIgnitionBeginWaveTime);
             
             Sequence sequence = DOTween.Sequence();
             sequence.Join
             (
-                _light.transform.DOMove((Vector2)_lightOnPoint.position, data.LightOnMoveSpeed).SetEase(Ease.Linear)
+                _light.transform.DOMove((Vector2)_lightOnPoint.position, Data.LightOnMoveSpeed).SetEase(Ease.Linear)
             );
             sequence.Join
             (
-                DOTween.To(()=>_light.intensity, x => _light.intensity = x, data.LightOnIntensity, 0.25f)
+                DOTween.To(()=>_light.intensity, x => _light.intensity = x, Data.LightOnIntensity, 0.25f)
             );
             sequence.SetId(this);
             
-            yield return new WaitForSeconds(data.LightIgnitionEndWaveTime);
+            yield return new WaitForSeconds(Data.LightIgnitionEndWaveTime);
             
             _farmlandManager.GrowUp(1);
             
             sequence = DOTween.Sequence();
             sequence.Join
             (
-                _light.transform.DOMove((Vector2)_lightOffPoint.position, data.LightOffMoveSpeed).SetEase(Ease.Linear)
+                _light.transform.DOMove((Vector2)_lightOffPoint.position, Data.LightOffMoveSpeed).SetEase(Ease.Linear)
             );
             sequence.Join
             (
-                DOTween.To(()=>_light.intensity, x => _light.intensity = x, data.LightOffIntensity, 0.25f)
+                DOTween.To(()=>_light.intensity, x => _light.intensity = x, Data.LightOffIntensity, 0.25f)
             );
             sequence.SetId(this);
             
@@ -85,7 +83,6 @@ public class FarmMinigameController : MinigameBase
     {
         var data = Data as FarmMinigameData;
 
-        Player.transform.position = _startPoint.position;
         _light.transform.position = _lightOffPoint.position;
         _light.intensity = data.LightOffIntensity;
         Player.Inventory.Model.OnPushItem += OnItemCount;
@@ -104,7 +101,6 @@ public class FarmMinigameController : MinigameBase
 
     protected override void OnGameRelease()
     {
-        Player.transform.position = _endPoint.position;
         _light.gameObject.SetActive(false);
         DOTween.Kill(this);
         _farmlandManager.ResetFarm();

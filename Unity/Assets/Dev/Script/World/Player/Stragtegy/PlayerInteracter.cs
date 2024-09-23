@@ -47,7 +47,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                     currentData.Info.Contains(ToolType.Hoe) ||
                     currentData.Info.Contains(ToolType.WaterSpray) ||
                     currentData.Info.Contains(ToolType.Fertilizer) ||
-                    currentData.Info.Contains(ToolType.Seed)
+                    currentData.Info.Contains(ToolType.Seed) ||
+                    currentData.Info.Contains(ToolType.Pickaxe)
                 ))
             {
                 if (_blackboard.Energy < 1)
@@ -72,14 +73,19 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 return false;
             }
 
-            if (Farmland(interaction) is false)
+            if (Farmland(interaction))
             {
                 await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
-                return false;
+                return true;
             }
-            
-            await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+            if(currentData.Info.Contains(ToolType.Pickaxe) && Pickaxe(interaction))
+            {
+                await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+                return true;
+            }
 
+            await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+            return false;
         }
         catch (Exception e) when (e is not OperationCanceledException)
         {
@@ -131,6 +137,18 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             .Bind<IBOPlantTile>(PlantTile)
             .Execute(interaction.ContractInfo, out bool executedAny);
 
+        return executedAny;
+    }
+
+    private bool Pickaxe(CollisionInteractionMono interaction)
+    {
+        CollisionInteractionUtil
+            .CreateSelectState()
+            .Bind<IBOCollectPlant>(CollectPlant)
+            .Bind<IBOCollect>(CollectObject)
+            .Bind<IBACollect>(CollectObject)
+            .Execute(interaction.ContractInfo, out bool executedAny);
+            
         return executedAny;
     }
 
