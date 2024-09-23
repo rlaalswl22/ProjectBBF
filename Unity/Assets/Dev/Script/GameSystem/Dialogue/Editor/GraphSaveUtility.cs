@@ -204,7 +204,35 @@ namespace DS.Editor
                     var targetNodeGuid = connections[j].TargetNodeGuid;
                     
                     var targetNode = Nodes.First(x => x.GUID == targetNodeGuid);
-                    LinkNodes(node.outputContainer[j].Q<Port>(), (Port)targetNode.inputContainer[0]);
+
+                    if (node is ConditionEditorNode)
+                    {
+                        Port outputPort = null;
+                        
+                        if (connections[j].PortName == "True")
+                        {
+                            var list = node.outputContainer.Children().OfType<Port>().ToList();
+                            outputPort = list.FirstOrDefault(y => y.portName == "True");
+                        }
+                        else  if (connections[j].PortName == "False")
+                        {
+                            var list = node.outputContainer.Children().OfType<Port>().ToList();
+                            outputPort = list.FirstOrDefault(y => y.portName == "False");
+                        }
+                        else
+                        {
+                            Debug.Assert(false);
+                        }
+
+                        if (outputPort is not null)
+                        {
+                            LinkNodes(outputPort, (Port)targetNode.inputContainer[0]);
+                        }
+                    }
+                    else
+                    {
+                        LinkNodes(node.outputContainer[j].Q<Port>(), (Port)targetNode.inputContainer[0]);
+                    }
                     
                     targetNode.SetPosition(new Rect(
                         _containerCache.NodeData.First(x => x.GUID == targetNodeGuid).Position,

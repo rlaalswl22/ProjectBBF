@@ -48,41 +48,41 @@ MonoBehaviour:
     PortName: "\u3134\u3134"
     TargetNodeGuid: 5e7d6382-3c11-4a80-a773-b24c3b9a0ca9
   NodeData:
-  - rid: 7386576811144511577
-  - rid: 7386576811144511578
-  - rid: 7386576811144511579
-  - rid: 7386576811144511580
-  - rid: 7386576811144511581
-  - rid: 7386576811144511582
-  - rid: 7386576811144511583
-  - rid: 7386576811144511584
-  - rid: 7386576811144511585
-  - rid: 7386576811144511586
-  - rid: 7386576811144511587
+  - rid: 7386576811144512005
+  - rid: 7386576811144512006
+  - rid: 7386576811144512007
+  - rid: 7386576811144512008
+  - rid: 7386576811144512009
+  - rid: 7386576811144512010
+  - rid: 7386576811144512011
+  - rid: 7386576811144512012
+  - rid: 7386576811144512013
+  - rid: 7386576811144512014
+  - rid: 7386576811144512015
   references:
     version: 2
     RefIds:
-    - rid: 7386576811144511577
+    - rid: 7386576811144512005
       type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 0eb48fd5-8361-4590-a1b1-4a891e7af332
         NodeTitle: Branch
         TypeName: Branch
-        Position: {x: 1223.3334, y: 580.6667}
+        Position: {x: 1272, y: 412.66666}
         DialogueText: "\uADF8\uB9CC?"
         PortraitKey: 
         ActorKey: GoatNpc
-    - rid: 7386576811144511578
+    - rid: 7386576811144512006
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 265148b8-44b0-43b6-a4da-0faa1ee00167
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1505.3334, y: 1002.6667}
+        Position: {x: 1554, y: 834.6667}
         DialogueText: "\u3145\u3131"
         PortraitKey: 
         ActorKey: GoatNpc
-    - rid: 7386576811144511579
+    - rid: 7386576811144512007
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 3bd880e3-61d4-4620-abd3-67583e33e136
@@ -97,7 +97,7 @@ MonoBehaviour:
           StringValue: Goat
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 7386576811144511580
+    - rid: 7386576811144512008
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 5e7d6382-3c11-4a80-a773-b24c3b9a0ca9
@@ -107,7 +107,7 @@ MonoBehaviour:
         DialogueText: "\u3142\u3142"
         PortraitKey: 
         ActorKey: GoatNpc
-    - rid: 7386576811144511581
+    - rid: 7386576811144512009
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 767bb15e-e0bd-4a1c-8cf2-41ab33bbe84e
@@ -117,13 +117,13 @@ MonoBehaviour:
         DialogueText: "\uC774\uBBF8 \uD50C\uB808\uC774\uD588\uC74C. \uC9D1\uC5D0\uAC00"
         PortraitKey: 
         ActorKey: GoatNpc
-    - rid: 7386576811144511582
+    - rid: 7386576811144512010
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7eeab37d-aef2-471d-bc2f-24d9998b347e
         NodeTitle: Condition
         TypeName: Condition
-        Position: {x: 797.3333, y: 732}
+        Position: {x: 846, y: 564}
         Handler: {fileID: 11400000, guid: 816e0322c69a8a647a1b5be7c7e2e32b, type: 2}
         Warps:
         - Target: String
@@ -132,23 +132,23 @@ MonoBehaviour:
           StringValue: Goat
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 7386576811144511583
+    - rid: 7386576811144512011
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 81d2a94d-948d-44f4-8b00-d30af3500d3b
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1554.6666, y: 359.3333}
+        Position: {x: 1603.3334, y: 191.33334}
         DialogueText: "\u3147\u314B \u3142\u3142"
         PortraitKey: 
         ActorKey: GoatNpc
-    - rid: 7386576811144511584
+    - rid: 7386576811144512012
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: bc6f21c4-e932-49e8-9870-57ce3d798d2e
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 1810, y: 1002.6667}
+        Position: {x: 1858.6666, y: 834.6667}
         Handler: {fileID: 11400000, guid: a3aa23aa75399a64b932c3483a7b7ed4, type: 2}
         Warps:
         - Target: Bool
@@ -163,23 +163,23 @@ MonoBehaviour:
           StringValue: Goat
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 7386576811144511585
+    - rid: 7386576811144512013
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: cd3cf578-5541-49de-bacf-dd62effaffd0
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1568.6666, y: 654.6667}
+        Position: {x: 1617.3334, y: 486.66666}
         DialogueText: "\u3147\u3147"
         PortraitKey: 
         ActorKey: GoatNpc
-    - rid: 7386576811144511586
+    - rid: 7386576811144512014
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: e3b893c8-2fbf-4e03-93b9-f082f1522a95
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 1849.3334, y: 359.3333}
+        Position: {x: 1898, y: 191.33334}
         Handler: {fileID: 11400000, guid: a3aa23aa75399a64b932c3483a7b7ed4, type: 2}
         Warps:
         - Target: Bool
@@ -194,13 +194,13 @@ MonoBehaviour:
           StringValue: Goat
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 7386576811144511587
+    - rid: 7386576811144512015
       type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: f863ba43-357d-4f52-a106-fe12abd11b2f
         NodeTitle: Branch
         TypeName: Branch
-        Position: {x: 1172, y: 1032.6666}
+        Position: {x: 1220.6666, y: 864.6667}
         DialogueText: "\uC5FC\uC18C \uC218\uD655 \u3131\u3131?"
         PortraitKey: 
         ActorKey: 
