@@ -73,6 +73,7 @@ public static class AnimationActorKey
         Hoe,
         Pickaxe,
         Collect,
+        WaterSpray
     }
 
     public static int GetAniHash(Action action)

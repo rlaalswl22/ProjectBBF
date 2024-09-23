@@ -272,7 +272,7 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: c1c0207c1ba784f4998399b2065eadac, type: 2}
   _playerStartPoint: {fileID: 1380165292}
   _playerEndPoint: {fileID: 2048091566}
-  _playOnce: 0
+  _playOnce: 1
 --- !u!1 &444068522
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +540,7 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: cb45edbbcc990ff4984fc462a32e2148, type: 2}
   _playerStartPoint: {fileID: 727823980}
   _playerEndPoint: {fileID: 1682770489}
-  _playOnce: 0
+  _playOnce: 1
   _farmlandManager: {fileID: 1248331232}
   _startPoint: {fileID: 727823980}
   _endPoint: {fileID: 1682770489}
@@ -654,7 +654,7 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: f42666cb24bbe264a94707dcca50de7e, type: 2}
   _playerStartPoint: {fileID: 723616536}
   _playerEndPoint: {fileID: 1063582875}
-  _playOnce: 0
+  _playOnce: 1
 --- !u!1 &1057966901
 GameObject:
   m_ObjectHideFlags: 0
