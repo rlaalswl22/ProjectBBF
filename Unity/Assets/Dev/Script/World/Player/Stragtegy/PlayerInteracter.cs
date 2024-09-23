@@ -145,8 +145,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         CollisionInteractionUtil
             .CreateSelectState()
             .Bind<IBOCollectPlant>(CollectPlant)
-            .Bind<IBOCollect>(CollectObject)
-            .Bind<IBACollect>(CollectObject)
+            .Bind<IBOCollectTool>(CollectObject)
+            .Bind<IBACollectTool>(CollectObject)
             .Execute(interaction.ContractInfo, out bool executedAny);
             
         return executedAny;
@@ -304,6 +304,72 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
     private bool CollectObject(IBACollect action)
     {
+        var list = action.Collect();
+        if (list is null) return false;
+
+
+        if (action.Interaction.Owner is Actor actor)
+        {
+            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Movement.Idle);
+            actor.TransitionHandler.TranslateState("ToWait");
+        }
+        
+        ColectObject(list);
+
+        return true;
+    }
+
+    private bool CollectObject(IBACollectTool action)
+    {
+        ItemData currentData = _controller.Inventory.CurrentItemData;
+        if(currentData == false) return false;
+
+        bool flag = false;
+        foreach (ToolRequireSet toolSet in currentData.Info.Sets)
+        {
+            if (toolSet is null) continue;
+            
+            if(action.CanCollect(toolSet))
+            {
+                flag = true;
+            }
+        }
+
+        if (flag is false) return false;
+        
+        var list = action.Collect();
+        if (list is null) return false;
+
+
+        if (action.Interaction.Owner is Actor actor)
+        {
+            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Movement.Idle);
+            actor.TransitionHandler.TranslateState("ToWait");
+        }
+        
+        ColectObject(list);
+
+        return true;
+    }
+
+    private bool CollectObject(IBOCollectTool action)
+    {
+        ItemData currentData = _controller.Inventory.CurrentItemData;
+        if(currentData == false) return false;
+
+        bool flag = false;
+        foreach (ToolRequireSet toolSet in currentData.Info.Sets)
+        {
+            if (toolSet is null) continue;
+            
+            if(action.CanCollect(toolSet))
+            {
+                flag = true;
+            }
+        }
+
+        if (flag is false) return false;
+        
         var list = action.Collect();
         if (list is null) return false;
 

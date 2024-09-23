@@ -27,3 +27,24 @@ public interface IBACollect : IActorBehaviour
     /// <returns></returns>
     [CanBeNull] public List<ItemData> Collect();
 }
+
+public interface IBOCollectTool : IObjectBehaviour
+{
+    public bool CanCollect(ToolRequireSet toolSet);
+    
+    /// <summary>
+    /// Collect에 성공하면 List를 반환하고, 실패하면 null을 반환합니다.
+    /// </summary>
+    /// <returns></returns>
+    [CanBeNull] public List<ItemData> Collect();
+}
+public interface IBACollectTool : IActorBehaviour
+{
+    public bool CanCollect(ToolRequireSet toolSet);
+    
+    /// <summary>
+    /// Collect에 성공하면 List를 반환하고, 실패하면 null을 반환합니다.
+    /// </summary>
+    /// <returns></returns>
+    [CanBeNull] public List<ItemData> Collect();
+}

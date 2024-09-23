@@ -95,13 +95,23 @@ public static class ToolTypeUtil
 
         return false;
     }
+
+    public static bool Contains(ToolRequireSet a, ToolRequireSet b)
+    {
+        if (Contains(a, b.RequireToolType, b.RequireToolRank))
+        {
+            return true;
+        }
+
+        return false;
+    }
     public static bool Contains(ToolRequireSet[] setsA, ToolRequireSet[] setsB)
     {
         foreach (ToolRequireSet a in setsA)
         {
             foreach (ToolRequireSet b in setsB)
             {
-                if (Contains(a, b.RequireToolType, b.RequireToolRank))
+                if (Contains(a, b))
                 {
                     return true;
                 }
