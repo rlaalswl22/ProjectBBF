@@ -170,7 +170,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.098033905
+        value: 0.04177475
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -182,8 +182,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0, b: 0, a: 1}
-      key1: {r: 0, g: 0, b: 0, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -489,13 +489,16 @@ MonoBehaviour:
   _horizontalDirAngle: 50
   _verticalUpFactor: 1
   _verticalDownFactor: 1
-  _speed: 18
+  _speed: 15
   _maxHandleInTagent: 75
-  _maxLineLength: 15
+  _maxLineLength: 35
   _beginLineLength: 1
-  _lineHeightFactor: -1
+  _lineHeightFactor: -1.5
   _lineIteraction: 50
+  _sideOffset: {x: 0, y: -1.8, z: 0}
   _fishingMaxDistance: 15
+  _turningT: 0.9
+  _sideMaxY: 8
   _handle: {fileID: 6363802113969981774}
   _view: {fileID: 808908259159016748}
   _splineContainer: {fileID: 6085147169449383347}

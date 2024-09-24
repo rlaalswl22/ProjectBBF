@@ -33,8 +33,12 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     
     [SerializeField] private int _lineIteraction = 20 ;
 
+    [SerializeField] private Vector3 _sideOffset;
 
-    [SerializeField] private float _fishingMaxDistance; 
+
+    [SerializeField] private float _fishingMaxDistance;
+    [SerializeField] private float _turningT;
+    [SerializeField] private float _sideMaxY;
     
     [SerializeField] private Transform _handle;
     [SerializeField] private FishingView _view; 
@@ -46,6 +50,8 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     private PlayerInventoryPresenter _invPresenter;
     private PlayerCoordinate _coordinate;
     private PlayerMove _move;
+
+    private bool _currenTurningT = false;
 
     public bool CanFishing
     {
@@ -136,7 +142,8 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
                 throw new ArgumentOutOfRangeException();
         }
 
-        var pos = transform.position + (front * factor * _fishingMaxDistance);
+        var pos = transform.position + (front * factor * _fishingMaxDistance) + _sideOffset;
+        // p1 + ((a * b * c) + d1 * d)
 
         Fishing(dir, pos);
 
@@ -154,7 +161,8 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         var spline = GetCalculatedSpline(dir, targetPoint);
         float t = 1f;
         var wPos = transform.position;
-        
+
+        _currenTurningT = false;
         _handle.gameObject.SetActive(true);
         float toTargetPointDis = Vector2.Distance(transform.position, targetPoint);
 
@@ -167,7 +175,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
 
             _handle.position = pos + wPos;
 
-            DrawLine(lineSpline, dir, targetPoint);
+            DrawLine(lineSpline, dir, targetPoint, t);
             
             await UniTask.Yield(PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
         }
@@ -196,6 +204,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         
         _handle.gameObject.SetActive(true);
         _line.gameObject.SetActive(true);
+        _currenTurningT = false;
 
         var lineSpline = new Spline();
         float toTargetPointDis = Vector2.Distance(transform.position, targetPoint);
@@ -207,12 +216,12 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
             
             _handle.position = pos + wPos;
 
-            DrawLine(lineSpline, dir, targetPoint);
+            DrawLine(lineSpline, dir, targetPoint, t);
             yield return null;
         }
     }
 
-    private void DrawLine(Spline lineSpline, Direction dir, Vector3 targetPoint)
+    private void DrawLine(Spline lineSpline, Direction dir, Vector3 targetPoint, float currentT)
     {
         _line.positionCount = _lineIteraction;
 
@@ -227,7 +236,15 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
                 quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)));
 
         Vector3 toHandleDir = (_handle.position - transform.position);
-        float toHandleDis = Mathf.Lerp(0f, _lineHeightFactor, Mathf.Clamp(Mathf.Abs(toHandleDir.x) - _beginLineLength, 0, _maxLineLength- _beginLineLength) / (_maxLineLength- _beginLineLength));
+        float t = Mathf.Clamp(Mathf.Abs(toHandleDir.x) - _beginLineLength, 0, _maxLineLength - _beginLineLength) /
+                  (_maxLineLength - _beginLineLength);
+
+        if (currentT >= _turningT && (dir == Direction.Left || dir == Direction.Right))
+        {
+            _currenTurningT = true;
+        }
+        
+        float toHandleDis = Mathf.Lerp(0f, _lineHeightFactor * (_currenTurningT ? -1f : 1f), t);
 
         float handleToTargetDis = Vector3.Distance(targetPoint, _handle.position);
 
@@ -341,6 +358,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         float projVMag = projV.magnitude;
         dirV = dirV.normalized * projVMag;
         dirV.x = targetPoint.x;
+        dirV.y = Mathf.Min(dirV.y, _sideMaxY);
         
         spline.Add(
             new BezierKnot(startPoint + Vector3.one * 0.000001f, float3.zero, dirV,
