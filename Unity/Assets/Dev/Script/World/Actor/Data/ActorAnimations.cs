@@ -46,6 +46,7 @@ public static class AnimationActorKey
     public static readonly int Hoe              = Animator.StringToHash("Hoe");
     public static readonly int Pickaxe          = Animator.StringToHash("Pickaxe");
     public static readonly int Collect          = Animator.StringToHash("Collect");
+    public static readonly int WaterSpray          = Animator.StringToHash("WaterSpray");
 
 
     [Serializable]
@@ -83,6 +84,7 @@ public static class AnimationActorKey
             case Action.Hoe: return Hoe;
             case Action.Pickaxe: return Pickaxe;
             case Action.Collect: return Collect;
+            case Action.WaterSpray: return WaterSpray;
         }
 
         throw new ArgumentException($"Invalid combination of Action: {action}");
