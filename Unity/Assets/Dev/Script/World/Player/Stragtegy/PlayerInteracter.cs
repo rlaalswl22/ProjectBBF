@@ -93,7 +93,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             return false;
         }
         
-        return true;
     }
 
     public async UniTask<bool> OnCollectAction()

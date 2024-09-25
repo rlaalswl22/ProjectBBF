@@ -122,12 +122,9 @@ public abstract class MinigameBase<T> : MonoBehaviour where T : MinigameData
                     MinigameController.Instance.PlayOnceTable.Add(Data.MinigameKey);
                 }
                 await RunDialogue(Data.DialogueAfterGameExit);
-
-                foreach (var rewardItemSet in Data.Rewards)
-                {
-                    Player.Inventory.Model.PushItem(rewardItemSet.Item, rewardItemSet.Count);
-                }
             }
+            
+            OnGameEnd(_isRequestEnd);
 
             Release();
         }
@@ -154,7 +151,8 @@ public abstract class MinigameBase<T> : MonoBehaviour where T : MinigameData
     protected abstract void OnGameBegin();
     protected abstract void OnGameRelease();
     protected abstract bool IsGameEnd();
-    
+    protected abstract void OnGameEnd(bool isRequestEnd);
+
 }
 
 // sample -> [CreateAssetMenu(menuName = "ProjectBBF/Data/Minigame/Farm", fileName = "FarmMinigameData")]
@@ -163,7 +161,6 @@ public abstract class MinigameData : ScriptableObject
     [SerializeField] private string _minigameKey;
     [SerializeField] private string _directorKey;
     
-    [SerializeField] private List<ItemDataSerializedSet> _rewards;
 
     [SerializeField] private DialogueContainer _dialogueAfterGameEnd;
     [SerializeField] private DialogueContainer _dialogueAfterGameExit;
@@ -172,6 +169,4 @@ public abstract class MinigameData : ScriptableObject
 
     public DialogueContainer DialogueAfterGameEnd => _dialogueAfterGameEnd;
     public DialogueContainer DialogueAfterGameExit => _dialogueAfterGameExit;
-
-    public IReadOnlyList<ItemDataSerializedSet> Rewards => _rewards;
 }

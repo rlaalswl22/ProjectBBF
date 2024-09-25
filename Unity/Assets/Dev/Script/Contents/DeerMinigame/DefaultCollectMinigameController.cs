@@ -30,4 +30,12 @@ public class DefaultCollectMinigameController : CollectMinigameControllerBase<De
     {
         return base.IsGameEnd();
     }
+
+    protected override void OnGameEnd(bool isRequestEnd)
+    {
+        foreach (var rewardItemSet in Data.Rewards)
+        {
+            Player.Inventory.Model.PushItem(rewardItemSet.Item, rewardItemSet.Count);
+        }
+    }
 }

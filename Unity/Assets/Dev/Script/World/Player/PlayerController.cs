@@ -113,8 +113,6 @@ public class PlayerController : MonoBehaviour
         Interactor = Bind<PlayerInteracter>();
         Coordinate = Bind<PlayerCoordinate>();
         Dialogue = Bind<PlayerDialogue>();
-
-        Fishing.Init(this);
         VisualStrategy.Init(_animator, _bodyRenderer);
 
         GameObjectStorage.Instance.AddGameObject(gameObject);
@@ -135,6 +133,8 @@ public class PlayerController : MonoBehaviour
             pannelView
         );
 
+
+        Fishing.Init(this);
         DataInit();
     }
 
