@@ -54,6 +54,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     private PlayerCoordinate _coordinate;
     private PlayerMove _move;
     private PlayerDialogue _dialogue;
+    private StateTransitionHandler _stateHandler;
 
     private bool _currenTurningT = false;
 
@@ -76,6 +77,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         _coordinate = controller.Coordinate;
         _move = controller.MoveStrategy;
         _dialogue = controller.Dialogue;
+        _stateHandler = controller.StateHandler;
 
         _fishingStateRenderer.enabled = false;
     }
@@ -174,6 +176,8 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
             await UniTask.WaitUntil(() => _co is null, PlayerLoopTiming.Update,
                 this.GetCancellationTokenOnDestroy());
 
+            AudioManager.Instance.PlayOneShot("SFX", "SFX_Fishing_Colliding_Bait_ToWater");
+
             var ctx = _fishingMinigameController?.CreateContext();
 
             if ((ctx?.CanFishingGround(pos) ?? false) is false)
@@ -184,7 +188,12 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
             }
 
             _ = ctx.Begin(cts.Token);
-            ctx.OnBeginBite += (x) => { _fishingStateRenderer.enabled = true; };
+            ctx.OnBeginBite += (x) =>
+            {
+                _fishingStateRenderer.enabled = true;
+                
+                AudioManager.Instance.PlayOneShot("SFX", "SFX_Fishing_Biting_Bait");
+            };
             ctx.OnEndBite += (x) => { _fishingStateRenderer.enabled = false; };
 
             await UniTask.WaitUntil(() => InputManager.Map.Player.Fishing.triggered, PlayerLoopTiming.Update,
@@ -195,11 +204,28 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
             {
                 _invPresenter.Model.PushItem(ctx.Reward, 1);
                 ctx.FishVisible = true;
+                AudioManager.Instance.PlayOneShot("SFX", "SFX_Fishing_Getting_Fish");
+                
             }
 
 
             await UnFishing(dir, pos, ctx?.FishTransform);
-            ctx?.Release();
+
+            if (ctx.IsTiming)
+            {
+                var inst = DialogueController.Instance;
+                inst.Visible = true;
+                inst.DialogueText = $"<{ctx.Reward.ItemName}을(를) 낚았다!";
+
+                AudioManager.Instance.PlayOneShot("SFX", "SFX_Fishing_Completion");
+
+                await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
+                    this.GetCancellationTokenOnDestroy());
+                
+                inst.ResetDialogue();
+            }
+            
+            ctx.Release();
 
             return true;
         }
@@ -260,7 +286,9 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
             StopCoroutine(_co);
             _co = null;
         }
-
+        
+        AudioManager.Instance.PlayOneShot("Player", "Player_Fishing_Swing_Rod");
+        
         _handle.position = transform.position;
         StartCoroutine(_co = _Fishing(direction, targetPosition));
     }
