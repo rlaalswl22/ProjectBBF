@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DS.Core;
@@ -15,9 +16,6 @@ public class DialogueContext
     private float _duration;
     private Action<string> _textInput;
 
-    //TODO: 향후 삭제 바람
-    //private NpcController _controller;
-
     private DialogueController _controller;
 
     private CancellationTokenSource _source;
@@ -25,7 +23,7 @@ public class DialogueContext
     public bool CanNext => CurrentNode is not null;
 
     public DialogueRuntimeNode CurrentNode { get; private set; }
-    
+
     public bool IsRunning { get; private set; }
 
     public async UniTask Next()
@@ -52,26 +50,26 @@ public class DialogueContext
                 IsRunning = false;
                 return;
             }
-        
+
             item = CurrentNode.CreateItem();
-            
+
             if (item is TextItem textItem)
             {
                 _controller.SetPortrait(textItem.PortraitKey);
                 _controller.SetDisplayName(textItem.ActorKey);
-                
-               var link = CancellationTokenSource.CreateLinkedTokenSource(
-                   GlobalCancelation.PlayMode,
-                   _source.Token
-               );
 
-               var textTask = TextUtil.DoTextUniTask(_textInput, textItem.Text, _duration, true, link.Token);
+                var link = CancellationTokenSource.CreateLinkedTokenSource(
+                    GlobalCancelation.PlayMode,
+                    _source.Token
+                );
 
-               await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
-                   link.Token);
+                var textTask = TextUtil.DoTextUniTask(_textInput, textItem.Text, _duration, true, link.Token);
 
-               bool skipped = textTask.Status == UniTaskStatus.Pending;
-               link.Cancel();
+                await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
+                    link.Token);
+
+                bool skipped = textTask.Status == UniTaskStatus.Pending;
+                link.Cancel();
                 _textInput(textItem.Text);
                 CurrentNode = textItem.Node.GetNext();
 
@@ -80,37 +78,36 @@ public class DialogueContext
                     await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
                         _source.Token);
                 }
-
-                // TODO: 이 코드 왜 추가했었더라?
-                //if (CurrentNode is ExecutionRuntimeNode or ConditionRuntimeNode)
-                //{
-                //    goto begin;
-                //}
             }
             else if (item is BranchItem branchItem)
             {
                 _controller.SetPortrait(branchItem.PortraitKey);
                 _controller.SetDisplayName(branchItem.ActorKey);
-                
+
                 var link = CancellationTokenSource.CreateLinkedTokenSource(
                     GlobalCancelation.PlayMode,
                     _source.Token
                 );
-               
+
                 await UniTask.WhenAny(
                     TextUtil.DoTextUniTask(_textInput, branchItem.Text, _duration, true, link.Token),
-                    UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update, link.Token
+                    UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
+                        link.Token
                     )
                 );
-               
+
                 link.Cancel();
                 _textInput(branchItem.Text);
-                
-                _controller.SetBranchButtonsVisible(true, branchItem.BranchTexts.Length);
-                int index = await _controller.GetBranchResultAsync(branchItem.BranchTexts);
-                _controller.SetBranchButtonsVisible(false, 0);
-                
-                CurrentNode = branchItem.Node.GetNext(index);
+
+
+                var result = await _controller.GetBranchResultAsync
+                (
+                    branchItem.BranchTexts.Select(x => _controller.GetField<BranchFieldButton>().Init(x))
+                        .ToArray<DialogueBranchField>(),
+                    _source.Token
+                );
+
+                CurrentNode = branchItem.Node.GetNext(result.index);
 
                 goto begin;
             }
@@ -138,19 +135,19 @@ public class DialogueContext
             else if (item is BranchItem branchItem)
             {
                 _textInput(branchItem.Text);
-                _controller.SetBranchButtonsVisible(false, 0);
+                _controller.ResetBranch();
                 _controller.SetTextVisible(true);
                 CurrentNode = branchItem.Node.GetNext(0);
             }
-            
+
             _source = null;
         }
         catch (Exception e)
         {
             Debug.LogException(e);
         }
+
         IsRunning = false;
-        
     }
 
     public void Cancel()
@@ -162,7 +159,7 @@ public class DialogueContext
     public DialogueContext(DialogueRuntimeTree tree, float duration, DialogueController controller)
     {
         _tree = tree;
-        _textInput = str =>controller.DialogueText = str;
+        _textInput = str => controller.DialogueText = str;
         _duration = duration;
         _controller = controller;
         _source = new();

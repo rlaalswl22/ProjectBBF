@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Triggers;
 using UnityEngine;
 using DG.Tweening;
+using DS.Runtime;
 using TMPro;
 using UnityEngine.UI;
 
@@ -20,11 +23,15 @@ public class DialogueView : MonoBehaviour
     [SerializeField] private float _skipTwinkleX = 0.35f;
     [SerializeField] private Ease _skipTwinkleEase = Ease.Unset;
 
-    [SerializeField] private List<Button> _branchButtons;
+    [SerializeField] private Transform _fieldContent;
+    [SerializeField] private List<DialogueBranchField> _branchFields;
 
-    public List<Button> BranchButtons => _branchButtons;
-
+    private Dictionary<Type, DialogueBranchField> _fieldTable;
     public float TextCompletionDuration => _textCompletionDuration;
+    
+    public IReadOnlyDictionary<Type, DialogueBranchField> BranchFields => _fieldTable;
+
+    public Transform FieldContent => _fieldContent;
 
     public string DialogueText
     {
@@ -50,34 +57,26 @@ public class DialogueView : MonoBehaviour
 
     private void Awake()
     {
-        SetBranchButtonsVisible(false, 0);
-        SetTextVisible(true);
-        //StartCoroutine(CoAnimateSkipArrow());
-    }
-
-    public async UniTask<int> GetPressedButtonIndexAsync(string[] texts)
-    {
-        List<UniTask<int>> tasks = new List<UniTask<int>>(texts.Length);
-        
-        for (int i = 0; i < Mathf.Min(_branchButtons.Count, texts.Length); i++)
+        for (int i = 0; i < _fieldContent.childCount; i++)
         {
-            int index = i;
-
-            _branchButtons[i].GetComponentInChildren<TMP_Text>().text = texts[i];
-            
-            var task = UniTask.Create(async () =>
+            var child = _fieldContent.GetChild(i);
+            if (child)
             {
-                await _branchButtons[index].OnClickAsync();
-                return index;
-            });
-            
-            tasks.Add(task);
+                Destroy(child.gameObject);
+            }
+        }
+        
+        SetTextVisible(true);
+        
+
+        _fieldTable = new();
+        Debug.Assert(_branchFields is not null);
+
+        foreach (var field in _branchFields)
+        {
+            _fieldTable.Add(field.GetType(), field);
         }
 
-        var completedTask = await UniTask.WhenAny(tasks).WithCancellation(GlobalCancelation.PlayMode);
-        int resultIndex = completedTask.result;
-        
-        return resultIndex;
     }
 
     public void SetPortrait(Sprite sprite)
@@ -85,16 +84,6 @@ public class DialogueView : MonoBehaviour
         _portrait.sprite = sprite;
 
         _portrait.gameObject.SetActive(sprite is not null);
-    }
-
-    public void SetBranchButtonsVisible(bool value, int enableCountIfValueIsTrue = 0)
-    {
-        int count = value ? Mathf.Min(_branchButtons.Count, enableCountIfValueIsTrue) : _branchButtons.Count;
-        
-        for (int i = 0; i < count; i++)
-        {
-            _branchButtons[i].gameObject.SetActive(value);
-        }
     }
     
     private IEnumerator CoAnimateSkipArrow()

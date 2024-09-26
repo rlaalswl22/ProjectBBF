@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using DS.Core;
+using DS.Runtime;
 using JetBrains.Annotations;
 using ProjectBBF.Singleton;
 using UnityEngine;
@@ -18,6 +20,8 @@ public enum DialogueBranchType : int
     Gift = 4,
 }
 
+
+
 [Singleton(ESingletonType.Global)]
 public class DialogueController : MonoBehaviourSingleton<DialogueController>
 {
@@ -25,9 +29,11 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
     private ActorDataManager _actorDataManager;
 
     private DialogueContext LastestContext { get; set; }
+    private CancellationTokenSource _branchCts;
 
     private const string VIEW_PATH = "Feature/DialogueView";
     private const string DATA_PATH = "Data/ActorDataTable";
+
 
     public bool Visible
     {
@@ -35,6 +41,8 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
         set => _view.Visible = value;
     }
 
+    
+    
     public void SetTextVisible(bool value)
         => _view.SetTextVisible(value);
 
@@ -84,7 +92,6 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
 
         _actorDataManager = ActorDataManager.Instance;
         Debug.Assert(_actorDataManager is not null);
-
         ResetDialogue();
     }
 
@@ -102,6 +109,8 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
         LastestContext = null;
         
         _view.SetPortrait(null);
+
+        ResetBranch();
     }
 
     public string DialogueText
@@ -110,17 +119,53 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
         set => _view.DialogueText = value;
     }
 
-    public async UniTask<int> GetBranchResultAsync(params string[] texts)
+    public async UniTask<(int index, DialogueBranchResult result)> GetBranchResultAsync(DialogueBranchField[] fields, CancellationToken token = default)
     {
-        SetBranchButtonsVisible(true, texts.Length);
-        int index = await _view.GetPressedButtonIndexAsync(texts);
-        SetBranchButtonsVisible(false);
+        if (_branchCts is not null)
+        {
+            _branchCts.Cancel();
+        }
+        
+        _branchCts = CancellationTokenSource.CreateLinkedTokenSource(token, this.GetCancellationTokenOnDestroy());
+        
+        Visible = true;
+            
+        var canceled = await UniTask
+            .WhenAny(fields.Select(x => x.GetResult(_branchCts.Token)))
+            .WithCancellation(_branchCts.Token)
+            .SuppressCancellationThrow();
+            
+        _branchCts.Cancel();
+        _branchCts = null;
 
-        return index;
+        foreach (var field in fields)
+        {
+            field.DestroySelf();
+        }
+        
+        if (canceled.IsCanceled)
+        {
+            return (-1, null);
+        }
+
+        return (canceled.Result.winArgumentIndex, canceled.Result.result);
     }
 
-    public void SetBranchButtonsVisible(bool value, int enableCountIfValueIsTrue = 0)
-        => _view.SetBranchButtonsVisible(value, enableCountIfValueIsTrue);
+    public void ResetBranch()
+    {
+        _branchCts?.Cancel();
+    }
+    
+    
+    public T GetField<T>() where T : DialogueBranchField
+    {
+        var field = _view.BranchFields.GetValueOrDefault(typeof(T));
+        
+        if(field is not T f) return null;
+        
+        return Instantiate(f, _view.FieldContent);
+    }
+    
 
     public DialogueContext CreateContext(DialogueContainer container)
         => CreateContext(DialogueRuntimeTree.Build(container));
@@ -148,12 +193,12 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
         
         var branches = GetBranchText(type);
 
-        int index = await GetBranchResultAsync(branches.Select(x => x.Item1).ToArray());
+        var result = await GetBranchResultAsync(branches.Select(x => GetField<BranchFieldButton>().Init(x.text)).ToArray<DialogueBranchField>());
 
-        return branches[index].Item2;
+        return branches[result.index].type;
     }
 
-    private List<(string, DialogueBranchType)> GetBranchText(DialogueBranchType type)
+    private List<(string text, DialogueBranchType type)> GetBranchText(DialogueBranchType type)
     {
         List<(string, DialogueBranchType)> texts = new List<(string, DialogueBranchType)>(3);
         
