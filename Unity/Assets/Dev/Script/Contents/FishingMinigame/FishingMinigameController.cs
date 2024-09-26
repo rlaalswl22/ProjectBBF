@@ -6,11 +6,11 @@ using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
-public class FishingMinigameController :  MinigameBase<FishingMinigameData>
+public class FishingMinigameController : MinigameBase<FishingMinigameData>
 {
     [SerializeField] private GameObject _uiPanel;
     [SerializeField] private TMP_Text _timeboard;
-    
+
     [SerializeField] private SpriteRenderer _fishRenderer;
 
     private float _timer;
@@ -34,10 +34,10 @@ public class FishingMinigameController :  MinigameBase<FishingMinigameData>
     protected override void OnGameInit()
     {
         OnGameRelease();
-        
+
         Player.Fishing.BindFishingController(this);
 
-        float sum = Data.Rewards.Sum(x=>x.Percentage);
+        float sum = Data.Rewards.Sum(x => x.Percentage);
 
         if (Mathf.Approximately(sum, 1f) is false && sum < 1f)
         {
@@ -47,7 +47,7 @@ public class FishingMinigameController :  MinigameBase<FishingMinigameData>
 
         _fishRenderer.enabled = false;
     }
-    
+
     protected override async UniTask OnTutorial()
     {
         await RunDialogue(Data.Tutorial);
@@ -96,5 +96,4 @@ public class FishingMinigameController :  MinigameBase<FishingMinigameData>
             }
         }
     }
-    
 }

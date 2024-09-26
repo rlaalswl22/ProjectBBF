@@ -131,7 +131,11 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
         Visible = true;
             
         var canceled = await UniTask
-            .WhenAny(fields.Select(x => x.GetResult(_branchCts.Token)))
+            .WhenAny(fields.Select(x =>
+            {
+                if (x is IChooseable chooseable) return chooseable.GetResult(_branchCts.Token); 
+                return UniTask.Never<DialogueBranchResult>(_branchCts.Token);
+            }))
             .WithCancellation(_branchCts.Token)
             .SuppressCancellationThrow();
             

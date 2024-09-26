@@ -14,7 +14,7 @@ namespace DS.Runtime
     {
     }
     
-    public class BranchFieldButton : DialogueBranchField
+    public class BranchFieldButton : DialogueBranchField, IChooseable
     {
         [SerializeField] private Button _button;
         [SerializeField] private TMP_Text _text;
@@ -31,7 +31,7 @@ namespace DS.Runtime
 
             return this;
         }
-        public override async UniTask<DialogueBranchResult> GetResult(CancellationToken token = default)
+        public async UniTask<DialogueBranchResult> GetResult(CancellationToken token = default)
         {
             CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(token, this.GetCancellationTokenOnDestroy());
 
