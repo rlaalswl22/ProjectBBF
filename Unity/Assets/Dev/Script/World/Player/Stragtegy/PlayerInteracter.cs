@@ -63,29 +63,34 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             }
             else
             {
+                PlayAudio(currentData, false);
                 return false;
             }
+
+            bool success = false;
 
             var interaction = FindCloserObject();
             if (interaction is null)
             {
-                await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
-                return false;
+                success = false;
+                goto RE;
             }
 
             if (Farmland(interaction))
             {
-                await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
-                return true;
+                success = true;
+                goto RE;
             }
             if(currentData.Info.Contains(ToolType.Pickaxe) && Pickaxe(interaction))
             {
-                await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
-                return true;
+                success = true;
+                goto RE;
             }
 
+            RE:
             await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
-            return false;
+            PlayAudio(currentData, success);
+            return success;
         }
         catch (Exception e) when (e is not OperationCanceledException)
         {
@@ -93,6 +98,28 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             return false;
         }
         
+    }
+
+    private void PlayAudio(ItemData itemData, bool success)
+    {
+        if (itemData == false) return;
+        
+        if (itemData.Info.Contains(ToolType.Hoe) ||
+            itemData.Info.Contains(ToolType.Fertilizer) ||
+            itemData.Info.Contains(ToolType.Seed) ||
+            itemData.Info.Contains(ToolType.Pickaxe))
+        {
+            if (success is false) return;
+        }
+        else if (itemData.Info.Contains(ToolType.WaterSpray))
+        {
+            // nothing..
+        }
+        
+        if (itemData.UseActionUsingActionAudioInfo.HasAudio)
+        {
+            AudioManager.Instance.PlayOneShot(itemData.UseActionUsingActionAudioInfo.MixerGroupKey, itemData.UseActionUsingActionAudioInfo.AudioKey);
+        }
     }
 
     public async UniTask<bool> OnCollectAction()

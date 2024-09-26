@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a84eb18d2848768ef846e93c1a210e, type: 3}
   m_Name: Item_Fertilizer_Test
   m_EditorClassIdentifier: 
+  _itemKey: 
   _itemName: TestFertilizer
-  _itemSprite: {fileID: 1915365574, guid: 652e277b3f099894692126990928332c, type: 3}
-  _lootingTime: 0
   _itemDescription: 
+  _itemSprite: {fileID: 1915365574, guid: 652e277b3f099894692126990928332c, type: 3}
   _maxStackCount: 4
   _itemTypeInfo:
     _sets:
@@ -23,4 +23,8 @@ MonoBehaviour:
       _requireToolRank: 1
   _actionCategoryType: 0
   _actionAnimationType: 0
+  _usingActionAudioInfo:
+    _mixerGroupKey: Player
+    _audioKey: Player_Tool_Using_Fertilizer
+    _playWhenSucceed: 0
   _targetTile: {fileID: 11400000, guid: 50046b9d41129e94a9139f6d089ef31d, type: 2}
