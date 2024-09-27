@@ -118,8 +118,8 @@ public class FarmMinigameController : MinigameBase<FarmMinigameData>
         return _currentItemCount >= data.GoalItemCount;
     }
 
-    protected override void OnGameEnd(bool isRequestEnd)
+    protected override UniTask OnGameEnd(bool isRequestEnd)
     {
-        
+        return UniTask.CompletedTask;
     }
 }

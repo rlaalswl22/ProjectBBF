@@ -20,6 +20,8 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
     public AnimationActorKey.Direction LastDirection { get; private set; }
     public AnimationActorKey.Movement LastMovement { get; private set; }
     
+    public bool IsStopped { get; set; }
+    
     public void Init(PlayerController controller)
     {
         _movementData = controller.MovementData;
@@ -47,6 +49,12 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         bool beforeSprint = false;
         while (true)
         {
+            if (IsStopped)
+            {
+                yield return null;
+                continue;
+            }
+            
             if (TimeManager.Instance.IsRunning is false)
             {
                 yield return null;
@@ -82,6 +90,10 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
     
     public void OnMove()
     {
+        if (IsStopped)
+        {
+            return;
+        }
         var input = _movementAction.ReadValue<Vector2>();
         
         Vector2 dir = new Vector2(

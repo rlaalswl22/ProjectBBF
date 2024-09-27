@@ -16,6 +16,9 @@ public class PlayerBlackboard
     private string _currentWorld;
     private Vector2 _currentPosition;
 
+    [SerializeField, Editable] private int _money;
+    
+
     public float Stemina
     {
         get => _stemina;
@@ -50,5 +53,11 @@ public class PlayerBlackboard
     {
         get => _currentPosition;
         set => _currentPosition = value;
+    }
+
+    public int Money
+    {
+        get => _money;
+        set => _money = value;
     }
 }

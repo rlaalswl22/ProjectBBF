@@ -42,19 +42,19 @@ MonoBehaviour:
     PortName: "\u3134\u3134"
     TargetNodeGuid: 5e7d6382-3c11-4a80-a773-b24c3b9a0ca9
   NodeData:
-  - rid: 7386576863399510016
-  - rid: 7386576863399510017
-  - rid: 7386576863399510018
-  - rid: 7386576863399510019
-  - rid: 7386576863399510020
-  - rid: 7386576863399510021
-  - rid: 7386576863399510022
-  - rid: 7386576863399510023
-  - rid: 7386576863399510024
+  - rid: 7386576909761511433
+  - rid: 7386576909761511434
+  - rid: 7386576909761511435
+  - rid: 7386576909761511436
+  - rid: 7386576909761511437
+  - rid: 7386576909761511438
+  - rid: 7386576909761511439
+  - rid: 7386576909761511440
+  - rid: 7386576909761511441
   references:
     version: 2
     RefIds:
-    - rid: 7386576863399510016
+    - rid: 7386576909761511433
       type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 0eb48fd5-8361-4590-a1b1-4a891e7af332
@@ -64,7 +64,7 @@ MonoBehaviour:
         DialogueText: "\uADF8\uB9CC?"
         PortraitKey: 
         ActorKey: FishingNpc
-    - rid: 7386576863399510017
+    - rid: 7386576909761511434
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 265148b8-44b0-43b6-a4da-0faa1ee00167
@@ -74,7 +74,7 @@ MonoBehaviour:
         DialogueText: "\u3145\u3131"
         PortraitKey: 
         ActorKey: FishingNpc
-    - rid: 7386576863399510018
+    - rid: 7386576909761511435
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 5e7d6382-3c11-4a80-a773-b24c3b9a0ca9
@@ -84,7 +84,7 @@ MonoBehaviour:
         DialogueText: "\u3142\u3142"
         PortraitKey: 
         ActorKey: FishingNpc
-    - rid: 7386576863399510019
+    - rid: 7386576909761511436
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7eeab37d-aef2-471d-bc2f-24d9998b347e
@@ -99,7 +99,7 @@ MonoBehaviour:
           StringValue: Fishing
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 7386576863399510020
+    - rid: 7386576909761511437
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 81d2a94d-948d-44f4-8b00-d30af3500d3b
@@ -109,7 +109,7 @@ MonoBehaviour:
         DialogueText: "\u3147\u314B \u3142\u3142"
         PortraitKey: 
         ActorKey: FishingNpc
-    - rid: 7386576863399510021
+    - rid: 7386576909761511438
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: bc6f21c4-e932-49e8-9870-57ce3d798d2e
@@ -130,7 +130,7 @@ MonoBehaviour:
           StringValue: Fishing
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 7386576863399510022
+    - rid: 7386576909761511439
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: cd3cf578-5541-49de-bacf-dd62effaffd0
@@ -140,7 +140,7 @@ MonoBehaviour:
         DialogueText: "\u3147\u3147"
         PortraitKey: 
         ActorKey: FishingNpc
-    - rid: 7386576863399510023
+    - rid: 7386576909761511440
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: e3b893c8-2fbf-4e03-93b9-f082f1522a95
@@ -161,7 +161,7 @@ MonoBehaviour:
           StringValue: Fishing
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 7386576863399510024
+    - rid: 7386576909761511441
       type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: f863ba43-357d-4f52-a106-fe12abd11b2f

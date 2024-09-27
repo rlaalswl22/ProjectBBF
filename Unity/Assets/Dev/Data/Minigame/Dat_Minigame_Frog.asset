@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23184181ce99403190ac31ba7c90e70c, type: 3}
+  m_Name: Dat_Minigame_Frog
+  m_EditorClassIdentifier: 
+  _minigameKey: Frog
+  _directorKey: BlackAlpha
+  _dialogueAfterGameEnd: {fileID: 11400000, guid: ad0f9142d309ca349b83313e9900922d, type: 2}
+  _dialogueAfterGameExit: {fileID: 11400000, guid: 3877b73c727e04a49b4b89183bb2ac43, type: 2}
+  _tutorial: {fileID: 11400000, guid: b38e5f15eb6d9164eb5eaaa883b28010, type: 2}
+  _boostMovementMultiplier: 10
+  _boostMaxIteration: 11
+  _jumpInterval: 1
+  _jumpMinDistance: 1
+  _jumpMaxDistance: 1
+  _movementSpeed: 1
+  _jumpMaxHeight: 5
+  _frogs:
+  - FrogObject: {fileID: 5998470117485160814, guid: 5e63e5fed783bc042b279b93cef54605, type: 3}
+    DisplayName: "\uAC1C\uAD741"
+    DividendRate: 1
+    JumpRate: 0.25
+    JumpBoostRate: 0.5
+  - FrogObject: {fileID: 5998470117485160814, guid: fd0c4c2d8935cc243946270e66c84a81, type: 3}
+    DisplayName: "\uAC1C\uAD742"
+    DividendRate: 1
+    JumpRate: 0.25
+    JumpBoostRate: 0.5
+  - FrogObject: {fileID: 5998470117485160814, guid: 3d8b0421e0c209440a52736dbb4c8975, type: 3}
+    DisplayName: "\uAC1C\uAD743"
+    DividendRate: 1
+    JumpRate: 1
+    JumpBoostRate: 1

@@ -32,12 +32,13 @@ public class BranchFieldIntInput : DialogueBranchField, IValuable<BranchResultIn
         _inputField.onValueChanged.AddListener(OnInput);
     }
 
-    public BranchFieldIntInput Init(int initalValue, int step, int min, int max)
+    public BranchFieldIntInput Init(int initialValue, int step, int min, int max)
     {
-        _result = new BranchResultIntInput(initalValue);
+        _result = new BranchResultIntInput(initialValue);
         _step = step;
         _min = min;
         _max = max;
+        _inputField.text = initialValue.ToString();
         
         return this;
     }

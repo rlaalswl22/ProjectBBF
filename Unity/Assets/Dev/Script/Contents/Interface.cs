@@ -59,6 +59,11 @@ public abstract class MinigameBase<T> : MonoBehaviour where T : MinigameData
     {
         if (_data.MinigameKey != obj) return;
 
+        RequestEndGame();
+    }
+
+    public void RequestEndGame()
+    {
         if (MinigameController.Instance.CurrentGameKey == _data.MinigameKey)
         {
             MinigameController.Instance.CurrentGameKey = null;
@@ -89,17 +94,21 @@ public abstract class MinigameBase<T> : MonoBehaviour where T : MinigameData
             Player.transform.position = (Vector2)_playerStartPoint.position;
             OnGameInit();
             await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
-            Player.StateHandler.TranslateState("EndOfDialogue");
 
             await OnTutorial();
+            Player.StateHandler.TranslateState("EndOfDialogue");
 
-            OnGameBegin();
+            if (_isRequestEnd is false)
+            {
+                OnGameBegin();
+            }
 
             while (IsGameEnd() is false && _isRequestEnd is false)
             {
                 await UniTask.Yield(PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
             }
 
+            
             if (_isRequestEnd)
             {
                 Player.StateHandler.TranslateState("EndOfInteractionDialogue");
@@ -107,9 +116,11 @@ public abstract class MinigameBase<T> : MonoBehaviour where T : MinigameData
             Player.StateHandler.TranslateState("ToDialogue");
             await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
             Player.transform.position = (Vector2)_playerEndPoint.position;
-            OnGameRelease();
+            OnPreGameEnd(_isRequestEnd);
             await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
             Player.StateHandler.TranslateState("EndOfDialogue");
+            
+            await OnGameEnd(_isRequestEnd);
 
             if (_isRequestEnd)
             {
@@ -124,7 +135,7 @@ public abstract class MinigameBase<T> : MonoBehaviour where T : MinigameData
                 await RunDialogue(Data.DialogueAfterGameExit);
             }
             
-            OnGameEnd(_isRequestEnd);
+            OnGameRelease();
 
             Release();
         }
@@ -138,6 +149,8 @@ public abstract class MinigameBase<T> : MonoBehaviour where T : MinigameData
 
     protected UniTask RunDialogue(DialogueContainer container)
     {
+        if (container == false) return UniTask.CompletedTask;
+        
         DialogueController.Instance.ResetDialogue();
         Player.StateHandler.TranslateState("ToDialogue");
         return Player.Dialogue.RunDialogue(container).ContinueWith(_ =>
@@ -151,7 +164,12 @@ public abstract class MinigameBase<T> : MonoBehaviour where T : MinigameData
     protected abstract void OnGameBegin();
     protected abstract void OnGameRelease();
     protected abstract bool IsGameEnd();
-    protected abstract void OnGameEnd(bool isRequestEnd);
+    protected abstract UniTask OnGameEnd(bool isRequestEnd);
+
+    protected virtual void OnPreGameEnd(bool isRequestEnd)
+    {
+        
+    }
 
 }
 

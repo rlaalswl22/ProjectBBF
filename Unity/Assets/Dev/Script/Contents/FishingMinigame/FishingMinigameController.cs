@@ -73,9 +73,10 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
         return Player.Fishing.IsFishing is false && Timer >= Data.GameDuration;
     }
 
-    protected override void OnGameEnd(bool isRequestEnd)
+    protected override UniTask OnGameEnd(bool isRequestEnd)
     {
-        if (isRequestEnd) return;
+        if (isRequestEnd) return UniTask.CompletedTask;
+        return UniTask.CompletedTask;;
     }
 
     public FishingContext CreateContext()
