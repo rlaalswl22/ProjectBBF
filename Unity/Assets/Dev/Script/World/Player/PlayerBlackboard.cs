@@ -17,7 +17,24 @@ public class PlayerBlackboard
     private Vector2 _currentPosition;
 
     [SerializeField, Editable] private int _money;
-    
+
+    private PlayerInventoryPresenter _inventory;
+
+    public PlayerInventoryPresenter Inventory
+    {
+        get => _inventory;
+        set
+        {
+            if (_inventory is null)
+            {
+                _inventory = value;
+                return;
+            }
+
+            throw new NotSupportedException();
+        }
+    }
+
 
     public float Stemina
     {

@@ -200,7 +200,7 @@ public class GridInventoryModel : IInventoryModel
         var eumerator = Slots.GetEnumerator();
         while (eumerator.MoveNext())
         {
-            if (eumerator.Current is IInventorySlot slot)
+            if (eumerator.Current is IInventorySlot slot && itemData == slot.Data)
             {
                 return true;
             }
@@ -208,4 +208,26 @@ public class GridInventoryModel : IInventoryModel
 
         return false;
     }
+
+    public bool ContainsGreaterEqual(ItemData itemData, int count)
+    {
+        var eumerator = Slots.GetEnumerator();
+        int curCount = 0;
+        
+        while (eumerator.MoveNext())
+        {
+            if (eumerator.Current is IInventorySlot slot && itemData == slot.Data)
+            {
+                curCount += slot.Count;
+
+                if (curCount >= count)
+                {
+                    return true;
+                }
+            }
+            
+        }
+
+        return false;
+    } 
 }

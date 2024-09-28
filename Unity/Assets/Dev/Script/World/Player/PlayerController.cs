@@ -152,6 +152,7 @@ public class PlayerController : MonoBehaviour
         }
         
         Inventory.Refresh();
+        Blackboard.Inventory = Inventory;
     }
 
     private void OnDestroy()

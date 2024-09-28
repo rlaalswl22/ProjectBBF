@@ -17,9 +17,12 @@ namespace  DS.Runtime
             var types = GetArgumentTypes();
             for (int i = 0; i < Mathf.Min(args.Length, types.Length); i++)
             {
-                if (args[i].GetType() != types[i])
+                var curType = args[i].GetType();
+                if (curType != types[i] &&
+                    types[i].IsAssignableFrom(curType) is false
+                    )
                 {
-                    Debug.LogError("올바르지 않은 타입");
+                    Debug.LogError($"올바르지 않은 타입, input({curType}), defined({types[i]})");
                     return null;
                 }
             }
