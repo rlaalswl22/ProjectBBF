@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9c2fa7d8124c50bb20155eb288d97d, type: 3}
+  m_Name: Dat_Minigame_Mole
+  m_EditorClassIdentifier: 
+  _minigameKey: Mole
+  _directorKey: BlackAlpha
+  _dialogueAfterGameEnd: {fileID: 0}
+  _dialogueAfterGameExit: {fileID: 0}
+  _tutorial: {fileID: 0}
+  _requireTools:
+    _requireToolTypes: 1
+    _requireToolRank: 1
+  _gameDuration: 60
+  _moles:
+  - Key: 0
+    Prefab: {fileID: 1387624981748043353, guid: 487d56172221a2e4a838e6ca622d33fb, type: 3}
+    AcquisitionScore: 30
+    AppearRate: 0.8
+    WaitDuration: 4
+  - Key: 1
+    Prefab: {fileID: 1387624981748043353, guid: 39feba36c58eddd4284c92948cd3c21a, type: 3}
+    AcquisitionScore: 30
+    AppearRate: 0.2
+    WaitDuration: 3
+  - Key: 2
+    Prefab: {fileID: 1387624981748043353, guid: 487d56172221a2e4a838e6ca622d33fb, type: 3}
+    AcquisitionScore: 30
+    AppearRate: 1
+    WaitDuration: 4
+  _rewards:
+  - Item: {fileID: 11400000, guid: 8b3669966bf2867419f7d3a4d498a060, type: 2}
+    Count: 3
+    TargetScore: 90
+  - Item: {fileID: 11400000, guid: 8b3669966bf2867419f7d3a4d498a060, type: 2}
+    Count: 2
+    TargetScore: 60
+  - Item: {fileID: 11400000, guid: 8b3669966bf2867419f7d3a4d498a060, type: 2}
+    Count: 1
+    TargetScore: 30
+  _stages:
+  - AppearInterval: 1
+    AppearMaxCount: 3
+    MoleKeyList: 02000000
+    MaxStageTime: 20
+  - AppearInterval: 3
+    AppearMaxCount: 3
+    MoleKeyList: 0000000001000000
+    MaxStageTime: 60

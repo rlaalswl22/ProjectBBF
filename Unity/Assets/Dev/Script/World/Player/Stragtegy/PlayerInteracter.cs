@@ -81,7 +81,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 success = true;
                 goto RE;
             }
-            if(currentData.Info.Contains(ToolType.Pickaxe) && Pickaxe(interaction))
+            if(Pickaxe(interaction))
             {
                 success = true;
                 goto RE;

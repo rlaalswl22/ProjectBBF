@@ -128,7 +128,7 @@ public class FishingContext
         {
             sum += reward.Percentage;
 
-            if (sum > v)
+            if (sum >= v)
             {
                 return reward.Item;
             }
