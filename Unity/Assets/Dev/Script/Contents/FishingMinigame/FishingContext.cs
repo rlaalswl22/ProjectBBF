@@ -42,6 +42,7 @@ public class FishingContext
     public bool IsTiming => Reward is not null && FishTransform is not null;
     
     private CancellationTokenSource _cts;
+    private bool _isStopped;
 
     public CancellationToken CancellationToken
     {
@@ -56,6 +57,17 @@ public class FishingContext
             return _cts.Token;
         }
     }
+
+    public void Pause()
+    {
+        _isStopped = true;
+    }
+
+    public void Resume()
+    {
+        _isStopped = false;
+    }
+    
     public async UniTask Begin(CancellationToken token = default)
     {
         _cts = CancellationTokenSource.CreateLinkedTokenSource(
@@ -69,6 +81,8 @@ public class FishingContext
             while (true)
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(_data.BiteRepeatInterval), false, PlayerLoopTiming.Update, token);
+                await UniTask.WaitWhile(() => _isStopped, cancellationToken: token);
+                
                 OnBeginBite?.Invoke(this);
 
                 ItemData reward = GetReward();
@@ -77,6 +91,8 @@ public class FishingContext
                 Reward = reward;
             
                 await UniTask.Delay(TimeSpan.FromSeconds(_data.BiteCanBiteDuration), false, PlayerLoopTiming.Update, token);
+                await UniTask.WaitWhile(() => _isStopped, cancellationToken: token);
+                
                 FishTransform = null;
                 Reward = null;
                 OnEndBite?.Invoke(this);

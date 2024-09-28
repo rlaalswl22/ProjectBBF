@@ -200,12 +200,13 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
                 CancellationTokenSource
                     .CreateLinkedTokenSource(ctx.CancellationToken, this.GetCancellationTokenOnDestroy()).Token);
 
+            ctx.Pause();
             if (ctx.IsTiming)
             {
                 _invPresenter.Model.PushItem(ctx.Reward, 1);
                 ctx.FishVisible = true;
+                _fishingStateRenderer.enabled = false;
                 AudioManager.Instance.PlayOneShot("SFX", "SFX_Fishing_Getting_Fish");
-                
             }
 
 
@@ -215,7 +216,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
             {
                 var inst = DialogueController.Instance;
                 inst.Visible = true;
-                inst.DialogueText = $"<{ctx.Reward.ItemName}을(를) 낚았다!";
+                inst.DialogueText = $"\"{ctx.Reward.ItemName}\"을(를) 낚았다!";
 
                 AudioManager.Instance.PlayOneShot("SFX", "SFX_Fishing_Completion");
 
@@ -224,6 +225,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
                 
                 inst.ResetDialogue();
             }
+            ctx.Resume();
             
             ctx.Release();
 
