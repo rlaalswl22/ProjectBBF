@@ -14,12 +14,15 @@ public class FavorabilityEventItem
     private int _favorablity;
 
     [SerializeField] private bool _once;
+    [SerializeField] private DialogueBranchType _branchType;
 
     public DialogueContainer Container => _container;
 
     public int Favorablity => _favorablity;
 
     public bool Once => _once;
+
+    public DialogueBranchType BranchType => _branchType;
 }
 
 [System.Serializable]

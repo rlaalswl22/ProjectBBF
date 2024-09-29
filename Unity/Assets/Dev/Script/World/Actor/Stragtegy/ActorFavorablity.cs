@@ -20,10 +20,11 @@ public class ActorFavorablity: MonoBehaviour, IActorStrategy, IBADialogue
         // TODO: 테스트 코드
         if (FavorablityContainer.Event.EventItems.Count == 0) return DialogueEvent.Empty;
 
+        FavorabilityEventItem eventItem = FavorablityContainer.Event.EventItems[0];
         return new DialogueEvent()
         {
-            Container = FavorablityContainer.Event.EventItems[0].Container,
-            Type = DialogueBranchType.Dialogue | DialogueBranchType.Exit
+            Container = eventItem.Container,
+            Type = eventItem.BranchType
         };
     }
 

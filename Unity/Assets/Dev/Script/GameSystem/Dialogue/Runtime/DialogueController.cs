@@ -193,6 +193,7 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
     }
     public async UniTask<DialogueBranchType> GetBranchResultAsync(DialogueBranchType type)
     {
+        if (type == DialogueBranchType.None) return DialogueBranchType.None;
         if (type == DialogueBranchType.Dialogue) return DialogueBranchType.Dialogue;
         
         var branches = GetBranchText(type);
