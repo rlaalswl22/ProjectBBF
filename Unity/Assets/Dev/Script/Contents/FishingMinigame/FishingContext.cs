@@ -26,7 +26,8 @@ public class FishingContext
 
     public bool CanFishingGround(Vector2 position)
     {
-        return true;
+        Collider2D collider = Physics2D.OverlapBox(position, Vector2.one, 0f, LayerMask.GetMask("FishingField"));
+        return collider;
     }
     
     public bool IsBite { get; private set; }
@@ -107,7 +108,7 @@ public class FishingContext
     public void Release()
     {
         _renderer.enabled = false;
-        _cts.Cancel();
+        _cts?.Cancel();
         
         IsBite = false;
         FishTransform = null;
