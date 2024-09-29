@@ -191,13 +191,22 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
     protected override void OnGameBegin()
     {
         StartCoroutine(CoUpdate());
+        StartCoroutine(CoTimer());
     }
 
-    private IEnumerator CoUpdate()
+    private IEnumerator CoTimer()
     {
         while (true)
         {
             GameTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+    
+    private IEnumerator CoUpdate()
+    {
+        while (true)
+        {
             MoleMinigameData.Stage? stage = GetCurrentStage();
 
             if (stage is null)
