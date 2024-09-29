@@ -7,9 +7,9 @@ using UnityEngine;
 public class DefaultCollectMinigameData : CollectMinigameDataBase
 {
 
-    [SerializeField] private List<ItemDataSerializedSet> _rewards;
+    [SerializeField, Header("보상")] private List<ItemDataSerializedSet> _rewards;
     
-    [SerializeField] private DialogueContainer _tutorial;
+    [SerializeField, Header("튜토리얼 대사")] private DialogueContainer _tutorial;
 
     public DialogueContainer Tutorial => _tutorial;
     public IReadOnlyList<ItemDataSerializedSet> Rewards => _rewards;

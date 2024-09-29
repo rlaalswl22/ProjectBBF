@@ -11,39 +11,39 @@ public class MoleMinigameData : MinigameData
     [Serializable]
     public struct Mole
     {
-        public int Key;
-        public MoleGameObject Prefab;
-        public int AcquisitionScore;
-        public float AppearRate;
-        public float WaitDuration;
+         [Header("키 값(반드시 고유해야함")] public int Key;
+         public MoleGameObject Prefab;
+         [Header("피격시 획득 점수")] public int AcquisitionScore;
+         [Header("나타날 확률")] public float AppearRate;
+         [Header("구멍에 들어가기전 대기하는 시간")] public float WaitDuration;
     }
 
     [Serializable]
     public struct Reward
     {
-        public ItemData Item;
-        public int Count;
-        public int TargetScore;
+        [Header("보상 아이템")]  public ItemData Item;
+        [Header("보상 아이템 개수")]  public int Count;
+        [Header("필요 점수")]  public int TargetScore;
     }
 
     [Serializable]
     public struct Stage
     {
-        public float AppearInterval;
-        public int AppearMaxCount;
-        public List<int> MoleKeyList;
-        public float MaxStageTime;
+        [Header("두더지 출현 빈도(초)")]  public float AppearInterval;
+        [Header("두더지 출현 최대 개수")]  public int AppearMaxCount;
+        [Header("출현 두더지 키(두더지의 출현 확률의 합이 1이어야 함")]  public List<int> MoleKeyList;
+        [Header("스테이지 최대 시간")]  public float MaxStageTime;
     }
 
-    [SerializeField] private DialogueContainer _tutorial;
+    [SerializeField, Header("튜토리얼 대사")] private DialogueContainer _tutorial;
     
-    [SerializeField] private ToolRequireSet _requireTools;
+    [SerializeField, Header("두더지 잡는 사용할 도구")] private ToolRequireSet _requireTools;
 
-    [SerializeField] private float _gameDuration;
-    [SerializeField] private List<Mole> _moles;
+    [SerializeField, Header("게임 제한시간")] private float _gameDuration;
+    [SerializeField, Header("두더지 정보")] private List<Mole> _moles;
 
-    [SerializeField] private List<Reward> _rewards;
-    [SerializeField] private List<Stage> _stages;
+    [SerializeField, Header("보상 정보")] private List<Reward> _rewards;
+    [SerializeField, Header("스테이지 정보")] private List<Stage> _stages;
 
     public ToolRequireSet RequireTools => _requireTools;
 

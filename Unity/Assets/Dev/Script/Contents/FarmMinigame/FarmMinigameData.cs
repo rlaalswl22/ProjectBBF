@@ -15,10 +15,10 @@ public class FarmMinigameData : MinigameData
     [SerializeField] private float _lightOnIntensity;
     [SerializeField] private float _lightOffIntensity;
 
-    [SerializeField] private int _goalItemCount;
-    [SerializeField] private ItemData _goalItem;
+    [SerializeField, Header("목표 아이템 개수")] private int _goalItemCount;
+    [SerializeField, Header("목표 아이템")] private ItemData _goalItem;
 
-    [SerializeField] private DialogueContainer _dialogueTutorial;
+    [SerializeField, Header("튜토리얼 대사")] private DialogueContainer _dialogueTutorial;
     public float LightIgnitionBeginWaveTime => _lightIgnitionBeginWaveTime;
 
     public float LightIgnitionEndWaveTime => _lightIgnitionEndWaveTime;

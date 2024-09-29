@@ -180,8 +180,8 @@ public abstract class MinigameData : ScriptableObject
     [SerializeField] private string _directorKey;
     
 
-    [SerializeField] private DialogueContainer _dialogueAfterGameEnd;
-    [SerializeField] private DialogueContainer _dialogueAfterGameExit;
+    [SerializeField, Header("게임 종료 대사")] private DialogueContainer _dialogueAfterGameEnd;
+    [SerializeField, Header("게임 중도 종료 대사")] private DialogueContainer _dialogueAfterGameExit;
     public string MinigameKey => _minigameKey;
     public string DirectorKey => _directorKey;
 

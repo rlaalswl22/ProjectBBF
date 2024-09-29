@@ -215,7 +215,7 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
                 _ = UpdateMole(moleObj);
             }
 
-            yield return null;
+            yield return new WaitForSeconds(stage.Value.AppearInterval);
         }
     }
 

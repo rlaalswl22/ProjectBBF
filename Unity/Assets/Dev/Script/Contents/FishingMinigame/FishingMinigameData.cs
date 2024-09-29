@@ -8,13 +8,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ProjectBBF/Data/Minigame/Fishing", fileName = "FishingMinigameData")]
 public class FishingMinigameData : MinigameData
 {
-    [SerializeField] private DialogueContainer _tutorial;
+    [SerializeField, Header("튜토리얼 대사")] private DialogueContainer _tutorial;
 
-    [SerializeField] private float _biteRepeatInterval;
-    [SerializeField] private float _biteCanBiteDuration;
-    [SerializeField] private float _gameDuration;
+    [SerializeField, Header("물고기가 찌를 무는 간격(초)")] private float _biteRepeatInterval;
+    [SerializeField, Header("물고기가 찌를 물고있는 시간")] private float _biteCanBiteDuration;
+    [SerializeField, Header("게임 제한시간")] private float _gameDuration;
 
-    [SerializeField] private List<FishingReward> _rewards;
+    [SerializeField, Header("보상")] private List<FishingReward> _rewards;
 
     public DialogueContainer Tutorial => _tutorial;
 
