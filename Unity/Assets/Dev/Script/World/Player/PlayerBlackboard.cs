@@ -16,23 +16,14 @@ public class PlayerBlackboard
     private string _currentWorld;
     private Vector2 _currentPosition;
 
-    [SerializeField, Editable] private int _money;
+    [SerializeField, Editable] private int _money = 500;
 
     private PlayerInventoryPresenter _inventory;
 
     public PlayerInventoryPresenter Inventory
     {
         get => _inventory;
-        set
-        {
-            if (_inventory is null)
-            {
-                _inventory = value;
-                return;
-            }
-
-            throw new NotSupportedException();
-        }
+        set => _inventory = value;
     }
 
 

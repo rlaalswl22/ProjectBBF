@@ -10,6 +10,11 @@ public class TimeHudUI : MonoBehaviour
     [SerializeField] private TMP_Text _text;
     [SerializeField] private ESOGameTimeEvent _event;
 
+    public bool Visible
+    {
+        get=> gameObject.activeSelf;
+        set=> gameObject.SetActive(value);
+    }
     private void Awake()
     {
         StartCoroutine(CoUpdate());

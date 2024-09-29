@@ -12,6 +12,11 @@ public class PlayerHealthUI : MonoBehaviour
 
     private PlayerBlackboard _blackboard;
 
+    public bool Visible
+    {
+        get=> gameObject.activeSelf;
+        set=> gameObject.SetActive(value);
+    }
     private void Start()
     {
         _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");

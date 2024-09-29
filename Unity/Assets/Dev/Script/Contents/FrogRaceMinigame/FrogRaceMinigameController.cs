@@ -66,22 +66,44 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
 
         _targetIndex = result.index;
 
-        BranchFieldIntInput moneyInput;
-        result = await inst.GetBranchResultAsync(
-            new DialogueBranchField[]
-            {
-                moneyInput = inst.GetField<BranchFieldIntInput>().Init(100, 100, 100, 1000),
-                inst.GetField<BranchFieldButton>().Init("경기 시작하기"),
-                inst.GetField<BranchFieldButton>().Init("그만두기")
-            }, this.GetCancellationTokenOnDestroy()
-        );
-
-        _money = moneyInput.GetResult().Value;
-
-        if (result.index == 2)
+        while (true)
         {
-            RequestEndGame();
+            Player.HudController.Visible = true;
+            Player.HudController.SetAllHudVisible(false);
+            Player.HudController.MoneyUI.Visible = true;
+            
+            
+            BranchFieldIntInput moneyInput;
+            result = await inst.GetBranchResultAsync(
+                new DialogueBranchField[]
+                {
+                    moneyInput = inst.GetField<BranchFieldIntInput>().Init(100, 100, 100, 1000),
+                    inst.GetField<BranchFieldButton>().Init("경기 시작하기"),
+                    inst.GetField<BranchFieldButton>().Init("그만두기")
+                }, this.GetCancellationTokenOnDestroy()
+            );
+
+            _money = moneyInput.GetResult().Value;
+
+            if (result.index == 2)
+            {
+                RequestEndGame();
+                break;
+            }
+
+            if (Player.Blackboard.Money < _money)
+            {
+                DialogueController.Instance.DialogueText = "돈이 부족하군.";
+                await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update);
+                DialogueController.Instance.ResetDialogue();
+                continue;
+            }
+
+            break;
         }
+        
+        Player.HudController.Visible = false;
+        Player.HudController.SetAllHudVisible(true);
 
         DialogueController.Instance.ResetDialogue();
         Player.StateHandler.TranslateState("EndOfDialogue");
@@ -89,6 +111,7 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
 
     protected override void OnGameBegin()
     {
+        Player.StateHandler.TranslateState("ToDialogue");
         Player.MoveStrategy.IsStopped = true;
         StartCoroutine(CoUpdate());
 
@@ -121,6 +144,7 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
 
     protected override void OnPreGameEnd(bool isRequestEnd)
     {
+        Player.StateHandler.TranslateState("EndOfDialogue");
         _camera.gameObject.SetActive(false);
     }
 
@@ -166,6 +190,7 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
         else
         {
             inst.DialogueText = $"돈을 잃었습니다.";
+            blackboard.Money = Mathf.Max(0, blackboard.Money - _money);
         }
 
         OnGameRelease();
