@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Scene)]
     private PlayerPannelView pannelView;
 
+    [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Scene)]
+    private RecipeBookPresenter _recipeBookPresenter;
+
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
     private PlayerFishing _fishing;
 
@@ -82,6 +85,8 @@ public class PlayerController : MonoBehaviour
             return _hudController;
         }
     }
+
+    public RecipeBookPresenter RecipeBookPresenter => _recipeBookPresenter;
 
 
     #region Getter/Setter

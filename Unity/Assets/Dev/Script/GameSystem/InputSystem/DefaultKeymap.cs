@@ -223,6 +223,15 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RecipeBook"",
+                    ""type"": ""Button"",
+                    ""id"": ""60ae9654-7f99-48fd-b89a-ee3998e2d639"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -401,6 +410,17 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""action"": ""Setting"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5911955e-52b7-402b-9cd0-12c7f660a41a"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""WinPCScheme"",
+                    ""action"": ""RecipeBook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -438,6 +458,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         m_UI_QuickSlotScrollButton = m_UI.FindAction("QuickSlotScrollButton", throwIfNotFound: true);
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
         m_UI_Setting = m_UI.FindAction("Setting", throwIfNotFound: true);
+        m_UI_RecipeBook = m_UI.FindAction("RecipeBook", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -582,6 +603,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_QuickSlotScrollButton;
     private readonly InputAction m_UI_Inventory;
     private readonly InputAction m_UI_Setting;
+    private readonly InputAction m_UI_RecipeBook;
     public struct UIActions
     {
         private @DefaultKeymap m_Wrapper;
@@ -591,6 +613,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         public InputAction @QuickSlotScrollButton => m_Wrapper.m_UI_QuickSlotScrollButton;
         public InputAction @Inventory => m_Wrapper.m_UI_Inventory;
         public InputAction @Setting => m_Wrapper.m_UI_Setting;
+        public InputAction @RecipeBook => m_Wrapper.m_UI_RecipeBook;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -615,6 +638,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @Setting.started += instance.OnSetting;
             @Setting.performed += instance.OnSetting;
             @Setting.canceled += instance.OnSetting;
+            @RecipeBook.started += instance.OnRecipeBook;
+            @RecipeBook.performed += instance.OnRecipeBook;
+            @RecipeBook.canceled += instance.OnRecipeBook;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -634,6 +660,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @Setting.started -= instance.OnSetting;
             @Setting.performed -= instance.OnSetting;
             @Setting.canceled -= instance.OnSetting;
+            @RecipeBook.started -= instance.OnRecipeBook;
+            @RecipeBook.performed -= instance.OnRecipeBook;
+            @RecipeBook.canceled -= instance.OnRecipeBook;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -675,5 +704,6 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         void OnQuickSlotScrollButton(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
         void OnSetting(InputAction.CallbackContext context);
+        void OnRecipeBook(InputAction.CallbackContext context);
     }
 }
