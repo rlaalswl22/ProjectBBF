@@ -7,6 +7,7 @@ using Cinemachine.Utility;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using MyBox;
+using ProjectBBF.Persistence;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -55,6 +56,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     private PlayerMove _move;
     private PlayerDialogue _dialogue;
     private StateTransitionHandler _stateHandler;
+    private PlayerBlackboard _blackboard;
 
     private bool _currenTurningT = false;
 
@@ -80,6 +82,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         _stateHandler = controller.StateHandler;
 
         _fishingStateRenderer.enabled = false;
+        _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
     }
 
     [ButtonMethod]
@@ -128,6 +131,8 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
 
     public async UniTask<bool> Fishing()
     {
+        if (_blackboard.IsInteractionStopped || _blackboard.IsFishingStopped) return false;
+        
         try
         {
             float factor = await _view.Fishing(1f);

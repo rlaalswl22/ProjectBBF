@@ -1,65 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-[CreateAssetMenu(menuName = "ProjectBBF/Data/Bakery/Bakery Recipe Data", fileName = "BakeryRecipeData")]
+[CreateAssetMenu(menuName = "ProjectBBF/Data/Bakery/Bakery Recipe Data", fileName = "Dat_Bakery_Recipe_Sample")]
 public class BakeryRecipeData : ScriptableObject
 {
-    [SerializeField] private string _key;
-    
-    [SerializeField] private ItemData _resultItem;
-    
-    [SerializeField] private ItemData _doughtItem0;
-    [SerializeField] private ItemData _doughtItem1;
-    [SerializeField] private ItemData _doughtItem2;
-    
-    [SerializeField] private ItemData _additiveItem0;
-    
-    private ItemData[] _doughtItems;
-    private ItemData[] _additiveItems;
+    [SerializeField, Header("레시피 고유 키(반드시 입력!! 입력 안 하면 해금기능 작동 안 함)")] 
+    private string _key;
 
+    [SerializeField, Header("반죽 레시피")] 
+    private BakeryDoughRecipeData _doughRecipe;
+    
+    [FormerlySerializedAs("_breadRecipe")] [SerializeField, Header("구운 빵 레시피")] 
+    private BakeryBakingRecipeData _bakingRecipe;
+
+    [SerializeField, Header("연성 재료")] 
+    private BakeryAdditiveRecipeData _additiveRecipe;
+    
+    [SerializeField, Header("최종 결과 아이템")] 
+    private ItemData _resultItem;
+    
     public ItemData ResultItem => _resultItem;
 
-    public ItemData[] DoughtItems
-    {
-        get
-        {
-            if (_doughtItems is null)
-            {
-                _doughtItems = new ItemData[]
-                {
-                    _doughtItem0,
-                    _doughtItem1,
-                    _doughtItem2,
-                };
-            }
-            
-            return _doughtItems;
-        }
-    }
 
+    public BakeryDoughRecipeData DoughRecipe => _doughRecipe;
 
-    public ItemData[] AdditiveItem
-    {
-        get
-        {
-            if (_additiveItems is null)
-            {
-                _additiveItems = new ItemData[]
-                {
-                    _additiveItem0
-                };
-            }
-            
-            return _additiveItems;
-        }
-    }
+    public BakeryBakingRecipeData BakingRecipe => _bakingRecipe;
 
+    public BakeryAdditiveRecipeData AdditiveRecipe => _additiveRecipe;
     public string Key => _key;
-
-    private void OnValidate()
-    {
-        _doughtItems = null;
-        _additiveItems = null;
-    }
 }

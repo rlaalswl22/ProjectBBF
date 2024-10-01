@@ -12,12 +12,14 @@ public class StorageInventoryPresenter : MonoBehaviour, IInventoryPresenter<Grid
 
     public InteractableInventoryView View => _view;
 
-    private void Start()
+    public event Action<StorageInventoryPresenter> OnInit;
+
+    public void Init()
     {
-        StartCoroutine(Init());
+        StartCoroutine(CoInit());
     }
 
-    private IEnumerator Init()
+    private IEnumerator CoInit()
     {
         _view.Init();
         
@@ -40,6 +42,9 @@ public class StorageInventoryPresenter : MonoBehaviour, IInventoryPresenter<Grid
         Model.OnChanged += View.Refresh;
 
         View.Refresh(Model);
+        View.Visible = false;
+        
+        OnInit?.Invoke(this);
     }
 
     private void OnDestroy()

@@ -401,6 +401,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Minigame",
+            "id": "0bb1c64c-1863-4e2f-9c29-72fae1679f85",
+            "actions": [
+                {
+                    "name": "BakeryKeyPressed",
+                    "type": "Button",
+                    "id": "1474e479-e9c2-45bb-a1b3-06135685195a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5767ed08-724c-433a-bc99-4032c84e331b",
+                    "path": "<Keyboard>/#(F)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BakeryKeyPressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

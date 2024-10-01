@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee97d0c28d14ce7bd843bcd743dc0c5, type: 3}
+  m_Name: Dat_Barkey_Recipe_BakedFail
+  m_EditorClassIdentifier: 
+  _doughtItem: {fileID: 0}
+  _breadItem: {fileID: 11400000, guid: 32af5a0ceccb65148bfdc7ff26e1a1e4, type: 2}
+  _minigameBarDuration: 5

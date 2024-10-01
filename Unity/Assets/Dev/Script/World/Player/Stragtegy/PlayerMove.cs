@@ -19,8 +19,12 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
     
     public AnimationActorKey.Direction LastDirection { get; private set; }
     public AnimationActorKey.Movement LastMovement { get; private set; }
-    
-    public bool IsStopped { get; set; }
+
+    public bool IsStopped
+    {
+        get => _blackboard.IsMoveStopped;
+        set => _blackboard.IsMoveStopped = value;
+    }
     
     public void Init(PlayerController controller)
     {

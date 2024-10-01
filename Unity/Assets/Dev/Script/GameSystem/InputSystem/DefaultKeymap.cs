@@ -423,6 +423,34 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Minigame"",
+            ""id"": ""0bb1c64c-1863-4e2f-9c29-72fae1679f85"",
+            ""actions"": [
+                {
+                    ""name"": ""BakeryKeyPressed"",
+                    ""type"": ""Button"",
+                    ""id"": ""1474e479-e9c2-45bb-a1b3-06135685195a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""5767ed08-724c-433a-bc99-4032c84e331b"",
+                    ""path"": ""<Keyboard>/#(F)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BakeryKeyPressed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -459,6 +487,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
         m_UI_Setting = m_UI.FindAction("Setting", throwIfNotFound: true);
         m_UI_RecipeBook = m_UI.FindAction("RecipeBook", throwIfNotFound: true);
+        // Minigame
+        m_Minigame = asset.FindActionMap("Minigame", throwIfNotFound: true);
+        m_Minigame_BakeryKeyPressed = m_Minigame.FindAction("BakeryKeyPressed", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -680,6 +711,52 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Minigame
+    private readonly InputActionMap m_Minigame;
+    private List<IMinigameActions> m_MinigameActionsCallbackInterfaces = new List<IMinigameActions>();
+    private readonly InputAction m_Minigame_BakeryKeyPressed;
+    public struct MinigameActions
+    {
+        private @DefaultKeymap m_Wrapper;
+        public MinigameActions(@DefaultKeymap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @BakeryKeyPressed => m_Wrapper.m_Minigame_BakeryKeyPressed;
+        public InputActionMap Get() { return m_Wrapper.m_Minigame; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MinigameActions set) { return set.Get(); }
+        public void AddCallbacks(IMinigameActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MinigameActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MinigameActionsCallbackInterfaces.Add(instance);
+            @BakeryKeyPressed.started += instance.OnBakeryKeyPressed;
+            @BakeryKeyPressed.performed += instance.OnBakeryKeyPressed;
+            @BakeryKeyPressed.canceled += instance.OnBakeryKeyPressed;
+        }
+
+        private void UnregisterCallbacks(IMinigameActions instance)
+        {
+            @BakeryKeyPressed.started -= instance.OnBakeryKeyPressed;
+            @BakeryKeyPressed.performed -= instance.OnBakeryKeyPressed;
+            @BakeryKeyPressed.canceled -= instance.OnBakeryKeyPressed;
+        }
+
+        public void RemoveCallbacks(IMinigameActions instance)
+        {
+            if (m_Wrapper.m_MinigameActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMinigameActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MinigameActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MinigameActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MinigameActions @Minigame => new MinigameActions(this);
     private int m_WinPCSchemeSchemeIndex = -1;
     public InputControlScheme WinPCSchemeScheme
     {
@@ -705,5 +782,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         void OnInventory(InputAction.CallbackContext context);
         void OnSetting(InputAction.CallbackContext context);
         void OnRecipeBook(InputAction.CallbackContext context);
+    }
+    public interface IMinigameActions
+    {
+        void OnBakeryKeyPressed(InputAction.CallbackContext context);
     }
 }

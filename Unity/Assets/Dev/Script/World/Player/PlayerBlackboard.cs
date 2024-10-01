@@ -25,6 +25,10 @@ public class PlayerBlackboard
         get => _inventory;
         set => _inventory = value;
     }
+    
+    public bool IsMoveStopped { get; set; }
+    public bool IsInteractionStopped { get; set; }
+    public bool IsFishingStopped { get; set; }
 
 
     public float Stemina

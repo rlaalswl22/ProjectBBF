@@ -39,6 +39,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     
     public async UniTask<bool> OnToolAction()
     {
+        if (_blackboard.IsInteractionStopped) return false;
+        
         try
         {
             ItemData currentData = _controller.Inventory.CurrentItemData;
@@ -124,6 +126,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
     public async UniTask<bool> OnCollectAction()
     {
+        if (_blackboard.IsInteractionStopped) return false;
+        
         try
         {
             var interaction = FindCloserObject();

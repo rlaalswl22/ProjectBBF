@@ -129,6 +129,12 @@ public class GridInventoryModel : IInventoryModel
 
     public bool PushItem(ItemData itemData, int count)
     {
+        if (itemData == false)
+        {
+            Debug.LogError("itemdata is null");
+            return false;
+        }
+        
         int remaingCount = count;
 
         while (remaingCount > 0)

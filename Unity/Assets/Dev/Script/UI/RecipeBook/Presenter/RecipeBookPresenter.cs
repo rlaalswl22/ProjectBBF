@@ -9,10 +9,6 @@ public class RecipeBookPresenter : MonoBehaviour
     [SerializeField] private RecipeBookListView _listView;
     [SerializeField] private RecipeBookPreviewView _previewView;
 
-    private List<BakeryRecipeData> _recipes;
-
-    private const string RECIPES_PATH = "Data/Recipe/";
-
     public RecipeBookListView ListView => _listView;
 
     public RecipeBookPreviewView PreviewView => _previewView;
@@ -21,15 +17,14 @@ public class RecipeBookPresenter : MonoBehaviour
 
     public void Awake()
     {
-        Model = new();
+        var resolver = BakeryRecipeResolver.Instance;
+        Model = resolver.Model;
         
         _listView.OnSlotClick += OnSlotClicked;
         Model.OnRecipeUnlocked += OnUnlockedChanged;
 
-        var arr = Resources.LoadAll<BakeryRecipeData>(RECIPES_PATH);
-        _recipes = new(arr);
 
-        foreach (var data in _recipes)
+        foreach (var data in resolver.RecipeTable.Values)
         {
             _listView.AddItem(data.ResultItem.ItemSprite, data, Model.IsUnlocked(data.Key));
         }
@@ -68,8 +63,8 @@ public class RecipeBookPresenter : MonoBehaviour
             recipe.ResultItem.ItemName,
             recipe.ResultItem.ItemDescription,
             recipe.ResultItem.ItemSprite,
-            recipe.AdditiveItem.Select(x => x.ItemSprite).ToArray(),
-            recipe.DoughtItems.Select(x => x.ItemSprite).ToArray(),
+            recipe.AdditiveRecipe.AdditiveItems.Select(x => x.ItemSprite).ToArray(),
+            recipe.DoughRecipe.Ingredients.Select(x => x.ItemSprite).ToArray(),
             isUnlocked
         );
     }

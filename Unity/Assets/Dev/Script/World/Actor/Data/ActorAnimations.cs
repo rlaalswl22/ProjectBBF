@@ -46,7 +46,9 @@ public static class AnimationActorKey
     public static readonly int Hoe              = Animator.StringToHash("Hoe");
     public static readonly int Pickaxe          = Animator.StringToHash("Pickaxe");
     public static readonly int Collect          = Animator.StringToHash("Collect");
-    public static readonly int WaterSpray          = Animator.StringToHash("WaterSpray");
+    public static readonly int WaterSpray       = Animator.StringToHash("WaterSpray");
+    public static readonly int Bakery_Oven      = Animator.StringToHash("Bakery_Oven");
+    public static readonly int Bakery_Knead     = Animator.StringToHash("Bakery_Knead");
 
 
     [Serializable]
@@ -74,7 +76,9 @@ public static class AnimationActorKey
         Hoe,
         Pickaxe,
         Collect,
-        WaterSpray
+        WaterSpray,
+        Bakery_Knead,
+        Bakery_Oven,
     }
 
     public static int GetAniHash(Action action)
@@ -85,6 +89,8 @@ public static class AnimationActorKey
             case Action.Pickaxe: return Pickaxe;
             case Action.Collect: return Collect;
             case Action.WaterSpray: return WaterSpray;
+            case Action.Bakery_Knead: return Bakery_Knead;
+            case Action.Bakery_Oven: return Bakery_Oven;
         }
 
         throw new ArgumentException($"Invalid combination of Action: {action}");
