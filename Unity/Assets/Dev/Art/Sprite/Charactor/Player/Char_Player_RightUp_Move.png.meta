@@ -104,8 +104,8 @@ TextureImporter:
         y: 0
         width: 35
         height: 45
-      alignment: 9
-      pivot: {x: 0.5142857, y: 0.1111111}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -125,8 +125,8 @@ TextureImporter:
         y: 0
         width: 35
         height: 45
-      alignment: 9
-      pivot: {x: 0.5142857, y: 0.1111111}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -146,8 +146,8 @@ TextureImporter:
         y: 0
         width: 35
         height: 45
-      alignment: 9
-      pivot: {x: 0.5142857, y: 0.1111111}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -167,8 +167,8 @@ TextureImporter:
         y: 0
         width: 35
         height: 45
-      alignment: 9
-      pivot: {x: 0.5142857, y: 0.1111111}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -188,8 +188,8 @@ TextureImporter:
         y: 0
         width: 35
         height: 45
-      alignment: 9
-      pivot: {x: 0.5142857, y: 0.1111111}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -209,8 +209,8 @@ TextureImporter:
         y: 0
         width: 35
         height: 45
-      alignment: 9
-      pivot: {x: 0.5142857, y: 0.1111111}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,6 +218,48 @@ TextureImporter:
       bones: []
       spriteID: 42a6195f9c924484d95e367e7b1c5592
       internalID: 1466565027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Char_Player_RightUp_Move_6
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 0
+        width: 35
+        height: 45
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a9fd01ad8834084cb11a59218c1fa8a
+      internalID: -142365209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Char_Player_RightUp_Move_7
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 0
+        width: 35
+        height: 45
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e13fa226b78e504aa8e4850cc27261b
+      internalID: 1175274280
       vertices: []
       indices: 
       edges: []
@@ -239,6 +281,8 @@ TextureImporter:
       Char_Player_RightUp_Move_3: 327926022
       Char_Player_RightUp_Move_4: -1302100341
       Char_Player_RightUp_Move_5: 1466565027
+      Char_Player_RightUp_Move_6: -142365209
+      Char_Player_RightUp_Move_7: 1175274280
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
