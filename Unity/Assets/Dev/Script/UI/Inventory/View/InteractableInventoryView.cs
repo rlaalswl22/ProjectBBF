@@ -7,11 +7,11 @@ using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class PlayerMainInventoryView : MonoBehaviour, IInventoryView
+public class InteractableInventoryView : MonoBehaviour, IInventoryView
 {
     [SerializeField] private ItemToolTipView _toolTipView;
     [SerializeField] private Vector2 _toolTipOffset;
-    
+
     [SerializeField] private Transform _content;
     [SerializeField] private int _colCount = 4;
 
@@ -28,13 +28,16 @@ public class PlayerMainInventoryView : MonoBehaviour, IInventoryView
 
     public void Init()
     {
-        _toolTipView.Clear();
-        _toolTipView.Visible = false;
-        
+        if (_toolTipView)
+        {
+            _toolTipView.Clear();
+            _toolTipView.Visible = false;
+        }
+
         int length = _content.childCount;
         Row = length / _colCount + length % _colCount;
         Col = _colCount;
-        
+
         _slotViews = new InventorySlotView
         [
             Row,
@@ -70,42 +73,54 @@ public class PlayerMainInventoryView : MonoBehaviour, IInventoryView
 
     private void OnDown(IInventorySlot obj)
     {
-        _toolTipView.Visible = false;
-        _toolTipView.Clear();
+        if (_toolTipView)
+        {
+            _toolTipView.Visible = false;
+            _toolTipView.Clear();
+        }
     }
 
     private void OnHoverEnter(IInventorySlot slot)
     {
-        if (SelectItemPresenter.Instance.Model.IsEmpty is false) return;
-        if (slot is null) return;
-        if (slot.Data == false) return;
-        
-        _toolTipView.Visible = true;
-        _toolTipView.SetText(slot.Data);
-        
+        if (_toolTipView)
+        {
+            if (SelectItemPresenter.Instance.Model.IsEmpty is false) return;
+            if (slot is null) return;
+            if (slot.Data == false) return;
+
+            _toolTipView.Visible = true;
+            _toolTipView.SetText(slot.Data);
+        }
     }
+
     private void OnHoverExit(IInventorySlot slot)
     {
-        if (SelectItemPresenter.Instance.Model.IsEmpty is false) return;
-        _toolTipView.Visible = false;
-        _toolTipView.Clear();
+        if (_toolTipView)
+        {
+            if (SelectItemPresenter.Instance.Model.IsEmpty is false) return;
+            _toolTipView.Visible = false;
+            _toolTipView.Clear();
+        }
     }
 
     private void OnMove(IInventorySlot obj, PointerEventData eventData)
     {
-        var offset = ItemToolTipView.ToWorldSpaceOffset(_toolTipOffset);
+        if (_toolTipView)
+        {
+            var offset = ItemToolTipView.ToWorldSpaceOffset(_toolTipOffset);
 
-        var pos = ItemToolTipView.ScreenToOrthogonal(eventData.position);
-        pos = _toolTipView.ToValidPosition(pos);
-        pos = ItemToolTipView.OrthogonalToScreen(pos);
+            var pos = ItemToolTipView.ScreenToOrthogonal(eventData.position);
+            pos = _toolTipView.ToValidPosition(pos);
+            pos = ItemToolTipView.OrthogonalToScreen(pos);
 
-        _toolTipView.transform.position = pos;
+            _toolTipView.transform.position = pos;
+        }
     }
-    
+
     public void Refresh(IInventoryModel model)
     {
-       using var modelEnumerator = model.GetEnumerator();
-        
+        using var modelEnumerator = model.GetEnumerator();
+
         for (int i = 0; i < Row; i++)
         {
             for (int j = 0; j < Col; j++)

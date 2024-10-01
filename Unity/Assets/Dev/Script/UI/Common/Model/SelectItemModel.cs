@@ -7,8 +7,13 @@ public class SelectItemModel : IInventoryModel
 {
     public int MaxSize => 1;
     
-    public DefaultInventorySlot Selected { get; set; } = new();
+    public readonly DefaultInventorySlot Selected = new();
     public bool IsEmpty => Selected.Empty;
+
+    public SelectItemModel()
+    {
+        Selected.OnChanged += _ => ApplyChanged();
+    }
 
     public IInventorySlot GetSlotSequentially(int index)
     {
@@ -27,5 +32,11 @@ public class SelectItemModel : IInventoryModel
         if (Selected is null || itemData is null) return false;
         
         return Selected.Data == itemData;
+    }
+
+    public event Action<IInventoryModel> OnChanged;
+    public void ApplyChanged()
+    {
+        OnChanged?.Invoke(this);
     }
 }

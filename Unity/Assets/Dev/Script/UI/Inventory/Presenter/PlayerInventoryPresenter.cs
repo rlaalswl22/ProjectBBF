@@ -8,7 +8,7 @@ public class PlayerInventoryPresenter : IInventoryPresenter<GridInventoryModel>
     public GridInventoryModel Model { get; private set; }
     private PlayerQuickInventoryView _quickView;
     
-    private PlayerMainInventoryView _mainView;
+    private InteractableInventoryView _mainView;
     private PlayerPannelView _pannelView;
     
     public bool QuickInvVisible
@@ -23,7 +23,7 @@ public class PlayerInventoryPresenter : IInventoryPresenter<GridInventoryModel>
         set => _pannelView.ViewState = value ? PlayerPannelView.ViewType.Inv : PlayerPannelView.ViewType.Close;
     }
 
-    public PlayerInventoryPresenter(GridInventoryModel model, PlayerMainInventoryView mainView, PlayerQuickInventoryView quickView, PlayerPannelView pannelView)
+    public PlayerInventoryPresenter(GridInventoryModel model, InteractableInventoryView mainView, PlayerQuickInventoryView quickView, PlayerPannelView pannelView)
     {
         Model = model;
         

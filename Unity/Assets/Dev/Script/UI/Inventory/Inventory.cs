@@ -62,6 +62,10 @@ public interface IInventoryModel
     public IEnumerator<IInventorySlot> GetEnumerator();
 
     public bool Contains(ItemData itemData);
+
+    public event Action<IInventoryModel> OnChanged;
+
+    public void ApplyChanged();
 }
 
 public interface IInventoryPresenter<out TModel>

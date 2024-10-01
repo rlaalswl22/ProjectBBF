@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private PlayerQuickInventoryView _quickInventoryView;
 
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Scene)]
-    private PlayerMainInventoryView _mainInventoryView;
+    private InteractableInventoryView _mainInventoryView;
 
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Scene)]
     private PlayerPannelView pannelView;

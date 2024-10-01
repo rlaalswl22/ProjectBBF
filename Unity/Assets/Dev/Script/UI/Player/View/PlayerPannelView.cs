@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerPannelView : MonoBehaviour
 {
-    [SerializeField] private PlayerMainInventoryView _invView;
+    [SerializeField] private InteractableInventoryView _invView;
     [SerializeField] private SettingView _settingView;
     [SerializeField] private PlayerGameQuitView _quitView;
 

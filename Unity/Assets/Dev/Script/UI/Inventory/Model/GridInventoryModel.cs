@@ -21,10 +21,17 @@ public class GridInventoryModel : IInventoryModel
 
     public bool IsFull => GetFirstEmptySlotPosition() is null;
     public event Action<ItemData, int, GridInventoryModel> OnPushItem;
+
+    public event Action<IInventoryModel> OnChanged;
     
     public GridInventoryModel(Vector2Int defaultSize)
     {
         Alloc(defaultSize);
+    }
+
+    public void ApplyChanged()
+    {
+        OnChanged?.Invoke(this);
     }
 
     private void Alloc(Vector2Int newSize)
@@ -38,6 +45,7 @@ public class GridInventoryModel : IInventoryModel
             {
                 GridInventorySlot gridSlot = new GridInventorySlot(new Vector2Int(j, i));
                 newSlot[i, j] = gridSlot;
+                gridSlot.OnChanged += _ => ApplyChanged();
             }
         }
 

@@ -19,6 +19,8 @@ public class InventorySlotView : MonoBehaviour, IPointerDownHandler, IPointerEnt
 
     private void Awake()
     {
+        if (_slotController is not null) return;
+        
         _text.text = "";
         _slotImage.sprite = null;
     }
@@ -41,6 +43,7 @@ public class InventorySlotView : MonoBehaviour, IPointerDownHandler, IPointerEnt
 
             _slotController = value;
             _slotController.OnChanged += OnChanged;
+            OnChanged(_slotController);
         }
     }
 

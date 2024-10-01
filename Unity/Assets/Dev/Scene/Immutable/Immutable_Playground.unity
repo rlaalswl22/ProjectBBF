@@ -2142,6 +2142,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4251717215444606823, guid: 7065729b0a8fe934d8bd2b811e9cfb3d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4944629142850091261, guid: 7065729b0a8fe934d8bd2b811e9cfb3d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2228,6 +2232,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6689411031137466911, guid: 7065729b0a8fe934d8bd2b811e9cfb3d, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689411031137466911, guid: 7065729b0a8fe934d8bd2b811e9cfb3d, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7366519543919823294, guid: 7065729b0a8fe934d8bd2b811e9cfb3d, type: 3}

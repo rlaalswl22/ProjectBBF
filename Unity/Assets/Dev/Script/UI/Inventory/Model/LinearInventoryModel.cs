@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,5 +67,16 @@ public class LinearInventoryModel : IInventoryModel
         }
 
         return false;
+    }
+
+    event Action<IInventoryModel> IInventoryModel.OnChanged
+    {
+        add => throw new NotImplementedException();
+        remove => throw new NotImplementedException();
+    }
+
+    public void ApplyChanged()
+    {
+        throw new NotImplementedException();
     }
 }
