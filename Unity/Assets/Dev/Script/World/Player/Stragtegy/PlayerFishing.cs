@@ -46,7 +46,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     [SerializeField] private Transform _handle;
     [SerializeField] private FishingView _view;
 
-    [SerializeField] SplineContainer _splineContainer;
+    [SerializeField] private SplineContainer _splineContainer;
 
     private IEnumerator _co;
 
