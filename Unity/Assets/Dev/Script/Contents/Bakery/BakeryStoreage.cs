@@ -52,6 +52,7 @@ public class BakeryStoreage : BakeryFlowBehaviour
         if (inputAction.triggered)
         {
             Visible = !Visible;
+            pc.MoveStrategy.ResetVelocity();
             pc.Blackboard.IsInteractionStopped = Visible;
             pc.Blackboard.IsMoveStopped = Visible;
         }
@@ -66,6 +67,7 @@ public class BakeryStoreage : BakeryFlowBehaviour
         if (activator.Owner is not PlayerController pc) return;
 
         Visible = false;
+        pc.MoveStrategy.ResetVelocity();
         pc.Blackboard.IsInteractionStopped = false;
         pc.Blackboard.IsMoveStopped = false;
     }
