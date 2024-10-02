@@ -6,13 +6,13 @@ using UnityEngine;
 [Singleton(ESingletonType.Global, initializeOrder: 5)]
 public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
 {
-    private const string RECIPES_PATH = "Data/Bakery/";
-    private const string FAIL_RECIPE_DOUGH = "Data/Bakery/Dat_Barkey_Recipe_DoughFail";
-    private const string FAIL_RECIPE_BAKED_BREAD = "Data/Bakery/Dat_Barkey_Recipe_BakedFail";
-    private const string FAIL_RECIPE_RESULT_BREAD = "Data/Bakery/Dat_Barkey_Recipe_AdditiveFail";
-    private const string DOUGH_INGREDIENT_TABLE = "Data/Bakery/Dat_Bakery_Table_Dough";
-    private const string BAKED_BREAD_TABLE = "Data/Bakery/Dat_Bakery_Table_BakedBread";
-    private const string ADDITIVE_INGREDIENT_TABLE = "Data/Bakery/Dat_Bakery_Table_Additive";
+    private const string RECIPES_PATH = "Data/Bakery/TotalRecipe/";
+    private const string FAIL_RECIPE_DOUGH = "Data/Bakery/Reservation/Dat_Barkey_Recipe_DoughFail";
+    private const string FAIL_RECIPE_BAKED_BREAD = "Data/Bakery/Reservation/Dat_Barkey_Recipe_BakedFail";
+    private const string FAIL_RECIPE_RESULT_BREAD = "Data/Bakery/Reservation/Dat_Barkey_Recipe_AdditiveFail";
+    private const string DOUGH_INGREDIENT_TABLE = "Data/Bakery/Table/Dat_Bakery_Table_Dough";
+    private const string BAKED_BREAD_TABLE = "Data/Bakery/Table/Dat_Bakery_Table_BakedBread";
+    private const string ADDITIVE_INGREDIENT_TABLE = "Data/Bakery/Table/Dat_Bakery_Table_Additive";
     
     private Dictionary<string, BakeryRecipeData> _recipeTable;
     
