@@ -15,7 +15,7 @@ MonoBehaviour:
   _itemKey: Pickaxe
   _itemName: Pickaxe
   _itemDescription: 
-  _itemSprite: {fileID: 21300000, guid: 2f7d579faa76f614682cc5435ebda853, type: 3}
+  _itemSprite: {fileID: 21300000, guid: f86aa2b922e12c344a1d0e01d1fa6e4c, type: 3}
   _maxStackCount: 1
   _itemTypeInfo:
     _sets:
@@ -23,3 +23,7 @@ MonoBehaviour:
       _requireToolRank: 1
   _actionCategoryType: 1
   _actionAnimationType: 1
+  _usingActionAudioInfo:
+    _mixerGroupKey: 
+    _audioKey: 
+    _playWhenSucceed: 0
