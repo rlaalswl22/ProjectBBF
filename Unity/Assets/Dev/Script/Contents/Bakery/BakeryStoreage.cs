@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using ProjectBBF.Event;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class BakeryStoreage : BakeryFlowBehaviour
     [SerializeField] private StorageInventoryPresenter _storageInventory;
     [SerializeField] private StorageInventoryPresenter _playernventory;
 
+    [SerializeField] private List<ItemData> _defaultItems;
+    
     private int _initCount;
     private void Start()
     {
@@ -26,6 +29,11 @@ public class BakeryStoreage : BakeryFlowBehaviour
         if (_initCount >= 2)
         {
             Visible = false;
+
+            foreach (ItemData item in _defaultItems)
+            {
+                _storageInventory.Model.PushItem(item, item.MaxStackCount);
+            }
         }
     }
 

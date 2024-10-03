@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,10 +19,7 @@ public class BakeryRecipeData : ScriptableObject
     [SerializeField, Header("연성 재료")] 
     private BakeryAdditiveRecipeData _additiveRecipe;
     
-    [SerializeField, Header("최종 결과 아이템")] 
-    private ItemData _resultItem;
-    
-    public ItemData ResultItem => _resultItem;
+    public ItemData ResultItem => _additiveRecipe.ResultItem;
 
 
     public BakeryDoughRecipeData DoughRecipe => _doughRecipe;

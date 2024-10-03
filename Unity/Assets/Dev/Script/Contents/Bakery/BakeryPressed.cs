@@ -42,6 +42,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket, IObjectBehaviour
 
     protected override void OnExit(BakeryFlowObject flowObject, CollisionInteractionMono activator)
     {
+        StopAllCoroutines();
     }
 
     private (ItemData failItem, ItemData resultItem, float duration) GetResolvedItem()
@@ -83,13 +84,13 @@ public class BakeryPressed: BakeryFlowBehaviourBucket, IObjectBehaviour
                 }
                 break;
             case Resolvor.Additive:
-                failItem = resolver.FailResultBreadRecipe.BreadItem;
+                failItem = resolver.FailResultBreadRecipe.ResultItem;
                 duration = resolver.FailResultBreadRecipe.CompletionDuration;
                 var additiveRecipe = resolver.ResolveAdditive(bucketItems[0], bucketItems.GetRange(1, bucketItems.Count - 1));
 
                 if (additiveRecipe)
                 {
-                    resultItem = additiveRecipe.BreadItem;
+                    resultItem = additiveRecipe.ResultItem;
                     duration = additiveRecipe.CompletionDuration;
                 }
                 break;
@@ -115,12 +116,18 @@ public class BakeryPressed: BakeryFlowBehaviourBucket, IObjectBehaviour
 
         pc.transform.position = (Vector2)_playPoint.position;
         pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Knead));
-        
+
+        bool success = false;
         while (true)
         {
             if (keyAction.IsPressed() is false)
             {
-                break;
+                GameReset(tuple, pc);
+                
+                pc.MoveStrategy.IsStopped = false;
+                pc.MoveStrategy.ResetVelocity();
+                pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Movement.Idle, AnimationActorKey.Direction.Down), true);
+                yield break;
             }
 
             _fillImage.fillAmount = t / tuple.duration;
@@ -128,18 +135,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket, IObjectBehaviour
 
             if (t > tuple.duration)
             {
-                if (tuple.failItem)
-                {
-                    GameFail(tuple, pc);
-                }
-                else if (tuple.resultItem)
-                {
-                    GameSuccess(tuple, pc);
-                }
-                else
-                {
-                    Debug.LogError("정의되지 않은 동작");
-                }
+                success = true;
                 break;
             }
 
@@ -149,6 +145,16 @@ public class BakeryPressed: BakeryFlowBehaviourBucket, IObjectBehaviour
         pc.MoveStrategy.IsStopped = false;
         pc.MoveStrategy.ResetVelocity();
         pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Movement.Idle, AnimationActorKey.Direction.Down), true);
+        
+        
+        if (success)
+        {
+            GameSuccess(tuple, pc);
+        }
+        else
+        {
+            GameFail(tuple, pc);
+        }
         
         GameReset(tuple, pc);
     }
@@ -189,7 +195,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket, IObjectBehaviour
             case Resolvor.Baking:
                 return resolver.CanListOnBakedBread(itemData);
             case Resolvor.Additive:
-                if (index == 0)
+                if (index == 1)
                 {
                     return resolver.CanListOnAdditive(itemData);
                 }

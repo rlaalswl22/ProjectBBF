@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cdb7339197f5e5459166f96a4e23e7b, type: 3}
+  m_Name: Dat_Bakery_Recipe_StarryCake
+  m_EditorClassIdentifier: 
+  _key: Dat_Bakery_Recipe_StarryCake
+  _doughRecipe: {fileID: 11400000, guid: f319466e50db0af42b583fce83bbc39f, type: 2}
+  _bakingRecipe: {fileID: 11400000, guid: f82376f73ca491d4b8f4d014cb182520, type: 2}
+  _additiveRecipe: {fileID: 11400000, guid: 8f01001578eafa8489375a55e2918e99, type: 2}

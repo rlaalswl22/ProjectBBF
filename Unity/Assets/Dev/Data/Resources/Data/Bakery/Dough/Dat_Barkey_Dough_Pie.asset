@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c7503a51a146599535a316a65d0b86, type: 3}
+  m_Name: Dat_Barkey_Dough_Pie
+  m_EditorClassIdentifier: 
+  _ingredients:
+  - {fileID: 11400000, guid: 35100938a2e10ec48859d8778ac105dd, type: 2}
+  - {fileID: 11400000, guid: a08479a6c198f384db9ce38d73d60ea6, type: 2}
+  - {fileID: 11400000, guid: 1ac47136cf54f06418063b0f762ea71c, type: 2}
+  _doughItem: {fileID: 11400000, guid: 055d070838048ac41a0799e9893c3599, type: 2}
+  _kneadDuration: 1

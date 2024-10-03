@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee97d0c28d14ce7bd843bcd743dc0c5, type: 3}
+  m_Name: Dat_Barkey_Baking_SpCake
+  m_EditorClassIdentifier: 
+  _doughtItem: {fileID: 11400000, guid: 563e2f546efd4c64389fa1fd9ca28ee2, type: 2}
+  _breadItem: {fileID: 11400000, guid: 8b026329d6cea2b40b5251af80e069a4, type: 2}
+  _minigameBarDuration: 0

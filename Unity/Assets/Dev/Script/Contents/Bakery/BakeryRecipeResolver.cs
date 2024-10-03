@@ -64,7 +64,7 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
     public bool CanListOnDough(ItemData doughItem)
         => _doughIngredientHashSet.Contains(doughItem);
     public bool CanListOnBakedBread(ItemData bakedBread)
-        => _additiveIngredientHashSet.Contains(bakedBread);
+        => _bakedBreadHashSet.Contains(bakedBread);
     public bool CanListOnAdditive(ItemData additiveItem)
         => _additiveIngredientHashSet.Contains(additiveItem);
 
@@ -106,11 +106,10 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
             int count = 0;
             foreach (ItemData item in additives)
             {
-                count += recipe.AdditiveRecipe.AdditiveItems.Contains(item) ? 1 : 0;
-            }
-            if (additives.Count == count && bakedBread == recipe.AdditiveRecipe.BreadItem)
-            {
-                return recipe.AdditiveRecipe;
+                if (recipe.AdditiveRecipe.AdditiveItems.Contains(item) && bakedBread == recipe.AdditiveRecipe.BreadItem)
+                {
+                    return recipe.AdditiveRecipe;
+                }
             }
         }
 

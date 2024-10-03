@@ -2803,7 +2803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interaction: {fileID: 4603987052124749711}
-  _data: {fileID: 11400000, guid: 712eee018a866c74298c126dfa5d5ce4, type: 2}
+  _data: {fileID: 11400000, guid: 28a9df2fa46154644a1069fbb23898cc, type: 2}
 --- !u!114 &4603987052124749711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3567,6 +3567,7 @@ MonoBehaviour:
   _panel: {fileID: 7138510395641947783}
   _storageInventory: {fileID: 3954232066614302340}
   _playernventory: {fileID: 2650752547720346877}
+  _defaultItems: []
 --- !u!1 &5304426701761906974
 GameObject:
   m_ObjectHideFlags: 0

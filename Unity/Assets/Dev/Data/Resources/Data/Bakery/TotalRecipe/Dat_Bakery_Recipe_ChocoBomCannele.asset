@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cdb7339197f5e5459166f96a4e23e7b, type: 3}
+  m_Name: Dat_Bakery_Recipe_ChocoBomCannele
+  m_EditorClassIdentifier: 
+  _key: Dat_Bakery_Recipe_ChocoBomCannele
+  _doughRecipe: {fileID: 11400000, guid: 5211840563ba849449ca9e9db5a330d8, type: 2}
+  _bakingRecipe: {fileID: 11400000, guid: e36e03d3bfaf6bd4da123e18293b8f01, type: 2}
+  _additiveRecipe: {fileID: 11400000, guid: 6dc60cbbb8dfd85419e23b2ff64978cb, type: 2}

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98503aeda4944efba1a4d809b65c9cf, type: 3}
+  m_Name: Dat_Barkey_Additive_GemCastella
+  m_EditorClassIdentifier: 
+  _breadItem: {fileID: 11400000, guid: eb2689667e27e36468a9207f7bd7187e, type: 2}
+  _additiveItem0: {fileID: 11400000, guid: ff8fa173cceb80a42be34c59c04eff4c, type: 2}
+  _additiveItem1: {fileID: 11400000, guid: 309557475ac88184faa502f039665421, type: 2}
+  _resultItem: {fileID: 11400000, guid: 58b183a85d2496d429ae8887a1ee0cf5, type: 2}
+  _completionDuration: 1
