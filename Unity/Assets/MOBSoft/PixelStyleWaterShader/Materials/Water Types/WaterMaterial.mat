@@ -118,11 +118,11 @@ Material:
     - _HighlightTextureScale: 0
     - _HighlightThreshold: -0.52
     - _Pixelization: 14.9
-    - _ReflectionScale: 0.66
+    - _ReflectionScale: 1
     - _ReflectionScale2: 2.25
-    - _ReflectionThreshold: -0.05
+    - _ReflectionThreshold: 1
     - _ReflectionsScale: -1.37
-    - _ReflectionsSpeed: 0.31
+    - _ReflectionsSpeed: 1
     - _SpecularScale: 4.32
     - _SpecularScale2: 1.37
     - _SpecularSpeed: 0.12
@@ -133,14 +133,14 @@ Material:
     - _WaterMovementScale: 0.4
     - _WaterMultiplier: -0.07
     - _WaterMultiplierScale: 3.41
-    - _WaterNoise: 0.02
-    - _WaterSpeed: 0.46
+    - _WaterNoise: 0.01
+    - _WaterSpeed: 1
     - _WaterTextureDisplacement: 0.03
     - _WaterTextureMovement: 1.63
     - _WaterTextureScale: 0.05
     - _WaterTextureSize: 0.1
     - _WaterTextureSpeed: 0.48
-    - _WaveMultiplierScale: 2.18
+    - _WaveMultiplierScale: 1
     - _WaveMutiplier: 0.23
     m_Colors:
     - _CausticColour: {r: 0.33725488, g: 0.6745098, b: 0.90588236, a: 0.44705883}
@@ -158,7 +158,7 @@ Material:
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _RipplesColor: {r: 0.66509426, g: 0.8867924, b: 0.8813184, a: 0.3490196}
     - _SpecularColour: {r: 1, g: 1, b: 1, a: 1}
-    - _WaterColor: {r: 0.25056353, g: 0.7735849, b: 0.7717517, a: 0.3647059}
+    - _WaterColor: {r: 0.2505635, g: 0.7735849, b: 0.7717517, a: 0.42745098}
     - _WaterTextureColor: {r: 0, g: 0.6911764, b: 1, a: 1}
     - _WavesColor: {r: 0.5896226, g: 0.88861185, b: 1, a: 0.5882353}
   m_BuildTextureStacks: []
