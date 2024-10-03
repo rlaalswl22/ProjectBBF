@@ -44,7 +44,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         _panel.SetActive(true);
         _fillImage.fillAmount = 0f;
 
-        (ItemData failItem, ItemData resultItem, float duration) tuple = GetResolvedItem();
+        (ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipeData) tuple = GetResolvedItem();
 
         pc.Blackboard.IsMoveStopped = true;
         pc.Blackboard.IsInteractionStopped = true;
@@ -101,16 +101,22 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         _panel.SetActive(false);
     }
 
-    private void GameSuccess((ItemData failItem, ItemData resultItem, float duration) tuple, PlayerController pc)
+    private void GameSuccess((ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipeData) tuple, PlayerController pc)
     {
         if (tuple.resultItem == false) return;
         
         bool success = pc.Inventory.Model.PushItem(tuple.resultItem, 1);
         if (success is false) return;
         
+
+        if (tuple.recipeData)
+        {
+            pc.RecipeBookPresenter.Model.Add(tuple.recipeData.Key);
+        }
+        
         ClearBucket();
     }
-    private void GameFail((ItemData failItem, ItemData resultItem, float duration) tuple, PlayerController pc)
+    private void GameFail((ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipeData) tuple, PlayerController pc)
     {
         if (tuple.failItem == false) return;
         

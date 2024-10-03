@@ -44,7 +44,15 @@ public class RecipeBookPresenter : MonoBehaviour
 
         if (recipeBookSlotView == false) return;
         
-        recipeBookSlotView?.SetUnlocked(true);
+        recipeBookSlotView.SetUnlocked(true);
+
+        if (BakeryRecipeResolver.Instance.RecipeTable.TryGetValue(recipeKey, out var r))
+        {
+            if (_previewView.Data is BakeryRecipeData d && d  == r)
+            {
+                OnSlotClicked(_previewView.Data);
+            }
+        }
     }
 
     private void OnDestroy()
@@ -67,5 +75,7 @@ public class RecipeBookPresenter : MonoBehaviour
             recipe.DoughRecipe.Ingredients.Select(x => x.ItemSprite).ToArray(),
             isUnlocked
         );
+
+        _previewView.Data = recipe;
     }
 }

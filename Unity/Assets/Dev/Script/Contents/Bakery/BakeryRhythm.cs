@@ -58,7 +58,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         int failCount = 0;
 
         var inputAction = InputManager.Map.Minigame.BakeryOvenHit;
-        (ItemData failItem, ItemData resultItem, float duration) tuple = GetResolvedItem();
+        (ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipe) tuple = GetResolvedItem();
         
 
         pc.Blackboard.IsMoveStopped = true;
@@ -139,16 +139,14 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
     }
 
 
-    private void GameSuccess((ItemData failItem, ItemData resultItem, float duration) tuple, PlayerController pc)
+    private void GameSuccess((ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipe) tuple, PlayerController pc)
     {
         if (tuple.resultItem == false) return;
         
         bool success = pc.Inventory.Model.PushItem(tuple.resultItem, 1);
-        if (success is false) return;
-        
         ClearBucket();
     }
-    private void GameFail((ItemData failItem, ItemData resultItem, float duration) tuple, PlayerController pc)
+    private void GameFail((ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipe)tuple, PlayerController pc)
     {
         if (tuple.failItem == false) return;
         

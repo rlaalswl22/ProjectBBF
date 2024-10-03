@@ -235,18 +235,19 @@ public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
     }
     
 
-    protected (ItemData failItem, ItemData resultItem, float duration) GetResolvedItem()
+    protected (ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipe) GetResolvedItem()
     {
         var resolver = BakeryRecipeResolver.Instance;
         ItemData failItem;
         ItemData resultItem = null;
+        BakeryRecipeData recipe = null;
         float duration = 0f;
         var bucketItems = StoredItems;
 
         if (bucketItems.Count is 0)
         {
             Debug.LogError("Bucket의 수가 0입니다.");
-            return (resolver.FailDoughRecipe.DoughItem, resolver.FailDoughRecipe.DoughItem, 0f);
+            return (resolver.FailDoughRecipe.DoughItem, resolver.FailDoughRecipe.DoughItem, 0f, null);
         }
 
         switch (_resolvor)
@@ -276,7 +277,7 @@ public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
             case Resolvor.Additive:
                 failItem = resolver.FailResultBreadRecipe.ResultItem;
                 duration = resolver.FailResultBreadRecipe.CompletionDuration;
-                var additiveRecipe = resolver.ResolveAdditive(bucketItems[0], bucketItems.GetRange(1, bucketItems.Count - 1));
+                var additiveRecipe = resolver.ResolveAdditive(bucketItems[0], bucketItems.GetRange(1, bucketItems.Count - 1), out recipe);
 
                 if (additiveRecipe)
                 {
@@ -288,6 +289,6 @@ public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
                 throw new ArgumentOutOfRangeException();
         }
 
-        return (failItem, resultItem, duration);
+        return (failItem, resultItem, duration, recipe);
     }
 }

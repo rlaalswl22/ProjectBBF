@@ -23,6 +23,8 @@ public class RecipeBookPreviewView : MonoBehaviour
         get => gameObject.activeSelf;
         set => gameObject.SetActive(value);
     }
+    
+    public object Data { get; set; }
 
     private void Awake()
     {

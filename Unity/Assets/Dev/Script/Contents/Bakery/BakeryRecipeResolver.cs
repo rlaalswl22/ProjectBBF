@@ -106,7 +106,7 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
         return null;
     }
     
-    public BakeryAdditiveRecipeData ResolveAdditive(ItemData bakedBread, IReadOnlyList<ItemData> additives)
+    public BakeryAdditiveRecipeData ResolveAdditive(ItemData bakedBread, IReadOnlyList<ItemData> additives, out BakeryRecipeData recipeData)
     {
         foreach (var recipe in RecipeTable.Values)
         {
@@ -115,11 +115,13 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
             {
                 if (recipe.AdditiveRecipe.AdditiveItems.Contains(item) && bakedBread == recipe.AdditiveRecipe.BreadItem)
                 {
+                    recipeData = recipe;
                     return recipe.AdditiveRecipe;
                 }
             }
         }
 
+        recipeData = null;
         return null;
     }
 }

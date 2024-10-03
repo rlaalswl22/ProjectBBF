@@ -13,8 +13,8 @@ public class RecipeBookModel
 
     public void Add(string recipeKey)
     {
-        OnRecipeUnlocked?.Invoke(recipeKey);
         _saveData.UnlockRecipeKeys.Add(recipeKey);
+        OnRecipeUnlocked?.Invoke(recipeKey);
     }
     
     public bool IsUnlocked(string key)
