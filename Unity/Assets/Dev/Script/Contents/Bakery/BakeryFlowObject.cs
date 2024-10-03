@@ -93,6 +93,15 @@ public abstract class BakeryFlowBehaviour : MonoBehaviour
 
 public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
 {
+    [Serializable]
+    public enum Resolvor
+    {
+        Dough,
+        Additive,
+        Baking,
+    }
+    
+    [SerializeField] private Resolvor _resolvor;
     [SerializeField] private List<ItemBucket> _buckets;
 
     private int _currentBucketIndex;
@@ -194,7 +203,28 @@ public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
         return _buckets[index].Item;
     }
 
-    protected abstract bool CanStore(int index, ItemData itemData);
+
+    protected bool CanStore(int index, ItemData itemData)
+    {
+        var resolver = BakeryRecipeResolver.Instance;
+        
+        switch (_resolvor)
+        {
+            case Resolvor.Dough:
+                return resolver.CanListOnDoughIngredient(itemData);
+            case Resolvor.Baking:
+                return resolver.CanListOnDough(itemData);
+            case Resolvor.Additive:
+                if (index == 1)
+                {
+                    return resolver.CanListOnAdditive(itemData);
+                }
+
+                return resolver.CanListOnBakedBread(itemData);
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
 
     private void OnBucketFade(float alpha)
     {
@@ -202,5 +232,62 @@ public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
         {
             bucket.OnFade(alpha);
         }
+    }
+    
+
+    protected (ItemData failItem, ItemData resultItem, float duration) GetResolvedItem()
+    {
+        var resolver = BakeryRecipeResolver.Instance;
+        ItemData failItem;
+        ItemData resultItem = null;
+        float duration = 0f;
+        var bucketItems = StoredItems;
+
+        if (bucketItems.Count is 0)
+        {
+            Debug.LogError("Bucket의 수가 0입니다.");
+            return (resolver.FailDoughRecipe.DoughItem, resolver.FailDoughRecipe.DoughItem, 0f);
+        }
+
+        switch (_resolvor)
+        {
+            case Resolvor.Dough:
+                failItem = resolver.FailDoughRecipe.DoughItem;
+                duration = resolver.FailDoughRecipe.KneadDuration;
+                var doughRecipe = resolver.ResolveDough(bucketItems);
+
+                if (doughRecipe)
+                {
+                    resultItem = doughRecipe.DoughItem;
+                    duration = doughRecipe.KneadDuration;
+                }
+                break;
+            case Resolvor.Baking:
+                failItem = resolver.FailBakedBreadRecipe.BreadItem;
+                duration = resolver.FailBakedBreadRecipe.MinigameBarDuration;
+                var bakingRecipe = resolver.ResolveBakedBread(bucketItems[0]);
+
+                if (bakingRecipe)
+                {
+                    resultItem = bakingRecipe.BreadItem;
+                    duration = bakingRecipe.MinigameBarDuration;
+                }
+                break;
+            case Resolvor.Additive:
+                failItem = resolver.FailResultBreadRecipe.ResultItem;
+                duration = resolver.FailResultBreadRecipe.CompletionDuration;
+                var additiveRecipe = resolver.ResolveAdditive(bucketItems[0], bucketItems.GetRange(1, bucketItems.Count - 1));
+
+                if (additiveRecipe)
+                {
+                    resultItem = additiveRecipe.ResultItem;
+                    duration = additiveRecipe.CompletionDuration;
+                }
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        return (failItem, resultItem, duration);
     }
 }

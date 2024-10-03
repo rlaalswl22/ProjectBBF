@@ -25,6 +25,11 @@ public class InventorySlotView : MonoBehaviour, IPointerDownHandler, IPointerEnt
         _slotImage.sprite = null;
     }
 
+    private void OnDestroy()
+    {
+        SlotController = null;
+    }
+
     public IInventorySlot SlotController
     {
         get => _slotController;
@@ -42,7 +47,11 @@ public class InventorySlotView : MonoBehaviour, IPointerDownHandler, IPointerEnt
             }
 
             _slotController = value;
-            _slotController.OnChanged += OnChanged;
+
+            if (_slotController is not null)
+            {
+                _slotController.OnChanged += OnChanged;
+            }
             OnChanged(_slotController);
         }
     }
@@ -51,6 +60,8 @@ public class InventorySlotView : MonoBehaviour, IPointerDownHandler, IPointerEnt
 
     private void OnChanged(IInventorySlot slot)
     {
+        if (slot is null) return;
+        
         _slotImage.sprite = slot.Data != null ? slot.Data.ItemSprite : null;
 
         if (slot.Data is not null && slot.Data.ActionCategoryType == ActionCategoryType.Tool)

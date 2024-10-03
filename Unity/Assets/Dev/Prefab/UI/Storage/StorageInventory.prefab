@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 471434975730686096}
   - component: {fileID: 5349105221232487184}
   - component: {fileID: 8185774479472831487}
+  - component: {fileID: 3921839901656848592}
   m_Layer: 0
   m_Name: StorageInventory
   m_TagString: Untagged
@@ -170,9 +171,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _toolTipView: {fileID: 0}
-  _toolTipOffset: {x: 0, y: 0}
   _content: {fileID: 3052894197650520574}
   _colCount: 10
+--- !u!114 &3921839901656848592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9040951359135560478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da18a0d16b644359e5efe7cff0709d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isPlayerOwner: 0
+  _view: {fileID: 8185774479472831487}
 --- !u!1001 &1538179366381126770
 PrefabInstance:
   m_ObjectHideFlags: 0

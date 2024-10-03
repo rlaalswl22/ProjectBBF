@@ -436,6 +436,15 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BakeryOvenHit"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e819dc6-52a2-44c5-94e7-967ad1e27063"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -445,8 +454,19 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/#(F)"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""WinPCScheme"",
                     ""action"": ""BakeryKeyPressed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""446fc144-f5da-4740-89f4-47c7c8cdd614"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""WinPCScheme"",
+                    ""action"": ""BakeryOvenHit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -490,6 +510,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         // Minigame
         m_Minigame = asset.FindActionMap("Minigame", throwIfNotFound: true);
         m_Minigame_BakeryKeyPressed = m_Minigame.FindAction("BakeryKeyPressed", throwIfNotFound: true);
+        m_Minigame_BakeryOvenHit = m_Minigame.FindAction("BakeryOvenHit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -716,11 +737,13 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Minigame;
     private List<IMinigameActions> m_MinigameActionsCallbackInterfaces = new List<IMinigameActions>();
     private readonly InputAction m_Minigame_BakeryKeyPressed;
+    private readonly InputAction m_Minigame_BakeryOvenHit;
     public struct MinigameActions
     {
         private @DefaultKeymap m_Wrapper;
         public MinigameActions(@DefaultKeymap wrapper) { m_Wrapper = wrapper; }
         public InputAction @BakeryKeyPressed => m_Wrapper.m_Minigame_BakeryKeyPressed;
+        public InputAction @BakeryOvenHit => m_Wrapper.m_Minigame_BakeryOvenHit;
         public InputActionMap Get() { return m_Wrapper.m_Minigame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -733,6 +756,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @BakeryKeyPressed.started += instance.OnBakeryKeyPressed;
             @BakeryKeyPressed.performed += instance.OnBakeryKeyPressed;
             @BakeryKeyPressed.canceled += instance.OnBakeryKeyPressed;
+            @BakeryOvenHit.started += instance.OnBakeryOvenHit;
+            @BakeryOvenHit.performed += instance.OnBakeryOvenHit;
+            @BakeryOvenHit.canceled += instance.OnBakeryOvenHit;
         }
 
         private void UnregisterCallbacks(IMinigameActions instance)
@@ -740,6 +766,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @BakeryKeyPressed.started -= instance.OnBakeryKeyPressed;
             @BakeryKeyPressed.performed -= instance.OnBakeryKeyPressed;
             @BakeryKeyPressed.canceled -= instance.OnBakeryKeyPressed;
+            @BakeryOvenHit.started -= instance.OnBakeryOvenHit;
+            @BakeryOvenHit.performed -= instance.OnBakeryOvenHit;
+            @BakeryOvenHit.canceled -= instance.OnBakeryOvenHit;
         }
 
         public void RemoveCallbacks(IMinigameActions instance)
@@ -786,5 +815,6 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     public interface IMinigameActions
     {
         void OnBakeryKeyPressed(InputAction.CallbackContext context);
+        void OnBakeryOvenHit(InputAction.CallbackContext context);
     }
 }
