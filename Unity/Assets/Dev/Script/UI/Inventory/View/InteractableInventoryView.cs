@@ -10,7 +10,6 @@ using UnityEngine.UI;
 public class InteractableInventoryView : MonoBehaviour, IInventoryView
 {
     [SerializeField] private ItemToolTipView _toolTipView;
-    [SerializeField] private Vector2 _toolTipOffset;
 
     [SerializeField] private Transform _content;
     [SerializeField] private int _colCount = 4;
@@ -107,13 +106,11 @@ public class InteractableInventoryView : MonoBehaviour, IInventoryView
     {
         if (_toolTipView)
         {
-            var offset = ItemToolTipView.ToWorldSpaceOffset(_toolTipOffset);
-
             var pos = ItemToolTipView.ScreenToOrthogonal(eventData.position);
             pos = _toolTipView.ToValidPosition(pos);
             pos = ItemToolTipView.OrthogonalToScreen(pos);
 
-            _toolTipView.transform.position = pos;
+            _toolTipView.SetPositionWithOffset(pos);
         }
     }
 

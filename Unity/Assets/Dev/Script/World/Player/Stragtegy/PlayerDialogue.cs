@@ -7,6 +7,7 @@ using Cysharp.Threading.Tasks;
 using DS.Core;
 using MyBox;
 using ProjectBBF.Event;
+using ProjectBBF.Persistence;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -15,16 +16,20 @@ using UnityEngine.Splines;
 public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
 {
     private PlayerController _controller;
+    private PlayerBlackboard _blackboard;
 
     public void Init(PlayerController controller)
     {
         _controller = controller;
+        _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
     }
 
     public bool CanDialogueAction
     {
         get
         {
+            if (_blackboard.IsInteractionStopped is false) return false;
+            
             var interaction = FindCloserObject();
             if (interaction is null) return false;
 
@@ -46,6 +51,9 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
 
     public async UniTask<bool> OnDialogueAction()
     {
+        
+        if (_blackboard.IsInteractionStopped is false) return false;
+        
         try
         {
             var interaction = FindCloserObject();

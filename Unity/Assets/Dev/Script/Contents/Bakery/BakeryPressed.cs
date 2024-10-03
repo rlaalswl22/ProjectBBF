@@ -141,6 +141,8 @@ public class BakeryPressed: BakeryFlowBehaviourBucket, IObjectBehaviour
 
             yield return null;
         }
+
+        yield return null;
         
         pc.MoveStrategy.IsStopped = false;
         pc.MoveStrategy.ResetVelocity();

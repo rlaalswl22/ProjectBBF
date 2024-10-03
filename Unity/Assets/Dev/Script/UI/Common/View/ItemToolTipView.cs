@@ -20,6 +20,8 @@ public class ItemToolTipView : MonoBehaviour
     [SerializeField] private RectTransform _boundTransform;
     [SerializeField] private TMP_Text _itemNameDisplayText;
     [SerializeField] private TMP_Text _itemDescriptionDisplayText;
+
+    [SerializeField] private Vector2 _offset;
     
     public string ItemNameDisplayText
     {
@@ -55,6 +57,11 @@ public class ItemToolTipView : MonoBehaviour
     {
         get => gameObject.activeSelf;
         set => gameObject.SetActive(value);
+    }
+
+    public void SetPositionWithOffset(Vector2 screenPosition)
+    {
+        transform.position = screenPosition + _offset;
     }
 
     public static Direction GetOverlappedDirectionScreen(Vector2 orthogonalPos, Vector2 size)
@@ -139,14 +146,6 @@ public class ItemToolTipView : MonoBehaviour
         }
 
         return orthogonalPos;
-    }
-
-    public  static Vector2 ToWorldSpaceOffset(Vector2 normalizedOffset)
-    {
-        Camera cam = Camera.main;
-        var cameraSize = new Vector2(cam.scaledPixelWidth * 0.5f, cam.scaledPixelHeight * 0.5f);
-
-        return new Vector2(cameraSize.x * normalizedOffset.x, cameraSize.y * normalizedOffset.y);
     }
 
     private void Awake()

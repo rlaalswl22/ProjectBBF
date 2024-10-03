@@ -39,8 +39,17 @@ public class RecipeBookPreviewView : MonoBehaviour
         Sprite[] doughtItemSprites,
         bool isUnlocked)
     {
-        _resultItemNameText.text = resultItemName;
-        _resultItemDescText.text = resultItemDesc;
+
+        if (isUnlocked)
+        {
+            _resultItemNameText.text = resultItemName;
+            _resultItemDescText.text = resultItemDesc;  
+        }
+        else
+        {
+            _resultItemNameText.text = "???";
+            _resultItemDescText.text = "???";
+        }
         _resultItemImage.sprite = resultItemSprite;
 
         Color c = isUnlocked? Color.white : Color.black;

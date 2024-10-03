@@ -590,6 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee794166556785142a533ca8a6d1093c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _awakeAndDisable: 1
   _resultItemImage: {fileID: 7486545909821398446}
   _resultItemNameText: {fileID: 2297743195514338872}
   _resultItemDescText: {fileID: 3374904170404950285}
@@ -597,7 +598,8 @@ MonoBehaviour:
   - {fileID: 7602799112525906934}
   - {fileID: 9162983438960869490}
   - {fileID: 8404010888607561274}
-  _additiveItemImage: {fileID: 2887724471013770416}
+  _additiveItemImages:
+  - {fileID: 2887724471013770416}
 --- !u!1 &4631929826991551634
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,6 +1590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 195da051b10b0ad45838e81407f0e687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _awakeAndDisable: 1
   _slotViewPrefab: {fileID: 2577744404889178079, guid: ec072582a6044c04e9aa82edd4a88981, type: 3}
   _content: {fileID: 6689411031137466911}
   _exitBtn: {fileID: 497133469012386362}
