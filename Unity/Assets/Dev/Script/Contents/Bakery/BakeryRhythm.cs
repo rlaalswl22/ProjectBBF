@@ -65,7 +65,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         pc.Blackboard.IsInteractionStopped = true;
         pc.transform.position = (Vector2)_playPoint.position;
         pc.MoveStrategy.ResetVelocity();
-        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Oven, AnimationActorKey.Direction.Down));
+        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive, AnimationActorKey.Direction.Down));
         
         while (true)
         {
@@ -94,6 +94,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 
                 if (successCount >= SUCCESS_GOAL_COUNT)
                 {
+                    pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down));
                     GameSuccess(tuple, pc);
                     break;
                 }

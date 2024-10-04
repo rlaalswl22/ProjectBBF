@@ -63,7 +63,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 _move.ResetVelocity();
                 _blackboard.Energy--;
 
-                Vector2 dir = _coordinate.GetFrontDir();
+                Vector2 dir = _coordinate.GetFrontPureDir();
+                print(dir);
                 
                 _visual.LookAt(dir, currentData.ActionAnimationType);
             }

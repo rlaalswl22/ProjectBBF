@@ -106,6 +106,7 @@ public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
 
     private int _currentBucketIndex;
 
+    public Resolvor ResolvorType => _resolvor;
     public int BucketLength => _buckets.Count;
     public bool IsFullBucket => _currentBucketIndex >= BucketLength;
 

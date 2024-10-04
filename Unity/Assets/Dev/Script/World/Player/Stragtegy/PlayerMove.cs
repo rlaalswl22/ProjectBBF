@@ -151,8 +151,6 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
 
     private void ChangeClip(Vector2 dir, AnimationActorKey.Action movementType)
     {
-        if (Mathf.Approximately(_rigidbody.velocity.sqrMagnitude, 0f)) return;
-        
         var visual = _controller.VisualStrategy;
 
         AnimationActorKey.Direction direction;

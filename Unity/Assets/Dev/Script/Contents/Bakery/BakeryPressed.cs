@@ -43,6 +43,22 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         
         _panel.SetActive(true);
         _fillImage.fillAmount = 0f;
+        AnimationActorKey.Action aniAction;
+
+        switch (ResolvorType)
+        {
+            case Resolvor.Dough:
+                aniAction = AnimationActorKey.Action.Bakery_Knead;
+                break;
+            case Resolvor.Additive:
+                aniAction = AnimationActorKey.Action.Bakery_Additive;
+                break;
+            case Resolvor.Baking:
+                aniAction = AnimationActorKey.Action.Bakery_Oven;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
 
         (ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipeData) tuple = GetResolvedItem();
 
@@ -50,7 +66,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         pc.Blackboard.IsInteractionStopped = true;
         pc.transform.position = (Vector2)_playPoint.position;
         pc.MoveStrategy.ResetVelocity();
-        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Knead, AnimationActorKey.Direction.Down));
+        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(aniAction, AnimationActorKey.Direction.Down));
 
         while (true)
         {

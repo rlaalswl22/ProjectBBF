@@ -33,10 +33,13 @@ public static class AnimationActorKey
     public static readonly int Pickaxe          = Animator.StringToHash("Pickaxe");
     public static readonly int Collect          = Animator.StringToHash("Collect");
     public static readonly int WaterSpray       = Animator.StringToHash("WaterSpray");
-    public static readonly int Bakery_Oven      = Animator.StringToHash("Bakery_Oven");
     public static readonly int Bakery_Knead     = Animator.StringToHash("Bakery_Knead");
+    public static readonly int Bakery_Oven      = Animator.StringToHash("Bakery_Oven");
+    public static readonly int Bakery_Additive  = Animator.StringToHash("Bakery_Additive");
+    public static readonly int Bakery_Additive_Complete  = Animator.StringToHash("Bakery_Additive_Complete");
     public static readonly int Idle             = Animator.StringToHash("Idle");
     public static readonly int Move             = Animator.StringToHash("Move");
+    public static readonly int Fishing          = Animator.StringToHash("Fishing");
 
     [Serializable]
     public enum Direction
@@ -58,8 +61,11 @@ public static class AnimationActorKey
         WaterSpray,
         Bakery_Knead,
         Bakery_Oven,
+        Bakery_Additive,
+        Bakery_Additive_Complete,
         Idle,
         Move,
+        Fishing,
     }
 
     public static int GetAniHash(Action action)
@@ -72,8 +78,11 @@ public static class AnimationActorKey
             case Action.WaterSpray: return WaterSpray;
             case Action.Bakery_Knead: return Bakery_Knead;
             case Action.Bakery_Oven: return Bakery_Oven;
+            case Action.Bakery_Additive: return Bakery_Additive;
+            case Action.Bakery_Additive_Complete: return Bakery_Additive_Complete;
             case Action.Idle: return Idle; 
             case Action.Move: return Move;
+            case Action.Fishing: return Fishing;
             default:
                 throw new ArgumentOutOfRangeException(nameof(action), action, null);
         }

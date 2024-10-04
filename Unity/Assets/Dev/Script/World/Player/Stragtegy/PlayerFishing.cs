@@ -54,8 +54,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     private PlayerInventoryPresenter _invPresenter;
     private PlayerCoordinate _coordinate;
     private PlayerMove _move;
-    private PlayerDialogue _dialogue;
-    private StateTransitionHandler _stateHandler;
+    private ActorVisual _visual;
     private PlayerBlackboard _blackboard;
 
     private bool _currenTurningT = false;
@@ -78,8 +77,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         _invPresenter = controller.Inventory;
         _coordinate = controller.Coordinate;
         _move = controller.MoveStrategy;
-        _dialogue = controller.Dialogue;
-        _stateHandler = controller.StateHandler;
+        _visual = controller.VisualStrategy;
 
         _fishingStateRenderer.enabled = false;
         _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
@@ -136,6 +134,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         try
         {
             float factor = await _view.Fishing(1f);
+            _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Fishing, AnimationActorKey.Direction.Right));
             var front = _coordinate.GetFrontPureDir();
             Direction dir;
 
