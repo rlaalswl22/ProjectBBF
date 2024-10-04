@@ -65,7 +65,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         pc.Blackboard.IsInteractionStopped = true;
         pc.transform.position = (Vector2)_playPoint.position;
         pc.MoveStrategy.ResetVelocity();
-        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Oven));
+        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Oven, AnimationActorKey.Direction.Down));
         
         while (true)
         {
@@ -121,7 +121,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         pc.Blackboard.IsMoveStopped = false;
         pc.Blackboard.IsInteractionStopped = false;
         pc.MoveStrategy.ResetVelocity();
-        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Movement.Idle, AnimationActorKey.Direction.Down));
+        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down));
         
         GameReset();
     }

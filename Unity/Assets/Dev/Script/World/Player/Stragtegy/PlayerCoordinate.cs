@@ -20,6 +20,13 @@ public class PlayerCoordinate : MonoBehaviour, IPlayerStrategy
     public Vector3 GetFront()
     {
         var worldPos = _controller.transform.position;
+        Vector3 dir = GetFrontDir();
+
+        return worldPos + dir;
+    }
+
+    public Vector3 GetFrontDir()
+    {
         Vector3 dir = Vector3.zero;
 
         if (Mathf.Approximately(_controller.MoveStrategy.LastMovedDirection.y, 0f) == false)
@@ -37,7 +44,7 @@ public class PlayerCoordinate : MonoBehaviour, IPlayerStrategy
                 0f);
         }
 
-        return worldPos + dir;
+        return dir;
     }
 
     public Vector3 GetFrontPureDir()

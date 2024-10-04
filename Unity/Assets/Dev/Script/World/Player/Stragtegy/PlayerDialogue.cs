@@ -134,7 +134,7 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
             if (actorInfo.Interaction.Owner is Actor actor)
             {
                 actor.Visual.LookAt(_controller.transform.position - actor.transform.position,
-                    AnimationActorKey.Movement.Idle);
+                    AnimationActorKey.Action.Idle);
             }
 
             var instance = DialogueController.Instance;

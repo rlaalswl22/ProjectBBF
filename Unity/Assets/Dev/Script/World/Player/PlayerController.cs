@@ -115,8 +115,8 @@ public class PlayerController : MonoBehaviour
         MoveStrategy = Bind<PlayerMove>();
         VisualStrategy = gameObject.AddComponent<ActorVisual>();
         Translator = Bind<PlayerStateTranslator>();
-        Interactor = Bind<PlayerInteracter>();
         Coordinate = Bind<PlayerCoordinate>();
+        Interactor = Bind<PlayerInteracter>();
         Dialogue = Bind<PlayerDialogue>();
         VisualStrategy.Init(_animator, _bodyRenderer);
 

@@ -18,7 +18,7 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
     public Vector2 LastMovedDirection { get; set; }
     
     public AnimationActorKey.Direction LastDirection { get; private set; }
-    public AnimationActorKey.Movement LastMovement { get; private set; }
+    public AnimationActorKey.Action LastMovement { get; private set; }
 
     public bool IsStopped
     {
@@ -39,7 +39,7 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         
         
         LastDirection = AnimationActorKey.Direction.Down;
-        LastMovement = AnimationActorKey.Movement.Idle;
+        LastMovement = AnimationActorKey.Action.Idle;
     }
 
     private void BindInputAction()
@@ -123,11 +123,11 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         if (Mathf.Approximately(Mathf.Abs(input.x) + Mathf.Abs(input.y), 0f) == false)
         {
             LastMovedDirection = input.normalized;
-            ChangeClip(dir, AnimationActorKey.Movement.Walk);
+            ChangeClip(dir, AnimationActorKey.Action.Move);
         }
         else
         {
-            ChangeClip(LastMovedDirection, AnimationActorKey.Movement.Idle);
+            ChangeClip(LastMovedDirection, AnimationActorKey.Action.Idle);
         }
         
     }
@@ -149,8 +149,10 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         }
     }
 
-    private void ChangeClip(Vector2 dir, AnimationActorKey.Movement movementType)
+    private void ChangeClip(Vector2 dir, AnimationActorKey.Action movementType)
     {
+        if (Mathf.Approximately(_rigidbody.velocity.sqrMagnitude, 0f)) return;
+        
         var visual = _controller.VisualStrategy;
 
         AnimationActorKey.Direction direction;
@@ -204,14 +206,14 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy
         LastDirection = direction;
         LastMovement = movementType;
 
-        int hash = AnimationActorKey.GetAniHash(movementType, direction);
-        visual.ChangeClip(hash);
+        var tuple = AnimationActorKey.GetAniHash(movementType, direction);
+        visual.ChangeClip(tuple);
     }
 
     public void ResetVelocity()
     {
         _rigidbody.velocity = Vector3.zero;
 
-        ChangeClip(LastMovedDirection.normalized, AnimationActorKey.Movement.Idle);
+        ChangeClip(LastMovedDirection.normalized, AnimationActorKey.Action.Idle);
     }
 }

@@ -16,12 +16,14 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     private ActorVisual _visual;
     private PlayerBlackboard _blackboard;
     private PlayerMove _move;
+    private PlayerCoordinate _coordinate;
 
     public void Init(PlayerController controller)
     {
         _controller = controller;
         _visual = controller.VisualStrategy;
         _move = controller.MoveStrategy;
+        _coordinate = controller.Coordinate;
         _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
     }
 
@@ -61,7 +63,9 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 _move.ResetVelocity();
                 _blackboard.Energy--;
 
-                _visual.ChangeClip(currentData.ActionAnimationAniHash);
+                Vector2 dir = _coordinate.GetFrontDir();
+                
+                _visual.LookAt(dir, currentData.ActionAnimationType);
             }
             else
             {
@@ -143,7 +147,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             if (executedAny)
             {
                 _move.ResetVelocity();
-                _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Collect));
+                _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Collect, AnimationActorKey.Direction.Down));
                 await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
             }
             
@@ -323,7 +327,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
         if (action.Interaction.Owner is Actor actor)
         {
-            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Movement.Idle);
+            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Action.Idle);
             actor.TransitionHandler.TranslateState("ToWait");
         }
 
@@ -340,7 +344,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
         if (action.Interaction.Owner is Actor actor)
         {
-            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Movement.Idle);
+            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Action.Idle);
             actor.TransitionHandler.TranslateState("ToWait");
         }
         
@@ -373,7 +377,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
         if (action.Interaction.Owner is Actor actor)
         {
-            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Movement.Idle);
+            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Action.Idle);
             actor.TransitionHandler.TranslateState("ToWait");
         }
         
@@ -406,7 +410,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
         if (action.Interaction.Owner is Actor actor)
         {
-            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Movement.Idle);
+            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Action.Idle);
             actor.TransitionHandler.TranslateState("ToWait");
         }
         

@@ -50,7 +50,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         pc.Blackboard.IsInteractionStopped = true;
         pc.transform.position = (Vector2)_playPoint.position;
         pc.MoveStrategy.ResetVelocity();
-        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Knead));
+        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Knead, AnimationActorKey.Direction.Down));
 
         while (true)
         {
@@ -60,7 +60,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
                 
                 pc.MoveStrategy.IsStopped = false;
                 pc.MoveStrategy.ResetVelocity();
-                pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Movement.Idle, AnimationActorKey.Direction.Down), true);
+                pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
                 yield break;
             }
 
@@ -80,7 +80,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         pc.Blackboard.IsMoveStopped = false;
         pc.Blackboard.IsInteractionStopped = false;
         pc.MoveStrategy.ResetVelocity();
-        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Movement.Idle, AnimationActorKey.Direction.Down), true);
+        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
         
         
         if (tuple.resultItem is not null)

@@ -19,26 +19,12 @@ public static class AnimationActorKey
     /*
      * Movement
      */
-    public static readonly int Up_Idle          = Animator.StringToHash("Up_Idle");
-    public static readonly int Down_Idle        = Animator.StringToHash("Down_Idle");
-    public static readonly int Left_Idle        = Animator.StringToHash("Left_Idle");
-    public static readonly int Right_Idle       = Animator.StringToHash("Right_Idle");
-    public static readonly int LeftUp_Idle      = Animator.StringToHash("LeftUp_Idle");
-    public static readonly int RightUp_Idle     = Animator.StringToHash("RightUp_Idle");
-
-    public static readonly int Up_Move          = Animator.StringToHash("Up_Move");
-    public static readonly int Down_Move        = Animator.StringToHash("Down_Move");
-    public static readonly int Left_Move        = Animator.StringToHash("Left_Move");
-    public static readonly int Right_Move       = Animator.StringToHash("Right_Move");
-    public static readonly int LeftUp_Move      = Animator.StringToHash("LeftUp_Move");
-    public static readonly int RightUp_Move     = Animator.StringToHash("RightUp_Move");
-
-    public static readonly int Up_Sprint        = Animator.StringToHash("Up_Sprint");
-    public static readonly int Down_Sprint      = Animator.StringToHash("Down_Sprint");
-    public static readonly int Left_Sprint      = Animator.StringToHash("Left_Sprint");
-    public static readonly int Right_Sprint     = Animator.StringToHash("Right_Sprint");
-    public static readonly int LeftUp_Sprint    = Animator.StringToHash("LeftUp_Sprint");
-    public static readonly int RightUp_Sprint   = Animator.StringToHash("RightUp_Sprint");
+    public static readonly int Up          = Animator.StringToHash("Up");
+    public static readonly int Down        = Animator.StringToHash("Down");
+    public static readonly int Left        = Animator.StringToHash("Left");
+    public static readonly int Right       = Animator.StringToHash("Right");
+    public static readonly int LeftUp      = Animator.StringToHash("LeftUp");
+    public static readonly int RightUp     = Animator.StringToHash("RightUp");
 
     /*
      * Action
@@ -49,15 +35,8 @@ public static class AnimationActorKey
     public static readonly int WaterSpray       = Animator.StringToHash("WaterSpray");
     public static readonly int Bakery_Oven      = Animator.StringToHash("Bakery_Oven");
     public static readonly int Bakery_Knead     = Animator.StringToHash("Bakery_Knead");
-
-
-    [Serializable]
-    public enum Movement
-    {
-        Idle,
-        Walk,
-        Sprint
-    }
+    public static readonly int Idle             = Animator.StringToHash("Idle");
+    public static readonly int Move             = Animator.StringToHash("Move");
 
     [Serializable]
     public enum Direction
@@ -79,6 +58,8 @@ public static class AnimationActorKey
         WaterSpray,
         Bakery_Knead,
         Bakery_Oven,
+        Idle,
+        Move,
     }
 
     public static int GetAniHash(Action action)
@@ -91,53 +72,33 @@ public static class AnimationActorKey
             case Action.WaterSpray: return WaterSpray;
             case Action.Bakery_Knead: return Bakery_Knead;
             case Action.Bakery_Oven: return Bakery_Oven;
+            case Action.Idle: return Idle; 
+            case Action.Move: return Move;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(action), action, null);
         }
 
         throw new ArgumentException($"Invalid combination of Action: {action}");
     }
-
-    public static int GetAniHash(Movement movement, Direction direction)
+    
+    public static int GetAniHash(Direction direction)
     {
-        switch (movement)
+        switch (direction)
         {
-            case Movement.Idle:
-                switch (direction)
-                {
-                    case Direction.Up: return Up_Idle;
-                    case Direction.Down: return Down_Idle;
-                    case Direction.Left: return Left_Idle;
-                    case Direction.Right: return Right_Idle;
-                    case Direction.LeftUp: return LeftUp_Idle;
-                    case Direction.RightUp: return RightUp_Idle;
-                }
-                break;
-
-            case Movement.Walk:
-                switch (direction)
-                {
-                    case Direction.Up: return Up_Move;
-                    case Direction.Down: return Down_Move;
-                    case Direction.Left: return Left_Move;
-                    case Direction.Right: return Right_Move;
-                    case Direction.LeftUp: return LeftUp_Move;
-                    case Direction.RightUp: return RightUp_Move;
-                }
-                break;
-
-            case Movement.Sprint:
-                switch (direction)
-                {
-                    case Direction.Up: return Up_Sprint;
-                    case Direction.Down: return Down_Sprint;
-                    case Direction.Left: return Left_Sprint;
-                    case Direction.Right: return Right_Sprint;
-                    case Direction.LeftUp: return LeftUp_Sprint;
-                    case Direction.RightUp: return RightUp_Sprint;
-                }
-                break;
+            case Direction.Up: return Up;
+            case Direction.Down: return Down;
+            case Direction.Left: return Left;
+            case Direction.Right: return Right;
+            case Direction.LeftUp: return LeftUp;
+            case Direction.RightUp: return RightUp;
         }
 
-        throw new ArgumentException($"Invalid combination of movement: {movement} and direction: {direction}");
+        throw new ArgumentException($"Invalid combination of direction: {direction}");
+    }
+
+    public static (int action, int dir) GetAniHash(Action action, Direction direction)
+    {
+        return (GetAniHash(action), GetAniHash(direction));
     }
 }
 
@@ -173,7 +134,7 @@ public static class ActorAnimationContextMenu
     {
 
         if (TryGetDirection(myClip.name, out Direction myDir) is false) return;
-        if (TryGetMovement(myClip.name, out Movement myMovement) is false) return;
+        if (TryGetMovement(myClip.name, out AnimationActorKey.Action myMovement) is false) return;
 
 
         for (int i = 0; i < list.Count; i++)
@@ -182,7 +143,7 @@ public static class ActorAnimationContextMenu
             var clip = list[i].Key;
 
             if (TryGetDirection(clip.name, out Direction direction) is false) continue;
-            if (TryGetMovement(clip.name, out Movement movement) is false) continue;
+            if (TryGetMovement(clip.name, out AnimationActorKey.Action movement) is false) continue;
 
             if (myDir == direction && myMovement == movement)
             {
@@ -229,13 +190,13 @@ public static class ActorAnimationContextMenu
 
     private static bool IsValidAnimationFile(string fileName)
     {
-        // 예: @Clip_Up_Idle.anim
+        // 예: @Clip_Up.anim
         // 파일 이름이 특정 패턴을 따르는지 검사
         return fileName.StartsWith("@Clip_") &&
                (fileName.Contains("_Up_") || fileName.Contains("_Down_") ||
                 fileName.Contains("_Right_") || fileName.Contains("_Left_") ||
                 fileName.Contains("_RightUp_") || fileName.Contains("_LeftUp_")) &&
-               (fileName.Contains("_Idle") || fileName.Contains("_Move") || fileName.Contains("_Sprint"));
+               (fileName.Contains("Idle") || fileName.Contains("Move"));
     }
     private static bool TryGetDirection(string fileName, out Direction direction)
     {
@@ -273,21 +234,17 @@ public static class ActorAnimationContextMenu
         return true;
     }
 
-    private static bool TryGetMovement(string fileName, out Movement movement)
+    private static bool TryGetMovement(string fileName, out AnimationActorKey.Action movement)
     {
         movement = default;
 
         if (fileName.Contains("_Idle"))
         {
-            movement = Movement.Idle;
+            movement = AnimationActorKey.Action.Idle;
         }
         else if (fileName.Contains("_Move"))
         {
-            movement = Movement.Walk;
-        }
-        else if (fileName.Contains("_Sprint"))
-        {
-            movement = Movement.Sprint;
+            movement = AnimationActorKey.Action.Move;
         }
         else
         {
