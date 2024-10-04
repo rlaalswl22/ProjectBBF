@@ -9,6 +9,7 @@ public class BakeryStoreage : BakeryFlowBehaviour
     [SerializeField] private GameObject _panel;
     [SerializeField] private StorageInventoryPresenter _storageInventory;
     [SerializeField] private StorageInventoryPresenter _playernventory;
+    [SerializeField] private Animator _ani;
 
     [SerializeField] private List<ItemData> _defaultItems;
     
@@ -63,6 +64,15 @@ public class BakeryStoreage : BakeryFlowBehaviour
             pc.MoveStrategy.ResetVelocity();
             pc.Blackboard.IsInteractionStopped = Visible;
             pc.Blackboard.IsMoveStopped = Visible;
+
+            if (Visible)
+            {
+                _ani.SetTrigger("Open");
+            }
+            else
+            {
+                _ani.SetTrigger("Close");
+            }
         }
     }
 
@@ -78,5 +88,6 @@ public class BakeryStoreage : BakeryFlowBehaviour
         pc.MoveStrategy.ResetVelocity();
         pc.Blackboard.IsInteractionStopped = false;
         pc.Blackboard.IsMoveStopped = false;
+        _ani.SetTrigger("Close");
     }
 }

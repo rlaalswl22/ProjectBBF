@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 861109743441053971}
   - component: {fileID: 2301788668666323844}
   - component: {fileID: 6248554789038685869}
+  - component: {fileID: 7105885915287418160}
   m_Layer: 0
   m_Name: PF_BakeryFlow_Storage
   m_TagString: Untagged
@@ -246,7 +247,29 @@ MonoBehaviour:
   _panel: {fileID: 7138510395641947783}
   _storageInventory: {fileID: 5058375599261101704}
   _playernventory: {fileID: 6832384330760420464}
+  _ani: {fileID: 7105885915287418160}
   _defaultItems: []
+--- !u!95 &7105885915287418160
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5185885291857463896}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 74cd3453a3fa7ab4ca833940eb2dda94, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5304426701761906974
 GameObject:
   m_ObjectHideFlags: 0
