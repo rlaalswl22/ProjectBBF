@@ -12,6 +12,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
     [SerializeField] private GameObject _panel;
     [SerializeField] private Image _fillImage;
     [SerializeField] private Transform _playPoint;
+    [SerializeField] private AudioSource _audioSource;
 
     private void Start()
     {
@@ -68,6 +69,14 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         pc.MoveStrategy.ResetVelocity();
         pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(aniAction, AnimationActorKey.Direction.Down));
 
+
+        if (ResolvorType == Resolvor.Dough)
+        {
+            var clip = AudioManager.Instance.GetAudio("SFX", "SFX_Bakery_Kneading").clip;
+            _audioSource.clip = clip;
+            _audioSource.Play();
+        }
+
         while (true)
         {
             if (keyAction.IsPressed() is false)
@@ -98,9 +107,15 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         pc.MoveStrategy.ResetVelocity();
         pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
         
+        _audioSource.Stop();
         
         if (tuple.resultItem is not null)
         {
+            if (ResolvorType == Resolvor.Additive)
+            {
+                AudioManager.Instance.PlayOneShot("SFX", "SFX_Bakery_BakingComplete");
+            }
+            
             GameSuccess(tuple, pc);
         }
         else
@@ -115,6 +130,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
     {
         StopAllCoroutines();
         _panel.SetActive(false);
+        _audioSource.Stop();
     }
 
     private void GameSuccess((ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipeData) tuple, PlayerController pc)

@@ -135,6 +135,21 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
 
 public static class AudioManagerExtensions
 {
+    public static bool Play(this AudioSource source, string tableKey, string audioKey)
+    {
+        var inst = AudioManager.Instance;
+        if (inst == false) return false;
+        
+        var tuple = inst.GetAudio(tableKey, audioKey);
+
+        if (source.clip != tuple.clip)
+        {
+            source.clip = tuple.clip;
+        }
+        source.Play();
+
+        return true;
+    }
     public static bool PlayOneShot(this AudioSource source, string tableKey, string audioKey, float? volumeScale = null)
     {
         var inst = AudioManager.Instance;

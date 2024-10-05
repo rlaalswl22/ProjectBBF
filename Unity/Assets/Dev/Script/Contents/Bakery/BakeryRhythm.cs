@@ -1,15 +1,19 @@
 using System;
 using System.Collections;
 using System.Linq;
+using DG.Tweening;
 using MyBox;
 using ProjectBBF.Event;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
 public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 {
+    [SerializeField] private AudioSource _source;
+    
     [SerializeField] private float _roundTripInterval;
     [SerializeField] private Transform _playPoint;
     [SerializeField] private GameObject _panel;
@@ -17,6 +21,22 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
     [SerializeField] private Image _boundBoxImage;
     [SerializeField] private Vector2 _tipStartPos;
     [SerializeField] private Vector2 _tipEndPos;
+
+    [SerializeField] private Transform _fireContent;
+    [SerializeField] private float _fireLargeScale;
+    [SerializeField] private float _fireFadeinDuration;
+    [SerializeField] private float _fireAnimationKeepDuration;
+    [SerializeField] private float _fireAnimationFadeoutDuration;
+    [SerializeField] private Ease _fadeinEase;
+    [SerializeField] private Ease _fadeoutEase;
+
+    [SerializeField] private float _keyPressAndShakeAngle = 25f;
+    [SerializeField] private float _keyPressAndShakeDuration = 0.5f;
+    
+    [SerializeField] private float _keyPressAndScaleValue = 1.5f;
+    [SerializeField] private float _keyPressAndScaleDuration = 0.5f;
+    
+    
 
     private int FAIL_GOAL_COUNT = 3;
     private int SUCCESS_GOAL_COUNT = 3;
@@ -26,6 +46,41 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
     private void Start()
     {
         _panel.SetActive(false);
+        SetVisibleFire(false);
+    }
+
+    private void SetVisibleFire(bool value)
+    {
+        for (int i = 0; i < _fireContent.childCount; i++)
+        {
+            _fireContent.GetChild(i).gameObject.SetActive(value);
+        }
+    }
+
+    private void DoAnimateFire(bool makingLarge, bool immediate = false)
+    {
+        DOTween.Kill(this);
+        
+        Vector3 scale = makingLarge ? (Vector3.one * _fireLargeScale) : Vector3.one;
+        
+        for (int i = 0; i < _fireContent.childCount; i++)
+        {
+            var t = _fireContent.GetChild(i);
+            if (immediate is false && makingLarge)
+            {
+                Sequence s = DOTween.Sequence();
+
+                s.Append(t.DOScale(_fireLargeScale, _fireFadeinDuration).SetEase(_fadeinEase));
+                s.AppendInterval(_fireAnimationKeepDuration);
+                s.Append(t.DOScale(Vector3.one, _fireAnimationFadeoutDuration).SetEase(_fadeoutEase));
+                s.SetId(this);
+                s.Play();
+            }
+            else
+            {
+                t.localScale = scale;
+            }
+        }
     }
 
     protected override void OnActivate(BakeryFlowObject flowObject, CollisionInteractionMono activator)
@@ -36,6 +91,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         if (_isPlaying) return;
 
         GameSetup();
+        
         StartCoroutine(CoUpdate(pc));
     }
 
@@ -82,16 +138,33 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
                     (Vector2)boundTransform.position,
                     boundTransform.lossyScale * ((RectTransform)boundTransform).rect.width
                 );
+                
+                _source.Stop();
+                _source.Play("SFX", "SFX_Bakery_OvenFire");
 
                 if (tip.Intersects(bound))
                 {
                     successCount++;
+                    DoAnimateFire(true);
+                    yield return _panel
+                        .transform
+                        .DOScaleY(_keyPressAndScaleValue, _keyPressAndScaleDuration).SetId(this)
+                        .SetLoops(2, LoopType.Yoyo)
+                        .OnComplete(()=>_panel.transform.localScale = Vector3.one)
+                        .WaitForCompletion();
                 }
                 else
                 {
                     failCount++;
+                    yield return _panel
+                        .transform
+                        .DOShakeRotation(_keyPressAndShakeDuration, new Vector3(0f, 0f, _keyPressAndShakeAngle))
+                        .SetId(this).OnComplete(()=>_panel.transform.rotation = Quaternion.identity)
+                        .WaitForCompletion();
                 }
 
+                
+                
                 if (successCount >= SUCCESS_GOAL_COUNT)
                 {
                     pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down));
@@ -110,9 +183,15 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 
             t += Time.deltaTime / (_roundTripInterval * 0.5f * dir);
 
-            if (t >= 1f || t <= 0f)
+            if (t >= 1f)
             {
-                dir *= -1f;
+                t = 1f;
+                dir = -1f;
+            }
+            else if (t <= 0f)
+            {
+                t = 0f;
+                dir = 1f;
             }
 
             yield return null;
@@ -132,11 +211,13 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         _isPlaying = true;
         _panel.SetActive(true);
         _tipImage.transform.position = _tipStartPos;
+        SetVisibleFire(true);
     }
     private void GameReset()
     {
         _isPlaying = false;
         _panel.SetActive(false);
+        SetVisibleFire(false);
     }
 
 
