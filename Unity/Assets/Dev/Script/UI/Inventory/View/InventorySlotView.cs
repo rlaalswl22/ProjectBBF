@@ -103,6 +103,8 @@ public class InventorySlotView : MonoBehaviour, IPointerDownHandler, IPointerEnt
         {
             SwapItem(slot, _slotController);
         }
+        
+        AudioManager.Instance.PlayOneShot("UI", "UI_MouseOver");
     }
 
     private void PlaceOne(IInventorySlot selected, IInventorySlot my)
