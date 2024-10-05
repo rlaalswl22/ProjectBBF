@@ -212,12 +212,14 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         _panel.SetActive(true);
         _tipImage.transform.position = _tipStartPos;
         SetVisibleFire(true);
+        _source.Stop();
     }
     private void GameReset()
     {
         _isPlaying = false;
         _panel.SetActive(false);
         SetVisibleFire(false);
+        _source.Stop();
     }
 
 
