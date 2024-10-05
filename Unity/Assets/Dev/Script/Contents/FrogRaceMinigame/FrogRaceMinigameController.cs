@@ -182,6 +182,9 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
 
         if (_goalIndex == _targetIndex)
         {
+            AudioManager.Instance.PlayOneShot("SFX", "SFX_Frog_Win");
+            AudioManager.Instance.PlayOneShot("Player", "Player_Getting_Coin");
+            
             var frogData = _frogs[_targetIndex];
             int money = (int)(frogData.FrogData.DividendRate * _money);
             blackboard.Money += money;
@@ -189,6 +192,7 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
         }
         else
         {
+            AudioManager.Instance.PlayOneShot("SFX", "SFX_Frog_Lose");
             inst.DialogueText = $"돈을 잃었습니다.";
             blackboard.Money = Mathf.Max(0, blackboard.Money - _money);
         }

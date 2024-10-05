@@ -16,6 +16,9 @@ public class CollectingMovedActor : ActorComponent
     [field: SerializeField, InitializationField, MustBeAssigned]
     private CollectingObjectData _collectingData;
 
+    [SerializeField] private string _collectedPlayingAudioGroupKey;
+    [SerializeField] private string _collectedPlayingAudioKey;
+    
     [field: SerializeField, InitializationField, MustBeAssigned]
     private List<ESOGameTimeEvent> _refillEvents;
 
@@ -38,14 +41,20 @@ public class CollectingMovedActor : ActorComponent
 
         public List<ItemData> Collect()
         {
+            if (_actorCom._collectingData == false) return null;
+            
             var list = new List<ItemData>();
-
-            if (_actorCom.CanCollect is false)
-            {
-                return null;
-            }
+            if (_actorCom.CanCollect is false) return null;
 
             _actorCom._collectCount++;
+
+            if (string.IsNullOrEmpty(_actorCom._collectedPlayingAudioGroupKey) is false && 
+                string.IsNullOrEmpty(_actorCom._collectedPlayingAudioKey) is false)
+            {
+                string groupKey = _actorCom._collectedPlayingAudioGroupKey.Trim();
+                string audiokey = _actorCom._collectedPlayingAudioKey.Trim();
+                AudioManager.Instance.PlayOneShot(groupKey, audiokey);
+            }
         
             foreach (var item in _actorCom._collectingData.DropItems)
             {
@@ -67,14 +76,21 @@ public class CollectingMovedActor : ActorComponent
 
         public List<ItemData> Collect()
         {
+            if (_actorCom._collectingData == false) return null;
+            
             var list = new List<ItemData>();
-
-            if (_actorCom.CanCollect is false)
-            {
-                return null;
-            }
+            if (_actorCom.CanCollect is false) return null;
 
             _actorCom._collectCount++;
+
+            if (string.IsNullOrEmpty(_actorCom._collectedPlayingAudioGroupKey) is false && 
+                string.IsNullOrEmpty(_actorCom._collectedPlayingAudioKey) is false)
+            {
+                string groupKey = _actorCom._collectedPlayingAudioGroupKey.Trim();
+                string audiokey = _actorCom._collectedPlayingAudioKey.Trim();
+                AudioManager.Instance.PlayOneShot(groupKey, audiokey);
+            }
+
         
             foreach (var item in _actorCom._collectingData.DropItems)
             {
@@ -94,21 +110,24 @@ public class CollectingMovedActor : ActorComponent
         _masterActor = actor;
         var info = actor.Interaction.ContractInfo as ActorContractInfo;
 
-        if (_collectingData.OnlyTool)
+        if (_collectingData)
         {
-            info!.AddBehaivour<IBACollectTool>(new ToolBehaviour()
+            if (_collectingData.OnlyTool)
             {
-                Interaction = _masterActor.Interaction,
-                _actorCom = this
-            });
-        }
-        else
-        {
-            info!.AddBehaivour<IBACollect>(new CollectBehaviour()
+                info!.AddBehaivour<IBACollectTool>(new ToolBehaviour()
+                {
+                    Interaction = _masterActor.Interaction,
+                    _actorCom = this
+                });
+            }
+            else
             {
-                Interaction = _masterActor.Interaction,
-                _actorCom = this
-            });
+                info!.AddBehaivour<IBACollect>(new CollectBehaviour()
+                {
+                    Interaction = _masterActor.Interaction,
+                    _actorCom = this
+                });
+            }
         }
 
         foreach (var refillEvent in _refillEvents)

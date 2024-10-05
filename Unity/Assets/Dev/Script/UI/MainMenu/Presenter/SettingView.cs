@@ -63,6 +63,8 @@ public class SettingView : MonoBehaviour
             
             _soundFrame.SetActive(false);
             _graphicFrame.SetActive(false);
+            
+            AudioManager.Instance.PlayOneShot("UI", "UI_Window_Click");
 
             if (_state == VisibleState.Graphic)
             {

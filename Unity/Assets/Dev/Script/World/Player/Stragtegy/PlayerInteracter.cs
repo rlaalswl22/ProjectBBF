@@ -64,13 +64,12 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 _blackboard.Energy--;
 
                 Vector2 dir = _coordinate.GetFrontPureDir();
-                print(dir);
-                
                 _visual.LookAt(dir, currentData.ActionAnimationType);
+                
+                PlayAudio(currentData, "Use");
             }
             else
             {
-                PlayAudio(currentData, false);
                 return false;
             }
 
@@ -93,10 +92,20 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 success = true;
                 goto RE;
             }
-
+            
             RE:
+            
+
+            if (success)
+            {
+                PlayAudio(currentData, "Use_Success");
+            }
+            else
+            {
+                PlayAudio(currentData, "Use_Fail");
+            }
+            
             await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
-            PlayAudio(currentData, success);
             return success;
         }
         catch (Exception e) when (e is not OperationCanceledException)
@@ -107,25 +116,16 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         
     }
 
-    private void PlayAudio(ItemData itemData, bool success)
+    private void PlayAudio(ItemData itemData, string usingKey)
     {
         if (itemData == false) return;
-        
-        if (itemData.Info.Contains(ToolType.Hoe) ||
-            itemData.Info.Contains(ToolType.Fertilizer) ||
-            itemData.Info.Contains(ToolType.Seed) ||
-            itemData.Info.Contains(ToolType.Pickaxe))
+
+        foreach (var info in itemData.UseActionUsingActionAudioInfos)
         {
-            if (success is false) return;
-        }
-        else if (itemData.Info.Contains(ToolType.WaterSpray))
-        {
-            // nothing..
-        }
-        
-        if (itemData.UseActionUsingActionAudioInfo.HasAudio)
-        {
-            AudioManager.Instance.PlayOneShot(itemData.UseActionUsingActionAudioInfo.MixerGroupKey, itemData.UseActionUsingActionAudioInfo.AudioKey);
+            if (info.HasAudio(usingKey))
+            {
+                AudioManager.Instance.PlayOneShot(info.MixerGroupKey, info.AudioKey);
+            }
         }
     }
 
@@ -310,6 +310,9 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         List<ItemData> items = new List<ItemData>(2);
 
         if (action.Collect(targetPos, items) is false) return false;
+        
+        
+        AudioManager.Instance.PlayOneShot("Player", "Player_Harvest");
 
         foreach (var item in items)
         {

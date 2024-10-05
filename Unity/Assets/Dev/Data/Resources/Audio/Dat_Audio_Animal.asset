@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 397b36e80ec4f42fea7492a1cc87c796, type: 3}
+  m_Name: Dat_Audio_Animal
+  m_EditorClassIdentifier: 
+  _tableKey: Animal
+  _group: {fileID: -1911279371015114861, guid: 99661b52a63344feea1f85c6eaaa06c0, type: 2}
+  _list:
+  - Audio: {fileID: 8300000, guid: 33c0d670915a245bbaacf3361d7641ca, type: 3}
+    Key: Animal_Frog_Jump
+  - Audio: {fileID: 8300000, guid: 33c0d670915a245bbaacf3361d7641ca, type: 3}
+    Key: Animal_Frog_Crying
+  - Audio: {fileID: 8300000, guid: fe7f757fe5061ee4693b45828faced55, type: 3}
+    Key: Animal_Tutle_Hitted
+  - Audio: {fileID: 8300000, guid: 30cec37cac3e772439ad90832ec0f4c8, type: 3}
+    Key: Animal_Deer_Hitted
+  - Audio: {fileID: 8300000, guid: b0c8783933225e54d80811b8ce4aa58b, type: 3}
+    Key: Animal_Goat_Crying
+  - Audio: {fileID: 0}
+    Key: Animal_Chicken_Crying

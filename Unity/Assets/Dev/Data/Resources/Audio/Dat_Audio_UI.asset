@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 397b36e80ec4f42fea7492a1cc87c796, type: 3}
+  m_Name: Dat_Audio_UI
+  m_EditorClassIdentifier: 
+  _tableKey: UI
+  _group: {fileID: -7792757028966101865, guid: 99661b52a63344feea1f85c6eaaa06c0, type: 2}
+  _list:
+  - Audio: {fileID: 8300000, guid: 42b3e3959a2ab9b45aaf63dffceb0eeb, type: 3}
+    Key: UI_Tool_Swap
+  - Audio: {fileID: 8300000, guid: a37c55985ed985142bde8a49dce9a319, type: 3}
+    Key: UI_MouseOver
+  - Audio: {fileID: 8300000, guid: 41cdf08141fadfd42bcbbdf0d44a80ea, type: 3}
+    Key: UI_Window_Open
+  - Audio: {fileID: 8300000, guid: d366de374a9a34f4c8800d801ae44fd0, type: 3}
+    Key: UI_Window_Close
+  - Audio: {fileID: 8300000, guid: 96a1ba1a907c4824e84648617db5b60c, type: 3}
+    Key: UI_Window_Click

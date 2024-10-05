@@ -44,6 +44,8 @@ public class CollectingObject : MonoBehaviour, IBOCollect
         
         _renderer.sprite = _data.CollectedSprite;
 
+        AudioManager.Instance.PlayOneShot("Player", "Player_Getting_Item");
+
         List<ItemData> list = new List<ItemData>(_data.DropItems.Count);
 
         foreach (CollectingObjectData.Item item in _data.DropItems)

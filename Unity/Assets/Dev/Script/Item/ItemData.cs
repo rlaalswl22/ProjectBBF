@@ -15,16 +15,24 @@ public struct ItemDataSerializedSet
 [Serializable]
 public class ItemAudioInfo
 {
+    [SerializeField] private string _usingKey;
     [SerializeField] private string _mixerGroupKey;
     [SerializeField] private string _audioKey;
-    [SerializeField] private bool _playWhenSucceed;
+
+    public string UsingKey => _usingKey;
 
     public string MixerGroupKey => _mixerGroupKey;
     public string AudioKey => _audioKey;
 
-    public bool PlayWhenSucceed => _playWhenSucceed;
+    public bool HasAudio(string usingKey)
+    {
+        if (_usingKey == usingKey)
+        {
+            return string.IsNullOrEmpty(_audioKey) is false && string.IsNullOrEmpty(_mixerGroupKey) is false;
+        }
 
-    public bool HasAudio => string.IsNullOrEmpty(_audioKey) is false && string.IsNullOrEmpty(_mixerGroupKey) is false;
+        return false;
+    } 
 }
 
 [CreateAssetMenu(menuName = "ProjectBBF/Data/Item/Default item", fileName = "New Default item data")]
@@ -55,7 +63,7 @@ public class ItemData : ScriptableObject
     private AnimationActorKey.Action _actionAnimationType;
 
     [field: SerializeField, Header("건들 ㄴㄴ")]
-    private ItemAudioInfo _usingActionAudioInfo;
+    private ItemAudioInfo[] _usingActionAudioInfos;
 
     public string ItemKey => _itemKey;
     public string ItemName => _itemName;
@@ -70,7 +78,7 @@ public class ItemData : ScriptableObject
     public AnimationActorKey.Action ActionAnimationType => _actionAnimationType;
     public int ActionAnimationAniHash => AnimationActorKey.GetAniHash(ActionAnimationType);
 
-    public ItemAudioInfo UseActionUsingActionAudioInfo => _usingActionAudioInfo;
+    public ItemAudioInfo[] UseActionUsingActionAudioInfos => _usingActionAudioInfos;
 
     private void OnValidate()
     {

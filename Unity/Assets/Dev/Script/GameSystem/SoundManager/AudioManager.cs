@@ -24,10 +24,10 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
 
             var audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.outputAudioMixerGroup = table.MixerGroup;
-            _audioTables.Add(table.TableKey, (table.MixerGroup, audioSource, audioClip));
+            _audioTables.Add(table.TableKey.Trim(), (table.MixerGroup, audioSource, audioClip));
             foreach (var set in table.List)
             {
-                audioClip.Add(set.Key, set.Audio);
+                audioClip.Add(set.Key.Trim(), set.Audio);
             }
         }
 
@@ -50,16 +50,6 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
         }
         
         return (table.source, clip);
-    }
-
-    public bool Play(string tableKey, string audioKey)
-    {
-        var tuple = GetAudio(tableKey, audioKey);
-        if (tuple.clip == false) return false;
-
-        tuple.source.clip = tuple.clip;
-        tuple.source.Play();
-        return true;
     }
 
     public bool PlayScheduled(string tableKey, string audioKey, double time)
@@ -87,7 +77,27 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
         var tuple = GetAudio(tableKey, audioKey);
         if (tuple.clip == false) return false;
         
+        if (volumeScale.HasValue)
+        {
+            tuple.source.PlayOneShot(tuple.clip, volumeScale.Value);
+        }
+        else
+        {
+            tuple.source.PlayOneShot(tuple.clip);
+        }
+        return true;
+    }
+    public bool PlayOneShot(string tableKey, string audioKey, bool stopAndPlay, float? volumeScale = null)
+    {
+        var tuple = GetAudio(tableKey, audioKey);
+        if (tuple.clip == false) return false;
+        
         tuple.source.clip = tuple.clip;
+
+        if (stopAndPlay)
+        {
+            tuple.source.Stop();
+        }
 
         if (volumeScale.HasValue)
         {
@@ -97,6 +107,75 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
         {
             tuple.source.PlayOneShot(tuple.clip);
         }
+        return true;
+    }
+    
+    public bool Play(string tableKey, string audioKey)
+    {
+        var tuple = GetAudio(tableKey, audioKey);
+        if (tuple.clip == false) return false;
+        
+        tuple.source.clip = tuple.clip;
+        tuple.source.Play();
+        return true;
+    }
+
+    public void Stop(string tableKey)
+    {
+        var table = _audioTables.GetValueOrDefault(tableKey);
+
+        if (table.source)
+        {
+            table.source.Stop();
+        }
+        
+        
+    }
+}
+
+public static class AudioManagerExtensions
+{
+    public static bool PlayOneShot(this AudioSource source, string tableKey, string audioKey, float? volumeScale = null)
+    {
+        var inst = AudioManager.Instance;
+        if (inst == false) return false;
+        
+        var tuple = inst.GetAudio(tableKey, audioKey);
+        if (volumeScale.HasValue)
+        {
+            source.PlayOneShot(tuple.clip, volumeScale.Value);
+        }
+        else
+        {
+            source.PlayOneShot(tuple.clip);
+        }
+
+        return true;
+    }
+    
+    public static bool PlayDelayed(this AudioSource source, string tableKey, string audioKey, float delay)
+    {
+        var inst = AudioManager.Instance;
+        if (inst == false) return false;
+        
+        var tuple = inst.GetAudio(tableKey, audioKey);
+        
+        source.clip = tuple.clip;
+        source.PlayDelayed(delay);
+
+        return true;
+    }
+    
+    public static bool PlayScheduled(this AudioSource source, string tableKey, string audioKey, double time)
+    {
+        var inst = AudioManager.Instance;
+        if (inst == false) return false;
+        
+        var tuple = inst.GetAudio(tableKey, audioKey);
+        
+        source.clip = tuple.clip;
+        source.PlayScheduled(time);
+
         return true;
     }
     

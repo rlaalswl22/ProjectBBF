@@ -96,12 +96,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8743109526763064980, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _collectedPlayingAudioKey
+      value: Animal_Chicken_Crying
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743109526763064980, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _collectedPlayingAudioGroupKey
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004086965777616495, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _audioKey
+      value: Animal_Chicken_Crying
+      objectReference: {fileID: 0}
     - target: {fileID: 9166282083379131861, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c6d7eb17cf97f5549a208d203e9816f4, type: 3}
-    m_RemovedComponents:
-    - {fileID: 1042366728544722493, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

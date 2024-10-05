@@ -40,8 +40,11 @@ public class PlayerQuickInventoryView : MonoBehaviour, IInventoryView
 
         if (fscrollValue > 0f) value = 1;
         else if (fscrollValue < 0f) value = -1;
+        else return;
         
         _currentCursor = Mathf.Clamp(_currentCursor + value, 0, _slots.Length - 1);
+
+        AudioManager.Instance.PlayOneShot("UI", "UI_Tool_Swap");
         
         _cursor.position = (_slots[_currentCursor].transform as RectTransform)!.position;
     }

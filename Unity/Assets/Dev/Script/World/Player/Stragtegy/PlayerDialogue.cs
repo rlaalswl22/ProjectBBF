@@ -28,7 +28,7 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
     {
         get
         {
-            if (_blackboard.IsInteractionStopped is false) return false;
+            if (_blackboard.IsInteractionStopped) return false;
             
             var interaction = FindCloserObject();
             if (interaction is null) return false;
@@ -52,7 +52,7 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
     public async UniTask<bool> OnDialogueAction()
     {
         
-        if (_blackboard.IsInteractionStopped is false) return false;
+        if (_blackboard.IsInteractionStopped) return false;
         
         try
         {
@@ -135,6 +135,8 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
             {
                 actor.Visual.LookAt(_controller.transform.position - actor.transform.position,
                     AnimationActorKey.Action.Idle);
+
+                AudioManager.Instance.PlayOneShot("SFX", "SFX_Dialogue_Call");
             }
 
             var instance = DialogueController.Instance;

@@ -73,6 +73,8 @@ public class FarmlandManager : MonoBehaviour
             
             int buffGrowingSpeed = info.FertilizerTile ? info.FertilizerTile.BuffGrowingSpeed : 0;
             
+            AudioManager.Instance.PlayOneShot("SFX", "SFX_Farm_GrowUp");
+            
             UpdateGrownState(
                 info, 
                 step + buffGrowingSpeed

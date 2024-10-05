@@ -23,6 +23,15 @@ public class PlayerPannelView : MonoBehaviour
         get => _viewState;
         set
         {
+            if (_viewState == ViewType.Close && value != ViewType.Close)
+            {
+                AudioManager.Instance.PlayOneShot("UI", "UI_Window_Open");
+            }
+            else if (_viewState != ViewType.Close && value == ViewType.Close)
+            {
+                AudioManager.Instance.PlayOneShot("UI", "UI_Window_Close");
+            }
+            
             _viewState = value;
 
             _settingView.Visible = false;
@@ -51,9 +60,13 @@ public class PlayerPannelView : MonoBehaviour
         }
     }
 
+    // Unity Event Function
     public void SetViewState(int type)
     {
         ViewState = (ViewType)type;
+        
+        
+        AudioManager.Instance.PlayOneShot("UI", "UI_Window_Click");
     }
 
     private void Awake()

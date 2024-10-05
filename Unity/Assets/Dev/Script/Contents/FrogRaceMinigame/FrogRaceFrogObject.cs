@@ -40,6 +40,8 @@ public class FrogRaceFrogObject : MonoBehaviour
         {
             yield break;
         }
+
+        AudioManager.Instance.PlayOneShot("Animal", "Animal_Frog_Jump");
         
         randomValue = UnityEngine.Random.value;
         float t = 0f;

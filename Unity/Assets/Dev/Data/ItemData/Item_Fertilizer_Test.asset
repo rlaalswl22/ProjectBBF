@@ -23,8 +23,8 @@ MonoBehaviour:
       _requireToolRank: 1
   _actionCategoryType: 0
   _actionAnimationType: 0
-  _usingActionAudioInfo:
+  _usingActionAudioInfos:
+  - _usingKey: Use_Success
     _mixerGroupKey: Player
     _audioKey: Player_Tool_Using_Fertilizer
-    _playWhenSucceed: 0
   _targetTile: {fileID: 11400000, guid: 50046b9d41129e94a9139f6d089ef31d, type: 2}
