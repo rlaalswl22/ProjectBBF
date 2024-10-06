@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TimeHudUI : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _text;
+    [SerializeField] private TMP_Text _timeText;
+    [SerializeField] private TMP_Text _dayText;
     [SerializeField] private ESOGameTimeEvent _event;
 
     public bool Visible
@@ -30,7 +32,8 @@ public class TimeHudUI : MonoBehaviour
             int curDay = TimeManager.Instance.SaveData.Day;
             if (cur != before)
             {
-                _text.text = $"Day {curDay:D3}\n{cur.Hour:D2}:{cur.Min:D2} {cur.TimeOfDay}";
+                _timeText.text = $"Day {curDay:D3}";
+                _dayText.text = $"{cur.Hour:D2}:{cur.Min:D2} {cur.TimeOfDay}";
                 before = cur;
             }
 

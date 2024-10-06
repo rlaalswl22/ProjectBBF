@@ -32,6 +32,6 @@ public class PlayerMoneyUI : MonoBehaviour
 
     private void Update()
     {
-        _text.text = $"{Blackboard.Money} 원";
+        _text.text = $"{Blackboard.Money}";
     }
 }
