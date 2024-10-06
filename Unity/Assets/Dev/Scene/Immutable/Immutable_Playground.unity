@@ -329,10 +329,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuickInventory
       objectReference: {fileID: 0}
-    - target: {fileID: 348312654162677784, guid: f038b2a52610fbd45baaddbc45e4d678, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 555941795536544515, guid: f038b2a52610fbd45baaddbc45e4d678, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -639,6 +635,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 677335537}
+    - target: {fileID: 4707178237898535615, guid: d1f5781a92841384cae375b8d95b6de7, type: 3}
+      propertyPath: orthographic size
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

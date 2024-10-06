@@ -54,6 +54,8 @@ public class PlayerQuickInventorySlotView : MonoBehaviour
         if (slot is null) return;
         _slotImage.sprite = slot.Data != null ? slot.Data.ItemSprite : null;
 
+        _slotImage.enabled = _slotImage.sprite;
+
         if (slot.Data is not null && slot.Data.ActionCategoryType == ActionCategoryType.Tool)
         {
             _text.text = "";

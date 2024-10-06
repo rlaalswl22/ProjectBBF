@@ -14,6 +14,11 @@ public class PlayerQuickInventoryView : MonoBehaviour, IInventoryView
     public int CurrentItemIndex => _currentCursor;
     public int MaxSlotCount => _slots.Length;
 
+    private void Awake()
+    {
+        _cursor.gameObject.SetActive(false);
+    }
+
     private void OnEnable()
     {
         InputManager.Map.UI.QuickSlotScroll.performed += MoveCursorScroll;
@@ -42,6 +47,9 @@ public class PlayerQuickInventoryView : MonoBehaviour, IInventoryView
         else if (fscrollValue < 0f) value = -1;
         else return;
         
+        
+        _cursor.gameObject.SetActive(true);
+        
         _currentCursor = Mathf.Clamp(_currentCursor + value, 0, _slots.Length - 1);
 
         AudioManager.Instance.PlayOneShot("UI", "UI_Tool_Swap");
@@ -55,6 +63,7 @@ public class PlayerQuickInventoryView : MonoBehaviour, IInventoryView
 
         int value = Mathf.RoundToInt(fscrollValue);
 
+        _cursor.gameObject.SetActive(true);
         _currentCursor = Mathf.Clamp(value - 1, 0, _slots.Length - 1);
 
         AudioManager.Instance.PlayOneShot("UI", "UI_Tool_Swap");
