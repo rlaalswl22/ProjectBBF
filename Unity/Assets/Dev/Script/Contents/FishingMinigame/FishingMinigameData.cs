@@ -22,7 +22,7 @@ public class FishingMinigameData : MinigameData
 
     public float BiteCanBiteDuration => _biteCanBiteDuration;
 
-    public new List<FishingReward> Rewards => _rewards;
+    public List<FishingReward> Rewards => _rewards;
 
     public float GameDuration => _gameDuration;
 }

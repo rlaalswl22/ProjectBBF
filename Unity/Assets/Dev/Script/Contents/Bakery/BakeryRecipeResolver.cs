@@ -110,7 +110,6 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
     {
         foreach (var recipe in RecipeTable.Values)
         {
-            int count = 0;
             foreach (ItemData item in additives)
             {
                 if (recipe.AdditiveRecipe.AdditiveItems.Contains(item) && bakedBread == recipe.AdditiveRecipe.BreadItem)
