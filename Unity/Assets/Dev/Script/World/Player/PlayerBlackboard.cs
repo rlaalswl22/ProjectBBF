@@ -33,25 +33,29 @@ public class PlayerBlackboard
 
     public float Stemina
     {
-        get => _stemina;
+        get => 999f;
+        //get => _stemina;
         set => _stemina = Mathf.Clamp(value, 0f, MaxStemina);
     }
 
     public float MaxStemina
     {
-        get => _maxStemina;
+        get => 999f;
+        //get => _maxStemina;
         set => _maxStemina = value;
     }
 
     public int Energy
     {
-        get => _energy;
+        get => 999;
+        //get => _energy;
         set => _energy = Mathf.Clamp(value, 0, MaxEnergy);
     }
 
     public int MaxEnergy
     {
-        get => _maxEnergy;
+        get => 999;
+        //get => _maxEnergy;
         set => _maxEnergy = value;
     }
 
