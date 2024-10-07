@@ -2,17 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
 public class FishingMinigameController : MinigameBase<FishingMinigameData>
 {
+    [SerializeField] private PolygonCollider2D _col;
     [SerializeField] private GameObject _uiPanel;
     [SerializeField] private TMP_Text _timeboard;
 
     [SerializeField] private SpriteRenderer _fishRenderer;
 
+    private Collider2D _backupCol;
     private float _timer;
 
     private float Timer
@@ -33,6 +36,10 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
 
     protected override void OnGameInit()
     {
+        var confiner2D = Camera.main.GetComponent<CinemachineConfiner2D>();
+        _backupCol = confiner2D.m_BoundingShape2D;
+        confiner2D.m_BoundingShape2D = _col;
+        
         OnGameRelease();
 
         Player.Fishing.BindFishingController(this);
@@ -74,8 +81,18 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
 
     protected override UniTask OnGameEnd(bool isRequestEnd)
     {
+        
         if (isRequestEnd) return UniTask.CompletedTask;
         return UniTask.CompletedTask;;
+    }
+
+    protected override void OnPreGameEnd(bool isRequestEnd)
+    {
+        base.OnPreGameEnd(isRequestEnd);
+        
+        var confiner2D = Camera.main.GetComponent<CinemachineConfiner2D>();
+        confiner2D.m_BoundingShape2D = _backupCol;
+        _backupCol = null;
     }
 
     public FishingContext CreateContext()
