@@ -50,7 +50,7 @@ public class SaveSlotView : MonoBehaviour
                 PersistenceManager.Instance.LoadGameDataCurrentFileName();
                 
                 SceneLoader.Instance.WorkDirectorAsync(false, "BlackAlpha")
-                    .ContinueWith(_ => SceneLoader.Instance.LoadWorldAsync("World_DaffodilLake_Arakar"))
+                    .ContinueWith(_ => SceneLoader.Instance.LoadWorldAsync("World_MiddleBuild"))
                     .ContinueWith(_ => SceneLoader.Instance.LoadImmutableScenesAsync())
                     .ContinueWith(_ => SceneLoader.Instance.WorkDirectorAsync(true, "BlackAlpha"))
                     .Forget();
