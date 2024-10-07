@@ -248,7 +248,9 @@ MonoBehaviour:
   _storageInventory: {fileID: 5058375599261101704}
   _playernventory: {fileID: 6832384330760420464}
   _ani: {fileID: 7105885915287418160}
-  _defaultItems: []
+  _defaultItems:
+  - {fileID: 11400000, guid: 22f55e10c97f6484e8f842641821a4fe, type: 2}
+  - {fileID: 11400000, guid: 021e12b7fb826f94eb2916d11e0cb019, type: 2}
 --- !u!95 &7105885915287418160
 Animator:
   serializedVersion: 5
