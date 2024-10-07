@@ -42,7 +42,7 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
             var obj = Instantiate(data.FrogObject, transform);
             obj.FrogData = data;
             obj.gameObject.SetActive(true);
-            obj.transform.position = (Vector2)enumerator.Current!.position;
+            obj.transform.position = enumerator.Current!.position;
             _frogs.Add(obj);
         }
 

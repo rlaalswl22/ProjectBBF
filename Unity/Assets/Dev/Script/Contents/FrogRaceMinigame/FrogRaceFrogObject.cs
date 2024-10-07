@@ -48,7 +48,7 @@ public class FrogRaceFrogObject : MonoBehaviour
         float boostMultiplier = randomValue <= frogData.JumpBoostRate ? gameData.BoostMovementMultiplier : 1f;
         float maxX = UnityEngine.Random.Range(gameData.JumpMinDistance, gameData.JumpMaxDistance) * boostMultiplier;
         float maxY = gameData.JumpMaxHeight;
-        Vector2 backupPos = frogTransform.position;
+        Vector3 backupPos = frogTransform.position;
         
         while (true)
         {
@@ -56,7 +56,7 @@ public class FrogRaceFrogObject : MonoBehaviour
 
             float curX = t * maxX;
             float curY = GetCalculatedY(curX, maxX, maxY);
-            frogTransform.position = backupPos + new Vector2(curX, curY); 
+            frogTransform.position = backupPos + new Vector3(curX, curY, 0f); 
             
             t += Time.deltaTime * gameData.MovementSpeed;
             

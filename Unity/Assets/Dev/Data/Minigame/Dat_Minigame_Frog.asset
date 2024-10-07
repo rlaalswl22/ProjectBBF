@@ -17,26 +17,25 @@ MonoBehaviour:
   _dialogueAfterGameEnd: {fileID: 11400000, guid: ad0f9142d309ca349b83313e9900922d, type: 2}
   _dialogueAfterGameExit: {fileID: 11400000, guid: 3877b73c727e04a49b4b89183bb2ac43, type: 2}
   _tutorial: {fileID: 11400000, guid: b38e5f15eb6d9164eb5eaaa883b28010, type: 2}
-  _boostMovementMultiplier: 10
-  _boostMaxIteration: 11
+  _boostMovementMultiplier: 2
   _jumpInterval: 1
   _jumpMinDistance: 1
-  _jumpMaxDistance: 1
+  _jumpMaxDistance: 3
   _movementSpeed: 1
-  _jumpMaxHeight: 5
+  _jumpMaxHeight: 2
   _frogs:
   - FrogObject: {fileID: 5998470117485160814, guid: 5e63e5fed783bc042b279b93cef54605, type: 3}
     DisplayName: "\uAC1C\uAD741"
     DividendRate: 1
-    JumpRate: 0.25
-    JumpBoostRate: 0.5
+    JumpRate: 0.75
+    JumpBoostRate: 0.15
   - FrogObject: {fileID: 5998470117485160814, guid: fd0c4c2d8935cc243946270e66c84a81, type: 3}
     DisplayName: "\uAC1C\uAD742"
     DividendRate: 2
-    JumpRate: 0.25
-    JumpBoostRate: 0.5
+    JumpRate: 0.5
+    JumpBoostRate: 0.25
   - FrogObject: {fileID: 5998470117485160814, guid: 3d8b0421e0c209440a52736dbb4c8975, type: 3}
     DisplayName: "\uAC1C\uAD743"
     DividendRate: 3
-    JumpRate: 1
-    JumpBoostRate: 1
+    JumpRate: 0.35
+    JumpBoostRate: 0.3

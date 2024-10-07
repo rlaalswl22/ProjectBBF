@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_Bread_Fail
   m_EditorClassIdentifier: 
   _itemKey: Item_Bread_Fail
-  _itemName: "\uBCF4\uBB3C\uC12C \uCF00\uC774\uD06C"
+  _itemName: "\uAD34\uC0C1\uD55C \uBE75"
   _itemDescription: 
   _itemSprite: {fileID: 21300000, guid: 4a7581c6f678dca46a95a76357f99a67, type: 3}
   _maxStackCount: 1
@@ -21,7 +21,4 @@ MonoBehaviour:
     _sets: []
   _actionCategoryType: 0
   _actionAnimationType: 0
-  _usingActionAudioInfo:
-    _mixerGroupKey: 
-    _audioKey: 
-    _playWhenSucceed: 0
+  _usingActionAudioInfos: []
