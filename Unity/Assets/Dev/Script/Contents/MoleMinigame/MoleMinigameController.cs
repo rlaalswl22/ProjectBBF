@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Cinemachine;
 using Cysharp.Threading.Tasks;
 using ProjectBBF.Persistence;
 using TMPro;
@@ -21,6 +22,8 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
         [NonSerialized] public bool Used;
     }
 
+    [SerializeField] private CinemachineVirtualCamera _camera;
+    
     [SerializeField] private TMP_Text _timeText;
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private GameObject _uiPanel;
@@ -30,6 +33,7 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
     private Dictionary<int, MoleMinigameData.Mole> _moleTable = new();
     private List<MoleGameObject> _currentMoles = new();
     private CancellationTokenSource _gameCts;
+    private CinemachineBrain _brain;
 
     private float _gameTimer;
     
@@ -151,6 +155,11 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
 
     protected override void OnGameInit()
     {
+        _camera.gameObject.SetActive(true);
+        _camera.MoveToTopOfPrioritySubqueue();
+        _brain = Camera.main.GetComponent<CinemachineBrain>();
+        _brain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
+        
         _gameCts = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
         Score = 0;
         GameTime = 0;
@@ -277,6 +286,7 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
     protected override void OnPreGameEnd(bool isRequestEnd)
     {
         _uiPanel.SetActive(false);
+        _camera.gameObject.SetActive(false);
         OnGameRelease();
 
         if (isRequestEnd) return;
