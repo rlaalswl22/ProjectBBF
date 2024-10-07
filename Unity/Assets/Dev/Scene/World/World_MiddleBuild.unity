@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadImmutableScene: 1
   _scenes:
+  - World_MiddleBuild
   - BMap_Festival
   - DMap_MiddleBuild
   - BMap_MoleMiniGame
@@ -163,6 +164,7 @@ MonoBehaviour:
   - {fileID: 102900000, guid: fed615750bb7f374aa27e7f64f8e1daf, type: 3}
   - {fileID: 102900000, guid: 82a819df5bc046348ad8f5323cdc7a17, type: 3}
   - {fileID: 102900000, guid: 6103943d913bfe04882e1e62675fd14a, type: 3}
+  - {fileID: 102900000, guid: 0f63b3c9ae46db148bf3d66f7241e6d9, type: 3}
 --- !u!4 &72476201
 Transform:
   m_ObjectHideFlags: 0
@@ -172,7 +174,7 @@ Transform:
   m_GameObject: {fileID: 72476199}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26, y: 27, z: 0.2984182}
+  m_LocalPosition: {x: 18.2, y: -26.89, z: 0.2984182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
