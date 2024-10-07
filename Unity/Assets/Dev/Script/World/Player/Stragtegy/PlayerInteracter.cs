@@ -120,6 +120,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         if (itemData == false) return;
 
+        if (itemData.UseActionUsingActionAudioInfos is null) return;
+        
         foreach (var info in itemData.UseActionUsingActionAudioInfos)
         {
             if (info.HasAudio(usingKey))
