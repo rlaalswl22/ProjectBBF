@@ -50,8 +50,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5850906533917833324, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
       propertyPath: m_Name
-      value: PF_Frog_Template
+      value: PF_Frog_0
       objectReference: {fileID: 0}
+    - target: {fileID: 7395213500666039957, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.w
+      value: 1.8125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395213500666039957, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.x
+      value: 0.8125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395213500666039957, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.z
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395213500666039957, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395213500666039957, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 3.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735233597515016358, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735233597515016358, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e536910a1a8c20e4bb0f3ee8da00d08d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

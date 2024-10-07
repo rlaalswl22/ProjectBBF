@@ -44,7 +44,6 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
             Debug.LogError($"낚시 보상의 확률 분포가 올바르지 않습니다. FishingMinigameData({Data.name})");
         }
 
-
         _fishRenderer.enabled = false;
     }
 
