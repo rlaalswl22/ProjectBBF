@@ -5,7 +5,15 @@ using Cysharp.Threading.Tasks;
 using DS.Core;
 using UnityEngine;
 
-public abstract class MinigameBase<T> : MonoBehaviour where T : MinigameData
+public interface IMinigameEventSignal
+{
+    public event Action OnGameInitEvent;
+    public event Action OnGameEndEvent;
+    public event Action OnPreGameEndEvent;
+}
+
+public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal
+    where T : MinigameData
 {
     [SerializeField] private T _data;
     
@@ -19,6 +27,10 @@ public abstract class MinigameBase<T> : MonoBehaviour where T : MinigameData
     
     protected PlayerController Player { get; private set; }
     private bool _isRequestEnd;
+    
+    public event Action OnGameInitEvent;
+    public event Action OnGameEndEvent;
+    public event Action OnPreGameEndEvent;
     
     protected virtual void Awake()
     {
@@ -93,6 +105,7 @@ public abstract class MinigameBase<T> : MonoBehaviour where T : MinigameData
             await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
             Player.transform.position = (Vector2)_playerStartPoint.position;
             OnGameInit();
+            OnGameInitEvent?.Invoke();
             await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
 
             await OnTutorial();
@@ -117,10 +130,12 @@ public abstract class MinigameBase<T> : MonoBehaviour where T : MinigameData
             await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
             Player.transform.position = (Vector2)_playerEndPoint.position;
             OnPreGameEnd(_isRequestEnd);
+            OnPreGameEndEvent?.Invoke();
             await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
             Player.StateHandler.TranslateState("EndOfDialogue");
             
             await OnGameEnd(_isRequestEnd);
+            OnGameEndEvent?.Invoke();
 
             if (_isRequestEnd)
             {
