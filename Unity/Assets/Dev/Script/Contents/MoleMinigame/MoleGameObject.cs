@@ -14,6 +14,7 @@ public class MoleGameObject : MonoBehaviour, IBACollectTool
     [SerializeField] private CollisionInteraction _interaction;
     [SerializeField] private float _appearAnimationDuration;
     [SerializeField] private float _disapearAnimationDuration;
+    [SerializeField] private float _disapearHitAnimationDuration;
     public CollisionInteraction Interaction => _interaction;
 
     private MoleMinigameData _data;
@@ -83,13 +84,17 @@ public class MoleGameObject : MonoBehaviour, IBACollectTool
         _ani.SetTrigger(GetinAniHash);
 
 
+        bool result = false;
         if (IsHit is false)
         {
-            AudioManager.Instance.PlayOneShot("Animal", "Animal_Mole_Getin");
+            result = await UniTask.Delay(TimeSpan.FromSeconds(_disapearAnimationDuration), cancellationToken: token).SuppressCancellationThrow();
+        }
+        else
+        {
+            result = await UniTask.Delay(TimeSpan.FromSeconds(_disapearHitAnimationDuration), cancellationToken: token).SuppressCancellationThrow();
         }
         
-        var result = await UniTask.Delay(TimeSpan.FromSeconds(_disapearAnimationDuration), cancellationToken: token).SuppressCancellationThrow();
-        
+        AudioManager.Instance.PlayOneShot("Animal", "Animal_Mole_Getin");
         
         _hitEffect.Stop();
         _ringEffect.Stop();
