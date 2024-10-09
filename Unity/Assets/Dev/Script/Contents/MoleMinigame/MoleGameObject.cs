@@ -8,6 +8,9 @@ using UnityEngine.Events;
 
 public class MoleGameObject : MonoBehaviour, IBACollectTool
 {
+    [SerializeField] private ParticleSystem _hitEffect;
+    [SerializeField] private ParticleSystem _ringEffect;
+    [SerializeField] private Animator _ani;
     [SerializeField] private CollisionInteraction _interaction;
     [SerializeField] private float _appearAnimationDuration;
     [SerializeField] private float _disapearAnimationDuration;
@@ -21,6 +24,9 @@ public class MoleGameObject : MonoBehaviour, IBACollectTool
     public UniTaskCompletionSource<MoleMinigameData.Mole> OnHit { get; private set; } = new();
 
     private CancellationTokenSource _cts;
+    private static readonly int GetoutAniHash = Animator.StringToHash("Getout");
+    private static readonly int IsHitAniHash = Animator.StringToHash("IsHit");
+    private static readonly int GetinAniHash = Animator.StringToHash("Getin");
     public bool IsHit { get; private set; }
 
     private void Awake()
@@ -47,6 +53,9 @@ public class MoleGameObject : MonoBehaviour, IBACollectTool
         _cts = new();
         gameObject.SetActive(false);
         IsHit = false;
+        _ani.SetBool(IsHitAniHash, false);
+        _hitEffect.Stop();
+        _ringEffect.Stop();
     }
     
     public async UniTask WaitAppearAsync(CancellationToken token = default)
@@ -56,7 +65,8 @@ public class MoleGameObject : MonoBehaviour, IBACollectTool
         
         
         gameObject.SetActive(true);
-        // TODO: Run animation
+        _ani.SetTrigger(GetoutAniHash);
+        AudioManager.Instance.PlayOneShot("Animal", "Animal_Mole_Getout");
         var result = await UniTask.Delay(TimeSpan.FromSeconds(_appearAnimationDuration), cancellationToken: token).SuppressCancellationThrow();
         if (result) return;
         
@@ -70,8 +80,19 @@ public class MoleGameObject : MonoBehaviour, IBACollectTool
         
         token = CancellationTokenSource.CreateLinkedTokenSource(token, this.GetCancellationTokenOnDestroy(), _cts?.Token ?? default).Token;
         
-        // TODO: Run animation
+        _ani.SetTrigger(GetinAniHash);
+
+
+        if (IsHit is false)
+        {
+            AudioManager.Instance.PlayOneShot("Animal", "Animal_Mole_Getin");
+        }
+        
         var result = await UniTask.Delay(TimeSpan.FromSeconds(_disapearAnimationDuration), cancellationToken: token).SuppressCancellationThrow();
+        
+        
+        _hitEffect.Stop();
+        _ringEffect.Stop();
         if (result) return;
     }
 
@@ -91,6 +112,10 @@ public class MoleGameObject : MonoBehaviour, IBACollectTool
         IsHit = true;
         _cts?.Cancel();
         _cts = null;
+        _ani.SetBool(IsHitAniHash, true);
+        AudioManager.Instance.PlayOneShot("Animal", "Animal_Mole_Hitted");
+        _hitEffect.Play();
+        _ringEffect.Play();
         return new List<ItemData>(0);
     }
 }

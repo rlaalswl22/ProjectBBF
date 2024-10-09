@@ -18,22 +18,22 @@ MonoBehaviour:
   _dialogueAfterGameExit: {fileID: 0}
   _tutorial: {fileID: 0}
   _requireTools:
-    _requireToolTypes: 1
+    _requireToolTypes: 6
     _requireToolRank: 1
   _gameDuration: 60
   _moles:
   - Key: 0
-    Prefab: {fileID: 1387624981748043353, guid: 487d56172221a2e4a838e6ca622d33fb, type: 3}
+    Prefab: {fileID: 748677008473937971, guid: 487d56172221a2e4a838e6ca622d33fb, type: 3}
     AcquisitionScore: 30
     AppearRate: 0.8
     WaitDuration: 4
   - Key: 1
-    Prefab: {fileID: 1387624981748043353, guid: 39feba36c58eddd4284c92948cd3c21a, type: 3}
+    Prefab: {fileID: 748677008473937971, guid: a034e35677dae6b4aaebc35d68db1dc1, type: 3}
     AcquisitionScore: 30
     AppearRate: 0.2
     WaitDuration: 3
   - Key: 2
-    Prefab: {fileID: 1387624981748043353, guid: 487d56172221a2e4a838e6ca622d33fb, type: 3}
+    Prefab: {fileID: 748677008473937971, guid: 487d56172221a2e4a838e6ca622d33fb, type: 3}
     AcquisitionScore: 30
     AppearRate: 1
     WaitDuration: 4

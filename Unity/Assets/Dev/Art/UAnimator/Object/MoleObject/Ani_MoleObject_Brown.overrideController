@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Ani_MoleObject_Brown
+  m_Controller: {fileID: 9100000, guid: 3a8d88479518b00408c572e14e6efcdf, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 0a4dfe4e08aad1440a99184fcb015a76, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1c3447b35b7eedd4ba94e7c8243c2411, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2c56170bba9767b42876166232b53e7d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 502530329ce0e244f8cc623fda091e20, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 398c53ff882949b4fab2234482232d47, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7034547256e84fd4dbcb31a688f0a86e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1a15af3f01822ea479b080e98ce98aa2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 17714a0f42108e3408cac58db64a6eb6, type: 2}
