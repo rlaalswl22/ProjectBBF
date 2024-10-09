@@ -156,11 +156,13 @@ MonoBehaviour:
   - BMap_MoleMiniGame
   - BMap_Fishing
   - BMap_Festival
+  - DMap_FestivalDetail
   ChildScenesToLoadConfig:
   - {fileID: 102900000, guid: e9e101f52d0cc2a4294348a7ba3f0a8e, type: 3}
   - {fileID: 102900000, guid: 82a819df5bc046348ad8f5323cdc7a17, type: 3}
   - {fileID: 102900000, guid: fdbcf1678b30b3341b2bb859a30bb96a, type: 3}
   - {fileID: 102900000, guid: 3d8ff6aa079a0fc41b7d8ed37c3f4314, type: 3}
+  - {fileID: 102900000, guid: 5d1b86af68f271f4283e16aa257790ff, type: 3}
 --- !u!4 &835607302
 Transform:
   m_ObjectHideFlags: 0
