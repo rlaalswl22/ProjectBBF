@@ -296,9 +296,12 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
             .Rewards
             .Where(x=>x.TargetScore <= Score)
             .OrderByDescending(x=>x.TargetScore)
-            .First();
+            .FirstOrDefault();
 
-        blackboard.Inventory.Model.PushItem(reward.Item, reward.Count);
+        if (reward.Item)
+        {
+            blackboard.Inventory.Model.PushItem(reward.Item, reward.Count);
+        }
     }
 
     protected override void OnGameRelease()
