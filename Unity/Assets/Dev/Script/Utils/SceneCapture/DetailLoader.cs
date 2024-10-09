@@ -223,7 +223,12 @@ public class DetailLoader : MonoBehaviour
             for (int j = 0; j < _iteration.x; j++)
             {
                 var spr = AssetDatabase.LoadAssetAtPath<Sprite>(_detailsPath + $"/Detail_{_mapName}_{j}_{i}.png");
-                if (spr is null) continue;
+                if (spr == false)
+                {
+                    spr  = AssetDatabase.LoadAssetAtPath<Sprite>(_detailsPath + $"/Detail_{_mapName}_{j}_{i}.psd");
+                    
+                    if (spr is null) continue;
+                }
 
                 spr.name = $"Detail_{j}_{i}";
                 sprites.Add(spr);
