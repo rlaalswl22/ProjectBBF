@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1092270117034888113, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.611
+      objectReference: {fileID: 0}
     - target: {fileID: 2355027100713196834, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Frog_0
       objectReference: {fileID: 0}
+    - target: {fileID: 7137717071739673505, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 9e038f8ba009646458f49964622566de, type: 2}
     - target: {fileID: 7395213500666039957, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5636363

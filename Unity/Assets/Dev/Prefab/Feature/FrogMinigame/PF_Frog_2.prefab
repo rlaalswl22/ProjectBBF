@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Frog_2
       objectReference: {fileID: 0}
+    - target: {fileID: 7137717071739673505, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 1da00d8177b30734a9cf03ee72f4a274, type: 2}
     - target: {fileID: 7395213500666039957, guid: 4749407f9a0bf6c45b516094f9cdcf96, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5636363

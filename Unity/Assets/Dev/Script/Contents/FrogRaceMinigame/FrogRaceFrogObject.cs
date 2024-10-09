@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class FrogRaceFrogObject : MonoBehaviour
 {
+    [SerializeField] private Animator _ani;
+    private static readonly int JumpAniHash = Animator.StringToHash("Jump");
+
     public bool IsGoal { get; private set; }
     public FrogRaceMinigameData.FrogData FrogData { get; set; }
 
@@ -50,6 +53,8 @@ public class FrogRaceFrogObject : MonoBehaviour
         float maxY = gameData.JumpMaxHeight;
         Vector3 backupPos = frogTransform.position;
         
+        _ani.SetBool(JumpAniHash, true);
+        
         while (true)
         {
             yield return null;
@@ -65,6 +70,9 @@ public class FrogRaceFrogObject : MonoBehaviour
                 break;
             }
         }
+        
+        
+        _ani.SetBool(JumpAniHash, false);
     }
 
     private float GetCalculatedY(float x, float maxX, float maxY)
