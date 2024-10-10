@@ -30,8 +30,22 @@ public class ItemToolTipView : MonoBehaviour
     }
     public string ItemDescriptionDisplayText
     {
-        get => _itemDescriptionDisplayText.text;
-        set => _itemDescriptionDisplayText.text = value;
+        get
+        {
+            if (_itemDescriptionDisplayText)
+            {
+                return _itemDescriptionDisplayText.text;
+            }
+
+            return "";
+        }
+        set
+        {
+            if (_itemDescriptionDisplayText)
+            {
+                _itemDescriptionDisplayText.text = value;
+            }
+        }
     }
 
     public void SetText(ItemData item)
