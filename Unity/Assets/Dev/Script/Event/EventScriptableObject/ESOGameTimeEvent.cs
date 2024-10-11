@@ -4,7 +4,7 @@ using ProjectBBF.Event;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ProjectBBF/Event/Time/GameTimeEvent", fileName = "GameTimeEvent", order = 0)]
-public class ESOGameTimeEvent : EventScriptableObjectT<GameTime>
+public class ESOGameTimeEvent : AsyncESO<GameTime>
 {
     [System.Serializable]
     public enum Operation

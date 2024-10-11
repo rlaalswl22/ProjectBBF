@@ -9,6 +9,10 @@ using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Type = System.Type;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 
 namespace ProjectBBF.Event
 {
@@ -35,10 +39,32 @@ namespace ProjectBBF.Event
 
         public override void PostInitialize()
         {
-            _eventPageTable = new();
             _bridgeTable = new();
 
+            InitEventPage();
+            InitESO();
+        }
 
+        private void InitESO()
+        {
+#if UNITY_EDITOR
+            string[] guids = AssetDatabase.FindAssets("", new[] { "Assets/Dev/Event/" });
+
+            for (int i = 0; i < guids.Length; i++)
+            {
+                string assetPath = AssetDatabase.GUIDToAssetPath(guids[i]);
+                var eso = AssetDatabase.LoadAssetAtPath<EventScriptableObject>(assetPath);
+                if (eso)
+                {
+                    eso.Release();
+                }
+            }
+#endif
+        }
+
+        private void InitEventPage()
+        {
+            _eventPageTable = new();
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
             List<(Type, MethodInfo)> allEventPageMethod= new List<(Type, MethodInfo)>(10);

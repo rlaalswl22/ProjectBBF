@@ -6,58 +6,39 @@ using UnityEngine;
 
 namespace ProjectBBF.Event
 {
+    public interface IEvent
+    {
+    }
     public abstract class EventScriptableObject : ScriptableObject
     {
-        public bool IsTriggered { get; set; }
-
-        public virtual void Release()
-        {
-            IsTriggered = false;
-        }
+        public abstract void Release();
     }
-
-    public abstract class EventScriptableObjectVoid : EventScriptableObject
+    public abstract class ESOGeneric<T> : ScriptableObject
+        where T : IEvent
     {
-        public event Action OnSignal;
-        public void Signal()
-        {
-            if (IsTriggered) return;
-            IsTriggered = true;
+        public event Action<T> OnEventRaised;
 
-            OnSignal?.Invoke();
+        public void Raise(T arg)
+        {
+            OnEventRaised?.Invoke(arg);
         }
 
-        public async UniTask WaitAsync(CancellationToken token = default)
+        public void Release()
         {
-            while (IsTriggered is false && token.IsCancellationRequested is false)
-            {
-                await UniTask.Yield(PlayerLoopTiming.Update, token);
-            }
-
-            if (token.IsCancellationRequested)
-            {
-                throw new OperationCanceledException();
-            }
-
-            await UniTask.Yield(PlayerLoopTiming.Update, token);
-        }
-
-        public override void Release()
-        {
-            base.Release();
+            OnEventRaised = null;
         }
     }
-    public abstract class EventScriptableObjectT<T1> : EventScriptableObject
+    
+    public abstract class AsyncESO<T1> : EventScriptableObject
     {
         public event Action<T1> OnSignal;
-        T1 _arg1;
+        private T1 _arg1;
+        public bool IsTriggered { get; set; }
 
         public void Signal(T1 arg1)
         {
-            if (IsTriggered) return;
-            IsTriggered = true;
-
             _arg1 = arg1;
+            IsTriggered = true;
             OnSignal?.Invoke(arg1);
         }
 
@@ -79,7 +60,7 @@ namespace ProjectBBF.Event
 
         public override void Release()
         {
-            base.Release();
+            IsTriggered = false;
             _arg1 = default;
         }
     }
