@@ -5,32 +5,23 @@ using MyBox;
 using ProjectBBF.Event;
 using UnityEngine;
 
-[RequireComponent(typeof(MapDialogueEventReceiver), typeof(CollisionInteraction))]
-public class MapInteractionTrigger : MonoBehaviour, IBADialogue
+public interface IBAInteractionTrigger: IActorBehaviour
 {
-    [field: SerializeField, AutoProperty]
-    private MapDialogueEventReceiver _receiver;
+    public bool Interact(CollisionInteractionMono caller);
+}
 
-    [field: SerializeField, AutoProperty] 
-    private CollisionInteraction _interaction;
-
-    public CollisionInteraction Interaction => _interaction;
-    
-    public DialogueEvent DequeueDialogueEvent()
+public class MapInteractionTrigger : MapTriggerBase, IBAInteractionTrigger
+{
+    public bool Interact(CollisionInteractionMono caller)
     {
-        return _receiver.DequeueDialogueEvent();
+        Trigger(caller);
+
+        return true;
     }
 
-    public DialogueEvent PeekDialogueEvent()
+    protected override void Awake()
     {
-        return _receiver.PeekDialogueEvent();
-    }
-
-    private void Awake()
-    {
-        var info = ActorContractInfo.Create(() => this);
-        Interaction.SetContractInfo(info, this);
-
-        info.AddBehaivour<IBADialogue>(this);
+        base.Awake();
+        ContractInfo.AddBehaivour<IBAInteractionTrigger>(this);
     }
 }

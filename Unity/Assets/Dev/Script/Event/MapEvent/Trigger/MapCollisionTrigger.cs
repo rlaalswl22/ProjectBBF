@@ -1,19 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MyBox;
 using UnityEngine;
 
-[RequireComponent(typeof(MapCutSceneEventReceiver))]
-public class MapCollisionTrigger : MonoBehaviour
+public class MapCollisionTrigger : MapTriggerBase
 {
-    [field: SerializeField, AutoProperty]
-    private MapCutSceneEventReceiver _receiver;
-    
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnEnter(ActorContractInfo info)
     {
-        if (other.CompareTag("Player"))
+        if (info.Interaction.Owner is PlayerController pc)
         {
-            _receiver.Play();
+            Trigger(pc.Interaction);
         }
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Interaction.OnContractActor += OnEnter;
+    }
+
+    private void OnDestroy()
+    {
+        Interaction.OnContractActor -= OnEnter;
     }
 }

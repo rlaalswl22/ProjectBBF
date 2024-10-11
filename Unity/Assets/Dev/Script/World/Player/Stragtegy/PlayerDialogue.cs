@@ -58,9 +58,33 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
         {
             var interaction = FindCloserObject();
             if (interaction is null) return false;
+            
+            bool success = await RunDialogueFromInteraction(interaction);
+
+            if (success)
+            {
+                return true;
+            }
+        }
+        catch (Exception e) when (e is not OperationCanceledException)
+        {
+            Debug.LogException(e);
+        }
+
+        return false;
+    }
+    
+    public async UniTask<bool> RunDialogueFromInteraction(CollisionInteractionMono caller)
+    {
+        
+        if (_blackboard.IsInteractionStopped) return false;
+        
+        try
+        {
+            if (caller is null) return false;
 
 
-            if (interaction.TryGetContractInfo(out ActorContractInfo actorInfo) &&
+            if (caller.TryGetContractInfo(out ActorContractInfo actorInfo) &&
                 actorInfo.TryGetBehaviour(out IBADialogue dialogue) &&
                 dialogue.PeekDialogueEvent().IsEmpty)
             {
@@ -69,7 +93,7 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
 
             _controller.MoveStrategy.ResetVelocity();
 
-            bool success = await BranchDialogue(interaction);
+            bool success = await BranchDialogue(caller);
 
             DialogueController.Instance.ResetDialogue();
             _controller.Inventory.QuickInvVisible = true;
@@ -135,9 +159,9 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
             {
                 actor.Visual.LookAt(_controller.transform.position - actor.transform.position,
                     AnimationActorKey.Action.Idle);
-
-                AudioManager.Instance.PlayOneShot("SFX", "SFX_Dialogue_Call");
             }
+
+            AudioManager.Instance.PlayOneShot("SFX", "SFX_Dialogue_Call");
 
             var instance = DialogueController.Instance;
             instance.ResetDialogue();

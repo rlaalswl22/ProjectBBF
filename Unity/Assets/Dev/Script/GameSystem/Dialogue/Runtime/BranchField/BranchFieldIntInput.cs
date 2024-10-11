@@ -43,7 +43,7 @@ public class BranchFieldIntInput : DialogueBranchField, IValuable<BranchResultIn
         return this;
     }
 
-    void OnInput(string input)
+    private void OnInput(string input)
     {
         if (!string.IsNullOrEmpty(input))
         {

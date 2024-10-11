@@ -151,6 +151,7 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
         base.Awake();
         
         _uiPanel.SetActive(false);
+        _camera.gameObject.SetActive(false);
     }
 
     protected override void OnGameInit()
@@ -308,6 +309,9 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
     {
         _gameCts?.Cancel();
         _gameCts = null;
+        
+        
+        _camera.gameObject.SetActive(false);
         
         ClearCurrentMole();
         

@@ -40,6 +40,13 @@ namespace DS.Runtime
             => new Runtime.BranchItem(this, Actorkey, PortraitKey, Text, NextNodes.Select(x=>x.Text).ToArray());
 
         public DialogueRuntimeNode GetNext(int index)
-            => NextNodes[index].NextNode;
+        {
+            if (index < 0 || index >= NextNodes.Count)
+            {
+                return null;
+            }
+
+            return NextNodes[index].NextNode;
+        }
     }
 }

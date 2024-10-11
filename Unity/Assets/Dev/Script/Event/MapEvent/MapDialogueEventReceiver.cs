@@ -12,12 +12,15 @@ public class MapDialogueEventPersistence
 {
     public bool IsPlayed;
 }
-public class MapDialogueEventReceiver : MonoBehaviour
+public class MapDialogueEventReceiver : MonoBehaviour, IBADialogue
 {
+    [SerializeField] private MapTriggerBase _trigger;
     [SerializeField] private string _eventKey;
     [SerializeField] private bool _once = true;
 
     [SerializeField] private DialogueContainer _container;
+
+    public CollisionInteraction Interaction => _trigger.Interaction;
 
     public DialogueEvent DequeueDialogueEvent()
     {
@@ -39,17 +42,36 @@ public class MapDialogueEventReceiver : MonoBehaviour
 
     public DialogueEvent PeekDialogueEvent()
     {
-        var data = PersistenceManager.Instance.LoadOrCreate<MapDialogueEventPersistence>(_eventKey);
-
-        if (data.IsPlayed && _once)
-        {
-            return DialogueEvent.Empty;
-        }
-
         return new DialogueEvent()
         {
             Container = _container,
             Type = DialogueBranchType.Dialogue
         };
+    }
+
+    private void Play(CollisionInteractionMono caller)
+    {
+        if (caller.Owner is PlayerController pc)
+        {
+            _ = pc.Dialogue.RunDialogueFromInteraction(Interaction);
+        }
+    }
+
+    private void Start()
+    {
+        if (_trigger)
+        {
+            _trigger.OnTrigger += Play; 
+            _trigger.ContractInfo.AddBehaivour<IBADialogue>(this);
+        }
+
+    }
+
+    private void OnDestroy()
+    {
+        if (_trigger)
+        {
+            _trigger.OnTrigger -= Play; 
+        }
     }
 }

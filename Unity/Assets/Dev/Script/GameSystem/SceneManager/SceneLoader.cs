@@ -320,22 +320,21 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
                 for (int i = 0; i < length; i++)
                 {
                     var temp = _objTemp.Dequeue();
+                    if (temp.TryGetComponent<RootSceneLoader>(out var com))
+                    {
+                        _objTemp.Clear();
+                        return com;
+                    }
                     
                     for (int j = 0; j < temp.childCount; j++)
                     {
-                        var com = temp.GetComponent<RootSceneLoader>();
-                        if (com)
-                        {
-                            _objTemp.Clear();
-                            return com;
-                        }
-                
-                        _objTemp.Enqueue(temp.GetChild(i));
+                        _objTemp.Enqueue(temp.GetChild(j));
                     }
                 }
             }
         }
-
+        
+        _objTemp.Clear();
         return null;
     }
 }

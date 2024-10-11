@@ -145,6 +145,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 .Bind<IBOCollectPlant>(CollectPlant)
                 .Bind<IBOCollect>(CollectObject)
                 .Bind<IBACollect>(CollectObject)
+                .Bind<IBAInteractionTrigger>(InteractTrigger)
                 .Execute(interaction.ContractInfo, out bool executedAny);
 
             if (executedAny)
@@ -161,6 +162,13 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             Debug.LogException(e);
             return false;
         }
+    }
+
+    private bool InteractTrigger(IBAInteractionTrigger arg)
+    {
+        _controller.StateHandler.TranslateState("EndOfInteraction");
+        bool success = arg.Interact(_controller.Interaction);
+        return success;
     }
 
     private bool Farmland(CollisionInteractionMono interaction)

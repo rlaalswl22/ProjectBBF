@@ -23,6 +23,13 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
 
     private CinemachineBrain _brain;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        
+        _camera.gameObject.SetActive(false);
+    }
+
     protected override void OnGameInit()
     {
         _frogs ??= new List<FrogRaceFrogObject>(Data.Frogs.Length);
@@ -132,6 +139,8 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
 
     protected override void OnGameRelease()
     {
+        _camera.gameObject.SetActive(false);
+        
         foreach (var frog in _frogs)
         {
             frog.End();

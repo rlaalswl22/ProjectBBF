@@ -19,6 +19,7 @@ public class MapCutSceneEventPersistence
 
 public class MapCutSceneEventReceiver : MonoBehaviour
 {
+    [SerializeField] private MapTriggerBase _trigger;
     [SerializeField] private string _mapEventKey;
 
     [SerializeField] private SceneName _scene;
@@ -54,11 +55,20 @@ public class MapCutSceneEventReceiver : MonoBehaviour
 
     private void Awake()
     {
+        if (_trigger)
+        {
+            _trigger.OnTrigger += Play;
+        }
         SceneLoader.Instance.FadeinComplete += OnFadein;
     }
 
     private void OnDestroy()
     {
+        if (_trigger)
+        {
+            _trigger.OnTrigger -= Play;
+        }
+        
         if (SceneLoader.Instance)
         {
             SceneLoader.Instance.FadeinComplete -= OnFadein;
@@ -78,10 +88,10 @@ public class MapCutSceneEventReceiver : MonoBehaviour
 
         if (persistence.IsPlayedCutScene)
         {
-            PlayerController.StateHandler.TranslateState("ToDialogue");
 
             if (_afterContainer)
             {
+                PlayerController.StateHandler.TranslateState("ToDialogue");
                 _ = PlayerController.Dialogue.RunDialogue(_afterContainer).ContinueWith(_ =>
                 {
                     PlayerController.StateHandler.TranslateState("EndOfDialogue");
@@ -89,9 +99,7 @@ public class MapCutSceneEventReceiver : MonoBehaviour
             }
             else
             {
-                {
-                    PlayerController.StateHandler.TranslateState("EndOfCutScene");
-                }
+                PlayerController.StateHandler.TranslateState("EndOfCutScene");
             }
 
             persistence.IsPlayedCutScene = false;
@@ -99,11 +107,16 @@ public class MapCutSceneEventReceiver : MonoBehaviour
         }
     }
 
-    public void Play()
+    public void Play(CollisionInteractionMono caller)
     {
+        if ((caller.Owner as PlayerController) == false) return;
+        
+        _playerController = caller.Owner as PlayerController;
+        
         var persistence =
             PersistenceManager.Instance.LoadOrCreate<MapCutSceneEventPersistence>(_mapEventKey);
 
+        if (persistence.IsPlayedCutScene) return;
         if (persistence.IsPlayed && _playOnce) return;
 
         var loaderInst = SceneLoader.Instance;
@@ -114,28 +127,38 @@ public class MapCutSceneEventReceiver : MonoBehaviour
         blackboard.CurrentWorld = loaderInst.CurrentWorldScene;
         blackboard.CurrentPosition = _rollbackPos;
 
-        Transform pt = PlayerController.transform;
-
 
         persistence.IsPlayedCutScene = true;
 
-        if (PlayerController && _beforeContainer)
+        if (PlayerController)
         {
-            PlayerController.StateHandler.TranslateState("ToDialogue");
 
-            PlayerController.Dialogue.RunDialogue(_beforeContainer).ContinueWith(s =>
+            if (_beforeContainer)
             {
-                PlayerController.StateHandler.TranslateState("ToCutScene");
-                TimeManager.Instance.Pause();
-
-                _ = loaderInst
-                        .WorkDirectorAsync(false, _fadeoutDirectorKey)
-                        .ContinueWith(_ => pt?.SetXY(_rollbackPos.x, _rollbackPos.y))
-                        .ContinueWith(() => SceneLoader.Instance.LoadWorldAsync(_scene))
-                        .ContinueWith(_ => SceneLoader.Instance.WorkDirectorAsync(true, _fadeoutDirectorKey))
-                    ;
-            });
+                PlayerController.StateHandler.TranslateState("ToDialogue");
+                _ = PlayerController.Dialogue.RunDialogue(_beforeContainer)
+                    .ContinueWith(s =>LoadScene(_playerController));
+            }
+            else
+            {
+                LoadScene(_playerController);
+            }
         }
+    }
+
+    private void LoadScene(PlayerController pc)
+    {
+        var loaderInst = SceneLoader.Instance;
+        PlayerController.StateHandler.TranslateState("ToCutScene");
+        TimeManager.Instance.Pause();
+        var xy = pc.Blackboard.CurrentPosition;
+        
+        _ = loaderInst
+                .WorkDirectorAsync(false, _fadeoutDirectorKey)
+                .ContinueWith(_ => pc.transform.SetXY(xy))
+                .ContinueWith(() => SceneLoader.Instance.LoadWorldAsync(_scene))
+                .ContinueWith(_ => SceneLoader.Instance.WorkDirectorAsync(true, _fadeoutDirectorKey))
+            ;
     }
     
 }
