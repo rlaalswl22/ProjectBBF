@@ -8117,6 +8117,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PActor_Pirene
       objectReference: {fileID: 0}
+    - target: {fileID: 3853384873456405071, guid: 7b6b5fd5f91a41f4480b52bdf678e179, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8313,6 +8317,10 @@ PrefabInstance:
     - target: {fileID: 7253351403424410758, guid: aebbe677bd997fd44b8b808da18313e0, type: 3}
       propertyPath: m_Name
       value: PAnimal_Cow
+      objectReference: {fileID: 0}
+    - target: {fileID: 7253351403424410758, guid: aebbe677bd997fd44b8b808da18313e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8659951207133714787, guid: aebbe677bd997fd44b8b808da18313e0, type: 3}
       propertyPath: m_LocalPosition.x
