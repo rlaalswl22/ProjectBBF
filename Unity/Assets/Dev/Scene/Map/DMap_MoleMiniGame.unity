@@ -137,7 +137,6 @@ Transform:
   m_Children:
   - {fileID: 1006629198}
   - {fileID: 1415580581}
-  - {fileID: 1949262321}
   - {fileID: 535067303}
   - {fileID: 2091772438}
   m_Father: {fileID: 0}
@@ -271,6 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 86120200}
   - component: {fileID: 357836264}
+  - component: {fileID: 357836265}
   m_Layer: 0
   m_Name: MoleMinigame
   m_TagString: Untagged
@@ -291,8 +291,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 31aa287d0ba7b38418c542d4b6963a86, type: 2}
+  _event: {fileID: 11400000, guid: d43f71f00df46714c845f5555467de98, type: 2}
+  _endEvent: {fileID: 11400000, guid: 8e1380c2b2d49744dbd362e66f62cbb0, type: 2}
   _playerStartPoint: {fileID: 227799642}
   _playerEndPoint: {fileID: 1016954007}
+  _beginFadeOut: 0
+  _beginFadeIn: 0
+  _endFadeOut: 1
+  _endFadeIn: 0
+  _moveToPlayerPosInGame: 1
+  _moveToPlayerPosOutGame: 0
+  OnMinigameEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1624560137}
+        m_TargetAssemblyTypeName: MoveToWorld, Assembly-CSharp
+        m_MethodName: MoveWorld
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _camera: {fileID: 1006629197}
   _timeText: {fileID: 1845114762}
   _scoreText: {fileID: 1520635140}
@@ -307,6 +330,78 @@ MonoBehaviour:
   - Transform: {fileID: 1694836787}
   - Transform: {fileID: 1493719296}
   - Transform: {fileID: 1833382830}
+--- !u!114 &357836265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357836263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5415f87fdba5f41499d6a126633fd4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &414785849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 414785851}
+  - component: {fileID: 414785850}
+  m_Layer: 0
+  m_Name: EventReceiver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &414785850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414785849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3dd47ca88381d49b7db9097d998892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventChannel: {fileID: 11400000, guid: 8e1380c2b2d49744dbd362e66f62cbb0, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 357836264}
+        m_TargetAssemblyTypeName: MinigameBase`1[[MoleMinigameData, Assembly-CSharp
+        m_MethodName: RequestEndGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &414785851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414785849}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -21.289326, y: 15.504997, z: 0.29239735}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &535067302
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,6 +990,58 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1624560136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1624560138}
+  - component: {fileID: 1624560137}
+  m_Layer: 0
+  m_Name: MoveToWOrld
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1624560137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624560136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759c6d952562c9d42ae08baec230fcae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene:
+    _sceneAsset: {fileID: 102900000, guid: 2662b9092a1d1624b913fdeabb3cc139, type: 3}
+    _sceneName: World_MiddleBuild
+  _directorKey: BlackAlpha
+  _fadeOut: 0
+  _fadeIn: 1
+  _initPlayerPosition: {fileID: 1906117492}
+--- !u!4 &1624560138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624560136}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1906117492}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1694836786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,6 +1238,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1906117491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1906117492}
+  m_Layer: 0
+  m_Name: Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1906117492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906117491}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -19.1, y: 3.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1624560138}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1907028038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,68 +1407,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 975550964}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1949262320
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 86120200}
-    m_Modifications:
-    - target: {fileID: 11205972100907610, guid: 853d0b922c00cc446b86216f3f4efefb, type: 3}
-      propertyPath: m_Name
-      value: PActor_MoleNpc_Out
-      objectReference: {fileID: 0}
-    - target: {fileID: 2062799072563754943, guid: 853d0b922c00cc446b86216f3f4efefb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2062799072563754943, guid: 853d0b922c00cc446b86216f3f4efefb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 189.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 2062799072563754943, guid: 853d0b922c00cc446b86216f3f4efefb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.44644952
-      objectReference: {fileID: 0}
-    - target: {fileID: 2062799072563754943, guid: 853d0b922c00cc446b86216f3f4efefb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2062799072563754943, guid: 853d0b922c00cc446b86216f3f4efefb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2062799072563754943, guid: 853d0b922c00cc446b86216f3f4efefb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2062799072563754943, guid: 853d0b922c00cc446b86216f3f4efefb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2062799072563754943, guid: 853d0b922c00cc446b86216f3f4efefb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2062799072563754943, guid: 853d0b922c00cc446b86216f3f4efefb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2062799072563754943, guid: 853d0b922c00cc446b86216f3f4efefb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 853d0b922c00cc446b86216f3f4efefb, type: 3}
---- !u!4 &1949262321 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2062799072563754943, guid: 853d0b922c00cc446b86216f3f4efefb, type: 3}
-  m_PrefabInstance: {fileID: 1949262320}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2091772434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,3 +1592,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 86120200}
   - {fileID: 1058113140}
+  - {fileID: 1624560138}
+  - {fileID: 414785851}

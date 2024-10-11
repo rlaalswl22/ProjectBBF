@@ -5,6 +5,8 @@ using Cysharp.Threading.Tasks;
 using DS.Core;
 using ProjectBBF.Persistence;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public interface IMinigameEventSignal
 {
@@ -13,28 +15,46 @@ public interface IMinigameEventSignal
     public event Action OnPreGameEndEvent;
 }
 
-public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal
+public interface IMinigame
+{
+    public void PlayGame();
+}
+
+public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal, IMinigame
     where T : MinigameData
 {
     [SerializeField] private T _data;
-    
+    [SerializeField] private ESOMinigame _event;
+    [SerializeField] private ESOMinigame _endEvent;
+
     [SerializeField] private Transform _playerStartPoint;
     [SerializeField] private Transform _playerEndPoint;
 
+    [SerializeField] private bool _beginFadeOut = true;
+    [SerializeField] private bool _beginFadeIn = true;
+    [SerializeField] private bool _endFadeOut = true;
+    [SerializeField] private bool _endFadeIn = true;
+    [SerializeField] private bool _moveToPlayerPosInGame = true;
+    [SerializeField] private bool _moveToPlayerPosOutGame = true;
+
+    [SerializeField] private UnityEvent OnMinigameEnd;
+
     public T Data => _data;
-    
+
     protected PlayerController Player { get; private set; }
     private bool _isRequestEnd;
     private MinigamePersistenceObject _persistenceObject;
-    
+
     public event Action OnGameInitEvent;
     public event Action OnGameEndEvent;
     public event Action OnPreGameEndEvent;
-    
+
     protected virtual void Awake()
     {
-        MinigameController.Instance.OnSignalMinigameStart += OnStart;
-        MinigameController.Instance.OnSignalMinigameEnd += OnEnd;
+        if (_event == false || _endEvent == false) return;
+        
+        _event.OnEventRaised += OnStart;
+        _endEvent.OnEventRaised += OnEnd;
 
         _persistenceObject = PersistenceManager.Instance.LoadOrCreate<MinigamePersistenceObject>(Data.MinigameKey);
 
@@ -46,16 +66,19 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal
 
     protected virtual void OnDestroy()
     {
-        if (MinigameController.Instance == false) return;
+        if (_event == false || _endEvent == false) return;
         
-        MinigameController.Instance.OnSignalMinigameStart -= OnStart;
-        MinigameController.Instance.OnSignalMinigameEnd -= OnEnd;
+        _event.OnEventRaised -= OnStart;
+        _endEvent.OnEventRaised -= OnEnd;
     }
 
-    private void OnStart(string obj)
+    public void PlayGame()
     {
-        if (_data.MinigameKey != obj) return;
+        OnStart();
+    }
 
+    private void OnStart()
+    {
         if (Player == false)
         {
             foreach (var storedObject in GameObjectStorage.Instance.StoredObjects)
@@ -67,16 +90,16 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal
                 }
             }
         }
-        
+
+        if (Player == false) return;
+
         _persistenceObject.IsPlaying = true;
 
         _ = OnSignalAsync();
     }
 
-    private void OnEnd(string obj)
+    private void OnEnd()
     {
-        if (_data.MinigameKey != obj) return;
-
         RequestEndGame();
     }
 
@@ -95,15 +118,20 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal
     {
         try
         {
-            
             DialogueController.Instance.ResetDialogue();
             Player.StateHandler.TranslateState("EndOfInteractionDialogue");
             Player.StateHandler.TranslateState("ToDialogue");
-            await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
-            Player.transform.position = (Vector2)_playerStartPoint.position;
+            
+            if (_beginFadeOut)
+                await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
+            
+            if(_moveToPlayerPosInGame)
+                Player.transform.position = (Vector2)_playerStartPoint.position;
+            
             OnGameInit();
             OnGameInitEvent?.Invoke();
-            await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
+            if (_beginFadeIn)
+                await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
 
             await OnTutorial();
             Player.StateHandler.TranslateState("EndOfDialogue");
@@ -118,25 +146,31 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal
                 await UniTask.Yield(PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
             }
 
-            
+
             if (_isRequestEnd)
             {
                 Player.StateHandler.TranslateState("EndOfInteractionDialogue");
             }
+
             Player.StateHandler.TranslateState("ToDialogue");
-            await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
-            Player.transform.position = (Vector2)_playerEndPoint.position;
+            if(_endFadeOut)
+                await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
+            
+            if(_moveToPlayerPosOutGame)
+                Player.transform.position = (Vector2)_playerEndPoint.position;
+            
             OnPreGameEnd(_isRequestEnd);
             OnPreGameEndEvent?.Invoke();
-            await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
+            if(_endFadeIn)
+                await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
             Player.StateHandler.TranslateState("EndOfDialogue");
-            
+
             await OnGameEnd(_isRequestEnd);
             OnGameEndEvent?.Invoke();
 
             if (_isRequestEnd)
             {
-                await RunDialogue(Data.DialogueAfterGameEnd);
+                await RunDialogue(Data.DialogueAfterGameExit);
             }
             else
             {
@@ -145,27 +179,29 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal
                 {
                     _persistenceObject.CanPlay = false;
                 }
-                await RunDialogue(Data.DialogueAfterGameExit);
+
+                await RunDialogue(Data.DialogueAfterGameEnd);
             }
-            
+
             OnGameRelease();
 
             Release();
-            
+
             _persistenceObject.IsPlaying = false;
+
+            OnMinigameEnd?.Invoke();
         }
         catch (Exception e)when (e is not OperationCanceledException)
         {
             Debug.LogException(e);
             throw;
         }
-       
     }
 
     protected UniTask RunDialogue(DialogueContainer container)
     {
         if (container == false) return UniTask.CompletedTask;
-        
+
         DialogueController.Instance.ResetDialogue();
         Player.StateHandler.TranslateState("ToDialogue");
         return Player.Dialogue.RunDialogue(container).ContinueWith(_ =>
@@ -183,9 +219,7 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal
 
     protected virtual void OnPreGameEnd(bool isRequestEnd)
     {
-        
     }
-
 }
 
 // sample -> [CreateAssetMenu(menuName = "ProjectBBF/Data/Minigame/Farm", fileName = "FarmMinigameData")]
@@ -196,7 +230,10 @@ public abstract class MinigameData : ScriptableObject
     [SerializeField] private int _playCount = 1;
 
     [SerializeField, Header("게임 종료 대사")] private DialogueContainer _dialogueAfterGameEnd;
-    [SerializeField, Header("게임 중도 종료 대사")] private DialogueContainer _dialogueAfterGameExit;
+
+    [SerializeField, Header("게임 중도 종료 대사")]
+    private DialogueContainer _dialogueAfterGameExit;
+
     public string MinigameKey => _minigameKey;
     public string DirectorKey => _directorKey;
 

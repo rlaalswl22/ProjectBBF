@@ -3,16 +3,19 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using ProjectBBF.Event;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectBBF.Event
 {
     public interface IEvent
     {
     }
+
     public abstract class EventScriptableObject : ScriptableObject
     {
         public abstract void Release();
     }
+
     public abstract class ESOGeneric<T> : ScriptableObject
         where T : IEvent
     {
@@ -28,7 +31,86 @@ namespace ProjectBBF.Event
             OnEventRaised = null;
         }
     }
+    public class ESOVoid : EventScriptableObject
+    {
+        public event Action OnEventRaised;
+
+        public void Raise()
+        {
+            OnEventRaised?.Invoke();
+        }
+
+        public override void Release()
+        {
+            OnEventRaised = null;
+        }
+    }
     
+    //[CreateAssetMenu(menuName = "ProjectBBF/Event/..", fileName = "New eso..")]
+    public abstract class EventListenerBase<TESO, TEvent>
+        : MonoBehaviour
+        where TEvent : IEvent
+        where TESO : ESOGeneric<TEvent>
+    {
+        [SerializeField] private TESO _eventChannel;
+        [SerializeField] private UnityEvent<TEvent> _response;
+
+        public TESO EventChannel => _eventChannel;
+        public UnityEvent<TEvent> Response => _response;
+
+        protected virtual void OnEnable()
+        {
+            if (EventChannel != null)
+            {
+                EventChannel.OnEventRaised += OnEventRaised;
+            }
+        }
+
+        protected virtual void OnDisable()
+        {
+            if (EventChannel != null)
+            {
+                EventChannel.OnEventRaised -= OnEventRaised;
+            }
+        }
+
+        public void OnEventRaised(TEvent evt)
+        {
+            Response?.Invoke(evt);
+        }
+    }
+    public abstract class EventListenerVoidBase<TESOVoid>
+        : MonoBehaviour
+        where TESOVoid : ESOVoid
+    {
+        [SerializeField] private TESOVoid _eventChannel;
+        [SerializeField] private UnityEvent<TESOVoid> _response;
+
+        public TESOVoid EventChannel => _eventChannel;
+        public UnityEvent<TESOVoid> Response => _response;
+
+        protected virtual void OnEnable()
+        {
+            if (EventChannel != null)
+            {
+                EventChannel.OnEventRaised += OnEventRaised;
+            }
+        }
+
+        protected virtual void OnDisable()
+        {
+            if (EventChannel != null)
+            {
+                EventChannel.OnEventRaised -= OnEventRaised;
+            }
+        }
+
+        public void OnEventRaised()
+        {
+            Response?.Invoke(EventChannel);
+        }
+    }
+
     public abstract class AsyncESO<T1> : EventScriptableObject
     {
         public event Action<T1> OnSignal;

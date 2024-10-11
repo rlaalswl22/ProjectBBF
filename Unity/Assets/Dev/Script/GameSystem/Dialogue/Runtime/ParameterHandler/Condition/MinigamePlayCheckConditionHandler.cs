@@ -15,7 +15,6 @@ namespace DS.Runtime
             var data = PersistenceManager.Instance.GetCachedPersistenceObj(ref key) as MinigamePersistenceObject;
             if (data is null)
             {
-                Debug.LogError($"등록되지 않은 미니게임({key})을 검사했습니다.");
                 return false;
             }
             

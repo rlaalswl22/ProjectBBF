@@ -9,13 +9,11 @@ using UnityEngine;
 
 public class FishingMinigameController : MinigameBase<FishingMinigameData>
 {
-    [SerializeField] private PolygonCollider2D _col;
     [SerializeField] private GameObject _uiPanel;
     [SerializeField] private TMP_Text _timeboard;
     [SerializeField] private SpriteRenderer _fishRenderer;
     [SerializeField] private ItemData _fishingRod;
 
-    private Collider2D _backupCol;
     private float _timer;
 
     private float Timer
@@ -36,10 +34,6 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
 
     protected override void OnGameInit()
     {
-        var confiner2D = Camera.main.GetComponent<CinemachineConfiner2D>();
-        _backupCol = confiner2D.m_BoundingShape2D;
-        confiner2D.m_BoundingShape2D = _col;
-        
         OnGameRelease();
 
         Player.Fishing.BindFishingController(this);
@@ -92,11 +86,6 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
     {
         base.OnPreGameEnd(isRequestEnd);
         
-        var confiner2D = Camera.main.GetComponent<CinemachineConfiner2D>();
-        confiner2D.m_BoundingShape2D = _backupCol;
-        _backupCol = null;
-
-
         if (Player.Inventory.Model.PopItem(_fishingRod))
         {
             Player.Inventory.Model.ApplyChanged();
