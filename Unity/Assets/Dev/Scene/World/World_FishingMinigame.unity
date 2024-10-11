@@ -155,10 +155,12 @@ MonoBehaviour:
   _scenes:
   - BMap_Fishing
   - DMap_Fishing
+  - DMap_FishingDetail
   ChildScenesToLoadConfig:
   - {fileID: 102900000, guid: 47d6654bc14a5e049b109f9e56dc6aa1, type: 3}
   - {fileID: 102900000, guid: fdbcf1678b30b3341b2bb859a30bb96a, type: 3}
   - {fileID: 102900000, guid: 55f2807e004eba847b05a25e733210d2, type: 3}
+  - {fileID: 102900000, guid: e2b0a9300f74e1949a96b990a30619ce, type: 3}
 --- !u!4 &847817603
 Transform:
   m_ObjectHideFlags: 0
