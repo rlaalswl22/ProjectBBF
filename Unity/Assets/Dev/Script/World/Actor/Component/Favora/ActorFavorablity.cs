@@ -7,7 +7,7 @@ using MyBox;
 using ProjectBBF.Event;
 using UnityEngine;
 
-public class ActorFavorablity: MonoBehaviour, IActorStrategy, IBADialogue
+public class ActorFavorablity: ActorComponent, IBADialogue
 {
     private Actor _actor;
     
@@ -40,7 +40,7 @@ public class ActorFavorablity: MonoBehaviour, IActorStrategy, IBADialogue
         };
     }
 
-    public void Init(Actor actor)
+    public override void Init(Actor actor)
     {
         _actor = actor;
         

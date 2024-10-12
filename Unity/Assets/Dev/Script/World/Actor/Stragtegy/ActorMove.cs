@@ -16,6 +16,7 @@ public class ActorMove : MonoBehaviour, IActorStrategy
     private CancellationTokenSource _moveCancel;
     
     public CollisionInteraction Interaction { get; private set; }
+    public bool IsMoving => _agent.desiredVelocity.sqrMagnitude > 0f;
     public void Init(Actor actor)
     {
         _agent = actor.GetComponent<NavMeshAgent>();
@@ -80,7 +81,7 @@ public class ActorMove : MonoBehaviour, IActorStrategy
                     }
                 }
 
-                _agent.SetDestination(pos);
+                bool success =_agent.SetDestination(pos);
                 _actor.Visual.LookAt(_agent.desiredVelocity, AnimationActorKey.Action.Move);
 
                 if (Vector2.Distance(_agent.transform.position, pos) <= _agent.stoppingDistance)

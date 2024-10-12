@@ -47,7 +47,7 @@ public class PatrollPointPathFinder : StateBehaviour
             _currentIndex++;
             if (path.PatrollPoints.Count <= _currentIndex)
             {
-                _currentIndex = 0;
+                _currentIndex = path.Loop is false ? path.PatrollPoints.Count - 1 : 0;
             }
 
             return path.PatrollPoints[_currentIndex.Value];

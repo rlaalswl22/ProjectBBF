@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using DS.Core;
 using ProjectBBF.Event;
 using ProjectBBF.Persistence;
@@ -53,7 +54,9 @@ public class MapDialogueEventReceiver : MonoBehaviour, IBADialogue
     {
         if (caller.Owner is PlayerController pc)
         {
-            _ = pc.Dialogue.RunDialogueFromInteraction(Interaction);
+            pc.StateHandler.TranslateState("ToDialogue");
+            _ = pc.Dialogue.RunDialogueFromInteraction(Interaction)
+                .ContinueWith(_ => pc.StateHandler.TranslateState("EndOfDialogue"));
         }
     }
 

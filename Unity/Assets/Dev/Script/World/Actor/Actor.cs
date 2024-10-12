@@ -36,7 +36,7 @@ public class Actor : MonoBehaviour, IBANameKey
 
     public Animator Animator => _animator;
 
-    public PatrolPointPath PatrolPath { get; private set; }
+    public PatrolPointPath PatrolPath { get; set; }
 
     public CollisionInteraction Interaction => _interaction;
 
@@ -46,7 +46,6 @@ public class Actor : MonoBehaviour, IBANameKey
     #region Strategy
     public ActorMove MoveStrategy { get; private set; }
     public ActorVisual Visual { get; private set; }
-    public ActorFavorablity Favorablity { get; private set; }
 
     public StateTransitionHandler TransitionHandler => _transitionHandler;
 
@@ -59,13 +58,10 @@ public class Actor : MonoBehaviour, IBANameKey
         MoveStrategy.Init(this);
         Visual = gameObject.AddComponent<ActorVisual>();
         Visual.Init(Animator, GetComponentInChildren<SpriteRenderer>());
-        Favorablity = gameObject.AddComponent<ActorFavorablity>();
-        Favorablity.Init(this);
         
         
         /* Collision interaction */
         var info = ActorContractInfo.Create(() => gameObject);
-        info.AddBehaivour<IBADialogue>(Favorablity);
         info.AddBehaivour<IBANameKey>(this);
         info.AddBehaivour<IBAStateTransfer>(_transitionHandler);
         
