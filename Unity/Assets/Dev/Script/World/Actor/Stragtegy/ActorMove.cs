@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using ProjectBBF.Event;
+using ProjectBBF.Persistence;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,9 +20,19 @@ public class ActorMove : MonoBehaviour, IActorStrategy
     public bool IsMoving => _agent.desiredVelocity.sqrMagnitude > 0f;
     public void Init(Actor actor)
     {
+        _actor = actor;
+        
+        
+        if (string.IsNullOrEmpty(_actor.ActorKey)) return;
+        var persistenceObj = PersistenceManager.Instance.LoadOrCreate<ActorPersistenceObject>(actor.SaveKey);
+        if(persistenceObj.SavedPosition)
+        {
+            actor.transform.position = persistenceObj.LastPosition;
+        }
+        
+        
         _agent = actor.GetComponent<NavMeshAgent>();
         _data = actor.MovementData;
-        _actor = actor;
         Interaction = actor.Interaction;
 
         UniTask.Create(async () =>
@@ -42,6 +53,15 @@ public class ActorMove : MonoBehaviour, IActorStrategy
         }).Forget();
         
         _moveCancel = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
+    }
+
+    private void OnDestroy()
+    {
+        if (string.IsNullOrEmpty(_actor.ActorKey)) return;
+        if (PersistenceManager.Instance == false) return;
+        var persistenceObj = PersistenceManager.Instance.LoadOrCreate<ActorPersistenceObject>(_actor.ActorKey);
+        persistenceObj.SavedPosition = true;
+        persistenceObj.LastPosition = _actor.transform.position;
     }
 
     public void ResetMove()

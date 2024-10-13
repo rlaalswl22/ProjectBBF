@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
+using ProjectBBF.Persistence;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,6 +15,26 @@ public class PatrollPointPathFinder : StateBehaviour
     private int? _currentIndex;
     private PatrolPointPath _before;
 
+    public bool IsInit { get; private set; }
+
+    private bool _loadFlag;
+
+    private ActorPersistenceObject _persistenceObject;
+
+    public void TryLoad(string saveKey)
+    {
+        if (IsInit) return;
+        IsInit = true;
+        
+        if (string.IsNullOrEmpty(saveKey)) return;
+        _persistenceObject = PersistenceManager.Instance.LoadOrCreate<ActorPersistenceObject>(saveKey);
+        if (_persistenceObject.PatrolPointIndex != 0)
+        {
+            _loadFlag = true;
+            _currentIndex = _persistenceObject.PatrolPointIndex;
+        }
+    }
+
 
     public void Reduce()
     {
@@ -22,16 +44,41 @@ public class PatrollPointPathFinder : StateBehaviour
         }
     }
 
+
+    private void OnDestroy()
+    {
+        if (_currentIndex is null) return;
+        if (PersistenceManager.Instance == false) return;
+
+        if (_persistenceObject is not null)
+        {
+            _persistenceObject.PatrolPointIndex = _currentIndex.Value;
+        }
+    }
+
     [CanBeNull]
     public PatrolPoint GetNextPoint(PatrolPointPath path)
     {
         if (path is null) return null;
-        if (_before != path)
+        if (_loadFlag)
         {
-            _currentIndex = null;
-            _before = path;
+            _loadFlag = false;
+
+            if (_currentIndex.HasValue && path.PatrollPoints.Count > _currentIndex.Value)
+            {
+                return path.PatrollPoints[_currentIndex.Value];
+            }
         }
         
+        if (_before != path)
+        {
+            if (_before != null)
+            {
+                _currentIndex = null;
+            }
+            _before = path;
+        }
+
         if (_currentIndex == null)
         {
             if (path.PatrollPoints.Any())
@@ -60,6 +107,7 @@ public class PatrollPointPathFinder : StateBehaviour
 public class PatrolPointPathFinderUnit : Unit
 {
     private ValueInput _vPatrollPointPath;
+    private ValueInput _vSaveKey;
     private ValueOutput _vPoint;
 
     private ControlInput _cStart;
@@ -70,17 +118,20 @@ public class PatrolPointPathFinderUnit : Unit
 
     private ControlOutput OnExecute(Flow flow)
     {
-        _lastPoint = BehaviourBinder.GetBinder(flow)
-            .GetBehaviour<PatrollPointPathFinder>()
-            .GetNextPoint(
-                flow.GetValue<PatrolPointPath>(_vPatrollPointPath)
-            );
-        
+        var behaviour = BehaviourBinder.GetBinder(flow)
+            .GetBehaviour<PatrollPointPathFinder>();
+
+        behaviour.TryLoad(flow.GetValue<string>(_vSaveKey));
+        _lastPoint = behaviour.GetNextPoint(
+            flow.GetValue<PatrolPointPath>(_vPatrollPointPath)
+        );
+
+
         if (_lastPoint is null)
         {
             return null;
         }
-        
+
         return _cOutput;
     }
 
@@ -97,6 +148,7 @@ public class PatrolPointPathFinderUnit : Unit
     protected override void Definition()
     {
         _vPatrollPointPath = ValueInput<PatrolPointPath>("Patrol point path");
+        _vSaveKey = ValueInput<string>("actor save key");
         _vPoint = ValueOutput("Patrol point", x => _lastPoint);
 
         _cOutput = ControlOutput("");

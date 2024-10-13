@@ -7,15 +7,11 @@ using MyBox;
 using ProjectBBF.Event;
 using UnityEngine;
 
-public class ActorFavorablity: ActorComponent, IBADialogue
+public class ActorFavorablity: ActorComFavorability
 {
-    private Actor _actor;
-    
-    public CollisionInteraction Interaction => _actor.Interaction;
-
     public FavorablityContainer FavorablityContainer { get; private set; }
     
-    public DialogueEvent DequeueDialogueEvent()
+    public override DialogueEvent DequeueDialogueEvent()
     {
         // TODO: 테스트 코드
         if (FavorablityContainer.Event.EventItems.Count == 0) return DialogueEvent.Empty;
@@ -28,7 +24,7 @@ public class ActorFavorablity: ActorComponent, IBADialogue
         };
     }
 
-    public DialogueEvent PeekDialogueEvent()
+    public override DialogueEvent PeekDialogueEvent()
     {
         // TODO: 테스트 코드
         if (FavorablityContainer.Event.EventItems.Count == 0) return DialogueEvent.Empty;
@@ -42,7 +38,7 @@ public class ActorFavorablity: ActorComponent, IBADialogue
 
     public override void Init(Actor actor)
     {
-        _actor = actor;
+        base.Init(actor);
         
         if (ActorDataManager.Instance.CachedDict.TryGetValue(actor.ActorKey, out var data))
         {

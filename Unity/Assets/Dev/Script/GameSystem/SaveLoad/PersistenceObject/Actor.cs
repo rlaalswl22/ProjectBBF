@@ -4,9 +4,12 @@ using UnityEngine;
 namespace ProjectBBF.Persistence
 {
     [System.Serializable]
-    public class Favorability
+    public class ActorPersistenceObject
     {
-        public int CurrentFavorability;
-        public List<string> ExecutedDialogueGuid;
+        [DoNotEditable] public bool SavedPosition;
+        public Vector3 LastPosition;
+
+        public PatrolPointPath LastPath;
+        public int PatrolPointIndex;
     }
 }

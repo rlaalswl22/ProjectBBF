@@ -6,6 +6,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using MyBox;
 using ProjectBBF.Event;
+using ProjectBBF.Persistence;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +16,8 @@ public class Actor : MonoBehaviour, IBANameKey
 {
     [field: SerializeField, Foldout("데이터"), MustBeAssigned, InitializationField]
     private string _actorKey;
+    [field: SerializeField, Foldout("데이터"), MustBeAssigned, InitializationField]
+    private string _saveKey;
     [field: SerializeField, Foldout("데이터")] private ActorMovementData _movementData;
 
     
@@ -41,6 +44,9 @@ public class Actor : MonoBehaviour, IBANameKey
     public CollisionInteraction Interaction => _interaction;
 
     public string ActorKey => _actorKey;
+
+    public string SaveKey => _saveKey;
+
     #endregion
 
     #region Strategy
@@ -82,10 +88,24 @@ public class Actor : MonoBehaviour, IBANameKey
                 com.Init(this);
             }
         }
+
+        if (string.IsNullOrEmpty(SaveKey)) return;
+        var persistenceObj = PersistenceManager.Instance.LoadOrCreate<ActorPersistenceObject>(SaveKey);
+        if(persistenceObj.LastPath)
+        {
+            PatrolPath = persistenceObj.LastPath;
+        }
+
     }
 
     protected virtual void OnDestroy()
     {
+        if (string.IsNullOrEmpty(SaveKey) is false && PersistenceManager.Instance)
+        {
+            var persistenceObj = PersistenceManager.Instance.LoadOrCreate<ActorPersistenceObject>(SaveKey);
+            persistenceObj.LastPath = PatrolPath;
+        }
+        
         if (GameObjectStorage.Instance == false) return;
         GameObjectStorage.Instance.RemoveGameObject(gameObject);
     }

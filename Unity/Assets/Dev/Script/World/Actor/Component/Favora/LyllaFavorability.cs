@@ -2,6 +2,7 @@
 
 
 
+using System;
 using System.Collections.Generic;
 using DS.Core;
 using ProjectBBF.Persistence;
@@ -39,7 +40,12 @@ public class LyllaFavorability : ActorComFavorability
             _persistenceObject._indexTable.Add(_chapterKey, 0);
         }
     }
-        
+
+    private void OnDestroy()
+    {
+        _persistenceObject._indexTable[_chapterKey] = _index;
+    }
+
     public override DialogueEvent DequeueDialogueEvent()
     {
         IReadOnlyList<FavorabilityEventItem> events =  FavorabilityData.FavorabilityEvent.EventItems;
