@@ -1594,6 +1594,8 @@ MonoBehaviour:
   _slotViewPrefab: {fileID: 2577744404889178079, guid: ec072582a6044c04e9aa82edd4a88981, type: 3}
   _content: {fileID: 6689411031137466911}
   _exitBtn: {fileID: 497133469012386362}
+  _closeEvent: {fileID: 11400000, guid: d400863343bf5494b8dca5276d4d997f, type: 2}
+  _closeReadyEvent: {fileID: 11400000, guid: f11db7ef5f818c64eb8184ae5b32d976, type: 2}
 --- !u!1 &8297688030251295946
 GameObject:
   m_ObjectHideFlags: 0

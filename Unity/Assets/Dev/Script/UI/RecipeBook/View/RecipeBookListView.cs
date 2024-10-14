@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ProjectBBF.Event;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,9 @@ public class RecipeBookListView : MonoBehaviour
     [SerializeField] private GameObject _slotViewPrefab;
     [SerializeField] private Transform _content;
     [SerializeField] private Button _exitBtn;
+
+    [SerializeField] private ESOVoid _closeEvent;
+    [SerializeField] private ESOVoid _closeReadyEvent;
     
     public event Action<object> OnSlotClick;
     public event Action OnExit;
@@ -19,15 +23,34 @@ public class RecipeBookListView : MonoBehaviour
 
     public List<RecipeBookSlotView> Slots => _slots;
 
+    private bool _canCloseEventRaise;
+
     public bool Visible
     {
         get => gameObject.activeSelf;
-        set => gameObject.SetActive(value);
+        set
+        {
+            gameObject.SetActive(value);
+
+            if (_canCloseEventRaise && value is false && _closeEvent)
+            {
+                _canCloseEventRaise = false;
+                _closeEvent.Raise();
+            }
+        }
+    }
+
+    private void OnEventReady()
+    {
+        _canCloseEventRaise = true;
     }
     
     private void Awake()
     {
         Visible = !_awakeAndDisable;
+
+        if(_closeReadyEvent)
+            _closeReadyEvent.OnEventRaised += OnEventReady;
 
         _exitBtn.onClick.AddListener(() =>
         {
@@ -48,6 +71,10 @@ public class RecipeBookListView : MonoBehaviour
             slot.OnClick -= OnSlotClick;
         }
         _slots.Clear();
+        
+
+        if(_closeReadyEvent)
+            _closeReadyEvent.OnEventRaised -= OnEventReady;
     }
 
     private RecipeBookSlotView CreateSlotView()

@@ -16,7 +16,7 @@ public class Actor : MonoBehaviour, IBANameKey
 {
     [field: SerializeField, Foldout("데이터"), MustBeAssigned, InitializationField]
     private string _actorKey;
-    [field: SerializeField, Foldout("데이터"), MustBeAssigned, InitializationField]
+    [field: SerializeField, Foldout("데이터"), InitializationField]
     private string _saveKey;
     [field: SerializeField, Foldout("데이터")] private ActorMovementData _movementData;
 

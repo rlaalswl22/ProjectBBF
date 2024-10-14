@@ -17,16 +17,35 @@ MonoBehaviour:
   - BaseNodeGuid: f1fe9fd3-5ed6-4b52-91a2-5c8d05854a67
     PortName: Execute
     TargetNodeGuid: fe6447ab-ecd5-4fc6-8ed4-d2a2ff647856
+  - BaseNodeGuid: d8b837fa-7357-45a1-a500-389d5200c966
+    PortName: Next
+    TargetNodeGuid: 7bb2c306-be67-4a2b-aeaf-a802ac0b22f8
   - BaseNodeGuid: fe6447ab-ecd5-4fc6-8ed4-d2a2ff647856
     PortName: Next
     TargetNodeGuid: d8b837fa-7357-45a1-a500-389d5200c966
   NodeData:
-  - rid: 2427336027129249794
-  - rid: 2427336027129249795
+  - rid: 2427336073050587136
+  - rid: 2427336073050587137
+  - rid: 2427336073050587138
   references:
     version: 2
     RefIds:
-    - rid: 2427336027129249794
+    - rid: 2427336073050587136
+      type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 7bb2c306-be67-4a2b-aeaf-a802ac0b22f8
+        NodeTitle: Execution
+        TypeName: Execution
+        Position: {x: 1153.3334, y: 172}
+        Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
+        Warps:
+        - Target: Object
+          IntValue: 0
+          FloatValue: 0
+          StringValue: 
+          ObjectValue: {fileID: 11400000, guid: f11db7ef5f818c64eb8184ae5b32d976, type: 2}
+          BoolValue: 0
+    - rid: 2427336073050587137
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d8b837fa-7357-45a1-a500-389d5200c966
@@ -41,7 +60,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 6010ffe43e789b340bf5bc8706780ecc, type: 2}
           BoolValue: 0
-    - rid: 2427336027129249795
+    - rid: 2427336073050587138
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: fe6447ab-ecd5-4fc6-8ed4-d2a2ff647856

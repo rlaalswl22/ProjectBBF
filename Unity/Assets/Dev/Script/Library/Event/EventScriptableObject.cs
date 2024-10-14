@@ -31,20 +31,6 @@ namespace ProjectBBF.Event
             OnEventRaised = null;
         }
     }
-    public class ESOVoid : EventScriptableObject
-    {
-        public event Action OnEventRaised;
-
-        public void Raise()
-        {
-            OnEventRaised?.Invoke();
-        }
-
-        public override void Release()
-        {
-            OnEventRaised = null;
-        }
-    }
     
     //[CreateAssetMenu(menuName = "ProjectBBF/Event/..", fileName = "New eso..")]
     public abstract class EventListenerBase<TESO, TEvent>
