@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed507e00ab63144f976694caab7934e, type: 3}
+  m_Name: Dialogue_Chapter_03_51_Judging
+  m_EditorClassIdentifier: 
+  _guid: 4b515d8267c5bb7438515377e5c3c863
+  NodeLinks:
+  - BaseNodeGuid: 7c32217a-cb22-4bc0-a83f-2c9c1e5c30e0
+    PortName: Execute
+    TargetNodeGuid: 5471ca39-334a-4bc4-99a3-85909cdc07e5
+  - BaseNodeGuid: 23ee3521-97ba-476b-8422-5e2c17fad149
+    PortName: Next
+    TargetNodeGuid: b0374444-709e-4558-9e82-dc0a3dbaea9a
+  - BaseNodeGuid: 4d67c6f6-8fe3-4783-a176-74450082f2b1
+    PortName: Next
+    TargetNodeGuid: c502aa9a-358e-4bcf-8e2c-11df40307193
+  - BaseNodeGuid: 5471ca39-334a-4bc4-99a3-85909cdc07e5
+    PortName: Next
+    TargetNodeGuid: e0a2ad83-b38b-4720-8053-5fcec1c2ffa2
+  - BaseNodeGuid: c502aa9a-358e-4bcf-8e2c-11df40307193
+    PortName: Next
+    TargetNodeGuid: 23ee3521-97ba-476b-8422-5e2c17fad149
+  - BaseNodeGuid: d72e5b3e-43bd-461c-9631-3cb8c8457b02
+    PortName: Next
+    TargetNodeGuid: 4d67c6f6-8fe3-4783-a176-74450082f2b1
+  NodeData:
+  - rid: 1818508997039751237
+  - rid: 1818508997039751238
+  - rid: 1818508997039751239
+  - rid: 1818508997039751240
+  - rid: 1818508997039751241
+  - rid: 1818508997039751242
+  - rid: 1818508997039751243
+  references:
+    version: 2
+    RefIds:
+    - rid: 1818508997039751237
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 23ee3521-97ba-476b-8422-5e2c17fad149
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1547, y: 425}
+        DialogueText: "\uAC01\uC790 \uC790\uC2E0\uC758 \uAE30\uB7C9\uC744 \uCD5C\uB300\uD55C\uC73C\uB85C
+          \uBF51\uB0B4\uC11C \uCD5C\uACE0\uC758 \uBE75\uC744 \uB9CC\uB4DC\uC2DC\uAE38
+          \uBC14\uB780\uB2E4!"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 1818508997039751238
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 4d67c6f6-8fe3-4783-a176-74450082f2b1
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 684, y: 425}
+        DialogueText: "\uB2E8 \uC774\uBC88\uC5D0\uB294 \uD55C\uAC00\uC9C0 \uC81C\uD55C\uC774
+          \uC874\uC7AC\uD55C\uB2E4!"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 1818508997039751239
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 5471ca39-334a-4bc4-99a3-85909cdc07e5
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 276, y: 191}
+        DialogueText: "\uC774\uBC88 \uC2EC\uC0AC\uAE30\uC900\uC740 \uB9DB\uB3C4 \uC911\uC694\uD558\uC9C0\uB9CC
+          \uD2B9\uC0B0\uBB3C\uC744 \uC5BC\uB9C8\uB098 \uC798 \uC0B4\uB824\uB294\uC9C0\uB97C
+          \uBCF4\uACA0\uC5B4!"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 1818508997039751240
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: b0374444-709e-4558-9e82-dc0a3dbaea9a
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 2074, y: 425}
+        DialogueText: "\uB9C8\uC9C0\uB9C9\uAE4C\uC9C0 \uD589\uC6B4\uC744 \uBE4C\uACA0\uB2E4!"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 1818508997039751241
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: c502aa9a-358e-4bcf-8e2c-11df40307193
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1077, y: 425}
+        DialogueText: "\uC81C\uD55C\uC2DC\uAC04 100\uBD84\uC548\uC5D0 \uCD5C\uACE0\uC758
+          \uBE75\uC744 \uB9CC\uB4E4\uC5B4 \uC8FC\uC2DC\uBA74 \uB418\uACA0\uC2B5\uB2C8\uB2E4"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 1818508997039751242
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: d72e5b3e-43bd-461c-9631-3cb8c8457b02
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 182, y: 425}
+        DialogueText: "\uC774\uBC88 \uB9C8\uC9C0\uB9C9 \uACB0\uC2B9 \uC8FC\uC81C\uB294
+          \uC790\uC2E0\uC774 \uB9CC\uB4E4 \uC218 \uC788\uB294 \uCD5C\uACE0\uC758
+          \uBE75\uC744 \uB9CC\uB4DC\uB294 \uAC83!"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 1818508997039751243
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: e0a2ad83-b38b-4720-8053-5fcec1c2ffa2
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 827, y: 191}
+        DialogueText: "\uC774\uBC88 \uD328\uC790\uBD80\uD65C\uC804\uC5D0 \uC0DD\uC874\uC790\uB294!"
+        PortraitKey: 
+        ActorKey: 

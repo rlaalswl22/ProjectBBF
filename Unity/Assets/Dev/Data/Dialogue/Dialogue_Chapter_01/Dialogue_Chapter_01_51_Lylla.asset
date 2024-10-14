@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed507e00ab63144f976694caab7934e, type: 3}
+  m_Name: Dialogue_Chapter_01_51_Lylla
+  m_EditorClassIdentifier: 
+  _guid: cfa590068bb5b2f4186666d6afa3d39e
+  NodeLinks:
+  - BaseNodeGuid: 7c32217a-cb22-4bc0-a83f-2c9c1e5c30e0
+    PortName: Execute
+    TargetNodeGuid: 260a18ec-f323-4ca4-a5c3-746ac39d66aa
+  NodeData:
+  - rid: 1818508997039751173
+  references:
+    version: 2
+    RefIds:
+    - rid: 1818508997039751173
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 260a18ec-f323-4ca4-a5c3-746ac39d66aa
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 200, y: 200}
+        DialogueText: "\uC624! \uC804\uBD80 \uC88B\uC740 \uC7AC\uB8CC\uC778\uAC70
+          \uAC19\uB2E4\uB0E5!<br>\uADF8\uB7FC \uBE75\uC744 \uB9CC\uB4E4\uC218 \uC788\uB294
+          \uACF3\uC744 \uC54C\uB824 \uC8FC\uACA0\uB2E4\uB0E5!"
+        PortraitKey: 
+        ActorKey: 
