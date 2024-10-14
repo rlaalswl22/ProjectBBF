@@ -18,17 +18,17 @@ MonoBehaviour:
     PortName: Execute
     TargetNodeGuid: 5465fcda-80c8-416d-93a1-44b6f2691c67
   NodeData:
-  - rid: 7386576351117967458
+  - rid: 1818508995183771698
   references:
     version: 2
     RefIds:
-    - rid: 7386576351117967458
+    - rid: 1818508995183771698
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 5465fcda-80c8-416d-93a1-44b6f2691c67
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 301.33334, y: 164}
+        Position: {x: 301, y: 164}
         DialogueText: "\uC548\uB155\uD788\uACC4\uC138\uC694!!"
         PortraitKey: TEST_PORT_0
         ActorKey: Dummy

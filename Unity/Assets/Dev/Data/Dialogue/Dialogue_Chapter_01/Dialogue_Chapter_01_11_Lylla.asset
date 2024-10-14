@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed507e00ab63144f976694caab7934e, type: 3}
+  m_Name: Dialogue_Chapter_01_11_Lylla
+  m_EditorClassIdentifier: 
+  _guid: b62105eb848869e428bd54f03626d90b
+  NodeLinks:
+  - BaseNodeGuid: 4c8b7e44-ca5a-4570-9bce-e61fb2e653f6
+    PortName: Execute
+    TargetNodeGuid: aa6559ce-c7a3-48e5-a932-448d309e2259
+  - BaseNodeGuid: 6805f439-7285-44c5-b633-ffc317d89573
+    PortName: Next
+    TargetNodeGuid: 45c4c421-a1fd-48e2-a9fe-6908dbe8bd89
+  - BaseNodeGuid: aa6559ce-c7a3-48e5-a932-448d309e2259
+    PortName: Next
+    TargetNodeGuid: 6805f439-7285-44c5-b633-ffc317d89573
+  NodeData:
+  - rid: 1818508997039751168
+  - rid: 1818508997039751169
+  - rid: 1818508997039751170
+  references:
+    version: 2
+    RefIds:
+    - rid: 1818508997039751168
+      type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 45c4c421-a1fd-48e2-a9fe-6908dbe8bd89
+        NodeTitle: Execution
+        TypeName: Execution
+        Position: {x: 1345, y: 207}
+        Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
+        Warps:
+        - Target: Object
+          IntValue: 0
+          FloatValue: 0
+          StringValue: 
+          ObjectValue: {fileID: 11400000, guid: f11db7ef5f818c64eb8184ae5b32d976, type: 2}
+          BoolValue: 0
+    - rid: 1818508997039751169
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 6805f439-7285-44c5-b633-ffc317d89573
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 720, y: 207}
+        DialogueText: "\uADF8\uB7FC \uBA3C\uC800 \uC5B4\uB5A4 \uC7AC\uB8CC\uAC00
+          \uD544\uC694\uD55C\uC9C0 \uC54C\uC544\uC57C \uD55C\uB2E4 \uB0E5!<br>R\uD0A4\uB97C
+          \uB20C\uB7EC \uB808\uC2DC\uD53C \uBD81\uC744 \uD3BC\uCCD0 \uBCF4\uB77C
+          \uB0E5!"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 1818508997039751170
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: aa6559ce-c7a3-48e5-a932-448d309e2259
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 260, y: 207}
+        DialogueText: "\uC77C\uB2E8 \uBE75\uC744 \uB9CC\uB4E4\uAE30 \uC704\uD574
+          \uD544\uC694\uD55C \uC7AC\uB8CC\uB97C \uC218\uAE09\uD558\uB7EC \uAC08\uAC70\uB2E4\uB0E5!"
+        PortraitKey: 
+        ActorKey: 
