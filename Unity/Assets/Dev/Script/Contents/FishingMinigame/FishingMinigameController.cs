@@ -12,7 +12,6 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
     [SerializeField] private GameObject _uiPanel;
     [SerializeField] private TMP_Text _timeboard;
     [SerializeField] private SpriteRenderer _fishRenderer;
-    [SerializeField] private ItemData _fishingRod;
 
     private float _timer;
 
@@ -46,8 +45,6 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
         }
 
         _fishRenderer.enabled = false;
-
-        Player.Inventory.Model.PushItem(_fishingRod, 1);
     }
 
     protected override async UniTask OnTutorial()
@@ -85,11 +82,6 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
     protected override void OnPreGameEnd(bool isRequestEnd)
     {
         base.OnPreGameEnd(isRequestEnd);
-        
-        if (Player.Inventory.Model.PopItem(_fishingRod))
-        {
-            Player.Inventory.Model.ApplyChanged();
-        }
     }
 
     public FishingContext CreateContext()

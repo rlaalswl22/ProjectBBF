@@ -122,7 +122,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &847817601
+--- !u!1 &46272314
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,8 +130,68 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 847817603}
-  - component: {fileID: 847817602}
+  - component: {fileID: 46272317}
+  - component: {fileID: 46272316}
+  - component: {fileID: 46272315}
+  m_Layer: 0
+  m_Name: VisualScripting SceneVariables
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &46272315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46272314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765181c9ef4b24d32a4f7cbd2ef370dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &46272316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46272314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"declarations":{"Kind":"Scene","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
+    _objectReferences: []
+--- !u!4 &46272317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46272314}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1654789069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1654789071}
+  - component: {fileID: 1654789070}
   m_Layer: 0
   m_Name: SceneMerger
   m_TagString: Untagged
@@ -139,13 +199,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &847817602
+--- !u!114 &1654789070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847817601}
+  m_GameObject: {fileID: 1654789069}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51158af71664a7e4384a9f63d57166eb, type: 3}
@@ -153,24 +213,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadImmutableScene: 1
   _scenes:
-  - BMap_Fishing
-  - DMap_Fishing
-  - DMap_FishingDetail
+  - BMap_Festival
+  - BMap_FestivalDetail
+  - DMap_Chapter_1
+  - DMap_Bakery
   ChildScenesToLoadConfig:
-  - {fileID: 102900000, guid: 47d6654bc14a5e049b109f9e56dc6aa1, type: 3}
-  - {fileID: 102900000, guid: fdbcf1678b30b3341b2bb859a30bb96a, type: 3}
-  - {fileID: 102900000, guid: 55f2807e004eba847b05a25e733210d2, type: 3}
-  - {fileID: 102900000, guid: e2b0a9300f74e1949a96b990a30619ce, type: 3}
---- !u!4 &847817603
+  - {fileID: 102900000, guid: 6727947fc9648b64894e94a97d42ae24, type: 3}
+  - {fileID: 102900000, guid: 3d8ff6aa079a0fc41b7d8ed37c3f4314, type: 3}
+  - {fileID: 102900000, guid: 5d1b86af68f271f4283e16aa257790ff, type: 3}
+  - {fileID: 102900000, guid: b4cd806b7dae45045a8beb22130c9072, type: 3}
+  - {fileID: 102900000, guid: 2bd3874c7ffabed4bb6c4c117bf20eda, type: 3}
+--- !u!4 &1654789071
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847817601}
+  m_GameObject: {fileID: 1654789069}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.328124, y: 4.219078, z: 0.3216588}
+  m_LocalPosition: {x: -25.49, y: -6.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -180,4 +242,5 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 847817603}
+  - {fileID: 1654789071}
+  - {fileID: 46272317}

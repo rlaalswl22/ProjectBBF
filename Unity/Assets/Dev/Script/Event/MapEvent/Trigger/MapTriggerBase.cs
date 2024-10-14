@@ -2,10 +2,13 @@ using System;
 using MyBox;
 using ProjectBBF.Event;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CollisionInteraction))]
 public class MapTriggerBase : MonoBehaviour
 {
+    [SerializeField] private UnityEvent OnTriggerEvent;
+    
     [field: SerializeField, AutoProperty] 
     private CollisionInteraction _interaction;
 
@@ -17,6 +20,7 @@ public class MapTriggerBase : MonoBehaviour
     protected void Trigger(CollisionInteractionMono caller)
     {
         OnTrigger?.Invoke(caller);
+        OnTriggerEvent?.Invoke();
     }
 
     protected virtual void Awake()

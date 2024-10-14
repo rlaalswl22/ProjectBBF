@@ -13,6 +13,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
     [SerializeField] private Image _fillImage;
     [SerializeField] private Transform _playPoint;
     [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private ESOVoid _esoSuccess;
 
     private void Start()
     {
@@ -145,6 +146,9 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         {
             pc.RecipeBookPresenter.Model.Add(tuple.recipeData.Key);
         }
+        
+        if(_esoSuccess)
+            _esoSuccess.Raise();
         
         ClearBucket();
     }

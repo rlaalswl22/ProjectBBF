@@ -15,7 +15,11 @@ namespace DS.Runtime
 
             var blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
 
-            blackboard.Inventory.Model.PushItem(arg0, arg1);
+            bool success = blackboard.Inventory.Model.PushItem(arg0, arg1);
+            if (success)
+            {
+                blackboard.Inventory.Model.ApplyChanged();
+            }
 
             return null;
         }

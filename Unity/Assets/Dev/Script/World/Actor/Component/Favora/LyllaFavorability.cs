@@ -16,6 +16,7 @@ public class LyllaFavorability : ActorComFavorability
     [SerializeField] private DialogueContainer _arriveDialogue;
     [SerializeField] private ESOVoid _esoMoveNextLock;
     [SerializeField] private ESOVoid _esoMoveNextUnlock;
+    [SerializeField] private ESOVoid _EsoMovePrev;
     [SerializeField] private string _chapterKey;
     
     private const string _PERSISTENCE_KEY = "LyllaFavorability";
@@ -47,6 +48,12 @@ public class LyllaFavorability : ActorComFavorability
 
         _esoMoveNextUnlock.OnEventRaised += OnUnlock;
         _esoMoveNextLock.OnEventRaised += OnLock;
+        _EsoMovePrev.OnEventRaised += OnMovePrev;
+    }
+
+    private void OnMovePrev()
+    {
+        _index = Mathf.Max(0, _index - 1);
     }
 
     private void OnDestroy()
@@ -97,7 +104,7 @@ public class LyllaFavorability : ActorComFavorability
         {
             return new DialogueEvent()
             {
-                Container = _arriveDialogue,
+                Container = _arriveDialogue ?? events[^1].Container,
                 Type = DialogueBranchType.Dialogue
             };
         }

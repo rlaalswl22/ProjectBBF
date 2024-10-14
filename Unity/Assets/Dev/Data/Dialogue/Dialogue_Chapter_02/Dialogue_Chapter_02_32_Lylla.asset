@@ -16,50 +16,73 @@ MonoBehaviour:
   NodeLinks:
   - BaseNodeGuid: 7c32217a-cb22-4bc0-a83f-2c9c1e5c30e0
     PortName: Execute
-    TargetNodeGuid: bbd1a369-54b3-45fb-8b41-489440efcb9c
+    TargetNodeGuid: 139f621d-31cc-4f46-9898-c3fca1949cc6
   - BaseNodeGuid: 139f621d-31cc-4f46-9898-c3fca1949cc6
     PortName: Next
     TargetNodeGuid: da93c142-7cb2-4b86-91c6-da98d231b01d
-  - BaseNodeGuid: bbd1a369-54b3-45fb-8b41-489440efcb9c
+  - BaseNodeGuid: 74baefb1-8db7-4353-b543-395ce677c8dd
     PortName: Next
-    TargetNodeGuid: 139f621d-31cc-4f46-9898-c3fca1949cc6
+    TargetNodeGuid: a7355689-02f3-4679-8489-ade5d64bd731
+  - BaseNodeGuid: da93c142-7cb2-4b86-91c6-da98d231b01d
+    PortName: Next
+    TargetNodeGuid: 74baefb1-8db7-4353-b543-395ce677c8dd
   NodeData:
-  - rid: 1818508997039751199
-  - rid: 1818508997039751200
-  - rid: 1818508997039751201
+  - rid: 2427336073050587425
+  - rid: 2427336073050587426
+  - rid: 2427336073050587427
+  - rid: 2427336073050587428
   references:
     version: 2
     RefIds:
-    - rid: 1818508997039751199
+    - rid: 2427336073050587425
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 139f621d-31cc-4f46-9898-c3fca1949cc6
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 661, y: 200}
+        Position: {x: 295.33334, y: 200}
         DialogueText: "\uAD6C\uC6B4 \uBE75\uACFC \uC7AC\uB8CC\uB97C \uAC00\uC9C0\uACE0
           \uC5F0\uC131 \uD14C\uC774\uBE14\uB85C \uAC00\uC838\uAC00 \uC5F0\uC131\uC744
           \uD558\uBA74\uB41C\uB2E4 \uB0E5!"
         PortraitKey: 
         ActorKey: 
-    - rid: 1818508997039751200
-      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+    - rid: 2427336073050587426
+      type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
-        GUID: bbd1a369-54b3-45fb-8b41-489440efcb9c
-        NodeTitle: Text
-        TypeName: Text
-        Position: {x: 213, y: 200}
-        DialogueText: "\uC774\uBC88\uC5D0\uB294 \uBE75\uC744 \uC5F0\uC131\uD558\uB294
-          \uBC29\uBC95\uC744 \uC54C\uB824\uC8FC\uACA0\uB2E4 \uB0E5!"
-        PortraitKey: 
-        ActorKey: 
-    - rid: 1818508997039751201
+        GUID: 74baefb1-8db7-4353-b543-395ce677c8dd
+        NodeTitle: Execution
+        TypeName: Execution
+        Position: {x: 1350, y: 200}
+        Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
+        Warps:
+        - Target: Object
+          IntValue: 0
+          FloatValue: 0
+          StringValue: 
+          ObjectValue: {fileID: 11400000, guid: cf2fd3e3bd553c14d89683ae683008e7, type: 2}
+          BoolValue: 0
+    - rid: 2427336073050587427
+      type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: a7355689-02f3-4679-8489-ade5d64bd731
+        NodeTitle: Execution
+        TypeName: Execution
+        Position: {x: 1843.3334, y: 200}
+        Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
+        Warps:
+        - Target: Object
+          IntValue: 0
+          FloatValue: 0
+          StringValue: 
+          ObjectValue: {fileID: 11400000, guid: 6a8bd1a99b18c664796d2b77b02f8a6e, type: 2}
+          BoolValue: 0
+    - rid: 2427336073050587428
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: da93c142-7cb2-4b86-91c6-da98d231b01d
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1201, y: 200}
+        Position: {x: 865.3333, y: 200}
         DialogueText: "\uC544! \uBC18\uC8FD\uC7AC\uB8CC\uB294 \uB0B4\uAC00 \uC0C1\uC790\uC5D0
           \uC900\uBE44\uD574 \uB480\uB2E4\uB0E5!"
         PortraitKey: 

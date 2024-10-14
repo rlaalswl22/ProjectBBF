@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 22100000, guid: 0731cd313b389774a88182b0e2558cf4, type: 2}
     - target: {fileID: 938820693320806241, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.47
+      value: 13.36
       objectReference: {fileID: 0}
     - target: {fileID: 938820693320806241, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.78
+      value: -15.98
       objectReference: {fileID: 0}
     - target: {fileID: 938820693320806241, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -59,6 +59,14 @@ PrefabInstance:
     - target: {fileID: 3358667785332266060, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
       propertyPath: m_Speed
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6694115529256732025, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
+      propertyPath: _saveKey
+      value: Pirene_Chapter_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6694115529256732025, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
+      propertyPath: _actorKey
+      value: Pirene_Chapter_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

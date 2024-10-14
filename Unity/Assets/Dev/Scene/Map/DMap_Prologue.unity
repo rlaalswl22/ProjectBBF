@@ -258,6 +258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49bc8b926ef3ad499a45b4da743e362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTriggerEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _interaction: {fileID: 174119884}
 --- !u!114 &174119884
 MonoBehaviour:
@@ -736,6 +739,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49bc8b926ef3ad499a45b4da743e362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTriggerEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _interaction: {fileID: 1476568878}
 --- !u!114 &1476568878
 MonoBehaviour:
@@ -1069,6 +1075,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1503bb19ec2ce429149db1a316d8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTriggerEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _interaction: {fileID: 1822826642}
   _esoVoid: {fileID: 11400000, guid: d400863343bf5494b8dca5276d4d997f, type: 2}
 --- !u!114 &1822826642

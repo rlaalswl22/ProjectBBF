@@ -13,6 +13,7 @@ using UnityEngine.UI;
 public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 {
     [SerializeField] private AudioSource _source;
+    [SerializeField] private ESOVoid _esoSuccess;
     
     [SerializeField] private float _roundTripInterval;
     [SerializeField] private Transform _playPoint;
@@ -229,6 +230,11 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         
         bool success = pc.Inventory.Model.PushItem(tuple.resultItem, 1);
         ClearBucket();
+
+        if (_esoSuccess)
+        {
+            _esoSuccess.Raise();
+        }
     }
     private void GameFail((ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipe)tuple, PlayerController pc)
     {
