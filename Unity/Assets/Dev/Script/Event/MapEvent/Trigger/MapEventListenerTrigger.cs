@@ -14,15 +14,15 @@ public class MapEventListenerTrigger : MapTriggerBase
     {
         base.Awake();
 
-        _esoVoid.OnEventRaised += OnTrigger;
+        _esoVoid.OnEventRaised += OnTriggerEvent;
     }
 
     private void OnDestroy()
     {
-        _esoVoid.OnEventRaised -= OnTrigger;
+        _esoVoid.OnEventRaised -= OnTriggerEvent;
     }
 
-    private void OnTrigger()
+    private void OnTriggerEvent()
     {
         var player = GameObjectStorage.Instance.StoredObjects.FirstOrDefault(x => x.CompareTag("Player"));
 
