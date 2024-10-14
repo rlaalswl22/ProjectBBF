@@ -74,6 +74,6 @@ public class PlayerBlackboard
     public int Money
     {
         get => _money;
-        set => _money = value;
+        set => _money = Mathf.Clamp(value, 0, int.MaxValue);
     }
 }

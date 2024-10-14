@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DS.Core;
+using JetBrains.Annotations;
+using ProjectBBF.Event;
 using ProjectBBF.Persistence;
 using UnityEngine;
 using UnityEngine.Events;
@@ -38,6 +40,7 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal, IMi
     [SerializeField] private bool _moveToPlayerPosOutGame = true;
 
     [SerializeField] private UnityEvent OnMinigameEnd;
+    [SerializeField] private List<ESOVoid> OnESOMinigameEnd;
 
     public T Data => _data;
 
@@ -190,6 +193,13 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal, IMi
             _persistenceObject.IsPlaying = false;
 
             OnMinigameEnd?.Invoke();
+            foreach (var eso in OnESOMinigameEnd)
+            {
+                if (eso)
+                {
+                    eso.Raise();
+                }
+            }
         }
         catch (Exception e)when (e is not OperationCanceledException)
         {

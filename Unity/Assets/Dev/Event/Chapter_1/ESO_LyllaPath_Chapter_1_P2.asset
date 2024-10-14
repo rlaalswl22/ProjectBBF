@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6780d0ee07b34a7c96e7a865461cf924, type: 3}
-  m_Name: Dat_Movement_Pirene
+  m_Script: {fileID: 11500000, guid: 6970eee285684553b29446b4a67c2fba, type: 3}
+  m_Name: ESO_LyllaPath_Chapter_1_P2
   m_EditorClassIdentifier: 
-  _movementSpeed: 3
-  _paths: []
+  _patrolPointPathGameObject: {fileID: 7778844057589762886, guid: d6b991e458438e244878726033e1b0f3, type: 3}

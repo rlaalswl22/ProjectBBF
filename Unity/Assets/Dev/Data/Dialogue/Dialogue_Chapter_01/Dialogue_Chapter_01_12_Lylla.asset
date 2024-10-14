@@ -20,25 +20,44 @@ MonoBehaviour:
   - BaseNodeGuid: 115accee-c272-464f-b78a-0b1b23b92467
     PortName: Next
     TargetNodeGuid: 4adba0dd-854f-4766-8a14-8b64419b5bf3
+  - BaseNodeGuid: 4adba0dd-854f-4766-8a14-8b64419b5bf3
+    PortName: Next
+    TargetNodeGuid: 045176a3-0ae5-4c92-959a-ab5eb7a4a289
   NodeData:
-  - rid: 1818508995183771691
-  - rid: 1818508995183771692
+  - rid: 2427336073050587144
+  - rid: 2427336073050587145
+  - rid: 2427336073050587146
   references:
     version: 2
     RefIds:
-    - rid: 1818508995183771691
+    - rid: 2427336073050587144
+      type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 045176a3-0ae5-4c92-959a-ab5eb7a4a289
+        NodeTitle: Execution
+        TypeName: Execution
+        Position: {x: 1248.6666, y: 157.33334}
+        Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
+        Warps:
+        - Target: Object
+          IntValue: 0
+          FloatValue: 0
+          StringValue: 
+          ObjectValue: {fileID: 11400000, guid: 113d33a699c4cf94184e5eb1060c0026, type: 2}
+          BoolValue: 0
+    - rid: 2427336073050587145
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 115accee-c272-464f-b78a-0b1b23b92467
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 267, y: 200}
+        Position: {x: 267.33334, y: 200}
         DialogueText: "\uC77C\uB2E8 \uBC00\uAC00\uB8E8\uB791 \uACC4\uB780, \uC6B0\uC720\uB97C
           \uC5BB\uC5B4\uC57C \uD55C\uB2E4\uB0E5!<br>\uC77C\uB2E8 \uB18D\uC0AC\uBD80\uC2A4\uB85C
           \uAC00\uC790 \uB0E5!"
         PortraitKey: 
         ActorKey: 
-    - rid: 1818508995183771692
+    - rid: 2427336073050587146
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 4adba0dd-854f-4766-8a14-8b64419b5bf3

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using ProjectBBF.Event;
@@ -71,6 +72,7 @@ namespace ProjectBBF.Event
     {
         [SerializeField] private TESOVoid _eventChannel;
         [SerializeField] private UnityEvent<TESOVoid> _response;
+        [SerializeField] private List<ESOVoid> _esoChain;
 
         public TESOVoid EventChannel => _eventChannel;
         public UnityEvent<TESOVoid> Response => _response;
@@ -94,6 +96,14 @@ namespace ProjectBBF.Event
         public void OnEventRaised()
         {
             Response?.Invoke(EventChannel);
+
+            foreach (var eso in _esoChain)
+            {
+                if (eso)
+                {
+                    eso.Raise();
+                }
+            }
         }
     }
 

@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using DS.Core;
+using ProjectBBF.Event;
 using ProjectBBF.Persistence;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,13 +14,15 @@ public class LyllaFavorability : ActorComFavorability
 {
     [SerializeField] private DialogueContainer _interruptDialogue;
     [SerializeField] private DialogueContainer _arriveDialogue;
+    [SerializeField] private ESOVoid _esoMoveNextLock;
+    [SerializeField] private ESOVoid _esoMoveNextUnlock;
     [SerializeField] private string _chapterKey;
     
     private const string _PERSISTENCE_KEY = "LyllaFavorability";
     
 
     private int _index;
-    
+    private bool _moveNextLock;
     private LyllaFavorabilityPersistenceObject _persistenceObject;
     private ActorMove _move;
 
@@ -39,17 +42,39 @@ public class LyllaFavorability : ActorComFavorability
         {
             _persistenceObject._indexTable.Add(_chapterKey, 0);
         }
+
+        _moveNextLock = _persistenceObject.MoveNextLock;
+
+        _esoMoveNextUnlock.OnEventRaised += OnUnlock;
+        _esoMoveNextLock.OnEventRaised += OnLock;
     }
 
     private void OnDestroy()
     {
         _persistenceObject._indexTable[_chapterKey] = _index;
+        _persistenceObject.MoveNextLock = _moveNextLock;
+        
+        _esoMoveNextUnlock.OnEventRaised -= OnUnlock;
+        _esoMoveNextLock.OnEventRaised -= OnLock;
+    }
+
+    private void OnUnlock()
+    {
+        if (_moveNextLock)
+        {
+            _index++;
+        }
+        _moveNextLock = false;
+    }
+    private void OnLock()
+    {
+        _moveNextLock = true;
     }
 
     public override DialogueEvent DequeueDialogueEvent()
     {
         IReadOnlyList<FavorabilityEventItem> events =  FavorabilityData.FavorabilityEvent.EventItems;
-        
+
         if (_move.IsMoving)
         {
             return new DialogueEvent()
@@ -59,6 +84,14 @@ public class LyllaFavorability : ActorComFavorability
             };
         }
 
+        if (_moveNextLock)
+        {
+            return new DialogueEvent()
+            {
+                Container = events[_index].Container,
+                Type = DialogueBranchType.Dialogue
+            };
+        }
 
         if (events.Count <= _index || events.Count == 0)
         {
