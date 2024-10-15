@@ -10,7 +10,7 @@ public class GridInventorySlot : DefaultInventorySlot
 
     public GridInventorySlot(Vector2Int position)
     {
-        this.Position = Position;
+        this.Position = position;
     }
 }
 
@@ -139,6 +139,8 @@ public class GridInventoryModel : IInventoryModel
         for (int i = MaxSize - 1; i >= 0; i--)
         {
             var slot = GetSlotSequentially(i);
+
+            if (slot.Data != targetItem) continue;
 
             var result = slot.TryAdd(-1, true);
             if (SlotChecker.Contains(result, SlotStatus.Success))
