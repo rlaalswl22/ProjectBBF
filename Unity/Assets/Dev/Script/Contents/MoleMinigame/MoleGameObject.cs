@@ -95,9 +95,15 @@ public class MoleGameObject : MonoBehaviour, IBACollectTool
         }
         
         AudioManager.Instance.PlayOneShot("Animal", "Animal_Mole_Getin");
-        
-        _hitEffect.Stop();
-        _ringEffect.Stop();
+
+        if (_hitEffect)
+        {
+            _hitEffect.Stop();
+        }
+        if (_ringEffect)
+        {
+            _ringEffect.Stop();
+        }
         if (result) return;
     }
 

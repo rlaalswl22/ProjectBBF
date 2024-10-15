@@ -27,6 +27,7 @@ public class RootSceneLoader : MonoBehaviour
 
         foreach (string sceneName in _scenes)
         {
+            //if (sceneName.Contains("World")) continue;
             if (SceneManager.GetActiveScene().name == sceneName) continue;
             if (SceneLoader.Instance.ImmutableSceneTable.Scenes.Contains(sceneName)) continue;
             

@@ -21,7 +21,7 @@ MonoBehaviour:
   _requireTools:
     _requireToolTypes: 6
     _requireToolRank: 1
-  _gameDuration: 60
+  _gameDuration: 5
   _moles:
   - Key: 0
     Prefab: {fileID: 748677008473937971, guid: 487d56172221a2e4a838e6ca622d33fb, type: 3}
@@ -42,12 +42,19 @@ MonoBehaviour:
   - Item: {fileID: 11400000, guid: 8b3669966bf2867419f7d3a4d498a060, type: 2}
     Count: 3
     TargetScore: 90
+    Rank: 1
   - Item: {fileID: 11400000, guid: 8b3669966bf2867419f7d3a4d498a060, type: 2}
     Count: 2
     TargetScore: 60
+    Rank: 2
   - Item: {fileID: 11400000, guid: 8b3669966bf2867419f7d3a4d498a060, type: 2}
     Count: 1
     TargetScore: 30
+    Rank: 3
+  - Item: {fileID: 11400000, guid: 8b3669966bf2867419f7d3a4d498a060, type: 2}
+    Count: 1
+    TargetScore: 0
+    Rank: 4
   _stages:
   - AppearInterval: 3
     AppearMaxCount: 3

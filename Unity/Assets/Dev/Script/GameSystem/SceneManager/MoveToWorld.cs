@@ -22,18 +22,23 @@ public class MoveToWorld : MonoBehaviour
         if (_initPlayerPosition == false) return;
         
         var pos = _initPlayerPosition.position;
+        pc.Blackboard.IsMoveStopped = true;
+        pc.Blackboard.IsInteractionStopped = true;
         if (_fadeOut)
         {
             _ = loaderInst
                     .WorkDirectorAsync(false, _directorKey)
                     .ContinueWith(_ => SceneLoader.Instance.LoadWorldAsync(_scene))
                     .ContinueWith(_ => pc.transform.position = pos)
-                    .ContinueWith(x =>
+                    .ContinueWith(async x =>
                     {
                         if (_fadeIn)
                         {
-                            _ = SceneLoader.Instance.WorkDirectorAsync(true, _directorKey);
+                            _ = await SceneLoader.Instance.WorkDirectorAsync(true, _directorKey);
                         }
+                        
+                        pc.Blackboard.IsMoveStopped = false;
+                        pc.Blackboard.IsInteractionStopped = false;
                     })
                 ; 
         }
@@ -42,12 +47,15 @@ public class MoveToWorld : MonoBehaviour
             _ = loaderInst
                     .LoadWorldAsync(_scene)
                     .ContinueWith(_ => pc.transform.position = pos)
-                    .ContinueWith(x =>
+                    .ContinueWith(async x =>
                     {
                         if (_fadeIn)
                         {
-                            _ = SceneLoader.Instance.WorkDirectorAsync(true, _directorKey);
+                            _ = await SceneLoader.Instance.WorkDirectorAsync(true, _directorKey);
                         }
+                        
+                        pc.Blackboard.IsMoveStopped = false;
+                        pc.Blackboard.IsInteractionStopped = false;
                     })
                 ; 
         }

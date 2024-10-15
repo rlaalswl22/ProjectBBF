@@ -24,6 +24,7 @@ public class MoleMinigameData : MinigameData
         [Header("보상 아이템")]  public ItemData Item;
         [Header("보상 아이템 개수")]  public int Count;
         [Header("필요 점수")]  public int TargetScore;
+        [Header("등수")] public int Rank;
     }
 
     [Serializable]

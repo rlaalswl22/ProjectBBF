@@ -122,7 +122,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &46272314
+--- !u!1 &538581532
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,9 +130,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 46272317}
-  - component: {fileID: 46272316}
-  - component: {fileID: 46272315}
+  - component: {fileID: 538581535}
+  - component: {fileID: 538581534}
+  - component: {fileID: 538581533}
   m_Layer: 0
   m_Name: VisualScripting SceneVariables
   m_TagString: Untagged
@@ -140,25 +140,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &46272315
+--- !u!114 &538581533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46272314}
+  m_GameObject: {fileID: 538581532}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 765181c9ef4b24d32a4f7cbd2ef370dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &46272316
+--- !u!114 &538581534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46272314}
+  m_GameObject: {fileID: 538581532}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
@@ -167,13 +167,13 @@ MonoBehaviour:
   _data:
     _json: '{"declarations":{"Kind":"Scene","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
---- !u!4 &46272317
+--- !u!4 &538581535
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46272314}
+  m_GameObject: {fileID: 538581532}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -182,7 +182,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1654789069
+--- !u!1 &581861782
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,8 +190,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1654789071}
-  - component: {fileID: 1654789070}
+  - component: {fileID: 581861784}
+  - component: {fileID: 581861783}
   m_Layer: 0
   m_Name: SceneMerger
   m_TagString: Untagged
@@ -199,13 +199,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1654789070
+--- !u!114 &581861783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1654789069}
+  m_GameObject: {fileID: 581861782}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51158af71664a7e4384a9f63d57166eb, type: 3}
@@ -213,24 +213,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadImmutableScene: 1
   _scenes:
-  - BMap_Festival
-  - BMap_FestivalDetail
-  - DMap_Chapter_3
+  - BMap_MoleMiniGame
+  - DMap_MoleMiniGame_Ch_3
+  - BMap_MoleDetail
   ChildScenesToLoadConfig:
-  - {fileID: 102900000, guid: d8a0bafe8d0c3e9459f2c6a934347d5a, type: 3}
-  - {fileID: 102900000, guid: 3d8ff6aa079a0fc41b7d8ed37c3f4314, type: 3}
-  - {fileID: 102900000, guid: 5d1b86af68f271f4283e16aa257790ff, type: 3}
-  - {fileID: 102900000, guid: f6c04d08dade53340bc703baeefcf530, type: 3}
---- !u!4 &1654789071
+  - {fileID: 102900000, guid: 2b90018dabc52f6449b340fd202f9f35, type: 3}
+  - {fileID: 102900000, guid: 82a819df5bc046348ad8f5323cdc7a17, type: 3}
+  - {fileID: 102900000, guid: 217d3fe905ba34a40b2ccd616a1212c6, type: 3}
+  - {fileID: 102900000, guid: 7f778772d4c5e3b49997b1eee520e5ec, type: 3}
+--- !u!4 &581861784
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1654789069}
+  m_GameObject: {fileID: 581861782}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.38, y: -7.82, z: 0}
+  m_LocalPosition: {x: -32.1, y: -177.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -240,5 +240,5 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1654789071}
-  - {fileID: 46272317}
+  - {fileID: 581861784}
+  - {fileID: 538581535}
