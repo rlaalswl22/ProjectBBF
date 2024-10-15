@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed507e00ab63144f976694caab7934e, type: 3}
+  m_Name: Dialogue_Chapter_04_48_Lylla
+  m_EditorClassIdentifier: 
+  _guid: 73e2872fdd596f24a9ec01537fb82c28
+  NodeLinks:
+  - BaseNodeGuid: fbd6df75-f77d-4b83-9cb3-2f685f9d2458
+    PortName: Execute
+    TargetNodeGuid: 41808689-8e6e-44d1-9be2-3cfde75f9a9e
+  - BaseNodeGuid: 41808689-8e6e-44d1-9be2-3cfde75f9a9e
+    PortName: "\uAD50\uD658\uD558\uC9C0 \uC54A\uB294\uB2E4."
+    TargetNodeGuid: d1ca7893-8a3c-4fea-8430-077718916e68
+  - BaseNodeGuid: 41808689-8e6e-44d1-9be2-3cfde75f9a9e
+    PortName: "\uAD50\uD658\uD55C\uB2E4."
+    TargetNodeGuid: c7c294d7-f6d9-41bf-b47c-7ed5d299834a
+  NodeData:
+  - rid: 1849334918375276601
+  - rid: 1849334918375276602
+  - rid: 1849334918375276603
+  references:
+    version: 2
+    RefIds:
+    - rid: 1849334918375276601
+      type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 41808689-8e6e-44d1-9be2-3cfde75f9a9e
+        NodeTitle: Branch
+        TypeName: Branch
+        Position: {x: 248, y: 200}
+        DialogueText: "\uB098 \uC9C0\uAE08 \uC5F0\uC5B4\uB97C \uBA39\uACE0\uC2F6\uB2E4\uB0E5!
+          \uC5F0\uC5B4\uB97C \uC8FC\uBA74 \uC18C\uC138\uC9C0\uB97C \uC8FC\uACA0\uB2E4\uB0E5!"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 1849334918375276602
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: c7c294d7-f6d9-41bf-b47c-7ed5d299834a
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 868, y: 74}
+        DialogueText: "\uC5F0\uC5B4 \uC88B\uB2E4\uB0E5! "
+        PortraitKey: 
+        ActorKey: 
+    - rid: 1849334918375276603
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: d1ca7893-8a3c-4fea-8430-077718916e68
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 802, y: 299}
+        DialogueText: "\uD544\uC694\uD55C\uAC70 \uC788\uC73C\uBA74 \uC54C\uB824\uB2EC\uB77C
+          \uB0E5!"
+        PortraitKey: 
+        ActorKey: 
