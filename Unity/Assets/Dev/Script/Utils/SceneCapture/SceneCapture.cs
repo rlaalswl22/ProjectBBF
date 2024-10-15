@@ -129,6 +129,7 @@ asset.renderScale= 1;
         
         UniTask.Create(async () =>
         {
+            _camera.gameObject.SetActive(true);
             await UniTask.Delay(300);
 
             StringBuilder errorBuilder = new StringBuilder();
@@ -167,6 +168,7 @@ asset.renderScale= 1;
             {
                 Debug.LogError(errorBuilder.ToString());
             }
+            _camera.gameObject.SetActive(false);
             
             Debug.Log(infoBuilder.ToString());
 

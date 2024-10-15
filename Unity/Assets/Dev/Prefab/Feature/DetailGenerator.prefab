@@ -58,6 +58,8 @@ MonoBehaviour:
   _captureDelay: 1
   _sortingLayer: 0
   _order: 1
+  _content: {fileID: 0}
+  _onVisualizer: 0
   _capture: {fileID: 2434073601186850070}
   _loader: {fileID: 6456220670403590236}
 --- !u!114 &2434073601186850070
@@ -72,6 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081f23fecd7f691409e3e300ff795165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onPlay: 0
 --- !u!114 &6456220670403590236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2510760655132130780
 Transform:
   m_ObjectHideFlags: 0
