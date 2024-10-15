@@ -56,6 +56,8 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
     {
         _uiPanel.SetActive(true);
         Player.Blackboard.IsMoveStopped = true;
+        Player.VisualStrategy.LookAt(Vector2.right, AnimationActorKey.Action.Idle);
+        Player.MoveStrategy.LastMovedDirection = Vector2.right;
         StartCoroutine(CoTimer());
     }
 

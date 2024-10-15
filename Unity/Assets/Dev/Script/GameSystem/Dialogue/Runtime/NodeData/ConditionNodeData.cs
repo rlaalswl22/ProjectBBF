@@ -52,8 +52,8 @@ namespace DS.Runtime
                 }
             }
             
-            Debug.Assert(trueNextNode is not null);
-            Debug.Assert(falseNextNode is not null);
+            //Debug.Assert(trueNextNode is not null);
+            //Debug.Assert(falseNextNode is not null);
 
             return new ConditionRuntimeNode(trueNextNode, falseNextNode, Handler, GetArgs());
         }
