@@ -168,6 +168,12 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
                     throw new ArgumentOutOfRangeException();
             }
 
+            // TODO: 크로니클 용
+            if (dir != Direction.Right)
+            {
+                return false;
+            }
+
             var pos = transform.position + (front * factor * _fishingMaxDistance) + _sideOffset;
             // p1 + ((a * b * c) + d1 * d)
 

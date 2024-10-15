@@ -55,6 +55,7 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
     protected override void OnGameBegin()
     {
         _uiPanel.SetActive(true);
+        Player.Blackboard.IsMoveStopped = true;
         StartCoroutine(CoTimer());
     }
 
@@ -64,7 +65,12 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
         _uiPanel.SetActive(false);
         StopAllCoroutines();
         Timer = 0f;
-        Player?.Fishing.ReleaseFishingController();
+
+        if (Player)
+        {
+            Player.Blackboard.IsMoveStopped = false;
+            Player.Fishing.ReleaseFishingController();
+        }
     }
 
     protected override bool IsGameEnd()

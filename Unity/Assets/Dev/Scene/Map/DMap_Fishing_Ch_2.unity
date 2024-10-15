@@ -1505,7 +1505,7 @@ Transform:
   m_GameObject: {fileID: 6687788709310643010}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 181.75, y: -191.87, z: 0}
+  m_LocalPosition: {x: 186.46, y: -191.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1580,10 +1580,10 @@ MonoBehaviour:
   _endEvent: {fileID: 11400000, guid: 9179beecaefc6c74797f7847e452fa80, type: 2}
   _playerStartPoint: {fileID: 5561748459987435381}
   _playerEndPoint: {fileID: 2022515370311487748}
-  _beginFadeOut: 0
-  _beginFadeIn: 0
+  _beginFadeOut: 1
+  _beginFadeIn: 1
   _endFadeOut: 1
-  _endFadeIn: 0
+  _endFadeIn: 1
   _moveToPlayerPosInGame: 1
   _moveToPlayerPosOutGame: 0
   OnMinigameEnd:
