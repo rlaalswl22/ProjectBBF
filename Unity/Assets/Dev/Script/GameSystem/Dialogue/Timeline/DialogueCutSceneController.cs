@@ -143,7 +143,7 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
         {
             _ = directorMarker.OnPlay(_director);
         }
-        else if (notification is ContestResultMarker)
+        else if (notification is ContestResultMarker contestResultMarker)
         {
             if (_resultUI == false) return;
             
@@ -151,7 +151,7 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
             if (_lastResultItem)
             {
                 List<ContestResultData.Record> results = new List<ContestResultData.Record>();
-                if (ContestResultResolver.Instance.TryResolve(_lastResultItem, ref results))
+                if (ContestResultResolver.Instance.TryResolve(contestResultMarker.Chapter, _lastResultItem, ref results))
                 {
                     int firstIndex = results.FirstIndex(x => x.ActorKey is FIRST_ACTOR_KEY);
                     int secondIndex = results.FirstIndex(x => x.ActorKey is SECOND_ACTOR_KEY);

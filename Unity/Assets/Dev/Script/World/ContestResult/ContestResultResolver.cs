@@ -28,13 +28,14 @@ public class ContestResultResolver : MonoBehaviourSingleton<ContestResultResolve
         _data = null;
     }
 
-    public bool TryResolve(string itemKey, ref List<ContestResultData.Record> results)
+    public bool TryResolve(int chapter, string itemKey, ref List<ContestResultData.Record> results)
     {
         if (results is null) return false;
 
         results.Clear();
         foreach (var record in _data.Table)
         {
+            if(record.Chapter != chapter)continue;
             if (record.Item && record.Item.ItemKey == itemKey)
             {
                 results.Add(record);
@@ -43,8 +44,8 @@ public class ContestResultResolver : MonoBehaviourSingleton<ContestResultResolve
 
         return results.Any();
     }
-    public bool TryResolve(ItemData itemData, ref List<ContestResultData.Record> results)
+    public bool TryResolve(int chapter, ItemData itemData, ref List<ContestResultData.Record> results)
     {
-        return TryResolve(itemData.ItemKey, ref results);
+        return TryResolve(chapter, itemData.ItemKey, ref results);
     }
 }

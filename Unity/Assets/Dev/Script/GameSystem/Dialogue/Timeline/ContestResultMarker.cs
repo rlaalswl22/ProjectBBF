@@ -12,4 +12,8 @@ using UnityEngine.Timeline;
 public class ContestResultMarker : Marker, INotification
 {
     public PropertyName id => "ContestResult";
+
+    [SerializeField] private int _chapter;
+
+    public int Chapter => _chapter;
 }
