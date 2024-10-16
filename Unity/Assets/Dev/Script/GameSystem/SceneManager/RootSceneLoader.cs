@@ -16,12 +16,17 @@ using MyBox;
 public class RootSceneLoader : MonoBehaviour
 {
     [SerializeField] private bool _loadImmutableScene = true;
-    [field: SerializeField, HideInInspector] private List<string> _scenes;
+
+    [field: SerializeField, HideInInspector]
+    private List<string> _scenes;
 
     public async UniTask<List<(string, AsyncOperation)>> LoadAsync()
     {
+#if UNITY_EDITOR
+        ApplySceneName();
+#endif
         if (_scenes == null) return new List<(string, AsyncOperation)>();
-        
+
         List<UniTask> tasks = new List<UniTask>(_scenes.Count);
         List<(string, AsyncOperation)> loadedScenes = new List<(string, AsyncOperation)>(_scenes.Count);
 
@@ -30,7 +35,7 @@ public class RootSceneLoader : MonoBehaviour
             //if (sceneName.Contains("World")) continue;
             if (SceneManager.GetActiveScene().name == sceneName) continue;
             if (SceneLoader.Instance.ImmutableSceneTable.Scenes.Contains(sceneName)) continue;
-            
+
             AsyncOperation oper = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             oper.allowSceneActivation = false;
 
@@ -38,8 +43,8 @@ public class RootSceneLoader : MonoBehaviour
 
             var task = UniTask
                 .WaitUntil(() => oper.progress >= 0.9f, PlayerLoopTiming.Update, GlobalCancelation.PlayMode)
-                .ContinueWith(()=>loadedScenes.Add((ls, oper)));
-            
+                .ContinueWith(() => loadedScenes.Add((ls, oper)));
+
             tasks.Add(task);
         }
 
@@ -55,18 +60,18 @@ public class RootSceneLoader : MonoBehaviour
     private static void OnAutoPlayModeOn()
     {
         if (Application.isPlaying) return;
-        
+
         EditorPrefs.SetBool("__AUTO_PLAY_MODE__", true);
     }
-    
+
     [MenuItem("Scene/AutoPlayModeOff", false)]
     private static void OnAutoPlayModeOff()
     {
         if (Application.isPlaying) return;
-        
+
         EditorPrefs.SetBool("__AUTO_PLAY_MODE__", false);
     }
-    
+
     [MenuItem("Scene/AutoPlayModeOn", true)]
     private static bool ValidateOnAutoPlayModeOn()
     {
@@ -74,7 +79,7 @@ public class RootSceneLoader : MonoBehaviour
 
         return EditorPrefs.GetBool("__AUTO_PLAY_MODE__") is false;
     }
-    
+
     [MenuItem("Scene/AutoPlayModeOff", true)]
     private static bool ValidateOnAutoPlayModeOff()
     {
@@ -89,7 +94,7 @@ public class RootSceneLoader : MonoBehaviour
             string worldSceneName = gameObject.scene.name;
             _ = SceneLoader.Instance
                 .LoadWorldAsync(worldSceneName)
-                .ContinueWith(x=>
+                .ContinueWith(x =>
                 {
                     if (x && _loadImmutableScene)
                     {
@@ -103,13 +108,13 @@ public class RootSceneLoader : MonoBehaviour
                                 {
                                     root = y.GetComponentInChildren<RootSceneLoader>();
                                 }
-            
+
                                 if (root)
                                 {
                                     var t = GameObjectStorage.Instance.StoredObjects.FirstOrDefault(z =>
                                         z.GetComponent<PlayerController>());
-                                    
-                                    if(t)
+
+                                    if (t)
                                         t.transform.SetXY(root.transform.position);
                                 }
                             });
@@ -123,29 +128,37 @@ public class RootSceneLoader : MonoBehaviour
     {
         // DO NOT DELETE keep this so we can enable/disable this script... (used in ChildSceneLoader)
     }
+
     private void OnValidate()
     {
         if (Application.isPlaying) return;
+
+        ApplySceneName();
+    }
+
+    private void ApplySceneName()
+    {
         if (ChildScenesToLoadConfig is null) return;
-        
+
         _scenes = new List<string>();
-        
-        ChildScenesToLoadConfig.ForEach(x=>
+
+        ChildScenesToLoadConfig.ForEach(x =>
         {
-            if (EditorSceneManager.GetActiveScene().name == x.name)
+            var split = x.name.Split("_");
+
+            if (split.Length > 0 && split[0] == "World")
             {
                 return;
             }
-            
+
             _scenes.Add(x.name);
         });
-
     }
 
     public void ResetSceneSetupToConfig()
     {
         var sceneAssetsToLoad = ChildScenesToLoadConfig;
-        
+
         if (ChildScenesToLoadConfig.FirstOrDefault(x => x.name == EditorSceneManager.GetActiveScene().name) is null)
         {
             return;
@@ -161,6 +174,8 @@ public class RootSceneLoader : MonoBehaviour
         sceneSetupToLoad[0].isActive = true;
         EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
         EditorSceneManager.RestoreSceneManagerSetup(sceneSetupToLoad.ToArray());
+
+        ApplySceneName();
     }
 #endif
 }

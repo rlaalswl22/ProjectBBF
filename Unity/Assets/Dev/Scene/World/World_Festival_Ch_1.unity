@@ -215,14 +215,16 @@ MonoBehaviour:
   _scenes:
   - BMap_Festival
   - BMap_FestivalDetail
-  - DMap_Chapter_1
+  - DMap_Festival_Collision
   - DMap_Bakery
+  - DMap_Ch_1
   ChildScenesToLoadConfig:
   - {fileID: 102900000, guid: 6727947fc9648b64894e94a97d42ae24, type: 3}
   - {fileID: 102900000, guid: 3d8ff6aa079a0fc41b7d8ed37c3f4314, type: 3}
   - {fileID: 102900000, guid: 5d1b86af68f271f4283e16aa257790ff, type: 3}
-  - {fileID: 102900000, guid: b4cd806b7dae45045a8beb22130c9072, type: 3}
+  - {fileID: 102900000, guid: 0f63b3c9ae46db148bf3d66f7241e6d9, type: 3}
   - {fileID: 102900000, guid: 2bd3874c7ffabed4bb6c4c117bf20eda, type: 3}
+  - {fileID: 102900000, guid: b4cd806b7dae45045a8beb22130c9072, type: 3}
 --- !u!4 &1654789071
 Transform:
   m_ObjectHideFlags: 0
