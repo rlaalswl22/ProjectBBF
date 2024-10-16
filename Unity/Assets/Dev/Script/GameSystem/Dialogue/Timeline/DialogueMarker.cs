@@ -32,19 +32,14 @@ public class DialogueMarker : Marker, INotification
             inst.Visible = true;
             director.Pause();
 
+
             await ctx.Next();
 
             while (ctx.CanNext)
             {
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
-                if (InputManager.Map.UI.DialogueSkip.triggered)
-                {
-                    await ctx.Next();
-                }
+                await ctx.Next();
             }
-
-            await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
-                cancellationToken);
 
             inst.Visible = false;
             director.Resume();

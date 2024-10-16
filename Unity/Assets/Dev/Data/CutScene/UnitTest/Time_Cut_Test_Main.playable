@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac8c311cb403af409690e4ef84ed598, type: 3}
   m_Name: Dialogue Marker
   m_EditorClassIdentifier: 
-  m_Time: 5.616666666666666
+  m_Time: 4.683333333333334
   _container: {fileID: 11400000, guid: 5a1b103d1c35f2447b1806714e1eac99, type: 2}
 --- !u!114 &-5331261317193781575
 MonoBehaviour:
@@ -250,7 +250,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 3761945455649442805}
-    m_Duration: 9.799999999999999
+    m_Duration: 5.216666666666667
     m_TimeScale: 1
     m_ParentTrack: {fileID: -5331261317193781575}
     m_EaseInDuration: 0
@@ -382,7 +382,6 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects:
-    - {fileID: 4221890787019130884}
     - {fileID: -5385094518374213388}
 --- !u!114 &-670752326348409603
 MonoBehaviour:
@@ -409,7 +408,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 9211428154815126608}
-    m_Duration: 9.799999999999999
+    m_Duration: 5.216666666666667
     m_TimeScale: 1
     m_ParentTrack: {fileID: -670752326348409603}
     m_EaseInDuration: 0
@@ -584,7 +583,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 3677227958129649542}
-    m_Duration: 9.799999999999999
+    m_Duration: 5.216666666666667
     m_TimeScale: 1
     m_ParentTrack: {fileID: 3486450786259946393}
     m_EaseInDuration: 0
@@ -707,19 +706,6 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: e8200cf570208ec4dbd80ac73912d0b4
     defaultValue: {fileID: 0}
---- !u!114 &4221890787019130884
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Branch Timeline Marker
-  m_EditorClassIdentifier: Assembly-CSharp::BranchTimelineMarker
-  m_Time: 4.85
 --- !u!114 &9211428154815126608
 MonoBehaviour:
   m_ObjectHideFlags: 1

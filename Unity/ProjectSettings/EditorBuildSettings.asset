@@ -63,10 +63,10 @@ EditorBuildSettings:
     path: Assets/Dev/Scene/Map/NoChronicle/VMap_Beach_Arakar.unity
     guid: 74d3fa2e057476f4d9bd4fd61fbd8db0
   - enabled: 1
-    path: Assets/Dev/Scene/CutScene/World_DaffodiLake_Arakar_CutScene.unity
+    path: Assets/Dev/Scene/UnitTest/TestCutScene/World_DaffodiLake_Arakar_CutScene.unity
     guid: 50ed8563bb3ea264c85c75486b5024bc
   - enabled: 1
-    path: Assets/Dev/Scene/CutScene/DMap_DaffodiLake_Arakar_CutScene.unity
+    path: Assets/Dev/Scene/UnitTest/TestCutScene/DMap_DaffodiLake_Arakar_CutScene.unity
     guid: 780b02f1b100eaa498bcd0f73d0f597f
   - enabled: 1
     path: Assets/Dev/Scene/Immutable/Immutable_Actor.unity
@@ -161,4 +161,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Dev/Scene/Map/DMap_MoleMiniGame_Ch_4.unity
     guid: b8928c256d057ce40ab8fc2ec52abf13
+  - enabled: 1
+    path: Assets/Dev/Scene/World/World_Festival_CutScene_Ch_2_Contest.unity
+    guid: 23c2e2ad464b2da4197f5a9e820af120
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/DMap_Festival_CutScene_Ch_2_Contest.unity
+    guid: f2895d189833a324bb1d09722ae754fb
+  - enabled: 1
+    path: Assets/Dev/Scene/World/World_Festival_CutScene_Ch_3_Contest.unity
+    guid: 97a53ebc0bf10c04dbd05c4de9eec32c
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/DMap_Festival_CutScene_Ch_3_Contest.unity
+    guid: ae0749282f04db1428672885432aa0e5
+  - enabled: 1
+    path: Assets/Dev/Scene/World/World_Festival_CutScene_Ch_4_Contest.unity
+    guid: 53d2df84785cc324fa1610cd9ba1dfe1
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/DMap_Festival_CutScene_Ch_4_Contest.unity
+    guid: 07669e06f2c7abe4b8131ef6c9b9fc45
+  - enabled: 1
+    path: Assets/Dev/Scene/World/World_Festival_CutScene_Ch_1_Contest.unity
+    guid: b70d5ef2b6727de49b45b821baf17c38
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/DMap_Festival_CutScene_Ch_1_Contest.unity
+    guid: ef76d57b13cab294287b8ecd1250de1e
+  - enabled: 1
+    path: Assets/Dev/Scene/World/World_Festival_CutScene_Ch_0_Begin.unity
+    guid: bbaeebbcc59f2e544a5ec94d9a366b13
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/DMap_Festival_CutScene_Ch_0_Begin.unity
+    guid: d5f30d7d3f0535c4492e38283e7c7b5b
   m_configObjects: {}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
@@ -22,6 +23,11 @@ public class BlackAlphaScreenDirector : ScreenDirector
         set => gameObject.SetActive(value);
     }
 
+    private void OnDestroy()
+    {
+        DOTween.Kill(this);
+    }
+
     public override UniTask Fadein()
     {
         _panel.color = Color.black;
@@ -31,6 +37,7 @@ public class BlackAlphaScreenDirector : ScreenDirector
         return _panel
             .DOColor(c, _fadeinDuration).SetEase(Ease.Linear)
             .SetDelay(_waitDuration)
+            .SetId(this)
             .AsyncWaitForCompletion()
             .AsUniTask()
             .WithCancellation(GlobalCancelation.PlayMode)
@@ -46,6 +53,7 @@ public class BlackAlphaScreenDirector : ScreenDirector
         c.a = 1f;
         return _panel
                 .DOColor(c, _fadeoutDuration).SetEase(Ease.Linear)
+                .SetId(this)
                 .AsyncWaitForCompletion()
                 .AsUniTask()
                 .WithCancellation(GlobalCancelation.PlayMode)
