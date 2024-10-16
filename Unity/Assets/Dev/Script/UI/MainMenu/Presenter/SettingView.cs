@@ -82,6 +82,37 @@ public class SettingView : MonoBehaviour
         State = (VisibleState)state;
     }
 
+    public void Add10Volume(string key)
+    {
+        if (key == "Global")
+        {
+            _globalVolumeSlider.value += 0.1f;
+        }
+        else if (key == "Background")
+        {
+            _backgroundVolumeSlider.value += 0.1f;
+        }
+        else if (key == "SFX")
+        {
+            _sfxVolumeSlider.value += 0.1f;
+        }
+    }
+    public void Sub10Volume(string key)
+    {
+        if (key == "Global")
+        {
+            _globalVolumeSlider.value += -0.1f;
+        }
+        else if (key == "Background")
+        {
+            _backgroundVolumeSlider.value += -0.1f;
+        }
+        else if (key == "SFX")
+        {
+            _sfxVolumeSlider.value += -0.1f;
+        }
+    }
+
     private void OnSliderChanged(TMP_InputField inputField, float value)
     {
         int v = (int)(value * 100f);
