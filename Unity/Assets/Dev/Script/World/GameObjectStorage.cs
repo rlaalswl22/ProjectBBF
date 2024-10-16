@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using ProjectBBF.Singleton;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,12 +17,38 @@ public class GameObjectStorage : MonoBehaviourSingleton<GameObjectStorage>
     private readonly List<string> _sceneTemp = new(50);
     private readonly Queue<Transform> _objTemp = new(50);
     
+    private PlayerController _cachedPlayer;
+
+    
+    public bool TryGetPlayerController(out PlayerController pc)
+    {
+        if (_cachedPlayer)
+        {
+            pc = _cachedPlayer;
+            return true;
+        }
+        
+        foreach (GameObject obj in StoredObjects)
+        {
+            if (obj && obj.CompareTag("Player") && obj.TryGetComponent(out PlayerController player))
+            {
+                _cachedPlayer = player;
+                pc = player;
+                return true;
+            }
+        }
+
+        pc = null;
+        return false;
+    }
+    
     public override void PostInitialize()
     {
     }
 
     public override void PostRelease()
     {
+        _cachedPlayer = null;
     }
 
     public void AddGameObject(GameObject obj)
