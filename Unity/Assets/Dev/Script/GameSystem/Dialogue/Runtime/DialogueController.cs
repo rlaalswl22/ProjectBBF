@@ -46,24 +46,22 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
     public void SetTextVisible(bool value)
         => _view.SetTextVisible(value);
 
-    public bool SetPortrait(string portraitKey)
-    {
-        Sprite spr = _actorDataManager.GetPortraitFromKey(portraitKey);
-        _view.SetPortrait(spr);
-
-        return spr is not null;
-    }
-
     public bool SetPortrait(string actorKey, string portraitKey)
     {
         if (string.IsNullOrEmpty(actorKey)) return false;
-        if (string.IsNullOrEmpty(portraitKey)) return false;
         
-        if (_actorDataManager.CachedDict.TryGetValue(actorKey, out var data) &&
-            data.PortraitTable.Table.TryGetValue(portraitKey, out var sprite))
+        if (_actorDataManager.CachedDict.TryGetValue(actorKey, out var data))
         {
-            _view.SetPortrait(sprite);
-            return true;
+            if (string.IsNullOrEmpty(portraitKey))
+            {
+                portraitKey = data.DefaultPortraitKey;
+            }
+            if (data.PortraitTable.Table.TryGetValue(portraitKey, out var sprite))
+            {
+                _view.SetPortrait(sprite);
+                return true;
+            }
+            
         }
 
         return false;

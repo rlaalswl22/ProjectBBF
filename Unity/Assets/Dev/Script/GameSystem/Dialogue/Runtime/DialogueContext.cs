@@ -55,7 +55,7 @@ public class DialogueContext
 
             if (item is TextItem textItem)
             {
-                _controller.SetPortrait(textItem.PortraitKey);
+                _controller.SetPortrait(textItem.ActorKey, textItem.PortraitKey);
                 _controller.SetDisplayName(textItem.ActorKey);
 
                 var link = CancellationTokenSource.CreateLinkedTokenSource(
@@ -81,7 +81,7 @@ public class DialogueContext
             }
             else if (item is BranchItem branchItem)
             {
-                _controller.SetPortrait(branchItem.PortraitKey);
+                _controller.SetPortrait(branchItem.ActorKey, branchItem.PortraitKey);
                 _controller.SetDisplayName(branchItem.ActorKey);
 
                 var link = CancellationTokenSource.CreateLinkedTokenSource(
