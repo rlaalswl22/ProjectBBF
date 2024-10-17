@@ -85,6 +85,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
                 GameReset();
                 
                 pc.MoveStrategy.IsStopped = false;
+                pc.Blackboard.IsInteractionStopped = false;
                 pc.MoveStrategy.ResetVelocity();
                 pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
                 yield break;

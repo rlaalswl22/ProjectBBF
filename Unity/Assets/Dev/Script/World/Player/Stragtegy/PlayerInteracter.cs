@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
-using DS.Core;
-using JetBrains.Annotations;
 using ProjectBBF.Event;
 using ProjectBBF.Persistence;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
@@ -137,8 +136,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         
         try
         {
-            var interaction = FindCloserObject();
-            if (interaction is null) return false;
+            var interaction = CloserObject;
+            if (interaction == false) return false;
 
             CollisionInteractionUtil
                 .CreateSelectState()
@@ -163,7 +162,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             return false;
         }
     }
-
+    
     private bool InteractTrigger(IBAInteractionTrigger arg)
     {
         _controller.StateHandler.TranslateState("EndOfInteraction");
@@ -470,5 +469,59 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         }
 
         return minInteraction;
+    }
+
+    private List<CollisionInteractionMono> _closerObjects = new(5);
+    public CollisionInteractionMono CloserObject { get; private set; }
+    public event Action<CollisionInteractionMono> OnChangedCloserObject;
+
+    private void Update()
+    {
+        float minDis = Mathf.Infinity;
+        CollisionInteractionMono minObj = null;
+
+        int nullCount = 0;
+        
+        foreach (CollisionInteractionMono obj in _closerObjects)
+        {
+            if (obj == false)
+            {
+                nullCount++;
+                continue;
+            }
+            
+            float dis = ((Vector2)(obj.transform.position - _controller.transform.position)).sqrMagnitude;
+            
+            if ( dis< minDis)
+            {
+                minDis = dis;
+                minObj = obj;
+            }
+        }
+
+        if (CloserObject != minObj)
+        {
+            CloserObject = minObj;
+            OnChangedCloserObject?.Invoke(CloserObject);
+        }
+
+        if (nullCount >= 10)
+        {
+            _closerObjects.RemoveAll(x=>x == false);
+        }
+    }
+
+    public void AddCloserObject(CollisionInteractionMono interaction)
+    {
+        _closerObjects.Add(interaction);
+    }
+    public void RemoveCloserObject(CollisionInteractionMono interaction)
+    {
+        _closerObjects.Remove(interaction);
+    }
+
+    public bool ContainsCloserObject(CollisionInteractionMono interaction)
+    {
+        return _closerObjects.Contains(interaction);
     }
 }

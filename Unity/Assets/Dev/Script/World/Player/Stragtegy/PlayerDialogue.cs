@@ -190,26 +190,28 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
 
     public CollisionInteractionMono FindCloserObject()
     {
-        var targetPos = _controller.Coordinate.GetFront();
-        var colliders =
-            Physics2D.OverlapCircleAll(targetPos, _controller.InteractionRadius, ~LayerMask.GetMask("Player"));
-
-        float minDis = Mathf.Infinity;
-        CollisionInteractionMono minInteraction = null;
-        foreach (var col in colliders)
-        {
-            if (col.TryGetComponent(out CollisionInteractionMono interaction)
-               )
-            {
-                float dis = (transform.position - col.transform.position).sqrMagnitude;
-                if (dis < minDis)
-                {
-                    minInteraction = interaction;
-                    minDis = dis;
-                }
-            }
-        }
-
-        return minInteraction;
+        return _controller.Interactor.CloserObject;
+        
+       // var targetPos = _controller.Coordinate.GetFront();
+       // var colliders =
+       //     Physics2D.OverlapCircleAll(targetPos, _controller.InteractionRadius, ~LayerMask.GetMask("Player"));
+//
+       // float minDis = Mathf.Infinity;
+       // CollisionInteractionMono minInteraction = null;
+       // foreach (var col in colliders)
+       // {
+       //     if (col.TryGetComponent(out CollisionInteractionMono interaction)
+       //        )
+       //     {
+       //         float dis = (transform.position - col.transform.position).sqrMagnitude;
+       //         if (dis < minDis)
+       //         {
+       //             minInteraction = interaction;
+       //             minDis = dis;
+       //         }
+       //     }
+       // }
+//
+       // return minInteraction;
     }
 }

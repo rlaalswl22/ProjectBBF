@@ -4,16 +4,18 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using DG.Tweening.Core.Easing;
 using MyBox;
 using ProjectBBF.Event;
 using UnityEngine;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(CircleCollider2D), typeof(Rigidbody2D), typeof(CollisionInteraction))]
+[RequireComponent(typeof(CircleCollider2D), typeof(Rigidbody2D))]
 public class FadeinoutObject : MonoBehaviour
 {
-    [field: SerializeField, AutoProperty, InitializationField, MustBeAssigned]
+    [field: SerializeField, InitializationField, MustBeAssigned]
     private CollisionInteraction _interaction;
     
     [SerializeField] private FadeinoutObjectData _data;
@@ -37,13 +39,29 @@ public class FadeinoutObject : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
     }
 
+    private void OnChangedCloserObject(CollisionInteractionMono changed)
+    {
+        StopAllCoroutines();
+        StartCoroutine(CoFade(changed == Interaction));
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") is false) return;
         if (other.TryGetComponent(out CollisionInteractionMono interaction) is false) return;
         
-        StopAllCoroutines();
-        StartCoroutine(CoFade(interaction.transform));
+        if (Interaction && other.TryGetComponent(out PlayerController pc))
+        {
+            pc.Interactor.AddCloserObject(Interaction);
+            pc.Interactor.OnChangedCloserObject += OnChangedCloserObject;
+
+            if (pc.Interactor.CloserObject == Interaction)
+            {
+                StopAllCoroutines();
+                StartCoroutine(CoFade(true));
+            }
+        }
+        
         
         OnEnter?.Invoke(interaction);
     }
@@ -61,26 +79,45 @@ public class FadeinoutObject : MonoBehaviour
         if (other.CompareTag("Player") is false) return;
         if (other.TryGetComponent(out CollisionInteractionMono interaction) is false) return;
         
+        if (Interaction && other.TryGetComponent(out PlayerController pc))
+        {
+            pc.Interactor.OnChangedCloserObject -= OnChangedCloserObject;
+            pc.Interactor.RemoveCloserObject(Interaction);
+        }
+        
         StopAllCoroutines();
-        StartCoroutine(CoFade(interaction.transform));
+        StartCoroutine(CoFade(false));
         
         OnExit?.Invoke(interaction);
     }
 
-    private IEnumerator CoFade(Transform targetTransform)
+    private float _lastT = 0f;
+    private IEnumerator CoFade(bool fadein, bool continuous = true)
     {
-        
+        float dir = fadein ? 1f : -1f;
+        float t = fadein ? 0f : 1f;
+
+        if (continuous)
+        {
+            t = _lastT;
+        }
         
         while (true)
         {
-            float dis = Vector2.Distance(targetTransform.position, transform.position);
-            dis = Mathf.Clamp(dis - _data.InnerRadius, 0f, _data.OutterRadius - _data.InnerRadius);
-            dis /= (_data.OutterRadius - _data.InnerRadius);
+            float evaluatedValue = EaseManager.ToEaseFunction(_data.Ease).Invoke(t, 1f, 0f, 0f);
             
+            OnFadeAlpha?.Invoke(evaluatedValue);
+
+            if (t is > 1f or < 0f)
+            {
+                t = Mathf.Clamp01(t);
+                _lastT = t;
+                break;
+            }
             
-            float evaluedValue = EaseManager.ToEaseFunction(_data.Ease).Invoke(dis, 1f, 0f, 0f);
-            OnFadeAlpha?.Invoke(1f - evaluedValue);
-                
+            t += dir * Time.deltaTime / _data.FadeDuration;
+            _lastT = t;
+            
             yield return null;
         }
     }

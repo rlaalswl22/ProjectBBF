@@ -57,22 +57,15 @@ public class BakeryStoreage : BakeryFlowBehaviour
     {
         if (activator.Owner is not PlayerController pc) return;
 
-        var inputAction = InputManager.Map.Player.Interaction;
-        if (inputAction.triggered)
-        {
-            Visible = !Visible;
-            pc.MoveStrategy.ResetVelocity();
-            pc.Blackboard.IsInteractionStopped = Visible;
-            pc.Blackboard.IsMoveStopped = Visible;
+        Visible = !Visible;
 
-            if (Visible)
-            {
-                _ani.SetTrigger("Open");
-            }
-            else
-            {
-                _ani.SetTrigger("Close");
-            }
+        if (Visible)
+        {
+            _ani.SetTrigger("Open");
+        }
+        else
+        {
+            _ani.SetTrigger("Close");
         }
     }
 
@@ -85,9 +78,6 @@ public class BakeryStoreage : BakeryFlowBehaviour
         if (activator.Owner is not PlayerController pc) return;
 
         Visible = false;
-        pc.MoveStrategy.ResetVelocity();
-        pc.Blackboard.IsInteractionStopped = false;
-        pc.Blackboard.IsMoveStopped = false;
         _ani.SetTrigger("Close");
     }
 }

@@ -7,10 +7,12 @@ using ProjectBBF.Event;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class BakeryFlowObject : MonoBehaviour, IObjectBehaviour
+public class BakeryFlowObject : MonoBehaviour, IBAInteractionTrigger
 {
     [field: SerializeField, AutoProperty, MustBeAssigned, InitializationField]
     private FadeinoutObject _fadeObject;
+
+    [SerializeField] private bool _interruptPlayerControl;
 
     public event Action<BakeryFlowObject, CollisionInteractionMono> OnActivate;
     public event Action<BakeryFlowObject, CollisionInteractionMono> OnInteraction;
@@ -21,28 +23,58 @@ public class BakeryFlowObject : MonoBehaviour, IObjectBehaviour
 
     public FadeinoutObject FadeObject => _fadeObject;
 
+    public bool InterruptPlayerControl => _interruptPlayerControl;
+
     private void Awake()
     {
-        var info = ObjectContractInfo.Create(() => gameObject);
+        var info = ActorContractInfo.Create(() => gameObject);
         _fadeObject.Interaction.SetContractInfo(info, this);
 
-        info.AddBehaivour<BakeryFlowObject>(this);
+        info.AddBehaivour<IBAInteractionTrigger>(this);
 
         _fadeObject.OnEnter += x =>
         {
             OnEnter?.Invoke(this, x);
-            StartCoroutine(CoUpdate(x));
         };
 
         _fadeObject.OnExit += x =>
         {
             OnExit?.Invoke(this, x);
-            StopAllCoroutines();
         };
     }
-
-    private IEnumerator CoUpdate(CollisionInteractionMono activator)
+    
+    private IEnumerator CoUpdateInteraction(CollisionInteractionMono activator)
     {
+        if (activator.Owner is not PlayerController pc) yield break;
+
+        yield return null;
+        
+        while (true)
+        {
+            if (InputManager.Map.Player.Interaction.triggered)
+            {
+                OnInteraction?.Invoke(this, activator);
+            
+                if (InterruptPlayerControl)
+                {
+                    yield return null;
+                    yield return null;
+                    
+                    pc.Blackboard.IsInteractionStopped = false;
+                    pc.Blackboard.IsMoveStopped = false;
+                }
+                break;
+            }
+
+            yield return null;
+        }
+    }
+    private IEnumerator CoUpdateActivation(CollisionInteractionMono activator)
+    {
+        if (activator.Owner is not PlayerController pc) yield break;
+
+        yield return null;
+        
         while (true)
         {
             if (InputManager.Map.Minigame.BakeryKeyPressed.triggered)
@@ -50,13 +82,27 @@ public class BakeryFlowObject : MonoBehaviour, IObjectBehaviour
                 OnActivate?.Invoke(this, activator);
             }
 
-            if (InputManager.Map.Player.Interaction.triggered)
-            {
-                OnInteraction?.Invoke(this, activator);
-            }
-
             yield return null;
         }
+    }
+
+    public bool Interact(CollisionInteractionMono caller)
+    {
+        if (caller.Owner is not PlayerController pc) return false;
+
+        StopAllCoroutines();
+        if (InterruptPlayerControl)
+        {
+            pc.MoveStrategy.ResetVelocity();
+            pc.Blackboard.IsInteractionStopped = true;
+            pc.Blackboard.IsMoveStopped = true;
+        
+            StartCoroutine(CoUpdateInteraction(caller));
+        }
+        StartCoroutine(CoUpdateActivation(caller));
+        
+        OnInteraction?.Invoke(this, caller);
+        return true;
     }
 }
 
