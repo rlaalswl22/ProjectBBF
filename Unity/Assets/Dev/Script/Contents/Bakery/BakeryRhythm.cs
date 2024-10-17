@@ -164,7 +164,11 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
                         .WaitForCompletion();
                 }
 
-                
+                if (tuple.failItem && (successCount >= SUCCESS_GOAL_COUNT || successCount >= FAIL_GOAL_COUNT))
+                {
+                    GameFail(tuple, pc);
+                    break;
+                }
                 
                 if (successCount >= SUCCESS_GOAL_COUNT)
                 {

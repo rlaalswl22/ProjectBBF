@@ -8,6 +8,7 @@ using UnityEngine;
 public interface IBAInteractionTrigger: IActorBehaviour
 {
     public bool Interact(CollisionInteractionMono caller);
+    public bool Activate(CollisionInteractionMono caller);
 }
 
 public class MapInteractionTrigger : MapTriggerBase, IBAInteractionTrigger
@@ -17,6 +18,11 @@ public class MapInteractionTrigger : MapTriggerBase, IBAInteractionTrigger
         Trigger(caller);
 
         return true;
+    }
+
+    public bool Activate(CollisionInteractionMono caller)
+    {
+        return false;
     }
 
     protected override void Awake()

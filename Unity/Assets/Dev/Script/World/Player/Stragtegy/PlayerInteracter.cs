@@ -162,11 +162,46 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             return false;
         }
     }
+    public async UniTask<bool> OnActivateAction()
+    {
+        if (_blackboard.IsInteractionStopped) return false;
+        
+        try
+        {
+            var interaction = CloserObject;
+            if (interaction == false) return false;
+
+            CollisionInteractionUtil
+                .CreateSelectState()
+                .Bind<IBAInteractionTrigger>(ActivateTrigger)
+                .Execute(interaction.ContractInfo, out bool executedAny);
+
+            if (executedAny)
+            {
+                _move.ResetVelocity();
+                _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Collect, AnimationActorKey.Direction.Down));
+                await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+            }
+            
+            return executedAny;
+        }
+        catch (Exception e) when (e is not OperationCanceledException)
+        {
+            Debug.LogException(e);
+            return false;
+        }
+    }
     
     private bool InteractTrigger(IBAInteractionTrigger arg)
     {
         _controller.StateHandler.TranslateState("EndOfInteraction");
         bool success = arg.Interact(_controller.Interaction);
+        return success;
+    }
+    private bool ActivateTrigger(IBAInteractionTrigger arg)
+    {
+        _controller.StateHandler.TranslateState("EndOfInteraction");
+        bool success = arg.Activate(_controller.Interaction);
         return success;
     }
 
