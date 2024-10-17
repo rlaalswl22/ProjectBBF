@@ -156,10 +156,12 @@ MonoBehaviour:
   - View_Festival
   - BMap_Festival
   - BMap_FestivalDetail
+  - BMap_FrogMiniGame
   ChildScenesToLoadConfig:
   - {fileID: 102900000, guid: e9e101f52d0cc2a4294348a7ba3f0a8e, type: 3}
   - {fileID: 102900000, guid: 3d8ff6aa079a0fc41b7d8ed37c3f4314, type: 3}
   - {fileID: 102900000, guid: 5d1b86af68f271f4283e16aa257790ff, type: 3}
+  - {fileID: 102900000, guid: 344ec74386dd9f240b35c4fc6e8bea4d, type: 3}
 --- !u!4 &835607302
 Transform:
   m_ObjectHideFlags: 0
@@ -169,7 +171,7 @@ Transform:
   m_GameObject: {fileID: 835607300}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 93.866, y: -114.057045, z: -1.5529459}
+  m_LocalPosition: {x: -47.8, y: 22.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
