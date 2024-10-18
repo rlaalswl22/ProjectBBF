@@ -57,7 +57,9 @@ public class BakeryStoreage : BakeryFlowBehaviour
         
         while (true)
         {
-            if (InputManager.Map.Player.Interaction.triggered)
+            if (InputManager.Map.Player.Interaction.triggered ||
+                InputManager.Map.UI.Inventory.triggered ||
+                InputManager.Map.UI.Setting.triggered)
             {
                 yield return null;
                 yield return null;
