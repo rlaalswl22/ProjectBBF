@@ -48,7 +48,11 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
 
     public bool SetPortrait(string actorKey, string portraitKey)
     {
-        if (string.IsNullOrEmpty(actorKey)) return false;
+        if (string.IsNullOrEmpty(actorKey))
+        {
+            _view.SetPortrait(null);
+            return false;
+        }
         
         if (_actorDataManager.CachedDict.TryGetValue(actorKey, out var data))
         {
@@ -61,9 +65,9 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
                 _view.SetPortrait(sprite);
                 return true;
             }
-            
         }
 
+        _view.SetPortrait(null);
         return false;
     }
 

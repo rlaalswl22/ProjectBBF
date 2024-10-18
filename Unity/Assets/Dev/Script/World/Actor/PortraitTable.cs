@@ -31,4 +31,12 @@ public class PortraitTable
             return _table;
         }
     }
+
+    public void ResetCache()
+    {
+        if (_table is null) return;
+        
+        _table.Clear();
+        _table = null;
+    }
 }
