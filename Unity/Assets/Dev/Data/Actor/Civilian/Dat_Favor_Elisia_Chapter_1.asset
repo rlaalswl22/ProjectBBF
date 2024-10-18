@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94576a3af06543efac7d22c9a606f6fb, type: 3}
-  m_Name: Dat_Favor_Hermes_Chapter_1
+  m_Name: Dat_Favor_Elisia_Chapter_1
   m_EditorClassIdentifier: 
-  _actorKey: Hermes_Chapter_1
-  _actorName: "\uD5E4\uB974\uBA54\uC2A4"
+  _actorKey: Elisia_Chapter_1
+  _actorName: "\uC5D8\uB9AC\uC2DC\uC544"
   _defaultPortraitKey: Default
   _favorabilityEvent:
     _eventItems:
-    - _container: {fileID: 11400000, guid: 99402fe826f2616418b5e612560b0a6f, type: 2}
+    - _container: {fileID: 11400000, guid: 32b93654482e97c48b364f501bc0facf, type: 2}
       _favorablity: 0
       _once: 0
       _branchType: 2
   _portraitTable:
     _list:
     - Key: Default
-      Portrait: {fileID: 21300000, guid: 5d9f20da957cbc4409ee0caa995f586d, type: 3}
+      Portrait: {fileID: 21300000, guid: bc1032db861ba424884f8bdbe9ea1d87, type: 3}
     - Key: Agg
-      Portrait: {fileID: 21300000, guid: 37bf989512712d44e9a8010877056a63, type: 3}
-    - Key: Lol
-      Portrait: {fileID: 21300000, guid: 17f186b57e021164893a406471de9598, type: 3}
+      Portrait: {fileID: 21300000, guid: 5ecdac2240a26234fbeca7b7ab61ad55, type: 3}
+    - Key: Smi
+      Portrait: {fileID: 21300000, guid: e901c8b6f6de7f245b00393dba7024d8, type: 3}

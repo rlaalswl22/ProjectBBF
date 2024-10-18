@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94576a3af06543efac7d22c9a606f6fb, type: 3}
-  m_Name: Dat_Favor_Elisa_Chapter_1
+  m_Name: Dat_Favor_Dummy3
   m_EditorClassIdentifier: 
-  _actorKey: Elisa_Chapter_1
-  _actorName: "\uC5D8\uB9AC\uC0AC"
+  _actorKey: PD201
+  _actorName: "\uB354\uBBF8 npc"
   _defaultPortraitKey: Default
   _favorabilityEvent:
     _eventItems:
-    - _container: {fileID: 11400000, guid: 32b93654482e97c48b364f501bc0facf, type: 2}
+    - _container: {fileID: 11400000, guid: 6899e3afaeb6a3342a95217081abdd13, type: 2}
       _favorablity: 0
       _once: 0
       _branchType: 2
