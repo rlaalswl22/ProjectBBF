@@ -28,6 +28,7 @@ public class ActorMove : MonoBehaviour, IActorStrategy
         if(persistenceObj.SavedPosition)
         {
             actor.transform.position = persistenceObj.LastPosition;
+            persistenceObj.SavedPosition = false;
         }
         
         

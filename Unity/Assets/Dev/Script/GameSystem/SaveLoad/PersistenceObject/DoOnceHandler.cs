@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ProjectBBF.Persistence
 {
-    [System.Serializable]
+    [System.Serializable, GameData]
     public class DoOnceHandlerPersistenceObject
     {
         public List<string> DoOnceList = new List<string>();

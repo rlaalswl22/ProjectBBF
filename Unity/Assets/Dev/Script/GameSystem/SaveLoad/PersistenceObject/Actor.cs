@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ProjectBBF.Persistence
 {
-    [System.Serializable]
+    [System.Serializable, GameData]
     public class ActorPersistenceObject
     {
         [DoNotEditable] public bool SavedPosition;

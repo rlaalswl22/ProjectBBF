@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ProjectBBF.Persistence
 {
-    [System.Serializable]
+    [System.Serializable, GameData]
     public class RecipeBookPersistenceObject
     {
         [SerializeField] private List<string> _unlockRecipeKeys = new(10);

@@ -171,7 +171,7 @@ public class InventorySlotView : MonoBehaviour, IPointerDownHandler, IPointerEnt
     {
         OnHoverEnter?.Invoke(SlotController);
 
-        if (SlotController.Data is not null)
+        if (SlotController?.Data is not null)
         {
             AudioManager.Instance.PlayOneShot("UI", "UI_MouseOver");
         }
