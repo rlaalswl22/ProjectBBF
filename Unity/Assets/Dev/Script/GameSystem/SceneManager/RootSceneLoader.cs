@@ -92,35 +92,37 @@ public class RootSceneLoader : MonoBehaviour
         if (EditorPrefs.GetBool("__AUTO_PLAY_MODE__") && SceneLoader.Instance.IsLoadedImmutableScenes == false)
         {
             string worldSceneName = gameObject.scene.name;
-            _ = SceneLoader.Instance
-                .LoadWorldAsync(worldSceneName)
-                .ContinueWith(x =>
+
+            _ = UniTask.Create(async () =>
+            {
+                if (_loadImmutableScene)
                 {
-                    if (x && _loadImmutableScene)
+                    await SceneLoader.Instance.LoadImmutableScenesAsync();
+                }
+                
+                
+                await SceneLoader.Instance.LoadWorldAsync(worldSceneName);
+                
+                SceneManager.GetSceneByName(worldSceneName).GetRootGameObjects().ForEach(y =>
+                {
+                    var root = y.GetComponent<RootSceneLoader>();
+
+                    if (root == false)
                     {
-                        _ = SceneLoader.Instance.LoadImmutableScenesAsync().ContinueWith(x =>
-                        {
-                            SceneManager.GetSceneByName(worldSceneName).GetRootGameObjects().ForEach(y =>
-                            {
-                                var root = y.GetComponent<RootSceneLoader>();
+                        root = y.GetComponentInChildren<RootSceneLoader>();
+                    }
 
-                                if (root == false)
-                                {
-                                    root = y.GetComponentInChildren<RootSceneLoader>();
-                                }
+                    if (root)
+                    {
+                        var t = GameObjectStorage.Instance.StoredObjects.FirstOrDefault(z =>
+                            z.GetComponent<PlayerController>());
 
-                                if (root)
-                                {
-                                    var t = GameObjectStorage.Instance.StoredObjects.FirstOrDefault(z =>
-                                        z.GetComponent<PlayerController>());
-
-                                    if (t)
-                                        t.transform.SetXY(root.transform.position);
-                                }
-                            });
-                        });
+                        if (t)
+                            t.transform.SetXY(root.transform.position);
                     }
                 });
+                
+            });
         }
     }
 
