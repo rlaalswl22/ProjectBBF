@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using MyBox;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -63,6 +64,8 @@ public class InventorySlotView : MonoBehaviour, IPointerDownHandler, IPointerEnt
         if (slot is null) return;
         
         _slotImage.sprite = slot.Data != null ? slot.Data.ItemSprite : null;
+
+        _slotImage.SetAlpha(_slotImage.sprite ? 1f : 0f);
 
         if (slot.Data is not null && slot.Data.ActionCategoryType == ActionCategoryType.Tool)
         {
