@@ -18,7 +18,7 @@ public class RecipeBookPresenter : MonoBehaviour
     public void Awake()
     {
         var resolver = BakeryRecipeResolver.Instance;
-        Model = resolver.Model;
+        Model = new();
         
         _listView.OnSlotClick += OnSlotClicked;
         Model.OnRecipeUnlocked += OnUnlockedChanged;

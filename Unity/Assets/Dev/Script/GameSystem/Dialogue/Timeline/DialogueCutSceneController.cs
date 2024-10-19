@@ -70,6 +70,12 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
         {
             _esoResultPush.OnEventRaised -= OnResultItemPush;
         }
+
+        if (DialogueController.Instance)
+        {
+            DialogueController.Instance.ResetDialogue();
+        }
+        
     }
 
     private void OnStopped(PlayableDirector obj)

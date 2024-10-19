@@ -117,8 +117,22 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
 
     public string DialogueText
     {
-        get => _view.DialogueText;
-        set => _view.DialogueText = value;
+        get
+        {
+            if (_view)
+            {
+                return _view.DialogueText;
+            }
+
+            return "ERROR!";
+        }
+        set
+        {
+            if (_view)
+            {
+                _view.DialogueText = value;
+            }
+        }
     }
 
     public async UniTask<(int index, DialogueBranchResult result)> GetBranchResultAsync(DialogueBranchField[] fields, CancellationToken token = default)

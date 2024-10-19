@@ -86,7 +86,11 @@ public class FadeinoutObject : MonoBehaviour
         }
         
         StopAllCoroutines();
-        StartCoroutine(CoFade(false));
+
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(CoFade(false));
+        }
         
         OnExit?.Invoke(interaction);
     }
