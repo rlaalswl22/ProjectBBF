@@ -25,7 +25,7 @@ MonoBehaviour:
     m_Objects:
     - {fileID: 4566945701012801296}
     - {fileID: 344666681773967724}
-    - {fileID: -4195831510713814506}
+    - {fileID: -2963003484180097826}
 --- !u!114 &-7054601079018505967
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects: []
---- !u!114 &-4195831510713814506
+--- !u!114 &-2963003484180097826
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,11 +58,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ac8c311cb403af409690e4ef84ed598, type: 3}
-  m_Name: Dialogue Marker
+  m_Script: {fileID: 11500000, guid: 0f7ff838a23a464d8ed618e8a3d2a5d6, type: 3}
+  m_Name: Branch Timeline Marker
   m_EditorClassIdentifier: 
   m_Time: 0.8666666666666667
-  _container: {fileID: 11400000, guid: 4192037e7e113c94d881dfd855407628, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,7 +96,9 @@ MonoBehaviour:
   m_Name: Contest Result Marker
   m_EditorClassIdentifier: 
   m_Time: 0.5666666666666667
-  _chapter: 0
+  _chapter: 1
+  _failTimeline: {fileID: 11400000, guid: 56552fab69c96924c9cc0ac2ddb3176d, type: 2}
+  _successTimeline: {fileID: 11400000, guid: bf8aa5c8779ff244b93605573423c3f8, type: 2}
 --- !u!114 &4566945701012801296
 MonoBehaviour:
   m_ObjectHideFlags: 1

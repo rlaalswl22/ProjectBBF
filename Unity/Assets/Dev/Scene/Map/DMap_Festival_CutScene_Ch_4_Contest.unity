@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 98862380}
   - component: {fileID: 98862379}
   m_Layer: 0
-  m_Name: MoveToScene
+  m_Name: MoveToScene_Fail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 064e36b40a924202b1ca3faeea1d6cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventChannel: {fileID: 11400000, guid: 3f3b42d8d569bf24d8e2252d35b8ab51, type: 2}
+  _eventChannel: {fileID: 11400000, guid: ec48ac4adbdeee043836792b84df4555, type: 2}
   _response:
     m_PersistentCalls:
       m_Calls:
@@ -287,6 +287,9 @@ MonoBehaviour:
   _directorKey: BlackAlpha
   _fadeOut: 1
   _fadeIn: 1
+  _save: 0
+  _load: 1
+  _unloadImmutable: 0
   _initPlayerPosition: {fileID: 273801891}
 --- !u!1 &110128700
 GameObject:
@@ -603,6 +606,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &760250541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 760250542}
+  m_Layer: 0
+  m_Name: Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &760250542
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760250541}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -22.4, y: -9.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1888219757}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1020622467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,13 +1369,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520752928}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2446bd6368b8440f880980e683e0c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _eso: {fileID: 11400000, guid: 0d304413b0190d342a4295c1ca8153a7, type: 2}
-  _itemData: {fileID: 11400000, guid: 04440bb28c25437438761a3289fe43a8, type: 2}
+  _itemData: {fileID: 11400000, guid: b51b2794b49bf5042a0ec60c76319b71, type: 2}
   _testGoBackScene:
     _sceneAsset: {fileID: 102900000, guid: ace2e0163fac7b64b923618a5b5533e0, type: 3}
     _sceneName: World_Festival_Ch_4
@@ -1832,6 +1866,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 98862378}
+  - {fileID: 1888219757}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1886055699
@@ -1918,6 +1953,91 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1888219756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1888219757}
+  - component: {fileID: 1888219759}
+  - component: {fileID: 1888219758}
+  m_Layer: 0
+  m_Name: MoveToScene_Success
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1888219757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888219756}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 760250542}
+  m_Father: {fileID: 1839602174}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1888219758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888219756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064e36b40a924202b1ca3faeea1d6cb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventChannel: {fileID: 11400000, guid: 3f3b42d8d569bf24d8e2252d35b8ab51, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1888219759}
+        m_TargetAssemblyTypeName: MoveToWorld, Assembly-CSharp
+        m_MethodName: MoveWorld
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _esoChain: []
+--- !u!114 &1888219759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888219756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759c6d952562c9d42ae08baec230fcae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene:
+    _sceneAsset: {fileID: 102900000, guid: 0b7f0d7b09a2aa54184ea103f92d061b, type: 3}
+    _sceneName: World_MainMenu
+  _directorKey: BlackAlpha
+  _fadeOut: 1
+  _fadeIn: 1
+  _save: 0
+  _load: 0
+  _unloadImmutable: 1
+  _initPlayerPosition: {fileID: 760250542}
 --- !u!1 &1917654366
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,53 +12,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373d19faf6b74c2aa532bd8411d9360d, type: 3}
   m_Name: ContestResultTable
   m_EditorClassIdentifier: 
+  _exceptionRecords:
+  - Chapter: 0
+    Item: {fileID: 0}
+    ActorKey: Ahir
+    Text: "\uC5D0\uD5E4\uC774 \uC870\uC84B\uB124 \uC774\uAC70"
+    Failue: 1
+  - Chapter: 0
+    Item: {fileID: 0}
+    ActorKey: Elisia
+    Text: "\uC5D0\uD5E4\uC774 \uC870\uC84B\uB124 \uC774\uAC70 \u314B\u314B"
+    Failue: 1
   _table:
   - Chapter: 1
     Item: {fileID: 11400000, guid: e5b313fc729fdce4690e3cb0d73889db, type: 2}
     ActorKey: Ahir
     Text: "\uBB34\uB09C\uD558\uAD70\uC694. \uB098\uC058\uC9C0 \uC54A\uC544\uC694.<br>\uAC04\uC774\uB098
       \uAD7D\uAE30... \uB2E4 \uC801\uB2F9\uD558\uAD70\uC694."
+    Failue: 0
   - Chapter: 1
     Item: {fileID: 11400000, guid: e5b313fc729fdce4690e3cb0d73889db, type: 2}
     ActorKey: Elisia
     Text: "\uC774\uC815\uB3C4\uBA74 \uAD1C\uCC2E\uB124. \uADF8\uB798\uB3C4 \uB2E4\uC74C\uC5D4
       \uB354 \uB9DB\uC788\uB294 \uAC78\uB85C \uAD6C\uC6CC\uC640!"
+    Failue: 0
   - Chapter: 1
     Item: {fileID: 11400000, guid: eb2689667e27e36468a9207f7bd7187e, type: 2}
     ActorKey: Ahir
     Text: "\uBE75 \uC5B4\uB514\uC11C \uBC30\uC6E0\uC5B4\uC694? \uC88B\uC740 \uBE75\uC774\uAD70\uC694.
       \uAD1C\uCC2E\uC544\uC694."
+    Failue: 0
   - Chapter: 1
     Item: {fileID: 11400000, guid: eb2689667e27e36468a9207f7bd7187e, type: 2}
     ActorKey: Elisia
     Text: "\uBE75\uC774 \uAF64 \uC798 \uAD6C\uC6CC\uC84C\uB124! \uC88B\uC544! \uB108
       \uD569\uACA9!"
+    Failue: 0
   - Chapter: 1
     Item: {fileID: 11400000, guid: 8b026329d6cea2b40b5251af80e069a4, type: 2}
     ActorKey: Ahir
     Text: "\uCF00\uC774\uD06C\uB294 \uC815\uD1B5\uC73C\uB85C \uBC30\uC6E0\uB098\uBCF4\uAD70\uC694.\uC88B\uC740
       \uBE75\uC774\uAD70\uC694. \uAD1C\uCC2E\uC544\uC694."
+    Failue: 0
   - Chapter: 1
     Item: {fileID: 11400000, guid: 8b026329d6cea2b40b5251af80e069a4, type: 2}
     ActorKey: Elisia
     Text: "\uCF00\uC774\uD06C\uC758 \uB2F9\uB3C4\uAC00 \uC801\uB2F9\uD558\uACE0...\uAD1C\uCC2E\uB124!
       \uB108 \uC880 \uD558\uB124?"
+    Failue: 0
   - Chapter: 1
     Item: {fileID: 11400000, guid: d504c2a902ed6be4aada687dcade5e92, type: 2}
     ActorKey: Ahir
     Text: "\uC774\uB534 \uAC78 \uBE75\uC774\uB77C\uACE0 \uB0B4? \uD0C8\uB77D\uC774\uC5D0\uC694.\uB354
       \uC815\uC9C4\uD574\uC11C \uC624\uAE38 \uBC14\uB77C\uACA0\uC2B5\uB2C8\uB2E4."
+    Failue: 1
   - Chapter: 1
     Item: {fileID: 11400000, guid: d504c2a902ed6be4aada687dcade5e92, type: 2}
     ActorKey: Elisia
     Text: "\uC774\uB7F0 \uAC78 \uBE75\uC774\uB77C\uACE0 \uAC00\uC838\uC654\uC5B4?
       \uD558...\uBB34\uC2A8 \uC0DD\uAC01\uC774\uC57C! \uB108\uB098 \uBA39\uC5B4"
+    Failue: 1
   - Chapter: 2
     Item: {fileID: 11400000, guid: 1e59d6f8e627c49409dc5c81c666b6d6, type: 2}
     ActorKey: Ahir
     Text: "\uC774\uAC70\uB294 \uBBF8\uC2DD\uC774\uC57C...\uC9C0\uAE08\uAE4C\uC9C0
       \uBA39\uC5C8\uB358 \uAC83 \uC911 \uC190\uAC00\uB77D \uC548\uC5D0 \uB4DC\uB294
       \uCD5C\uACE0\uC758 \uB9DB\uC774\uB124\uC694"
+    Failue: 0
   - Chapter: 2
     Item: {fileID: 11400000, guid: 1e59d6f8e627c49409dc5c81c666b6d6, type: 2}
     ActorKey: Elisia
@@ -66,12 +86,14 @@ MonoBehaviour:
       \uB9DB\uC788\uC9C0?! \uCD5C\uACE0\uC778\uB370? \uBBF8\uC158\uC744 \uC798 \uC0B4\uB9AC\uBA74\uC11C
       \uC9C4\uC9DC \uB9DB\uC788\uB124. \uC0DD\uC9C0\uBD80\uD130 \uC704\uC5D0 \uC62C\uB77C\uAC04
       \uC824\uB9AC\uC758 \uC2DD\uAC10, \uB2F9\uB3C4 \uB2E4 \uC644\uBCBD\uD574!"
+    Failue: 0
   - Chapter: 2
     Item: {fileID: 11400000, guid: 5a12de9f3bcb41946afd834b9485f4b1, type: 2}
     ActorKey: Ahir
     Text: "\uBD95\uC5B4\uC640 \uBE75\uC744 \uAC19\uC774 \uBA39\uC73C\uB2C8 \uC0DD\uC120\uC0B4\uC774
       \uC0B4\uC9DD \uAC70\uC2AC\uB9AC\uAE34 \uD558\uC9C0\uB9CC\uC804\uCCB4\uC801\uC73C\uB85C
       \uBC38\uB7F0\uC2A4\uAC00 \uC88B\uAD70\uC694."
+    Failue: 0
   - Chapter: 2
     Item: {fileID: 11400000, guid: 5a12de9f3bcb41946afd834b9485f4b1, type: 2}
     ActorKey: Elisia
@@ -82,55 +104,66 @@ MonoBehaviour:
       \uAC70\uB294 \uC2DD\uAC10\uC774 \uC5B4\uC6B8\uB9AC\uC9C4 \uC54A\uB294 \uAC83
       \uAC19\uAE30\uB3C4 \uD558\uAD6C\uB9CC!\uCEAC\uD558\uD558! \uC7AC\uBC0C\uB294
       \uBE75\uC774\uC5C8\uC5B4!"
+    Failue: 0
   - Chapter: 2
     Item: {fileID: 11400000, guid: ecb9fa4b207e48e44b9f9714cadb036c, type: 2}
     ActorKey: Ahir
     Text: "\uBE75\uACFC \uD568\uAED8 \uBA39\uB294 \uC5F0\uC5B4 \uBE75\uC774\uB77C...\uC2E0\uC120\uD55C
       \uC5F0\uC5B4\uAC00 \uAF64\uB098 \uAD1C\uCC2E\uB124\uC694.\uBC38\uB7F0\uC2A4\uB3C4
       \uAD1C\uCC2E\uACE0 \uC2DD\uAC10\uB3C4 \uAD1C\uCC2E\uAD70\uC694. \uC88B\uC544\uC694."
+    Failue: 0
   - Chapter: 2
     Item: {fileID: 11400000, guid: ecb9fa4b207e48e44b9f9714cadb036c, type: 2}
     ActorKey: Elisia
     Text: "\uC5F0\uC5B4 \uC0CC\uB4DC\uC704\uCE58. \uC5F0\uC5B4\uB294 \uC7A1\uAE30
       \uC5B4\uB824\uC6E0\uC744 \uD150\uB370.\uB9DB\uC740 \uBB34\uB09C\uD558\uB124!\uC5F0\uC5B4\uAC00
       \uB9DB\uC788\uC5B4! \uC774\uC0C1!"
+    Failue: 0
   - Chapter: 2
     Item: {fileID: 11400000, guid: e5b313fc729fdce4690e3cb0d73889db, type: 2}
     ActorKey: Ahir
     Text: "\uBB34\uB09C\uD558\uAD70\uC694. \uB098\uC058\uC9C4 \uC54A\uC544\uC694."
+    Failue: 0
   - Chapter: 2
     Item: {fileID: 11400000, guid: e5b313fc729fdce4690e3cb0d73889db, type: 2}
     ActorKey: Elisia
     Text: "\uBB34\uB09C\uD55C \uBE75\uC774\uB77C... \uC7AC\uBBF8\uC5C6\uC5B4!\uC7AC\uBC0C\uB294
       \uBE75\uC744 \uC6D0\uD588\uB294\uB370 \uC544\uC27D\uAD6C\uB9CC. \uCEAC\uD558!"
+    Failue: 0
   - Chapter: 2
     Item: {fileID: 11400000, guid: 0399e87e6d145ee47a33a9f189cf14cb, type: 2}
     ActorKey: Ahir
     Text: "\uBB34\uB09C\uD558\uAD70\uC694. \uB098\uC058\uC9C4 \uC54A\uC544\uC694."
+    Failue: 0
   - Chapter: 2
     Item: {fileID: 11400000, guid: 0399e87e6d145ee47a33a9f189cf14cb, type: 2}
     ActorKey: Elisia
     Text: "\uBB34\uB09C\uD55C \uBE75\uC774\uB77C... \uC7AC\uBBF8\uC5C6\uC5B4!\uC7AC\uBC0C\uB294
       \uBE75\uC744 \uC6D0\uD588\uB294\uB370 \uC544\uC27D\uAD6C\uB9CC. \uCEAC\uD558!"
+    Failue: 0
   - Chapter: 2
     Item: {fileID: 11400000, guid: dbf2cc8ed2d52f94eba83f34f6b599d3, type: 2}
     ActorKey: Ahir
     Text: "\uB2F9\uC2E0... \uBB34\uC2A8 \uC0DD\uAC01\uC774\uC8E0?\uB2F9\uC2E0\uC740
       \uBCFC \uAC83\uB3C4 \uC5C6\uC5B4\uC694.\uD0C8\uB77D\uC774\uC5D0\uC694"
+    Failue: 0
   - Chapter: 2
     Item: {fileID: 11400000, guid: dbf2cc8ed2d52f94eba83f34f6b599d3, type: 2}
     ActorKey: Elisia
     Text: "\uCEAC\uD558! \uC7AC\uBC0C\uC5B4! \uC7AC\uBC0C\uAD6C\uB9CC! \uB108\uC758
       \uBE75\uC758 \uAC00\uCE58\uAD00\uC774 \uAD81\uAE08\uD574\uC9C0\uB294 \uBE75\uC774\uC57C!"
+    Failue: 0
   - Chapter: 2
     Item: {fileID: 11400000, guid: d504c2a902ed6be4aada687dcade5e92, type: 2}
     ActorKey: Ahir
     Text: "\uC774\uB534 \uAC78 \uBE75\uC774\uB77C\uACE0 \uB0B4\uAC74\uAC00\uC694?\uD0C8\uB77D\uC774\uC5D0\uC694. "
+    Failue: 0
   - Chapter: 2
     Item: {fileID: 11400000, guid: d504c2a902ed6be4aada687dcade5e92, type: 2}
     ActorKey: Elisia
     Text: "\uC774\uB7F0 \uAC78 \uBE75\uC774\uB77C\uACE0 \uAC00\uC838\uC654\uC5B4?\uD558...
       \uBB34\uC2A8 \uC0DD\uAC01\uC774\uC57C!\uB108\uB098 \uBA39\uC5B4"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: a25d3b6254c06f6469cb79165921f730, type: 2}
     ActorKey: Ahir
@@ -139,6 +172,7 @@ MonoBehaviour:
       \uC544\uB294\uB370 \uC798 \uCC3E\uC544 \uAC00\uC9C0\uACE0\uC654\uAD70\uC694.\uCF00\uC774\uD06C\uB85C\uC11C\uC758
       \uAE30\uBCF8\uC801\uC778 \uBC38\uB7F0\uC2A4\uB3C4 \uB6F0\uC5B4\uB098\uACE0
       \uB9DB\uC788\uC5B4\uC694. \uC798 \uBA39\uC5C8\uC5B4\uC694."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: a25d3b6254c06f6469cb79165921f730, type: 2}
     ActorKey: Elisia
@@ -148,6 +182,7 @@ MonoBehaviour:
       \uC5B4\uC6B8\uB9AC\uACE0 \uC628\uB3C4\uB3C4 \uCC28\uAC8C \uC720\uC9C0\uB418\uB294
       \uAC8C \uC88B\uAD70!\uAF64\uB098 \uC88B\uC740 \uCF00\uC774\uD06C\uB97C \uB9CC\uB4E4\uC5B4\uC654\uAD6C\uB9CC!
       \uC88B\uC544!\uCEAC\uD558\uD558\uD558\uD558!!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 2c5132d960b347f48b382414ebcbf237, type: 2}
     ActorKey: Ahir
@@ -155,6 +190,7 @@ MonoBehaviour:
       \uD3ED\uC2E0\uD55C \uC2DD\uAC10\uACFC \uC798 \uC5B4\uC6B8\uB824\uC694. \uC804\uCCB4\uC801\uC778
       \uC2DD\uAC10, \uB9DB, \uD5A5 \uC804\uBD80 \uC88B\uAC8C \uAD6C\uC131\uB418\uC5B4\uC788\uB294
       \uC13C\uC2A4\uC788\uB294 \uBE75\uC774\uC5D0\uC694."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 2c5132d960b347f48b382414ebcbf237, type: 2}
     ActorKey: Elisia
@@ -162,6 +198,7 @@ MonoBehaviour:
       \uCEE4\uD53C\uD5A5\uC774 \uC77C\uD488\uC774\uC57C!\uC7AC\uB8CC\uB294 \uAE30\uBCF8\uC801\uC778
       \uC7AC\uB8CC\uB97C \uC4F4 \uAC83 \uAC19\uC740\uB370 \uB9DB\uC774\uB098 \uC2DD\uAC10,
       \uD5A5\uC774 \uC804\uBD80 \uB6F0\uC5B4\uB098!\uCEAC\uD558\uD558! \uC88B\uC544!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: e0c0ee5166d656b49aebe0527ff2cec9, type: 2}
     ActorKey: Ahir
@@ -172,6 +209,7 @@ MonoBehaviour:
       \uAE30\uB300\uD588\uB294\uB370, \uB9DB\uB3C4 \uAE30\uB300\uB9CC\uD07C \uB098\uC624\uB124\uC694.\uB2E8
       \uAC83\uC744 \uADF8\uB9AC \uC88B\uC544\uD558\uC9C4 \uC54A\uB294\uB370\uB3C4
       \uB9DB\uC774 \uC88B\uAC8C \uB290\uAEF4\uC9C0\uB124\uC694. \uC798 \uBA39\uC5C8\uC5B4\uC694."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: e0c0ee5166d656b49aebe0527ff2cec9, type: 2}
     ActorKey: Elisia
@@ -179,6 +217,7 @@ MonoBehaviour:
       \uC788\uB294 \uCD08\uCF54\uB3C4 \uAF64\uB098 \uAD1C\uCC2E\uC544! \uCEAC\uD558\uD558\uD558\uD558!\uBCF4\uB294
       \uB9DB\uB3C4 \uC788\uB294 \uCD08\uCF54\uBD84\uC218\uC5D0 \uB300\uBE44\uB97C
       \uC900\uAC8C \uC544\uC8FC \uC88B\uC558\uC5B4!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: e68ce83e1be826f43a284e9b1aafda11, type: 2}
     ActorKey: Ahir
@@ -187,6 +226,7 @@ MonoBehaviour:
       \uB0B4\uBD80 \uBC18\uC8FD\uC758 \uBC38\uB7F0\uC2A4\uAC00 \uC644\uBCBD\uD558\uAD70\uC694.\uBC84\uC12F\uC774
       \uB4E4\uC5B4\uAC00\uC11C \uADF8\uB7F0\uC9C0 \uBA39\uC73C\uBA74 \uAE30\uC6B4\uC774
       \uB098\uB294 \uB290\uB08C\uC774\uAD70\uC694.\uC798 \uBA39\uC5C8\uC5B4\uC694"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: e68ce83e1be826f43a284e9b1aafda11, type: 2}
     ActorKey: Elisia
@@ -195,6 +235,7 @@ MonoBehaviour:
       \uD5A5\uACFC \uB9DB\uC744 \uB9DE\uCD98 \uAC83\uB3C4 \uC7AC\uBC0C\uC5B4\uC11C
       \uC88B\uC544!\uBA39\uC73C\uBA74 \uD0A4\uAC00 \uCEE4\uC9C8\uAC83\uB9CC \uAC19\uC544!!\uCEAC\uD558\uD558\uD558\uD558!
       \uB18D\uB2F4\uC774\uC57C!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: d3e2104c2620cc84ebfbb4cd31143303, type: 2}
     ActorKey: Ahir
@@ -204,6 +245,7 @@ MonoBehaviour:
       \uC0B4\uC544\uB098\uB294 \uB290\uB08C\uC774\uC5D0\uC694.\uC77C\uBC18\uC801\uC774\uC9C0
       \uC54A\uC740 \uC0C9\uB2E4\uB978 \uC74C\uC2DD\uC778\uB370 \uB9DB\uC788\uACE0
       \uC88B\uAD70\uC694. \uC798 \uBA39\uC5C8\uC5B4\uC694."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: d3e2104c2620cc84ebfbb4cd31143303, type: 2}
     ActorKey: Elisia
@@ -211,6 +253,7 @@ MonoBehaviour:
       \uC7AC\uBC0C\uC5B4!\uC2DD\uC7AC\uB8CC\uB85C \uB208\uAF43\uC744 \uC4F0\uAE34
       \uD558\uC9C0\uB9CC \uD30C\uC774\uC5D0 \uB123\uB294\uAC70\uB294 \uC0DD\uAC01\uB3C4
       \uBABB\uD574\uBD24\uC5B4!\uB108... \uB2E4\uC2DC \uBD24\uB2E4? \uCEAC\uD558\uD558\uD558\uD558\uD558!!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 0600630e791d493428e19f00d8e37107, type: 2}
     ActorKey: Ahir
@@ -219,6 +262,7 @@ MonoBehaviour:
       \uC2E0\uACBD\uC4F4 \uC904 \uC54C\uC558\uB294\uB370 \uC544\uCE68\uBC84\uC12F
       \uD5A5\uC774 \uC740\uC740\uD558\uAC8C \uB098\uACE0 \uB9DB\uC788\uC5B4\uC694.\uC88B\uC740
       \uC644\uC131\uB3C4\uC758 \uBE75\uC774\uC57C\uC694. \uC798 \uBA39\uC5C8\uB124\uC694."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 0600630e791d493428e19f00d8e37107, type: 2}
     ActorKey: Elisia
@@ -227,6 +271,7 @@ MonoBehaviour:
       \uB9E1\uB294 \uAC83\uACFC \uAC19\uC740 \uB9DB\uC774\uC57C!\uBB54 \uC598\uAE34\uC9C0\uB294
       \uBAA8\uB974\uACA0\uB294\uB370 \uB300\uCDA9 \uB9DB\uC788\uB2E8 \uAC70 \uC544\uB2C8\uACA0\uC5B4?\uCEAC\uD558\uD558\uD558\uD558!
       \uC88B\uC544!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 50d0145df5e8cfd4883e16b37317c40a, type: 2}
     ActorKey: Ahir
@@ -235,6 +280,7 @@ MonoBehaviour:
       \uBD80\uB4DC\uB7EC\uC6C0\uC774\uB124\uC694.\uC774 \uBE75\uC740 \uC2E0\uAE30\uD558\uAC8C
       \uB290\uAEF4\uC9C0\uB124\uC694. \uC9C0\uAE08\uAE4C\uC9C0 \uBA39\uC5B4\uBCF8
       \uC801 \uC5C6\uB294 \uB9DB\uC774\uC5D0\uC694. \uC798 \uBA39\uC5C8\uC5B4\uC694."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 50d0145df5e8cfd4883e16b37317c40a, type: 2}
     ActorKey: Elisia
@@ -243,6 +289,7 @@ MonoBehaviour:
       \uB290\uB08C\uC774\uC57C! \uC0C9\uB2E4\uB978 \uC2DC\uB3C4\uB294 \uC5B8\uC81C\uB098
       \uC88B\uC544!\uC740\uC740\uD558\uAC8C \uB098\uB294 \uBC84\uC12F \uD5A5\uC740
       \uB0B4 \uCDE8\uD5A5\uC740 \uC544\uB2C8\uC9C0\uB9CC! \uCEAC\uD558\uD558\uD558!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 8b6b89790d54d854b921f837f0123ad5, type: 2}
     ActorKey: Ahir
@@ -251,6 +298,7 @@ MonoBehaviour:
       \uB2F9\uC2E0\uC740 \uB2E4\uB978 \uACBD\uC7C1\uC790\uB97C \uBB34\uC2DC\uD558\uB294\uAC74\uAC00\uC694?\uADF8\uB807\uC9C0
       \uC54A\uC73C\uBA74 \uC774\uB7F0 \uAC78 \uAC00\uC838\uC62C \uC218 \uC5C6\uC744\uAC70\uC5D0\uC694.\uADF8\uB798\uB3C4
       \uADF8\uAC74 \uB2F9\uC2E0\uC758 \uC120\uD0DD\uC774\uB2C8\uAE4C... \uC54C\uACA0\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 8b6b89790d54d854b921f837f0123ad5, type: 2}
     ActorKey: Elisia
@@ -259,6 +307,7 @@ MonoBehaviour:
       \uD2B9\uC7A5\uC810, \uC644\uC131\uB3C4 \uB4F1 \uC81C\uBE75\uC0AC\uC758 \uC5BC\uAD74\uC774
       \uBCF4\uC5EC\uC57C \uD558\uB294\uB370 \uADF8\uB7F0 \uAC8C \uBCF4\uC774\uC9C0
       \uC54A\uC544! \uD2B9\uBCC4\uD55C \uAC8C \uD558\uB098\uB3C4 \uC5C6\uC5B4!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: dc7b10a610e705c4ea49fcfe2e64fd96, type: 2}
     ActorKey: Ahir
@@ -266,6 +315,7 @@ MonoBehaviour:
       \uBE75\uC774\uC5D0\uC694. \uADFC\uB370 \uC9C0\uAE08 \uBA39\uAE30\uC5D0\uB294
       \uB9CE\uC774 \uB2EC\uAE34 \uD558\uB124\uC694. \uCD94\uC5B5\uC758 \uB9DB \uC624\uB7AB\uB9CC\uC5D0
       \uBA39\uC73C\uB2C8 \uAD1C\uCC2E\uB124\uC694. \uC798 \uBA39\uC5C8\uC5B4\uC694"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: dc7b10a610e705c4ea49fcfe2e64fd96, type: 2}
     ActorKey: Elisia
@@ -274,6 +324,7 @@ MonoBehaviour:
       \uD2B9\uC7A5\uC810, \uC644\uC131\uB3C4 \uB4F1 \uC81C\uBE75\uC0AC\uC758 \uC5BC\uAD74\uC774
       \uBCF4\uC5EC\uC57C \uD558\uB294\uB370 \uADF8\uB7F0 \uAC8C \uBCF4\uC774\uC9C0
       \uC54A\uC544! \uD2B9\uBCC4\uD55C \uAC8C \uD558\uB098\uB3C4 \uC5C6\uC5B4!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 61547e1e528add747966b5b68d732c69, type: 2}
     ActorKey: Ahir
@@ -282,6 +333,7 @@ MonoBehaviour:
       \uB9DB\uC740 \uAD1C\uCC2E\uC558\uC9C0\uB9CC \uC870\uAE08 \uB354 \uC12C\uC138\uD55C
       \uB9DB\uC744 \uB0B4\uB294 \uBA54\uB274\uC600\uC73C\uBA74 \uC88B\uC558\uC744
       \uAC83 \uAC19\uC544\uC694."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 61547e1e528add747966b5b68d732c69, type: 2}
     ActorKey: Elisia
@@ -289,6 +341,7 @@ MonoBehaviour:
       \uB2E8 \uB9DB\uBC16\uC5D0 \uC5C6\uC73C\uB2C8\uAE4C \uBC38\uB7F0\uC2A4\uAC00
       \uC548\uB9DE\uC544! \uC5B4\uB9B0 \uC560\uB4E4\uC774\uB098 \uC88B\uC544\uD560
       \uB9DB\uC774\uC57C!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: e5b313fc729fdce4690e3cb0d73889db, type: 2}
     ActorKey: Ahir
@@ -298,6 +351,7 @@ MonoBehaviour:
       \uADF8\uB807\uC9C0 \uC54A\uC73C\uBA74 \uC774\uB7F0 \uAC78 \uAC00\uC838\uC62C
       \uC218 \uC5C6\uC744\uAC70\uC5D0\uC694. \uADF8\uB798\uB3C4 \uADF8\uAC74 \uB2F9\uC2E0\uC758
       \uC120\uD0DD\uC774\uB2C8\uAE4C... \uC54C\uACA0\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: e5b313fc729fdce4690e3cb0d73889db, type: 2}
     ActorKey: Elisia
@@ -305,6 +359,7 @@ MonoBehaviour:
       \uC644\uC131\uB3C4\uB294 \uAD1C\uCC2E\uC740\uB370 \uADF8\uAC70 \uB9D0\uACE0\uB294
       \uB9D0\uD560 \uAC8C \uC5C6\uC5B4! \uC880 \uB354 \uACE0\uBBFC\uD558\uACE0 \uBE75\uC744
       \uB9CC\uB4E4\uC5B4\uC57C \uB354 \uB9DB\uC788\uB294 \uBE75\uC774 \uB098\uC628\uB2E4\uACE0!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 0399e87e6d145ee47a33a9f189cf14cb, type: 2}
     ActorKey: Ahir
@@ -314,6 +369,7 @@ MonoBehaviour:
       \uADF8\uB807\uC9C0 \uC54A\uC73C\uBA74 \uC774\uB7F0 \uAC78 \uAC00\uC838\uC62C
       \uC218 \uC5C6\uC744\uAC70\uC5D0\uC694. \uADF8\uB798\uB3C4 \uADF8\uAC74 \uB2F9\uC2E0\uC758
       \uC120\uD0DD\uC774\uB2C8\uAE4C... \uC54C\uACA0\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 0399e87e6d145ee47a33a9f189cf14cb, type: 2}
     ActorKey: Elisia
@@ -321,6 +377,7 @@ MonoBehaviour:
       \uC644\uC131\uB3C4\uB294 \uAD1C\uCC2E\uC740\uB370 \uADF8\uAC70 \uB9D0\uACE0\uB294
       \uB9D0\uD560 \uAC8C \uC5C6\uC5B4! \uC880 \uB354 \uACE0\uBBFC\uD558\uACE0 \uBE75\uC744
       \uB9CC\uB4E4\uC5B4\uC57C \uB354 \uB9DB\uC788\uB294 \uBE75\uC774 \uB098\uC628\uB2E4\uACE0!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 0d1acd5e55a816940ab7f3d4e4860378, type: 2}
     ActorKey: Ahir
@@ -330,6 +387,7 @@ MonoBehaviour:
       \uADF8\uB807\uC9C0 \uC54A\uC73C\uBA74 \uC774\uB7F0 \uAC78 \uAC00\uC838\uC62C
       \uC218 \uC5C6\uC744\uAC70\uC5D0\uC694. \uADF8\uB798\uB3C4 \uADF8\uAC74 \uB2F9\uC2E0\uC758
       \uC120\uD0DD\uC774\uB2C8\uAE4C... \uC54C\uACA0\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 0d1acd5e55a816940ab7f3d4e4860378, type: 2}
     ActorKey: Elisia
@@ -337,12 +395,14 @@ MonoBehaviour:
       \uC644\uC131\uB3C4\uB294 \uAD1C\uCC2E\uC740\uB370 \uADF8\uAC70 \uB9D0\uACE0\uB294
       \uB9D0\uD560 \uAC8C \uC5C6\uC5B4! \uC880 \uB354 \uACE0\uBBFC\uD558\uACE0 \uBE75\uC744
       \uB9CC\uB4E4\uC5B4\uC57C \uB354 \uB9DB\uC788\uB294 \uBE75\uC774 \uB098\uC628\uB2E4\uACE0!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: eb2689667e27e36468a9207f7bd7187e, type: 2}
     ActorKey: Ahir
     Text: "\uAC1C\uC131\uC774 \uC5C6\uACE0 \uBBF8\uC644\uC131\uB41C \uB290\uB08C\uC774\uC5D0\uC694.
       \uAE30\uBCF8\uC5D0 \uCDA9\uC2E4\uD588\uC9C0\uB9CC \uB300\uD68C\uC5D0\uC11C
       \uBCF4\uAE30\uC5D4 \uB108\uBB34 \uBB34\uB09C\uD558\uAD70\uC694."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: eb2689667e27e36468a9207f7bd7187e, type: 2}
     ActorKey: Elisia
@@ -350,12 +410,14 @@ MonoBehaviour:
       \uC644\uC131\uB3C4\uB294 \uAD1C\uCC2E\uC740\uB370 \uADF8\uAC70 \uB9D0\uACE0\uB294
       \uB9D0\uD560 \uAC8C \uC5C6\uC5B4! \uC880 \uB354 \uACE0\uBBFC\uD558\uACE0 \uBE75\uC744
       \uB9CC\uB4E4\uC5B4\uC57C \uB354 \uB9DB\uC788\uB294 \uBE75\uC774 \uB098\uC628\uB2E4\uACE0!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 8b026329d6cea2b40b5251af80e069a4, type: 2}
     ActorKey: Ahir
     Text: "\uAC1C\uC131\uC774 \uC5C6\uACE0 \uBBF8\uC644\uC131\uB41C \uB290\uB08C\uC774\uC5D0\uC694.
       \uAE30\uBCF8\uC5D0 \uCDA9\uC2E4\uD588\uC9C0\uB9CC \uB300\uD68C\uC5D0\uC11C
       \uBCF4\uAE30\uC5D4 \uB108\uBB34 \uBB34\uB09C\uD558\uAD70\uC694."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: 8b026329d6cea2b40b5251af80e069a4, type: 2}
     ActorKey: Elisia
@@ -363,27 +425,32 @@ MonoBehaviour:
       \uC644\uC131\uB3C4\uB294 \uAD1C\uCC2E\uC740\uB370 \uADF8\uAC70 \uB9D0\uACE0\uB294
       \uB9D0\uD560 \uAC8C \uC5C6\uC5B4! \uC880 \uB354 \uACE0\uBBFC\uD558\uACE0 \uBE75\uC744
       \uB9CC\uB4E4\uC5B4\uC57C \uB354 \uB9DB\uC788\uB294 \uBE75\uC774 \uB098\uC628\uB2E4\uACE0!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: dbf2cc8ed2d52f94eba83f34f6b599d3, type: 2}
     ActorKey: Ahir
     Text: "\uB2F9\uC2E0\uC740... \uBB34\uC2A8 \uC0DD\uAC01\uC774\uC5D0\uC694? \uB2F9\uC2E0\uC740
       \uBCFC \uAC83\uB3C4 \uC5C6\uC5B4\uC694.  \uD0C8\uB77D\uC774\uC5D0\uC694."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: dbf2cc8ed2d52f94eba83f34f6b599d3, type: 2}
     ActorKey: Elisia
     Text: "\uCEAC\uD558! \uC7AC\uBC0C\uC5B4! \uC7AC\uBC0C\uAD6C\uB9CC! \uB108\uC758
       \uBE75\uC758 \uAC00\uCE58\uAD00\uC774 \uAD81\uAE08\uD574\uC9C0\uB294 \uBE75\uC774\uC57C!"
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: d504c2a902ed6be4aada687dcade5e92, type: 2}
     ActorKey: Ahir
     Text: "\uC644\uC131\uB418\uC9C0\uB3C4 \uC54A\uC740 \uAC78 \uBE75\uC774\uB77C\uACE0
       \uB0B4\uC694? \uD0C8\uB77D\uC774\uC5D0\uC694. \uBA39\uC744 \uAC00\uCE58\uAC00
       \uC5C6\uAD70\uC694."
+    Failue: 0
   - Chapter: 3
     Item: {fileID: 11400000, guid: d504c2a902ed6be4aada687dcade5e92, type: 2}
     ActorKey: Elisia
     Text: "\uC774\uB7F0 \uAC78 \uBE75\uC774\uB77C\uACE0 \uAC00\uC838\uC654\uC5B4?
       \uD558... \uBB34\uC2A8 \uC0DD\uAC01\uC774\uC57C! \uB108\uB098 \uBA39\uC5B4"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: b51b2794b49bf5042a0ec60c76319b71, type: 2}
     ActorKey: Ahir
@@ -393,6 +460,7 @@ MonoBehaviour:
       \uB2E8\uB9DB\uB3C4 \uC5C6\uACE0 \uC644\uBCBD\uD569\uB2C8\uB2E4. \uAC00\uC871
       \uC0DD\uC77C \uB54C \uBA39\uC73C\uBA74 \uBA39\uAE30 \uC544\uAE4C\uC6B8 \uC815\uB3C4\uC758
       \uB9DB\uACFC \uB514\uC790\uC778\uC785\uB2C8\uB2E4. \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: b51b2794b49bf5042a0ec60c76319b71, type: 2}
     ActorKey: Elisia
@@ -401,6 +469,7 @@ MonoBehaviour:
       \uC12C\uC138\uD568\uC774 \uBCF4\uC778\uB2E4! \uC12C\uC138\uD568\uACFC \uC2E4\uB825\uC774
       \uBE5B\uB098\uB294 \uB9DB\uC788\uB294 \uCF00\uC774\uD06C\uC600\uC5B4!! \uCEAC\uD558\uD558\uD558!
       \uCD5C\uACE0\uC57C!!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 8365fa49c914b73448d9db557e85077a, type: 2}
     ActorKey: Ahir
@@ -411,6 +480,7 @@ MonoBehaviour:
       \uC5C6\uC5C8\uB2E4\uB294 \uAC83\uC744 \uD55C \uC785 \uBA39\uC790\uB9C8\uC790
       \uB290\uB07C\uAC8C \uB418\uB124\uC694. \uAD49\uC7A5\uD788 \uACE0\uAE09\uC2A4\uB7FD\uACE0
       \uC12C\uC138\uD55C \uCF00\uC774\uD06C, \uB9DB\uC788\uAC8C \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 8365fa49c914b73448d9db557e85077a, type: 2}
     ActorKey: Elisia
@@ -419,6 +489,7 @@ MonoBehaviour:
       \uB9C8\uCE58 \uBCF4\uBB3C\uC744 \uCC3E\uB294 \uAC83 \uAC19\uC740 \uB290\uB08C\uAE4C\uC9C0
       \uB4E4\uC5B4!! \uB108 \uB0B4 \uB3D9\uB8CC\uD574\uB77C! \uC7AC\uBC0C\uAC8C \uC798
       \uB9CC\uB4E4\uC5C8\uC5B4!! \uC6B0\uD558\uD558\uD558! \uC644\uBCBD\uD574! "
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: e0c0ee5166d656b49aebe0527ff2cec9, type: 2}
     ActorKey: Ahir
@@ -429,6 +500,7 @@ MonoBehaviour:
       \uAE30\uB300\uD588\uB294\uB370, \uB9DB\uB3C4 \uAE30\uB300\uB9CC\uD07C \uB098\uC624\uB124\uC694.
       \uB2E8 \uAC83\uC744 \uADF8\uB9AC \uC88B\uC544\uD558\uC9C4 \uC54A\uB294\uB370\uB3C4
       \uB9DB\uC774 \uC88B\uAC8C \uB290\uAEF4\uC9C0\uB124\uC694. \uC798 \uBA39\uC5C8\uC5B4\uC694"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: e0c0ee5166d656b49aebe0527ff2cec9, type: 2}
     ActorKey: Elisia
@@ -436,6 +508,7 @@ MonoBehaviour:
       \uC548\uC5D0 \uC788\uB294 \uD06C\uB9BC\uB3C4 \uAF64\uB098 \uAD1C\uCC2E\uC544!
       \uCEAC\uD558\uD558\uD558\uD558! \uBCF4\uB294 \uB9DB\uB3C4 \uC788\uB294 \uCD08\uCF54\uBD84\uC218\uC5D0
       \uB300\uBE44\uB97C \uC900\uAC8C \uC544\uC8FC \uC88B\uC558\uC5B4!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 58b183a85d2496d429ae8887a1ee0cf5, type: 2}
     ActorKey: Ahir
@@ -445,6 +518,7 @@ MonoBehaviour:
       \uBCF4\uC11D\uC744 \uD615\uC0C1\uD654\uD574\uC11C \uBE75\uC5D0 \uB123\uB294
       \uAC74 \uCC38 \uCC38\uC2E0\uD558\uB124\uC694. \uC911\uAC04\uC911\uAC04 \uC539\uD788\uB294
       \uBCF4\uC11D\uC758 \uC2DD\uAC10\uC774 \uD0A5\uC774\uC5D0\uC694.  \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 58b183a85d2496d429ae8887a1ee0cf5, type: 2}
     ActorKey: Elisia
@@ -453,6 +527,7 @@ MonoBehaviour:
       \uD2B9\uC720\uC758 \uC2DD\uAC10, \uACE0\uAE09\uC2A4\uB7EC\uC6B4 \uB2E8\uB9DB,
       \uC774 \uBAA8\uB4E0 \uAC78 \uC798 \uC0B4\uB838\uB2E4\uB294 \uC758\uBBF8\uC9C0!
       \uCEAC\uD558\uD558\uD558! \uC7AC\uBC0C\uC5B4\uC11C \uC88B\uB2E4!!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: a25d3b6254c06f6469cb79165921f730, type: 2}
     ActorKey: Ahir
@@ -462,6 +537,7 @@ MonoBehaviour:
       \uC798 \uCC3E\uC544 \uAC00\uC9C0\uACE0\uC654\uAD70\uC694. \uCF00\uC774\uD06C\uB85C\uC11C\uC758
       \uAE30\uBCF8\uC801\uC778 \uBC38\uB7F0\uC2A4\uB3C4 \uB6F0\uC5B4\uB098\uACE0
       \uB9DB\uC788\uC5B4\uC694. \uC798 \uBA39\uC5C8\uC5B4\uC694."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: a25d3b6254c06f6469cb79165921f730, type: 2}
     ActorKey: Elisia
@@ -472,6 +548,7 @@ MonoBehaviour:
       \uC5B4\uC6B8\uB9AC\uACE0 \uC628\uB3C4\uB3C4 \uCC28\uAC8C \uC720\uC9C0\uB418\uB294
       \uAC8C \uC88B\uAD70! \uAF64\uB098 \uC88B\uC740 \uCF00\uC774\uD06C\uB97C \uB9CC\uB4E4\uC5B4\uC654\uAD6C\uB9CC!
       \uC88B\uC544! \uCEAC\uD558\uD558\uD558\uD558!!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: e68ce83e1be826f43a284e9b1aafda11, type: 2}
     ActorKey: Ahir
@@ -480,6 +557,7 @@ MonoBehaviour:
       \uB0B4\uBD80 \uBC18\uC8FD\uC758 \uBC38\uB7F0\uC2A4\uAC00 \uC644\uBCBD\uD558\uAD70\uC694.
       \uBC84\uC12F\uC774 \uB4E4\uC5B4\uAC00\uC11C \uADF8\uB7F0\uC9C0 \uBA39\uC73C\uBA74
       \uAE30\uC6B4\uC774 \uB098\uB294 \uB290\uB08C\uC774\uAD70\uC694. \uC798 \uBA39\uC5C8\uC5B4\uC694"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: e68ce83e1be826f43a284e9b1aafda11, type: 2}
     ActorKey: Elisia
@@ -488,6 +566,7 @@ MonoBehaviour:
       \uD5A5\uACFC \uB9DB\uC744 \uB9DE\uCD98 \uAC83\uB3C4 \uC7AC\uBC0C\uC5B4\uC11C
       \uC88B\uC544! \uBA39\uC73C\uBA74 \uD0A4\uAC00 \uCEE4\uC9C8\uAC83\uB9CC \uAC19\uC544!!
       \uCEAC\uD558\uD558\uD558\uD558! \uB18D\uB2F4\uC774\uC57C!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 512fe176732043245a3e26b6bc34bf80, type: 2}
     ActorKey: Ahir
@@ -497,10 +576,12 @@ MonoBehaviour:
       \uACE0\uAE30 \uB9DB\uC740 \uAC00\uB4DD\uD558\uC9C0\uB9CC \uC9C8\uAE30\uC9C0
       \uC54A\uC544\uC11C \uCC38 \uC88B\uB124\uC694. \uD3EC\uB9CC\uAC10\uC774 \uC788\uACE0
       \uB9DB\uC788\uC5B4\uC694. \uC774\uAC74 \uCC38 \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 512fe176732043245a3e26b6bc34bf80, type: 2}
     ActorKey: Elisia
     Text: "\uC6B0\uC640!! \uAC00\uB4DD\uCC28\uC11C \uB9DB\uC788\uC5B4!!! \uCEAC\uD558\uD558\uD558\uD558\uD558!!!!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 04440bb28c25437438761a3289fe43a8, type: 2}
     ActorKey: Ahir
@@ -510,6 +591,7 @@ MonoBehaviour:
       \uC644\uBCBD\uD558\uAC8C \uC798 \uB9CC\uB4E4\uC5C8\uB124\uC694. \uC774\uAC70\uB294
       \uBE44\uD310\uD560 \uC694\uC18C\uAC00 \uBCF4\uC774\uC9C0 \uC54A\uB294 \uD30C\uC774\uC785\uB2C8\uB2E4.
       \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 04440bb28c25437438761a3289fe43a8, type: 2}
     ActorKey: Elisia
@@ -520,6 +602,7 @@ MonoBehaviour:
       \uCEAC\uD558\uD558\uD558\uD558! \uC9C4\uC9DC\uB85C \uD588\uB0D0\uACE0? \uADF8\uB7F4\uB9AC\uAC00!
       \uC554\uD2BC \uB9C8\uCE58 \uC624\uB85C\uB77C\uB97C \uBCF8 \uAC83 \uAC19\uC740
       \uB9DB\uC774\uC57C!!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 1e59d6f8e627c49409dc5c81c666b6d6, type: 2}
     ActorKey: Ahir
@@ -532,6 +615,7 @@ MonoBehaviour:
       \uBC14\uB2E4\uB97C \uD45C\uD604\uD588\uC5B4\uC694. \uBD88\uCF8C\uD55C \uC694\uC18C
       \uC870\uAE08\uB3C4 \uC5C6\uACE0 \uC644\uBCBD\uD558\uAC8C \uB9CC\uB4E4\uC5C8\uB124\uC694.
       \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 1e59d6f8e627c49409dc5c81c666b6d6, type: 2}
     ActorKey: Elisia
@@ -541,6 +625,7 @@ MonoBehaviour:
       \uB9DB\uC788\uC5B4! \uCEAC\uD558\uD558\uD558\uD558!! \uC0C1\uCF8C\uD558\uACE0
       \uC2DC\uC6D0\uD55C \uBC14\uB2E4\uAC00 \uC785 \uC548\uC5D0 \uAC00\uB4DD\uD55C
       \uB290\uB08C\uC774\uC57C!!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: d3e2104c2620cc84ebfbb4cd31143303, type: 2}
     ActorKey: Ahir
@@ -551,6 +636,7 @@ MonoBehaviour:
       \uC54A\uC740 \uC0C9\uB2E4\uB978 \uC74C\uC2DD\uC778\uB370 \uB9DB\uC788\uACE0
       \uC88B\uAD70\uC694. \uD558\uC9C0\uB9CC \uC870\uAE08 \uC784\uD329\uD2B8\uB294
       \uC57D\uD55C \uB290\uB08C\uC774\uB124\uC694. \uC798 \uBA39\uC5C8\uC5B4\uC694."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: d3e2104c2620cc84ebfbb4cd31143303, type: 2}
     ActorKey: Elisia
@@ -558,6 +644,7 @@ MonoBehaviour:
       \uC7AC\uBC0C\uC5B4! \uC2DD\uC7AC\uB8CC\uB85C \uB208\uAF43\uC744 \uC4F0\uAE34
       \uD558\uC9C0\uB9CC \uD30C\uC774\uC5D0 \uB123\uB294\uAC70\uB294 \uC0DD\uAC01\uB3C4
       \uBABB\uD574\uBD24\uC5B4! \uB108... \uB2E4\uC2DC \uBD24\uB2E4? \uCEAC\uD558\uD558\uD558\uD558\uD558!!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 9999ed6923961e3458aa22a1c22b4e39, type: 2}
     ActorKey: Ahir
@@ -569,6 +656,7 @@ MonoBehaviour:
       \uB9DB\uC774\uC9C0 \uC774 \uD30C\uC774\uC758 \uB9DB\uC778\uAC00? \uC774\uAC74
       \uC798 \uBAA8\uB974\uACA0\uC2B5\uB2C8\uB2E4. \uADF8\uB7FC\uC5D0\uB3C4 \uC644\uC131\uB3C4\uB294
       \uAD1C\uCC2E\uC558\uC5B4\uC694. \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 9999ed6923961e3458aa22a1c22b4e39, type: 2}
     ActorKey: Elisia
@@ -577,6 +665,7 @@ MonoBehaviour:
       \uC6B0\uC120 \uC2DD\uAC10\uC774 \uC7AC\uBC0C\uC5B4! \uC88B\uC544! \uD558\uC9C0\uB9CC
       \uB610 \uBA39\uC73C\uBA74 \uC775\uC219\uD574\uC838\uC11C \uC7AC\uBBF8\uAC00
       \uBC18\uAC10\uB418\uB294 \uB9DB\uC774\uC57C! \uADF8\uB798\uB3C4 \uC88B\uC558\uC5B4!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 1e59d6f8e627c49409dc5c81c666b6d6, type: 2}
     ActorKey: Ahir
@@ -587,6 +676,7 @@ MonoBehaviour:
       \uC0B4\uC774 \uB9DB\uC788\uB124\uC694. \uADFC\uB370 \uC660\uC9C0 \uBAA8\uB974\uAC8C
       \uC870\uAE08 \uC544\uC26C\uC6B4 \uB290\uB08C\uC774 \uB4DC\uB124\uC694. \uC798
       \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 1e59d6f8e627c49409dc5c81c666b6d6, type: 2}
     ActorKey: Elisia
@@ -595,6 +685,7 @@ MonoBehaviour:
       \uCEAC\uD558\uD558\uD558!! \uB208 \uAC10\uACE0 \uBA39\uC73C\uBA74 \uBC14\uB2E4
       \uB0B4\uC74C\uC774 \uB098\uB294 \uAC83\uB9CC \uAC19\uC544!  \uB18D\uB2F4\uC774\uC57C!
       \uCEAC\uD558\uD558\uD558\uD558!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: f685eb60602d9d44596f7f72939f065a, type: 2}
     ActorKey: Ahir
@@ -604,6 +695,7 @@ MonoBehaviour:
       \uADFC\uB370 \uACFC\uC77C\uC744 \uC368\uC11C \uADF8\uB7F0\uC9C0 \uC0DD\uC9C0\uAC00
       \uC870\uAE08 \uB205\uB205\uD55C \uB290\uB08C\uC774 \uB4DC\uB124\uC694. \uC798
       \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: f685eb60602d9d44596f7f72939f065a, type: 2}
     ActorKey: Elisia
@@ -613,6 +705,7 @@ MonoBehaviour:
       \uAC8C \uC88B\uC9C0\uB9CC \uD55C \uC785\uC5D0 \uBA39\uC5C8\uC744 \uB54C, \uB9CC\uC871\uB3C4\uAC00
       \uADF8\uB9AC \uB192\uC9C0\uB294 \uC54A\uB124! \uB9DB\uC774 \uC5C6\uB294 \uAC74
       \uC544\uB2C8\uB2C8 \uC2E4\uB9DD\uD558\uC9C4 \uB9C8! \uCEAC\uD558\uD558\uD558\uD558!!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 083b2bc8a5f07c942883bd58f0d78566, type: 2}
     ActorKey: Ahir
@@ -622,6 +715,7 @@ MonoBehaviour:
       \uB2E8\uB9DB\uC774 \uC870\uD654\uB85C\uC6B4 \uB290\uB08C\uC774 \uC788\uB124\uC694. 
       \uC7AC\uBC0C\uB294 \uCF00\uC774\uD06C\uB97C \uB9CC\uB4E0 \uAC83 \uAC19\uC2B5\uB2C8\uB2E4.
       \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 083b2bc8a5f07c942883bd58f0d78566, type: 2}
     ActorKey: Elisia
@@ -629,6 +723,7 @@ MonoBehaviour:
       \uBA39\uC744\uAE4C?! \uB18D\uB2F4\uC774\uC57C! \uCEAC\uD558\uD558\uD558\uD558!
       \uB108\uBB34 \uB2EC\uAE30\uB9CC \uD558\uC9C4 \uC54A\uC544\uC11C \uC88B\uC544!
       \uC544\uCE74\uC2DC\uC544\uC758 \uD5A5\uB3C4 \uAF64\uB098 \uC5B4\uC6B8\uB9AC\uACE0!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: bb2cee7231ec4a74696774e4a9e3067c, type: 2}
     ActorKey: Ahir
@@ -637,6 +732,7 @@ MonoBehaviour:
       \uD06C\uB9BC\uC758 \uC9C4\uD55C \uB2E8\uB9DB\uACFC \uBB3C\uCEF9\uD55C \uC2DD\uAC10\uC744
       \uB9DB\uC774 \uAC70\uC758 \uC548\uB098\uB294 \uC824\uB9AC\uB85C \uC0B4\uB824\uC900
       \uAC8C \uC544\uC8FC \uB9E4\uB825\uC801\uC774\uC5D0\uC694."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: bb2cee7231ec4a74696774e4a9e3067c, type: 2}
     ActorKey: Elisia
@@ -644,6 +740,7 @@ MonoBehaviour:
       \uC548\uC5D0 \uC9C4\uC9DC \uD574\uBCC0\uC774 \uC788\uB294 \uAC78\uB85C \uCC29\uAC01\uD560
       \uAC83\uB9CC \uAC19\uC544! \uCEAC\uD558\uD558\uD558\uD558! \uC778\uC0C1\uC801\uC774\uAC8C
       \uC798 \uB9CC\uB4E4\uC5C8\uB124!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: d73a468c436f88648aa99773065abdf1, type: 2}
     ActorKey: Ahir
@@ -653,6 +750,7 @@ MonoBehaviour:
       \uD558\uB098\uC758 \uBE75\uC5D0\uC11C \uBCF4\uC11D \uC625\uC218\uC218 \uD2B9\uC720\uC758
       \uC5EC\uB7EC \uAC1C\uC758 \uB9DB\uC774 \uB098\uC694. \uC774\uAC8C \uC785 \uC548\uC5D0\uC11C
       \uB9C9...! \uC7AC\uBC0C\uB124\uC694. \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: d73a468c436f88648aa99773065abdf1, type: 2}
     ActorKey: Elisia
@@ -662,6 +760,7 @@ MonoBehaviour:
       \uC548\uB418\uB294 \uB9DB\uC774\uC57C! \uC774\uAC74 \uAF64\uB098 \uC2E0\uC120\uD558\uACE0
       \uC88B\uC740\uB370?  \uB098\uBCF4\uB2E8 \uBC18\uC9DD\uAC70\uB9AC\uB294 \uAC78
       \uC88B\uC544\uD558\uB294 \uCE74\uB80C\uC774 \uC88B\uC544\uD560 \uAC83 \uAC19\uC544!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 2c5132d960b347f48b382414ebcbf237, type: 2}
     ActorKey: Ahir
@@ -669,6 +768,7 @@ MonoBehaviour:
       \uD3ED\uC2E0\uD55C \uC2DD\uAC10\uACFC \uC798 \uC5B4\uC6B8\uB824\uC694.  \uC804\uCCB4\uC801\uC778
       \uC2DD\uAC10, \uB9DB, \uD5A5 \uC804\uBD80 \uC88B\uAC8C \uAD6C\uC131\uB418\uC5B4\uC788\uB294
       \uC13C\uC2A4\uC788\uB294 \uBE75\uC774\uC5D0\uC694. \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 2c5132d960b347f48b382414ebcbf237, type: 2}
     ActorKey: Elisia
@@ -677,6 +777,7 @@ MonoBehaviour:
       \uC7AC\uB8CC\uB294 \uAE30\uBCF8\uC801\uC778 \uC7AC\uB8CC\uB97C \uC4F4 \uAC83
       \uAC19\uC740\uB370 \uB9DB\uC774\uB098 \uC2DD\uAC10, \uD5A5\uC774 \uC804\uBD80
       \uC88B\uC544! \uCEAC\uD558\uD558! \uC88B\uC544!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 99c212ff1b059b349822a2a2e9d9debb, type: 2}
     ActorKey: Ahir
@@ -685,6 +786,7 @@ MonoBehaviour:
       \uC0AC\uC6A9\uD558\uBA74 \uAE00\uB8E8\uD150\uC774 \uD615\uC131\uB418\uC9C0
       \uC54A\uC544\uC11C \uB9CC\uB4E4\uAE30 \uD798\uB4E0\uB370 \uC798 \uC0AC\uC6A9\uD558\uC168\uB124\uC694. 
       \uB9DB\uB3C4 \uAF64 \uAD1C\uCC2E\uC544\uC694. \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 99c212ff1b059b349822a2a2e9d9debb, type: 2}
     ActorKey: Elisia
@@ -692,6 +794,7 @@ MonoBehaviour:
       \uCEAC\uD558\uD558\uD558\uD558! \uB18D\uB2F4\uC774\uC57C! \uC9C4\uC9DC \uADF8\uB807\uAC8C
       \uC0DD\uAC01\uD560 \uB9AC\uAC00 \uC5C6\uC796\uC544! \uBA5C\uB860\uC744 \uB4A4\uC9D1\uC5B4\uC4F4
       \uAC83 \uAC19\uC740 \uC0DD\uAE40\uC0C8\uB294 \uC7AC\uBC0C\uC5B4\uC11C \uC88B\uC544!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 50d0145df5e8cfd4883e16b37317c40a, type: 2}
     ActorKey: Ahir
@@ -700,6 +803,7 @@ MonoBehaviour:
       \uBD80\uB4DC\uB7EC\uC6C0\uC774\uB124\uC694. \uC774 \uBE75\uC740 \uC2E0\uAE30\uD558\uAC8C
       \uB290\uAEF4\uC9C0\uB124\uC694. \uC9C0\uAE08\uAE4C\uC9C0 \uBA39\uC5B4\uBCF8
       \uC801 \uC5C6\uB294 \uB9DB\uC774\uC5D0\uC694. \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 50d0145df5e8cfd4883e16b37317c40a, type: 2}
     ActorKey: Elisia
@@ -708,6 +812,7 @@ MonoBehaviour:
       \uB290\uB08C\uC774\uC57C!  \uC0C9\uB2E4\uB978 \uC2DC\uB3C4\uB294 \uC5B8\uC81C\uB098
       \uC88B\uC544! \uC740\uC740\uD558\uAC8C \uB098\uB294 \uBC84\uC12F \uD5A5\uC740
       \uB0B4 \uCDE8\uD5A5\uC740 \uC544\uB2C8\uC9C0\uB9CC! \uCEAC\uD558\uD558\uD558"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 0600630e791d493428e19f00d8e37107, type: 2}
     ActorKey: Ahir
@@ -716,6 +821,7 @@ MonoBehaviour:
       \uC2E0\uACBD\uC4F4 \uC904 \uC54C\uC558\uB294\uB370 \uC544\uCE68\uBC84\uC12F
       \uD5A5\uC774 \uC740\uC740\uD558\uAC8C \uB098\uACE0 \uB9DB\uC788\uC5B4\uC694.
       \uC88B\uC740 \uC644\uC131\uB3C4\uC758 \uBE75\uC774\uC57C\uC694. \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 0600630e791d493428e19f00d8e37107, type: 2}
     ActorKey: Elisia
@@ -724,6 +830,7 @@ MonoBehaviour:
       \uB9E1\uB294 \uAC83\uACFC \uAC19\uC740 \uB9DB\uC774\uC57C! \uBB54 \uC598\uAE34\uC9C0\uB294
       \uBAA8\uB974\uACA0\uB294\uB370 \uB300\uCDA9 \uB9DB\uC788\uB2E8 \uAC70 \uC544\uB2C8\uACA0\uC5B4?
       \uCEAC\uD558\uD558\uD558\uD558! \uC88B\uC544!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 61547e1e528add747966b5b68d732c69, type: 2}
     ActorKey: Ahir
@@ -732,6 +839,7 @@ MonoBehaviour:
       \uB9DB\uC740 \uAD1C\uCC2E\uC558\uC9C0\uB9CC \uC870\uAE08 \uB354 \uC12C\uC138\uD55C
       \uB9DB\uC744 \uB0B4\uB294 \uBA54\uB274\uC600\uC73C\uBA74 \uC88B\uC558\uC744
       \uAC83 \uAC19\uC544\uC694."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 61547e1e528add747966b5b68d732c69, type: 2}
     ActorKey: Elisia
@@ -739,6 +847,7 @@ MonoBehaviour:
       \uB2E8 \uB9DB\uBC16\uC5D0 \uC5C6\uC73C\uB2C8\uAE4C \uBC38\uB7F0\uC2A4\uAC00
       \uC548\uB9DE\uC544! \uC5B4\uB9B0 \uC560\uB4E4\uC774\uB098 \uC88B\uC544\uD560
       \uB9DB\uC774\uC57C!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: edb645bd9caae5142bb7f8d4ff664642, type: 2}
     ActorKey: Ahir
@@ -746,11 +855,13 @@ MonoBehaviour:
       \uB9DB\uC774\uC5D0\uC694. \uC644\uC131\uB3C4\uB098 \uB9DB\uC774\uB098 \uAD1C\uCC2E\uC544\uC694.
       \uD558\uC9C0\uB9CC \uB300\uD68C\uC5D0\uC11C \uBCF4\uAE30\uC5D4 \uB108\uBB34
       \uBB34\uB09C\uD558\uAD70\uC694. \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: edb645bd9caae5142bb7f8d4ff664642, type: 2}
     ActorKey: Elisia
     Text: "\uB531 \uBCF4\uC774\uB294 \uC815\uB3C4\uC758 \uB9DB\uC774\uC57C! \uB9DB\uC740
       \uAD1C\uCC2E\uC9C0\uB9CC \uC7AC\uBBF8\uAC00 \uB108\uBB34 \uC5C6\uC5B4!! \uC774\uC0C1!!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 5a12de9f3bcb41946afd834b9485f4b1, type: 2}
     ActorKey: Ahir
@@ -759,6 +870,7 @@ MonoBehaviour:
       \uBC38\uB7F0\uC2A4\uAC00 \uC88B\uAD70\uC694. \uADFC\uB370 \uACB0\uC2B9\uC5D0\uC11C\uC758
       \uD2B9\uBCC4\uD568\uC740 \uBCF4\uC774\uC9C0 \uC54A\uB294\uAD70\uC694. \uC798
       \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 5a12de9f3bcb41946afd834b9485f4b1, type: 2}
     ActorKey: Elisia
@@ -766,6 +878,7 @@ MonoBehaviour:
       \uC7AC\uBC0C\uC9C0\uB9CC \uAE30\uB300\uD55C \uB9DB\uC740 \uBABB\uBBF8\uCCD0!
       \uC288\uD06C\uB9BC\uC774\uB77C\uB3C4 \uB123\uC5B4\uC92C\uC5B4\uC57C\uC9C0!
       \uC5B4\uC9F8\uC11C \uC0DD\uC120 \uB9DB\uBC16\uC5D0 \uC548\uB098\uB294\uAC70\uC57C!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 60b3a89e31a6f6b4b9c0ef3615f2da53, type: 2}
     ActorKey: Ahir
@@ -773,11 +886,13 @@ MonoBehaviour:
       \uC5B4\uB835\uC8E0. \uB2EC\uCF64\uD558\uACE0 \uB9DB\uC788\uB124\uC694. \uADFC\uB370
       \uACB0\uC2B9\uC5D0\uC11C\uC758 \uD2B9\uBCC4\uD568\uC740 \uBCF4\uC774\uC9C0
       \uC54A\uB294\uAD70\uC694. \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 60b3a89e31a6f6b4b9c0ef3615f2da53, type: 2}
     ActorKey: Elisia
     Text: "\uB531 \uBCF4\uC774\uB294 \uC815\uB3C4\uC758 \uB9DB\uC774\uC57C! \uB9DB\uC740
       \uAD1C\uCC2E\uC9C0\uB9CC \uC7AC\uBBF8\uAC00 \uB108\uBB34 \uC5C6\uC5B4!! \uC774\uC0C1!!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: ecb9fa4b207e48e44b9f9714cadb036c, type: 2}
     ActorKey: Ahir
@@ -786,12 +901,14 @@ MonoBehaviour:
       \uBC38\uB7F0\uC2A4\uB3C4 \uAD1C\uCC2E\uACE0 \uC2DD\uAC10\uB3C4 \uAD1C\uCC2E\uAD70\uC694.
       \uD558\uC9C0\uB9CC \uACB0\uC2B9\uC5D0\uC11C \uACBD\uC7C1\uB825\uC774 \uBCF4\uC774\uC9C4
       \uC54A\uB294\uAD70. \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: ecb9fa4b207e48e44b9f9714cadb036c, type: 2}
     ActorKey: Elisia
     Text: "\uC5F0\uC5B4 \uC0CC\uB4DC\uC704\uCE58! \uB9DB\uC788\uAE34 \uD55C\uB370
       \uB108\uBB34 \uBB34\uB09C\uD574\uC11C \uC7AC\uBBF8\uB294 \uC5C6\uC5B4!! \uB354
       \uC7AC\uBC0C\uB294 \uC74C\uC2DD\uC744 \uAC00\uC838\uC640!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 40b9dc96c75d96e4eb180d1787002bdb, type: 2}
     ActorKey: Ahir
@@ -800,6 +917,7 @@ MonoBehaviour:
       \uAC00\uC9C0\uACE0 \uC788\uAD70\uC694. \uACB0\uC2B9\uC5D0\uC11C \uBA39\uAE30\uC5D0\uB294
       \uAC1C\uC131\uC774 \uB108\uBB34 \uC5C6\uC5B4\uC694.  \uC544\uC27D\uAD70\uC694.
       \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 40b9dc96c75d96e4eb180d1787002bdb, type: 2}
     ActorKey: Elisia
@@ -808,6 +926,7 @@ MonoBehaviour:
       \uD2B9\uC7A5\uC810, \uC644\uC131\uB3C4 \uB4F1 \uC81C\uBE75\uC0AC\uC758 \uC5BC\uAD74\uC774
       \uBCF4\uC5EC\uC57C \uD558\uB294\uB370 \uADF8\uB7F0 \uAC8C \uBCF4\uC774\uC9C0
       \uC54A\uC544! \uD2B9\uBCC4\uD55C \uAC8C \uD558\uB098\uB3C4 \uC5C6\uC5B4!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: dc7b10a610e705c4ea49fcfe2e64fd96, type: 2}
     ActorKey: Ahir
@@ -816,6 +935,7 @@ MonoBehaviour:
       \uB9CE\uC774 \uB2E4\uB124\uC694. \uCD94\uC5B5\uC758 \uB9DB\uC744 \uC624\uB7AB\uB9CC\uC5D0
       \uBA39\uC73C\uB2C8 \uAD1C\uCC2E\uB124\uC694. \uADFC\uB370 \uACB0\uC2B9\uC5D0\uC11C\uC758
       \uD2B9\uBCC4\uD568\uC740 \uBCF4\uC774\uC9C0 \uC54A\uB124\uC694. \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: dc7b10a610e705c4ea49fcfe2e64fd96, type: 2}
     ActorKey: Elisia
@@ -824,6 +944,7 @@ MonoBehaviour:
       \uD2B9\uC7A5\uC810, \uC644\uC131\uB3C4 \uB4F1 \uC81C\uBE75\uC0AC\uC758 \uC5BC\uAD74\uC774
       \uBCF4\uC5EC\uC57C \uD558\uB294\uB370 \uADF8\uB7F0 \uAC8C \uBCF4\uC774\uC9C0
       \uC54A\uC544! \uD2B9\uBCC4\uD55C \uAC8C \uD558\uB098\uB3C4 \uC5C6\uC5B4!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: a26f5910c934daa418c422233e32851e, type: 2}
     ActorKey: Ahir
@@ -833,11 +954,13 @@ MonoBehaviour:
       \uACBD\uD5D8\uC744 \uC8FC\uB124\uC694. \uADF8\uB7EC\uB098 \uC870\uAE08 \uB9CE\uC774
       \uB2E8 \uAC83 \uAC19\uB2E4\uB294 \uC0DD\uAC01\uC774 \uB4E4\uAE34 \uD569\uB2C8\uB2E4. 
       \uC798 \uBA39\uC5C8\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: a26f5910c934daa418c422233e32851e, type: 2}
     ActorKey: Elisia
     Text: "\uB2EC\uC544! \uB2E8 \uAC70 \uD50C\uB7EC\uC2A4 \uB2E8 \uAC70\uB294 \uCD5C\uACE0\uB85C
       \uB2E8 \uAC70! \uC774\uAC70 \uCC38 \uC704\uD5D8\uD574! Danger!! \uCEAC\uD558\uD558\uD558\uD558\uD558\uD558!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 8b6b89790d54d854b921f837f0123ad5, type: 2}
     ActorKey: Ahir
@@ -847,6 +970,7 @@ MonoBehaviour:
       \uADF8\uB807\uC9C0 \uC54A\uC73C\uBA74 \uC774\uB7F0 \uAC78 \uAC00\uC838\uC62C
       \uC218 \uC5C6\uC744\uAC70\uC5D0\uC694. \uADF8\uB798\uB3C4 \uADF8\uAC74 \uB2F9\uC2E0\uC758
       \uC120\uD0DD\uC774\uB2C8\uAE4C... \uC54C\uACA0\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 8b6b89790d54d854b921f837f0123ad5, type: 2}
     ActorKey: Elisia
@@ -855,12 +979,14 @@ MonoBehaviour:
       \uD2B9\uC7A5\uC810, \uC644\uC131\uB3C4 \uB4F1 \uC81C\uBE75\uC0AC\uC758 \uC5BC\uAD74\uC774
       \uBCF4\uC5EC\uC57C \uD558\uB294\uB370 \uADF8\uB7F0 \uAC8C \uBCF4\uC774\uC9C0
       \uC54A\uC544! \uD2B9\uBCC4\uD55C \uAC8C \uD558\uB098\uB3C4 \uC5C6\uC5B4!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 8b026329d6cea2b40b5251af80e069a4, type: 2}
     ActorKey: Ahir
     Text: "\uAC1C\uC131\uC774 \uC5C6\uACE0 \uBBF8\uC644\uC131\uB41C \uB290\uB08C\uC774\uC5D0\uC694.
       \uAE30\uBCF8\uC5D0 \uCDA9\uC2E4\uD588\uC9C0\uB9CC \uB300\uD68C\uC5D0\uC11C
       \uBCF4\uAE30\uC5D4 \uB108\uBB34 \uBB34\uB09C\uD558\uAD70\uC694."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 8b026329d6cea2b40b5251af80e069a4, type: 2}
     ActorKey: Elisia
@@ -869,12 +995,14 @@ MonoBehaviour:
       \uD2B9\uC7A5\uC810, \uC644\uC131\uB3C4 \uB4F1 \uC81C\uBE75\uC0AC\uC758 \uC5BC\uAD74\uC774
       \uBCF4\uC5EC\uC57C \uD558\uB294\uB370 \uADF8\uB7F0 \uAC8C \uBCF4\uC774\uC9C0
       \uC54A\uC544! \uD2B9\uBCC4\uD55C \uAC8C \uD558\uB098\uB3C4 \uC5C6\uC5B4!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: eb2689667e27e36468a9207f7bd7187e, type: 2}
     ActorKey: Ahir
     Text: "\uAC1C\uC131\uC774 \uC5C6\uACE0 \uBBF8\uC644\uC131\uB41C \uB290\uB08C\uC774\uC5D0\uC694.
       \uAE30\uBCF8\uC5D0 \uCDA9\uC2E4\uD588\uC9C0\uB9CC \uB300\uD68C\uC5D0\uC11C
       \uBCF4\uAE30\uC5D4 \uB108\uBB34 \uBB34\uB09C\uD558\uAD70\uC694."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: eb2689667e27e36468a9207f7bd7187e, type: 2}
     ActorKey: Elisia
@@ -883,6 +1011,7 @@ MonoBehaviour:
       \uD2B9\uC7A5\uC810, \uC644\uC131\uB3C4 \uB4F1 \uC81C\uBE75\uC0AC\uC758 \uC5BC\uAD74\uC774
       \uBCF4\uC5EC\uC57C \uD558\uB294\uB370 \uADF8\uB7F0 \uAC8C \uBCF4\uC774\uC9C0
       \uC54A\uC544! \uD2B9\uBCC4\uD55C \uAC8C \uD558\uB098\uB3C4 \uC5C6\uC5B4!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 0d1acd5e55a816940ab7f3d4e4860378, type: 2}
     ActorKey: Ahir
@@ -892,6 +1021,7 @@ MonoBehaviour:
       \uADF8\uB807\uC9C0 \uC54A\uC73C\uBA74 \uC774\uB7F0 \uAC78 \uAC00\uC838\uC62C
       \uC218 \uC5C6\uC744\uAC70\uC5D0\uC694. \uADF8\uB798\uB3C4 \uADF8\uAC74 \uB2F9\uC2E0\uC758
       \uC120\uD0DD\uC774\uB2C8\uAE4C... \uC54C\uACA0\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 0d1acd5e55a816940ab7f3d4e4860378, type: 2}
     ActorKey: Elisia
@@ -900,6 +1030,7 @@ MonoBehaviour:
       \uD2B9\uC7A5\uC810, \uC644\uC131\uB3C4 \uB4F1 \uC81C\uBE75\uC0AC\uC758 \uC5BC\uAD74\uC774
       \uBCF4\uC5EC\uC57C \uD558\uB294\uB370 \uADF8\uB7F0 \uAC8C \uBCF4\uC774\uC9C0
       \uC54A\uC544! \uD2B9\uBCC4\uD55C \uAC8C \uD558\uB098\uB3C4 \uC5C6\uC5B4!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 0399e87e6d145ee47a33a9f189cf14cb, type: 2}
     ActorKey: Ahir
@@ -909,6 +1040,7 @@ MonoBehaviour:
       \uADF8\uB807\uC9C0 \uC54A\uC73C\uBA74 \uC774\uB7F0 \uAC78 \uAC00\uC838\uC62C
       \uC218 \uC5C6\uC744\uAC70\uC5D0\uC694. \uADF8\uB798\uB3C4 \uADF8\uAC74 \uB2F9\uC2E0\uC758
       \uC120\uD0DD\uC774\uB2C8\uAE4C... \uC54C\uACA0\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: 0399e87e6d145ee47a33a9f189cf14cb, type: 2}
     ActorKey: Elisia
@@ -916,6 +1048,7 @@ MonoBehaviour:
       \uC644\uC131\uB3C4\uB294 \uAD1C\uCC2E\uC740\uB370 \uADF8\uAC70 \uB9D0\uACE0\uB294
       \uB9D0\uD560 \uAC8C \uC5C6\uC5B4! \uC880 \uB354 \uACE0\uBBFC\uD558\uACE0 \uBE75\uC744
       \uB9CC\uB4E4\uC5B4\uC57C \uB354 \uB9DB\uC788\uB294 \uBE75\uC774 \uB098\uC628\uB2E4\uACE0!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: e5b313fc729fdce4690e3cb0d73889db, type: 2}
     ActorKey: Ahir
@@ -925,6 +1058,7 @@ MonoBehaviour:
       \uADF8\uB807\uC9C0 \uC54A\uC73C\uBA74 \uC774\uB7F0 \uAC78 \uAC00\uC838\uC62C
       \uC218 \uC5C6\uC744\uAC70\uC5D0\uC694. \uADF8\uB798\uB3C4 \uADF8\uAC74 \uB2F9\uC2E0\uC758
       \uC120\uD0DD\uC774\uB2C8\uAE4C... \uC54C\uACA0\uC2B5\uB2C8\uB2E4."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: e5b313fc729fdce4690e3cb0d73889db, type: 2}
     ActorKey: Elisia
@@ -932,23 +1066,28 @@ MonoBehaviour:
       \uC644\uC131\uB3C4\uB294 \uAD1C\uCC2E\uC740\uB370 \uADF8\uAC70 \uB9D0\uACE0\uB294
       \uB9D0\uD560 \uAC8C \uC5C6\uC5B4! \uC880 \uB354 \uACE0\uBBFC\uD558\uACE0 \uBE75\uC744
       \uB9CC\uB4E4\uC5B4\uC57C \uB354 \uB9DB\uC788\uB294 \uBE75\uC774 \uB098\uC628\uB2E4\uACE0!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: dbf2cc8ed2d52f94eba83f34f6b599d3, type: 2}
     ActorKey: Ahir
     Text: "\uB2F9\uC2E0\uC740... \uBB34\uC2A8 \uC0DD\uAC01\uC774\uC5D0\uC694? \uB2F9\uC2E0\uC740
       \uBCFC \uAC83\uB3C4 \uC5C6\uC5B4\uC694. "
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: dbf2cc8ed2d52f94eba83f34f6b599d3, type: 2}
     ActorKey: Elisia
     Text: "\uCEAC\uD558! \uC7AC\uBC0C\uC5B4! \uC7AC\uBC0C\uAD6C\uB9CC! \uB108\uC758
       \uBE75\uC758 \uAC00\uCE58\uAD00\uC774 \uAD81\uAE08\uD574\uC9C0\uB294 \uBE75\uC774\uC57C!"
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: d504c2a902ed6be4aada687dcade5e92, type: 2}
     ActorKey: Ahir
     Text: "\uC644\uC131\uB418\uC9C0\uB3C4 \uC54A\uC740 \uAC78 \uBE75\uC774\uB77C\uACE0
       \uB0B4\uC694? \uBA39\uC744 \uAC00\uCE58\uAC00 \uC5C6\uAD70\uC694."
+    Failue: 0
   - Chapter: 4
     Item: {fileID: 11400000, guid: d504c2a902ed6be4aada687dcade5e92, type: 2}
     ActorKey: Elisia
     Text: "\uC774\uB7F0 \uAC78 \uBE75\uC774\uB77C\uACE0 \uAC00\uC838\uC654\uC5B4?
       \uD558... \uBB34\uC2A8 \uC0DD\uAC01\uC774\uC57C! \uB108\uB098 \uBA39\uC5B4"
+    Failue: 0

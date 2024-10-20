@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 297611614}
   - component: {fileID: 297611613}
   m_Layer: 0
-  m_Name: MoveToScene
+  m_Name: MoveToScene_Fail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 064e36b40a924202b1ca3faeea1d6cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventChannel: {fileID: 11400000, guid: a26bb389bdf6f9241968eb647f09ff95, type: 2}
+  _eventChannel: {fileID: 11400000, guid: 45752afee1befe14e820322add14a7d7, type: 2}
   _response:
     m_PersistentCalls:
       m_Calls:
@@ -450,11 +450,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scene:
-    _sceneAsset: {fileID: 102900000, guid: ace2e0163fac7b64b923618a5b5533e0, type: 3}
-    _sceneName: World_Festival_Ch_4
+    _sceneAsset: {fileID: 102900000, guid: d8a0bafe8d0c3e9459f2c6a934347d5a, type: 3}
+    _sceneName: World_Festival_Ch_3
   _directorKey: BlackAlpha
   _fadeOut: 1
   _fadeIn: 1
+  _save: 0
+  _load: 1
   _initPlayerPosition: {fileID: 1599812725}
 --- !u!1 &309202820
 GameObject:
@@ -647,6 +649,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &609556487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 609556488}
+  m_Layer: 0
+  m_Name: Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &609556488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609556487}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -22.4, y: -9.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1626898678}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &660484017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,6 +1617,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 297611612}
+  - {fileID: 1626898678}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1520752928
@@ -1602,7 +1636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1520752929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1616,7 +1650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eso: {fileID: 11400000, guid: 0d304413b0190d342a4295c1ca8153a7, type: 2}
-  _itemData: {fileID: 11400000, guid: 04440bb28c25437438761a3289fe43a8, type: 2}
+  _itemData: {fileID: 11400000, guid: d3e2104c2620cc84ebfbb4cd31143303, type: 2}
   _testGoBackScene:
     _sceneAsset: {fileID: 102900000, guid: ace2e0163fac7b64b923618a5b5533e0, type: 3}
     _sceneName: World_Festival_Ch_4
@@ -1834,6 +1868,90 @@ Transform:
   m_Children: []
   m_Father: {fileID: 297611612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1626898677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1626898678}
+  - component: {fileID: 1626898680}
+  - component: {fileID: 1626898679}
+  m_Layer: 0
+  m_Name: MoveToScene_Success
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1626898678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626898677}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 609556488}
+  m_Father: {fileID: 1498635712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1626898679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626898677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064e36b40a924202b1ca3faeea1d6cb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventChannel: {fileID: 11400000, guid: a26bb389bdf6f9241968eb647f09ff95, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1626898680}
+        m_TargetAssemblyTypeName: MoveToWorld, Assembly-CSharp
+        m_MethodName: MoveWorld
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _esoChain: []
+--- !u!114 &1626898680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626898677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759c6d952562c9d42ae08baec230fcae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene:
+    _sceneAsset: {fileID: 102900000, guid: ace2e0163fac7b64b923618a5b5533e0, type: 3}
+    _sceneName: World_Festival_Ch_4
+  _directorKey: BlackAlpha
+  _fadeOut: 1
+  _fadeIn: 1
+  _save: 1
+  _load: 1
+  _initPlayerPosition: {fileID: 609556488}
 --- !u!1 &1695117198
 GameObject:
   m_ObjectHideFlags: 0
@@ -2429,6 +2547,10 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 8205239825157286542, guid: 6fe1685d432b9fc4488bbcab8932a934, type: 2}
     value: {fileID: 5082958943583297516}
+  - key: {fileID: 8205239825157286542, guid: a1a261af7711c4948bbdaab35a03e76c, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8205239825157286542, guid: 849a6b25abec66348972408b47005426, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &8700649166065848091

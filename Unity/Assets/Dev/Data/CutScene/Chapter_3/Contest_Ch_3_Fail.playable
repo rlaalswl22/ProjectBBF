@@ -23,23 +23,9 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects:
-    - {fileID: -8334364531168329136}
-    - {fileID: -5580139124954776679}
-    - {fileID: -8381725980862598391}
---- !u!114 &-8381725980862598391
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f7ff838a23a464d8ed618e8a3d2a5d6, type: 3}
-  m_Name: Branch Timeline Marker
-  m_EditorClassIdentifier: 
-  m_Time: 0.7666666666666667
---- !u!114 &-8334364531168329136
+    - {fileID: -7001740686783632333}
+    - {fileID: -2723950496159555771}
+--- !u!114 &-7001740686783632333
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,9 +37,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac8c311cb403af409690e4ef84ed598, type: 3}
   m_Name: Dialogue Marker
   m_EditorClassIdentifier: 
-  m_Time: 0.05
-  _container: {fileID: 11400000, guid: f1248ef0b5af1604295e62804023c56c, type: 2}
---- !u!114 &-5580139124954776679
+  m_Time: 0.25
+  _container: {fileID: 11400000, guid: a42a56bd4dd89c14aaf8a31ec83aa605, type: 2}
+--- !u!114 &-2723950496159555771
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,13 +48,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a76677ae7fbb4217ac394fa3efd17455, type: 3}
-  m_Name: Contest Result Marker
+  m_Script: {fileID: 11500000, guid: b39d7de6310443f886f701726ee558a4, type: 3}
+  m_Name: Move To Scene Marker
   m_EditorClassIdentifier: 
-  m_Time: 0.35
-  _chapter: 3
-  _failTimeline: {fileID: 11400000, guid: a1a261af7711c4948bbdaab35a03e76c, type: 2}
-  _successTimeline: {fileID: 11400000, guid: 849a6b25abec66348972408b47005426, type: 2}
+  m_Time: 0.6666666666666666
+  _eso: {fileID: 11400000, guid: 45752afee1befe14e820322add14a7d7, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +63,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
-  m_Name: Contest_Ch_3
+  m_Name: Contest_Ch_3_Fail
   m_EditorClassIdentifier: 
   m_Version: 0
   m_Tracks:

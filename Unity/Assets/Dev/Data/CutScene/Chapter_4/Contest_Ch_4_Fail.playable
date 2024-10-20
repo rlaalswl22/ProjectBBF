@@ -24,24 +24,7 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: 3757485781683771433}
-    - {fileID: -7467436225033441457}
-    - {fileID: 4663501563983903831}
---- !u!114 &-7467436225033441457
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a76677ae7fbb4217ac394fa3efd17455, type: 3}
-  m_Name: Contest Result Marker
-  m_EditorClassIdentifier: 
-  m_Time: 0.43333333333333335
-  _chapter: 4
-  _failTimeline: {fileID: 11400000, guid: de7a2f59e1a96114198666ee766b755a, type: 2}
-  _successTimeline: {fileID: 11400000, guid: 0037ea9fb724d0847b9fb8f48dce40d3, type: 2}
+    - {fileID: 2937578886421883477}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,7 +35,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
-  m_Name: Contest_Ch_4
+  m_Name: Contest_Ch_4_Fail
   m_EditorClassIdentifier: 
   m_Version: 0
   m_Tracks: []
@@ -62,6 +45,20 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: -9148148606615149964}
+--- !u!114 &2937578886421883477
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b39d7de6310443f886f701726ee558a4, type: 3}
+  m_Name: Move To Scene Marker
+  m_EditorClassIdentifier: 
+  m_Time: 0.4166666666666667
+  _eso: {fileID: 11400000, guid: ec48ac4adbdeee043836792b84df4555, type: 2}
 --- !u!114 &3757485781683771433
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -75,17 +72,4 @@ MonoBehaviour:
   m_Name: Dialogue Marker
   m_EditorClassIdentifier: 
   m_Time: 0.08333333333333333
-  _container: {fileID: 11400000, guid: 55b795d77362986438f512ee42763b5a, type: 2}
---- !u!114 &4663501563983903831
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f7ff838a23a464d8ed618e8a3d2a5d6, type: 3}
-  m_Name: Branch Timeline Marker
-  m_EditorClassIdentifier: 
-  m_Time: 0.8333333333333334
+  _container: {fileID: 11400000, guid: 14615569c723ec74d995f174a7d13e29, type: 2}
