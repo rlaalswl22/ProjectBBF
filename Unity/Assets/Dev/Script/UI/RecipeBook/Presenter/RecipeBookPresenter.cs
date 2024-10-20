@@ -23,6 +23,13 @@ public class RecipeBookPresenter : MonoBehaviour
         _listView.OnSlotClick += OnSlotClicked;
         Model.OnRecipeUnlocked += OnUnlockedChanged;
 
+        _listView.OnExit += () =>
+        {
+            if (GameObjectStorage.Instance.TryGetPlayerController(out var pc))
+            {
+                pc.StateHandler.TranslateState("EndOfUIInteraction");
+            }
+        };
 
         foreach (var data in resolver.RecipeTable.Values)
         {
