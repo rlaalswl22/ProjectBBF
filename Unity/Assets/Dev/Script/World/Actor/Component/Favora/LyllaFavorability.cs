@@ -29,7 +29,6 @@ public class LyllaFavorability : ActorComFavorability
     private ActorMove _move;
 
     private Actor _actor;
-    private bool _first = true;
 
     public override void Init(Actor actor)
     {
@@ -60,9 +59,8 @@ public class LyllaFavorability : ActorComFavorability
     
     private void OnFadein()
     {
-        if (_first && GameObjectStorage.Instance.TryGetPlayerController(out var pc))
+        if (_persistenceObject._indexTable[_chapterKey] == 0 && GameObjectStorage.Instance.TryGetPlayerController(out var pc))
         {
-            _first = false;
             _ = UniTask.Create(async () =>
             {
                 await UniTask.WaitUntil(() => pc.Blackboard.IsInteractionStopped is false,

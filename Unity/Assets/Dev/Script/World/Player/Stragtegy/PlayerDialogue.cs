@@ -80,7 +80,7 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
     {
         
         if (_blackboard.IsInteractionStopped) return false;
-        
+
         try
         {
             if (caller is null) return false;
@@ -99,7 +99,6 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
             bool success = await BranchDialogue(caller);
 
             DialogueController.Instance.ResetDialogue();
-            _controller.Inventory.QuickInvVisible = true;
 
             if (success)
             {
@@ -110,33 +109,60 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
         {
             Debug.LogException(e);
         }
+        finally
+        {
+            _controller.Inventory.QuickInvVisible = true;
+            _controller.HudController.Visible = true;
+            _controller.Blackboard.IsMoveStopped = false;
+            _controller.Blackboard.IsInteractionStopped = false;
+        }
 
         return false;
     }
 
     public async UniTask<bool> RunDialogue(DialogueContainer container, ProcessorData processorData)
     {
-        _controller.MoveStrategy.ResetVelocity();
-
-        var token = this.GetCancellationTokenOnDestroy();
-
-        var instance = DialogueController.Instance;
-        instance.ResetDialogue();
-        instance.Visible = true;
-
-        DialogueContext context = instance.CreateContext(container, processorData);
-
-        await context.Next();
-
-        while (context.CanNext)
+        try
         {
-            await UniTask.Yield(PlayerLoopTiming.Update, token);
+            _controller.Inventory.QuickInvVisible = false;
+            _controller.HudController.Visible = false;
+            _controller.Blackboard.IsMoveStopped = true;
+            _controller.Blackboard.IsInteractionStopped = true;
+            _controller.MoveStrategy.ResetVelocity();
+
+            var token = this.GetCancellationTokenOnDestroy();
+
+            var instance = DialogueController.Instance;
+            instance.ResetDialogue();
+            instance.Visible = true;
+        
+            DialogueContext context = instance.CreateContext(container, processorData);
+
             await context.Next();
+
+            while (context.CanNext)
+            {
+                await UniTask.Yield(PlayerLoopTiming.Update, token);
+                await context.Next();
+            }
+
+            instance.Visible = false;
+
+            return true;
+        }
+        catch (Exception e) when (e is not OperationCanceledException)
+        {
+            Debug.LogException(e);
+        }
+        finally
+        {
+            _controller.Inventory.QuickInvVisible = true;
+            _controller.HudController.Visible = true;
+            _controller.Blackboard.IsMoveStopped = false;
+            _controller.Blackboard.IsInteractionStopped = false;
         }
 
-        instance.Visible = false;
-
-        return true;
+        return false;
     }
 
     private async UniTask<bool> BranchDialogue(CollisionInteractionMono interaction)
@@ -157,6 +183,9 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
 
             stateTransfer?.TranslateState("TalkingForPlayer");
             _controller.Inventory.HideAll();
+            _controller.HudController.Visible = false;
+            _controller.Blackboard.IsMoveStopped = true;
+            _controller.Blackboard.IsInteractionStopped = true;
 
             if (actorInfo.Interaction.Owner is Actor actor)
             {
