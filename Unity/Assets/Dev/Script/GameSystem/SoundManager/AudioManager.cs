@@ -10,10 +10,12 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     private const string PATH = "Audio/";
 
     private Dictionary<string, (AudioMixerGroup mixerGroup, AudioSource source, Dictionary<string, AudioClip> dict)> _audioTables;
-    
+    private AudioMixer _mixer;
 
     public override void PostInitialize()
     {
+        _mixer = Resources.Load<AudioMixer>(PATH + "Master");
+        
         var list = Resources.LoadAll<AudioTable>(PATH);
 
         _audioTables = new();
@@ -131,6 +133,29 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
         
         
     }
+
+    public void SetVolume(string groupKey, float value)
+    {
+        value = Mathf.Max(0.001f, value);
+        value = Mathf.Log10(value) * 20f;
+        
+        if (_mixer.SetFloat(groupKey,  value) is false)
+        {
+            Debug.LogWarning($"group key({groupKey})를 찾지 못함.");
+        }
+    }
+
+    public float GetVolume(string groupKey)
+    {
+        if (_mixer.GetFloat(groupKey, out float value) is false)
+        {
+            Debug.LogWarning($"group key({groupKey})를 찾지 못함.");
+            return 0f;
+        }
+
+        return Mathf.Pow(value, 10f) * 0.05f;
+    }
+
 }
 
 public static class AudioManagerExtensions

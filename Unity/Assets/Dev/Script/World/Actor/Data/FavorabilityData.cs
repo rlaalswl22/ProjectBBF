@@ -30,4 +30,10 @@ public class FavorabilityData : ScriptableObject
 
     public FavorabilityEvent FavorabilityEvent => _favorabilityEvent;
     public PortraitTable PortraitTable => _portraitTable;
+
+    public void ResetCache()
+    {
+        PortraitTable.ResetCache();
+        
+    }
 }

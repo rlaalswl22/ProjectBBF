@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -328,7 +329,7 @@ namespace ProjectBBF.Persistence.Editor
                 dirtyTag = " *";
             }
 
-            if (info.FieldType.IsValueType is false && info.FieldType != typeof(string))
+            if (info.FieldType.IsClass && info.FieldType != typeof(string) || info.FieldType is { IsValueType: true, IsPrimitive: false })
             {
                 GUILayout.Space(5);
                 GUILayout.Label(info.Name);
@@ -464,7 +465,7 @@ namespace ProjectBBF.Persistence.Editor
                 info.SetValue(obj, value);
                 return true;
             }
-
+            
             return false;
         }
     }

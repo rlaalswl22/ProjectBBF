@@ -48,6 +48,40 @@ public class BakeryStoreage : BakeryFlowBehaviour
             _playernventory.View.Visible = value;
         }
     }
+    
+    private IEnumerator CoUpdateInteraction(CollisionInteractionMono activator)
+    {
+        if (activator.Owner is not PlayerController pc) yield break;
+
+        yield return null;
+        
+        while (true)
+        {
+            if (InputManager.Map.Player.Interaction.triggered ||
+                InputManager.Map.UI.Inventory.triggered ||
+                InputManager.Map.UI.Setting.triggered)
+            {
+                yield return null;
+                yield return null;
+                    
+                Visible = false;
+                pc.Blackboard.IsInteractionStopped = false;
+                pc.Blackboard.IsMoveStopped = false;
+
+                if (Visible)
+                {
+                    _ani.SetTrigger("Open");
+                }
+                else
+                {
+                    _ani.SetTrigger("Close");
+                }
+                break;
+            }
+
+            yield return null;
+        }
+    }
 
     protected override void OnActivate(BakeryFlowObject flowObject, CollisionInteractionMono activator)
     {
@@ -57,7 +91,13 @@ public class BakeryStoreage : BakeryFlowBehaviour
     {
         if (activator.Owner is not PlayerController pc) return;
 
-        Visible = !Visible;
+        Visible = true;
+        pc.MoveStrategy.ResetVelocity();
+        pc.Blackboard.IsInteractionStopped = true;
+        pc.Blackboard.IsMoveStopped = true;
+        
+        StopAllCoroutines();
+        StartCoroutine(CoUpdateInteraction(activator));
 
         if (Visible)
         {
@@ -76,6 +116,8 @@ public class BakeryStoreage : BakeryFlowBehaviour
     protected override void OnExit(BakeryFlowObject flowObject, CollisionInteractionMono activator)
     {
         if (activator.Owner is not PlayerController pc) return;
+        pc.Blackboard.IsInteractionStopped = false;
+        pc.Blackboard.IsMoveStopped = false;
 
         Visible = false;
         _ani.SetTrigger("Close");

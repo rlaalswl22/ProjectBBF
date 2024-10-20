@@ -32,10 +32,16 @@ public class SettingView : MonoBehaviour
     [SerializeField] private Slider _globalVolumeSlider;
     [SerializeField] private Slider _backgroundVolumeSlider;
     [SerializeField] private Slider _sfxVolumeSlider;
+    [SerializeField] private Slider _uiVolumeSlider;
+    [SerializeField] private Slider _playerVolumeSlider;
+    [SerializeField] private Slider _animalVolumeSlider;
     
     [SerializeField] private TMP_InputField _globalVolumeInputField;
     [SerializeField] private TMP_InputField _backgroundVolumeInputField;
     [SerializeField] private TMP_InputField _sfxVolumeInputField;
+    [SerializeField] private TMP_InputField _uiVolumeInputField;
+    [SerializeField] private TMP_InputField _playerVolumeInputField;
+    [SerializeField] private TMP_InputField _animalVolumeInputField;
     
     [SerializeField] private GameObject _soundFrame;
     
@@ -96,6 +102,18 @@ public class SettingView : MonoBehaviour
         {
             _sfxVolumeSlider.value += 0.1f;
         }
+        else if (key == "UI")
+        {
+            _sfxVolumeSlider.value += 0.1f;
+        }
+        else if (key == "Player")
+        {
+            _sfxVolumeSlider.value += 0.1f;
+        }
+        else if (key == "Animal")
+        {
+            _sfxVolumeSlider.value += 0.1f;
+        }
     }
     public void Sub10Volume(string key)
     {
@@ -111,12 +129,30 @@ public class SettingView : MonoBehaviour
         {
             _sfxVolumeSlider.value += -0.1f;
         }
+        else if (key == "UI")
+        {
+            _sfxVolumeSlider.value += -0.1f;
+        }
+        else if (key == "Player")
+        {
+            _sfxVolumeSlider.value += -0.1f;
+        }
+        else if (key == "Animal")
+        {
+            _sfxVolumeSlider.value += -0.1f;
+        }
     }
 
-    private void OnSliderChanged(TMP_InputField inputField, float value)
+    private void OnSliderChanged(TMP_InputField inputField, string mixerGroupKey, float value)
     {
         int v = (int)(value * 100f);
         inputField.SetTextWithoutNotify($"{v.ToString()} / 100");
+
+        var inst = AudioManager.Instance;
+        if (inst)
+        {
+            inst.SetVolume(mixerGroupKey, value);
+        }
     }
     private void OnInputFieldChanged(Slider slider, TMP_InputField inputField, string value)
     {
@@ -164,19 +200,31 @@ public class SettingView : MonoBehaviour
         _globalVolumeSlider.value = 1f;
         _backgroundVolumeSlider.value = 1f;
         _sfxVolumeSlider.value = 1f;
+        _uiVolumeSlider.value = 1f;
+        _playerVolumeSlider.value = 1f;
+        _animalVolumeSlider.value = 1f;
 
         // sound
         _globalVolumeInputField.text = "100/100";
         _backgroundVolumeInputField.text =  "100/100";
         _sfxVolumeInputField.text = "100/100";
+        _uiVolumeInputField.text = "100/100";
+        _playerVolumeInputField.text = "100/100";
+        _animalVolumeInputField.text = "100/100";
         
-        _globalVolumeSlider.onValueChanged.AddListener(x=> OnSliderChanged(_globalVolumeInputField, x));
-        _backgroundVolumeSlider.onValueChanged.AddListener(x=> OnSliderChanged(_backgroundVolumeInputField, x));
-        _sfxVolumeSlider.onValueChanged.AddListener(x=> OnSliderChanged(_sfxVolumeInputField, x));
+        _globalVolumeSlider.onValueChanged.AddListener(x=> OnSliderChanged(_globalVolumeInputField, "Global", x));
+        _backgroundVolumeSlider.onValueChanged.AddListener(x=> OnSliderChanged(_backgroundVolumeInputField, "BGM", x));
+        _sfxVolumeSlider.onValueChanged.AddListener(x=> OnSliderChanged(_sfxVolumeInputField, "SFX", x));
+        _uiVolumeSlider.onValueChanged.AddListener(x=> OnSliderChanged(_uiVolumeInputField, "UI", x));
+        _playerVolumeSlider.onValueChanged.AddListener(x=> OnSliderChanged(_playerVolumeInputField, "Player", x));
+        _animalVolumeSlider.onValueChanged.AddListener(x=> OnSliderChanged(_animalVolumeInputField, "Animal", x));
         
         _globalVolumeInputField.onEndEdit.AddListener(x => OnInputFieldChanged(_globalVolumeSlider, _globalVolumeInputField, x));
         _backgroundVolumeInputField.onEndEdit.AddListener(x => OnInputFieldChanged(_backgroundVolumeSlider, _backgroundVolumeInputField, x));
         _sfxVolumeInputField.onEndEdit.AddListener(x => OnInputFieldChanged(_sfxVolumeSlider, _sfxVolumeInputField, x));
+        _uiVolumeInputField.onEndEdit.AddListener(x => OnInputFieldChanged(_uiVolumeSlider, _uiVolumeInputField, x));
+        _playerVolumeInputField.onEndEdit.AddListener(x => OnInputFieldChanged(_playerVolumeSlider, _playerVolumeInputField, x));
+        _animalVolumeInputField.onEndEdit.AddListener(x => OnInputFieldChanged(_animalVolumeSlider, _animalVolumeInputField, x));
 
         
         

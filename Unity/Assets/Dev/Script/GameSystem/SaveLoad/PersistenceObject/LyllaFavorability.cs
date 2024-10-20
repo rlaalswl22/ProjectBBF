@@ -3,7 +3,7 @@ using UnityEngine.Serialization;
 
 namespace ProjectBBF.Persistence
 {
-    [System.Serializable]
+    [System.Serializable, GameData]
     public class LyllaFavorabilityPersistenceObject
     {
         public Dictionary<string, int> _indexTable = new();

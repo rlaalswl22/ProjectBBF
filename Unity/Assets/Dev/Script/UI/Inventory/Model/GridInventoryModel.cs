@@ -30,6 +30,22 @@ public class GridInventoryModel : IInventoryModel
         Alloc(defaultSize);
     }
 
+    public GridInventoryModel(List<(Vector2Int pos, ItemData itemData, int count)> items, Vector2Int defaultSize)
+    {
+        Alloc(defaultSize);
+
+        foreach (var tuple in items)
+        {
+            if (tuple.pos.x > defaultSize.x || tuple.pos.y > defaultSize.y)
+            {
+                Debug.LogError("인벤토리 사이즈를 초과하는 시도");
+                continue;
+            }
+            
+            Slots[tuple.pos.y, tuple.pos.x].ForceSet(tuple.itemData, tuple.count);
+        }
+    }
+
     public void ApplyChanged()
     {
         OnChanged?.Invoke(this);

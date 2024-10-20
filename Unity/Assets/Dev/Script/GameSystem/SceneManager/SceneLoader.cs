@@ -62,7 +62,10 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
     {
         List<UniTask> tasks = new List<UniTask>(_loadedAddtiveScenes.Count);
         
-        foreach (string sceneName in _loadedAddtiveScenes)
+        var tempScenes = new List<string>(_loadedAddtiveScenes);
+        _loadedAddtiveScenes.Clear();
+        
+        foreach (string sceneName in tempScenes)
         {
             if (ImmutableSceneTable.Scenes.Contains(sceneName)) continue;
             
@@ -78,7 +81,6 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
         }
         
         await UniTask.WhenAll(tasks);
-        _loadedAddtiveScenes.Clear();
     }
 
     public async UniTask<bool> UnloadAllMapAsync()

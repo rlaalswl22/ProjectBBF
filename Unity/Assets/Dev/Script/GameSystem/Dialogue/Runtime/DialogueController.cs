@@ -46,26 +46,28 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
     public void SetTextVisible(bool value)
         => _view.SetTextVisible(value);
 
-    public bool SetPortrait(string portraitKey)
-    {
-        Sprite spr = _actorDataManager.GetPortraitFromKey(portraitKey);
-        _view.SetPortrait(spr);
-
-        return spr is not null;
-    }
-
     public bool SetPortrait(string actorKey, string portraitKey)
     {
-        if (string.IsNullOrEmpty(actorKey)) return false;
-        if (string.IsNullOrEmpty(portraitKey)) return false;
-        
-        if (_actorDataManager.CachedDict.TryGetValue(actorKey, out var data) &&
-            data.PortraitTable.Table.TryGetValue(portraitKey, out var sprite))
+        if (string.IsNullOrEmpty(actorKey))
         {
-            _view.SetPortrait(sprite);
-            return true;
+            _view.SetPortrait(null);
+            return false;
+        }
+        
+        if (_actorDataManager.CachedDict.TryGetValue(actorKey, out var data))
+        {
+            if (string.IsNullOrEmpty(portraitKey))
+            {
+                portraitKey = data.DefaultPortraitKey;
+            }
+            if (data.PortraitTable.Table.TryGetValue(portraitKey, out var sprite))
+            {
+                _view.SetPortrait(sprite);
+                return true;
+            }
         }
 
+        _view.SetPortrait(null);
         return false;
     }
 
@@ -115,8 +117,22 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
 
     public string DialogueText
     {
-        get => _view.DialogueText;
-        set => _view.DialogueText = value;
+        get
+        {
+            if (_view)
+            {
+                return _view.DialogueText;
+            }
+
+            return "ERROR!";
+        }
+        set
+        {
+            if (_view)
+            {
+                _view.DialogueText = value;
+            }
+        }
     }
 
     public async UniTask<(int index, DialogueBranchResult result)> GetBranchResultAsync(DialogueBranchField[] fields, CancellationToken token = default)
@@ -171,10 +187,10 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
     }
     
 
-    public DialogueContext CreateContext(DialogueContainer container)
-        => CreateContext(DialogueRuntimeTree.Build(container));
+    public DialogueContext CreateContext(DialogueContainer container, ProcessorData processorData)
+        => CreateContext(DialogueRuntimeTree.Build(container), processorData);
 
-    public DialogueContext CreateContext(DialogueRuntimeTree tree)
+    public DialogueContext CreateContext(DialogueRuntimeTree tree, ProcessorData processorData)
     {
         // 현재 Context가 누군가에게 점유되어 있으면 null 반환
         if (LastestContext != null && LastestContext.CanNext)
@@ -185,7 +201,8 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
         var context = new DialogueContext(
             tree,
             _view.TextCompletionDuration,
-            this
+            this,
+            processorData
         );
 
         LastestContext = context;

@@ -12,8 +12,11 @@ public class FavorabilityDataTable : ScriptableObject
     public Dictionary<string, FavorabilityData> CreateCachedTable()
     {
         var table = new Dictionary<string, FavorabilityData>();
-                
-        _datas.ForEach(x=>table.Add(x.ActorKey, x));
+        _datas.ForEach(x =>
+        {
+            x.ResetCache();
+            table.Add(x.ActorKey, x);
+        });
 
         return table;
     }

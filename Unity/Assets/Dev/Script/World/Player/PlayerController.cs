@@ -131,13 +131,26 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        Blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
+
+        GridInventoryModel model = Blackboard.CreateInventoryModelModel();
+        
         Inventory = new PlayerInventoryPresenter(
-            new GridInventoryModel(new Vector2Int(10, 3)),
+            model,
             _mainInventoryView,
             _quickInventoryView,
             pannelView
         );
 
+        if (model.GetSlotSequentially(0).Data == false)
+        {
+            foreach (var item in _testItems)
+            {
+                Inventory.Model.PushItem(item.Item, item.Count);
+            }
+        }   
+        
+        Inventory.Refresh();
 
         Fishing.Init(this);
         DataInit();
@@ -149,14 +162,6 @@ public class PlayerController : MonoBehaviour
 
         Blackboard.MaxStemina = _movementData.DefaultStemina;
         Blackboard.Stemina = _movementData.DefaultStemina;
-        
-        
-        foreach (var item in _testItems)
-        {
-            Inventory.Model.PushItem(item.Item, item.Count);
-        }
-        
-        Inventory.Refresh();
         Blackboard.Inventory = Inventory;
     }
 

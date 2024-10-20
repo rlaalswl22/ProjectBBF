@@ -18,7 +18,6 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
     private Dictionary<string, BakeryRecipeData> _recipeTable;
     
     public IReadOnlyDictionary<string, BakeryRecipeData> RecipeTable => _recipeTable;
-    public RecipeBookModel Model { get; private set; }
     
     public BakeryDoughRecipeData FailDoughRecipe { get; private set; }
     public BakeryBakingRecipeData FailBakedBreadRecipe { get; private set; }
@@ -56,8 +55,6 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
         {
             _recipeTable.Add(data.Key, data);
         }
-
-        Model = new();
     }
     
     public override void PostRelease()

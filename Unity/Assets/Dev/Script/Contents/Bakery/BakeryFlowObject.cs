@@ -42,66 +42,18 @@ public class BakeryFlowObject : MonoBehaviour, IBAInteractionTrigger
             OnExit?.Invoke(this, x);
         };
     }
-    
-    private IEnumerator CoUpdateInteraction(CollisionInteractionMono activator)
-    {
-        if (activator.Owner is not PlayerController pc) yield break;
-
-        yield return null;
-        
-        while (true)
-        {
-            if (InputManager.Map.Player.Interaction.triggered)
-            {
-                OnInteraction?.Invoke(this, activator);
-            
-                if (InterruptPlayerControl)
-                {
-                    yield return null;
-                    yield return null;
-                    
-                    pc.Blackboard.IsInteractionStopped = false;
-                    pc.Blackboard.IsMoveStopped = false;
-                }
-                break;
-            }
-
-            yield return null;
-        }
-    }
-    private IEnumerator CoUpdateActivation(CollisionInteractionMono activator)
-    {
-        if (activator.Owner is not PlayerController pc) yield break;
-
-        yield return null;
-        
-        while (true)
-        {
-            if (InputManager.Map.Minigame.BakeryKeyPressed.triggered)
-            {
-                OnActivate?.Invoke(this, activator);
-            }
-
-            yield return null;
-        }
-    }
 
     public bool Interact(CollisionInteractionMono caller)
     {
         if (caller.Owner is not PlayerController pc) return false;
-
-        StopAllCoroutines();
-        if (InterruptPlayerControl)
-        {
-            pc.MoveStrategy.ResetVelocity();
-            pc.Blackboard.IsInteractionStopped = true;
-            pc.Blackboard.IsMoveStopped = true;
-        
-            StartCoroutine(CoUpdateInteraction(caller));
-        }
-        StartCoroutine(CoUpdateActivation(caller));
-        
         OnInteraction?.Invoke(this, caller);
+        return true;
+    }
+
+    public bool Activate(CollisionInteractionMono caller)
+    {
+        if (caller.Owner is not PlayerController pc) return false;
+        OnActivate?.Invoke(this, caller);
         return true;
     }
 }

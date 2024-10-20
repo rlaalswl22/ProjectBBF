@@ -7,7 +7,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using ProjectBBF.Singleton;
-using UnityEditor;
 using UnityEngine;
 
 namespace ProjectBBF.Persistence
@@ -45,7 +44,15 @@ namespace ProjectBBF.Persistence
         {
             var pairs = _objTable
                 .Where(x => IsDecorated<GameDataAttribute>(x.Value))
-                .Select(x => new KeyValuePair<string, object>(x.Key, x.Value));
+                .Select(x => new KeyValuePair<string, object>(x.Key, x.Value))
+                .ToArray();
+
+            foreach (var pair in pairs)
+            {
+                if (pair.Value is not ISaveLoadNotification notification) continue;
+                
+                notification.OnSavedNotify();
+            }
             
             var buffer = Descriptor.ToBytes(pairs);
             
@@ -78,7 +85,7 @@ namespace ProjectBBF.Persistence
         }
         
 
-        public void Load(string saveFileName)
+        public void LoadGameData(string saveFileName)
         {
             var buffer = LoadFile(saveFileName, GameDataExtension);
 
@@ -87,6 +94,13 @@ namespace ProjectBBF.Persistence
                 var messages = Descriptor.FromBytes(buffer);
                 _objTable = new Dictionary<string, object>(messages);
                 
+                foreach (var obj in _objTable.Values)
+                {
+                    if (obj is not ISaveLoadNotification notification) continue;
+                
+                    notification.OnLoadedNotify();
+                }
+                
                 return;
             }
             
@@ -94,7 +108,7 @@ namespace ProjectBBF.Persistence
         }
 
         public void SaveGameDataCurrentFileName() => SaveGameData(CurrentMetadata);
-        public void LoadGameDataCurrentFileName() => Load(CurrentMetadata.SaveFileName);
+        public void LoadGameDataCurrentFileName() => LoadGameData(CurrentMetadata.SaveFileName);
         public void SaveUserData()
         {
             var pairs = _objTable
