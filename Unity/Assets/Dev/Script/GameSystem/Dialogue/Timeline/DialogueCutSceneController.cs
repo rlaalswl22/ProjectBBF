@@ -167,7 +167,11 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
             TimelineAssetHandler.TimelineAsset = contestResultMarker.FailTimeline;
             if (_lastResultItem == false)
             {
-                Debug.LogWarning("유효하지 않은 Result Item");
+                _lastResultItem = AhirContestResultBox.ResultItem;
+                if (_lastResultItem == false)
+                {
+                    Debug.LogWarning("유효하지 않은 Result Item");
+                }
             }
             
             List<ContestResultData.Record> results = new List<ContestResultData.Record>();

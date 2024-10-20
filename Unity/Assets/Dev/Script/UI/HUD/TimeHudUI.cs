@@ -50,40 +50,34 @@ public class TimeHudUI : MonoBehaviour
             var cur = TimeManager.Instance.GetGameTime();
             int curDay = TimeManager.Instance.SaveData.Day;
 
-            if (cur != before)
+            string timeText = null;
+            string dayText = null;
+            if (SceneLoader.Instance)
             {
-                string timeText = null;
-                string dayText = null;
-                if (SceneLoader.Instance)
+                foreach (SceneSet set in _timeScene)
                 {
-                    foreach (SceneSet set in _timeScene)
+                    if (SceneLoader.Instance.CurrentWorldScene == set.Scene)
                     {
-                        if (SceneLoader.Instance.CurrentWorldScene == set.Scene)
-                        {
-                            timeText = set.Text;
-                            break;
-                        }
-                    }
-                    foreach (SceneSet set in _dayScene)
-                    {
-                        if (SceneLoader.Instance.CurrentWorldScene == set.Scene)
-                        {
-                            dayText = set.Text;
-                            break;
-                        }
+                        timeText = set.Text;
+                        break;
                     }
                 }
-                
-                
-                _dayText.text = dayText ?? $"Day {curDay:D3}";
-                
-                if (OverrideTimeText is false)
+                foreach (SceneSet set in _dayScene)
                 {
-                    _timeText.text = timeText ?? $"{cur.Hour:D2}:{cur.Min:D2} {cur.TimeOfDay}";
+                    if (SceneLoader.Instance.CurrentWorldScene == set.Scene)
+                    {
+                        dayText = set.Text;
+                        break;
+                    }
                 }
+            }
                 
                 
-                before = cur;
+            _dayText.text = dayText ?? $"Day {curDay:D3}";
+                
+            if (OverrideTimeText is false)
+            {
+                _timeText.text = timeText ?? $"{cur.Hour:D2}:{cur.Min:D2} {cur.TimeOfDay}";
             }
             
             yield return null;

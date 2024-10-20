@@ -8,6 +8,14 @@ using UnityEngine;
 public class AhirContestResultBox : BakeryFlowBehaviourBucket
 {
     [SerializeField] private string doOnceKey;
+
+    public static ItemData ResultItem { get; private set; }
+    
+    [RuntimeInitializeOnLoadMethod]
+    private void Init()
+    {
+        ResultItem = null;
+    }
     
     protected override bool CanStore(int index, ItemData itemData)
     {
@@ -24,6 +32,8 @@ public class AhirContestResultBox : BakeryFlowBehaviourBucket
     protected override void OnChangedBuket(int index, ItemData itemData)
     {
         base.OnChangedBuket(index, itemData);
+        ResultItem = itemData;
+        
         var blackboard = PersistenceManager.Instance.LoadOrCreate<DoOnceHandlerPersistenceObject>("DoOnce");
         if (itemData)
         {

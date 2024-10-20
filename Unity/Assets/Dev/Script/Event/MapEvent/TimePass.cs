@@ -2,19 +2,31 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ProjectBBF.Event;
+using ProjectBBF.Persistence;
 using UnityEngine;
+
+
+public class TimePassPersistenceObject
+{
+    [NonSerialized] public int CurrentTime;
+}
 
 public class TimePass : MonoBehaviour
 {
     [SerializeField] private MoveToWorld _moveToWorld;
     [SerializeField] private int _goalTime;
 
-    private int _currentTime;    
+    private  TimePassPersistenceObject _persistenceObject;
     private PlayerController _player;
 
     private void Awake()
     {
-        _currentTime = _goalTime;
+        _persistenceObject = PersistenceManager.Instance.LoadOrCreate<TimePassPersistenceObject>("TimePass");
+
+        if (_persistenceObject.CurrentTime <= 0)
+        {
+            _persistenceObject.CurrentTime = _goalTime;
+        }
         StartCoroutine(CoInitPlayer());
     }
 
@@ -25,7 +37,7 @@ public class TimePass : MonoBehaviour
             if (GameObjectStorage.Instance.TryGetPlayerController(out _player))
             {
                 _player.HudController.TimeUI.OverrideTimeText = true;
-                _player.HudController.TimeUI.TimeText = $"{_currentTime} 분";
+                _player.HudController.TimeUI.TimeText = $"{_persistenceObject.CurrentTime} 분";
                 break;
             }
 
@@ -37,14 +49,14 @@ public class TimePass : MonoBehaviour
     {
         if (_player == false) return;
 
-        _currentTime -= evt.Value;
+        _persistenceObject.CurrentTime -= evt.Value;
         
-        _currentTime = Mathf.Max(0, _currentTime);
+        _persistenceObject.CurrentTime = Mathf.Max(0, _persistenceObject.CurrentTime);
         
         _player.HudController.TimeUI.OverrideTimeText = true;
-        _player.HudController.TimeUI.TimeText = $"{_currentTime} 분";
+        _player.HudController.TimeUI.TimeText = $"{_persistenceObject.CurrentTime} 분";
         
-        if (_currentTime <= 0 && _moveToWorld)
+        if (_persistenceObject.CurrentTime <= 0 && _moveToWorld)
         {
             _moveToWorld.MoveWorld();
         }

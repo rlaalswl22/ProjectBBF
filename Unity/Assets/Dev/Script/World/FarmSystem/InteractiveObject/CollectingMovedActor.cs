@@ -16,6 +16,8 @@ public class CollectingMovedActor : ActorComponent
     [field: SerializeField, InitializationField, MustBeAssigned]
     private CollectingObjectData _collectingData;
 
+    [SerializeField] private List<ESOVoid> _collectAndRaisingEvents;
+
     [SerializeField] private string _collectedPlayingAudioGroupKey;
     [SerializeField] private string _collectedPlayingAudioKey;
     
@@ -63,6 +65,14 @@ public class CollectingMovedActor : ActorComponent
                     list.Add(item.Data);
                 }
             }
+
+            foreach (var eso in _actorCom._collectAndRaisingEvents)
+            {
+                if (eso)
+                {
+                    eso.Raise();
+                }
+            }
         
 
             return list;
@@ -100,6 +110,15 @@ public class CollectingMovedActor : ActorComponent
                 }
             }
         
+
+            foreach (var eso in _actorCom._collectAndRaisingEvents)
+            {
+                if (eso)
+                {
+                    eso.Raise();
+                }
+            }
+
 
             return list;
         }

@@ -727,6 +727,7 @@ MonoBehaviour:
   _fadeIn: 1
   _save: 1
   _load: 1
+  _unloadImmutable: 0
   _initPlayerPosition: {fileID: 1089679392}
 --- !u!1 &860871297
 GameObject:
@@ -1480,7 +1481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1520752929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2035,6 +2036,7 @@ MonoBehaviour:
   _fadeIn: 1
   _save: 0
   _load: 1
+  _unloadImmutable: 0
   _initPlayerPosition: {fileID: 53317037}
 --- !u!1 &1924501455
 GameObject:

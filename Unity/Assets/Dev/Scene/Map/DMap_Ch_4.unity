@@ -1659,7 +1659,8 @@ MonoBehaviour:
   OnMinigameEnd:
     m_PersistentCalls:
       m_Calls: []
-  OnESOMinigameEnd: []
+  OnESOMinigameEnd:
+  - {fileID: 11400000, guid: fbfd16eeab9739b4c85d5544dd9dff3d, type: 2}
   _camera: {fileID: 664191700}
   _tracks:
   - {fileID: 491250349}
@@ -3210,11 +3211,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3026065139521650602, guid: 85854448be00d7344919a8a8bcb0cac4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -61.72
+      value: -50.9
       objectReference: {fileID: 0}
     - target: {fileID: 3026065139521650602, guid: 85854448be00d7344919a8a8bcb0cac4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.264194
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: 3026065139521650602, guid: 85854448be00d7344919a8a8bcb0cac4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3406,7 +3407,7 @@ Transform:
   m_GameObject: {fileID: 1662477333}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -64.43, y: 25.23, z: 0}
+  m_LocalPosition: {x: -47.65, y: 15.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3505,7 +3506,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 5.2054768}
+  m_Size: {x: 5.93, y: 5.2054768}
   m_EdgeRadius: 0
 --- !u!1 &1669829288
 GameObject:
