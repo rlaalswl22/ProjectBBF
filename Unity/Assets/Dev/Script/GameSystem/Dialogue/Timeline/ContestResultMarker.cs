@@ -14,8 +14,12 @@ public class ContestResultMarker : Marker, INotification
     public PropertyName id => "ContestResult";
 
     [SerializeField] private int _chapter;
-    [SerializeField] private TimelineAsset _timelineAsset;
+    [SerializeField] private TimelineAsset _failTimeline;
+    [SerializeField] private TimelineAsset _successTimeline;
 
     public int Chapter => _chapter;
-    public TimelineAsset TimelineAsset => _timelineAsset;
+
+    public TimelineAsset FailTimeline => _failTimeline;
+
+    public TimelineAsset SuccessTimeline => _successTimeline;
 }

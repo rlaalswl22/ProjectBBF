@@ -28,9 +28,9 @@ public class ContestResultResolver : MonoBehaviourSingleton<ContestResultResolve
         _data = null;
     }
 
-    public bool TryResolve(int chapter, string itemKey, ref List<ContestResultData.Record> results)
+    public void Resolve(int chapter, string itemKey, ref List<ContestResultData.Record> results)
     {
-        if (results is null) return false;
+        if (results is null) return;
 
         results.Clear();
         foreach (var record in _data.Table)
@@ -42,10 +42,19 @@ public class ContestResultResolver : MonoBehaviourSingleton<ContestResultResolve
             }
         }
 
-        return results.Any();
+        if (results.Any() is false)
+        {
+            GetFailure(ref results);
+        }
     }
-    public bool TryResolve(int chapter, ItemData itemData, ref List<ContestResultData.Record> results)
+    public void Resolve(int chapter, ItemData itemData, ref List<ContestResultData.Record> results)
     {
-        return TryResolve(chapter, itemData.ItemKey, ref results);
+        Resolve(chapter, itemData?.ItemKey, ref results);
+    }
+
+    public void GetFailure(ref List<ContestResultData.Record> results)
+    {
+        results.Clear();
+        _data.ExceptionRecords.ForEach(results.Add);
     }
 }

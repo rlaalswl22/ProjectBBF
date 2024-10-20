@@ -164,30 +164,33 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
             if (_resultUI == false) return;
             
             _resultUI.Visible = true;
-            if (_lastResultItem)
+            TimelineAssetHandler.TimelineAsset = contestResultMarker.FailTimeline;
+            if (_lastResultItem == false)
             {
-                TimelineAssetHandler.TimelineAsset = contestResultMarker.TimelineAsset;
-                
-                List<ContestResultData.Record> results = new List<ContestResultData.Record>();
-                if (ContestResultResolver.Instance.TryResolve(contestResultMarker.Chapter, _lastResultItem, ref results))
-                {
-                    int firstIndex = results.FirstIndex(x => x.ActorKey is FIRST_ACTOR_KEY);
-                    int secondIndex = results.FirstIndex(x => x.ActorKey is SECOND_ACTOR_KEY);
+                Debug.LogWarning("유효하지 않은 Result Item");
+            }
+            
+            List<ContestResultData.Record> results = new List<ContestResultData.Record>();
 
-                    if (firstIndex != -1 && secondIndex != -1)
-                    {
-                        _resultUI.Set(_lastResultItem.ItemSprite, results[firstIndex].Text, results[secondIndex].Text);
-                    }
-                    else
-                    {
-                        Debug.LogError("유효하지 않은 Actor Key를 Resolve 했음");
-                    }
+            ContestResultResolver.Instance.Resolve(contestResultMarker.Chapter, _lastResultItem, ref results);
                 
+            int firstIndex = results.FirstIndex(x => x.ActorKey is FIRST_ACTOR_KEY);
+            int secondIndex = results.FirstIndex(x => x.ActorKey is SECOND_ACTOR_KEY);
+            
+            Sprite itemSpr = _lastResultItem ? _lastResultItem.ItemSprite : null;
+
+            if (firstIndex != -1 && secondIndex != -1)
+            {
+                // 둘 중 하나만 성공이라면 성공처리
+                if (results[firstIndex].Failue is false && results[secondIndex].Failue is false)
+                {
+                    TimelineAssetHandler.TimelineAsset = contestResultMarker.SuccessTimeline;
                 }
+                _resultUI.Set(itemSpr, results[firstIndex].Text, results[secondIndex].Text);
             }
             else
             {
-                Debug.LogWarning("유효하지 않은 Result Item");
+                Debug.LogError("유효하지 않은 Actor Key를 Resolve 했음");
             }
             
             _director.Pause();

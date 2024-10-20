@@ -13,6 +13,7 @@ public class MoveToWorld : MonoBehaviour
     [SerializeField] private bool _fadeIn;
     [SerializeField] private bool _save;
     [SerializeField] private bool _load;
+    [SerializeField] private bool _unloadImmutable;
     [SerializeField] private Transform _initPlayerPosition;
 
     public void MoveWorld()
@@ -49,13 +50,22 @@ public class MoveToWorld : MonoBehaviour
                 _ = await loaderInst.UnloadImmutableScenesAsync();
                 
                 PersistenceInst.LoadGameDataCurrentFileName();
-                
-                _ = await loaderInst.LoadImmutableScenesAsync();
+
+                if (_unloadImmutable is false)
+                {
+                    _ = await loaderInst.LoadImmutableScenesAsync();
+                }
             }
             else if (pc)
             {
                 pc.transform.position = pos;
             }
+
+            if (_load is false && _unloadImmutable)
+            {
+                _ = await loaderInst.UnloadImmutableScenesAsync();
+            }
+            
 
             _ = await loaderInst.LoadWorldAsync(_scene);
             

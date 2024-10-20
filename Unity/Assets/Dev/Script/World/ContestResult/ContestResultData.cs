@@ -13,9 +13,13 @@ public class ContestResultData : ScriptableObject
         public ItemData Item;
         public string ActorKey;
         public string Text;
+        public bool Failue;
     }
 
+    [SerializeField] private List<Record> _exceptionRecords;
     [SerializeField] private List<Record> _table;
 
     public IReadOnlyList<Record> Table => _table;
+
+    public List<Record> ExceptionRecords => _exceptionRecords;
 }
