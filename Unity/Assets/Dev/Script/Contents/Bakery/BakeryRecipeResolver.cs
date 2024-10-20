@@ -14,6 +14,7 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
     private const string DOUGH_TABLE = "Data/Bakery/Table/Dat_Bakery_Table_Dough";
     private const string BAKED_BREAD_TABLE = "Data/Bakery/Table/Dat_Bakery_Table_BakedBread";
     private const string ADDITIVE_INGREDIENT_TABLE = "Data/Bakery/Table/Dat_Bakery_Table_Additive";
+    private const string COMPLETION_BREAD_TABLE = "Data/Bakery/Table/Dat_Bakery_Table_Completion";
     
     private Dictionary<string, BakeryRecipeData> _recipeTable;
     
@@ -26,11 +27,13 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
     public BakeryIngredientTableData DoughTable { get; private set; }
     public BakeryIngredientTableData AdditiveIngredientTable { get; private set; }
     public BakeryIngredientTableData BakedBreadTable { get; private set; }
+    public BakeryIngredientTableData CompletionBreadTable { get; private set; }
 
     private HashSet<ItemData> _doughIngredientHashSet;
     private HashSet<ItemData> _doughHashSet;
     private HashSet<ItemData> _additiveIngredientHashSet;
     private HashSet<ItemData> _bakedBreadHashSet;
+    private HashSet<ItemData> _completionBreadHashSet;
     
     public override void PostInitialize()
     {
@@ -45,11 +48,13 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
         DoughTable = Resources.Load<BakeryIngredientTableData>(DOUGH_TABLE);
         AdditiveIngredientTable = Resources.Load<BakeryIngredientTableData>(ADDITIVE_INGREDIENT_TABLE);
         BakedBreadTable = Resources.Load<BakeryIngredientTableData>(BAKED_BREAD_TABLE);
+        CompletionBreadTable = Resources.Load<BakeryIngredientTableData>(COMPLETION_BREAD_TABLE);
 
         _doughIngredientHashSet = new(DoughIngredientTable.Ingredients);
         _doughHashSet = new(DoughTable.Ingredients);
         _additiveIngredientHashSet = new(AdditiveIngredientTable.Ingredients);
         _bakedBreadHashSet = new(BakedBreadTable.Ingredients);
+        _completionBreadHashSet = new(CompletionBreadTable.Ingredients);
 
         foreach (BakeryRecipeData data in arr)
         {
@@ -71,6 +76,8 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
         => _bakedBreadHashSet.Contains(bakedBread);
     public bool CanListOnAdditive(ItemData additiveItem)
         => _additiveIngredientHashSet.Contains(additiveItem);
+    public bool CanListOnCompletionBread(ItemData bread)
+        => _completionBreadHashSet.Contains(bread);
 
     public BakeryDoughRecipeData ResolveDough(IReadOnlyList<ItemData> ingredients)
     {

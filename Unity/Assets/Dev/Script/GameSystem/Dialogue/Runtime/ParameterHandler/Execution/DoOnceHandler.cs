@@ -17,7 +17,10 @@ namespace DS.Runtime
 
             if (arg1)
             {
-                blackboard.DoOnceList.Add(arg0);
+                if (blackboard.DoOnceList.Contains(arg0) is false)
+                {
+                    blackboard.DoOnceList.Add(arg0);
+                }
             }
             else
             {

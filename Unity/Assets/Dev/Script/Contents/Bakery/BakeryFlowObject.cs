@@ -148,6 +148,8 @@ public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
 
                 _buckets[index].Item = null;
                 _currentBucketIndex = index;
+                
+                OnChangedBuket(index, null);
 
                 return;
             }
@@ -157,6 +159,7 @@ public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
                 {
                     _buckets[index].Item = null;
                     _currentBucketIndex = index;
+                    OnChangedBuket(index, null);
 
                     return;
                 }
@@ -184,6 +187,7 @@ public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
         if (itemData && CanStore(index, itemData) is false) return false;
 
         _buckets[index].Item = itemData;
+        OnChangedBuket(index, itemData);
         return true;
     }
 
@@ -202,8 +206,12 @@ public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
         return _buckets[index].Item;
     }
 
+    protected virtual void OnChangedBuket(int index, ItemData itemData)
+    {
+        
+    }
 
-    protected bool CanStore(int index, ItemData itemData)
+    protected virtual bool CanStore(int index, ItemData itemData)
     {
         var resolver = BakeryRecipeResolver.Instance;
         
