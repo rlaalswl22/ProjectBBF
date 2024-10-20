@@ -6,8 +6,39 @@ using UnityEngine;
 
 public class GameBeginer : MonoBehaviour
 {
-    private void Start()
+    public enum Type
     {
-        TimeManager.Instance.Begin();
+        Begin,
+        Pause,
+        Resume,
+        End,
+    }
+    [SerializeField] private Type _type;
+    [SerializeField] private bool _useInitTime;
+    [SerializeField] private GameTime _initTime;
+    
+    private void Awake()
+    {
+        if (_type == Type.Begin)
+        {
+            TimeManager.Instance.Begin();
+        }
+        else if (_type == Type.End)
+        {
+            TimeManager.Instance.End();
+        }
+        else if (_type == Type.Pause)
+        {
+            TimeManager.Instance.Pause();
+        }
+        else if (_type == Type.Resume)
+        {
+            TimeManager.Instance.Resume();
+        }
+
+        if (_useInitTime)
+        {
+            TimeManager.Instance.SetTime(_initTime);
+        }
     }
 }

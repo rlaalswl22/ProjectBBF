@@ -355,6 +355,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd5122187b460f4ab81d4f46f27066b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 0
+  _useInitTime: 0
+  _initTime:
+    Hour: 0
+    Min: 0
 --- !u!224 &110534947 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6467337239313287524, guid: 1e3e3c484dff8fc44877cf9bc68cb4fa, type: 3}
@@ -7910,9 +7915,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e9e547f8716694fbb65bc2ce89b92a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeText: {fileID: 4917147095535000655}
-  _dayText: {fileID: 3747232401429834600}
-  _event: {fileID: 11400000, guid: f231917709d711d42a359c15f64b46ce, type: 2}
+  _timeText: {fileID: 3747232401429834600}
+  _dayText: {fileID: 4917147095535000655}
+  _dayScene:
+  - Scene:
+      _sceneAsset: {fileID: 102900000, guid: edd13e89fe68be04e9cbdeced5075dc1, type: 3}
+      _sceneName: World_Festival_Ch_0
+    Text: "\uD504\uB864\uB85C\uADF8"
+  - Scene:
+      _sceneAsset: {fileID: 102900000, guid: 6727947fc9648b64894e94a97d42ae24, type: 3}
+      _sceneName: World_Festival_Ch_1
+    Text: "\uCC55\uD130 1"
+  - Scene:
+      _sceneAsset: {fileID: 102900000, guid: c487d13ef99cb374884cad80a76bfcfd, type: 3}
+      _sceneName: World_Festival_Ch_2
+    Text: "\uCC55\uD130 2"
+  - Scene:
+      _sceneAsset: {fileID: 102900000, guid: d8a0bafe8d0c3e9459f2c6a934347d5a, type: 3}
+      _sceneName: World_Festival_Ch_3
+    Text: "\uCC55\uD130 3"
+  - Scene:
+      _sceneAsset: {fileID: 102900000, guid: d8a0bafe8d0c3e9459f2c6a934347d5a, type: 3}
+      _sceneName: World_Festival_Ch_3
+    Text: "\uCC55\uD130 4"
+  _timeScene:
+  - Scene:
+      _sceneAsset: {fileID: 102900000, guid: edd13e89fe68be04e9cbdeced5075dc1, type: 3}
+      _sceneName: World_Festival_Ch_0
+    Text: "\uD29C\uD1A0\uB9AC\uC5BC\uC744 \uD558\uC2DC\uC624"
+  - Scene:
+      _sceneAsset: {fileID: 102900000, guid: 6727947fc9648b64894e94a97d42ae24, type: 3}
+      _sceneName: World_Festival_Ch_1
+    Text: "\uBB34\uC5B8\uAC00\uB97C \uD558\uC2DC\uC624 1"
+  - Scene:
+      _sceneAsset: {fileID: 102900000, guid: c487d13ef99cb374884cad80a76bfcfd, type: 3}
+      _sceneName: World_Festival_Ch_2
+    Text: "\uBB34\uC5B8\uAC00\uB97C \uD558\uC2DC\uC624 2"
+  - Scene:
+      _sceneAsset: {fileID: 102900000, guid: d8a0bafe8d0c3e9459f2c6a934347d5a, type: 3}
+      _sceneName: World_Festival_Ch_3
+    Text: "\uBB34\uC5B8\uAC00\uB97C \uD558\uC2DC\uC624 3"
 --- !u!114 &3720221357383088288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8028,8 +8070,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 29.04
+  m_fontSizeBase: 29.04
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -14003,7 +14045,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3650680849222028138}
   m_Layer: 5
-  m_Name: FrameTime
+  m_Name: Day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15606,7 +15648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7705913191356314282}
   m_Layer: 5
-  m_Name: DayFrame
+  m_Name: Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

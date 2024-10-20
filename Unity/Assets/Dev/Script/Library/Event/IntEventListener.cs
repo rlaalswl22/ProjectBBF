@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ProjectBBF.Event
 {
-    public class StringEventListener : EventListenerBase<ESOString, StringEvent>
+    public class IntEventListener : EventListenerBase<ESOInt, IntEvent>
     {
 
     }

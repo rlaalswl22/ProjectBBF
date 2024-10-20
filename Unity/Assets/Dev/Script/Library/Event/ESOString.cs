@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using ProjectBBF.Event;
 using UnityEngine;
 
-public struct StringEvent : IEvent
+namespace ProjectBBF.Event
 {
-    public string Value;
-}
+    public struct StringEvent : IEvent
+    {
+        public string Value;
+    }
 
-[CreateAssetMenu(menuName = "ProjectBBF/Event/String", fileName = "New String event")]
-public class ESOString : ESOGeneric<StringEvent>
-{
+    [CreateAssetMenu(menuName = "ProjectBBF/Event/Primitive/String", fileName = "New String event")]
+    public class ESOString : ESOGeneric<StringEvent>
+    {
+    }
 }
