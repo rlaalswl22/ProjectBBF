@@ -8842,6 +8842,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 861109743441053971, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 861109743441053971, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 708701679
+      objectReference: {fileID: 0}
     - target: {fileID: 1191767667023172354, guid: be17a5cd149d287479454cb28d24979c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8940,11 +8948,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2061004992382595458, guid: be17a5cd149d287479454cb28d24979c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.3861
+      value: -18.71
       objectReference: {fileID: 0}
     - target: {fileID: 2061004992382595458, guid: be17a5cd149d287479454cb28d24979c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.6793113
+      value: -3.83
       objectReference: {fileID: 0}
     - target: {fileID: 2061004992382595458, guid: be17a5cd149d287479454cb28d24979c, type: 3}
       propertyPath: m_LocalPosition.z

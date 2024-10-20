@@ -56,7 +56,8 @@ public class MoveToWorld : MonoBehaviour
                     _ = await loaderInst.LoadImmutableScenesAsync();
                 }
             }
-            else if (pc)
+
+            if (GameObjectStorage.Instance.TryGetPlayerController(out pc))
             {
                 pc.transform.position = pos;
             }

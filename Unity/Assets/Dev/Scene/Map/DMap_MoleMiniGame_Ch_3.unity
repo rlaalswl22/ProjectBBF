@@ -862,8 +862,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "0000 \uC810"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ec17dd7e505946144a3e2d6a5446fa5a, type: 2}
-  m_sharedMaterial: {fileID: -6633197366286672688, guid: ec17dd7e505946144a3e2d6a5446fa5a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 594ad54fb91d5e24caccaaad628f89a1, type: 2}
+  m_sharedMaterial: {fileID: -2426773843448081593, guid: 594ad54fb91d5e24caccaaad628f89a1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -964,6 +964,9 @@ MonoBehaviour:
   _directorKey: BlackAlpha
   _fadeOut: 0
   _fadeIn: 1
+  _save: 0
+  _load: 0
+  _unloadImmutable: 0
   _initPlayerPosition: {fileID: 1906117492}
 --- !u!4 &1624560138
 Transform:
@@ -1143,8 +1146,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "60 \uCD08"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ec17dd7e505946144a3e2d6a5446fa5a, type: 2}
-  m_sharedMaterial: {fileID: -6633197366286672688, guid: ec17dd7e505946144a3e2d6a5446fa5a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 594ad54fb91d5e24caccaaad628f89a1, type: 2}
+  m_sharedMaterial: {fileID: -2426773843448081593, guid: 594ad54fb91d5e24caccaaad628f89a1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1288,7 +1291,7 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: 7488ecc5429c956409dcaf2dd48fb678, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 9836bb0fb124d4147adc1ff15b348e5b, type: 2}
 --- !u!1 &1906117491
 GameObject:
   m_ObjectHideFlags: 0

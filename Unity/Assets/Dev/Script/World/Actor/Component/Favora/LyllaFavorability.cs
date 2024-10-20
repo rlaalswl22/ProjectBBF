@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using DS.Core;
 using ProjectBBF.Event;
 using ProjectBBF.Persistence;
@@ -27,10 +28,14 @@ public class LyllaFavorability : ActorComFavorability
     private LyllaFavorabilityPersistenceObject _persistenceObject;
     private ActorMove _move;
 
+    private Actor _actor;
+    private bool _first = true;
+
     public override void Init(Actor actor)
     {
         base.Init(actor);
-        
+
+        _actor = actor;
         _move = actor.MoveStrategy;
 
         _persistenceObject = PersistenceManager.Instance.LoadOrCreate<LyllaFavorabilityPersistenceObject>(_PERSISTENCE_KEY);
@@ -49,6 +54,22 @@ public class LyllaFavorability : ActorComFavorability
         _esoMoveNextUnlock.OnEventRaised += OnUnlock;
         _esoMoveNextLock.OnEventRaised += OnLock;
         _EsoMovePrev.OnEventRaised += OnMovePrev;
+
+        SceneLoader.Instance.FadeinComplete += OnFadein;
+    }
+    
+    private void OnFadein()
+    {
+        if (_first && GameObjectStorage.Instance.TryGetPlayerController(out var pc))
+        {
+            _first = false;
+            _ = UniTask.Create(async () =>
+            {
+                await UniTask.WaitUntil(() => pc.Blackboard.IsInteractionStopped is false,
+                    cancellationToken: this.GetCancellationTokenOnDestroy());
+                _ = pc.Dialogue.RunDialogueFromInteraction(_actor.Interaction);
+            });
+        }
     }
 
     private void OnMovePrev()
@@ -63,6 +84,8 @@ public class LyllaFavorability : ActorComFavorability
         
         _esoMoveNextUnlock.OnEventRaised -= OnUnlock;
         _esoMoveNextLock.OnEventRaised -= OnLock;
+        
+        SceneLoader.Instance.FadeinComplete -= OnFadein;
     }
 
     private void OnUnlock()

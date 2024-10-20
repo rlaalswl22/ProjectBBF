@@ -12,7 +12,7 @@ public class AhirContestResultBox : BakeryFlowBehaviourBucket
     public static ItemData ResultItem { get; private set; }
     
     [RuntimeInitializeOnLoadMethod]
-    private void Init()
+    private static void Init()
     {
         ResultItem = null;
     }

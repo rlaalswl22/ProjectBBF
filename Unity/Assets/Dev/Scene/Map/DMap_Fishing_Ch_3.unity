@@ -173,6 +173,9 @@ MonoBehaviour:
   _directorKey: BlackAlpha
   _fadeOut: 1
   _fadeIn: 1
+  _save: 0
+  _load: 0
+  _unloadImmutable: 0
   _initPlayerPosition: {fileID: 1942853287}
 --- !u!1 &317963305
 GameObject:
@@ -461,6 +464,9 @@ MonoBehaviour:
   _directorKey: BlackAlpha
   _fadeOut: 1
   _fadeIn: 1
+  _save: 0
+  _load: 0
+  _unloadImmutable: 0
   _initPlayerPosition: {fileID: 1087023763}
 --- !u!4 &355075669
 Transform:
@@ -902,7 +908,7 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: e513f83c9916d8341bfe266abb99ec9b, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: d11558c9b3c74174f86983a8db2d194c, type: 2}
 --- !u!1 &1942853286
 GameObject:
   m_ObjectHideFlags: 0
