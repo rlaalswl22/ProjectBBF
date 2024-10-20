@@ -24,13 +24,13 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 67131e5e-774f-4e83-ba6a-00150129fe19
   NodeData:
-  - rid: 1818509041320591617
-  - rid: 1818509041320591618
-  - rid: 1818509041320591619
+  - rid: 1818509133204685058
+  - rid: 1818509133204685059
+  - rid: 1818509133204685060
   references:
     version: 2
     RefIds:
-    - rid: 1818509041320591617
+    - rid: 1818509133204685058
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 67131e5e-774f-4e83-ba6a-00150129fe19
@@ -41,8 +41,8 @@ MonoBehaviour:
           \uD2B9\uC0B0\uBB3C\uC744 \uC5BC\uB9C8\uB098 \uC798 \uC0B4\uB824\uB294\uC9C0\uB97C
           \uBCF4\uC558\uC5B4!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 1818509041320591618
+        ActorKey: Elisia
+    - rid: 1818509133204685059
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 955958e8-2828-4025-998a-83f71827a629
@@ -51,8 +51,8 @@ MonoBehaviour:
         Position: {x: 222, y: 200}
         DialogueText: "\uB458\uB2E4 \uACE0\uC0DD\uD588\uC5B4!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 1818509041320591619
+        ActorKey: Elisia
+    - rid: 1818509133204685060
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: aa8c44ee-e92b-4b65-9003-4c83c56ff3c1
@@ -61,4 +61,4 @@ MonoBehaviour:
         Position: {x: 1098, y: 200}
         DialogueText: "\uADF8\uB7FC \uBC14\uB85C \uC2EC\uC0AC\uC9C0\uB97C \uB098\uB220\uC904\uAC8C!"
         PortraitKey: 
-        ActorKey: 
+        ActorKey: Elisia

@@ -24,13 +24,13 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 085f906a-6784-4f45-b2d0-42b4402a44b0
   NodeData:
-  - rid: 1818509130249535494
-  - rid: 1818509130249535495
-  - rid: 1818509130249535496
+  - rid: 1818509133204685223
+  - rid: 1818509133204685224
+  - rid: 1818509133204685225
   references:
     version: 2
     RefIds:
-    - rid: 1818509130249535494
+    - rid: 1818509133204685223
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 085f906a-6784-4f45-b2d0-42b4402a44b0
@@ -38,9 +38,9 @@ MonoBehaviour:
         TypeName: Text
         Position: {x: 721, y: 200}
         DialogueText: "\uB098\uB97C \uB530\uB77C\uC624\uBA74 \uB41C\uB2E4 \uB0E5!"
-        PortraitKey: Lylla
-        ActorKey: Lylla
-    - rid: 1818509130249535495
+        PortraitKey: 
+        ActorKey: Lylla_Chapter_1
+    - rid: 1818509133204685224
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 1d7d9107-f106-45c4-9007-041b26a2ec27
@@ -49,9 +49,9 @@ MonoBehaviour:
         Position: {x: 323, y: 200}
         DialogueText: "\uACE7 \uC788\uC73C\uBA74 \uB300\uD68C\uAC00 \uC2DC\uC791\uD560\uAC70\uB2E4
           \uB0E5! "
-        PortraitKey: Lylla
-        ActorKey: Lylla
-    - rid: 1818509130249535496
+        PortraitKey: 
+        ActorKey: Lylla_Chapter_1
+    - rid: 1818509133204685225
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 6d81e24e-f2e9-4921-acac-dc6d1c1de1cc

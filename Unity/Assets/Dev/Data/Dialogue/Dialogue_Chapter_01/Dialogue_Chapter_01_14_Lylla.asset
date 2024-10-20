@@ -24,31 +24,31 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: ffef4b8c-390b-4391-bbeb-aad5bf15b16f
   NodeData:
-  - rid: 2427336073050587196
-  - rid: 2427336073050587197
-  - rid: 2427336073050587198
+  - rid: 1818509133204684854
+  - rid: 1818509133204684855
+  - rid: 1818509133204684856
   references:
     version: 2
     RefIds:
-    - rid: 2427336073050587196
+    - rid: 1818509133204684854
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7b6b63ff-5210-4715-8875-6591d274a1f5
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 271.33334, y: 200}
+        Position: {x: 271, y: 200}
         DialogueText: "\uBAA8\uB4E0 \uC7AC\uB8CC\uB97C \uC5BB\uC73C\uBA74 \uB098\uD55C\uD14C
-          \uB2E4\uC2DC \uC624\uB77C\uB0E5!<br>\uB098\uB294 \uBD84\uC218\uC55E\uC5D0\uC11C
+          \uB2E4\uC2DC \uC624\uB77C\uB0E5! \uB098\uB294 \uBD84\uC218\uC55E\uC5D0\uC11C
           \uAE30\uB2E4\uB9AC\uACA0\uB2E4\uB0E5!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 2427336073050587197
+        ActorKey: Lylla_Chapter_1
+    - rid: 1818509133204684855
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: f3c8d870-2943-43b8-8935-380a4ec6423a
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 945.3333, y: 182}
+        Position: {x: 945, y: 182}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
@@ -57,13 +57,13 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 60a1a7feeea0714419ad08f0d4dc0e82, type: 2}
           BoolValue: 0
-    - rid: 2427336073050587198
+    - rid: 1818509133204684856
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: ffef4b8c-390b-4391-bbeb-aad5bf15b16f
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 1446, y: 157.33334}
+        Position: {x: 1446, y: 157}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object

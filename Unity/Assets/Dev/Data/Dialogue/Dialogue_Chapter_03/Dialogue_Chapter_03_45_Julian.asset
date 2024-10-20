@@ -24,13 +24,13 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 2df77183-e5a8-47db-81a2-f799019fe69d
   NodeData:
-  - rid: 1818508997039751232
-  - rid: 1818508997039751233
-  - rid: 1818508997039751234
+  - rid: 1818509133204685047
+  - rid: 1818509133204685048
+  - rid: 1818509133204685049
   references:
     version: 2
     RefIds:
-    - rid: 1818508997039751232
+    - rid: 1818509133204685047
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 2df77183-e5a8-47db-81a2-f799019fe69d
@@ -42,8 +42,8 @@ MonoBehaviour:
           \uC7AC\uB8CC\uB77C \uBC18\uC9DD\uAC70\uB824\uC11C \uAE08\uBC29 \uCC3E\uC744
           \uC218 \uC788\uC744\uAC70\uC5D0\uC694"
         PortraitKey: 
-        ActorKey: 
-    - rid: 1818508997039751233
+        ActorKey: Julian_Chapter_1
+    - rid: 1818509133204685048
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 61e71c7b-dcd6-43e8-9eb8-af91ca9d94ab
@@ -52,8 +52,8 @@ MonoBehaviour:
         Position: {x: 1535, y: 200}
         DialogueText: "\uD589\uC6B4\uC744 \uBE4C\uAC8C\uC694!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 1818508997039751234
+        ActorKey: Julian_Chapter_1
+    - rid: 1818509133204685049
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: add4c340-6af4-42ca-9beb-590fafa488fd
@@ -64,4 +64,4 @@ MonoBehaviour:
           \uB9DE\uC544\uC694! <br>\uC9C0\uAE08 \uB9F5 \uACE7\uACE7\uC5D0 \uC7AC\uB8CC\uAC00
           \uC788\uC5B4\uC694!"
         PortraitKey: 
-        ActorKey: 
+        ActorKey: Julian_Chapter_1

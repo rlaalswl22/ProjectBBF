@@ -27,31 +27,31 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: be74c0fc-dd28-4daa-aa14-d4bdc42c4803
   NodeData:
-  - rid: 2427336073050587357
-  - rid: 2427336073050587358
-  - rid: 2427336073050587359
-  - rid: 2427336073050587360
+  - rid: 1818509133204684950
+  - rid: 1818509133204684951
+  - rid: 1818509133204684952
+  - rid: 1818509133204684953
   references:
     version: 2
     RefIds:
-    - rid: 2427336073050587357
+    - rid: 1818509133204684950
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 0991d886-3777-4d5f-a589-61f8e9856ae7
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 231.33333, y: 204}
+        Position: {x: 231, y: 204}
         DialogueText: "\uC5EC\uAE30\uB85C \uAC00\uBA74\uB41C\uB2E4\uB0E5!<br>\uC7AC\uB8CC\uB97C
           \uC5BB\uC73C\uBA74 \uC81C\uBE75\uAD6C\uC5ED\uC73C\uB85C \uC624\uBA74 \uB41C\uB2E4\uB0E5!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 2427336073050587358
+        ActorKey: Lylla_Chapter_1
+    - rid: 1818509133204684951
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 94369bf2-e375-4c79-9f8e-16535f601117
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 1876.6666, y: 218}
+        Position: {x: 1877, y: 218}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
@@ -60,13 +60,13 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: cf2fd3e3bd553c14d89683ae683008e7, type: 2}
           BoolValue: 0
-    - rid: 2427336073050587359
+    - rid: 1818509133204684952
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: be74c0fc-dd28-4daa-aa14-d4bdc42c4803
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 1366.6666, y: 218}
+        Position: {x: 1367, y: 218}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
@@ -75,13 +75,13 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 99fa51cdee15aeb44ae93dea14feb9d3, type: 2}
           BoolValue: 0
-    - rid: 2427336073050587360
+    - rid: 1818509133204684953
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: cdf89bc4-f49b-4f36-9d4d-f3abe75766d2
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 875.3333, y: 202}
+        Position: {x: 875, y: 202}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object

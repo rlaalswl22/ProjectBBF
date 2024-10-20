@@ -39,18 +39,18 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: a2e188ca-1ed6-4a5a-900c-57a6b2bb454e
   NodeData:
-  - rid: 1818509041320591461
-  - rid: 1818509041320591462
-  - rid: 1818509041320591463
-  - rid: 1818509041320591464
-  - rid: 1818509041320591465
-  - rid: 1818509041320591466
-  - rid: 1818509041320591467
-  - rid: 1818509041320591468
+  - rid: 1818509133204684916
+  - rid: 1818509133204684917
+  - rid: 1818509133204684918
+  - rid: 1818509133204684919
+  - rid: 1818509133204684920
+  - rid: 1818509133204684921
+  - rid: 1818509133204684922
+  - rid: 1818509133204684923
   references:
     version: 2
     RefIds:
-    - rid: 1818509041320591461
+    - rid: 1818509133204684916
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 2eed363f-6cac-4e81-91c1-10fc97d15b53
@@ -60,8 +60,8 @@ MonoBehaviour:
         DialogueText: "\uB2E4\uC74C \uC8FC\uC81C\uB294 \uD574\uC0B0\uBB3C\uC744 \uC774\uC6A9\uD55C
           \uBE75\uC785\uB2C8\uB2E4!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 1818509041320591462
+        ActorKey: Ahir_Chapter_1
+    - rid: 1818509133204684917
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 5120ba65-ca69-44b4-9ae1-7f87a392c133
@@ -70,8 +70,8 @@ MonoBehaviour:
         Position: {x: 3093, y: 179}
         DialogueText: "\uADF8\uB7FC! \uC2DC\uC791\uD574\uC8FC\uC138\uC694!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 1818509041320591463
+        ActorKey: Ahir_Chapter_1
+    - rid: 1818509133204684918
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 6564a637-0595-4959-9a41-9cf38b6cd632
@@ -80,8 +80,8 @@ MonoBehaviour:
         Position: {x: 227, y: 179}
         DialogueText: "\uC774\uBC88 \uC8FC\uC81C\uC5D0 \uD569\uACA9\uC790\uB294...."
         PortraitKey: 
-        ActorKey: 
-    - rid: 1818509041320591464
+        ActorKey: Ahir_Chapter_1
+    - rid: 1818509133204684919
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a2e188ca-1ed6-4a5a-900c-57a6b2bb454e
@@ -91,8 +91,8 @@ MonoBehaviour:
         DialogueText: "\uADF8\uB7FC \uB2E4\uC74C \uC8FC\uC81C\uB97C \uC124\uBA85
           \uB4DC\uB9AC\uACA0\uC2B5\uB2C8\uB2E4!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 1818509041320591465
+        ActorKey: Ahir_Chapter_1
+    - rid: 1818509133204684920
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a3539e15-5ab1-4971-bbae-5f6c86d0d347
@@ -102,8 +102,8 @@ MonoBehaviour:
         DialogueText: "\uD574\uC0B0\uBB3C\uC744 \uC774\uC6A9\uD574 \uBA4B\uC9C4\uBE75\uC744
           \uB9CC\uB4E4\uC5B4 \uC8FC\uB77C\uACE0!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 1818509041320591466
+        ActorKey: Elisia
+    - rid: 1818509133204684921
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: ce079cae-0cac-4689-be31-c10c2b34ff63
@@ -112,8 +112,8 @@ MonoBehaviour:
         Position: {x: 541, y: 179}
         DialogueText: "\uC804\uBD80 \uD1B5\uACFC \uC785\uB2C8\uB2E4!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 1818509041320591467
+        ActorKey: Ahir_Chapter_1
+    - rid: 1818509133204684922
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: ee4a3ab3-ce8f-4f5f-94f3-ad88339c8931
@@ -124,8 +124,8 @@ MonoBehaviour:
           \uB09A\uC2DC\uD130\uC5D0\uC11C \uB09A\uC2DC\uB97C \uD1B5\uD574, \uC7AC\uB8CC\uB97C
           \uC5BB\uC5B4!<br>\uBE75\uC744 \uB9CC\uB4E4\uC5B4 \uC8FC\uC2DC\uBA74 \uB418\uACA0\uC2B5\uB2C8\uB2E4."
         PortraitKey: 
-        ActorKey: 
-    - rid: 1818509041320591468
+        ActorKey: Ahir_Chapter_1
+    - rid: 1818509133204684923
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: effc7dbd-3ed8-4840-9a61-a7e3d842a8bd
@@ -135,4 +135,4 @@ MonoBehaviour:
         DialogueText: "\uC774\uBC88 \uB300\uD68C\uB294 \uC7C1\uC7C1\uD55C \uCC38\uAC00\uC790\uB4E4\uC774
           \uB9CE\uC544\uC11C \uAE30\uC058\uAD70\uC694!"
         PortraitKey: 
-        ActorKey: 
+        ActorKey: Ahir_Chapter_1

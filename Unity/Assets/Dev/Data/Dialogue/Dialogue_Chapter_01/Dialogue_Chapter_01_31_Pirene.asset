@@ -33,28 +33,28 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: a7b59dd4-8c6e-4843-a2d4-6ecccb7bfbb0
   NodeData:
-  - rid: 2427336073050587151
-  - rid: 2427336073050587152
-  - rid: 2427336073050587153
-  - rid: 2427336073050587154
-  - rid: 2427336073050587155
-  - rid: 2427336073050587156
+  - rid: 1818509133204685212
+  - rid: 1818509133204685213
+  - rid: 1818509133204685214
+  - rid: 1818509133204685215
+  - rid: 1818509133204685216
+  - rid: 1818509133204685217
   references:
     version: 2
     RefIds:
-    - rid: 2427336073050587151
+    - rid: 1818509133204685212
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a7b59dd4-8c6e-4843-a2d4-6ecccb7bfbb0
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1256, y: 302.66666}
+        Position: {x: 1256, y: 303}
         DialogueText: "\uBB34\uC5C7\uBCF4\uB2E4 \uC911\uC694\uD55C\uAC74 \uB3D9\uBB3C\uB4E4\uACFC
-          \uAD50\uAC10\uC744 \uD558\uB294\uAC70\uC5D0\uC694!<br> \uB3D9\uBB3C\uC758
-          \uC0C1\uD0DC\uB97C \uD655\uC778\uD558\uACE0 \uC7AC\uB8CC\uB97C \uC5BB\uC73C\uC138\uC694!"
+          \uAD50\uAC10\uC744 \uD558\uB294\uAC70\uC5D0\uC694! \uB3D9\uBB3C\uC758 \uC0C1\uD0DC\uB97C
+          \uD655\uC778\uD558\uACE0 \uC7AC\uB8CC\uB97C \uC5BB\uC73C\uC138\uC694!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 2427336073050587152
+        ActorKey: Pirene_Chapter_1
+    - rid: 1818509133204685213
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: ab313e19-f246-480b-b238-509f1f7bec3e
@@ -64,14 +64,14 @@ MonoBehaviour:
         DialogueText: "\uC2E0\uC120\uD55C \uC7AC\uB8CC\uB4E4\uC774\uB124\uC694!<br>\uBD84\uBA85
           \uC88B\uC740 \uBE75\uC744 \uB9CC\uB4E4 \uC218 \uC788\uC744 \uAC70\uC5D0\uC694! "
         PortraitKey: 
-        ActorKey: 
-    - rid: 2427336073050587153
+        ActorKey: Pirene_Chapter_1
+    - rid: 1818509133204685214
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: c6379ed1-4bf8-443f-8e1b-00ec3800f755
         NodeTitle: Condition
         TypeName: Condition
-        Position: {x: 271.33334, y: 200}
+        Position: {x: 271, y: 200}
         Handler: {fileID: 11400000, guid: d0a6352dc4ca27c4fb3cd76966849710, type: 2}
         Warps:
         - Target: String
@@ -80,36 +80,36 @@ MonoBehaviour:
           StringValue: Pirene_Chapter_1
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 2427336073050587154
+    - rid: 1818509133204685215
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d2bbe3ef-05ad-4e7d-aeaf-18654b6be3ba
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1909.3334, y: 302.66666}
+        Position: {x: 1909, y: 303}
         DialogueText: "\uB3D9\uBB3C\uB4E4\uC740 \uBC14\uB85C \uC544\uB798\uB85C \uB0B4\uB824\uAC00\uC2DC\uBA74
-          \uC788\uC5B4\uC694!<br>\uD589\uC6B4\uC744 \uBE4C\uC5B4\uC694!"
+          \uC788\uC5B4\uC694! \uD589\uC6B4\uC744 \uBE4C\uC5B4\uC694!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 2427336073050587155
+        ActorKey: Pirene_Chapter_1
+    - rid: 1818509133204685216
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d2d1e4a0-d278-4861-a129-4b1c120b1d83
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 604, y: 302.66666}
+        Position: {x: 604, y: 303}
         DialogueText: "\uC548\uB155\uD558\uC138\uC694! \uACC4\uB780\uACFC \uC6B0\uC720\uAC00
-          \uD544\uC694\uD574\uC11C \uC624\uC168\uAD70\uC694!<br> \uD574\uB2F9 \uC7AC\uB8CC\uB4E4\uC740
+          \uD544\uC694\uD574\uC11C \uC624\uC168\uAD70\uC694! \uD574\uB2F9 \uC7AC\uB8CC\uB4E4\uC740
           \uB3D9\uBB3C\uD55C\uD14C \uC5BB\uC744 \uC218 \uC788\uC5B4\uC694! "
         PortraitKey: 
-        ActorKey: 
-    - rid: 2427336073050587156
+        ActorKey: Pirene_Chapter_1
+    - rid: 1818509133204685217
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d4c17b5a-7a1a-4075-8988-a371ca2497fc
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 2404, y: 302.66666}
+        Position: {x: 2404, y: 303}
         Handler: {fileID: 11400000, guid: b1b7f1f320357bc41955eee57df95c8d, type: 2}
         Warps:
         - Target: String

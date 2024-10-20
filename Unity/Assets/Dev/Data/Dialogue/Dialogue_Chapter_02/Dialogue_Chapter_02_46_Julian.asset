@@ -18,11 +18,11 @@ MonoBehaviour:
     PortName: Execute
     TargetNodeGuid: 49af3620-3a7d-42ce-b2ca-1b3e58bf3207
   NodeData:
-  - rid: 1818508997039751206
+  - rid: 1818509133204684978
   references:
     version: 2
     RefIds:
-    - rid: 1818508997039751206
+    - rid: 1818509133204684978
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 49af3620-3a7d-42ce-b2ca-1b3e58bf3207
@@ -31,4 +31,4 @@ MonoBehaviour:
         Position: {x: 268, y: 200}
         DialogueText: "\uC774\uBC88\uC5D4 \uC5B4\uB5A4 \uBE75\uC744 \uB9CC\uB4DC\uC2E4\uAC74\uAC00\uC694?!"
         PortraitKey: 
-        ActorKey: 
+        ActorKey: Julian_Chapter_1
