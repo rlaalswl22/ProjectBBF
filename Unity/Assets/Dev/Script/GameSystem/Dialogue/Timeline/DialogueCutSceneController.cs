@@ -166,6 +166,8 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
             _resultUI.Visible = true;
             if (_lastResultItem)
             {
+                TimelineAssetHandler.TimelineAsset = contestResultMarker.TimelineAsset;
+                
                 List<ContestResultData.Record> results = new List<ContestResultData.Record>();
                 if (ContestResultResolver.Instance.TryResolve(contestResultMarker.Chapter, _lastResultItem, ref results))
                 {
