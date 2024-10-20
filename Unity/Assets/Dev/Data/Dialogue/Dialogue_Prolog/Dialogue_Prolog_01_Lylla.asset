@@ -24,40 +24,40 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 085f906a-6784-4f45-b2d0-42b4402a44b0
   NodeData:
-  - rid: 2427336073050587139
-  - rid: 2427336073050587140
-  - rid: 2427336073050587141
+  - rid: 1818509130249535494
+  - rid: 1818509130249535495
+  - rid: 1818509130249535496
   references:
     version: 2
     RefIds:
-    - rid: 2427336073050587139
+    - rid: 1818509130249535494
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 085f906a-6784-4f45-b2d0-42b4402a44b0
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 721.3333, y: 200}
+        Position: {x: 721, y: 200}
         DialogueText: "\uB098\uB97C \uB530\uB77C\uC624\uBA74 \uB41C\uB2E4 \uB0E5!"
         PortraitKey: Lylla
         ActorKey: Lylla
-    - rid: 2427336073050587140
+    - rid: 1818509130249535495
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 1d7d9107-f106-45c4-9007-041b26a2ec27
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 323.33334, y: 200}
-        DialogueText: "\uACF9\uC774\uBA74 \uB300\uD68C\uAC00 \uC2DC\uC791\uD560\uAC70\uB2E4
+        Position: {x: 323, y: 200}
+        DialogueText: "\uACE7 \uC788\uC73C\uBA74 \uB300\uD68C\uAC00 \uC2DC\uC791\uD560\uAC70\uB2E4
           \uB0E5! "
         PortraitKey: Lylla
         ActorKey: Lylla
-    - rid: 2427336073050587141
+    - rid: 1818509130249535496
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 6d81e24e-f2e9-4921-acac-dc6d1c1de1cc
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 1068.6666, y: 200}
+        Position: {x: 1069, y: 200}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
