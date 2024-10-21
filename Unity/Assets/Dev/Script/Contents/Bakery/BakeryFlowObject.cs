@@ -72,6 +72,8 @@ public abstract class BakeryFlowBehaviour : MonoBehaviour
     {
         _flowObject.OnActivate += OnActivate;
         _flowObject.OnInteraction += OnInteraction;
+        _flowObject.OnEnter += OnEnter;
+        _flowObject.OnExit += OnExit;
     }
 
     protected virtual void OnDestroy()
@@ -80,6 +82,8 @@ public abstract class BakeryFlowBehaviour : MonoBehaviour
         {
             _flowObject.OnActivate -= OnActivate;
             _flowObject.OnInteraction -= OnInteraction;
+            _flowObject.OnEnter -= OnEnter;
+            _flowObject.OnExit -= OnExit;
         }
     }
 
@@ -116,7 +120,11 @@ public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
     protected override void Awake()
     {
         base.Awake();
-        _buckets.ForEach(y => y.OnFade(0f));
+        _buckets.ForEach(y =>
+        {
+            y.OnFade(0f);
+            y.Item = null;
+        });
 
         FadeObject.OnFadeAlpha += OnBucketFade;
     }

@@ -100,11 +100,14 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 
     protected override void OnEnter(BakeryFlowObject flowObject, CollisionInteractionMono activator)
     {
+        if (IsFullBucket)
+        {
+            _activationUI.SetActive(true);
+        }
     }
 
     protected override void OnExit(BakeryFlowObject flowObject, CollisionInteractionMono activator)
     {
-        
         _activationUI.SetActive(false);
         GameReset();
         StopAllCoroutines();

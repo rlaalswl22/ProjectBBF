@@ -232,6 +232,15 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SlotQuickMove"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f5fc189-3d99-4baa-933c-6b1b570ec556"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -421,6 +430,17 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""action"": ""RecipeBook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""897a1926-8769-4446-bfde-844d9586bcd2"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""WinPCScheme"",
+                    ""action"": ""SlotQuickMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -507,6 +527,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
         m_UI_Setting = m_UI.FindAction("Setting", throwIfNotFound: true);
         m_UI_RecipeBook = m_UI.FindAction("RecipeBook", throwIfNotFound: true);
+        m_UI_SlotQuickMove = m_UI.FindAction("SlotQuickMove", throwIfNotFound: true);
         // Minigame
         m_Minigame = asset.FindActionMap("Minigame", throwIfNotFound: true);
         m_Minigame_BakeryKeyPressed = m_Minigame.FindAction("BakeryKeyPressed", throwIfNotFound: true);
@@ -656,6 +677,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Inventory;
     private readonly InputAction m_UI_Setting;
     private readonly InputAction m_UI_RecipeBook;
+    private readonly InputAction m_UI_SlotQuickMove;
     public struct UIActions
     {
         private @DefaultKeymap m_Wrapper;
@@ -666,6 +688,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         public InputAction @Inventory => m_Wrapper.m_UI_Inventory;
         public InputAction @Setting => m_Wrapper.m_UI_Setting;
         public InputAction @RecipeBook => m_Wrapper.m_UI_RecipeBook;
+        public InputAction @SlotQuickMove => m_Wrapper.m_UI_SlotQuickMove;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -693,6 +716,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @RecipeBook.started += instance.OnRecipeBook;
             @RecipeBook.performed += instance.OnRecipeBook;
             @RecipeBook.canceled += instance.OnRecipeBook;
+            @SlotQuickMove.started += instance.OnSlotQuickMove;
+            @SlotQuickMove.performed += instance.OnSlotQuickMove;
+            @SlotQuickMove.canceled += instance.OnSlotQuickMove;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -715,6 +741,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @RecipeBook.started -= instance.OnRecipeBook;
             @RecipeBook.performed -= instance.OnRecipeBook;
             @RecipeBook.canceled -= instance.OnRecipeBook;
+            @SlotQuickMove.started -= instance.OnSlotQuickMove;
+            @SlotQuickMove.performed -= instance.OnSlotQuickMove;
+            @SlotQuickMove.canceled -= instance.OnSlotQuickMove;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -811,6 +840,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         void OnInventory(InputAction.CallbackContext context);
         void OnSetting(InputAction.CallbackContext context);
         void OnRecipeBook(InputAction.CallbackContext context);
+        void OnSlotQuickMove(InputAction.CallbackContext context);
     }
     public interface IMinigameActions
     {
