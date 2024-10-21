@@ -15,6 +15,10 @@ public class RecipeBookPreviewView : MonoBehaviour
     [SerializeField] private TMP_Text _resultItemNameText;
     [SerializeField] private TMP_Text _resultItemDescText;
     
+    
+    [SerializeField] private Image _bakedBreadResultItemImage;
+    [SerializeField] private Image _additiveResultItemImage;
+    
     [SerializeField] private Image[] _doughtRecipeItemImages;
     [SerializeField] private Image[] _additiveItemImages;
 
@@ -37,6 +41,8 @@ public class RecipeBookPreviewView : MonoBehaviour
         string resultItemName, 
         string resultItemDesc, 
         Sprite resultItemSprite,
+        Sprite additiveResultItemSprite,
+        Sprite bakedBreadResultItemSprite,
         Sprite[] additiveItemSprites,
         Sprite[] doughtItemSprites,
         bool isUnlocked)
@@ -54,9 +60,13 @@ public class RecipeBookPreviewView : MonoBehaviour
         }
         _resultItemImage.sprite = resultItemSprite;
 
+        _bakedBreadResultItemImage.sprite = bakedBreadResultItemSprite;
+        _additiveResultItemImage.sprite = additiveResultItemSprite;
+
         Color c = isUnlocked? Color.white : Color.black;
         
         _resultItemImage.color = c;
+        _additiveResultItemImage.color = c;
 
         if (_doughtRecipeItemImages.Length != doughtItemSprites.Length)
         {
@@ -78,6 +88,9 @@ public class RecipeBookPreviewView : MonoBehaviour
         _resultItemNameText.text = "";
         _resultItemDescText.text = "";
         _resultItemImage.sprite = null;
+
+        _bakedBreadResultItemImage.sprite = null;
+        _additiveResultItemImage.sprite = null;
 
         foreach (var t in _additiveItemImages)
         {

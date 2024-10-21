@@ -21,17 +21,21 @@ public class ScrollbarSizeSetter : MonoBehaviour
 
     private void OnEnable()
     {
-        InvokeOnScroll();
+        Invoke("InvokeOnScroll", 0.02f);
     }
     
     private void OnDestroy()
     {
+        if (IsInvoking("InvokeOnScroll"))
+        {
+            CancelInvoke("InvokeOnScroll");
+        }
         _scrollRect.onValueChanged.RemoveListener(OnScroll);
     }
 
     private void InvokeOnScroll()
     {
-        _scrollbar.value = 1f;
+        //_scrollbar.value = 1f;
         OnScroll(default);
     }
     
