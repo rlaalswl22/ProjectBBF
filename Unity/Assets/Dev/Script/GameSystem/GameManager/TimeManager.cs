@@ -31,17 +31,29 @@ public struct GameTime
         Min = min;
         TimeOfDay = null;
     }
+
+    public GameTime(int min)
+    {
+        Hour = min / 60;
+        Min = min % 60;
+        TimeOfDay = null;
+    }
     
     public override string ToString()
     {
         return $"Game time((h){Hour} : (m){Min}, ({TimeOfDay}))";
     }
 
+    public string ToStringFormat(string format)
+    {
+        return string.Format(format, Hour, Min);
+    }
+
     public int TotalMinutes()
     {
         return Hour * 60 + Min;
     }
-
+    
     public override bool Equals(object obj)
     {
         if (obj is GameTime)

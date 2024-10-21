@@ -10,7 +10,7 @@ using UnityEngine;
 public class FishingMinigameController : MinigameBase<FishingMinigameData>
 {
     [SerializeField] private GameObject _uiPanel;
-    [SerializeField] private TMP_Text _timeboard;
+    [SerializeField] private GameTimerUI _timerUI;
     [SerializeField] private SpriteRenderer _fishRenderer;
 
     private float _timer;
@@ -21,7 +21,7 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
         set
         {
             _timer = value;
-            _timeboard.text = $"{_timer:00} 초";
+            _timerUI.Time = new GameTime((int)(Data.GameDuration - _timer));
         }
     }
 
@@ -54,8 +54,10 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
 
     protected override void OnGameBegin()
     {
+        _timerUI.Visible = true;
         _uiPanel.SetActive(true);
         Player.Blackboard.IsMoveStopped = true;
+        Player.HudController.Visible = false;
         Player.VisualStrategy.LookAt(Vector2.right, AnimationActorKey.Action.Idle);
         Player.MoveStrategy.LastMovedDirection = Vector2.right;
         StartCoroutine(CoTimer());
@@ -63,6 +65,7 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
 
     protected override void OnGameRelease()
     {
+        _timerUI.Visible = false;
         _fishRenderer.enabled = false;
         _uiPanel.SetActive(false);
         StopAllCoroutines();
@@ -70,6 +73,7 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
 
         if (Player)
         {
+            Player.HudController.Visible = true;
             Player.Blackboard.IsMoveStopped = false;
             Player.Fishing.ReleaseFishingController();
         }

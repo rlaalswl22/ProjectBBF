@@ -41,7 +41,7 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
         set => _view.Visible = value;
     }
 
-    
+    public bool IsProgress => LastestContext is { CanNext: true };
     
     public void SetTextVisible(bool value)
         => _view.SetTextVisible(value);
@@ -193,7 +193,7 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
     public DialogueContext CreateContext(DialogueRuntimeTree tree, ProcessorData processorData)
     {
         // 현재 Context가 누군가에게 점유되어 있으면 null 반환
-        if (LastestContext != null && LastestContext.CanNext)
+        if (IsProgress)
         {
             return null;
         }

@@ -224,6 +224,8 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
 
             if (ctx.IsTiming)
             {
+                _invPresenter.QuickInvVisible = false;
+                
                 var inst = DialogueController.Instance;
                 inst.Visible = true;
                 inst.DialogueText = $"\"{ctx.Reward.ItemName}\"을(를) 낚았다!";
@@ -233,12 +235,16 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
                 await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
                     this.GetCancellationTokenOnDestroy());
                 
+                
+                _invPresenter.QuickInvVisible = true;
                 inst.ResetDialogue();
             }
             ctx.Resume();
             
             ctx.Release();
 
+
+            IsFishing = false;
             return true;
         }
         catch (Exception e) when (e is not OperationCanceledException)
@@ -249,6 +255,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         {
             _handle.gameObject.SetActive(false);
             _line.gameObject.SetActive(false);
+            IsFishing = false;
         }
 
 
@@ -286,9 +293,6 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
 
         _handle.gameObject.SetActive(false);
         _line.gameObject.SetActive(false);
-
-
-        IsFishing = false;
     }
 
     public void Fishing(Direction direction, Vector3 targetPosition)

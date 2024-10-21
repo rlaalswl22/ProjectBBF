@@ -24,8 +24,8 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
 
     [SerializeField] private CinemachineVirtualCamera _camera;
 
-    [SerializeField] private TMP_Text _timeText;
-    [SerializeField] private TMP_Text _scoreText;
+    [SerializeField] private GameTimerUI _timerUI;
+    [SerializeField] private GameScoreUI _scoreUI;
     [SerializeField] private GameObject _uiPanel;
 
     [SerializeField] private List<Pivot> _pivots;
@@ -45,7 +45,7 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
         set
         {
             _currentScore = value;
-            _scoreText.text = $"{_currentScore} 점";
+            _scoreUI.Score = value;
         }
     }
 
@@ -55,8 +55,7 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
         set
         {
             _gameTimer = value;
-            TimeSpan span = TimeSpan.FromSeconds(_gameTimer);
-            _timeText.text = $"{(int)span.TotalSeconds:D2} 초";
+            _timerUI.Time =  new GameTime((int)Data.GameDuration - (int)_gameTimer);
         }
     }
 
@@ -151,12 +150,16 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
         base.Awake();
 
         _uiPanel.SetActive(false);
+        _timerUI.Visible = false;
+        _scoreUI.Visible = false;
         _camera.gameObject.SetActive(false);
     }
 
     protected override void OnGameInit()
     {
         _lastReward = default;
+        _timerUI.Visible = true;
+        _scoreUI.Visible = true;
         
         _camera.gameObject.SetActive(true);
         _camera.MoveToTopOfPrioritySubqueue();
@@ -287,6 +290,8 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
 
     protected override void OnPreGameEnd(bool isRequestEnd)
     {
+        _timerUI.Visible = false;
+        _scoreUI.Visible = false;
         _uiPanel.SetActive(false);
         _camera.gameObject.SetActive(false);
         OnGameRelease();
