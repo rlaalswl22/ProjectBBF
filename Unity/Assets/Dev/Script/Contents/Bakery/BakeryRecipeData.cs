@@ -18,8 +18,23 @@ public class BakeryRecipeData : ScriptableObject
 
     [SerializeField, Header("연성 재료")] 
     private BakeryAdditiveRecipeData _additiveRecipe;
-    
-    public ItemData ResultItem => _additiveRecipe.ResultItem;
+
+    [SerializeField, Header("레시피북 설명")]
+    private string _description;
+
+    // 최종 결과 아이템이 없으면, 구운 빵아이템 반환하도록 (레시피북에서 구운 빵을 출력하도록 하기위함)
+    public ItemData ResultItem
+    {
+        get
+        {
+            if (_additiveRecipe)
+            {
+                return _additiveRecipe.ResultItem;
+            }
+
+            return _bakingRecipe.BreadItem;
+        }
+    }
 
 
     public BakeryDoughRecipeData DoughRecipe => _doughRecipe;
@@ -27,5 +42,8 @@ public class BakeryRecipeData : ScriptableObject
     public BakeryBakingRecipeData BakingRecipe => _bakingRecipe;
 
     public BakeryAdditiveRecipeData AdditiveRecipe => _additiveRecipe;
+
+    public string Description => _description;
+
     public string Key => _key;
 }

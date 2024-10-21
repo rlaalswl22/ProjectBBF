@@ -259,6 +259,11 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         bool success = pc.Inventory.Model.PushItem(tuple.resultItem, 1);
         ClearBucket();
 
+        if (success && tuple.recipe)
+        {
+            pc.RecipeBookPresenter.Model.Add(tuple.recipe.Key);
+        }
+
         if (_esoSuccess)
         {
             _esoSuccess.Raise();

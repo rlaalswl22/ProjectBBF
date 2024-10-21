@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ProjectBBF.Singleton;
@@ -6,7 +7,6 @@ using UnityEngine;
 [Singleton(ESingletonType.Global, initializeOrder: 5)]
 public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
 {
-    private const string RECIPES_PATH = "Data/Bakery/TotalRecipe/";
     private const string FAIL_RECIPE_DOUGH = "Data/Bakery/Reservation/Dat_Barkey_Recipe_DoughFail";
     private const string FAIL_RECIPE_BAKED_BREAD = "Data/Bakery/Reservation/Dat_Barkey_Recipe_BakedFail";
     private const string FAIL_RECIPE_RESULT_BREAD = "Data/Bakery/Reservation/Dat_Barkey_Recipe_AdditiveFail";
@@ -15,6 +15,7 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
     private const string BAKED_BREAD_TABLE = "Data/Bakery/Table/Dat_Bakery_Table_BakedBread";
     private const string ADDITIVE_INGREDIENT_TABLE = "Data/Bakery/Table/Dat_Bakery_Table_Additive";
     private const string COMPLETION_BREAD_TABLE = "Data/Bakery/Table/Dat_Bakery_Table_Completion";
+    private const string ORDER_TABLE = "Data/Bakery/Table/Dat_Bakery_Recipe_Order";
     
     private Dictionary<string, BakeryRecipeData> _recipeTable;
     
@@ -28,6 +29,8 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
     public BakeryIngredientTableData AdditiveIngredientTable { get; private set; }
     public BakeryIngredientTableData BakedBreadTable { get; private set; }
     public BakeryIngredientTableData CompletionBreadTable { get; private set; }
+    
+    public BakeryRecipeOrderTable OrderTable { get; private set; }
 
     private HashSet<ItemData> _doughIngredientHashSet;
     private HashSet<ItemData> _doughHashSet;
@@ -37,7 +40,6 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
     
     public override void PostInitialize()
     {
-        var arr = Resources.LoadAll<BakeryRecipeData>(RECIPES_PATH);
         _recipeTable = new();
         
         FailDoughRecipe = Resources.Load<BakeryDoughRecipeData>(FAIL_RECIPE_DOUGH);
@@ -49,14 +51,16 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
         AdditiveIngredientTable = Resources.Load<BakeryIngredientTableData>(ADDITIVE_INGREDIENT_TABLE);
         BakedBreadTable = Resources.Load<BakeryIngredientTableData>(BAKED_BREAD_TABLE);
         CompletionBreadTable = Resources.Load<BakeryIngredientTableData>(COMPLETION_BREAD_TABLE);
+        
+        OrderTable = Resources.Load<BakeryRecipeOrderTable>(ORDER_TABLE);
 
         _doughIngredientHashSet = new(DoughIngredientTable.Ingredients);
         _doughHashSet = new(DoughTable.Ingredients);
         _additiveIngredientHashSet = new(AdditiveIngredientTable.Ingredients);
         _bakedBreadHashSet = new(BakedBreadTable.Ingredients);
         _completionBreadHashSet = new(CompletionBreadTable.Ingredients);
-
-        foreach (BakeryRecipeData data in arr)
+        
+        foreach (BakeryRecipeData data in OrderTable.Orders)
         {
             _recipeTable.Add(data.Key, data);
         }
@@ -97,14 +101,25 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
         return null;
     }
     
-    public BakeryBakingRecipeData ResolveBakedBread(ItemData dought)
+    public BakeryBakingRecipeData ResolveBakedBread(ItemData dought, out BakeryRecipeData bakedBreadRecipeData)
     {
+        bakedBreadRecipeData = null;
+        BakeryBakingRecipeData result = null;
         foreach (var recipe in RecipeTable.Values)
         {
-            if (recipe.BakingRecipe.DoughtItem == dought)
+            if (recipe.BakingRecipe.DoughtItem == dought && recipe.AdditiveRecipe == null)
             {
-                return recipe.BakingRecipe;
+                bakedBreadRecipeData = recipe;
+                result = recipe.BakingRecipe;
+                break;
             }
+        }
+
+        if (result == null) return null;
+
+        if (bakedBreadRecipeData)
+        {
+            return result;
         }
 
         return null;

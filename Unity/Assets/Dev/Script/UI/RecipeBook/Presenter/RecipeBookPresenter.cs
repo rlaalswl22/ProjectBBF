@@ -76,11 +76,11 @@ public class RecipeBookPresenter : MonoBehaviour
 
         _previewView.SetView(
             recipe.ResultItem.ItemName,
-            recipe.ResultItem.ItemDescription,
-            recipe.ResultItem.ItemSprite,
+            recipe.Description,
             recipe.ResultItem.ItemSprite,
             recipe.BakingRecipe.BreadItem.ItemSprite,
-            recipe.AdditiveRecipe.AdditiveItems.Select(x => x.ItemSprite).ToArray(),
+            recipe.BakingRecipe.DoughtItem.ItemSprite,
+            recipe.AdditiveRecipe?.AdditiveItems.Select(x => x.ItemSprite).ToArray(),
             recipe.DoughRecipe.Ingredients.Select(x => x.ItemSprite).ToArray(),
             isUnlocked
         );

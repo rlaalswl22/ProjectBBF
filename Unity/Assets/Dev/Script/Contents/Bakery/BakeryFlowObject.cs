@@ -281,7 +281,7 @@ public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
             case Resolvor.Baking:
                 failItem = resolver.FailBakedBreadRecipe.BreadItem;
                 duration = resolver.FailBakedBreadRecipe.MinigameBarDuration;
-                var bakingRecipe = resolver.ResolveBakedBread(bucketItems[0]);
+                var bakingRecipe = resolver.ResolveBakedBread(bucketItems[0], out recipe);
 
                 if (bakingRecipe)
                 {

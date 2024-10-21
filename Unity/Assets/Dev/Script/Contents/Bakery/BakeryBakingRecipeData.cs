@@ -12,9 +12,13 @@ public class BakeryBakingRecipeData : ScriptableObject
     private ItemData _breadItem;
     [SerializeField, Header("미니게임 바 시간")] 
     private float _minigameBarDuration;
+
+    [SerializeField, Header("레시피북 설명")]
+    private string _description;
     
     public ItemData DoughtItem => _doughtItem;
     public ItemData BreadItem => _breadItem;
 
     public float MinigameBarDuration => _minigameBarDuration;
+    public string Description => _description;
 }
