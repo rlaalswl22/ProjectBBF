@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using ProjectBBF.Persistence;
+using TMPro;
 using UnityEngine;
 
 public class PlayerPannelView : MonoBehaviour
@@ -8,7 +10,10 @@ public class PlayerPannelView : MonoBehaviour
     [SerializeField] private InteractableInventoryView _invView;
     [SerializeField] private SettingView _settingView;
     [SerializeField] private PlayerGameQuitView _quitView;
+    [SerializeField] private TMP_Text _moneyText;
 
+    
+    private PlayerBlackboard _blackboard;
     public enum ViewType : int
     {
         Close,
@@ -76,5 +81,13 @@ public class PlayerPannelView : MonoBehaviour
         _quitView.Init();
         
         ViewState = ViewType.Close;
+        
+        
+        _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
+    }
+
+    private void Update()
+    {
+        _moneyText.text = $"{_blackboard.Money:N0}";
     }
 }
