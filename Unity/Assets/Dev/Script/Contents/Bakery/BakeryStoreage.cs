@@ -67,6 +67,8 @@ public class BakeryStoreage : BakeryFlowBehaviour
                 Visible = false;
                 pc.Blackboard.IsInteractionStopped = false;
                 pc.Blackboard.IsMoveStopped = false;
+                pc.HudController.Visible = true;
+                pc.Inventory.QuickInvVisible = true;
 
                 if (Visible)
                 {
@@ -95,6 +97,8 @@ public class BakeryStoreage : BakeryFlowBehaviour
         pc.MoveStrategy.ResetVelocity();
         pc.Blackboard.IsInteractionStopped = true;
         pc.Blackboard.IsMoveStopped = true;
+        pc.HudController.Visible = false;
+        pc.Inventory.QuickInvVisible = false;
         
         StopAllCoroutines();
         StartCoroutine(CoUpdateInteraction(activator));
@@ -118,6 +122,8 @@ public class BakeryStoreage : BakeryFlowBehaviour
         if (activator.Owner is not PlayerController pc) return;
         pc.Blackboard.IsInteractionStopped = false;
         pc.Blackboard.IsMoveStopped = false;
+        pc.HudController.Visible = true;
+        pc.Inventory.QuickInvVisible = true;
 
         Visible = false;
         _ani.SetTrigger("Close");
