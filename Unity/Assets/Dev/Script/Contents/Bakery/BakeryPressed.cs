@@ -14,10 +14,27 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
     [SerializeField] private Transform _playPoint;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private ESOVoid _esoSuccess;
+    [SerializeField] private GameObject _activationUI;
+    [SerializeField] private GameObject _particleSystem;
 
     private void Start()
     {
+        SetParticleVisible(false);
         _panel.SetActive(false);
+        _activationUI.SetActive(false);
+    }
+
+    private void SetParticleVisible(bool value)
+    {
+        if (_particleSystem == false) return;
+        
+        _particleSystem.SetActive(value);
+        if (value is false) return;
+        
+        foreach (var particle in _particleSystem.GetComponentsInChildren<ParticleSystem>())
+        {
+            particle.Play();
+        }
     }
 
     protected override void OnActivate(BakeryFlowObject flowObject, CollisionInteractionMono activator)
@@ -28,12 +45,29 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         StartCoroutine(CoUpdate(pc));
     }
 
+    protected override void OnChangedBuket(int index, ItemData itemData)
+    {
+        base.OnChangedBuket(index, itemData);
+
+        for (int i = 0; i < BucketLength; i++)
+        {
+            if (GetBucket(i) == false)
+            {
+                _activationUI.SetActive(false);
+                return;
+            }
+        }
+        
+        _activationUI.SetActive(true);
+    }
+
     protected override void OnEnter(BakeryFlowObject flowObject, CollisionInteractionMono activator)
     {
     }
 
     protected override void OnExit(BakeryFlowObject flowObject, CollisionInteractionMono activator)
     {
+        _activationUI.SetActive(false);
         GameReset();
         StopAllCoroutines();
     }
@@ -46,6 +80,12 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         _panel.SetActive(true);
         _fillImage.fillAmount = 0f;
         AnimationActorKey.Action aniAction;
+        
+        
+        _activationUI.SetActive(false);
+
+        
+        SetParticleVisible(true);
 
         switch (ResolvorType)
         {
@@ -88,6 +128,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
                 pc.Blackboard.IsInteractionStopped = false;
                 pc.MoveStrategy.ResetVelocity();
                 pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
+                _activationUI.SetActive(true);
                 yield break;
             }
 
@@ -125,11 +166,13 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
             GameFail(tuple, pc);
         }
 
+        _activationUI.SetActive(true);
         GameReset();
     }
 
     private void GameReset()
     {
+        SetParticleVisible(false);
         StopAllCoroutines();
         _panel.SetActive(false);
         _audioSource.Stop();

@@ -12,6 +12,7 @@ using UnityEngine.UI;
 
 public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 {
+    [SerializeField] private GameObject _activationUI;
     [SerializeField] private AudioSource _source;
     [SerializeField] private ESOVoid _esoSuccess;
     
@@ -46,6 +47,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 
     private void Start()
     {
+        _activationUI.SetActive(false);
         _panel.SetActive(false);
         SetVisibleFire(false);
     }
@@ -102,8 +104,26 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 
     protected override void OnExit(BakeryFlowObject flowObject, CollisionInteractionMono activator)
     {
+        
+        _activationUI.SetActive(false);
         GameReset();
         StopAllCoroutines();
+    }
+
+    protected override void OnChangedBuket(int index, ItemData itemData)
+    {
+        base.OnChangedBuket(index, itemData);
+
+        for (int i = 0; i < BucketLength; i++)
+        {
+            if (GetBucket(i) == false)
+            {
+                _activationUI.SetActive(false);
+                return;
+            }
+        }
+        
+        _activationUI.SetActive(true);
     }
 
     private IEnumerator CoUpdate(PlayerController pc)
@@ -118,6 +138,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         (ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipe) tuple = GetResolvedItem();
         
 
+        _activationUI.SetActive(false);
         pc.Blackboard.IsMoveStopped = true;
         pc.Blackboard.IsInteractionStopped = true;
         pc.transform.position = (Vector2)_playPoint.position;
