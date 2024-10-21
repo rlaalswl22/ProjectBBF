@@ -14,14 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemKey: Item_Bread_NormalBread
   _itemName: "\uC77C\uBC18 \uBE75"
-  _itemDescription: 
+  _itemDescription: "\uAC00\uC7A5 \uC77C\uBC18\uC801\uC778 \uBE75! <br>\uAC13 \uAD6C\uC6B4
+    \uBE75 \uB0C4\uC0C8\uAC00 \uD604\uD639\uD574\uC628\uB2E4!"
   _itemSprite: {fileID: 21300000, guid: e0b65c29664d0c9448bc225a141748ea, type: 3}
   _maxStackCount: 1
   _itemTypeInfo:
     _sets: []
   _actionCategoryType: 0
   _actionAnimationType: 0
-  _usingActionAudioInfo:
-    _mixerGroupKey: 
-    _audioKey: 
-    _playWhenSucceed: 0
+  _usingActionAudioInfos: []

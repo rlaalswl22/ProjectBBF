@@ -14,14 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemKey: Item_Bread_TreasureCake
   _itemName: "\uBCF4\uBB3C\uC12C \uCF00\uC774\uD06C"
-  _itemDescription: 
+  _itemDescription: "\uC544\uD788\uB974\uC5D0\uAC8C \uC81C\uCD9C\uD558\uC790!"
   _itemSprite: {fileID: 21300000, guid: 1d27fa82728132b4487cc9732bc85ecf, type: 3}
   _maxStackCount: 1
   _itemTypeInfo:
     _sets: []
   _actionCategoryType: 0
   _actionAnimationType: 0
-  _usingActionAudioInfo:
-    _mixerGroupKey: 
-    _audioKey: 
-    _playWhenSucceed: 0
+  _usingActionAudioInfos: []

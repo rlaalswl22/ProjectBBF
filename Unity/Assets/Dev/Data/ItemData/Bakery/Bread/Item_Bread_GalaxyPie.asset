@@ -14,14 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemKey: Item_Bread_GalaxyPie
   _itemName: "\uC740\uD558\uC218 \uD30C\uC774"
-  _itemDescription: 
+  _itemDescription: "\uC544\uD788\uB974\uC5D0\uAC8C \uC81C\uCD9C\uD558\uC790!"
   _itemSprite: {fileID: 21300000, guid: 40f66b95984698a46b45b687b42483c1, type: 3}
   _maxStackCount: 1
   _itemTypeInfo:
     _sets: []
   _actionCategoryType: 0
   _actionAnimationType: 0
-  _usingActionAudioInfo:
-    _mixerGroupKey: 
-    _audioKey: 
-    _playWhenSucceed: 0
+  _usingActionAudioInfos: []

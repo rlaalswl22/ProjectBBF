@@ -14,14 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemKey: Item_Veg_Cabbage
   _itemName: "\uC591\uC0C1\uCD94"
-  _itemDescription: 
+  _itemDescription: "\uC544\uC0AD\uC544\uC0AD\uD55C \uC2DD\uAC10\uACFC \uC740\uC740\uD55C
+    \uB2E8\uB9DB!<br>\uC0CC\uB4DC\uC704\uCE58\uC5D0 \uBE60\uC9C0\uBA74 \uC548\uB418\uB294
+    \uD544\uC218 \uC7AC\uB8CC\uC774\uB2E4! "
   _itemSprite: {fileID: 21300000, guid: 79c5c4ba7f531a049bd46ce570e28812, type: 3}
   _maxStackCount: 64
   _itemTypeInfo:
     _sets: []
   _actionCategoryType: 0
   _actionAnimationType: 0
-  _usingActionAudioInfo:
-    _mixerGroupKey: 
-    _audioKey: 
-    _playWhenSucceed: 0
+  _usingActionAudioInfos: []

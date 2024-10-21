@@ -14,14 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemKey: Item_Bread_SnowPie
   _itemName: "\uC124\uC6D0 \uD30C\uC774"
-  _itemDescription: 
+  _itemDescription: "\uC544\uD788\uB974\uC5D0\uAC8C \uC81C\uCD9C\uD558\uC790!"
   _itemSprite: {fileID: 21300000, guid: a1535cfe1ea08604eae31ed2d6446c84, type: 3}
   _maxStackCount: 1
   _itemTypeInfo:
     _sets: []
   _actionCategoryType: 0
   _actionAnimationType: 0
-  _usingActionAudioInfo:
-    _mixerGroupKey: 
-    _audioKey: 
-    _playWhenSucceed: 0
+  _usingActionAudioInfos: []

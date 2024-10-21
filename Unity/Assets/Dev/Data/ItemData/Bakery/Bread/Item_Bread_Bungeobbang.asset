@@ -14,14 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemKey: Item_Bread_Bungeobbang
   _itemName: "\uBD95\uC5B4\uBE75"
-  _itemDescription: 
+  _itemDescription: "\uC544\uD788\uB974\uC5D0\uAC8C \uC81C\uCD9C\uD558\uC790!"
   _itemSprite: {fileID: 21300000, guid: 735690f9371e1444c84d52c93be7f5d0, type: 3}
   _maxStackCount: 1
   _itemTypeInfo:
     _sets: []
   _actionCategoryType: 0
   _actionAnimationType: 0
-  _usingActionAudioInfo:
-    _mixerGroupKey: 
-    _audioKey: 
-    _playWhenSucceed: 0
+  _usingActionAudioInfos: []

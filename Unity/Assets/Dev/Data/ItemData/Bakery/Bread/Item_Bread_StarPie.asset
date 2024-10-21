@@ -14,14 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemKey: Item_Bread_StarPie
   _itemName: "\uBCC4\uAC00\uB4DD \uD30C\uC774"
-  _itemDescription: 
+  _itemDescription: "\uC544\uD788\uB974\uC5D0\uAC8C \uC81C\uCD9C\uD558\uC790!"
   _itemSprite: {fileID: 21300000, guid: 75ae7f12ee76b0a48b22de1ee7313d66, type: 3}
   _maxStackCount: 1
   _itemTypeInfo:
     _sets: []
   _actionCategoryType: 0
   _actionAnimationType: 0
-  _usingActionAudioInfo:
-    _mixerGroupKey: 
-    _audioKey: 
-    _playWhenSucceed: 0
+  _usingActionAudioInfos: []

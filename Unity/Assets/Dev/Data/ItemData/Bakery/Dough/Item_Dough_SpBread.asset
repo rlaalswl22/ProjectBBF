@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemKey: Item_Dough_SpBread
   _itemName: "\uC2A4\uD398\uC15C \uBE75 \uBC18\uC8FD"
-  _itemDescription: 
+  _itemDescription: "\uC2A4\uD398\uC15C \uBE75\uC744 \uB9CC\uB4E4\uC218 \uC788\uB294
+    \uBC18\uC8FD \uC624\uBE10\uC5D0 \uAC00\uC838\uAC00\uBCF4\uC790!"
   _itemSprite: {fileID: 21300000, guid: ad198b0ce1d160f46a994dec2844890c, type: 3}
   _maxStackCount: 1
   _itemTypeInfo:
@@ -23,7 +24,4 @@ MonoBehaviour:
       _requireToolRank: 1
   _actionCategoryType: 0
   _actionAnimationType: 0
-  _usingActionAudioInfo:
-    _mixerGroupKey: 
-    _audioKey: 
-    _playWhenSucceed: 0
+  _usingActionAudioInfos: []

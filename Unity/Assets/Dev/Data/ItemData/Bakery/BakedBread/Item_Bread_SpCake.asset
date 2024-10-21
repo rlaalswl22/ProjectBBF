@@ -14,14 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemKey: Item_Bread_SpCake
   _itemName: "\uC2A4\uD398\uC15C \uCF00\uC774\uD06C"
-  _itemDescription: 
+  _itemDescription: "\uC2EC\uC0C1\uCE58 \uC54A\uC740 \uCF00\uC774\uD06C\uC758 \uB4F1\uC7A5!<br>\uC774
+    \uCF00\uC774\uD06C\uB85C \uC5C4\uCCAD\uB09C \uAC83\uC744 \uB9CC\uB4E4 \uC218
+    \uC788\uC744 \uAC83 \uAC19\uC544!"
   _itemSprite: {fileID: 21300000, guid: 161402d3c51985945826133764c0218c, type: 3}
   _maxStackCount: 1
   _itemTypeInfo:
     _sets: []
   _actionCategoryType: 0
   _actionAnimationType: 0
-  _usingActionAudioInfo:
-    _mixerGroupKey: 
-    _audioKey: 
-    _playWhenSucceed: 0
+  _usingActionAudioInfos: []
