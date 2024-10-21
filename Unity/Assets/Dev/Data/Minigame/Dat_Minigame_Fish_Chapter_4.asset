@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6fb2478140341068743ccd8ffa4df98, type: 3}
-  m_Name: Dat_Minigame_Fish
+  m_Name: Dat_Minigame_Fish_Chapter_4
   m_EditorClassIdentifier: 
   _minigameKey: Fishing
   _directorKey: BlackAlpha
@@ -27,4 +27,8 @@ MonoBehaviour:
   - Item: {fileID: 11400000, guid: 5092022637a7e9741909b07b3b9daafa, type: 2}
     Percentage: 0.55
   - Item: {fileID: 11400000, guid: 0b542dd737c91104b95f856b7057b05a, type: 2}
+    Percentage: 0.42
+  - Item: {fileID: 11400000, guid: ecc83ccb61fbd1949bb92bfe874f8d81, type: 2}
+    Percentage: 0.42
+  - Item: {fileID: 11400000, guid: b5b0c786bc4e3cb4bad25a23e85733d3, type: 2}
     Percentage: 0.42
