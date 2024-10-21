@@ -117,7 +117,7 @@ public class PlayerBlackboard : ISaveLoadNotification
     {
         if (_serializedGridModel.Pos is null || _serializedGridModel.Pos?.Count == 0)
         {
-            return new GridInventoryModel(new Vector2Int(20, 3));
+            return new GridInventoryModel(new Vector2Int(10, 2));
         }
 
         var keys = _serializedGridModel.ItemKey.Distinct();
@@ -140,7 +140,7 @@ public class PlayerBlackboard : ISaveLoadNotification
             items.Add((_serializedGridModel.Pos[i], item, _serializedGridModel.Count[i]));
         }
 
-        return new GridInventoryModel(items, new Vector2Int(20, 3));
+        return new GridInventoryModel(items, new Vector2Int(10, 2));
     }
 
     public void OnSavedNotify()

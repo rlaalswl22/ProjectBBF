@@ -8,33 +8,23 @@ public class BakeryStoreage : BakeryFlowBehaviour
 {
     [SerializeField] private GameObject _panel;
     [SerializeField] private StorageInventoryPresenter _storageInventory;
-    [SerializeField] private StorageInventoryPresenter _playernventory;
     [SerializeField] private Animator _ani;
 
     [SerializeField] private List<ItemData> _defaultItems;
-    
-    private int _initCount;
+
     private void Start()
     {
         _storageInventory.OnInit += _ => Init();
-        _playernventory.OnInit += _ => Init();
-        
         _storageInventory.Init();
-        _playernventory.Init();
     }
 
     private void Init()
     {
-        _initCount++;
+        Visible = false;
 
-        if (_initCount >= 2)
+        foreach (ItemData item in _defaultItems)
         {
-            Visible = false;
-
-            foreach (ItemData item in _defaultItems)
-            {
-                _storageInventory.Model.PushItem(item, item.MaxStackCount);
-            }
+            _storageInventory.Model.PushItem(item, item.MaxStackCount);
         }
     }
 
@@ -44,17 +34,17 @@ public class BakeryStoreage : BakeryFlowBehaviour
         set
         {
             _panel.SetActive(value);
-            _storageInventory.View.Visible = value;
-            _playernventory.View.Visible = value;
+            _storageInventory.PlayerView.Visible = value;
+            _storageInventory.StorageView.Visible = value;
         }
     }
-    
+
     private IEnumerator CoUpdateInteraction(CollisionInteractionMono activator)
     {
         if (activator.Owner is not PlayerController pc) yield break;
 
         yield return null;
-        
+
         while (true)
         {
             if (InputManager.Map.Player.Interaction.triggered ||
@@ -63,7 +53,7 @@ public class BakeryStoreage : BakeryFlowBehaviour
             {
                 yield return null;
                 yield return null;
-                    
+
                 Visible = false;
                 pc.Blackboard.IsInteractionStopped = false;
                 pc.Blackboard.IsMoveStopped = false;
@@ -78,6 +68,7 @@ public class BakeryStoreage : BakeryFlowBehaviour
                 {
                     _ani.SetTrigger("Close");
                 }
+
                 break;
             }
 
@@ -99,7 +90,7 @@ public class BakeryStoreage : BakeryFlowBehaviour
         pc.Blackboard.IsMoveStopped = true;
         pc.HudController.Visible = false;
         pc.Inventory.QuickInvVisible = false;
-        
+
         StopAllCoroutines();
         StartCoroutine(CoUpdateInteraction(activator));
 

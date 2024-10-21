@@ -168,12 +168,12 @@ public class GridInventoryModel : IInventoryModel
         return false;
     }
     
-    public bool PushItem(ItemData itemData, int count)
+    public int PushItem(ItemData itemData, int count)
     {
         if (itemData == false)
         {
             Debug.LogError("itemdata is null");
-            return false;
+            return count;
         }
         
         int remaingCount = count;
@@ -191,7 +191,7 @@ public class GridInventoryModel : IInventoryModel
             {
                 slotPos = GetFirstEmptySlotPosition();
 
-                if (slotPos is null) return false;
+                if (slotPos is null) return remaingCount;
                 method = InventorySlotSetMethod.Set;
             }
 
@@ -220,12 +220,13 @@ public class GridInventoryModel : IInventoryModel
             if (SlotChecker.Contains(status, SlotStatus.Success))
             {
                 OnPushItem?.Invoke(itemData, remaingCount, this);
-                return true;
+                remaingCount = 0;
+                return remaingCount;
             }
 
         }
         
-        return false;
+        return remaingCount;
     }
 
     public int MaxSize => Size.x * Size.y;

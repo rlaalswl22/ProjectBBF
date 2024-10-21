@@ -256,7 +256,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
     {
         if (tuple.resultItem == false) return;
         
-        bool success = pc.Inventory.Model.PushItem(tuple.resultItem, 1);
+        bool success = pc.Inventory.Model.PushItem(tuple.resultItem, 1) is 0;
         ClearBucket();
 
         if (success && tuple.recipe)
@@ -273,7 +273,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
     {
         if (tuple.failItem == false) return;
         
-        bool success = pc.Inventory.Model.PushItem(tuple.failItem, 1);
+        bool success = pc.Inventory.Model.PushItem(tuple.failItem, 1)is 0;
         if (success is false) return;
         
         ClearBucket();

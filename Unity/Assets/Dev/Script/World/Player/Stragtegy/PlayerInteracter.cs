@@ -332,7 +332,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         list.ForEach(item =>
         {
             // 아이템 획득에 실패하면 필드에 아이템 드랍
-            if (_controller.Inventory.Model.PushItem(item, 1) == false)
+            if (_controller.Inventory.Model.PushItem(item, 1) is 0)
             {
                 FieldItem.Create(new FieldItem.FieldItemInitParameter()
                 {

@@ -3,14 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using ProjectBBF.Persistence;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class StorageInventoryPresenter : MonoBehaviour, IInventoryPresenter<GridInventoryModel>
 {
-    [SerializeField] private bool _isPlayerOwner;
-    [SerializeField] private InteractableInventoryView _view;
+    [SerializeField] private InteractableInventoryView _playerView;
+    [SerializeField] private InteractableInventoryView _storageView;
+    public GridInventoryModel PlayerModel { get; private set; }
     public GridInventoryModel Model { get; private set; }
 
-    public InteractableInventoryView View => _view;
+    public InteractableInventoryView PlayerView => _playerView;
+    public InteractableInventoryView StorageView => _storageView;
 
     public event Action<StorageInventoryPresenter> OnInit;
 
@@ -21,9 +24,9 @@ public class StorageInventoryPresenter : MonoBehaviour, IInventoryPresenter<Grid
 
     private IEnumerator CoInit()
     {
-        _view.Init();
-        
-        if (_isPlayerOwner)
+        PlayerView.Init();
+        StorageView.Init();
+
         {
             var blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
 
@@ -32,26 +35,53 @@ public class StorageInventoryPresenter : MonoBehaviour, IInventoryPresenter<Grid
                 yield return null;
             }
 
-            Model = blackboard.Inventory.Model;
+            PlayerModel = blackboard.Inventory.Model;
+        }
+        
+        Model = new GridInventoryModel(new Vector2Int(10, 2));
+        Model.OnChanged += StorageView.Refresh;
+        PlayerModel.OnChanged += PlayerView.Refresh;
+
+        PlayerView.OnSlotDown += OnPlayerSlotDown;
+        StorageView.OnSlotDown += OnStorageSlotDown;
+
+        PlayerView.Refresh(PlayerModel);
+        StorageView.Refresh(Model);
+        PlayerView.Visible = false;
+        StorageView.Visible = false;
+
+        OnInit?.Invoke(this);
+    }
+
+    private void OnPlayerSlotDown(IInventorySlot obj, PointerEventData eventData)
+    {
+        if (InputManager.Map.UI.SlotQuickMove.IsPressed() && obj.Data)
+        {
+            InventoryHelper.QuickMoveWithGridModel(obj, Model);
         }
         else
         {
-            Model = new GridInventoryModel(new Vector2Int(10, 2));
+            InventoryHelper.SwapOrHalfItem(obj, eventData);
         }
-
-        Model.OnChanged += View.Refresh;
-
-        View.Refresh(Model);
-        View.Visible = false;
-        
-        OnInit?.Invoke(this);
+    }
+    private void OnStorageSlotDown(IInventorySlot obj, PointerEventData eventData)
+    {
+        if (InputManager.Map.UI.SlotQuickMove.IsPressed() && obj.Data)
+        {
+            InventoryHelper.QuickMoveWithGridModel(obj, PlayerModel);
+        }
+        else
+        {
+            InventoryHelper.SwapOrHalfItem(obj, eventData);
+        }
     }
 
     private void OnDestroy()
     {
         if (Model is not null)
         {
-            Model.OnChanged -= View.Refresh;
+            Model.OnChanged -= StorageView.Refresh;
+            PlayerModel.OnChanged -= PlayerView.Refresh;
         }
     }
 }

@@ -16,6 +16,8 @@ public class InteractableInventoryView : MonoBehaviour, IInventoryView
 
     private InventorySlotView[,] _slotViews;
 
+    public event Action<IInventorySlot, PointerEventData> OnSlotDown;
+
     public int Row { get; private set; }
     public int Col { get; private set; }
 
@@ -70,8 +72,10 @@ public class InteractableInventoryView : MonoBehaviour, IInventoryView
         }
     }
 
-    private void OnDown(IInventorySlot obj)
+    private void OnDown(IInventorySlot objInventorySlot, PointerEventData eventData)
     {
+        OnSlotDown?.Invoke(objInventorySlot, eventData);
+        
         if (_toolTipView)
         {
             _toolTipView.Visible = false;
@@ -79,7 +83,7 @@ public class InteractableInventoryView : MonoBehaviour, IInventoryView
         }
     }
 
-    private void OnHoverEnter(IInventorySlot slot)
+    private void OnHoverEnter(IInventorySlot slot, PointerEventData eventData)
     {
         if (_toolTipView)
         {
@@ -92,7 +96,7 @@ public class InteractableInventoryView : MonoBehaviour, IInventoryView
         }
     }
 
-    private void OnHoverExit(IInventorySlot slot)
+    private void OnHoverExit(IInventorySlot slot, PointerEventData eventData)
     {
         if (_toolTipView)
         {

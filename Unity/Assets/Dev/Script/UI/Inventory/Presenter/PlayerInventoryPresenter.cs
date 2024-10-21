@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerInventoryPresenter : IInventoryPresenter<GridInventoryModel>
 {
@@ -31,11 +32,18 @@ public class PlayerInventoryPresenter : IInventoryPresenter<GridInventoryModel>
         _quickView = quickView;
         
         _pannelView = pannelView;
+
+        _mainView.OnSlotDown += OnSlotDown;
         
         _mainView.Refresh(Model);
         _quickView.Refresh(Model);
 
         QuickInvVisible = true;
+    }
+
+    private void OnSlotDown(IInventorySlot obj, PointerEventData eventData)
+    {
+        InventoryHelper.SwapOrHalfItem(obj, eventData);
     }
 
     public ItemData CurrentItemData => CurrentItemSlot?.Data;
