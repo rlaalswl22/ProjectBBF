@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class RecipeBookSlotView : MonoBehaviour, IPointerClickHandler
+public class RecipeBookSlotView : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
     [SerializeField] private Image _itemImage;
     
@@ -14,6 +14,10 @@ public class RecipeBookSlotView : MonoBehaviour, IPointerClickHandler
     public object Data { get; set; }
 
     public event Action<RecipeBookSlotView> OnClick; 
+    public event Action<object> OnDown;
+    public event Action<object> OnHoverEnter;
+    public event Action<object> OnHoverExit;
+    public event Action<object, PointerEventData> OnMove;
     public Sprite Sprite
     {
         get => _itemImage.sprite;
@@ -57,5 +61,26 @@ public class RecipeBookSlotView : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         OnClick?.Invoke(this);
+    }
+
+    
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        OnDown?.Invoke(Data);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OnHoverEnter?.Invoke(Data);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        OnHoverExit?.Invoke(Data);
+    }
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        OnMove?.Invoke(Data, eventData);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -21,8 +22,10 @@ public class RecipeBookPreviewView : MonoBehaviour
 
     [SerializeField] private GameObject _additiveFrame;
     
-    [SerializeField] private Image[] _doughtRecipeItemImages;
-    [SerializeField] private Image[] _additiveItemImages;
+    [SerializeField] private ItemToolTipView _toolTipView;
+    
+    [SerializeField] private RecipeBookSlotView[] _doughtRecipeItemImages;
+    [SerializeField] private RecipeBookSlotView[] _additiveItemImages;
 
     public bool Visible
     {
@@ -37,6 +40,63 @@ public class RecipeBookPreviewView : MonoBehaviour
         Visible = !_awakeAndDisable;
         
         Clear();
+
+        foreach (var slotView in _doughtRecipeItemImages)
+        {
+            slotView.OnHoverEnter += OnHoverEnter;
+            slotView.OnHoverExit += OnHoverExit;
+            slotView.OnMove += OnMove;
+            slotView.OnDown += OnDown;
+        }
+        foreach (var slotView in _additiveItemImages)
+        {
+            slotView.OnHoverEnter += OnHoverEnter;
+            slotView.OnHoverExit += OnHoverExit;
+            slotView.OnMove += OnMove;
+            slotView.OnDown += OnDown;
+        }
+    }
+
+    private void OnDown(object obj)
+    {
+        if (_toolTipView)
+        {
+            _toolTipView.Visible = false;
+            _toolTipView.Clear();
+        }
+    }
+
+    private void OnHoverEnter(object obj)
+    {
+        if (_toolTipView)
+        {
+            if (SelectItemPresenter.Instance.Model.IsEmpty is false) return;
+            if (obj is not ItemData itemData) return;
+            _toolTipView.Visible = true;
+            _toolTipView.SetText(itemData);
+        }
+    }
+
+    private void OnHoverExit(object obj)
+    {
+        if (_toolTipView)
+        {
+            if (SelectItemPresenter.Instance.Model.IsEmpty is false) return;
+            _toolTipView.Visible = false;
+            _toolTipView.Clear();
+        }
+    }
+
+    private void OnMove(object obj, PointerEventData eventData)
+    {
+        if (_toolTipView)
+        {
+            var pos = ItemToolTipView.ScreenToOrthogonal(eventData.position);
+            pos = _toolTipView.ToValidPosition(pos);
+            pos = ItemToolTipView.OrthogonalToScreen(pos);
+
+            _toolTipView.SetPositionWithOffset(pos);
+        }
     }
 
     public void SetView(
@@ -45,8 +105,8 @@ public class RecipeBookPreviewView : MonoBehaviour
         Sprite resultItemSprite,
         Sprite bakedBreadResultItemSprite,
         Sprite doughResultItemSprite,
-        Sprite[] additiveItemSprites,
-        Sprite[] doughtItemSprites,
+        ItemData[] additiveItemSprites,
+        ItemData[] doughtItemSprites,
         bool isUnlocked)
     {
 
@@ -78,7 +138,7 @@ public class RecipeBookPreviewView : MonoBehaviour
         {
             for (int i = 0; i < Mathf.Min(_additiveItemImages.Length, additiveItemSprites.Length); i++)
             {
-                _additiveItemImages[i].sprite = additiveItemSprites[i];
+                _additiveItemImages[i].SetData(additiveItemSprites[i].ItemSprite, additiveItemSprites[i], true);
             }
             
             _additiveFrame.SetActive(true);
@@ -87,7 +147,7 @@ public class RecipeBookPreviewView : MonoBehaviour
         {
             for (int i = 0; i < _additiveItemImages.Length; i++)
             {
-                _additiveItemImages[i].sprite = null;
+                _additiveItemImages[i].Clear();
             }
             
             _additiveFrame.SetActive(false);
@@ -95,7 +155,7 @@ public class RecipeBookPreviewView : MonoBehaviour
         
         for (int i = 0; i < Mathf.Min(_doughtRecipeItemImages.Length, doughtItemSprites.Length); i++)
         {
-            _doughtRecipeItemImages[i].sprite = doughtItemSprites[i];
+            _doughtRecipeItemImages[i].SetData(doughtItemSprites[i].ItemSprite, doughtItemSprites[i], true);
         }
     }
 
@@ -110,12 +170,14 @@ public class RecipeBookPreviewView : MonoBehaviour
 
         foreach (var t in _additiveItemImages)
         {
-            t.sprite = null;
+            if(t == false)continue;
+            t.Clear();
         }
 
         foreach (var t in _doughtRecipeItemImages)
         {
-            t.sprite = null;
+            if(t == false)continue;
+            t.Clear();
         }
     }
 }

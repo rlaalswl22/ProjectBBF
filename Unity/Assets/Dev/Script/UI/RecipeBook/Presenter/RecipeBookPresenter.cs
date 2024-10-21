@@ -80,8 +80,8 @@ public class RecipeBookPresenter : MonoBehaviour
             recipe.ResultItem.ItemSprite,
             recipe.BakingRecipe.BreadItem.ItemSprite,
             recipe.BakingRecipe.DoughtItem.ItemSprite,
-            recipe.AdditiveRecipe?.AdditiveItems.Select(x => x.ItemSprite).ToArray(),
-            recipe.DoughRecipe.Ingredients.Select(x => x.ItemSprite).ToArray(),
+            recipe.AdditiveRecipe?.AdditiveItems.Select(x => x).ToArray(),
+            recipe.DoughRecipe.Ingredients.Select(x => x).ToArray(),
             isUnlocked
         );
 

@@ -131,7 +131,7 @@ public class BakeryRecipeResolver: MonoBehaviourSingleton<BakeryRecipeResolver>
         {
             foreach (ItemData item in additives)
             {
-                if (recipe.AdditiveRecipe.AdditiveItems.Contains(item) && bakedBread == recipe.AdditiveRecipe.BreadItem)
+                if (recipe.AdditiveRecipe&& recipe.AdditiveRecipe.AdditiveItems.Contains(item) && bakedBread == recipe.AdditiveRecipe.BreadItem)
                 {
                     recipeData = recipe;
                     return recipe.AdditiveRecipe;
