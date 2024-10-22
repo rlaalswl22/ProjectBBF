@@ -16,7 +16,11 @@ MonoBehaviour:
   _actorName: "\uB2ED"
   _defaultPortraitKey: Default
   _favorabilityEvent:
-    _eventItems: []
+    _eventItems:
+    - _container: {fileID: 11400000, guid: c205869d0f6c989418aaaf48c035231a, type: 2}
+      _favorablity: 0
+      _once: 0
+      _branchType: 2
   _portraitTable:
     _list:
     - Key: Default

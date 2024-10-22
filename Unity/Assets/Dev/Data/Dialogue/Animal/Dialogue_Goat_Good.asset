@@ -10,25 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ed507e00ab63144f976694caab7934e, type: 3}
-  m_Name: Dialogue_Chapter_01_46_Elisa
+  m_Name: Goat_Good
   m_EditorClassIdentifier: 
-  _guid: 001de519c7356924d8f23d357d849998
+  _guid: 16e371415e7dc6245a9a8886b5a354fc
   NodeLinks:
-  - BaseNodeGuid: 7c32217a-cb22-4bc0-a83f-2c9c1e5c30e0
+  - BaseNodeGuid: fbd6df75-f77d-4b83-9cb3-2f685f9d2458
     PortName: Execute
-    TargetNodeGuid: 6faa80db-9cc2-41d5-bbd8-8cda2bd49e9c
+    TargetNodeGuid: cbc48b14-b40e-4ff1-a3a1-837740492415
   NodeData:
-  - rid: 1818509169313185792
+  - rid: 1818509169313185806
   references:
     version: 2
     RefIds:
-    - rid: 1818509169313185792
+    - rid: 1818509169313185806
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
-        GUID: 6faa80db-9cc2-41d5-bbd8-8cda2bd49e9c
+        GUID: cbc48b14-b40e-4ff1-a3a1-837740492415
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 227, y: 200}
-        DialogueText: "\uB530\uB048\uB530\uB048\uD55C \uD30C\uC774\uC788\uC5B4\uC694~"
+        Position: {x: 254, y: 200}
+        DialogueText: "\uCF54\uB098 \uC785\uC8FC\uC704 \uD56D\uBB38\uC5D0 \uC544\uBB34\uB7F0
+          \uC774\uC0C1\uC774 \uC5C6\uC73C\uBA70, \uC624\uD788\uB824 \uC0C1\uD0DC\uAC00
+          \uC88B\uC544 \uBCF4\uC778\uB2E4!"
         PortraitKey: 
-        ActorKey: Elisa_Chapter_1
+        ActorKey: Goat_Good

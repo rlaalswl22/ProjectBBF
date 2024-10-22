@@ -16,6 +16,12 @@ MonoBehaviour:
   _actorName: "\uC5D8\uB9AC\uC0AC"
   _defaultPortraitKey: Default
   _favorabilityEvent:
-    _eventItems: []
+    _eventItems:
+    - _container: {fileID: 11400000, guid: 32b93654482e97c48b364f501bc0facf, type: 2}
+      _favorablity: 0
+      _once: 0
+      _branchType: 2
   _portraitTable:
-    _list: []
+    _list:
+    - Key: Default
+      Portrait: {fileID: 21300000, guid: 3a4e01c047d2d434bbb55932071e46ea, type: 3}
