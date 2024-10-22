@@ -33,29 +33,29 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 76bdf183-42b6-4dcb-9b3a-270181e4cdab
   NodeData:
-  - rid: 1818509133204685077
-  - rid: 1818509133204685078
-  - rid: 1818509133204685079
-  - rid: 1818509133204685080
-  - rid: 1818509133204685081
-  - rid: 1818509133204685082
+  - rid: 1818509169313185881
+  - rid: 1818509169313185882
+  - rid: 1818509169313185883
+  - rid: 1818509169313185884
+  - rid: 1818509169313185885
+  - rid: 1818509169313185886
   references:
     version: 2
     RefIds:
-    - rid: 1818509133204685077
+    - rid: 1818509169313185881
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 0aac0784-4f79-4043-8edc-c880773fd6a0
         NodeTitle: Text
         TypeName: Text
         Position: {x: 1788, y: 200}
-        DialogueText: "\uADF8\uB85C\uACE0 \uACE8\uB4DC\uB97C \uAC00\uC9C0\uACE0 \uAC1C\uAD6C\uB9AC
+        DialogueText: "\uADF8\uB9AC\uACE0 \uACE8\uB4DC\uB97C \uAC00\uC9C0\uACE0 \uAC1C\uAD6C\uB9AC
           \uBD80\uC2A4\uB85C \uAC00\uBA74 \uACE8\uB4DC\uB97C \uBC8C \uC218 \uB3C4\uC788\uB2E4
           \uB0E5!<br>\uACE8\uB4DC\uB85C\uB294 \uC8FC\uBBFC\uB4E4\uC5D0\uAC8C \uC7AC\uB8CC\uB97C
           \uC0B4 \uC218 \uB3C4 \uC788\uB2E4\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509133204685078
+    - rid: 1818509169313185882
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 32e3ee15-33b1-4d59-8897-acf93670f21e
@@ -68,7 +68,7 @@ MonoBehaviour:
           \uB54C\uB9C8\uB2E4 5\uBD84\uC529 \uCC28\uAC10\uB420\uAC70\uB2E4 \uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509133204685079
+    - rid: 1818509169313185883
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 76bdf183-42b6-4dcb-9b3a-270181e4cdab
@@ -78,7 +78,7 @@ MonoBehaviour:
         DialogueText: "\uD589\uC6B4\uC744 \uBE48\uB2E4\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509133204685080
+    - rid: 1818509169313185884
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 8ffe11bd-4702-4f06-87fb-8167066dc2ff
@@ -89,7 +89,7 @@ MonoBehaviour:
           \uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509133204685081
+    - rid: 1818509169313185885
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d9da4ecc-c5bb-476c-9b19-ee35943da19a
@@ -100,7 +100,7 @@ MonoBehaviour:
           \uBC14\uB780\uB2E4 \uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509133204685082
+    - rid: 1818509169313185886
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: ea29bb71-9182-49d1-9ceb-f5bb6af1f256
