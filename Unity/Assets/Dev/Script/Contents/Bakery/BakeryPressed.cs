@@ -132,7 +132,11 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
                 pc.Blackboard.IsInteractionStopped = false;
                 pc.MoveStrategy.ResetVelocity();
                 pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
-                _activationUI.SetActive(true);
+
+                if (_activationUI.activeSelf == false)
+                {
+                    _activationUI.SetActive(true);
+                }
                 yield break;
             }
 
@@ -170,7 +174,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
             GameFail(tuple, pc);
         }
 
-        _activationUI.SetActive(true);
+        _activationUI.SetActive(false);
         GameReset();
     }
 

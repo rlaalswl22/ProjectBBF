@@ -23,6 +23,8 @@ public class CollectingMovedActor : ActorComponent
     
     [field: SerializeField, InitializationField, MustBeAssigned]
     private List<ESOGameTimeEvent> _refillEvents;
+    
+    //[SerializeField] private GameObject  
 
     private int _collectCount;
     private PatrolPointPath _currentPath;

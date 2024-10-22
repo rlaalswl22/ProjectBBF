@@ -451,6 +451,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2301788668666323844, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+      propertyPath: _fadeObject
+      value: 
+      objectReference: {fileID: 674463811}
     - target: {fileID: 2308048086021860884, guid: be17a5cd149d287479454cb28d24979c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1757,6 +1761,17 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   _esoChain: []
+--- !u!114 &674463811 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1716325149020779182, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+  m_PrefabInstance: {fileID: 203056116}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0578d5e480423ea2586d5b8f07dc37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &724903971
 PrefabInstance:
   m_ObjectHideFlags: 0

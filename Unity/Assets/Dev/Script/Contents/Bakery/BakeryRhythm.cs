@@ -12,6 +12,7 @@ using UnityEngine.UI;
 
 public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 {
+    [SerializeField] private GameObject _ovenActivationUI;
     [SerializeField] private GameObject _activationUI;
     [SerializeField] private AudioSource _source;
     [SerializeField] private ESOVoid _esoSuccess;
@@ -48,6 +49,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
     private void Start()
     {
         _activationUI.SetActive(false);
+        _ovenActivationUI.SetActive(false);
         _panel.SetActive(false);
         SetVisibleFire(false);
     }
@@ -109,6 +111,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
     protected override void OnExit(BakeryFlowObject flowObject, CollisionInteractionMono activator)
     {
         _activationUI.SetActive(false);
+        _ovenActivationUI.SetActive(false);
         GameReset();
         StopAllCoroutines();
     }
@@ -116,17 +119,8 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
     protected override void OnChangedBuket(int index, ItemData itemData)
     {
         base.OnChangedBuket(index, itemData);
-
-        for (int i = 0; i < BucketLength; i++)
-        {
-            if (GetBucket(i) == false)
-            {
-                _activationUI.SetActive(false);
-                return;
-            }
-        }
         
-        _activationUI.SetActive(true);
+        _activationUI.SetActive(itemData);
     }
 
     private IEnumerator CoUpdate(PlayerController pc)
@@ -142,6 +136,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         
 
         _activationUI.SetActive(false);
+        _ovenActivationUI.SetActive(true);
         pc.Blackboard.IsMoveStopped = true;
         pc.Blackboard.IsInteractionStopped = true;
         pc.transform.position = (Vector2)_playPoint.position;
@@ -227,6 +222,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         }
         
         
+        _ovenActivationUI.SetActive(false);
         pc.Blackboard.IsMoveStopped = false;
         pc.Blackboard.IsInteractionStopped = false;
         pc.MoveStrategy.ResetVelocity();

@@ -122,6 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &36600045 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1716325149020779182, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+  m_PrefabInstance: {fileID: 1478428561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0578d5e480423ea2586d5b8f07dc37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &36843022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -482,6 +493,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2301788668666323844, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+      propertyPath: _fadeObject
+      value: 
+      objectReference: {fileID: 674463811}
     - target: {fileID: 2308048086021860884, guid: be17a5cd149d287479454cb28d24979c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1808,6 +1823,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &209740818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1716325149020779182, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+  m_PrefabInstance: {fileID: 977940003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0578d5e480423ea2586d5b8f07dc37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &360761338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,6 +1870,17 @@ Transform:
   - {fileID: 36843023}
   m_Father: {fileID: 684988768}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &674463811 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1716325149020779182, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+  m_PrefabInstance: {fileID: 36843022}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0578d5e480423ea2586d5b8f07dc37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &684988767
 GameObject:
   m_ObjectHideFlags: 0
@@ -2240,6 +2277,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2301788668666323844, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+      propertyPath: _fadeObject
+      value: 
+      objectReference: {fileID: 948290658}
     - target: {fileID: 2308048086021860884, guid: be17a5cd149d287479454cb28d24979c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3442,6 +3483,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2061004992382595458, guid: be17a5cd149d287479454cb28d24979c, type: 3}
   m_PrefabInstance: {fileID: 689644858}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &948290658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1716325149020779182, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+  m_PrefabInstance: {fileID: 689644858}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0578d5e480423ea2586d5b8f07dc37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &977940003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3802,6 +3854,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2301788668666323844, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+      propertyPath: _fadeObject
+      value: 
+      objectReference: {fileID: 209740818}
     - target: {fileID: 2308048086021860884, guid: be17a5cd149d287479454cb28d24979c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5004,6 +5060,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2061004992382595458, guid: be17a5cd149d287479454cb28d24979c, type: 3}
   m_PrefabInstance: {fileID: 977940003}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1350490272 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1716325149020779182, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+  m_PrefabInstance: {fileID: 1755061954}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0578d5e480423ea2586d5b8f07dc37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1460180657 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2061004992382595458, guid: be17a5cd149d287479454cb28d24979c, type: 3}
@@ -5369,6 +5436,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2301788668666323844, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+      propertyPath: _fadeObject
+      value: 
+      objectReference: {fileID: 36600045}
     - target: {fileID: 2308048086021860884, guid: be17a5cd149d287479454cb28d24979c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6963,6 +7034,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2301788668666323844, guid: be17a5cd149d287479454cb28d24979c, type: 3}
+      propertyPath: _fadeObject
+      value: 
+      objectReference: {fileID: 1350490272}
     - target: {fileID: 2308048086021860884, guid: be17a5cd149d287479454cb28d24979c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8286,6 +8361,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_BakerytFlow_Dough
       objectReference: {fileID: 0}
+    - target: {fileID: 6604475655394703600, guid: 2fb2487a45f81764cb4025b19b788c0b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 594ad54fb91d5e24caccaaad628f89a1, type: 2}
+    - target: {fileID: 6604475655394703600, guid: 2fb2487a45f81764cb4025b19b788c0b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2426773843448081593, guid: 594ad54fb91d5e24caccaaad628f89a1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8353,6 +8436,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_BakerytFlow_Oven
       objectReference: {fileID: 0}
+    - target: {fileID: 7258060579449675784, guid: 55f5317c610efbf40a477ee22c85370c, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 594ad54fb91d5e24caccaaad628f89a1, type: 2}
+    - target: {fileID: 7258060579449675784, guid: 55f5317c610efbf40a477ee22c85370c, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2426773843448081593, guid: 594ad54fb91d5e24caccaaad628f89a1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8368,11 +8459,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2061004992382595458, guid: be17a5cd149d287479454cb28d24979c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.64
+      value: -1.336
       objectReference: {fileID: 0}
     - target: {fileID: 2061004992382595458, guid: be17a5cd149d287479454cb28d24979c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 74
+      value: 31.793
       objectReference: {fileID: 0}
     - target: {fileID: 2061004992382595458, guid: be17a5cd149d287479454cb28d24979c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8423,6 +8514,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 684988768}
     m_Modifications:
+    - target: {fileID: 232598515647141814, guid: ccda84ab855e8d644b260bd76bbe6cac, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 594ad54fb91d5e24caccaaad628f89a1, type: 2}
+    - target: {fileID: 232598515647141814, guid: ccda84ab855e8d644b260bd76bbe6cac, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2426773843448081593, guid: 594ad54fb91d5e24caccaaad628f89a1, type: 2}
     - target: {fileID: 1219243119627327882, guid: ccda84ab855e8d644b260bd76bbe6cac, type: 3}
       propertyPath: m_Name
       value: PF_BakerytFlow_Additive

@@ -11,7 +11,6 @@ public class RecipeBookListView : MonoBehaviour
     
     [SerializeField] private GameObject _slotViewPrefab;
     [SerializeField] private Transform _content;
-    [SerializeField] private Button _exitBtn;
 
     [SerializeField] private ESOVoid _closeEvent;
     [SerializeField] private ESOVoid _closeReadyEvent;
@@ -51,12 +50,6 @@ public class RecipeBookListView : MonoBehaviour
 
         if(_closeReadyEvent)
             _closeReadyEvent.OnEventRaised += OnEventReady;
-
-        _exitBtn.onClick.AddListener(() =>
-        {
-            OnExit?.Invoke();
-            Visible = false;
-        });
 
         for (int i = 0; i < _content.childCount; i++)
         {

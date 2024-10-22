@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MyBox;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,21 +9,31 @@ using UnityEngine.UI;
 public class FadeinoutImage : MonoBehaviour
 {
     [SerializeField] private List<Image> _targetRenderers;
+    [SerializeField] private List<TMP_Text> _targetTexts;
 
     FadeinoutObject _fadeObject;
     
     private void Awake()
     {
         _fadeObject = GetComponent<FadeinoutObject>();
+        
+        OnFade(0f);
     }
 
     private void OnFade(float obj)
     {
-        foreach (Image image in _targetRenderers)
+        foreach (var target in _targetRenderers)
         {
-            if (image)
+            if (target)
             {
-                image.SetAlpha(obj);
+                target.SetAlpha(obj);
+            }
+        }
+        foreach (var target in _targetTexts)
+        {
+            if (target)
+            {
+                target.SetAlpha(obj);
             }
         }
     }
