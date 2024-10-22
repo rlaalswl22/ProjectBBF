@@ -101,6 +101,11 @@ public class PatrolPointPath : MonoBehaviour
 
     public bool Loop => _loop;
 
+    public void SetLoop(bool value)
+    {
+        _loop = value;
+    }
+
     public void SetPatrollPoints(IReadOnlyList<PatrolPoint> patrollPoints)
     {
         _patrollPoints = new List<PatrolPoint>(patrollPoints);

@@ -174,6 +174,7 @@ public class Actor : MonoBehaviour, IBANameKey
         if (_tempPatrolPointPath == false)
         {
             _tempPatrolPointPath = gameObject.AddComponent<PatrolPointPath>();
+            _tempPatrolPointPath.SetLoop(currentPath.Loop);
         }
 
         var path = currentPath.PatrollPoints.ToList().GetRange(index, currentPath.PatrollPoints.Count - index);
