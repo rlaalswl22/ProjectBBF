@@ -273,7 +273,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 4.9238586, y: 13}
+  m_AnchoredPosition: {x: 4.9238586, y: 14}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1799716003287820103
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Vsync
+  m_text: "\uC804\uCCB4 \uBCFC\uB968"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 594ad54fb91d5e24caccaaad628f89a1, type: 2}
   m_sharedMaterial: {fileID: -2426773843448081593, guid: 594ad54fb91d5e24caccaaad628f89a1, type: 2}
@@ -331,8 +331,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1028,7 +1028,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7869220987584769885}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SettingView, Assembly-CSharp
+        m_MethodName: Add10Volume
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Global
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8001962021948193546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,7 +1285,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1512441231418674482}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SettingView, Assembly-CSharp
+        m_MethodName: Sub10Volume
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Global
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9190838456301651623
 GameObject:
   m_ObjectHideFlags: 0
