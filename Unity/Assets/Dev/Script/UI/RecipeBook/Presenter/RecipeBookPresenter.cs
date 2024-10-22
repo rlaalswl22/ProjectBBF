@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using MyBox;
 using UnityEngine;
 
 public class RecipeBookPresenter : MonoBehaviour
 {
+    [SerializeField] private BakeryRecipeData _firstSelectedRecipe;
     [SerializeField] private RecipeBookListView _listView;
     [SerializeField] private RecipeBookPreviewView _previewView;
 
@@ -34,6 +36,18 @@ public class RecipeBookPresenter : MonoBehaviour
         foreach (var data in resolver.RecipeTable.Values)
         {
             _listView.AddItem(data.ResultItem.ItemSprite, data, Model.IsUnlocked(data.Key));
+        }
+
+        if (_firstSelectedRecipe)
+        {
+            BakeryRecipeResolver.Instance.RecipeTable.ForEach(x =>
+            {
+                if (x.Key == _firstSelectedRecipe.Key)
+                {
+                    OnSlotClicked(_firstSelectedRecipe);
+                }
+
+            });
         }
     }
 
