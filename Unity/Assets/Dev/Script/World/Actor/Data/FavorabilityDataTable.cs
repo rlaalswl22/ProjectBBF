@@ -15,6 +15,11 @@ public class FavorabilityDataTable : ScriptableObject
         _datas.ForEach(x =>
         {
             x.ResetCache();
+            if (table.TryGetValue(x.ActorKey, out var alreadyData))
+            {
+                Debug.LogError($"key({x.ActorKey}) file({x.name})가 이미 존재. 기존 key({alreadyData.ActorKey}) file({alreadyData.name})");
+                return;
+            }
             table.Add(x.ActorKey, x);
         });
 
