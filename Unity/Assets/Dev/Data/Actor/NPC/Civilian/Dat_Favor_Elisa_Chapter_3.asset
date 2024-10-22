@@ -12,16 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94576a3af06543efac7d22c9a606f6fb, type: 3}
   m_Name: Dat_Favor_Elisa_Chapter_3
   m_EditorClassIdentifier: 
-  _actorKey: PD101
-  _actorName: "\uB354\uBBF8 npc"
+  _actorKey: Elisa_Chapter_3
+  _actorName: "\uC5D8\uB9AC\uC0AC"
   _defaultPortraitKey: Default
   _favorabilityEvent:
-    _eventItems:
-    - _container: {fileID: 11400000, guid: effbbb82b06a85c409750c09a1703153, type: 2}
-      _favorablity: 0
-      _once: 0
-      _branchType: 2
+    _eventItems: []
   _portraitTable:
-    _list:
-    - Key: Default
-      Portrait: {fileID: 21300000, guid: 3a4e01c047d2d434bbb55932071e46ea, type: 3}
+    _list: []
