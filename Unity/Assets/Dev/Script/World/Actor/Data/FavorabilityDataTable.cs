@@ -2,50 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using ProjectBBF.Singleton;
 using UnityEngine;
-
-
-[CreateAssetMenu(menuName = "ProjectBBF/Project/FavorabilityDataTable", fileName = "FavorabilityDataTable")]
-public class FavorabilityDataTable : ScriptableObject
-{
-    [SerializeField] private List<FavorabilityData> _datas = new();
-
-    public Dictionary<string, FavorabilityData> CreateCachedTable()
-    {
-        var table = new Dictionary<string, FavorabilityData>();
-        _datas.ForEach(x =>
-        {
-            x.ResetCache();
-            if (table.TryGetValue(x.ActorKey, out var alreadyData))
-            {
-                Debug.LogError($"key({x.ActorKey}) file({x.name})가 이미 존재. 기존 key({alreadyData.ActorKey}) file({alreadyData.name})");
-                return;
-            }
-            table.Add(x.ActorKey, x);
-        });
-
-        return table;
-    }
-}
+using UnityEngine.AddressableAssets;
 
 [Singleton(ESingletonType.Global, -10)]
 public class ActorDataManager : MonoBehaviourSingleton<ActorDataManager>
 {
-    public FavorabilityDataTable Table { get; private set; }
     private Dictionary<string, FavorabilityData> _cachedTable;
 
     public Dictionary<string, FavorabilityData> CachedDict=> _cachedTable;
 
     public override void PostInitialize()
     {
-        Table = Resources.Load<FavorabilityDataTable>("Data/FavorabilityTable");
-        Debug.Assert(Table is not null);
+        var resList = Addressables.LoadResourceLocationsAsync("ActorFavor", typeof(FavorabilityData)).WaitForCompletion();
+        _cachedTable = new();
+
+        if (resList is null)
+        {
+            Debug.LogError("Resources Location을 찾을 수 없음.");
+            return;
+        }
+
+        var favorList = Addressables.LoadAssetsAsync<FavorabilityData>(resList, null).WaitForCompletion();
+
+        if (favorList is null)
+        {
+            Debug.LogError("favoraData를 찾을 수 없음.");
+            return;
+        }
         
-        _cachedTable = Table.CreateCachedTable();
+        foreach (var favorabilityData in favorList)
+        {
+            if (_cachedTable.TryGetValue(favorabilityData.ActorKey, out var alreadyData))
+            {
+                Debug.LogError($"key({favorabilityData.ActorKey}) file({favorabilityData.name})가 이미 존재. 기존 key({alreadyData.ActorKey}) file({alreadyData.name})");
+                continue;
+            }
+            
+            _cachedTable.Add(favorabilityData.ActorKey, favorabilityData);
+        }
     }
 
     public override void PostRelease()
     {
-        Table = null;
+        _cachedTable = null;
     }
     
     public Sprite GetPortraitFromKey(string portraitKey)
