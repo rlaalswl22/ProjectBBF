@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorKey: Pirene
   _actorName: "\uD53C\uB808\uB124"
-  _defaultPortraitKey: TEST_PORT_0
+  _defaultPortraitKey: Default
   _favorabilityEvent:
     _eventItems:
     - _container: {fileID: 11400000, guid: 23d77cd7abb336746b089b77355a443e, type: 2}
@@ -23,7 +23,15 @@ MonoBehaviour:
       _branchType: 2
   _portraitTable:
     _list:
-    - Key: TEST_PORT_0
+    - Key: Default
       Portrait: {fileID: 21300000, guid: 3a4e01c047d2d434bbb55932071e46ea, type: 3}
-    - Key: TEST_PORT_1
-      Portrait: {fileID: 21300000, guid: 3a4e01c047d2d434bbb55932071e46ea, type: 3}
+    - Key: Smi
+      Portrait: {fileID: 21300000, guid: e6ede1f51ae10d74b8221595cbcd700e, type: 3}
+    - Key: Lov
+      Portrait: {fileID: 21300000, guid: 701e8f12becfd604c953ca86f432ba14, type: 3}
+    - Key: Lol
+      Portrait: {fileID: 21300000, guid: db282c6dcea91204e89077516de4b394, type: 3}
+    - Key: Ave
+      Portrait: {fileID: 21300000, guid: 5c716705bb24de244bacfe3c6700d596, type: 3}
+    - Key: Agg
+      Portrait: {fileID: 21300000, guid: cdc9a9847a60a9f4481379e77ed1b07c, type: 3}
