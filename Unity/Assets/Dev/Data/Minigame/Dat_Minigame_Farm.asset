@@ -17,12 +17,7 @@ MonoBehaviour:
   _playCount: 2
   _dialogueAfterGameEnd: {fileID: 0}
   _dialogueAfterGameExit: {fileID: 0}
-  _lightIgnitionBeginWaveTime: 5
-  _lightIgnitionEndWaveTime: 5
-  _lightOffMoveSpeed: 0.2
-  _lightOnMoveSpeed: 0.2
-  _lightOnIntensity: 10
-  _lightOffIntensity: 0.1
+  _grownInterval: 5
   _goalItemCount: 1
   _goalItem: {fileID: 11400000, guid: d2a5e91abe4793b488c3da50b6604fd5, type: 2}
   _dialogueTutorial: {fileID: 0}

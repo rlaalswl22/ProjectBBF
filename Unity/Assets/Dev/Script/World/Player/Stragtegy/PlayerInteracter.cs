@@ -251,6 +251,11 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             success = slot.TryAdd(-1, true) is SlotStatus.Success;
         }
 
+        if (success)
+        {
+            AudioManager.Instance.PlayOneShot("Player", "Player_Tool_Using_Fertilizer");
+        }
+
         _controller.Inventory.Refresh();
 
         return success;
@@ -299,6 +304,11 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
         _controller.Inventory.Refresh();
 
+        if (success)
+        {
+            AudioManager.Instance.PlayOneShot("Player", "Player_Digging");
+        }
+
         return success;
     }
 
@@ -332,15 +342,21 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         list.ForEach(item =>
         {
             // 아이템 획득에 실패하면 필드에 아이템 드랍
-            if (_controller.Inventory.Model.PushItem(item, 1) is 0)
+            if (_controller.Inventory.Model.PushItem(item, 1) is not 0)
             {
-                FieldItem.Create(new FieldItem.FieldItemInitParameter()
-                {
-                    ItemData = item,
-                    Position = _controller.transform.position
-                });
+                // TODO: 레거시
+                //FieldItem.Create(new FieldItem.FieldItemInitParameter()
+                //{
+                //    ItemData = item,
+                //    Position = _controller.transform.position
+                //});
             }
         });
+
+        if (list.Any())
+        {
+            AudioManager.Instance.PlayOneShot("Player", "Player_Harvest");
+        }
 
         _controller.Inventory.Refresh();
         return true;

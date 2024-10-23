@@ -10,61 +10,44 @@ using UnityEngine.Rendering.Universal;
 public class FarmMinigameController : MinigameBase<FarmMinigameData>
 {
     [SerializeField] private FarmlandManager _farmlandManager;
-    
-    [SerializeField] private Transform _startPoint;
-    [SerializeField] private Transform _endPoint;
-
-    [SerializeField] private Light2D _light;
-    [SerializeField] private Transform _lightOnPoint;
-    [SerializeField] private Transform _lightOffPoint;
+    [SerializeField] private GameObject _particle;
     
     private int _currentItemCount = 0;
 
     protected override void Awake()
     {
         base.Awake();
-        _light.gameObject.SetActive(false);
+
+        SetPlayParticle(false);
+    }
+
+    private void SetPlayParticle(bool value)
+    {
+        var arr = _particle.GetComponentsInChildren<ParticleSystem>();
+
+        foreach (ParticleSystem particle in arr)
+        {
+            if (value)
+            {
+                particle.Play();
+            }
+            else
+            {
+                particle.Stop();
+            }
+        }
+        
+        _particle.SetActive(value);
     }
 
     private IEnumerator CoUpdate()
     {
         Debug.Assert(Data is not null);
         
-        _light.gameObject.SetActive(false);
-        _light.intensity = Data.LightOffIntensity;
-        _light.transform.position = (Vector2)_lightOffPoint.position;
-
         while (true)
         {
-            yield return new WaitForSeconds(Data.LightIgnitionBeginWaveTime);
-            
-            Sequence sequence = DOTween.Sequence();
-            sequence.Join
-            (
-                _light.transform.DOMove((Vector2)_lightOnPoint.position, Data.LightOnMoveSpeed).SetEase(Ease.Linear)
-            );
-            sequence.Join
-            (
-                DOTween.To(()=>_light.intensity, x => _light.intensity = x, Data.LightOnIntensity, 0.25f)
-            );
-            sequence.SetId(this);
-            
-            yield return new WaitForSeconds(Data.LightIgnitionEndWaveTime);
-            
-            _farmlandManager.GrowUp(1);
-            
-            sequence = DOTween.Sequence();
-            sequence.Join
-            (
-                _light.transform.DOMove((Vector2)_lightOffPoint.position, Data.LightOffMoveSpeed).SetEase(Ease.Linear)
-            );
-            sequence.Join
-            (
-                DOTween.To(()=>_light.intensity, x => _light.intensity = x, Data.LightOffIntensity, 0.25f)
-            );
-            sequence.SetId(this);
-            
-            yield return sequence;
+            yield return new WaitForSeconds(Data.GrownInterval);
+            _farmlandManager.GrowUpWithoutWetReset(1);
         }
     }
 
@@ -83,9 +66,7 @@ public class FarmMinigameController : MinigameBase<FarmMinigameData>
     {
         var data = Data as FarmMinigameData;
 
-        _light.transform.position = _lightOffPoint.position;
-        _light.intensity = data.LightOffIntensity;
-
+        SetPlayParticle(true);
         Player.Inventory.Model.OnPushItem += OnItemCount;
     }
 
@@ -102,12 +83,11 @@ public class FarmMinigameController : MinigameBase<FarmMinigameData>
 
     protected override void OnGameRelease()
     {
-        _light.gameObject.SetActive(false);
-        DOTween.Kill(this);
         _farmlandManager.ResetFarm();
         DialogueController.Instance.ResetDialogue();
         Player.Inventory.Model.OnPushItem -= OnItemCount;
         _currentItemCount = 0;
+        SetPlayParticle(false);
         
         StopAllCoroutines();
     }
@@ -117,6 +97,13 @@ public class FarmMinigameController : MinigameBase<FarmMinigameData>
         var data = Data as FarmMinigameData;
 
         return _currentItemCount >= data.GoalItemCount;
+    }
+
+    protected override void OnPreGameEnd(bool isRequestEnd)
+    {
+        base.OnPreGameEnd(isRequestEnd);
+        
+        SetPlayParticle(false);
     }
 
     protected override UniTask OnGameEnd(bool isRequestEnd)

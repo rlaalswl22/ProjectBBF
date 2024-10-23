@@ -67,21 +67,64 @@ public class FarmlandManager : MonoBehaviour
     {
         var grownInfos = _controller.GetAllGrownInfo();
 
+        bool isGrown = false;
+        
         foreach (FarmlandGrownInfo info in grownInfos)
         {
             if (info.IsWet is false) continue;
             
             int buffGrowingSpeed = info.FertilizerTile ? info.FertilizerTile.BuffGrowingSpeed : 0;
-            
-            AudioManager.Instance.PlayOneShot("SFX", "SFX_Farm_GrowUp");
+
+            var temp = info.GrownStep;
             
             UpdateGrownState(
                 info, 
                 step + buffGrowingSpeed
                 );
+
+            if (temp != info.GrownStep)
+            {
+                isGrown = true;
+            }
+        }
+
+        if (isGrown)
+        {
+            AudioManager.Instance.PlayOneShot("SFX", "SFX_Farm_GrowUp");
         }
         
         _controller.ResetAllWet();
+    }
+
+    public void GrowUpWithoutWetReset(int step = 1)
+    {
+        var grownInfos = _controller.GetAllGrownInfo();
+
+        bool isGrown = false;
+        
+        foreach (FarmlandGrownInfo info in grownInfos)
+        {
+            if (info.IsWet is false) continue;
+            
+            int buffGrowingSpeed = info.FertilizerTile ? info.FertilizerTile.BuffGrowingSpeed : 0;
+
+            var temp = info.CurrentTile;
+            
+            UpdateGrownState(
+                info, 
+                step + buffGrowingSpeed
+            );
+
+            if (temp != info.CurrentTile)
+            {
+                isGrown = true;
+            }
+        }
+
+        if (isGrown)
+        {
+            AudioManager.Instance.PlayOneShot("SFX", "SFX_Farm_GrowUp");
+        }
     }
 
     public void ResetFarm()

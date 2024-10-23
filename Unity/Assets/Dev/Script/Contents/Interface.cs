@@ -95,7 +95,7 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal, IMi
             }
         }
 
-        if (Player == false) return;
+        Debug.Assert(Player);
 
         _persistenceObject.IsPlaying = true;
 
