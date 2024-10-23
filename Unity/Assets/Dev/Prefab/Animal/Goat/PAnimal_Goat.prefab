@@ -44,6 +44,42 @@ PrefabInstance:
       propertyPath: _movementData
       value: 
       objectReference: {fileID: 11400000, guid: 62602d87d0ee6c54391433a6b54a37bc, type: 2}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.data[0].Key
+      value: Action_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.data[1].Key
+      value: Action_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.data[0].Value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.data[1].Value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.data[0].WairDuration.Max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.data[0].WairDuration.Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.data[1].WairDuration.Max
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.data[1].WairDuration.Min
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7710583605823996137, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_Name
       value: PAnimal_Goat
@@ -51,7 +87,7 @@ PrefabInstance:
     - target: {fileID: 8331719994581572156, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 4a0151aad16888f45a0d1ade09d708dd, type: 2}
+      objectReference: {fileID: 22100000, guid: 8944e01763683c34a8f9e93691ba39a3, type: 2}
     - target: {fileID: 8612635081641424140, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.5729046

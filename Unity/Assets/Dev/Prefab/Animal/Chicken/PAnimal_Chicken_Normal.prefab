@@ -8,6 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2270806076189230636, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
+      propertyPath: _collectingData
+      value: 
+      objectReference: {fileID: 11400000, guid: 65c03f93a8192c044b8035e953202244, type: 2}
+    - target: {fileID: 3012707303049769851, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
+      propertyPath: _saveKey
+      value: Chicken_0_Normal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012707303049769851, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
+      propertyPath: _actorKey
+      value: Chicken_Normal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012707303049769851, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
+      propertyPath: _movementData
+      value: 
+      objectReference: {fileID: 11400000, guid: b485bff90d65fa54997cd7a11ed88ef8, type: 2}
+    - target: {fileID: 7253351403424410758, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
+      propertyPath: m_Name
+      value: PAnimal_Chicken_Normal
+      objectReference: {fileID: 0}
     - target: {fileID: 1042366728544722493, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _collectingData
       value: 
@@ -128,22 +148,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c6d7eb17cf97f5549a208d203e9816f4, type: 3}
-    - target: {fileID: 3012707303049769851, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
-      propertyPath: _saveKey
-      value: Chicken_0_Normal
-      objectReference: {fileID: 0}
-    - target: {fileID: 3012707303049769851, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
-      propertyPath: _actorKey
-      value: Chicken_Normal
-      objectReference: {fileID: 0}
-    - target: {fileID: 3012707303049769851, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
-      propertyPath: _movementData
-      value: 
-      objectReference: {fileID: 11400000, guid: b485bff90d65fa54997cd7a11ed88ef8, type: 2}
-    - target: {fileID: 7253351403424410758, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
-      propertyPath: m_Name
-      value: PAnimal_Chicken_Normal
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

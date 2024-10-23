@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7884051080231431700}
-  - component: {fileID: 9079220555027322935}
   - component: {fileID: 1165284809982388803}
   m_Layer: 0
   m_Name: Collect
@@ -33,24 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7319207340801130726}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9079220555027322935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 674712191999927385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c86a186516ae3f948b87e892c63e6dde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isBindChildProxy: 1
-  _targetLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  _listeningOnly: 0
-  _detectedOnly: 0
 --- !u!114 &1165284809982388803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,22 +271,7 @@ MonoBehaviour:
   _startDelay:
     Min: 2
     Max: 6
-  _sliders:
-  - Key: F1
-    Value: 0.334
-    WairDuration:
-      Min: 2
-      Max: 3
-  - Key: F2
-    Value: 0.333
-    WairDuration:
-      Min: 4
-      Max: 6
-  - Key: F3
-    Value: 0.333
-    WairDuration:
-      Min: 4
-      Max: 5
+  _slider: []
 --- !u!1 &6531239453378556270
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +449,8 @@ MonoBehaviour:
   _favorablity: {fileID: 648492982143096728}
   _collectingMovedActor: {fileID: 1165284809982388803}
   _animalAnimator: {fileID: 5680145077571019588}
+  _collectedAnimations: []
+  _defaultAnimations: []
 --- !u!114 &7904981545101217622 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1672321309576992059, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}

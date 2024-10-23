@@ -13,7 +13,6 @@ public static class ProbabilityHelper
         // 확률 리스트가 유효한지 확인
         if (probabilities == null || probabilities.Count == 0)
         {
-            Debug.LogError("확률 리스트가 비어 있습니다.");
             return -1;
         }
 

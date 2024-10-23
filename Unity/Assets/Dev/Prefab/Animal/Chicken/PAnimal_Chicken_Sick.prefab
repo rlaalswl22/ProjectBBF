@@ -8,14 +8,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2270806076189230636, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
-      propertyPath: _collectingData
-      value: 
-      objectReference: {fileID: 11400000, guid: 35c53488713e4f24a809a660c7736a9d, type: 2}
-    - target: {fileID: 2270806076189230636, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
-      propertyPath: _collectedPlayingAudioGroupKey
-      value: Animal
-      objectReference: {fileID: 0}
     - target: {fileID: 3012707303049769851, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
       propertyPath: _saveKey
       value: Chicken_0_Sick
@@ -28,6 +20,10 @@ PrefabInstance:
       propertyPath: _movementData
       value: 
       objectReference: {fileID: 11400000, guid: 16ce40126e028b64585bb9678547dca2, type: 2}
+    - target: {fileID: 6449396043193098183, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
+      propertyPath: _sliders.Array.data[2].Key
+      value: Action_2
+      objectReference: {fileID: 0}
     - target: {fileID: 7253351403424410758, guid: cf4062bec8cd8164bbe9085be0bba4f6, type: 3}
       propertyPath: m_Name
       value: PAnimal_Chicken_Sick

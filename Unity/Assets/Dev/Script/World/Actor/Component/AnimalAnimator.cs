@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MyBox;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class AnimalAnimator : ActorComponent
@@ -17,15 +18,17 @@ public class AnimalAnimator : ActorComponent
     }
 
     [SerializeField] private RangedFloat _startDelay;
-    [SerializeField, InitializationField] private List<ValueSlider> _sliders;
+    [SerializeField, InitializationField] private List<ValueSlider> _slider;
     
     private Animator _animator;
+    private ActorMove _move;
     
     
     
     public void Init(Actor actor)
     {
         _animator = actor.Animator;
+        _move = actor.MoveStrategy;
 
         CheckValid();
 
@@ -35,7 +38,7 @@ public class AnimalAnimator : ActorComponent
     private void CheckValid()
     {
         float total = 0f;
-        foreach (var slider in _sliders)
+        foreach (var slider in _slider)
         {
             total += slider.Value;
         }
@@ -51,14 +54,21 @@ public class AnimalAnimator : ActorComponent
     {
         yield return new WaitForSeconds(Random.Range(_startDelay.Min, _startDelay.Max));
         
-        List<(WaitForSeconds waits, string key, float probability)> waits =_sliders.Select(x=> (new WaitForSeconds(Random.Range(x.WairDuration.Min, x.WairDuration.Max)), x.Key, x.Value)).ToList();
-        List<float> probabilities = _sliders.Select(x => x.Value).ToList();
+        List<(WaitForSeconds waits, string key, float probability)> waits =_slider.Select(x=> (new WaitForSeconds(Random.Range(x.WairDuration.Min, x.WairDuration.Max)), x.Key, x.Value)).ToList();
+        List<float> probabilities = _slider.Select(x => x.Value).ToList();
 
         while (true)
         {
+            if (_move.IsMoving)
+            {
+                yield return null;
+                continue;
+            }
+            
             int index = ProbabilityHelper.GetRandomIndex(probabilities);
             if (index == -1)
             {
+                Debug.LogError("확률 리스트가 비어있음: " + _move.Interaction.Owner);
                 break;
             }
 

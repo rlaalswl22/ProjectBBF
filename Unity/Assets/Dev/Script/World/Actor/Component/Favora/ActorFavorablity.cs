@@ -38,7 +38,7 @@ public class ActorFavorablity: ActorComFavorability
         };
     }
 
-    public void Init(Actor actor)
+    public override void Init(Actor actor)
     {
         base.Init(actor);
         

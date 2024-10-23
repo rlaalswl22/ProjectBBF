@@ -12,7 +12,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-[RequireComponent(typeof(CollisionInteraction))]
 public class CollectingMovedActor : ActorComponent
 {
     [Serializable]
@@ -99,12 +98,6 @@ public class CollectingMovedActor : ActorComponent
             if (refillEvent == false) continue;
             refillEvent.OnSignal += Refill;
         }
-
-        if (CollectingData && CollectingData.DefaultAnimator)
-        {
-            _masterActor.Visual.RuntimeAnimator = CollectingData.DefaultAnimator;
-        }
-
     }
     private void OnDestroy()
     {
@@ -159,11 +152,6 @@ public class CollectingMovedActor : ActorComponent
         if (_collectCount < 1)
         {
             _onChangedCollectingState.Invoke(CollectState.Collected);
-        }
-        
-        if (CollectingData.CollectedAnimator)
-        {
-            _masterActor.Visual.RuntimeAnimator = CollectingData.CollectedAnimator;
         }
 
         return list;

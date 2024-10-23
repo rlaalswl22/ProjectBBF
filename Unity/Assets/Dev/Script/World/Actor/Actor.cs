@@ -113,11 +113,25 @@ public class Actor : MonoBehaviour, IBANameKey
 
     private IEnumerator CoPathEvent()
     {
+        if (_movementData.Paths.Any())
+        {
+            CalculatePath(_movementData.Paths[0].Path.GetComponent<PatrolPointPath>());
+            MoveStrategy.ResetMove();
+         
+            yield break;
+        }
+        else
+        {
+            yield break;
+        }
+        
+        
         List<ActorMovementData.PathItem> list = new(_movementData.Paths);
         
         while (list.Any())
         {
             int index = -1;
+            
             while (index == -1)
             {
                 for (int i = 0; i < list.Count; i++)
@@ -127,6 +141,11 @@ public class Actor : MonoBehaviour, IBANameKey
                         index = i;
                         break;
                     }
+                }
+
+                if (index == -1 && list.Any())
+                {
+                    
                 }
 
                 yield return null;
