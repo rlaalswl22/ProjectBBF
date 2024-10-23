@@ -53,12 +53,17 @@ public class LyllaFavorability : ActorComFavorability
         _esoMoveNextUnlock.OnEventRaised += OnUnlock;
         _esoMoveNextLock.OnEventRaised += OnLock;
         _EsoMovePrev.OnEventRaised += OnMovePrev;
-
-        SceneLoader.Instance.FadeinComplete += OnFadein;
     }
     
     private void OnFadein()
     {
+        if (_persistenceObject._tutorialDialogueOnceTable.Contains(SceneLoader.Instance.CurrentWorldScene))
+        {
+            return;
+        }
+
+        _persistenceObject._tutorialDialogueOnceTable.Add(SceneLoader.Instance.CurrentWorldScene);
+        
         if (_persistenceObject._indexTable[_chapterKey] == 0 && GameObjectStorage.Instance.TryGetPlayerController(out var pc))
         {
             _ = UniTask.Create(async () =>
@@ -67,6 +72,12 @@ public class LyllaFavorability : ActorComFavorability
                     cancellationToken: this.GetCancellationTokenOnDestroy());
                 _ = pc.Dialogue.RunDialogueFromInteraction(_actor.Interaction);
             });
+            
+            if (SceneLoader.Instance)
+            {
+                SceneLoader.Instance.FadeinComplete -= OnFadein;
+            }
+            
         }
     }
 

@@ -29,6 +29,7 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
     private Dictionary<string, ScreenDirector> _directors;
     
     public string CurrentWorldScene { get; private set; }
+    public string PrevWorldScene { get; private set; }
     public override void PostInitialize()
     {
         ImmutableSceneTable = Resources.Load<ImmutableSceneTable>("Data/ImmutableSceneTable");
@@ -288,6 +289,7 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
             IsProgress = false;
         }
 
+        PrevWorldScene = CurrentWorldScene;
         CurrentWorldScene = worldSceneName;
 
         return true;
