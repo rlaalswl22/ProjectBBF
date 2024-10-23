@@ -1489,6 +1489,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PActor_Ed2_Chapter_4
       objectReference: {fileID: 0}
+    - target: {fileID: 4654251629137900466, guid: 5c81c04754273904e8d732d7f0b78d8e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 182.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654251629137900466, guid: 5c81c04754273904e8d732d7f0b78d8e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -189.38
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1496,7 +1504,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 5c81c04754273904e8d732d7f0b78d8e, type: 3}
 --- !u!4 &1974302681 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3026065139521650602, guid: 5c81c04754273904e8d732d7f0b78d8e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4654251629137900466, guid: 5c81c04754273904e8d732d7f0b78d8e, type: 3}
   m_PrefabInstance: {fileID: 1974302680}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2007764349
@@ -1638,12 +1646,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1974302681}
   - {fileID: 2876702410982237181}
   - {fileID: 862224555244080838}
   - {fileID: 704494697596916322}
   - {fileID: 2364145953397367494}
   - {fileID: 201376998}
+  - {fileID: 1974302681}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &627419514278351565
