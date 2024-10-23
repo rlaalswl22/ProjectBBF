@@ -74,8 +74,9 @@ public abstract class BaseContractT<TBASE, TCLASS> : BaseContractInfo
     public static TCLASS Create(Func<bool> destroyChecker) =>
         new() { _destroyChecker = destroyChecker };
 
-    public TCLASS AddBehaivour<T>(TBASE behaviour) where T : class, TBASE
+    public TCLASS AddBehaivour<T>(TBASE behaviour, bool nullPass = false) where T : class, TBASE
     {
+        if (behaviour is null && nullPass) return this as TCLASS;
         if(behaviour is null) throw new ArgumentNullException("argument is null");
         if (behaviour is not T) throw new ArgumentException($"[{behaviour.GetType().Name}] is not [{typeof(T).Name}].");
 
@@ -84,6 +85,20 @@ public abstract class BaseContractT<TBASE, TCLASS> : BaseContractInfo
             throw new ArgumentException($"[{typeof(T).Name}] is already exist");
         }
         
+        return this as TCLASS;
+    }
+    public TCLASS AddBehaivourSelect<T1, T2>(TBASE behaviour, bool nullPass = false)
+        where T1 : class, TBASE
+        where T2 : class, TBASE
+    {
+        if (behaviour is null && nullPass) return this as TCLASS;
+        if(behaviour is null) throw new ArgumentNullException("argument is null");
+        if (behaviour is not T1 and T2) throw new ArgumentException($"[{behaviour.GetType().Name}] is not [{typeof(T1).Name}].");
+
+        if (!_table.TryAdd(behaviour.GetType(), behaviour))
+        {
+            throw new ArgumentException($"[{behaviour.GetType().Name}] is already exist");
+        }
         return this as TCLASS;
     }
     

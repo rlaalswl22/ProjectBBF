@@ -12,11 +12,13 @@ using ProjectBBF.Event;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(CircleCollider2D), typeof(Rigidbody2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class FadeinoutObject : MonoBehaviour
 {
     [field: SerializeField, InitializationField, MustBeAssigned]
     private CollisionInteraction _interaction;
+    [field: SerializeField, InitializationField, MustBeAssigned]
+    private Rigidbody2D _rigid;
     
     [SerializeField] private FadeinoutObjectData _data;
     
@@ -29,8 +31,10 @@ public class FadeinoutObject : MonoBehaviour
 
     private void Awake()
     {
-        var rigid = GetComponent<Rigidbody2D>();
-        rigid.isKinematic = true;
+        _rigid = GetComponent<Rigidbody2D>();
+        
+        if(_rigid)
+            _rigid.isKinematic = true;
 
         var col = GetComponent<CircleCollider2D>();
         col.isTrigger = true;

@@ -72,8 +72,20 @@ PrefabInstance:
       propertyPath: _movementData
       value: 
       objectReference: {fileID: 11400000, guid: 7bf14bfa161bf644eb7019c142a8cc95, type: 2}
+    - target: {fileID: 3859516298495740257, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: _saveKey
+      value: Julian_Chapter_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3859516298495740257, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: _actorKey
+      value: Julian_Chapter_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712666892707010204, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_Name
+      value: PActor_Julian_Chapter_4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}

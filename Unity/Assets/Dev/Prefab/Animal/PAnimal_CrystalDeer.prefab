@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1128268547150474351
+--- !u!1001 &7993221500499914939
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,26 +11,18 @@ PrefabInstance:
     - target: {fileID: 1042366728544722493, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _collectingData
       value: 
-      objectReference: {fileID: 11400000, guid: c768d27915b20be438e7c18eefaac7a9, type: 2}
-    - target: {fileID: 1042366728544722493, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
-      propertyPath: _refillEvents.Array.size
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: fdc76b9f417ccb74da701b4f3cc5e30a, type: 2}
     - target: {fileID: 1042366728544722493, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _collectedPlayingAudioKey
-      value: Animal_Goat_Crying
+      value: Animal_Deer_Hitted
       objectReference: {fileID: 0}
-    - target: {fileID: 1042366728544722493, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
-      propertyPath: _refillEvents.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 454255f92bf4ed54a986ff8dca5d87cd, type: 2}
     - target: {fileID: 1042366728544722493, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _collectedPlayingAudioGroupKey
       value: Animal
       objectReference: {fileID: 0}
     - target: {fileID: 1780465535857405135, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1780465535857405135, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -41,36 +33,40 @@ PrefabInstance:
       value: 3.125
       objectReference: {fileID: 0}
     - target: {fileID: 2767219050062274324, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _saveKey
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767219050062274324, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _actorKey
-      value: Goat
+      value: CrystalDeer
       objectReference: {fileID: 0}
     - target: {fileID: 2767219050062274324, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _movementData
       value: 
-      objectReference: {fileID: 11400000, guid: 62602d87d0ee6c54391433a6b54a37bc, type: 2}
+      objectReference: {fileID: 11400000, guid: 7ac5f4731a696f2498b0105775936f4e, type: 2}
     - target: {fileID: 6061008394102689313, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7710583605823996137, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_Name
-      value: PAnimal_Goat
+      value: PAnimal_CrystalDeer
       objectReference: {fileID: 0}
     - target: {fileID: 8331719994581572156, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 8944e01763683c34a8f9e93691ba39a3, type: 2}
+      objectReference: {fileID: 22100000, guid: 0828810f156cf304b8dbcf117ecaeacb, type: 2}
     - target: {fileID: 8612635081641424140, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5729046
+      value: 14.407126
       objectReference: {fileID: 0}
     - target: {fileID: 8612635081641424140, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.257746
+      value: -18.295067
       objectReference: {fileID: 0}
     - target: {fileID: 8612635081641424140, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.14123346
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8612635081641424140, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_LocalRotation.w
@@ -103,19 +99,31 @@ PrefabInstance:
     - target: {fileID: 8743109526763064980, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _collectingData
       value: 
-      objectReference: {fileID: 11400000, guid: c768d27915b20be438e7c18eefaac7a9, type: 2}
+      objectReference: {fileID: 11400000, guid: fdc76b9f417ccb74da701b4f3cc5e30a, type: 2}
     - target: {fileID: 8743109526763064980, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _collectedPlayingAudioKey
-      value: Animal_Goat_Crying
+      value: Animal_Deer_Hitted
       objectReference: {fileID: 0}
     - target: {fileID: 8743109526763064980, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _collectedPlayingAudioGroupKey
       value: Animal
       objectReference: {fileID: 0}
+    - target: {fileID: 9004086965777616495, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _audioKey
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004086965777616495, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _groupKey
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9166282083379131861, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a200ba26ba2b26a4f9e383b29de15d50, type: 3}
+      objectReference: {fileID: 379385246, guid: d5ffc14d694b72644aa57790c0afcd44, type: 3}
+    - target: {fileID: 9166282083379131861, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

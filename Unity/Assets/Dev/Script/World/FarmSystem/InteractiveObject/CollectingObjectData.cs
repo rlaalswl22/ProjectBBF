@@ -17,9 +17,13 @@ public class CollectingObjectData : ScriptableObject
 
     [field: SerializeField, Header("수집 가능한 상태의 스프라이트")]
     private Sprite _defaultSprite;
+    [field: SerializeField, Header("수집 가능한 상태의 애니메이터(스프라이트를 오버라이드함)")]
+    private RuntimeAnimatorController _defaultAnimator;
 
     [field: SerializeField, Header("수집된 상태의 스프라이트")]
     private Sprite _collectedSprite;
+    [field: SerializeField, Header("수집된 상태의 애니메이터(스프라이트를 오버라이드함)")]
+    private RuntimeAnimatorController _collectedAnimator;
 
     [field: SerializeField, Header("수집 가능한 최대 횟수")]
     private int _maxCollectCount;
@@ -35,6 +39,10 @@ public class CollectingObjectData : ScriptableObject
 
     public Sprite DefaultSprite => _defaultSprite;
     public Sprite CollectedSprite => _collectedSprite;
+
+    public RuntimeAnimatorController DefaultAnimator => _defaultAnimator;
+
+    public RuntimeAnimatorController CollectedAnimator => _collectedAnimator;
 
     public int MaxCollectCount => _maxCollectCount;
 

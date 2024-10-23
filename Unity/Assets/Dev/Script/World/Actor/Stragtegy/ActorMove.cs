@@ -8,7 +8,7 @@ using ProjectBBF.Persistence;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ActorMove : MonoBehaviour, IActorStrategy
+public class ActorMove : ActorComponent
 {
     private NavMeshAgent _agent;
     private ActorMovementData _data;
@@ -101,6 +101,8 @@ public class ActorMove : MonoBehaviour, IActorStrategy
                         break;
                     }
                 }
+                
+                _actor.Visual.SetMoveSpeed(_agent.speed);
 
                 bool success =_agent.SetDestination(pos);
                 _actor.Visual.LookAt(_agent.desiredVelocity, AnimationActorKey.Action.Move);

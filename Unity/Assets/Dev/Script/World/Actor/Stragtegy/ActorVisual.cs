@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using MyBox;
 using UnityEngine;
 
-public class ActorVisual : MonoBehaviour, IActorStrategy
+public class ActorVisual : ActorComponent
 {
+    private static readonly int MoveSpeedAniHash = Animator.StringToHash("MoveSpeed");
     private Animator _animator;
     private SpriteRenderer _renderer;
 
@@ -17,6 +18,13 @@ public class ActorVisual : MonoBehaviour, IActorStrategy
         get => _renderer.enabled;
         set => _renderer.enabled = value;
     }
+
+    public RuntimeAnimatorController RuntimeAnimator
+    {
+        get => _animator.runtimeAnimatorController;
+        set => _animator.runtimeAnimatorController = value;
+    }
+
 
     public void Init(Animator animator, SpriteRenderer renderer)
     {
@@ -32,7 +40,6 @@ public class ActorVisual : MonoBehaviour, IActorStrategy
         return Mathf.Acos(Vector2.Dot(targetDir, dir)) * Mathf.Rad2Deg <= angle;
     }
     
-    
     public virtual void ChangeClip(int actionAniHash, int directionAniHash, bool force = false)
     {
         if (force is false && _beforeActionHash == actionAniHash && _beforeDirectionHash == directionAniHash) return;
@@ -46,7 +53,11 @@ public class ActorVisual : MonoBehaviour, IActorStrategy
     {
         ChangeClip(tuple.actionAniHash, tuple.directionAniHash, force);
     }
-    
+
+    public void SetMoveSpeed(float speed)
+    {
+        _animator.SetFloat(MoveSpeedAniHash, speed);
+    }
     public void LookAt(Vector2 toTargetDir, AnimationActorKey.Action movementType)
     {
         int? actorAniHash = null;

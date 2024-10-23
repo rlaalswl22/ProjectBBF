@@ -15,7 +15,7 @@ public abstract class ActorComFavorability : ActorComponent, IBADialogue
 
     public ProcessorData ProcessorData => _processorData;
 
-    public override void Init(Actor actor)
+    public virtual void Init(Actor actor)
     {
         Owner = actor;
         Interaction = actor.Interaction;
@@ -26,15 +26,6 @@ public abstract class ActorComFavorability : ActorComponent, IBADialogue
         }
         
         FavorabilityData = favora;
-
-        if (Interaction.ContractInfo is ActorContractInfo info)
-        {
-            info.AddBehaivour<IBADialogue>(this);
-        }
-        else
-        {
-            Debug.LogError("유효하지 않은 ContractInfo");
-        }
 
         // 예약 바인딩 데이터
         var table = new Dictionary<string, string>(new List<KeyValuePair<string, string>>()

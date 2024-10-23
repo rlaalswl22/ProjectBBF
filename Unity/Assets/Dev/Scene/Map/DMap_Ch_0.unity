@@ -309,7 +309,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 563179667}
+  - {fileID: 745589615}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &386263132
@@ -430,14 +430,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PActor_Lylla_Prologue
       objectReference: {fileID: 0}
+    - target: {fileID: 8951546433969896750, guid: 6c9f0f806ce875941b6cf3cd0fd79fe0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -25.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8951546433969896750, guid: 6c9f0f806ce875941b6cf3cd0fd79fe0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ae6e1232fb269c244b1658688b731096, type: 3}
---- !u!4 &563179667 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 6c9f0f806ce875941b6cf3cd0fd79fe0, type: 3}
+--- !u!4 &745589615 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 7588404696700822959, guid: ae6e1232fb269c244b1658688b731096, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8951546433969896750, guid: 6c9f0f806ce875941b6cf3cd0fd79fe0, type: 3}
   m_PrefabInstance: {fileID: 563179656}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1074456642 stripped
@@ -643,6 +651,9 @@ MonoBehaviour:
   _directorKey: BlackAlpha
   _fadeOut: 1
   _fadeIn: 1
+  _save: 0
+  _load: 0
+  _unloadImmutable: 0
   _initPlayerPosition: {fileID: 2097345646}
 --- !u!114 &1473615944
 MonoBehaviour:
@@ -1024,6 +1035,9 @@ MonoBehaviour:
   _directorKey: BlackAlpha
   _fadeOut: 1
   _fadeIn: 1
+  _save: 0
+  _load: 0
+  _unloadImmutable: 0
   _initPlayerPosition: {fileID: 1820946036}
 --- !u!114 &1593955251
 MonoBehaviour:

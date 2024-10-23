@@ -130,7 +130,7 @@ public class LyllaFavorability : ActorComFavorability
         {
             return new DialogueEvent()
             {
-                Container = _arriveDialogue ?? events[^1].Container,
+                Container = _arriveDialogue ?? (events.Count == 0 ? null : events[^1].Container),
                 Type = DialogueBranchType.Dialogue,
                 ProcessorData = ProcessorData
             };

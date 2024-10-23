@@ -13,7 +13,7 @@ public class LyllaMove : ActorComponent
     
     private List<Action> _eventActions = new List<Action>();
     
-    public override void Init(Actor actor)
+    public void Init(Actor actor)
     {
         _move = actor.MoveStrategy;
         _owner = actor;

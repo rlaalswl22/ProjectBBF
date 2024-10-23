@@ -5,8 +5,25 @@ using DS.Runtime;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public interface IActorStrategy
+public abstract class ActorProxy : MonoBehaviour
 {
+    public Actor Owner { get; private set; }
+    public ActorContractInfo ContractInfo => Owner.Interaction.ContractInfo as ActorContractInfo;
+
+    public void Init(Actor actor)
+    {
+        Owner = actor;
+        
+        OnInit();
+    }
+
+    public void DoDestroy()
+    {
+        OnDoDestroy();
+    }
+
+    protected abstract void OnInit();
+    protected abstract void OnDoDestroy();
 }
 
 public struct DialogueEvent
@@ -71,5 +88,4 @@ public interface IBAStateTransfer : IActorBehaviour
 
 public abstract class ActorComponent: MonoBehaviour
 {
-    public abstract void Init(Actor actor);
 }

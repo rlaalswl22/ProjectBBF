@@ -18,12 +18,17 @@ public class Actor : MonoBehaviour, IBANameKey
     private string _actorKey;
     [field: SerializeField, Foldout("데이터"), InitializationField]
     private string _saveKey;
-    [field: SerializeField, Foldout("데이터")] private ActorMovementData _movementData;
+    [field: SerializeField, Foldout("데이터")] 
+    private ActorMovementData _movementData;
 
-    
-    
-    [field: SerializeField, Foldout("컴포넌트")] private List<ActorComponent> _actorComponents;
+    [field: SerializeField, Foldout("상속")] 
+    private ActorProxy _proxy;
 
+    [field: SerializeField, Foldout("컴포넌트")]
+    private ActorMove _moveStrategy;
+    [field: SerializeField, Foldout("컴포넌트")]
+    private ActorVisual _visualStrategy;
+    
     [field: SerializeField, Foldout("컴포넌트"), AutoProperty, MustBeAssigned, InitializationField]
     private CollisionInteraction _interaction;
 
@@ -50,8 +55,9 @@ public class Actor : MonoBehaviour, IBANameKey
     #endregion
 
     #region Strategy
-    public ActorMove MoveStrategy { get; private set; }
-    public ActorVisual Visual { get; private set; }
+
+    public ActorMove MoveStrategy => _moveStrategy;
+    public ActorVisual Visual => _visualStrategy;
 
     public StateTransitionHandler TransitionHandler => _transitionHandler;
 
@@ -60,9 +66,7 @@ public class Actor : MonoBehaviour, IBANameKey
     protected virtual void Awake()
     {
         //* Strategy binding */
-        MoveStrategy = gameObject.AddComponent<ActorMove>();
         MoveStrategy.Init(this);
-        Visual = gameObject.AddComponent<ActorVisual>();
         Visual.Init(Animator, GetComponentInChildren<SpriteRenderer>());
         
         
@@ -80,22 +84,15 @@ public class Actor : MonoBehaviour, IBANameKey
         StartCoroutine(CoPathEvent());
         
         GameObjectStorage.Instance.AddGameObject(gameObject);
-
-        foreach (var com in _actorComponents)
-        {
-            if (com)
-            {
-                com.Init(this);
-            }
-        }
-
+        
         if (string.IsNullOrEmpty(SaveKey)) return;
         var persistenceObj = PersistenceManager.Instance.LoadOrCreate<ActorPersistenceObject>(SaveKey);
         if(persistenceObj.LastPath)
         {
             PatrolPath = persistenceObj.LastPath;
         }
-
+        
+        _proxy.Init(this);
     }
 
     protected virtual void OnDestroy()
@@ -108,6 +105,8 @@ public class Actor : MonoBehaviour, IBANameKey
         
         if (GameObjectStorage.Instance == false) return;
         GameObjectStorage.Instance.RemoveGameObject(gameObject);
+        
+        _proxy.DoDestroy();
     }
 
     #region Private

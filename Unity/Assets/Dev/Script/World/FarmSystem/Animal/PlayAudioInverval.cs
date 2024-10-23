@@ -10,7 +10,7 @@ public class PlayAudioInverval : ActorComponent
     [SerializeField] private string _audioKey;
     [SerializeField] private float _audioPlayInterval = 10f;
     [SerializeField] private AudioSource _source;
-    public override void Init(Actor actor)
+    public void Init(Actor actor)
     {
         StartCoroutine(CoUpdate());
     }
