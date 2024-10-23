@@ -53,6 +53,12 @@ public class LyllaFavorability : ActorComFavorability
         _esoMoveNextUnlock.OnEventRaised += OnUnlock;
         _esoMoveNextLock.OnEventRaised += OnLock;
         _EsoMovePrev.OnEventRaised += OnMovePrev;
+        
+            
+        if (SceneLoader.Instance)
+        {
+            SceneLoader.Instance.FadeinComplete += OnFadein;
+        }
     }
     
     private void OnFadein()

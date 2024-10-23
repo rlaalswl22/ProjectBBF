@@ -7,7 +7,7 @@ namespace ProjectBBF.Persistence
     public class LyllaFavorabilityPersistenceObject
     {
         public Dictionary<string, int> _indexTable = new();
-        public HashSet<string> _tutorialDialogueOnceTable = new();
+        public List<string> _tutorialDialogueOnceTable = new();
         public bool MoveNextLock = false;
     }
 }

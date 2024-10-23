@@ -18,7 +18,11 @@ public class MoveToWorld : MonoBehaviour
 
     public void MoveWorld()
     {
+        _ = _Move();
+    }
 
+    private async UniTask _Move()
+    {
         var obj = GameObjectStorage.Instance.StoredObjects.FirstOrDefault(x => x.CompareTag("Player"));
         if (obj == false) return;
         if (obj.TryGetComponent(out PlayerController pc) is false) return;
@@ -27,56 +31,53 @@ public class MoveToWorld : MonoBehaviour
         var pos = _initPlayerPosition.position;
 
         pc.Blackboard.CurrentPosition = pos;
-
-        _ = UniTask.Create(async () =>
+        
+        var loaderInst = SceneLoader.Instance;
+        var PersistenceInst = PersistenceManager.Instance;
+        pc.Blackboard.IsMoveStopped = true;
+        pc.Blackboard.IsInteractionStopped = true;
+            
+        if (_fadeOut)
         {
-            var loaderInst = SceneLoader.Instance;
-            var PersistenceInst = PersistenceManager.Instance;
-            pc.Blackboard.IsMoveStopped = true;
-            pc.Blackboard.IsInteractionStopped = true;
-            
-            if (_fadeOut)
-            {
-                _ = await loaderInst.WorkDirectorAsync(false, _directorKey);
-            }
+            _ = await loaderInst.WorkDirectorAsync(false, _directorKey);
+        }
 
-            if (_save)
-            {
-                PersistenceInst.SaveGameDataCurrentFileName();
-            }
+        if (_save)
+        {
+            PersistenceInst.SaveGameDataCurrentFileName();
+        }
 
-            if (_load)
-            {
-                _ = await loaderInst.UnloadImmutableScenesAsync();
+        if (_load)
+        {
+            _ = await loaderInst.UnloadImmutableScenesAsync();
                 
-                PersistenceInst.LoadGameDataCurrentFileName();
+            PersistenceInst.LoadGameDataCurrentFileName();
 
-                if (_unloadImmutable is false)
-                {
-                    _ = await loaderInst.LoadImmutableScenesAsync();
-                }
-            }
-
-            if (GameObjectStorage.Instance.TryGetPlayerController(out pc))
+            if (_unloadImmutable is false)
             {
-                pc.transform.position = pos;
+                _ = await loaderInst.LoadImmutableScenesAsync();
             }
+        }
 
-            if (_load is false && _unloadImmutable)
-            {
-                _ = await loaderInst.UnloadImmutableScenesAsync();
-            }
+        if (GameObjectStorage.Instance.TryGetPlayerController(out pc))
+        {
+            pc.transform.position = pos;
+        }
+
+        if (_load is false && _unloadImmutable)
+        {
+            _ = await loaderInst.UnloadImmutableScenesAsync();
+        }
             
 
-            _ = await loaderInst.LoadWorldAsync(_scene);
+        _ = await loaderInst.LoadWorldAsync(_scene);
             
-            if (_fadeIn)
-            {
-                _ = await loaderInst.WorkDirectorAsync(true, _directorKey);
-            }
+        if (_fadeIn)
+        {
+            _ = await loaderInst.WorkDirectorAsync(true, _directorKey);
+        }
 
-            pc.Blackboard.IsMoveStopped = false;
-            pc.Blackboard.IsInteractionStopped = false;
-        });
+        pc.Blackboard.IsMoveStopped = false;
+        pc.Blackboard.IsInteractionStopped = false;
     }
 }

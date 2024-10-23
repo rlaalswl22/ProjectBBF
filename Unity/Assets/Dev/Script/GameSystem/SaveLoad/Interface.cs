@@ -13,6 +13,7 @@ namespace ProjectBBF.Persistence
     
     public class DoNotEditableAttribute : DataTagAttribute {}
     public class EditableAttribute : DataTagAttribute {}
+    public class PersistenceListAttribute : DataTagAttribute {}
 
     public interface ISaveLoadNotification
     {

@@ -332,7 +332,26 @@ namespace ProjectBBF.Persistence.Editor
             if (info.FieldType.IsClass && info.FieldType != typeof(string) || info.FieldType is { IsValueType: true, IsPrimitive: false })
             {
                 GUILayout.Space(5);
-                GUILayout.Label(info.Name);
+
+                if (info.GetCustomAttribute<PersistenceListAttribute>() is not null)
+                {
+                    if (info.GetValue(obj) is IList list)
+                    {
+                        GUILayout.Label(info.Name + $"({list.Count})");
+
+                        foreach (object t in list)
+                        {
+                            GUILayout.BeginHorizontal();
+                            GUILayout.Label(t.ToString());
+                            GUILayout.EndHorizontal();
+                        }
+                    }
+                }
+                else
+                {
+                    GUILayout.Label(info.Name);
+                }
+                
 
                 if (_foldoutTable.TryGetValue(fKey + "_" + info.Name, out var foldout) is false)
                 {
