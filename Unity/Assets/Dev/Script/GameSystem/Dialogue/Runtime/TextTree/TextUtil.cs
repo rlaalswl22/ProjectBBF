@@ -50,8 +50,6 @@ namespace DS.Runtime
                 StringBuilder builder = new();
                 foreach (var tt in tokens)
                 {
-                    Debug.Log(tt);
-
                     int length = tt.token.Length;
                     string str = tt.token;
 

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a248fe39ee4d4c338814cb8aa413604f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _useFlipLeftRenderer: 1
 --- !u!1 &225238577555844981
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,11 +674,11 @@ PrefabInstance:
       objectReference: {fileID: 1672321309576992059}
     - target: {fileID: 1358751654226165324, guid: ff14a4a94f0795a418016029999c8672, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.49
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 1358751654226165324, guid: ff14a4a94f0795a418016029999c8672, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.77
+      value: 2.12
       objectReference: {fileID: 0}
     - target: {fileID: 1358751654226165324, guid: ff14a4a94f0795a418016029999c8672, type: 3}
       propertyPath: m_LocalPosition.z
