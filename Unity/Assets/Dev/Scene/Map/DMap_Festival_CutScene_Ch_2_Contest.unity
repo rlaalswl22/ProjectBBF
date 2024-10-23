@@ -618,7 +618,7 @@ Transform:
   m_GameObject: {fileID: 547749612}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.4, y: -9.1, z: 0}
+  m_LocalPosition: {x: -24.99, y: -7.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -829,7 +829,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 411cda72c91552f4db4e402f800c66b0, type: 3}
 --- !u!4 &782816498 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8659951207133714787, guid: 411cda72c91552f4db4e402f800c66b0, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8612635081641424140, guid: 411cda72c91552f4db4e402f800c66b0, type: 3}
   m_PrefabInstance: {fileID: 782816497}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &784658849
@@ -1096,7 +1096,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 5dc9c65e4068a764a968c372092d982f, type: 3}
 --- !u!4 &903125408 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8659951207133714787, guid: 5dc9c65e4068a764a968c372092d982f, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8612635081641424140, guid: 5dc9c65e4068a764a968c372092d982f, type: 3}
   m_PrefabInstance: {fileID: 903125407}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &980627446
@@ -2215,7 +2215,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 6e4fa300688302d4b9014ed2056c26a5, type: 3}
 --- !u!4 &1774854284 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8659951207133714787, guid: 6e4fa300688302d4b9014ed2056c26a5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8612635081641424140, guid: 6e4fa300688302d4b9014ed2056c26a5, type: 3}
   m_PrefabInstance: {fileID: 1774854283}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1844443913
@@ -2327,7 +2327,7 @@ Transform:
   m_GameObject: {fileID: 1845554705}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.4, y: -9.1, z: 0}
+  m_LocalPosition: {x: -24.99, y: -7.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3210,7 +3210,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!4 &7647911273203128876
