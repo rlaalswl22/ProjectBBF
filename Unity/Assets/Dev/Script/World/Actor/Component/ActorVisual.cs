@@ -50,6 +50,8 @@ public class ActorVisual : ActorComponent
     
     public virtual void ChangeClip(int actionAniHash, int directionAniHash, bool force = false)
     {
+        if (actionAniHash == -1 || directionAniHash == -1) return;
+        
         if (force is false && _beforeActionHash == actionAniHash && _beforeDirectionHash == directionAniHash) return;
 
         _beforeActionHash = actionAniHash;

@@ -103,8 +103,12 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             {
                 PlayAudio(currentData, "Use_Fail");
             }
+
+            if (currentData.UseAndWait > 0f)
+            {
+                await UniTask.Delay((int)(currentData.UseAndWait * 1000f), DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+            }
             
-            await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
             return success;
         }
         catch (Exception e) when (e is not OperationCanceledException)

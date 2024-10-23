@@ -65,6 +65,9 @@ public class ItemData : ScriptableObject
     [field: SerializeField, Header("건들 ㄴㄴ")]
     private ItemAudioInfo[] _usingActionAudioInfos;
 
+    [SerializeField]
+    private float _useAndWait;
+    
     public string ItemKey => _itemKey;
     public string ItemName => _itemName;
     public string ItemDescription => _itemDescription;
@@ -79,6 +82,9 @@ public class ItemData : ScriptableObject
     public int ActionAnimationAniHash => AnimationActorKey.GetAniHash(ActionAnimationType);
 
     public ItemAudioInfo[] UseActionUsingActionAudioInfos => _usingActionAudioInfos;
+
+    public float UseAndWait => _useAndWait;
+
 
     private void OnValidate()
     {

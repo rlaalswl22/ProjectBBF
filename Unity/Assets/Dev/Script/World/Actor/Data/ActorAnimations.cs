@@ -52,9 +52,11 @@ public static class AnimationActorKey
         RightUp
     }
 
+    
     [Serializable]
     public enum Action
     {
+        None,
         Hoe,
         Pickaxe,
         Collect,
@@ -72,6 +74,7 @@ public static class AnimationActorKey
     {
         switch (action)
         {
+            case Action.None: return -1;
             case Action.Hoe: return Hoe;
             case Action.Pickaxe: return Pickaxe;
             case Action.Collect: return Collect;
@@ -84,10 +87,9 @@ public static class AnimationActorKey
             case Action.Move: return Move;
             case Action.Fishing: return Fishing;
             default:
-                throw new ArgumentOutOfRangeException(nameof(action), action, null);
+                Debug.Assert(false, $"정의되지 않은 Action({action})");
+                return -1;
         }
-
-        throw new ArgumentException($"Invalid combination of Action: {action}");
     }
     
     public static int GetAniHash(Direction direction)
