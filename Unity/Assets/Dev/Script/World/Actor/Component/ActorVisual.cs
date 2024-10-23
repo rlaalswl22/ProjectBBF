@@ -67,33 +67,7 @@ public class ActorVisual : ActorComponent
     {
         _animator.SetFloat(MoveSpeedAniHash, speed);
     }
-
-    private void SetLookAtRight(AnimationActorKey.Direction direction)
-    {
-        switch (direction)
-        {
-            case AnimationActorKey.Direction.Up:
-                IsRendererLookAtRight = true;
-                break;
-            case AnimationActorKey.Direction.Down:
-                IsRendererLookAtRight = true;
-                break;
-            case AnimationActorKey.Direction.Left:
-                IsRendererLookAtRight = !_useFlipLeftRenderer;
-                break;
-            case AnimationActorKey.Direction.Right:
-                IsRendererLookAtRight = true;
-                break;
-            case AnimationActorKey.Direction.LeftUp:
-                IsRendererLookAtRight =  !_useFlipLeftRenderer;
-                break;
-            case AnimationActorKey.Direction.RightUp:
-                IsRendererLookAtRight = true;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
-        }
-    }
+    
     private void SetLookAtRight(int aniHash)
     {
         if (AnimationActorKey.GetAniHash(AnimationActorKey.Direction.Up) == aniHash)
@@ -136,47 +110,42 @@ public class ActorVisual : ActorComponent
         {
             actorAniHash = AnimationActorKey.GetAniHash(movementType);
             directionAniHash = AnimationActorKey.GetAniHash( AnimationActorKey.Direction.Up);
-            SetLookAtRight(AnimationActorKey.Direction.Up);
         }
         // left
         else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, 25f) * Vector2.left, 30f))
         {
             actorAniHash = AnimationActorKey.GetAniHash(movementType);
-            directionAniHash = AnimationActorKey.GetAniHash( AnimationActorKey.Direction.Right);
-            SetLookAtRight(AnimationActorKey.Direction.Right);
+            directionAniHash = AnimationActorKey.GetAniHash( AnimationActorKey.Direction.Left);
         }
         // leftup
         else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, -30f) * Vector2.left, 30f))
         {
             actorAniHash = AnimationActorKey.GetAniHash(movementType);
-            directionAniHash = AnimationActorKey.GetAniHash( AnimationActorKey.Direction.RightUp);
-            SetLookAtRight(AnimationActorKey.Direction.RightUp);
+            directionAniHash = AnimationActorKey.GetAniHash( AnimationActorKey.Direction.LeftUp);
         }
         // right
         else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, -25f) * Vector2.right, 30f))
         {
             actorAniHash = AnimationActorKey.GetAniHash(movementType);
             directionAniHash = AnimationActorKey.GetAniHash( AnimationActorKey.Direction.Right);
-            SetLookAtRight(AnimationActorKey.Direction.Right);
         }
         // rightUp
         else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, 30f) * Vector2.right, 30f))
         {
             actorAniHash = AnimationActorKey.GetAniHash(movementType);
             directionAniHash = AnimationActorKey.GetAniHash( AnimationActorKey.Direction.RightUp);
-            SetLookAtRight(AnimationActorKey.Direction.RightUp);
         }
         // down
         else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, -90f) * Vector2.right, 30f))
         {
             actorAniHash = AnimationActorKey.GetAniHash(movementType);
             directionAniHash = AnimationActorKey.GetAniHash( AnimationActorKey.Direction.Down);
-            SetLookAtRight(AnimationActorKey.Direction.Down);
         }
 
         if (actorAniHash is null) return;
         
 
+        SetLookAtRight(directionAniHash.Value);
         ChangeClip(actorAniHash.Value, directionAniHash.Value);
     }
 }
