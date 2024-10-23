@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
@@ -11,6 +12,12 @@ public enum EPlayerCollectingAnimation : int
     Shovels
 }
 
+[Serializable]
+public enum CollectState
+{
+    Normal,
+    Collected
+}
 public interface IBOCollect : IObjectBehaviour
 {
     /// <summary>

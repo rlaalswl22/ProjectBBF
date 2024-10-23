@@ -29,6 +29,9 @@ public class FadeinoutObject : MonoBehaviour
 
     public CollisionInteraction Interaction => _interaction;
 
+    private PlayerController _cachedPlayer;
+    private bool _lock;
+
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
@@ -43,6 +46,38 @@ public class FadeinoutObject : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
     }
 
+    private void OnDestroy()
+    {
+        DOTween.Kill(this);
+    }
+
+    public void DoFadeActivation(bool isActivate)
+    {
+        _lock = isActivate is false;
+
+        if (_lock)
+        {
+            StopAllCoroutines();
+            StartCoroutine(CoDoFadeInActivation());
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
+    }
+
+    private IEnumerator CoDoFadeInActivation()
+    {
+        if (_cachedPlayer)
+        {
+            _cachedPlayer.Interactor.RemoveCloserObject(Interaction);
+        }
+
+        yield return CoFade(false);
+        
+        gameObject.SetActive(false);
+    }
+
     private void OnChangedCloserObject(CollisionInteractionMono changed)
     {
         StopAllCoroutines();
@@ -51,11 +86,13 @@ public class FadeinoutObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (_lock) return;
         if (other.CompareTag("Player") is false) return;
         if (other.TryGetComponent(out CollisionInteractionMono interaction) is false) return;
         
         if (Interaction && other.TryGetComponent(out PlayerController pc))
         {
+            _cachedPlayer = pc;
             pc.Interactor.AddCloserObject(Interaction);
             pc.Interactor.OnChangedCloserObject += OnChangedCloserObject;
 
@@ -72,6 +109,7 @@ public class FadeinoutObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if (_lock) return;
         if (other.CompareTag("Player") is false) return;
         if (other.TryGetComponent(out CollisionInteractionMono interaction) is false) return;
         
@@ -80,11 +118,13 @@ public class FadeinoutObject : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (_lock) return;
         if (other.CompareTag("Player") is false) return;
         if (other.TryGetComponent(out CollisionInteractionMono interaction) is false) return;
         
         if (Interaction && other.TryGetComponent(out PlayerController pc))
         {
+            _cachedPlayer = null;
             pc.Interactor.OnChangedCloserObject -= OnChangedCloserObject;
             pc.Interactor.RemoveCloserObject(Interaction);
         }
@@ -129,5 +169,5 @@ public class FadeinoutObject : MonoBehaviour
             yield return null;
         }
     }
-
+    
 }

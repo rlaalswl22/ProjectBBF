@@ -14,12 +14,6 @@ using UnityEngine.Serialization;
 
 public class CollectingMovedActor : ActorComponent
 {
-    [Serializable]
-    public enum CollectState
-    {
-        Normal,
-        Collected
-    }
     
     [field: SerializeField, InitializationField]
     private CollectingObjectData _collectingData;

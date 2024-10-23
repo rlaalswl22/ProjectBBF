@@ -8,7 +8,7 @@ public class FadeinoutSpriteRenderer : MonoBehaviour
 {
     [SerializeField] private List<SpriteRenderer> _targetRenderers;
 
-    FadeinoutObject _fadeObject;
+    private FadeinoutObject _fadeObject;
     
     private void Awake()
     {

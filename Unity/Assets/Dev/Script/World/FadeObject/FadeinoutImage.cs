@@ -11,7 +11,7 @@ public class FadeinoutImage : MonoBehaviour
     [SerializeField] private List<Image> _targetRenderers;
     [SerializeField] private List<TMP_Text> _targetTexts;
 
-    FadeinoutObject _fadeObject;
+    private FadeinoutObject _fadeObject;
     
     private void Awake()
     {
@@ -27,6 +27,15 @@ public class FadeinoutImage : MonoBehaviour
             if (target)
             {
                 target.SetAlpha(obj);
+
+                if (Mathf.Approximately(obj, 0f))
+                {
+                    target.enabled = false;
+                }
+                else if (target.enabled is false)
+                {
+                    target.enabled = true;
+                }
             }
         }
         foreach (var target in _targetTexts)
@@ -34,6 +43,15 @@ public class FadeinoutImage : MonoBehaviour
             if (target)
             {
                 target.SetAlpha(obj);
+
+                if (Mathf.Approximately(obj, 0f))
+                {
+                    target.enabled = false;
+                }
+                else if (target.enabled is false)
+                {
+                    target.enabled = true;
+                }
             }
         }
     }

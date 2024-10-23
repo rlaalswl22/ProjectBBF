@@ -44,9 +44,9 @@ public class Animal : ActorProxy
     }
 
 
-    private void OnChangedCollectingState(CollectingMovedActor.CollectState state)
+    private void OnChangedCollectingState(CollectState state)
     {
-        if (state == CollectingMovedActor.CollectState.Collected)
+        if (state == CollectState.Collected)
         {
             SetRandomAnimator(_collectedAnimations);
         }

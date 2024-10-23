@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 using ProjectBBF.Event;
 using MyBox;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CollisionInteraction))]
 public class CollectingObject : MonoBehaviour, IBOCollect
@@ -16,6 +17,9 @@ public class CollectingObject : MonoBehaviour, IBOCollect
 
     [field: SerializeField, InitializationField, MustBeAssigned, AutoProperty]
     private CollisionInteraction _interaction;
+    
+    [SerializeField] private UnityEvent _onStateRecovered;
+    [SerializeField] private UnityEvent _onStateCollected;
 
     [field: SerializeField, Separator("커스텀"), OverrideLabel("데이터"), InitializationField, MustBeAssigned, DisplayInspector]
     private CollectingObjectData _data;
@@ -54,6 +58,11 @@ public class CollectingObject : MonoBehaviour, IBOCollect
             {
                 list.Add(item.Data);
             }
+        }
+
+        if (_isCollected)
+        {
+            _onStateCollected.Invoke();
         }
 
         return list;
