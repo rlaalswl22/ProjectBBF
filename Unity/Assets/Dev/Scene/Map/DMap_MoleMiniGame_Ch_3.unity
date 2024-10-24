@@ -1438,6 +1438,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MinigameTimer
       objectReference: {fileID: 0}
+    - target: {fileID: 7428299454896611256, guid: 3c4222fff39f9bb4488623b589b42863, type: 3}
+      propertyPath: _startAndInvisible
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

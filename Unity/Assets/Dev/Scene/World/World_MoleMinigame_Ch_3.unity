@@ -214,13 +214,13 @@ MonoBehaviour:
   _loadImmutableScene: 1
   _scenes:
   - BMap_MoleMiniGame
-  - DMap_MoleMiniGame_Ch_3
   - BMap_MoleDetail
+  - DMap_MoleMiniGame_Ch_3
   ChildScenesToLoadConfig:
   - {fileID: 102900000, guid: 2b90018dabc52f6449b340fd202f9f35, type: 3}
   - {fileID: 102900000, guid: 82a819df5bc046348ad8f5323cdc7a17, type: 3}
-  - {fileID: 102900000, guid: 217d3fe905ba34a40b2ccd616a1212c6, type: 3}
   - {fileID: 102900000, guid: 7f778772d4c5e3b49997b1eee520e5ec, type: 3}
+  - {fileID: 102900000, guid: 217d3fe905ba34a40b2ccd616a1212c6, type: 3}
 --- !u!4 &581861784
 Transform:
   m_ObjectHideFlags: 0

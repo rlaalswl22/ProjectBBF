@@ -165,6 +165,8 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
         _camera.MoveToTopOfPrioritySubqueue();
         _brain = Camera.main.GetComponent<CinemachineBrain>();
         _brain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
+        
+        Player.HudController.Visible = false;
 
         _gameCts = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
         Score = 0;
@@ -205,6 +207,7 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
 
     protected override void OnGameBegin()
     {
+        Player.HudController.Visible = false;
         StartCoroutine(CoUpdate());
         StartCoroutine(CoTimer());
     }
@@ -290,6 +293,8 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
 
     protected override void OnPreGameEnd(bool isRequestEnd)
     {
+        
+        Player.HudController.Visible = true;
         _timerUI.Visible = false;
         _scoreUI.Visible = false;
         _uiPanel.SetActive(false);
@@ -316,6 +321,7 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
     {
         _gameCts?.Cancel();
         _gameCts = null;
+        Player.HudController.Visible = true;
 
 
         _camera.gameObject.SetActive(false);

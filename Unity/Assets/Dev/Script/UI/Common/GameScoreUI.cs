@@ -32,6 +32,6 @@ public class GameScoreUI : MonoBehaviour
 
     private void Start()
     {
-        Visible = false;
+        //Visible = false;
     }
 }
