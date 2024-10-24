@@ -154,10 +154,12 @@ MonoBehaviour:
   _loadImmutableScene: 1
   _scenes:
   - BMap_Festival
+  - BMap_FestivalDetail
   - DMap_Festival_CutScene_Ch_0_Begin
   ChildScenesToLoadConfig:
   - {fileID: 102900000, guid: bbaeebbcc59f2e544a5ec94d9a366b13, type: 3}
   - {fileID: 102900000, guid: 3d8ff6aa079a0fc41b7d8ed37c3f4314, type: 3}
+  - {fileID: 102900000, guid: 5d1b86af68f271f4283e16aa257790ff, type: 3}
   - {fileID: 102900000, guid: d5f30d7d3f0535c4492e38283e7c7b5b, type: 3}
 --- !u!4 &160120157
 Transform:

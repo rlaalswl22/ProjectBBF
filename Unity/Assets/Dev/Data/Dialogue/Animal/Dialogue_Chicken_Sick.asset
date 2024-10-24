@@ -17,12 +17,16 @@ MonoBehaviour:
   - BaseNodeGuid: fbd6df75-f77d-4b83-9cb3-2f685f9d2458
     PortName: Execute
     TargetNodeGuid: 82772dac-a7c3-48b7-b2e0-18c5cc6b1d31
+  - BaseNodeGuid: 82772dac-a7c3-48b7-b2e0-18c5cc6b1d31
+    PortName: Next
+    TargetNodeGuid: 8e8d6794-57f3-45e4-b33a-013811ddacca
   NodeData:
-  - rid: 1818509169313185807
+  - rid: 1818509224658599940
+  - rid: 1818509224658599941
   references:
     version: 2
     RefIds:
-    - rid: 1818509169313185807
+    - rid: 1818509224658599940
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 82772dac-a7c3-48b7-b2e0-18c5cc6b1d31
@@ -34,3 +38,13 @@ MonoBehaviour:
           \uBD80\uC5B4\uC788\uC5B4, \uC0C1\uD0DC\uAC00 \uC548\uC88B\uC544 \uBCF8\uC778\uB2E4..."
         PortraitKey: 
         ActorKey: Chicken_Sick
+    - rid: 1818509224658599941
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 8e8d6794-57f3-45e4-b33a-013811ddacca
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 937, y: 200}
+        DialogueText: "\uC544\uBB34\uAC83\uB3C4 \uC5BB\uC9C0 \uBABB\uD588\uB2E4..."
+        PortraitKey: 
+        ActorKey: 

@@ -17,26 +17,12 @@ MonoBehaviour:
   - BaseNodeGuid: 7c32217a-cb22-4bc0-a83f-2c9c1e5c30e0
     PortName: Execute
     TargetNodeGuid: 64986756-cce6-4bbd-8c54-a8e35fe2c409
-  - BaseNodeGuid: 64986756-cce6-4bbd-8c54-a8e35fe2c409
-    PortName: Next
-    TargetNodeGuid: 640e550e-3169-4e76-b597-56cc080ceff2
   NodeData:
-  - rid: 1818509133204684889
-  - rid: 1818509133204684890
+  - rid: 1818509224658600052
   references:
     version: 2
     RefIds:
-    - rid: 1818509133204684889
-      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
-      data:
-        GUID: 640e550e-3169-4e76-b597-56cc080ceff2
-        NodeTitle: Text
-        TypeName: Text
-        Position: {x: 663, y: 200}
-        DialogueText: "...\uBC14\uBE60"
-        PortraitKey: 
-        ActorKey: Hermes_Chapter_1
-    - rid: 1818509133204684890
+    - rid: 1818509224658600052
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 64986756-cce6-4bbd-8c54-a8e35fe2c409

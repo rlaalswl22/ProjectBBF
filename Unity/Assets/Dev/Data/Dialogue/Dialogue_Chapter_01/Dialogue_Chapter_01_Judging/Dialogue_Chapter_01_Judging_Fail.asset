@@ -24,13 +24,13 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 3e95a997-a925-4588-8446-4733b89d0f64
   NodeData:
-  - rid: 1818509133204684924
-  - rid: 1818509133204684925
-  - rid: 1818509133204684926
+  - rid: 1818509224658600087
+  - rid: 1818509224658600088
+  - rid: 1818509224658600089
   references:
     version: 2
     RefIds:
-    - rid: 1818509133204684924
+    - rid: 1818509224658600087
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 180a0346-7f21-425a-8f69-1cff2440199d
@@ -41,7 +41,7 @@ MonoBehaviour:
           \uD0C8\uB77D\uC790\uAC00 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4...."
         PortraitKey: 
         ActorKey: Ahir_Chapter_1
-    - rid: 1818509133204684925
+    - rid: 1818509224658600088
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 3e95a997-a925-4588-8446-4733b89d0f64
@@ -52,13 +52,13 @@ MonoBehaviour:
           \uB2E4\uC2DC \uB3C4\uC804\uD574\uBCF4\uC138\uC694!"
         PortraitKey: 
         ActorKey: Ahir_Chapter_1
-    - rid: 1818509133204684926
+    - rid: 1818509224658600089
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 3fc17cc4-35f3-4c0d-9282-ecabcdcb2c5a
         NodeTitle: Text
         TypeName: Text
         Position: {x: 721, y: 200}
-        DialogueText: "\uC815\uB9D0 \uACE0\uC0DD\uD588\uC2B5\uB2C8\uB2E4. \uD50C\uB808\uC774\uC5B4.."
+        DialogueText: "\uC815\uB9D0 \uACE0\uC0DD\uD588\uC2B5\uB2C8\uB2E4. {player}..."
         PortraitKey: 
         ActorKey: Ahir_Chapter_1

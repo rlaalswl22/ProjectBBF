@@ -17,20 +17,34 @@ MonoBehaviour:
   - BaseNodeGuid: fbd6df75-f77d-4b83-9cb3-2f685f9d2458
     PortName: Execute
     TargetNodeGuid: cbc48b14-b40e-4ff1-a3a1-837740492415
+  - BaseNodeGuid: cbc48b14-b40e-4ff1-a3a1-837740492415
+    PortName: Next
+    TargetNodeGuid: b55782fa-4599-4f3f-9ef2-8bf075a1ff8f
   NodeData:
-  - rid: 1818509169313185806
+  - rid: 1818509224658599944
+  - rid: 1818509224658599945
   references:
     version: 2
     RefIds:
-    - rid: 1818509169313185806
+    - rid: 1818509224658599944
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: b55782fa-4599-4f3f-9ef2-8bf075a1ff8f
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 959, y: 200}
+        DialogueText: "\uBCF4\uC11D \uC6B0\uC720\uB97C \uC5BB\uC5C8\uB2E4!"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 1818509224658599945
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: cbc48b14-b40e-4ff1-a3a1-837740492415
         NodeTitle: Text
         TypeName: Text
         Position: {x: 254, y: 200}
-        DialogueText: "\uCF54\uB098 \uC785\uC8FC\uC704 \uD56D\uBB38\uC5D0 \uC544\uBB34\uB7F0
-          \uC774\uC0C1\uC774 \uC5C6\uC73C\uBA70, \uC624\uD788\uB824 \uC0C1\uD0DC\uAC00
-          \uC88B\uC544 \uBCF4\uC778\uB2E4!"
+        DialogueText: "\uCF54\uB098 \uC785\uC8FC\uC704\uC5D0 \uC544\uBB34\uB7F0 \uC774\uC0C1\uC774
+          \uC5C6\uC73C\uBA70, \uAE30\uC6B4\uC774 \uB118\uCE58\uB294 \uAC83 \uAC19\uB2E4!
+          \uD2B9\uBCC4\uD55C\uAC78 \uC5BB\uC744 \uC218 \uC788\uC744 \uAC83 \uAC19\uB2E4!"
         PortraitKey: 
         ActorKey: Goat_Good

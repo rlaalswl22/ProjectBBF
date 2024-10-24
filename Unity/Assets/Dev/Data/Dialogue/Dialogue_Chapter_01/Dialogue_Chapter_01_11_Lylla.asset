@@ -30,15 +30,15 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 6805f439-7285-44c5-b633-ffc317d89573
   NodeData:
-  - rid: 1818509133204685218
-  - rid: 1818509133204685219
-  - rid: 1818509133204685220
-  - rid: 1818509133204685221
-  - rid: 1818509133204685222
+  - rid: 1818509224658599998
+  - rid: 1818509224658599999
+  - rid: 1818509224658600000
+  - rid: 1818509224658600001
+  - rid: 1818509224658600002
   references:
     version: 2
     RefIds:
-    - rid: 1818509133204685218
+    - rid: 1818509224658599998
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 45c4c421-a1fd-48e2-a9fe-6908dbe8bd89
@@ -53,7 +53,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: f11db7ef5f818c64eb8184ae5b32d976, type: 2}
           BoolValue: 0
-    - rid: 1818509133204685219
+    - rid: 1818509224658599999
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 6805f439-7285-44c5-b633-ffc317d89573
@@ -64,9 +64,9 @@ MonoBehaviour:
           \uD544\uC694\uD55C\uC9C0 \uC54C\uC544\uC57C \uD55C\uB2E4 \uB0E5!<br>R\uD0A4\uB97C
           \uB20C\uB7EC \uB808\uC2DC\uD53C \uBD81\uC744 \uD3BC\uCCD0 \uBCF4\uB77C
           \uB0E5!"
-        PortraitKey: Smi
+        PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509133204685220
+    - rid: 1818509224658600000
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 68ca18e6-121c-493f-b6a7-f981b45d3d77
@@ -81,7 +81,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: cf2fd3e3bd553c14d89683ae683008e7, type: 2}
           BoolValue: 0
-    - rid: 1818509133204685221
+    - rid: 1818509224658600001
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7633a651-8de7-436b-8556-8ea36d362317
@@ -96,7 +96,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 6a8bd1a99b18c664796d2b77b02f8a6e, type: 2}
           BoolValue: 0
-    - rid: 1818509133204685222
+    - rid: 1818509224658600002
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: aa6559ce-c7a3-48e5-a932-448d309e2259
