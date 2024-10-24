@@ -22,8 +22,8 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
     [SerializeField] private GameObject _panel;
     [SerializeField] private Image _tipImage;
     [SerializeField] private Image _boundBoxImage;
-    [SerializeField] private Vector2 _tipStartPos;
-    [SerializeField] private Vector2 _tipEndPos;
+    [SerializeField] private Transform _tipStartPoint;
+    [SerializeField] private Transform _tipEndPoint;
 
     [SerializeField] private Transform _fireContent;
     [SerializeField] private float _fireLargeScale;
@@ -133,8 +133,10 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 
         var inputAction = InputManager.Map.Minigame.BakeryOvenHit;
         (ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipe) tuple = GetResolvedItem();
-        
 
+
+        var backupPanelScale = _panel.transform.localScale; 
+        
         _activationUI.SetActive(false);
         _ovenActivationUI.SetActive(true);
         pc.Blackboard.IsMoveStopped = true;
@@ -170,7 +172,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
                         .transform
                         .DOScaleY(_keyPressAndScaleValue, _keyPressAndScaleDuration).SetId(this)
                         .SetLoops(2, LoopType.Yoyo)
-                        .OnComplete(()=>_panel.transform.localScale = Vector3.one)
+                        .OnComplete(()=>_panel.transform.localScale = backupPanelScale)
                         .WaitForCompletion();
                 }
                 else
@@ -203,7 +205,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
                 }
             }
             
-            _tipImage.transform.localPosition = Vector2.Lerp(_tipStartPos, _tipEndPos, t);
+            _tipImage.transform.position = Vector2.Lerp(_tipStartPoint.position, _tipEndPoint.position, t);
 
             t += Time.deltaTime / (_roundTripInterval * 0.5f * dir);
 
@@ -235,7 +237,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
     {
         _isPlaying = true;
         _panel.SetActive(true);
-        _tipImage.transform.position = _tipStartPos;
+        _tipImage.transform.position = _tipStartPoint.position;
         SetVisibleFire(true);
         _source.Stop();
     }
@@ -250,9 +252,9 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 
     private void GameSuccess((ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipe) tuple, PlayerController pc)
     {
-        if (tuple.resultItem == false) return;
+        ItemData item = tuple.resultItem == false ? tuple.failItem : tuple.resultItem;
         
-        bool success = pc.Inventory.Model.PushItem(tuple.resultItem, 1) is 0;
+        bool success = pc.Inventory.Model.PushItem(item, 1) is 0;
         ClearBucket();
 
         if (success && tuple.recipe)
@@ -274,6 +276,4 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         
         ClearBucket();
     }
-
-
 }
