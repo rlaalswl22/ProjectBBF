@@ -21,7 +21,7 @@ MonoBehaviour:
   _requireTools:
     _requireToolTypes: 6
     _requireToolRank: 1
-  _gameDuration: 5
+  _gameDuration: 30
   _moles:
   - Key: 0
     Prefab: {fileID: 748677008473937971, guid: 487d56172221a2e4a838e6ca622d33fb, type: 3}
@@ -30,7 +30,7 @@ MonoBehaviour:
     WaitDuration: 4
   - Key: 1
     Prefab: {fileID: 748677008473937971, guid: a034e35677dae6b4aaebc35d68db1dc1, type: 3}
-    AcquisitionScore: 30
+    AcquisitionScore: 15
     AppearRate: 0.2
     WaitDuration: 3
   - Key: 2
@@ -39,28 +39,32 @@ MonoBehaviour:
     AppearRate: 1
     WaitDuration: 4
   _rewards:
-  - Item: {fileID: 11400000, guid: 8b3669966bf2867419f7d3a4d498a060, type: 2}
-    Count: 3
-    TargetScore: 90
-    Rank: 1
-  - Item: {fileID: 11400000, guid: 8b3669966bf2867419f7d3a4d498a060, type: 2}
-    Count: 2
-    TargetScore: 60
-    Rank: 2
-  - Item: {fileID: 11400000, guid: 8b3669966bf2867419f7d3a4d498a060, type: 2}
+  - Item: {fileID: 11400000, guid: bc35af0e13f17f44d950a47272493273, type: 2}
     Count: 1
-    TargetScore: 30
+    TargetScore: 250
+    Rank: 1
+  - Item: {fileID: 11400000, guid: e99205192f28fb94aab861ba6cdaf106, type: 2}
+    Count: 1
+    TargetScore: 200
+    Rank: 2
+  - Item: {fileID: 11400000, guid: fcc7fc6f0ad32304c9d81bb4ab05b8e6, type: 2}
+    Count: 1
+    TargetScore: 150
     Rank: 3
-  - Item: {fileID: 11400000, guid: 8b3669966bf2867419f7d3a4d498a060, type: 2}
+  - Item: {fileID: 11400000, guid: 021e12b7fb826f94eb2916d11e0cb019, type: 2}
+    Count: 1
+    TargetScore: 100
+    Rank: 4
+  - Item: {fileID: 11400000, guid: d10bc65957a6bb5409d495d0931ec422, type: 2}
     Count: 1
     TargetScore: 0
-    Rank: 4
+    Rank: 5
   _stages:
   - AppearInterval: 3
     AppearMaxCount: 3
     MoleKeyList: 02000000
-    MaxStageTime: 20
+    MaxStageTime: 15
   - AppearInterval: 3
     AppearMaxCount: 3
     MoleKeyList: 0000000001000000
-    MaxStageTime: 60
+    MaxStageTime: 30
