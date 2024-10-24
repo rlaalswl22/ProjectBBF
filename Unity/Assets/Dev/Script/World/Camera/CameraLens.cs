@@ -1,3 +1,4 @@
+using System;
 using Cinemachine;
 using MyBox;
 using System.Collections;
@@ -18,8 +19,14 @@ public class CameraLens : MonoBehaviour
         LensUpdate(ScreenManager.Instance.CurrentResolution);
     }
 
+    private void Start()
+    {
+        // don't delete
+    }
+
     public void LensUpdate(Vector2Int resolution)
     {
+        if (enabled is false) return;
         if (_camera == false) return;
         
         var lens = _camera.m_Lens;
