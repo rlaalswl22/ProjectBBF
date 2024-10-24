@@ -49,80 +49,101 @@ MonoBehaviour:
     - 4c8efc0577612754298ae0f1b603454a
     Guid: 26d168f369db19440b55c74647a8ca5e
     IsStartPoint: 1
-    Position: {x: -26.734913, y: -35.394, z: 0}
+    Position: {x: -25.330236, y: -31.856298, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
     - 26d168f369db19440b55c74647a8ca5e
     - 2f54061486b233a4ebf50cb8e11a9525
     Guid: 4c8efc0577612754298ae0f1b603454a
     IsStartPoint: 0
-    Position: {x: -29.845793, y: -30.565704, z: 0}
+    Position: {x: -30.105917, y: -30.305578, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
     - 4c8efc0577612754298ae0f1b603454a
     - 8cbf7f073e3bd234cb980bd67751870f
     Guid: 2f54061486b233a4ebf50cb8e11a9525
     IsStartPoint: 0
-    Position: {x: -33.957615, y: -30.476316, z: 0}
+    Position: {x: -34.32179, y: -29.852018, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
     - 2f54061486b233a4ebf50cb8e11a9525
     - cd2d99e1b13424b4a81e8b3b7e504a59
     Guid: 8cbf7f073e3bd234cb980bd67751870f
     IsStartPoint: 0
-    Position: {x: -33.57027, y: -16.44248, z: 0}
+    Position: {x: -34.50672, y: -16.494505, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
     - 8cbf7f073e3bd234cb980bd67751870f
     - 21944a763d9d5794c95bdc32103fb2eb
     Guid: cd2d99e1b13424b4a81e8b3b7e504a59
     IsStartPoint: 0
-    Position: {x: -25.593365, y: -13.200503, z: 0}
+    Position: {x: -25.12514, y: -14.345053, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
     - cd2d99e1b13424b4a81e8b3b7e504a59
     - c18ae2c66ee0d9240b687b83a9d1ba91
     Guid: 21944a763d9d5794c95bdc32103fb2eb
     IsStartPoint: 0
-    Position: {x: -24.933727, y: -6.4489675, z: 0}
+    Position: {x: -25.141827, y: -6.813143, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
     - 21944a763d9d5794c95bdc32103fb2eb
     - ddec72583dc2e364395f7802e4c459b9
     Guid: c18ae2c66ee0d9240b687b83a9d1ba91
     IsStartPoint: 0
-    Position: {x: -15.931685, y: -0.62867975, z: 0}
+    Position: {x: -18.004728, y: -5.693218, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
     - c18ae2c66ee0d9240b687b83a9d1ba91
+    - bdccafe7f853d7840afb47fe2c19a0a4
     Guid: ddec72583dc2e364395f7802e4c459b9
     IsStartPoint: 0
-    Position: {x: -24.624952, y: 7.6467977, z: 0}
+    Position: {x: -18.00734, y: 0.41964316, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
-  SelectedGuid: 
+  - Neighbors:
+    - ddec72583dc2e364395f7802e4c459b9
+    - 603010420291c764d9b0ac5898eca8cc
+    Guid: bdccafe7f853d7840afb47fe2c19a0a4
+    IsStartPoint: 0
+    Position: {x: -22.329966, y: 6.444797, z: 0}
+    _interactiveDecoratedPoint: {fileID: 0}
+  - Neighbors:
+    - bdccafe7f853d7840afb47fe2c19a0a4
+    Guid: 603010420291c764d9b0ac5898eca8cc
+    IsStartPoint: 0
+    Position: {x: -24.099577, y: 8.861828, z: 0}
+    _interactiveDecoratedPoint: {fileID: 0}
+  SelectedGuid: 603010420291c764d9b0ac5898eca8cc
   Edit: 1
   _patrollPoints:
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -26.734913, y: -35.394, z: 0}
-    _nextPosition: {x: -29.845793, y: -30.565704, z: 0}
+    _position: {x: -25.330236, y: -31.856298, z: 0}
+    _nextPosition: {x: -30.105917, y: -30.305578, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -29.845793, y: -30.565704, z: 0}
-    _nextPosition: {x: -33.957615, y: -30.476316, z: 0}
+    _position: {x: -30.105917, y: -30.305578, z: 0}
+    _nextPosition: {x: -34.32179, y: -29.852018, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -33.957615, y: -30.476316, z: 0}
-    _nextPosition: {x: -33.57027, y: -16.44248, z: 0}
+    _position: {x: -34.32179, y: -29.852018, z: 0}
+    _nextPosition: {x: -34.50672, y: -16.494505, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -33.57027, y: -16.44248, z: 0}
-    _nextPosition: {x: -25.593365, y: -13.200503, z: 0}
+    _position: {x: -34.50672, y: -16.494505, z: 0}
+    _nextPosition: {x: -25.12514, y: -14.345053, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -25.593365, y: -13.200503, z: 0}
-    _nextPosition: {x: -24.933727, y: -6.4489675, z: 0}
+    _position: {x: -25.12514, y: -14.345053, z: 0}
+    _nextPosition: {x: -25.141827, y: -6.813143, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -24.933727, y: -6.4489675, z: 0}
-    _nextPosition: {x: -15.931685, y: -0.62867975, z: 0}
+    _position: {x: -25.141827, y: -6.813143, z: 0}
+    _nextPosition: {x: -18.004728, y: -5.693218, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -15.931685, y: -0.62867975, z: 0}
-    _nextPosition: {x: -24.624952, y: 7.6467977, z: 0}
+    _position: {x: -18.004728, y: -5.693218, z: 0}
+    _nextPosition: {x: -18.00734, y: 0.41964316, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -24.624952, y: 7.6467977, z: 0}
+    _position: {x: -18.00734, y: 0.41964316, z: 0}
+    _nextPosition: {x: -22.329966, y: 6.444797, z: 0}
+  - _interactiveDecoratedPoint: {fileID: 0}
+    _position: {x: -22.329966, y: 6.444797, z: 0}
+    _nextPosition: {x: -24.099577, y: 8.861828, z: 0}
+  - _interactiveDecoratedPoint: {fileID: 0}
+    _position: {x: -24.099577, y: 8.861828, z: 0}
     _nextPosition: {x: 0, y: 0, z: 0}
+  _loop: 0

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 277089402218975201}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.55, y: -1.22, z: 0}
+  m_LocalPosition: {x: 3.9, y: 2.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc13b65dc52e70488afa8dac66781a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactingPivot: {x: 26.767437, y: -26.591516}
+  _interactingPivot: {x: 25.074509, y: -23.125044}
   _waitDuration: 2
   _teleport: 0
   _visitAndHide: 0
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 2418073469791801691}
   - component: {fileID: 454337474350362543}
   m_Layer: 0
-  m_Name: PF_Chicken_Good
+  m_Name: PF_Chicken_Chpater_1_Good
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,6 @@ Transform:
   m_Children:
   - {fileID: 1074083400360926989}
   - {fileID: 5355801780770534071}
-  - {fileID: 1455906353171874120}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &454337474350362543
@@ -143,131 +142,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Points:
   - Neighbors:
-    - f25b02d5415773644a4c3d85a4df0cee
-    Guid: 43a1d311635ff2543b8596d05edd8395
+    - 8420eb95983641843a82b7643f7631d3
+    Guid: 7b122a38e2f6283468fd636d08043cff
     IsStartPoint: 1
-    Position: {x: 24.608877, y: -23.26104, z: 0}
-    _interactiveDecoratedPoint: {fileID: 0}
+    Position: {x: 27.666319, y: -24.122684, z: 0}
+    _interactiveDecoratedPoint: {fileID: 5610890160885432421}
   - Neighbors:
-    - 43a1d311635ff2543b8596d05edd8395
-    - 066fda4cee3e1ec4b82200f0c4470f9e
-    Guid: f25b02d5415773644a4c3d85a4df0cee
+    - 7b122a38e2f6283468fd636d08043cff
+    Guid: 8420eb95983641843a82b7643f7631d3
     IsStartPoint: 0
-    Position: {x: 26.767437, y: -26.591516, z: 0}
+    Position: {x: 25.074509, y: -23.125044, z: 0}
     _interactiveDecoratedPoint: {fileID: 2772317365862238813}
-  - Neighbors:
-    - f25b02d5415773644a4c3d85a4df0cee
-    Guid: 066fda4cee3e1ec4b82200f0c4470f9e
-    IsStartPoint: 0
-    Position: {x: 23.902473, y: -24.90045, z: 0}
-    _interactiveDecoratedPoint: {fileID: 3706205498201340517}
-  SelectedGuid: 
+  SelectedGuid: 8420eb95983641843a82b7643f7631d3
   Edit: 1
   _patrollPoints:
-  - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: 24.608877, y: -23.26104, z: 0}
-    _nextPosition: {x: 26.767437, y: -26.591516, z: 0}
+  - _interactiveDecoratedPoint: {fileID: 5610890160885432421}
+    _position: {x: 27.666319, y: -24.122684, z: 0}
+    _nextPosition: {x: 25.074509, y: -23.125044, z: 0}
   - _interactiveDecoratedPoint: {fileID: 2772317365862238813}
-    _position: {x: 26.767437, y: -26.591516, z: 0}
-    _nextPosition: {x: 23.902473, y: -24.90045, z: 0}
-  - _interactiveDecoratedPoint: {fileID: 3706205498201340517}
-    _position: {x: 23.902473, y: -24.90045, z: 0}
+    _position: {x: 25.074509, y: -23.125044, z: 0}
     _nextPosition: {x: 0, y: 0, z: 0}
   _loop: 1
---- !u!1 &3578574090748714278
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1455906353171874120}
-  - component: {fileID: 3706205498201340517}
-  - component: {fileID: 2249549006179664713}
-  m_Layer: 0
-  m_Name: GameObject (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1455906353171874120
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3578574090748714278}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.76, y: 0.48, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2418073469791801691}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3706205498201340517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3578574090748714278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bc13b65dc52e70488afa8dac66781a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactingPivot: {x: 23.902473, y: -24.90045}
-  _waitDuration: 2
-  _teleport: 0
-  _visitAndHide: 0
---- !u!61 &2249549006179664713
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3578574090748714278}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &4782773180111693188
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +190,7 @@ Transform:
   m_GameObject: {fileID: 4782773180111693188}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.89, y: 2.16, z: 0}
+  m_LocalPosition: {x: 6.51, y: 1.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -313,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc13b65dc52e70488afa8dac66781a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactingPivot: {x: 25.113491, y: -23.303091}
+  _interactingPivot: {x: 27.666319, y: -24.122684}
   _waitDuration: 2
   _teleport: 0
   _visitAndHide: 0

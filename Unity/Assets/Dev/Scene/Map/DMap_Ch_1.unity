@@ -10905,7 +10905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 10954268734351799, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.82
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 7588404696700822959, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11318,11 +11318,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8612635081641424140, guid: 411cda72c91552f4db4e402f800c66b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.26
+      value: 23.75
       objectReference: {fileID: 0}
     - target: {fileID: 8612635081641424140, guid: 411cda72c91552f4db4e402f800c66b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -25.9
+      value: -26.89
       objectReference: {fileID: 0}
     - target: {fileID: 8659951207133714787, guid: 411cda72c91552f4db4e402f800c66b0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12009,6 +12009,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Path_Lylla_Chapter_1_P2
       objectReference: {fileID: 0}
+    - target: {fileID: 7778844057589762886, guid: d6b991e458438e244878726033e1b0f3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12091,11 +12095,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1924641692677231741, guid: caf9fd73008164049899ae2cff03c050, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.17
+      value: 21.25
       objectReference: {fileID: 0}
     - target: {fileID: 1924641692677231741, guid: caf9fd73008164049899ae2cff03c050, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -25.46
+      value: -25.59
       objectReference: {fileID: 0}
     - target: {fileID: 1924641692677231741, guid: caf9fd73008164049899ae2cff03c050, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12132,6 +12136,10 @@ PrefabInstance:
     - target: {fileID: 2134133114627813633, guid: caf9fd73008164049899ae2cff03c050, type: 3}
       propertyPath: m_Name
       value: PF_Chicken_Normal
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134133114627813633, guid: caf9fd73008164049899ae2cff03c050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12190,6 +12198,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Path_Lylla_Chapter_1_P0
       objectReference: {fileID: 0}
+    - target: {fileID: 7778844057589762886, guid: 4aa4b4f4068be824bbfb48ccdbe2efd1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8458338698405247530, guid: 4aa4b4f4068be824bbfb48ccdbe2efd1, type: 3}
       propertyPath: SelectedGuid
       value: b2f705f71fa13fd439b6e2fc8dbccf50
@@ -12207,13 +12219,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1669829289}
     m_Modifications:
-    - target: {fileID: 3959083718903584656, guid: deaef4572c6d4e0458378d6cdf4da222, type: 3}
-      propertyPath: SelectedGuid
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6720843218793498949, guid: deaef4572c6d4e0458378d6cdf4da222, type: 3}
       propertyPath: m_Name
       value: PF_Chicken_Sick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6720843218793498949, guid: deaef4572c6d4e0458378d6cdf4da222, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7793049288037802478, guid: deaef4572c6d4e0458378d6cdf4da222, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12265,17 +12277,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1924641692677231741, guid: caf9fd73008164049899ae2cff03c050, type: 3}
   m_PrefabInstance: {fileID: 2972784769419048569}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4812771803854222881 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7898486823076206643, guid: caf9fd73008164049899ae2cff03c050, type: 3}
-  m_PrefabInstance: {fileID: 2972784769419048569}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bc13b65dc52e70488afa8dac66781a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6364103794473054360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12284,17 +12285,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1669829289}
     m_Modifications:
-    - target: {fileID: 454337474350362543, guid: 4a9043532f6836d41ae0345195295fcf, type: 3}
-      propertyPath: Points.Array.data[0]._interactiveDecoratedPoint
-      value: 
-      objectReference: {fileID: 4812771803854222881}
-    - target: {fileID: 454337474350362543, guid: 4a9043532f6836d41ae0345195295fcf, type: 3}
-      propertyPath: _patrollPoints.Array.data[0]._interactiveDecoratedPoint
-      value: 
-      objectReference: {fileID: 4812771803854222881}
     - target: {fileID: 1128926013959239165, guid: 4a9043532f6836d41ae0345195295fcf, type: 3}
       propertyPath: m_Name
       value: PF_Chicken_Good
+      objectReference: {fileID: 0}
+    - target: {fileID: 1128926013959239165, guid: 4a9043532f6836d41ae0345195295fcf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2418073469791801691, guid: 4a9043532f6836d41ae0345195295fcf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12397,6 +12394,18 @@ PrefabInstance:
     - target: {fileID: 7778844057589762886, guid: 85a52fb8e4829bb459d16846b130f6f8, type: 3}
       propertyPath: m_Name
       value: PF_Path_Lylla_Chapter_1_P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778844057589762886, guid: 85a52fb8e4829bb459d16846b130f6f8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458338698405247530, guid: 85a52fb8e4829bb459d16846b130f6f8, type: 3}
+      propertyPath: Points.Array.data[1].Position.x
+      value: -2.91292
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458338698405247530, guid: 85a52fb8e4829bb459d16846b130f6f8, type: 3}
+      propertyPath: Points.Array.data[1].Position.y
+      value: -16.847185
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

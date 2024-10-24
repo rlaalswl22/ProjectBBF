@@ -47,23 +47,43 @@ MonoBehaviour:
   Points:
   - Neighbors:
     - b2f705f71fa13fd439b6e2fc8dbccf50
+    - 37cc0af018fc9cf43b035568e536f6e9
     Guid: a26306c90059821418f6e35d1039feca
     IsStartPoint: 0
-    Position: {x: -21.391766, y: -4.7824426, z: 0}
+    Position: {x: -7.513246, y: -16.006453, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
     - a26306c90059821418f6e35d1039feca
     Guid: b2f705f71fa13fd439b6e2fc8dbccf50
     IsStartPoint: 1
-    Position: {x: -4.9414988, y: -16.242928, z: 0}
+    Position: {x: -2.9781797, y: -16.006311, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
-  SelectedGuid: b2f705f71fa13fd439b6e2fc8dbccf50
+  - Neighbors:
+    - a26306c90059821418f6e35d1039feca
+    - 78e7b799356fea847808ce9edfdf7abb
+    Guid: 37cc0af018fc9cf43b035568e536f6e9
+    IsStartPoint: 0
+    Position: {x: -12.142342, y: -12.550488, z: 0}
+    _interactiveDecoratedPoint: {fileID: 0}
+  - Neighbors:
+    - 37cc0af018fc9cf43b035568e536f6e9
+    Guid: 78e7b799356fea847808ce9edfdf7abb
+    IsStartPoint: 0
+    Position: {x: -23.243277, y: -6.7668085, z: 0}
+    _interactiveDecoratedPoint: {fileID: 0}
+  SelectedGuid: 
   Edit: 1
   _patrollPoints:
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -4.9414988, y: -16.242928, z: 0}
-    _nextPosition: {x: -21.391766, y: -4.7824426, z: 0}
+    _position: {x: -2.9781797, y: -16.006311, z: 0}
+    _nextPosition: {x: -7.513246, y: -16.006453, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -21.391766, y: -4.7824426, z: 0}
+    _position: {x: -7.513246, y: -16.006453, z: 0}
+    _nextPosition: {x: -12.142342, y: -12.550488, z: 0}
+  - _interactiveDecoratedPoint: {fileID: 0}
+    _position: {x: -12.142342, y: -12.550488, z: 0}
+    _nextPosition: {x: -23.243277, y: -6.7668085, z: 0}
+  - _interactiveDecoratedPoint: {fileID: 0}
+    _position: {x: -23.243277, y: -6.7668085, z: 0}
     _nextPosition: {x: 0, y: 0, z: 0}
   _loop: 0

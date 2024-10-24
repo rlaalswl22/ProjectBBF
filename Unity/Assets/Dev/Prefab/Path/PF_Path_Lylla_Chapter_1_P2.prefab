@@ -56,24 +56,34 @@ MonoBehaviour:
     - fdf9a903f3943f346b7ea15e8672ff2d
     Guid: b2f705f71fa13fd439b6e2fc8dbccf50
     IsStartPoint: 0
-    Position: {x: -3.2386591, y: 7.287819, z: 0}
+    Position: {x: -13.46788, y: 5.4750466, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
     - b2f705f71fa13fd439b6e2fc8dbccf50
+    - 0417fbd944f376d4fb7a3f8145d05a80
     Guid: fdf9a903f3943f346b7ea15e8672ff2d
     IsStartPoint: 0
-    Position: {x: -2.315093, y: 21.194263, z: 0}
+    Position: {x: -2.5309005, y: 5.5698853, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
-  SelectedGuid: 
+  - Neighbors:
+    - fdf9a903f3943f346b7ea15e8672ff2d
+    Guid: 0417fbd944f376d4fb7a3f8145d05a80
+    IsStartPoint: 0
+    Position: {x: -2.5620537, y: 22.284903, z: 0}
+    _interactiveDecoratedPoint: {fileID: 0}
+  SelectedGuid: 0417fbd944f376d4fb7a3f8145d05a80
   Edit: 1
   _patrollPoints:
   - _interactiveDecoratedPoint: {fileID: 0}
     _position: {x: -21.391766, y: -4.7824426, z: 0}
-    _nextPosition: {x: -3.2386591, y: 7.287819, z: 0}
+    _nextPosition: {x: -13.46788, y: 5.4750466, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -3.2386591, y: 7.287819, z: 0}
-    _nextPosition: {x: -2.315093, y: 21.194263, z: 0}
+    _position: {x: -13.46788, y: 5.4750466, z: 0}
+    _nextPosition: {x: -2.5309005, y: 5.5698853, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -2.315093, y: 21.194263, z: 0}
+    _position: {x: -2.5309005, y: 5.5698853, z: 0}
+    _nextPosition: {x: -2.5620537, y: 22.284903, z: 0}
+  - _interactiveDecoratedPoint: {fileID: 0}
+    _position: {x: -2.5620537, y: 22.284903, z: 0}
     _nextPosition: {x: 0, y: 0, z: 0}
   _loop: 0
