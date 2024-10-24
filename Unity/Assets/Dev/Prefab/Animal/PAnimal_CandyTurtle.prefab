@@ -20,21 +20,29 @@ PrefabInstance:
       propertyPath: _collectedPlayingAudioGroupKey
       value: Animal
       objectReference: {fileID: 0}
+    - target: {fileID: 1165284809982388803, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _collectingData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c27f09fc73ea2045afe237104822ce4, type: 2}
     - target: {fileID: 1780465535857405135, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1780465535857405135, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1780465535857405135, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 2
+      value: 3.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767219050062274324, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _saveKey
+      value: CandyTurtle_0
       objectReference: {fileID: 0}
     - target: {fileID: 2767219050062274324, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _actorKey
-      value: Turtle
+      value: CandyTurtle
       objectReference: {fileID: 0}
     - target: {fileID: 2767219050062274324, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _movementData
@@ -46,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7710583605823996137, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_Name
-      value: PAnimal_Turtle
+      value: PAnimal_CandyTurtle
       objectReference: {fileID: 0}
     - target: {fileID: 8331719994581572156, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_Controller
@@ -115,7 +123,7 @@ PrefabInstance:
     - target: {fileID: 9166282083379131861, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1277215252, guid: eb6535a576db4dd428e4a699058d081d, type: 3}
+      objectReference: {fileID: -238287703, guid: f25b3e71f19777744a6ab1f59465c36e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
