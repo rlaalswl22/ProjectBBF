@@ -37,7 +37,15 @@ public class FishingContext
     public bool FishVisible
     {
         get => _renderer.enabled;
-        set=> _renderer.enabled = value;
+        set
+        {
+            _renderer.enabled = value;
+
+            if (value && Reward)
+            {
+                _renderer.sprite = Reward.ItemSprite;
+            }
+        }
     }
     public Transform FishTransform { get; private set; }
     public bool IsTiming => Reward is not null && FishTransform is not null;
