@@ -51,20 +51,20 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: abe0c94e-85a3-4391-8681-1abcfc1a3a67
   NodeData:
-  - rid: 1818509224658600105
-  - rid: 1818509224658600106
-  - rid: 1818509224658600107
-  - rid: 1818509224658600108
-  - rid: 1818509224658600109
-  - rid: 1818509224658600110
-  - rid: 1818509224658600111
-  - rid: 1818509224658600112
-  - rid: 1818509224658600113
-  - rid: 1818509224658600114
+  - rid: 1818509224658600156
+  - rid: 1818509224658600157
+  - rid: 1818509224658600158
+  - rid: 1818509224658600159
+  - rid: 1818509224658600160
+  - rid: 1818509224658600161
+  - rid: 1818509224658600162
+  - rid: 1818509224658600163
+  - rid: 1818509224658600164
+  - rid: 1818509224658600165
   references:
     version: 2
     RefIds:
-    - rid: 1818509224658600105
+    - rid: 1818509224658600156
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 3291e3b1-2347-4515-928d-31b162ba26df
@@ -74,7 +74,7 @@ MonoBehaviour:
         DialogueText: "\uC7AC\uB8CC\uB97C \uAD6C\uD574\uC624\uB77C\uB0E5!!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509224658600106
+    - rid: 1818509224658600157
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 55d55960-6a2a-4e21-b8e8-1705bf400f9a
@@ -95,7 +95,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 1818509224658600107
+    - rid: 1818509224658600158
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 63afd9fc-236d-4d6b-a738-ca795a86e5e7
@@ -116,7 +116,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 1818509224658600108
+    - rid: 1818509224658600159
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7e4a11b7-fb10-41dd-b872-9a9c1ef24847
@@ -128,7 +128,7 @@ MonoBehaviour:
           \uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509224658600109
+    - rid: 1818509224658600160
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7ee9383f-6273-4f65-bc61-53b11b45af9a
@@ -149,7 +149,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 1818509224658600110
+    - rid: 1818509224658600161
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a153253c-4945-428e-835c-40f8cd43f6af
@@ -159,7 +159,7 @@ MonoBehaviour:
         DialogueText: "\uC7AC\uB8CC\uAC00 \uC5C6\uB2E4 \uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509224658600111
+    - rid: 1818509224658600162
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: abe0c94e-85a3-4391-8681-1abcfc1a3a67
@@ -174,7 +174,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 2c710d3f59ccd444796d66e4c41c0620, type: 2}
           BoolValue: 0
-    - rid: 1818509224658600112
+    - rid: 1818509224658600163
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: ad3158d5-38cf-4715-aabb-e0203843a448
@@ -183,8 +183,8 @@ MonoBehaviour:
         Position: {x: 1956, y: 181}
         DialogueText: "\uB0A0 \uB530\uB77C\uC624\uB77C \uB0E5!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 1818509224658600113
+        ActorKey: Lylla_Chapter_1
+    - rid: 1818509224658600164
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: bae06351-7791-4bb9-97ff-676c3afdebe0
@@ -199,7 +199,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: eb2b5ef68b4b1b7458584685ed6812a5, type: 2}
           BoolValue: 0
-    - rid: 1818509224658600114
+    - rid: 1818509224658600165
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d7695e8a-99d4-4bd8-a80d-93854fb48c4b

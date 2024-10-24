@@ -20,6 +20,9 @@ MonoBehaviour:
   - BaseNodeGuid: 418a34ca-1d00-44ae-bf40-419dc90d1d61
     PortName: Next
     TargetNodeGuid: ee2c71b3-005f-4e32-9bc6-eaa4e38f0714
+  - BaseNodeGuid: 997d3970-e839-408c-9e78-d3c07388973d
+    PortName: Next
+    TargetNodeGuid: 57c1abcb-8742-4351-9645-b62c3fe98ba0
   - BaseNodeGuid: d6c997e5-de02-4c41-b59a-0b8b10a07bfc
     PortName: True
     TargetNodeGuid: 418a34ca-1d00-44ae-bf40-419dc90d1d61
@@ -30,23 +33,24 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 997d3970-e839-408c-9e78-d3c07388973d
   - BaseNodeGuid: f1d3186c-dd16-4f3d-a634-079e41aa2c10
-    PortName: "\uAD50\uD658 \uD55C\uB2E4."
+    PortName: "\uAD50\uD658 \uD560\uAC8C!"
     TargetNodeGuid: d6c997e5-de02-4c41-b59a-0b8b10a07bfc
   - BaseNodeGuid: f1d3186c-dd16-4f3d-a634-079e41aa2c10
-    PortName: "\uAD50\uD658\uD558\uC9C0 \uC54A\uB294\uB2E4."
+    PortName: "\uAD50\uD658\uD558\uC9C0 \uC54A\uC744\uB798.."
     TargetNodeGuid: 391d0f18-7c83-47dc-a044-0675d24bc882
   NodeData:
-  - rid: 1818509169313185816
-  - rid: 1818509169313185817
-  - rid: 1818509169313185818
-  - rid: 1818509169313185819
-  - rid: 1818509169313185820
-  - rid: 1818509169313185821
-  - rid: 1818509169313185822
+  - rid: 1818509224658600520
+  - rid: 1818509224658600521
+  - rid: 1818509224658600522
+  - rid: 1818509224658600523
+  - rid: 1818509224658600524
+  - rid: 1818509224658600525
+  - rid: 1818509224658600526
+  - rid: 1818509224658600527
   references:
     version: 2
     RefIds:
-    - rid: 1818509169313185816
+    - rid: 1818509224658600520
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 391d0f18-7c83-47dc-a044-0675d24bc882
@@ -56,7 +60,7 @@ MonoBehaviour:
         DialogueText: "\uD544\uC694\uD558\uBA74 \uB9D0\uC500\uD574 \uC8FC\uC138\uC694!"
         PortraitKey: 
         ActorKey: Julian_Chapter_1
-    - rid: 1818509169313185817
+    - rid: 1818509224658600521
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 418a34ca-1d00-44ae-bf40-419dc90d1d61
@@ -77,7 +81,22 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 1818509169313185818
+    - rid: 1818509224658600522
+      type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 57c1abcb-8742-4351-9645-b62c3fe98ba0
+        NodeTitle: Execution
+        TypeName: Execution
+        Position: {x: 2417, y: -16}
+        Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
+        Warps:
+        - Target: Object
+          IntValue: 0
+          FloatValue: 0
+          StringValue: 
+          ObjectValue: {fileID: 11400000, guid: fbfd16eeab9739b4c85d5544dd9dff3d, type: 2}
+          BoolValue: 0
+    - rid: 1818509224658600523
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 997d3970-e839-408c-9e78-d3c07388973d
@@ -87,7 +106,7 @@ MonoBehaviour:
         DialogueText: "\uAC10\uC0AC\uD569\uB2C8\uB2E4!"
         PortraitKey: 
         ActorKey: Julian_Chapter_1
-    - rid: 1818509169313185819
+    - rid: 1818509224658600524
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: bf67328e-e592-44ac-91d2-eb7e7655d92c
@@ -97,7 +116,7 @@ MonoBehaviour:
         DialogueText: "\uC6B0\uC720\uAC00 \uC5C6\uB294\uB370\uC694;;;"
         PortraitKey: 
         ActorKey: Julian_Chapter_1
-    - rid: 1818509169313185820
+    - rid: 1818509224658600525
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d6c997e5-de02-4c41-b59a-0b8b10a07bfc
@@ -118,7 +137,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 1818509169313185821
+    - rid: 1818509224658600526
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: ee2c71b3-005f-4e32-9bc6-eaa4e38f0714
@@ -139,7 +158,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 1818509169313185822
+    - rid: 1818509224658600527
       type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: f1d3186c-dd16-4f3d-a634-079e41aa2c10

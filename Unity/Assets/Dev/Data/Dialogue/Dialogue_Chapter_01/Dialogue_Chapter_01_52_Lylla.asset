@@ -27,14 +27,14 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 6f556de8-22ae-42fd-aca8-243f1f05d6ba
   NodeData:
-  - rid: 1818509224658600055
-  - rid: 1818509224658600056
-  - rid: 1818509224658600057
-  - rid: 1818509224658600058
+  - rid: 1818509224658600166
+  - rid: 1818509224658600167
+  - rid: 1818509224658600168
+  - rid: 1818509224658600169
   references:
     version: 2
     RefIds:
-    - rid: 1818509224658600055
+    - rid: 1818509224658600166
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 1df98b14-cfbb-4974-84ee-d5b46bf9e71f
@@ -45,7 +45,7 @@ MonoBehaviour:
           \uAD6C\uC6B0\uBA74 \uB41C\uB2E4\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509224658600056
+    - rid: 1818509224658600167
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 6f556de8-22ae-42fd-aca8-243f1f05d6ba
@@ -56,7 +56,7 @@ MonoBehaviour:
           \uBC18\uC8FD\uC744 \uC5BB\uC744 \uC218 \uC788\uB2E4\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509224658600057
+    - rid: 1818509224658600168
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: c7bc2d48-2cfd-4684-bb56-d8110ac406b1
@@ -67,7 +67,7 @@ MonoBehaviour:
           \uC7AC\uB8CC\uB97C \uC62C\uB9AC\uBA74 \uB41C\uB2E4 \uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509224658600058
+    - rid: 1818509224658600169
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d67d7f94-7b77-4e72-8625-94410900a0dd

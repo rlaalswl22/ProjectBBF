@@ -33,16 +33,16 @@ MonoBehaviour:
     PortName: False
     TargetNodeGuid: f99d5d6d-17e2-4305-a3c0-66040cc16f79
   NodeData:
-  - rid: 1818509133204684981
-  - rid: 1818509133204684982
-  - rid: 1818509133204684983
-  - rid: 1818509133204684984
-  - rid: 1818509133204684985
-  - rid: 1818509133204684986
+  - rid: 1818509224658600175
+  - rid: 1818509224658600176
+  - rid: 1818509224658600177
+  - rid: 1818509224658600178
+  - rid: 1818509224658600179
+  - rid: 1818509224658600180
   references:
     version: 2
     RefIds:
-    - rid: 1818509133204684981
+    - rid: 1818509224658600175
       type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 017f2b70-a4c9-453e-b1de-5fe91128aa3c
@@ -52,7 +52,7 @@ MonoBehaviour:
         DialogueText: "\uC774 \uBE75\uC744 \uC81C\uCD9C \uD558\uB098\uC694?"
         PortraitKey: 
         ActorKey: Ahir_Chapter_1
-    - rid: 1818509133204684982
+    - rid: 1818509224658600176
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 43b651dc-3783-43d3-a97a-54140be6f2c0
@@ -62,17 +62,18 @@ MonoBehaviour:
         DialogueText: "\uADF8\uB7FC \uB098\uC911\uC5D0 \uBD59\uACA0\uC2B5\uB2C8\uB2E4!"
         PortraitKey: 
         ActorKey: Ahir_Chapter_1
-    - rid: 1818509133204684983
+    - rid: 1818509224658600177
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 58cd9dc3-5c8f-4846-91ef-80662a75ca9d
         NodeTitle: Text
         TypeName: Text
         Position: {x: 961, y: 58}
-        DialogueText: "\uADF8\uB7FC \uC2EC\uC0AC\uB97C \uC9C4\uD589\uD558\uACA0\uC2B5\uB2C8\uB2E4!"
+        DialogueText: "\uACE0\uC0DD\uD558\uC168\uC2B5\uB2C8\uB2E4! \uADF8\uB7FC \uC2EC\uC0AC\uB97C
+          \uC9C4\uD589\uD558\uACA0\uC2B5\uB2C8\uB2E4!"
         PortraitKey: 
         ActorKey: Ahir_Chapter_1
-    - rid: 1818509133204684984
+    - rid: 1818509224658600178
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: da3d21ce-6ffa-47ec-8a52-3499f4030beb
@@ -87,7 +88,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: aac3b39cb157ed546ad42ce2fcee3d76, type: 2}
           BoolValue: 0
-    - rid: 1818509133204684985
+    - rid: 1818509224658600179
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: f1ff724b-95d5-479b-87df-971146c6682c
@@ -102,7 +103,7 @@ MonoBehaviour:
           StringValue: 'Ahir_Chapter_2_ContestResultBox '
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 1818509133204684986
+    - rid: 1818509224658600180
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: f99d5d6d-17e2-4305-a3c0-66040cc16f79

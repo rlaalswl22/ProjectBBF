@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: _favorablity
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 818979446879402682, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 3859516298495740257, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
       propertyPath: _proxy
       value: 

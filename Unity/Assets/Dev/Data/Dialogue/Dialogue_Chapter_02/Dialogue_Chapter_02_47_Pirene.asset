@@ -17,12 +17,27 @@ MonoBehaviour:
   - BaseNodeGuid: 7c32217a-cb22-4bc0-a83f-2c9c1e5c30e0
     PortName: Execute
     TargetNodeGuid: df6b4078-44f6-47f9-a62f-b6fc75a5bd87
+  - BaseNodeGuid: df6b4078-44f6-47f9-a62f-b6fc75a5bd87
+    PortName: Next
+    TargetNodeGuid: 3f5d4905-0e02-420a-ab87-0ff95d00dfe9
   NodeData:
-  - rid: 1818509133204684979
+  - rid: 1818509224658600173
+  - rid: 1818509224658600174
   references:
     version: 2
     RefIds:
-    - rid: 1818509133204684979
+    - rid: 1818509224658600173
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 3f5d4905-0e02-420a-ab87-0ff95d00dfe9
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 631, y: 200}
+        DialogueText: "\uC774\uBC88\uC5D0\uB3C4 \uBA4B\uC9C4 \uBE75\uC744 \uB9CC\uB4E4\uC5B4
+          \uC8FC\uC138\uC694!!"
+        PortraitKey: 
+        ActorKey: Pirene_Chapter_1
+    - rid: 1818509224658600174
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: df6b4078-44f6-47f9-a62f-b6fc75a5bd87

@@ -38,7 +38,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f7ff838a23a464d8ed618e8a3d2a5d6, type: 3}
   m_Name: Branch Timeline Marker
   m_EditorClassIdentifier: 
-  m_Time: 0.7666666666666667
+  m_Time: 0.9500000000000002
 --- !u!114 &-8334364531168329136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac8c311cb403af409690e4ef84ed598, type: 3}
   m_Name: Dialogue Marker
   m_EditorClassIdentifier: 
-  m_Time: 0.05
+  m_Time: 0.2
   _container: {fileID: 11400000, guid: f1248ef0b5af1604295e62804023c56c, type: 2}
 --- !u!114 &-5580139124954776679
 MonoBehaviour:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76677ae7fbb4217ac394fa3efd17455, type: 3}
   m_Name: Contest Result Marker
   m_EditorClassIdentifier: 
-  m_Time: 0.35
+  m_Time: 0.5333333333333332
   _chapter: 3
   _failTimeline: {fileID: 11400000, guid: a1a261af7711c4948bbdaab35a03e76c, type: 2}
   _successTimeline: {fileID: 11400000, guid: 849a6b25abec66348972408b47005426, type: 2}

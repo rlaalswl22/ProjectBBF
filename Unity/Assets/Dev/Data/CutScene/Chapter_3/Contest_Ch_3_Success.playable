@@ -37,7 +37,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39d7de6310443f886f701726ee558a4, type: 3}
   m_Name: Move To Scene Marker
   m_EditorClassIdentifier: 
-  m_Time: 0.4166666666666667
+  m_Time: 0.6999999999999995
   _eso: {fileID: 11400000, guid: a26bb389bdf6f9241968eb647f09ff95, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -72,8 +72,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac8c311cb403af409690e4ef84ed598, type: 3}
   m_Name: Dialogue Marker
   m_EditorClassIdentifier: 
-  m_Time: 0.03333333333333333
-  _container: {fileID: 11400000, guid: 967aff9bcd5719e4dba5a37b2f04eb23, type: 2}
+  m_Time: 0.31666666666666665
+  _container: {fileID: 11400000, guid: 0344b56ce0ae7724186e13a2558bc574, type: 2}
 --- !u!114 &8205239825157286542
 MonoBehaviour:
   m_ObjectHideFlags: 1

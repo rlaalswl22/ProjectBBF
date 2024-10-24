@@ -42,19 +42,19 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 7406dfdc-b111-4eb5-ac6a-f9da94844bab
   NodeData:
-  - rid: 1818509133204685037
-  - rid: 1818509133204685038
-  - rid: 1818509133204685039
-  - rid: 1818509133204685040
-  - rid: 1818509133204685041
-  - rid: 1818509133204685042
-  - rid: 1818509133204685043
-  - rid: 1818509133204685044
-  - rid: 1818509133204685045
+  - rid: 1818509224658600261
+  - rid: 1818509224658600262
+  - rid: 1818509224658600263
+  - rid: 1818509224658600264
+  - rid: 1818509224658600265
+  - rid: 1818509224658600266
+  - rid: 1818509224658600267
+  - rid: 1818509224658600268
+  - rid: 1818509224658600269
   references:
     version: 2
     RefIds:
-    - rid: 1818509133204685037
+    - rid: 1818509224658600261
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 2c93ceae-a4e6-48ae-a77a-4307556bc485
@@ -65,7 +65,7 @@ MonoBehaviour:
           \uC800\uB3C4 \uACB0\uC2B9\uC804\uC744 \uC900\uBE44\uD574\uC57C\uD569\uB2C8\uB2E4"
         PortraitKey: 
         ActorKey: Karen_Chapter_1
-    - rid: 1818509133204685038
+    - rid: 1818509224658600262
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 3895c75e-11fa-4070-b0e4-5252d41961b3
@@ -75,7 +75,7 @@ MonoBehaviour:
         DialogueText: "\uC900\uBE44\uB418\uBA74 \uB9D0\uC500\uD574\uC8FC\uC138\uC694!"
         PortraitKey: 
         ActorKey: Karen_Chapter_1
-    - rid: 1818509133204685039
+    - rid: 1818509224658600263
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 4bc9ec11-9cc9-4f47-9385-af7af1482d59
@@ -85,7 +85,7 @@ MonoBehaviour:
         DialogueText: "\uD589\uC6B4\uC744 \uBE4C\uACA0\uC2B5\uB2C8\uB2E4!"
         PortraitKey: 
         ActorKey: Karen_Chapter_1
-    - rid: 1818509133204685040
+    - rid: 1818509224658600264
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 5db199f9-4c6f-449e-8111-b8a0d16c829b
@@ -97,7 +97,7 @@ MonoBehaviour:
           \uC7A1\uC73C\uC2DC\uBA74 \uB429\uB2C8\uB2E4."
         PortraitKey: 
         ActorKey: Karen_Chapter_1
-    - rid: 1818509133204685041
+    - rid: 1818509224658600265
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 606cfc23-b5a9-4279-a3a3-73b51c4df4aa
@@ -118,7 +118,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 0}
           BoolValue: 1
-    - rid: 1818509133204685042
+    - rid: 1818509224658600266
       type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7406dfdc-b111-4eb5-ac6a-f9da94844bab
@@ -128,7 +128,7 @@ MonoBehaviour:
         DialogueText: "\uAC8C\uC784\uC744 \uD574\uBCF4\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
         PortraitKey: 
         ActorKey: Karen_Chapter_1
-    - rid: 1818509133204685043
+    - rid: 1818509224658600267
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: ae849e06-b785-4ee5-a715-9a3018d34095
@@ -143,7 +143,7 @@ MonoBehaviour:
           StringValue: Mole_Chapter_3
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 1818509133204685044
+    - rid: 1818509224658600268
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: c6493d35-7af7-476e-b30f-d11f325ac850
@@ -158,14 +158,14 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: d43f71f00df46714c845f5555467de98, type: 2}
           BoolValue: 0
-    - rid: 1818509133204685045
+    - rid: 1818509224658600269
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: e48e520a-a3b9-45fd-9628-6014cfe2cc66
         NodeTitle: Text
         TypeName: Text
         Position: {x: 1246, y: 403}
-        DialogueText: "\uACBD\uD488\uC740 1\uB4F1 \uC0C1\uD488 \uB9CC\uB144\uC124
+        DialogueText: "\uACBD\uD488\uC740<br>1\uB4F1 \uC0C1\uD488 \uB9CC\uB144\uC124
           \uB538\uAE30<br>2\uB4F1 \uC0C1\uD488 \uCEE4\uD53C \uC5F4\uB9E4<br>3\uB4F1
           \uC0C1\uD488 \uCD08\uCF54 \uC5F4\uB9E4<br>4\uB4F1 \uC0C1\uD488 \uD1A0\uB9C8\uD1A0<br>5\uB4F1
           \uC0C1\uD488 \uC591\uBC30\uCD94<br>\uC774\uB807\uAC8C \uC900\uBE44\uB3FC\uC788\uC2B5\uB2C8\uB2E4"
