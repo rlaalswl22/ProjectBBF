@@ -155,11 +155,17 @@ MonoBehaviour:
   _scenes:
   - BMap_Festival
   - BMap_FestivalDetail
+  - VMap_Festival
+  - BMap_FrogMiniGame
+  - VMap_FrogMinigame
   - DMap_Festival_CutScene_Ch_0_Begin
   ChildScenesToLoadConfig:
   - {fileID: 102900000, guid: bbaeebbcc59f2e544a5ec94d9a366b13, type: 3}
   - {fileID: 102900000, guid: 3d8ff6aa079a0fc41b7d8ed37c3f4314, type: 3}
   - {fileID: 102900000, guid: 5d1b86af68f271f4283e16aa257790ff, type: 3}
+  - {fileID: 102900000, guid: 83a80f4cf3ed5854a989b1605e320b43, type: 3}
+  - {fileID: 102900000, guid: 344ec74386dd9f240b35c4fc6e8bea4d, type: 3}
+  - {fileID: 102900000, guid: 110bf93bac5f4744498c3f5d9775ddd7, type: 3}
   - {fileID: 102900000, guid: d5f30d7d3f0535c4492e38283e7c7b5b, type: 3}
 --- !u!4 &160120157
 Transform:
