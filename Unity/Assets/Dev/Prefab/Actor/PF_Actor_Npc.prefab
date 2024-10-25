@@ -52,6 +52,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 411034240150859704, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1652966457, guid: b16406450b308184b9bfea0a27a0d4e4, type: 3}
     - target: {fileID: 938820693320806241, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -104,6 +108,34 @@ PrefabInstance:
       propertyPath: _proxy
       value: 
       objectReference: {fileID: 440924910647378999}
+    - target: {fileID: 7076314395520464546, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
+      propertyPath: m_Size.x
+      value: 0.888141
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076314395520464546, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
+      propertyPath: m_Size.y
+      value: 0.42561018
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076314395520464546, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.035074264
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076314395520464546, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.4635858
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076314395520464546, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076314395520464546, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.1875
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076314395520464546, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.8125
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
