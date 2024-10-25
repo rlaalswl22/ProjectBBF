@@ -14,10 +14,10 @@ public class RecipeBookSlotView : MonoBehaviour, IPointerClickHandler, IPointerD
     public object Data { get; set; }
 
     public event Action<RecipeBookSlotView> OnClick; 
-    public event Action<object> OnDown;
-    public event Action<object> OnHoverEnter;
-    public event Action<object> OnHoverExit;
-    public event Action<object, PointerEventData> OnMove;
+    public event Action<RecipeBookSlotView> OnDown;
+    public event Action<RecipeBookSlotView> OnHoverEnter;
+    public event Action<RecipeBookSlotView> OnHoverExit;
+    public event Action<RecipeBookSlotView, PointerEventData> OnMove;
     public Sprite Sprite
     {
         get => _itemImage.sprite;
@@ -66,21 +66,21 @@ public class RecipeBookSlotView : MonoBehaviour, IPointerClickHandler, IPointerD
     
     public void OnPointerDown(PointerEventData eventData)
     {
-        OnDown?.Invoke(Data);
+        OnDown?.Invoke(this);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        OnHoverEnter?.Invoke(Data);
+        OnHoverEnter?.Invoke(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        OnHoverExit?.Invoke(Data);
+        OnHoverExit?.Invoke(this);
     }
 
     public void OnPointerMove(PointerEventData eventData)
     {
-        OnMove?.Invoke(Data, eventData);
+        OnMove?.Invoke(this, eventData);
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6734607658103204900}
   - component: {fileID: 3855118722956113433}
   - component: {fileID: 5536087242139585393}
+  - component: {fileID: 5507634804553909612}
   m_Layer: 0
   m_Name: ReceipResultSlot
   m_TagString: Untagged
@@ -76,6 +77,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5507634804553909612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299534371868071650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b2d3916fc67e3429a93fd483e5bb12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemImage: {fileID: 3250310183044708061}
 --- !u!1 &6767093981755316421
 GameObject:
   m_ObjectHideFlags: 0

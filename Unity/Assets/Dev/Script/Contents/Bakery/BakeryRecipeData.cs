@@ -10,6 +10,9 @@ public class BakeryRecipeData : ScriptableObject
     [SerializeField, Header("레시피 고유 키(반드시 입력!! 입력 안 하면 해금기능 작동 안 함)")] 
     private string _key;
 
+    [SerializeField, Header("언락 기본값")] 
+    private bool _initUnlock;
+
     [SerializeField, Header("반죽 레시피")] 
     private BakeryDoughRecipeData _doughRecipe;
     
@@ -46,4 +49,6 @@ public class BakeryRecipeData : ScriptableObject
     public string Description => _description;
 
     public string Key => _key;
+
+    public bool InitUnlock => _initUnlock;
 }

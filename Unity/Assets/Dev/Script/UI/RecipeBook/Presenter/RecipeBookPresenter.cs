@@ -35,7 +35,14 @@ public class RecipeBookPresenter : MonoBehaviour
 
         foreach (var data in resolver.RecipeTable.Values)
         {
-            _listView.AddItem(data.ResultItem.ItemSprite, data, Model.IsUnlocked(data.Key));
+            bool isUnlock = Model.IsUnlocked(data.Key);
+            if (isUnlock is false && data.InitUnlock)
+            {
+                isUnlock = true;
+                Model.Add(data.Key);
+            }
+            
+            _listView.AddItem(data.ResultItem.ItemSprite, data, isUnlock);
         }
 
         if (_firstSelectedRecipe)
@@ -91,9 +98,9 @@ public class RecipeBookPresenter : MonoBehaviour
         _previewView.SetView(
             recipe.ResultItem.ItemName,
             recipe.Description,
-            recipe.ResultItem.ItemSprite,
-            recipe.BakingRecipe.BreadItem.ItemSprite,
-            recipe.BakingRecipe.DoughtItem.ItemSprite,
+            recipe.ResultItem,
+            recipe.BakingRecipe.BreadItem,
+            recipe.BakingRecipe.DoughtItem,
             recipe.AdditiveRecipe?.AdditiveItems.Select(x => x).ToArray(),
             recipe.DoughRecipe.Ingredients.Select(x => x).ToArray(),
             isUnlocked

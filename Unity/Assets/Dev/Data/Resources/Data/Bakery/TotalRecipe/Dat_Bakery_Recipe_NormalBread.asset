@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dat_Bakery_Recipe_NormalBread
   m_EditorClassIdentifier: 
   _key: Dat_Bakery_Recipe_NormalBread
+  _initUnlock: 1
   _doughRecipe: {fileID: 11400000, guid: af0d5d763f335504da98bc0de22436af, type: 2}
   _bakingRecipe: {fileID: 11400000, guid: d87f7eef29342fa4898f27c7d6f11442, type: 2}
   _additiveRecipe: {fileID: 0}

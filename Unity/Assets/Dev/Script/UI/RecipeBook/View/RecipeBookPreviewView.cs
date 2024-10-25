@@ -12,13 +12,13 @@ public class RecipeBookPreviewView : MonoBehaviour
 {
     [SerializeField] private bool _awakeAndDisable = true;
     
-    [SerializeField] private Image _resultItemImage;
+    [SerializeField] private RecipeBookSlotView _resultItemImage;
     [SerializeField] private TMP_Text _resultItemNameText;
     [SerializeField] private TMP_Text _resultItemDescText;
     
     
-    [SerializeField] private Image _bakedBreadResultItemImage;
-    [SerializeField] private Image _additiveResultItemImage;
+    [SerializeField] private RecipeBookSlotView _bakedBreadResultItemImage;
+    [SerializeField] private RecipeBookSlotView _additiveResultItemImage;
 
     [SerializeField] private GameObject _additiveFrame;
     
@@ -30,7 +30,13 @@ public class RecipeBookPreviewView : MonoBehaviour
     public bool Visible
     {
         get => gameObject.activeSelf;
-        set => gameObject.SetActive(value);
+        set
+        {
+            if(value is false)
+                _toolTipView.Visible = false;
+            
+            gameObject.SetActive(value);
+        }
     }
     
     public object Data { get; set; }
@@ -46,38 +52,35 @@ public class RecipeBookPreviewView : MonoBehaviour
             slotView.OnHoverEnter += OnHoverEnter;
             slotView.OnHoverExit += OnHoverExit;
             slotView.OnMove += OnMove;
-            slotView.OnDown += OnDown;
         }
         foreach (var slotView in _additiveItemImages)
         {
             slotView.OnHoverEnter += OnHoverEnter;
             slotView.OnHoverExit += OnHoverExit;
             slotView.OnMove += OnMove;
-            slotView.OnDown += OnDown;
         }
+        
+        _bakedBreadResultItemImage.OnHoverEnter += OnHoverEnter;
+        _bakedBreadResultItemImage.OnHoverExit += OnHoverExit;
+        _bakedBreadResultItemImage.OnMove += OnMove;
+        
+        _additiveResultItemImage.OnHoverEnter += OnHoverEnter;
+        _additiveResultItemImage.OnHoverExit += OnHoverExit;
+        _additiveResultItemImage.OnMove += OnMove;
     }
 
-    private void OnDown(object obj)
-    {
-        if (_toolTipView)
-        {
-            _toolTipView.Visible = false;
-            _toolTipView.Clear();
-        }
-    }
-
-    private void OnHoverEnter(object obj)
+    private void OnHoverEnter(RecipeBookSlotView slotView)
     {
         if (_toolTipView)
         {
             if (SelectItemPresenter.Instance.Model.IsEmpty is false) return;
-            if (obj is not ItemData itemData) return;
+            if (slotView.Data is not ItemData itemData) return;
             _toolTipView.Visible = true;
             _toolTipView.SetText(itemData);
         }
     }
 
-    private void OnHoverExit(object obj)
+    private void OnHoverExit(RecipeBookSlotView slotView)
     {
         if (_toolTipView)
         {
@@ -87,7 +90,7 @@ public class RecipeBookPreviewView : MonoBehaviour
         }
     }
 
-    private void OnMove(object obj, PointerEventData eventData)
+    private void OnMove(RecipeBookSlotView slotView, PointerEventData eventData)
     {
         if (_toolTipView)
         {
@@ -102,9 +105,9 @@ public class RecipeBookPreviewView : MonoBehaviour
     public void SetView(
         string resultItemName, 
         string resultItemDesc, 
-        Sprite resultItemSprite,
-        Sprite bakedBreadResultItemSprite,
-        Sprite doughResultItemSprite,
+        ItemData resultItemSprite,
+        ItemData bakedBreadResultItemSprite,
+        ItemData doughResultItemSprite,
         ItemData[] additiveItemSprites,
         ItemData[] doughtItemSprites,
         bool isUnlocked)
@@ -120,42 +123,43 @@ public class RecipeBookPreviewView : MonoBehaviour
             _resultItemNameText.text = "???";
             _resultItemDescText.text = "???";
         }
-        _resultItemImage.sprite = resultItemSprite;
-
-        _bakedBreadResultItemImage.sprite = doughResultItemSprite;
-        _additiveResultItemImage.sprite = bakedBreadResultItemSprite;
-
-        Color c = isUnlocked? Color.white : Color.black;
         
-        _resultItemImage.color = c;
+        // 각 단계 대표 이미지들
+        _resultItemImage.SetData(resultItemSprite.ItemSprite, resultItemSprite, isUnlocked);
+        _bakedBreadResultItemImage.SetData(doughResultItemSprite.ItemSprite, doughResultItemSprite, true);
+        _additiveResultItemImage.SetData(bakedBreadResultItemSprite.ItemSprite, bakedBreadResultItemSprite, true);
+        
 
-        if (_doughtRecipeItemImages.Length != doughtItemSprites.Length)
+        // 연성 재료 칸
         {
-            Debug.LogWarning("반죽 레시피 이미지 슬롯과, 입력된 스프라이트의 수가 일치하지 않습니다.");
-        }
-
-        if (additiveItemSprites is not null)
-        {
-            for (int i = 0; i < Mathf.Min(_additiveItemImages.Length, additiveItemSprites.Length); i++)
+            foreach (RecipeBookSlotView slot in _additiveItemImages)
             {
-                _additiveItemImages[i].SetData(additiveItemSprites[i].ItemSprite, additiveItemSprites[i], true);
+                slot.Clear();
             }
             
-            _additiveFrame.SetActive(true);
-        }
-        else
-        {
-            for (int i = 0; i < _additiveItemImages.Length; i++)
+            if (additiveItemSprites is not null)
             {
-                _additiveItemImages[i].Clear();
+                for (int i = 0; i < Mathf.Min(_additiveItemImages.Length, additiveItemSprites.Length); i++)
+                {
+                    _additiveItemImages[i].SetData(additiveItemSprites[i].ItemSprite, additiveItemSprites[i], true);
+                }
             }
-            
-            _additiveFrame.SetActive(false);
-        }
         
-        for (int i = 0; i < Mathf.Min(_doughtRecipeItemImages.Length, doughtItemSprites.Length); i++)
+            _additiveFrame.SetActive(additiveItemSprites is not null);
+        }
+
+
+        // 반죽 재료 칸
         {
-            _doughtRecipeItemImages[i].SetData(doughtItemSprites[i].ItemSprite, doughtItemSprites[i], true);
+            if (_doughtRecipeItemImages.Length != doughtItemSprites.Length)
+            {
+                Debug.LogWarning("반죽 레시피 이미지 슬롯과, 입력된 스프라이트의 수가 일치하지 않습니다.");
+            }
+        
+            for (int i = 0; i < Mathf.Min(_doughtRecipeItemImages.Length, doughtItemSprites.Length); i++)
+            {
+                _doughtRecipeItemImages[i].SetData(doughtItemSprites[i].ItemSprite, doughtItemSprites[i], true);
+            }
         }
     }
 
@@ -163,10 +167,10 @@ public class RecipeBookPreviewView : MonoBehaviour
     {
         _resultItemNameText.text = "";
         _resultItemDescText.text = "";
-        _resultItemImage.sprite = null;
+        _resultItemImage.Clear();
 
-        _bakedBreadResultItemImage.sprite = null;
-        _additiveResultItemImage.sprite = null;
+        _bakedBreadResultItemImage.Clear();
+        _additiveResultItemImage.Clear();
 
         foreach (var t in _additiveItemImages)
         {

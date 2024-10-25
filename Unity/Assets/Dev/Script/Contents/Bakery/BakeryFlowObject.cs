@@ -296,7 +296,7 @@ public abstract class BakeryFlowBehaviourBucket : BakeryFlowBehaviour
 
                 if (additiveRecipe)
                 {
-                    resultItem = additiveRecipe.ResultItem;
+                    resultItem = recipe.ResultItem;
                     duration = additiveRecipe.CompletionDuration;
                 }
                 break;

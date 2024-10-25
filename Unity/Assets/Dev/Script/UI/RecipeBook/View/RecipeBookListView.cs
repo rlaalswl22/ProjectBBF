@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class RecipeBookListView : MonoBehaviour
 {
+    [SerializeField] private Image _selectRect;
+    [SerializeField] private Image _hoverRect;
     [SerializeField] private bool _awakeAndDisable = true;
     
     [SerializeField] private GameObject _slotViewPrefab;
@@ -55,6 +57,8 @@ public class RecipeBookListView : MonoBehaviour
         {
             Destroy(_content.GetChild(i).gameObject);
         }
+        
+        _selectRect.gameObject.SetActive(false);
     }
 
     private void OnDestroy()
@@ -62,6 +66,8 @@ public class RecipeBookListView : MonoBehaviour
         foreach (var slot in _slots)
         {
             slot.OnClick -= OnSlotClick;
+            slot.OnHoverEnter += OnSlotEnter;
+            slot.OnHoverExit+= OnSlotExit;
         }
         _slots.Clear();
         
@@ -85,11 +91,26 @@ public class RecipeBookListView : MonoBehaviour
         var slot = CreateSlotView();
         slot.SetData(itemSprite, data, isUnlocked);
         slot.OnClick += OnSlotClicked;
+        slot.OnHoverEnter += OnSlotEnter;
+        slot.OnHoverExit += OnSlotExit;
         _slots.Add(slot);
+    }
+
+    private void OnSlotExit(RecipeBookSlotView obj)
+    {
+        _hoverRect.gameObject.SetActive(false);   
+    }
+
+    private void OnSlotEnter(RecipeBookSlotView slotView)
+    {
+        _hoverRect.gameObject.SetActive(true);
+        _hoverRect.transform.position = slotView.transform.position;
     }
 
     private void OnSlotClicked(RecipeBookSlotView slotView)
     {
+        _selectRect.gameObject.SetActive(true);
+        _selectRect.transform.position = slotView.transform.position;
         OnSlotClick?.Invoke(slotView.Data);
     }
 }
