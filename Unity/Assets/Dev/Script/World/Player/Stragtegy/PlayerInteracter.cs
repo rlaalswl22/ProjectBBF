@@ -7,6 +7,7 @@ using ProjectBBF.Event;
 using ProjectBBF.Persistence;
 using UnityEngine;
 using UnityEngine.Serialization;
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
 
 
 public class PlayerInteracter : MonoBehaviour, IPlayerStrategy

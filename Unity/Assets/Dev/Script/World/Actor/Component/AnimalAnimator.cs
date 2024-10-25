@@ -65,6 +65,12 @@ public class AnimalAnimator : ActorComponent
                 continue;
             }
             
+            if(probabilities.Count == 0) 
+            {
+                yield return null;
+                continue;
+            }
+            
             int index = ProbabilityHelper.GetRandomIndex(probabilities);
             if (index == -1)
             {

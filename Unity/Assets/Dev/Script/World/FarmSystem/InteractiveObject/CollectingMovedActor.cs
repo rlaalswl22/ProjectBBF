@@ -111,6 +111,7 @@ public class CollectingMovedActor : ActorComponent
     public List<ItemData> Collect()
     {
         if (_collectingData == false) return null;
+        if (_collectCount >= CollectingData.MaxCollectCount) return null;
             
         var list = new List<ItemData>();
         if (CanCollect is false) return null;
@@ -143,7 +144,7 @@ public class CollectingMovedActor : ActorComponent
             }
         }
 
-        if (_collectCount < 1)
+        if (_collectCount >= CollectingData.MaxCollectCount)
         {
             _onChangedCollectingState.Invoke(CollectState.Collected);
         }

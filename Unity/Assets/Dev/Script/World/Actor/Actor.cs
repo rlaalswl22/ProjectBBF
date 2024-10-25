@@ -126,37 +126,37 @@ public class Actor : MonoBehaviour, IBANameKey
         }
         
         
-        List<ActorMovementData.PathItem> list = new(_movementData.Paths);
-        
-        while (list.Any())
-        {
-            int index = -1;
-            
-            while (index == -1)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].ChangeTimeEvent.IsTriggered)
-                    {
-                        index = i;
-                        break;
-                    }
-                }
-
-                if (index == -1 && list.Any())
-                {
-                    
-                }
-
-                yield return null;
-            }
-
-            CalculatePath(list[index].Path.GetComponent<PatrolPointPath>());
-            
-            list.RemoveAt(index);
-            MoveStrategy.ResetMove();
-            yield return null;
-        }
+        //List<ActorMovementData.PathItem> list = new(_movementData.Paths);
+        //
+        //while (list.Any())
+        //{
+        //    int index = -1;
+        //    
+        //    while (index == -1)
+        //    {
+        //        for (int i = 0; i < list.Count; i++)
+        //        {
+        //            if (list[i].ChangeTimeEvent.IsTriggered)
+        //            {
+        //                index = i;
+        //                break;
+        //            }
+        //        }
+//
+        //        if (index == -1 && list.Any())
+        //        {
+        //            
+        //        }
+//
+        //        yield return null;
+        //    }
+//
+        //    CalculatePath(list[index].Path.GetComponent<PatrolPointPath>());
+        //    
+        //    list.RemoveAt(index);
+        //    MoveStrategy.ResetMove();
+        //    yield return null;
+        //}
     }
 
     private PatrolPointPath _tempPatrolPointPath;

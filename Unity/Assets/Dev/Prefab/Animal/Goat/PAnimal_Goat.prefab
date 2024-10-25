@@ -45,8 +45,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 62602d87d0ee6c54391433a6b54a37bc, type: 2}
     - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _startDelay.Max
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _slider.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _slider.Array.data[0].Key
@@ -57,28 +61,44 @@ PrefabInstance:
       value: Action_1
       objectReference: {fileID: 0}
     - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.data[2].Key
+      value: Action_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _slider.Array.data[0].Value
-      value: 0.5
+      value: 0.333
       objectReference: {fileID: 0}
     - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _slider.Array.data[1].Value
-      value: 0.5
+      value: 0.333
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.data[2].Value
+      value: 0.334
       objectReference: {fileID: 0}
     - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _slider.Array.data[0].WairDuration.Max
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _slider.Array.data[0].WairDuration.Min
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
-      propertyPath: _slider.Array.data[1].WairDuration.Max
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.data[1].WairDuration.Max
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _slider.Array.data[1].WairDuration.Min
-      value: 3
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.data[2].WairDuration.Max
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
+      propertyPath: _slider.Array.data[2].WairDuration.Min
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7710583605823996137, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_Name

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Ani_Animal_CrystalDeer_Collected
+  m_Controller: {fileID: 9100000, guid: 72df612b4f1bc2f489f61db37a7bc809, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d5603ea88ad9ca842a13a3b41958028d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ac08e26f28dc257409c57b323347a3b4, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 44ebde9e76cec744abca3b0c4eeb1c31, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 50a323f0293e0da46818e0ae0fd6a1e8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 515c31837706f5044ad38e8bcbca47cb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3b3747496d5869643839964fddb8b0e0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 20cffa5aab58eb248a9d5fea6381009e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ad252f1a08636db40be9bf020dcbf681, type: 2}

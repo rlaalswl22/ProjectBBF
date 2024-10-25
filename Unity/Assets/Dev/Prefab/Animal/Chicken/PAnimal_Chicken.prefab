@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _slider.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5680145077571019588, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: _slider.Array.data[0].Key
@@ -182,7 +182,7 @@ PrefabInstance:
       objectReference: {fileID: -1491588988, guid: 27065b4f63faa614b8d15f0fb8dbb625, type: 3}
     - target: {fileID: 9166282083379131861, guid: 91a3d4618d0a1f14aa1fd98a03dd2e75, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
