@@ -153,6 +153,7 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
 
     protected override void OnPreGameEnd(bool isRequestEnd)
     {
+        OnGameRelease();
         Player.StateHandler.TranslateState("EndOfDialogue");
         _camera.gameObject.SetActive(false);
     }
@@ -165,6 +166,12 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
             if (frog.IsGoal)
             {
                 _goalIndex = i;
+
+                for (int j = 0; j < _frogs.Count; j++)
+                {
+                    _frogs[j].IsStop = true;
+                }
+                
                 return true;
             }
         }
@@ -175,11 +182,6 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
     protected override async UniTask OnGameEnd(bool isRequestEnd)
     {
         Player.MoveStrategy.IsStopped = false;
-        if (isRequestEnd)
-        {
-            OnGameRelease();
-            return;
-        }
 
         Player.MoveStrategy.ResetVelocity();
         var blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");

@@ -10,6 +10,7 @@ public class FrogRaceFrogObject : MonoBehaviour
     private static readonly int JumpAniHash = Animator.StringToHash("Jump");
 
     public bool IsGoal { get; private set; }
+    public bool IsStop { get; set; }
     public FrogRaceMinigameData.FrogData FrogData { get; set; }
 
     public void Begin(FrogRaceMinigameData gameData,  FrogRaceMinigameData.FrogData frogData)
@@ -58,6 +59,12 @@ public class FrogRaceFrogObject : MonoBehaviour
         while (true)
         {
             yield return null;
+
+            if (IsStop)
+            {
+                yield return null;
+                continue;
+            }
 
             float curX = t * maxX;
             float curY = GetCalculatedY(curX, maxX, maxY);
