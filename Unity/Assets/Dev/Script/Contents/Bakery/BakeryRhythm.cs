@@ -12,6 +12,7 @@ using UnityEngine.UI;
 
 public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 {
+    [SerializeField] private Animator _aniOven;
     [SerializeField] private GameObject _ovenActivationUI;
     [SerializeField] private GameObject _activationUI;
     [SerializeField] private AudioSource _source;
@@ -143,7 +144,10 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         pc.Blackboard.IsInteractionStopped = true;
         pc.transform.position = (Vector2)_playPoint.position;
         pc.MoveStrategy.ResetVelocity();
-        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive, AnimationActorKey.Direction.Down));
+        pc.MoveStrategy.IsGhost = true;
+        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Oven, AnimationActorKey.Direction.Down));
+
+        _aniOven.SetBool("Start", true);
         
         while (true)
         {
@@ -193,7 +197,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
                 
                 if (successCount >= SUCCESS_GOAL_COUNT)
                 {
-                    pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down));
+                    pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Oven, AnimationActorKey.Direction.Down));
                     GameSuccess(tuple, pc);
                     break;
                 }
@@ -224,9 +228,12 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         }
         
         
+        _aniOven.SetBool("Start", false);
+        
         _ovenActivationUI.SetActive(false);
         pc.Blackboard.IsMoveStopped = false;
         pc.Blackboard.IsInteractionStopped = false;
+        pc.MoveStrategy.IsGhost = false;
         pc.MoveStrategy.ResetVelocity();
         pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down));
         
@@ -243,6 +250,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
     }
     private void GameReset()
     {
+        _aniOven.SetBool("Start", false);
         _isPlaying = false;
         _panel.SetActive(false);
         SetVisibleFire(false);

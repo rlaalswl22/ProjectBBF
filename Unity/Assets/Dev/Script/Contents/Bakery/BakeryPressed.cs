@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class BakeryPressed: BakeryFlowBehaviourBucket
 {
+    [SerializeField] private float _endWait;
     [SerializeField] private GameObject _panel;
     [SerializeField] private Image _fillImage;
     [SerializeField] private Transform _playPoint;
@@ -110,8 +111,10 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
 
         pc.Blackboard.IsMoveStopped = true;
         pc.Blackboard.IsInteractionStopped = true;
-        pc.transform.position = (Vector2)_playPoint.position;
+        float backupPcZ = pc.transform.position.z;
+        pc.transform.position = _playPoint.position;
         pc.MoveStrategy.ResetVelocity();
+        pc.MoveStrategy.IsGhost = true;
         pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(aniAction, AnimationActorKey.Direction.Down));
 
 
@@ -131,6 +134,8 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
                 pc.MoveStrategy.IsStopped = false;
                 pc.Blackboard.IsInteractionStopped = false;
                 pc.MoveStrategy.ResetVelocity();
+                pc.MoveStrategy.IsGhost = false;
+                pc.transform.SetZ(backupPcZ);
                 pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
 
                 if (_activationUI.activeSelf == false)
@@ -150,12 +155,22 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
 
             yield return null;
         }
-
+        
         yield return null;
         
         pc.Blackboard.IsMoveStopped = false;
         pc.Blackboard.IsInteractionStopped = false;
         pc.MoveStrategy.ResetVelocity();
+        pc.MoveStrategy.IsGhost = false;
+        pc.transform.SetZ(backupPcZ);
+        
+
+        if (ResolvorType == Resolvor.Additive)
+        {
+            pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down), true);
+            yield return new WaitForSeconds(_endWait);
+        }
+        
         pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
         
         _audioSource.Stop();

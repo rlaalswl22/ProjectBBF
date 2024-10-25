@@ -25,6 +25,13 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy, IActorMove
         get => _blackboard.IsMoveStopped;
         set => _blackboard.IsMoveStopped = value;
     }
+
+    private bool _isGhost;
+    public bool IsGhost
+    {
+        get => _rigidbody.GetComponent<Collider2D>().isTrigger;
+        set => _rigidbody.GetComponent<Collider2D>().isTrigger = value;
+    }
     
     public void Init(PlayerController controller)
     {

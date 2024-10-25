@@ -198,7 +198,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             if (executedAny)
             {
                 _move.ResetVelocity();
-                //Vector2 dir = _coordinate.GetFrontPureDir();
 
                 Vector2 dir = (interaction.transform.position - _controller.transform.position).normalized;
                 _visual.LookAt(dir, AnimationActorKey.Action.Collect);
@@ -226,13 +225,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 .CreateSelectState()
                 .Bind<IBAInteractionTrigger>(ActivateTrigger)
                 .Execute(interaction.ContractInfo, out bool executedAny);
-
-            if (executedAny)
-            {
-                _move.ResetVelocity();
-                _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Collect, AnimationActorKey.Direction.Down));
-                await UniTask.Delay(300, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
-            }
             
             return executedAny;
         }
