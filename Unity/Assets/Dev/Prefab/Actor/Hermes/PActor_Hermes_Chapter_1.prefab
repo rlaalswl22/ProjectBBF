@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: _actorKey
       value: Hermes_Chapter_1
       objectReference: {fileID: 0}
+    - target: {fileID: 6938030239645781065, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 05f0872dfff432f4183ffbf542fc23f7, type: 2}
     - target: {fileID: 8712666892707010204, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
       propertyPath: m_Name
       value: PActor_Hermes_Chapter_1
@@ -89,7 +93,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 8fa47c09d319eae478a4716dd1ee1aa8, type: 3}
 --- !u!50 &3308792635670068181 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 653817010815740702, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}

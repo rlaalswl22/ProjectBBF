@@ -80,7 +80,23 @@ PrefabInstance:
       propertyPath: _actorKey
       value: Julian_Chapter_2
       objectReference: {fileID: 0}
+    - target: {fileID: 6938030239645781065, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 31cdaf70aef52104cbe89a0f0a4fa9d5, type: 2}
     - target: {fileID: 8712666892707010204, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_Name
+      value: PActor_Julian_Chapter_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258232571983436202, guid: 3a1c1a9df6412254d99cc83d029e7fd2, type: 3}
+      propertyPath: _saveKey
+      value: Julian_Chapter_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258232571983436202, guid: 3a1c1a9df6412254d99cc83d029e7fd2, type: 3}
+      propertyPath: _actorKey
+      value: Julian_Chapter_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633940948283213399, guid: 3a1c1a9df6412254d99cc83d029e7fd2, type: 3}
       propertyPath: m_Name
       value: PActor_Julian_Chapter_2
       objectReference: {fileID: 0}
@@ -88,4 +104,4 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 3a1c1a9df6412254d99cc83d029e7fd2, type: 3}

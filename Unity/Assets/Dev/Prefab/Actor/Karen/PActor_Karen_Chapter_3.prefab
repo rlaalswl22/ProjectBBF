@@ -76,7 +76,23 @@ PrefabInstance:
       propertyPath: _actorKey
       value: Karen_Chapter_3
       objectReference: {fileID: 0}
+    - target: {fileID: 6938030239645781065, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: c725e268d1b192d45a41261ab505a07c, type: 2}
     - target: {fileID: 8712666892707010204, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_Name
+      value: PActor_Karen_Chapter_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258232571983436202, guid: 679ace3e28c1b424db8a20fd09be3906, type: 3}
+      propertyPath: _saveKey
+      value: Karen_Chapter_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258232571983436202, guid: 679ace3e28c1b424db8a20fd09be3906, type: 3}
+      propertyPath: _actorKey
+      value: Karen_Chapter_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633940948283213399, guid: 679ace3e28c1b424db8a20fd09be3906, type: 3}
       propertyPath: m_Name
       value: PActor_Karen_Chapter_3
       objectReference: {fileID: 0}
@@ -84,4 +100,4 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 679ace3e28c1b424db8a20fd09be3906, type: 3}
