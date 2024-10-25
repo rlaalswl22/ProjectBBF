@@ -13,6 +13,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
     [SerializeField] private GameObject _panel;
     [SerializeField] private Image _fillImage;
     [SerializeField] private Transform _playPoint;
+    [SerializeField] private Transform _revertPoint;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private ESOVoid _esoSuccess;
     [SerializeField] private GameObject _activationUI;
@@ -115,7 +116,10 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         pc.transform.position = _playPoint.position;
         pc.MoveStrategy.ResetVelocity();
         pc.MoveStrategy.IsGhost = true;
-        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(aniAction, AnimationActorKey.Direction.Down));
+
+        yield return null;
+        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(aniAction, AnimationActorKey.Direction.Down), true);
+        pc.MoveStrategy.LastMovedDirection = Vector2.down;
 
 
         if (ResolvorType == Resolvor.Dough)
@@ -135,6 +139,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
                 pc.Blackboard.IsInteractionStopped = false;
                 pc.MoveStrategy.ResetVelocity();
                 pc.MoveStrategy.IsGhost = false;
+                pc.transform.position = _revertPoint.position;
                 pc.transform.SetZ(backupPcZ);
                 pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
 
@@ -145,6 +150,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
                 yield break;
             }
 
+            pc.transform.position = _playPoint.position;
             _fillImage.fillAmount = t / tuple.duration;
             t += Time.deltaTime;
 
@@ -158,22 +164,6 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         
         yield return null;
         
-        pc.Blackboard.IsMoveStopped = false;
-        pc.Blackboard.IsInteractionStopped = false;
-        pc.MoveStrategy.ResetVelocity();
-        pc.MoveStrategy.IsGhost = false;
-        pc.transform.SetZ(backupPcZ);
-        
-
-        if (ResolvorType == Resolvor.Additive)
-        {
-            pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down), true);
-            yield return new WaitForSeconds(_endWait);
-        }
-        
-        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
-        
-        _audioSource.Stop();
         
         if (tuple.resultItem is not null)
         {
@@ -188,6 +178,22 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         {
             GameFail(tuple, pc);
         }
+        
+        pc.MoveStrategy.IsGhost = false;
+        pc.transform.position = _revertPoint.position;
+
+        _panel.SetActive(false);
+        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down), true);
+        yield return new WaitForSeconds(_endWait);
+        
+        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
+        
+        
+        pc.Blackboard.IsMoveStopped = false;
+        pc.Blackboard.IsInteractionStopped = false;
+        pc.MoveStrategy.ResetVelocity();
+        pc.transform.SetZ(backupPcZ);
+        _audioSource.Stop();
 
         _activationUI.SetActive(false);
         GameReset();

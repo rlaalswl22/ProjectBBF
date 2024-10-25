@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
                 return _hudController;
             }
 
-            GameObjectStorage.Instance.ForEach(obj =>
+            GameObjectStorage.Instance?.ForEach(obj =>
             {
                 if (obj.gameObject.TryGetComponent<HudController>(out var com))
                 {

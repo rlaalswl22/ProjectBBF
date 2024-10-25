@@ -12,6 +12,7 @@ using UnityEngine.UI;
 
 public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 {
+    [SerializeField] private float _endWait;
     [SerializeField] private Animator _aniOven;
     [SerializeField] private GameObject _ovenActivationUI;
     [SerializeField] private GameObject _activationUI;
@@ -145,7 +146,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         pc.transform.position = (Vector2)_playPoint.position;
         pc.MoveStrategy.ResetVelocity();
         pc.MoveStrategy.IsGhost = true;
-        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Oven, AnimationActorKey.Direction.Down));
+        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Oven, AnimationActorKey.Direction.Down), true);
 
         _aniOven.SetBool("Start", true);
         
@@ -197,7 +198,6 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
                 
                 if (successCount >= SUCCESS_GOAL_COUNT)
                 {
-                    pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Oven, AnimationActorKey.Direction.Down));
                     GameSuccess(tuple, pc);
                     break;
                 }
@@ -226,18 +226,24 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 
             yield return null;
         }
-        
-        
+
         _aniOven.SetBool("Start", false);
-        
         _ovenActivationUI.SetActive(false);
+        GameReset();
+        
+        if (successCount >= SUCCESS_GOAL_COUNT)
+        {
+            pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down), true);
+            yield return new WaitForSeconds(_endWait);
+        }
+        
         pc.Blackboard.IsMoveStopped = false;
         pc.Blackboard.IsInteractionStopped = false;
         pc.MoveStrategy.IsGhost = false;
         pc.MoveStrategy.ResetVelocity();
-        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down));
-        
-        GameReset();
+        pc.MoveStrategy.LastMovedDirection = Vector2.down;
+        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
+
     }
 
     private void GameSetup()

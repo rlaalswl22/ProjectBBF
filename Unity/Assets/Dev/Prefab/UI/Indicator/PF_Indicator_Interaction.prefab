@@ -24,6 +24,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Indicator_Interaction
       objectReference: {fileID: 0}
+    - target: {fileID: 1498178806280517771, guid: 365e9450ac9009d4b8309d47ea5e8d8d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498178806280517771, guid: 365e9450ac9009d4b8309d47ea5e8d8d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4628887281252109305, guid: 365e9450ac9009d4b8309d47ea5e8d8d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
