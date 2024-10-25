@@ -17,6 +17,8 @@ public class InteractableInventoryView : MonoBehaviour, IInventoryView
     private InventorySlotView[,] _slotViews;
 
     public event Action<IInventorySlot, PointerEventData> OnSlotDown;
+    public event Action OnViewClosed;
+    public event Action OnViewOpened;
 
     public int Row { get; private set; }
     public int Col { get; private set; }
@@ -24,7 +26,19 @@ public class InteractableInventoryView : MonoBehaviour, IInventoryView
     public bool Visible
     {
         get => gameObject.activeSelf;
-        set => gameObject.SetActive(value);
+        set
+        {
+            gameObject.SetActive(value);
+
+            if (value)
+            {
+                OnViewOpened?.Invoke();
+            }
+            else
+            {
+                OnViewClosed?.Invoke();
+            }
+        }
     }
 
     public void Init()

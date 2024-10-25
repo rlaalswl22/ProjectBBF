@@ -207,6 +207,11 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
             inst.DialogueText = $"돈을 잃었습니다.";
             blackboard.Money = Mathf.Max(0, blackboard.Money - _money);
         }
+        
+        Player.HudController.Visible = true;
+        Player.HudController.SetAllHudVisible(true);
+        Player.Inventory.QuickInvVisible = true;
+        Player.Blackboard.IsInteractionStopped = false;
 
         OnGameRelease();
         await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update);

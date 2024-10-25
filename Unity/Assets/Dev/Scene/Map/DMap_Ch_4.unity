@@ -466,6 +466,7 @@ MonoBehaviour:
   _fadeIn: 1
   _save: 0
   _load: 0
+  _savePosAndWorld: 1
   _unloadImmutable: 0
   _initPlayerPosition: {fileID: 1479501056}
 --- !u!114 &139040258
@@ -2287,6 +2288,7 @@ MonoBehaviour:
   _fadeIn: 1
   _save: 0
   _load: 0
+  _savePosAndWorld: 0
   _unloadImmutable: 0
   _initPlayerPosition: {fileID: 168321749}
 --- !u!114 &453747230
@@ -2374,6 +2376,7 @@ MonoBehaviour:
   _fadeIn: 1
   _save: 0
   _load: 0
+  _savePosAndWorld: 1
   _unloadImmutable: 0
   _initPlayerPosition: {fileID: 2081062731}
 --- !u!114 &461957666
@@ -2555,6 +2558,7 @@ MonoBehaviour:
   _fadeIn: 1
   _save: 0
   _load: 0
+  _savePosAndWorld: 1
   _unloadImmutable: 0
   _initPlayerPosition: {fileID: 1281840108}
 --- !u!114 &512019806
@@ -3820,6 +3824,7 @@ MonoBehaviour:
   _fadeIn: 1
   _save: 0
   _load: 0
+  _savePosAndWorld: 1
   _unloadImmutable: 0
   _initPlayerPosition: {fileID: 1010029804}
 --- !u!114 &1318913655

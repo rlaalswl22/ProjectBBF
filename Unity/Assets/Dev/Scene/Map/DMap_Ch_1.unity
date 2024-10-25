@@ -9945,11 +9945,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6869428604634283899, guid: 769771a04d3a27c40928d22d2a6d7d13, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.37
+      value: -1.81
       objectReference: {fileID: 0}
     - target: {fileID: 6869428604634283899, guid: 769771a04d3a27c40928d22d2a6d7d13, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -29.14
+      value: -27.07
       objectReference: {fileID: 0}
     - target: {fileID: 6869428604634283899, guid: 769771a04d3a27c40928d22d2a6d7d13, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10701,6 +10701,7 @@ MonoBehaviour:
   _fadeIn: 1
   _save: 0
   _load: 0
+  _savePosAndWorld: 1
   _unloadImmutable: 0
   _initPlayerPosition: {fileID: 1820946036}
 --- !u!114 &1593955251
@@ -11560,6 +11561,7 @@ MonoBehaviour:
   _fadeIn: 1
   _save: 0
   _load: 0
+  _savePosAndWorld: 0
   _unloadImmutable: 0
   _initPlayerPosition: {fileID: 1285892682}
 --- !u!114 &1938769840

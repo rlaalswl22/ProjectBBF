@@ -47,8 +47,8 @@ public class PlayerBlackboard : ISaveLoadNotification
     [Editable] private int _energy = 50;
     [Editable] private int _maxEnergy = 50;
 
-    private string _currentWorld;
-    private Vector2 _currentPosition;
+    [SerializeField, Editable] private string _currentWorld;
+    [SerializeField, Editable] private Vector2 _currentPosition;
 
     [SerializeField, Editable] private int _money = 500;
 

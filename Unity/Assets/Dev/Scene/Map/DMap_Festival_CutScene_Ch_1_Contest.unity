@@ -643,6 +643,7 @@ MonoBehaviour:
   _fadeIn: 1
   _save: 1
   _load: 1
+  _savePosAndWorld: 1
   _unloadImmutable: 0
   _initPlayerPosition: {fileID: 1089679392}
 --- !u!1 &800439126
@@ -1953,6 +1954,7 @@ MonoBehaviour:
   _fadeIn: 1
   _save: 0
   _load: 1
+  _savePosAndWorld: 1
   _unloadImmutable: 0
   _initPlayerPosition: {fileID: 53317037}
 --- !u!1 &1939135683

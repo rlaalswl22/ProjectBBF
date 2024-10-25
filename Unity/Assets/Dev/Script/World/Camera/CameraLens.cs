@@ -19,6 +19,14 @@ public class CameraLens : MonoBehaviour
         LensUpdate(ScreenManager.Instance.CurrentResolution);
     }
 
+    private void OnDestroy()
+    {
+        if (ScreenManager.Instance)
+        {
+            ScreenManager.Instance.OnChangedResolution -= LensUpdate;
+        }
+    }
+
     private void Start()
     {
         // don't delete

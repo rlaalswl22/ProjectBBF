@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2270806076189230636, guid: a40293022f9a4b84e988586acb0c2a63, type: 3}
+      propertyPath: _collectingData
+      value: 
+      objectReference: {fileID: 11400000, guid: f44e632394d41a547b963a39a45a1898, type: 2}
     - target: {fileID: 3012707303049769851, guid: a40293022f9a4b84e988586acb0c2a63, type: 3}
       propertyPath: _saveKey
       value: Goat_0_Normal

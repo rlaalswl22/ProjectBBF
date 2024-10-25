@@ -63,7 +63,7 @@ public class LyllaFavorability : ActorComFavorability
     
     private void OnFadein()
     {
-        if (_persistenceObject._tutorialDialogueOnceTable.Contains(SceneLoader.Instance.CurrentWorldScene))
+        if (_persistenceObject._tutorialDialogueOnceTable.Contains(SceneLoader.Instance.CurrentWorldScene) || SceneLoader.Instance.PrevWorldScene is null)
         {
             return;
         }

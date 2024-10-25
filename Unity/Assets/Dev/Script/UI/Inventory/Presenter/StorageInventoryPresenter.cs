@@ -17,6 +17,8 @@ public class StorageInventoryPresenter : MonoBehaviour, IInventoryPresenter<Grid
 
     public event Action<StorageInventoryPresenter> OnInit;
 
+    private int _recentSelection;
+    
     public void Init()
     {
         StartCoroutine(CoInit());
@@ -44,6 +46,8 @@ public class StorageInventoryPresenter : MonoBehaviour, IInventoryPresenter<Grid
 
         PlayerView.OnSlotDown += OnPlayerSlotDown;
         StorageView.OnSlotDown += OnStorageSlotDown;
+        
+        PlayerView.OnViewClosed += OnClosed;
 
         PlayerView.Refresh(PlayerModel);
         StorageView.Refresh(Model);
@@ -51,6 +55,30 @@ public class StorageInventoryPresenter : MonoBehaviour, IInventoryPresenter<Grid
         StorageView.Visible = false;
 
         OnInit?.Invoke(this);
+    }
+
+    private void OnClosed()
+    {
+        var inst = SelectItemPresenter.Instance;
+        if (inst)
+        {
+            if (inst.Model.Selected.Empty is false && _recentSelection != -1)
+            {
+                Debug.Assert(_recentSelection is not -1);
+                var model = _recentSelection is 2 ? Model: PlayerModel;
+                int remainCount = model.PushItem(inst.Model.Selected.Data, inst.Model.Selected.Count);
+
+                if (remainCount == inst.Model.Selected.Count)
+                {
+                    _recentSelection = 0;
+                    return;
+                }
+                
+                inst.Model.Selected.Clear();
+            }
+        }
+
+        _recentSelection = 0;
     }
 
     private void OnPlayerSlotDown(IInventorySlot obj, PointerEventData eventData)
@@ -61,6 +89,7 @@ public class StorageInventoryPresenter : MonoBehaviour, IInventoryPresenter<Grid
         }
         else
         {
+            _recentSelection = 1;
             InventoryHelper.SwapOrHalfItem(obj, eventData);
         }
     }
@@ -72,6 +101,7 @@ public class StorageInventoryPresenter : MonoBehaviour, IInventoryPresenter<Grid
         }
         else
         {
+            _recentSelection = 2;
             InventoryHelper.SwapOrHalfItem(obj, eventData);
         }
     }

@@ -48,9 +48,12 @@ public class SaveSlotView : MonoBehaviour
             {
                 PersistenceManager.Instance.CurrentMetadata = CurrentMetaData;
                 PersistenceManager.Instance.LoadGameDataCurrentFileName();
+
+                var scene = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard")
+                    .CurrentWorld;
                 
                 SceneLoader.Instance.WorkDirectorAsync(false, "BlackAlpha")
-                    .ContinueWith(_ => SceneLoader.Instance.LoadWorldAsync("World_MiddleBuild"))
+                    .ContinueWith(_ => SceneLoader.Instance.LoadWorldAsync(string.IsNullOrEmpty(scene) ? "World_Festival_Ch_0" : scene))
                     .ContinueWith(_ => SceneLoader.Instance.LoadImmutableScenesAsync())
                     .ContinueWith(_ => SceneLoader.Instance.WorkDirectorAsync(true, "BlackAlpha"))
                     .Forget();

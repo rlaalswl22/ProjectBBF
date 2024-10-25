@@ -13,6 +13,7 @@ public class MoveToWorld : MonoBehaviour
     [SerializeField] private bool _fadeIn;
     [SerializeField] private bool _save;
     [SerializeField] private bool _load;
+    [SerializeField] private bool _savePosAndWorld = true;
     [SerializeField] private bool _unloadImmutable;
     [SerializeField] private Transform _initPlayerPosition;
 
@@ -30,10 +31,15 @@ public class MoveToWorld : MonoBehaviour
 
         var pos = _initPlayerPosition.position;
 
-        pc.Blackboard.CurrentPosition = pos;
+        if (_savePosAndWorld)
+        {
+            pc.Blackboard.CurrentPosition = pos;
+            pc.Blackboard.CurrentWorld = _scene.Scene;
+        }
         
         var loaderInst = SceneLoader.Instance;
         var PersistenceInst = PersistenceManager.Instance;
+
         pc.Blackboard.IsMoveStopped = true;
         pc.Blackboard.IsInteractionStopped = true;
             

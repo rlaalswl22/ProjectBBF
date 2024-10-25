@@ -8,6 +8,7 @@ public class SelectItemModel : IInventoryModel
     public int MaxSize => 1;
     
     public readonly DefaultInventorySlot Selected = new();
+
     public bool IsEmpty => Selected.Empty;
 
     public SelectItemModel()

@@ -48,6 +48,12 @@ public class FadeinoutObject : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (_cachedPlayer)
+        {
+            _cachedPlayer.Interactor.OnChangedCloserObject -= OnChangedCloserObject;
+            _cachedPlayer.Interactor.RemoveCloserObject(Interaction);
+            _cachedPlayer = null;
+        }
         DOTween.Kill(this);
     }
 
@@ -80,6 +86,8 @@ public class FadeinoutObject : MonoBehaviour
 
     private void OnChangedCloserObject(CollisionInteractionMono changed)
     {
+        if (gameObject == false) return;
+        
         StopAllCoroutines();
         StartCoroutine(CoFade(changed == Interaction));
     }

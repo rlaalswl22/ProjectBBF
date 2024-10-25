@@ -34,11 +34,31 @@ public class PlayerInventoryPresenter : IInventoryPresenter<GridInventoryModel>
         _pannelView = pannelView;
 
         _mainView.OnSlotDown += OnSlotDown;
+        _mainView.OnViewClosed += OnClosed;
         
         _mainView.Refresh(Model);
         _quickView.Refresh(Model);
 
         QuickInvVisible = true;
+    }
+
+    private void OnClosed()
+    {
+        var inst = SelectItemPresenter.Instance;
+        if (inst)
+        {
+            if (inst.Model.Selected.Empty is false)
+            {
+                int remainCount = Model.PushItem(inst.Model.Selected.Data, inst.Model.Selected.Count);
+
+                if (remainCount == inst.Model.Selected.Count)
+                {
+                    return;
+                }
+                
+                inst.Model.Selected.Clear();
+            }
+        }
     }
 
     private void OnSlotDown(IInventorySlot obj, PointerEventData eventData)
