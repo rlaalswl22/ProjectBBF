@@ -32,7 +32,7 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
 
     protected override void OnGameInit()
     {
-        _frogs ??= new List<FrogRaceFrogObject>(Data.Frogs.Length);
+        _frogs = new List<FrogRaceFrogObject>(Data.Frogs.Length);
         _goalIndex = 0;
         _targetIndex = 0;
         _money = 0;
@@ -57,13 +57,16 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
         _camera.MoveToTopOfPrioritySubqueue();
         _brain = Camera.main.GetComponent<CinemachineBrain>();
         _brain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
+        
+        Player.MoveStrategy.ResetVelocity();
+        Player.Blackboard.IsMoveStopped = true;
+        Player.Blackboard.IsInteractionStopped = true;
+        Player.Inventory.QuickInvVisible = false;
     }
 
     protected override async UniTask OnTutorial()
     {
-        Player.MoveStrategy.ResetVelocity();
         DialogueController.Instance.ResetDialogue();
-        Player.StateHandler.TranslateState("ToDialogue");
         var inst = DialogueController.Instance;
 
         var fields = _frogs.Select(x => inst.GetField<BranchFieldButton>().Init(x.FrogData.DisplayName)).ToArray();
@@ -72,12 +75,12 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
         );
 
         _targetIndex = result.index;
+        
+        Debug.Assert(_targetIndex is not -1);
 
         while (true)
         {
             Player.HudController.Visible = true;
-            Player.HudController.SetAllHudVisible(false);
-            Player.HudController.MoneyUI.Visible = true;
             
             
             BranchFieldIntInput moneyInput;
@@ -108,18 +111,14 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
 
             break;
         }
-        
-        Player.HudController.Visible = false;
-        Player.HudController.SetAllHudVisible(true);
 
         DialogueController.Instance.ResetDialogue();
-        Player.StateHandler.TranslateState("EndOfDialogue");
     }
 
     protected override void OnGameBegin()
     {
-        Player.StateHandler.TranslateState("ToDialogue");
-        Player.MoveStrategy.IsStopped = true;
+        Player.HudController.Visible = false;
+        Player.Inventory.QuickInvVisible = false;
         StartCoroutine(CoUpdate());
 
         for (int i = 0; i < _frogs.Count; i++)
@@ -140,7 +139,6 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
     protected override void OnGameRelease()
     {
         _camera.gameObject.SetActive(false);
-        
         foreach (var frog in _frogs)
         {
             frog.End();
@@ -153,8 +151,6 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
 
     protected override void OnPreGameEnd(bool isRequestEnd)
     {
-        OnGameRelease();
-        Player.StateHandler.TranslateState("EndOfDialogue");
         _camera.gameObject.SetActive(false);
     }
 
@@ -181,13 +177,11 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
 
     protected override async UniTask OnGameEnd(bool isRequestEnd)
     {
-        Player.MoveStrategy.IsStopped = false;
 
         Player.MoveStrategy.ResetVelocity();
         var blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
         var inst = DialogueController.Instance;
         inst.ResetDialogue();
-        Player.StateHandler.TranslateState("ToDialogue");
         inst.Visible = true;
 
 
@@ -196,6 +190,7 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
             AudioManager.Instance.PlayOneShot("SFX", "SFX_Frog_Win");
             AudioManager.Instance.PlayOneShot("Player", "Player_Getting_Coin");
             
+            Debug.Assert(_targetIndex is not -1 && _frogs.Count > 0, $"{_frogs.Count}, {_targetIndex}");
             var frogData = _frogs[_targetIndex];
             int money = (int)(frogData.FrogData.DividendRate * _money);
             blackboard.Money += money;
@@ -207,15 +202,16 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
             inst.DialogueText = $"돈을 잃었습니다.";
             blackboard.Money = Mathf.Max(0, blackboard.Money - _money);
         }
-        
-        Player.HudController.Visible = true;
-        Player.HudController.SetAllHudVisible(true);
-        Player.Inventory.QuickInvVisible = true;
-        Player.Blackboard.IsInteractionStopped = false;
 
         OnGameRelease();
         await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update);
 
+        Player.Blackboard.IsMoveStopped = false;
+        Player.Blackboard.IsInteractionStopped = false;
+        Player.Inventory.QuickInvVisible = true;
+        Player.HudController.Visible = true;
+        Player.HudController.SetAllHudVisible(true);
+        
         inst.ResetDialogue();
     }
 }

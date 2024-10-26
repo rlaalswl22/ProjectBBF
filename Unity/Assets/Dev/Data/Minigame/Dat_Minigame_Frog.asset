@@ -22,8 +22,8 @@ MonoBehaviour:
   _jumpInterval: 0.1
   _jumpMinDistance: 1
   _jumpMaxDistance: 3
-  _movementSpeed: 15
-  _jumpMaxHeight: 2
+  _movementSpeed: 1
+  _jumpMaxHeight: 1.5
   _frogs:
   - FrogObject: {fileID: 5998470117485160814, guid: 5e63e5fed783bc042b279b93cef54605, type: 3}
     DisplayName: "\uAC1C\uAD741"
