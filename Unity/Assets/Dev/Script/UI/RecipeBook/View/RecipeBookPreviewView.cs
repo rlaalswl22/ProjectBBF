@@ -113,14 +113,14 @@ public class RecipeBookPreviewView : MonoBehaviour
         bool isUnlocked)
     {
 
+        _resultItemNameText.text = resultItemName;
+        
         if (isUnlocked)
         {
-            _resultItemNameText.text = resultItemName;
             _resultItemDescText.text = resultItemDesc;  
         }
         else
         {
-            _resultItemNameText.text = "???";
             _resultItemDescText.text = "???";
         }
         
