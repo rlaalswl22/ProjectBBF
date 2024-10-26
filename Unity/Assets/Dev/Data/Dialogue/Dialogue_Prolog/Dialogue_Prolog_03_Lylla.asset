@@ -18,17 +18,17 @@ MonoBehaviour:
     PortName: Execute
     TargetNodeGuid: ef437491-74b4-451c-9822-e77d4f9f9566
   NodeData:
-  - rid: 1818509133204684934
+  - rid: 3200567900526870911
   references:
     version: 2
     RefIds:
-    - rid: 1818509133204684934
+    - rid: 3200567900526870911
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: ef437491-74b4-451c-9822-e77d4f9f9566
         NodeTitle: Text
         TypeName: Text
         Position: {x: 267, y: 200}
-        DialogueText: "\uC798 \uB530\uB77C\uC624\uB77C \uB0E5!"
+        DialogueText: "\uC798 \uB530\uB77C\uC624\uB77C\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1

@@ -24,19 +24,19 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 045176a3-0ae5-4c92-959a-ab5eb7a4a289
   NodeData:
-  - rid: 1818509224658600194
-  - rid: 1818509224658600195
-  - rid: 1818509224658600196
+  - rid: 3200567900526870562
+  - rid: 3200567900526870563
+  - rid: 3200567900526870564
   references:
     version: 2
     RefIds:
-    - rid: 1818509224658600194
+    - rid: 3200567900526870562
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 045176a3-0ae5-4c92-959a-ab5eb7a4a289
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 1370, y: 200}
+        Position: {x: 1439, y: 203}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
@@ -45,7 +45,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 113d33a699c4cf94184e5eb1060c0026, type: 2}
           BoolValue: 0
-    - rid: 1818509224658600195
+    - rid: 3200567900526870563
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 115accee-c272-464f-b78a-0b1b23b92467
@@ -55,17 +55,17 @@ MonoBehaviour:
         DialogueText: "\uC6B0\uC120 \uC77C\uBC18 \uBE75\uC744 \uB9CC\uB4E4\uAE30
           \uC704\uD574\uC11C\uB294 \uBC00\uAC00\uB8E8\uB791 \uB2EC\uAC40, \uC6B0\uC720\uB97C
           \uC5BB\uC5B4\uC57C \uD55C\uB2E4\uB0E5! \uC77C\uB2E8 \uB18D\uC0AC\uBD80\uC2A4\uC5D0
-          \uC904\uB9AC\uC548\uC5D0\uAC8C \uBA3C\uC800 \uAC00\uC790 \uB0E5!"
+          \uC788\uB294 \uC904\uB9AC\uC548\uC5D0\uAC8C \uBA3C\uC800 \uAC00\uC790\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509224658600196
+    - rid: 3200567900526870564
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 4adba0dd-854f-4766-8a14-8b64419b5bf3
         NodeTitle: Text
         TypeName: Text
         Position: {x: 1029, y: 200}
-        DialogueText: " \uB0B4\uAC00 \uC904\uB9AC\uC548\uD55C\uD14C \uB370\uB824\uB2E4
-          \uC8FC\uACA0\uB2E4 \uB0E5!"
+        DialogueText: " \uB098\uB9CC \uB530\uB77C\uC624\uBA74 \uB0B4\uAC00 \uC904\uB9AC\uC548\uD55C\uD14C
+          \uB370\uB824\uB2E4 \uC8FC\uACA0\uB2E4\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1

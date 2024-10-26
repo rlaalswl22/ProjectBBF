@@ -24,13 +24,13 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: bc453288-a866-4509-bd24-8a9172b55473
   NodeData:
-  - rid: 1818509224658600059
-  - rid: 1818509224658600060
-  - rid: 1818509224658600061
+  - rid: 3200567900526870619
+  - rid: 3200567900526870620
+  - rid: 3200567900526870621
   references:
     version: 2
     RefIds:
-    - rid: 1818509224658600059
+    - rid: 3200567900526870619
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 1df98b14-cfbb-4974-84ee-d5b46bf9e71f
@@ -41,7 +41,7 @@ MonoBehaviour:
           \uAD6C\uC6B0\uBA74 \uB41C\uB2E4\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509224658600060
+    - rid: 3200567900526870620
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: bc453288-a866-4509-bd24-8a9172b55473
@@ -52,7 +52,7 @@ MonoBehaviour:
           \uBC18\uC8FD\uC744 \uC5BB\uC744 \uC218 \uC788\uB2E4\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509224658600061
+    - rid: 3200567900526870621
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: c7bc2d48-2cfd-4684-bb56-d8110ac406b1
@@ -60,6 +60,6 @@ MonoBehaviour:
         TypeName: Text
         Position: {x: 244, y: 200}
         DialogueText: "\uBA3C\uC800 \uBC18\uC8FD \uD14C\uC774\uBE14\uC5D0 \uAC00\uC838\uC628
-          \uC7AC\uB8CC\uB97C \uC62C\uB9AC\uBA74 \uB41C\uB2E4 \uB0E5!"
+          \uC7AC\uB8CC\uB97C \uC62C\uB9AC\uBA74 \uB41C\uB2E4\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1

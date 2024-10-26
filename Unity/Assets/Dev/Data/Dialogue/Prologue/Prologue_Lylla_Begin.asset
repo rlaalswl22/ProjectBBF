@@ -24,19 +24,19 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: d8b837fa-7357-45a1-a500-389d5200c966
   NodeData:
-  - rid: 2427336073050587136
-  - rid: 2427336073050587137
-  - rid: 2427336073050587138
+  - rid: 3200567900526870930
+  - rid: 3200567900526870931
+  - rid: 3200567900526870932
   references:
     version: 2
     RefIds:
-    - rid: 2427336073050587136
+    - rid: 3200567900526870930
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7bb2c306-be67-4a2b-aeaf-a802ac0b22f8
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 1153.3334, y: 172}
+        Position: {x: 1153, y: 172}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
@@ -45,13 +45,13 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: f11db7ef5f818c64eb8184ae5b32d976, type: 2}
           BoolValue: 0
-    - rid: 2427336073050587137
+    - rid: 3200567900526870931
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d8b837fa-7357-45a1-a500-389d5200c966
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 675.3333, y: 172}
+        Position: {x: 675, y: 172}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
@@ -60,13 +60,13 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 6010ffe43e789b340bf5bc8706780ecc, type: 2}
           BoolValue: 0
-    - rid: 2427336073050587138
+    - rid: 3200567900526870932
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: fe6447ab-ecd5-4fc6-8ed4-d2a2ff647856
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 316, y: 191.33334}
-        DialogueText: "\uB300\uD68C\uAD6C\uC5ED\uC73C\uB85C \uAC00\uC790"
+        Position: {x: 316, y: 191}
+        DialogueText: "\uB300\uD68C \uAD6C\uC5ED\uC73C\uB85C \uAC00\uC790"
         PortraitKey: 
         ActorKey: 

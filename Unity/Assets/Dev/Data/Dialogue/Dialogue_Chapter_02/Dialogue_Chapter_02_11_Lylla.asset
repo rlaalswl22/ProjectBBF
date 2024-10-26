@@ -27,14 +27,14 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 4bf1de95-c1f9-417e-85d0-acd30c6dba26
   NodeData:
-  - rid: 1818509224658600145
-  - rid: 1818509224658600146
-  - rid: 1818509224658600147
-  - rid: 1818509224658600148
+  - rid: 3200567900526870661
+  - rid: 3200567900526870662
+  - rid: 3200567900526870663
+  - rid: 3200567900526870664
   references:
     version: 2
     RefIds:
-    - rid: 1818509224658600145
+    - rid: 3200567900526870661
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 4bf1de95-c1f9-417e-85d0-acd30c6dba26
@@ -49,7 +49,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 3feb002ec142d464585c796437d190cf, type: 2}
           BoolValue: 0
-    - rid: 1818509224658600146
+    - rid: 3200567900526870662
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 88c729ea-98a7-42ef-b8db-8d286c6b1b4e
@@ -60,19 +60,19 @@ MonoBehaviour:
           \uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509224658600147
+    - rid: 3200567900526870663
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 8be7d739-da43-424d-8996-544d42f4e606
         NodeTitle: Text
         TypeName: Text
         Position: {x: 248, y: 200}
-        DialogueText: "\uC544\uD788\uB974\uAC00 \uB9D0\uD588\uB358\uAC70 \uCC98\uB7FC
+        DialogueText: "\uC544\uD788\uB974\uAC00 \uB9D0\uD588\uB358 \uAC83\uCC98\uB7FC
           \uB3D9\uCABD\uC73C\uB85C \uAC00\uBA74 \uB09A\uC2DC\uB97C \uD560 \uC218
           \uC788\uB2E4\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1818509224658600148
+    - rid: 3200567900526870664
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: c16edc77-80a0-43f9-a3f2-49190a4fbb0f

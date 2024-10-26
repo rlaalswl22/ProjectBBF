@@ -27,14 +27,14 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 2df77183-e5a8-47db-81a2-f799019fe69d
   NodeData:
-  - rid: 1818509224658600271
-  - rid: 1818509224658600272
-  - rid: 1818509224658600273
-  - rid: 1818509224658600274
+  - rid: 3200567900526870742
+  - rid: 3200567900526870743
+  - rid: 3200567900526870744
+  - rid: 3200567900526870745
   references:
     version: 2
     RefIds:
-    - rid: 1818509224658600271
+    - rid: 3200567900526870742
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 06ce0892-2f89-429e-9af7-74d9bdb942c3
@@ -45,7 +45,7 @@ MonoBehaviour:
           \uAE08\uBC29 \uCC3E\uC744 \uC218 \uC788\uC744\uAC70\uC5D0\uC694"
         PortraitKey: 
         ActorKey: Julian_Chapter_1
-    - rid: 1818509224658600272
+    - rid: 3200567900526870743
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 2df77183-e5a8-47db-81a2-f799019fe69d
@@ -57,7 +57,7 @@ MonoBehaviour:
           \uCC3E\uC744 \uC218 \uC788\uC744 \uAC70\uC5D0\uC694!"
         PortraitKey: 
         ActorKey: Julian_Chapter_1
-    - rid: 1818509224658600273
+    - rid: 3200567900526870744
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 61e71c7b-dcd6-43e8-9eb8-af91ca9d94ab
@@ -67,14 +67,13 @@ MonoBehaviour:
         DialogueText: "\uD589\uC6B4\uC744 \uBE4C\uAC8C\uC694!"
         PortraitKey: 
         ActorKey: Julian_Chapter_1
-    - rid: 1818509224658600274
+    - rid: 3200567900526870745
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: add4c340-6af4-42ca-9beb-590fafa488fd
         NodeTitle: Text
         TypeName: Text
         Position: {x: 204, y: 200}
-        DialogueText: "\uB77C\uC77C\uB77C\uD55C\uD14C \uB4E3\uACE0 \uC624\uC168\uAD70\uC694!
-          \uB9DE\uC544\uC694!"
+        DialogueText: "\uB77C\uC77C\uB77C\uD55C\uD14C \uB4E3\uACE0 \uC624\uC168\uAD70\uC694!"
         PortraitKey: 
         ActorKey: Julian_Chapter_1

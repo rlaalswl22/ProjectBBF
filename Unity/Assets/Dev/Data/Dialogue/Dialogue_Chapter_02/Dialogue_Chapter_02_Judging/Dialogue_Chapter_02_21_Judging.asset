@@ -60,25 +60,25 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 9a1863ba-d45f-4cc0-be28-92526bba9a36
   NodeData:
-  - rid: 1818509224658600223
-  - rid: 1818509224658600224
-  - rid: 1818509224658600225
-  - rid: 1818509224658600226
-  - rid: 1818509224658600227
-  - rid: 1818509224658600228
-  - rid: 1818509224658600229
-  - rid: 1818509224658600230
-  - rid: 1818509224658600231
-  - rid: 1818509224658600232
-  - rid: 1818509224658600233
-  - rid: 1818509224658600234
-  - rid: 1818509224658600235
-  - rid: 1818509224658600236
-  - rid: 1818509224658600237
+  - rid: 3200567900526870646
+  - rid: 3200567900526870647
+  - rid: 3200567900526870648
+  - rid: 3200567900526870649
+  - rid: 3200567900526870650
+  - rid: 3200567900526870651
+  - rid: 3200567900526870652
+  - rid: 3200567900526870653
+  - rid: 3200567900526870654
+  - rid: 3200567900526870655
+  - rid: 3200567900526870656
+  - rid: 3200567900526870657
+  - rid: 3200567900526870658
+  - rid: 3200567900526870659
+  - rid: 3200567900526870660
   references:
     version: 2
     RefIds:
-    - rid: 1818509224658600223
+    - rid: 3200567900526870646
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 0b422f00-028e-4bed-869c-cccd050f36fb
@@ -89,7 +89,7 @@ MonoBehaviour:
           \uBA39\uACE0 \uC2F6\uC740 \uB9DB\uC774\uC600\uC5B4!"
         PortraitKey: 
         ActorKey: Elisia
-    - rid: 1818509224658600224
+    - rid: 3200567900526870647
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 108242a9-c39d-4618-af1f-52862bdb4f7b
@@ -99,17 +99,17 @@ MonoBehaviour:
         DialogueText: "{player}\uC785\uB2C8\uB2E4! \uC9C4\uC2EC\uC73C\uB85C \uCD95\uD558\uB4DC\uB9BD\uB2C8\uB2E4!"
         PortraitKey: 
         ActorKey: Ahir_Chapter_1
-    - rid: 1818509224658600225
+    - rid: 3200567900526870648
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 1770cf24-b560-4a09-bd4a-1d61e4c6ff3a
         NodeTitle: Text
         TypeName: Text
         Position: {x: 220, y: 200}
-        DialogueText: "\uC774\uBC88 \uC8FC\uC81C\uC5D0 \uD569\uACA9\uC790\uB294...."
+        DialogueText: "\uC774\uBC88 \uC8FC\uC81C\uC758 \uD569\uACA9\uC790\uB294...."
         PortraitKey: 
         ActorKey: Ahir_Chapter_1
-    - rid: 1818509224658600226
+    - rid: 3200567900526870649
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 35a9500c-bb26-4593-aee5-b6b3832d5c2b
@@ -120,7 +120,7 @@ MonoBehaviour:
           3\uBA85! "
         PortraitKey: 
         ActorKey: Elisia
-    - rid: 1818509224658600227
+    - rid: 3200567900526870650
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 3e48454e-b2da-41cc-8ead-872228df4cc9
@@ -130,7 +130,7 @@ MonoBehaviour:
         DialogueText: "\uADF8\uB9AC\uACE0...."
         PortraitKey: 
         ActorKey: Ahir_Chapter_1
-    - rid: 1818509224658600228
+    - rid: 3200567900526870651
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 45d46bc0-cb89-46a6-abd5-3fc24b0fe5ff
@@ -141,7 +141,7 @@ MonoBehaviour:
           \uBE4C\uAC8C!"
         PortraitKey: 
         ActorKey: Elisia
-    - rid: 1818509224658600229
+    - rid: 3200567900526870652
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 490910fb-3129-47e5-ab5a-55df61751b01
@@ -151,7 +151,7 @@ MonoBehaviour:
         DialogueText: "\uCE74\uB80C\uC528\uC640 \uC544\uB9AC\uC544\uC528!"
         PortraitKey: 
         ActorKey: Ahir_Chapter_1
-    - rid: 1818509224658600230
+    - rid: 3200567900526870653
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 4cc9ee1d-687b-4c3b-8e76-337ea2024bfb
@@ -161,7 +161,7 @@ MonoBehaviour:
         DialogueText: "\uC81C\uD55C\uC2DC\uAC04 100\uBD84! "
         PortraitKey: 
         ActorKey: Elisia
-    - rid: 1818509224658600231
+    - rid: 3200567900526870654
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 4ebc1cca-d5df-4fa7-b29d-2dd89ab595d4
@@ -171,18 +171,18 @@ MonoBehaviour:
         DialogueText: "\uCD95\uD558\uB4DC\uB9BD\uB2C8\uB2E4!"
         PortraitKey: 
         ActorKey: Ahir_Chapter_1
-    - rid: 1818509224658600232
+    - rid: 3200567900526870655
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 6d536adc-97dc-4963-96cc-8a08cf2f7824
         NodeTitle: Text
         TypeName: Text
         Position: {x: 1736, y: 200}
-        DialogueText: "\uC14B\uB2E4 \uC815\uB9D0 \uC88B\uC740 \uBE75\uC744 \uB9CC\uB4E4\uC5C8\uC5B4!
+        DialogueText: "\uC14B \uB2E4 \uC815\uB9D0 \uC88B\uC740 \uBE75\uC744 \uB9CC\uB4E4\uC5C8\uC5B4!
           \uC815\uB9D0 \uB9DB\uC788\uC5C8\uB2E4\uACE0!<br>\uCE74\uD558\uD558\uD558\uD558!"
         PortraitKey: 
         ActorKey: Elisia
-    - rid: 1818509224658600233
+    - rid: 3200567900526870656
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 828a5df9-2c64-4709-8b72-fa93f8026749
@@ -193,18 +193,18 @@ MonoBehaviour:
           \uC870\uAC74\uC774 \uC788\uC5B4!"
         PortraitKey: 
         ActorKey: Elisia
-    - rid: 1818509224658600234
+    - rid: 3200567900526870657
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 87feb854-1f2f-4f76-bc15-94da8a219e6f
         NodeTitle: Text
         TypeName: Text
         Position: {x: 5236, y: 200}
-        DialogueText: "\uC7AC\uD55C\uC2DC\uAC04 \uC548\uC5D0! \uCD5C\uACE0\uC758
+        DialogueText: "\uC81C\uD55C\uC2DC\uAC04 \uC548\uC5D0! \uCD5C\uACE0\uC758
           \uBE75\uC744 \uB9CC\uB4E4\uC5B4 \uC8FC\uB77C\uACE0!<br>\uCEAC\uD558\uD558\uD558!"
         PortraitKey: 
         ActorKey: Elisia
-    - rid: 1818509224658600235
+    - rid: 3200567900526870658
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 9a1863ba-d45f-4cc0-be28-92526bba9a36
@@ -215,7 +215,7 @@ MonoBehaviour:
           \uC788\uB294 \uCD5C\uACE0\uC758 \uBE75\uC744 \uB9CC\uB4DC\uB294 \uAC83!"
         PortraitKey: 
         ActorKey: Elisia
-    - rid: 1818509224658600236
+    - rid: 3200567900526870659
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a5dacf90-b36f-4e84-b179-44c8e66dc79c
@@ -223,16 +223,16 @@ MonoBehaviour:
         TypeName: Text
         Position: {x: 3957, y: 200}
         DialogueText: "\uAC01\uC790 \uC790\uC2E0\uC758 \uAE30\uB7C9\uC744 \uCD5C\uB300\uD55C\uC73C\uB85C
-          \uBF51\uB0B4\uC11C \uCD5C\uACE0\uC758 \uBE75\uC744 \uB9CC\uB4E4\uC5B4 \uBCF4\uB77C\uACE0!"
+          \uBF50\uB0B4\uC11C \uCD5C\uACE0\uC758 \uBE75\uC744 \uB9CC\uB4E4\uC5B4 \uBCF4\uB77C\uACE0!"
         PortraitKey: 
         ActorKey: Elisia
-    - rid: 1818509224658600237
+    - rid: 3200567900526870660
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: e5f634cf-7a28-4d7a-800e-292360d0addb
         NodeTitle: Text
         TypeName: Text
         Position: {x: 3105, y: 200}
-        DialogueText: "\uBC14\uB85C \uACB0\uC2B9\uC804\uC744 \uCE58\uB8E8\uAC8C\uB420\uAC70\uC57C!"
+        DialogueText: "\uBC14\uB85C \uACB0\uC2B9\uC804\uC744 \uCE58\uB8E8\uAC8C \uB420\uAC70\uC57C!"
         PortraitKey: 
         ActorKey: Elisia

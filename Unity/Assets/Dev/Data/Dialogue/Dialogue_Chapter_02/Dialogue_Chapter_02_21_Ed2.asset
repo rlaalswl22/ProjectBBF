@@ -36,17 +36,17 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 313e78f2-1228-4ba5-9dc4-a0785d5aeb01
   NodeData:
-  - rid: 1818509224658600149
-  - rid: 1818509224658600150
-  - rid: 1818509224658600151
-  - rid: 1818509224658600152
-  - rid: 1818509224658600153
-  - rid: 1818509224658600154
-  - rid: 1818509224658600155
+  - rid: 3200567900526870669
+  - rid: 3200567900526870670
+  - rid: 3200567900526870671
+  - rid: 3200567900526870672
+  - rid: 3200567900526870673
+  - rid: 3200567900526870674
+  - rid: 3200567900526870675
   references:
     version: 2
     RefIds:
-    - rid: 1818509224658600149
+    - rid: 3200567900526870669
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 01f6aa9c-b667-4aa1-a4fe-fc22fa9e83d9
@@ -67,7 +67,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 1818509224658600150
+    - rid: 3200567900526870670
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 02ee0a44-61bc-4fa0-be76-36e5183ae2bc
@@ -77,7 +77,7 @@ MonoBehaviour:
         DialogueText: "\uC5B4\uC11C\uC624\uC138\uC720~ \uB09A\uC2DC\uB300\uB294 \uC5EC\uAE30\uC788\uC5B4\uC720~"
         PortraitKey: 
         ActorKey: 
-    - rid: 1818509224658600151
+    - rid: 3200567900526870671
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 313e78f2-1228-4ba5-9dc4-a0785d5aeb01
@@ -98,7 +98,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 0}
           BoolValue: 1
-    - rid: 1818509224658600152
+    - rid: 3200567900526870672
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 3ea10244-b862-4655-af4a-882e3009844f
@@ -113,7 +113,7 @@ MonoBehaviour:
           StringValue: Fishing_Chapter_2
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 1818509224658600153
+    - rid: 3200567900526870673
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7ae4ef9c-a7a1-47d8-a55a-bd0208ecf515
@@ -128,7 +128,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: c3e70e47ecbab8d45ba7d134fa15c4e4, type: 2}
           BoolValue: 0
-    - rid: 1818509224658600154
+    - rid: 3200567900526870674
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: b0230c95-38a4-473d-86bf-c38fcc9c9129
@@ -139,7 +139,7 @@ MonoBehaviour:
           \uB3D9\uC548 \uB09A\uC2DC\uB97C \uD558\uC2DC\uBA74 \uB3FC\uC720~"
         PortraitKey: 
         ActorKey: 
-    - rid: 1818509224658600155
+    - rid: 3200567900526870675
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: e7f423d8-f4b3-4ead-8c99-ae76c5d7d232
@@ -147,6 +147,6 @@ MonoBehaviour:
         TypeName: Text
         Position: {x: 641, y: 113}
         DialogueText: "\uB2E4\uB978 \uCC38\uAC00\uC790\uB791 \uACF5\uD3C9\uD558\uAC8C
-          \uAE30\uD68C\uB294 \uD55C\uBC88 \uBFD0\uC774\uC5D0\uC720~"
+          \uAE30\uD68C\uB294 \uD55C \uBC88 \uBFD0\uC774\uC5D0\uC720~"
         PortraitKey: 
         ActorKey: 

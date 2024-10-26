@@ -39,40 +39,40 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: d2bbe3ef-05ad-4e7d-aeaf-18654b6be3ba
   NodeData:
-  - rid: 1818509224658600181
-  - rid: 1818509224658600182
-  - rid: 1818509224658600183
-  - rid: 1818509224658600184
-  - rid: 1818509224658600185
-  - rid: 1818509224658600186
-  - rid: 1818509224658600187
-  - rid: 1818509224658600188
+  - rid: 3200567900526870599
+  - rid: 3200567900526870600
+  - rid: 3200567900526870601
+  - rid: 3200567900526870602
+  - rid: 3200567900526870603
+  - rid: 3200567900526870604
+  - rid: 3200567900526870605
+  - rid: 3200567900526870606
   references:
     version: 2
     RefIds:
-    - rid: 1818509224658600181
+    - rid: 3200567900526870599
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 1852db5b-858c-49c3-83d2-1249a31f940a
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1018, y: 329}
-        DialogueText: "\uD574\uB2F9 \uC7AC\uB8CC\uB4E4\uC740 \uB3D9\uBB3C\uD55C\uD14C
+        Position: {x: 1012, y: 292}
+        DialogueText: "\uD574\uB2F9 \uC7AC\uB8CC\uB4E4\uC740 \uB3D9\uBB3C\uC5D0\uAC8C\uC11C
           \uC5BB\uC744 \uC218 \uC788\uC5B4\uC694! "
         PortraitKey: 
         ActorKey: Pirene_Chapter_1
-    - rid: 1818509224658600182
+    - rid: 3200567900526870600
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a7b59dd4-8c6e-4843-a2d4-6ecccb7bfbb0
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1370, y: 329}
-        DialogueText: "\uB3D9\uBB3C\uD55C\uD14C\uC11C \uBB34\uC5B8\uAC00\uB97C \uC5BB\uAE30\uC704\uD574\uC11C
-          \uC911\uC694\uD55C\uAC74 \uB3D9\uBB3C\uB4E4\uACFC \uAD50\uAC10\uC744 \uD558\uB294\uAC70\uC5D0\uC694! "
+        Position: {x: 1392, y: 290}
+        DialogueText: "\uB3D9\uBB3C\uD55C\uD14C\uC11C \uBB34\uC5B8\uAC00\uB97C \uC5BB\uAE30
+          \uC704\uD574\uC11C \uD544\uC694\uD55C \uAC74 \uAD50\uAC10\uC774\uC5D0\uC694!"
         PortraitKey: 
         ActorKey: Pirene_Chapter_1
-    - rid: 1818509224658600183
+    - rid: 3200567900526870601
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: ab313e19-f246-480b-b238-509f1f7bec3e
@@ -83,7 +83,7 @@ MonoBehaviour:
           \uC88B\uC740 \uBE75\uC744 \uB9CC\uB4E4 \uC218 \uC788\uC744 \uAC70\uC5D0\uC694! "
         PortraitKey: 
         ActorKey: Pirene_Chapter_1
-    - rid: 1818509224658600184
+    - rid: 3200567900526870602
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: c6379ed1-4bf8-443f-8e1b-00ec3800f755
@@ -98,18 +98,18 @@ MonoBehaviour:
           StringValue: Pirene_Chapter_1
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 1818509224658600185
+    - rid: 3200567900526870603
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d2bbe3ef-05ad-4e7d-aeaf-18654b6be3ba
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 2312, y: 329}
+        Position: {x: 2258, y: 294}
         DialogueText: "\uB3D9\uBB3C\uB4E4\uC740 \uBC14\uB85C \uC544\uB798\uB85C \uB0B4\uB824\uAC00\uC2DC\uBA74
           \uC788\uC5B4\uC694! \uD589\uC6B4\uC744 \uBE4C\uC5B4\uC694!"
         PortraitKey: 
         ActorKey: Pirene_Chapter_1
-    - rid: 1818509224658600186
+    - rid: 3200567900526870604
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d2d1e4a0-d278-4861-a129-4b1c120b1d83
@@ -120,13 +120,13 @@ MonoBehaviour:
           \uD544\uC694\uD574\uC11C \uC624\uC168\uAD70\uC694!"
         PortraitKey: 
         ActorKey: Pirene_Chapter_1
-    - rid: 1818509224658600187
+    - rid: 3200567900526870605
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d4c17b5a-7a1a-4075-8988-a371ca2497fc
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 2808, y: 329}
+        Position: {x: 2718, y: 299}
         Handler: {fileID: 11400000, guid: b1b7f1f320357bc41955eee57df95c8d, type: 2}
         Warps:
         - Target: String
@@ -141,13 +141,13 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 0}
           BoolValue: 1
-    - rid: 1818509224658600188
+    - rid: 3200567900526870606
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: e6370fce-5e3c-4ce4-b3ac-a0f8046de28b
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1918, y: 329}
+        Position: {x: 1857, y: 288}
         DialogueText: "\uB3D9\uBB3C\uC758 \uC0C1\uD0DC\uB97C \uD655\uC778\uD558\uACE0
           \uC7AC\uB8CC\uB97C \uC5BB\uC73C\uC2DC\uBA74 \uB3FC\uC694!"
         PortraitKey: 

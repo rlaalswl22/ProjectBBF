@@ -18,18 +18,18 @@ MonoBehaviour:
     PortName: Execute
     TargetNodeGuid: 73d2691f-3277-4470-92c7-7446d7644e04
   NodeData:
-  - rid: 1818509133204684976
+  - rid: 3200567900526870701
   references:
     version: 2
     RefIds:
-    - rid: 1818509133204684976
+    - rid: 3200567900526870701
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 73d2691f-3277-4470-92c7-7446d7644e04
         NodeTitle: Text
         TypeName: Text
         Position: {x: 237, y: 200}
-        DialogueText: "\uC9C0\uAE08\uC740 \uBC14\uBE60\uC11C \uB098\uC911\uC5D0 \uC640\uC904
-          \uC218 \uC788\uACA0\uC5B4? \uBBF8\uC548\uD574"
+        DialogueText: "\uBBF8\uC548\uD55C\uB370 \uC9C0\uAE08\uC740 \uBC14\uBE60...
+          \uB098\uC911\uC5D0 \uC640\uC904 \uC218 \uC788\uACA0\uC5B4?"
         PortraitKey: 
         ActorKey: Piraeus_Chapter_2

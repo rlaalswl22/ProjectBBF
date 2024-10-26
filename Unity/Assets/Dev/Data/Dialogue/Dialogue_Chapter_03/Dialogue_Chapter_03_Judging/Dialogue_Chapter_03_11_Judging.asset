@@ -24,25 +24,25 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 67131e5e-774f-4e83-ba6a-00150129fe19
   NodeData:
-  - rid: 1818509224658600283
-  - rid: 1818509224658600284
-  - rid: 1818509224658600285
+  - rid: 3200567900526870713
+  - rid: 3200567900526870714
+  - rid: 3200567900526870715
   references:
     version: 2
     RefIds:
-    - rid: 1818509224658600283
+    - rid: 3200567900526870713
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 67131e5e-774f-4e83-ba6a-00150129fe19
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 698, y: 200}
-        DialogueText: "\uC774\uBC88 \uC2EC\uC0AC\uAE30\uC900\uC740 \uB9DB\uB3C4 \uC911\uC694\uD558\uC9C0\uB9CC
-          \uD2B9\uC0B0\uBB3C\uC744 \uC5BC\uB9C8\uB098 \uC798 \uC0B4\uB824\uB294\uC9C0\uB97C
-          \uBCF4\uC558\uC5B4!"
+        Position: {x: 697, y: 200}
+        DialogueText: "\uC774\uBC88 \uC2EC\uC0AC\uB294 \uB9DB\uB3C4 \uC911\uC694\uD558\uC9C0\uB9CC
+          \uD2B9\uC0B0\uBB3C\uC744 \uC5BC\uB9C8\uB098 \uBA4B\uC9C0\uAC8C \uC798 \uC0B4\uB9AC\uB294\uC9C0\uB97C
+          \uC911\uC810\uC801\uC73C\uB85C \uBD24\uC5B4!"
         PortraitKey: 
         ActorKey: Elisia
-    - rid: 1818509224658600284
+    - rid: 3200567900526870714
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 955958e8-2828-4025-998a-83f71827a629
@@ -50,16 +50,16 @@ MonoBehaviour:
         TypeName: Text
         Position: {x: 222, y: 200}
         DialogueText: "\uD328\uC790\uBD80\uD65C\uC804\uC774\uB77C \uB458\uB2E4 \uAE34\uC7A5\uB418\uACE0
-          \uCD08\uCD08\uD588\uC744 \uD150\uB370 \uACE0\uC0DD\uD588\uC5B4!"
+          \uCD08\uC870\uD588\uC744 \uD150\uB370 \uACE0\uC0DD\uD588\uC5B4!"
         PortraitKey: 
         ActorKey: Elisia
-    - rid: 1818509224658600285
+    - rid: 3200567900526870715
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: aa8c44ee-e92b-4b65-9003-4c83c56ff3c1
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1263, y: 200}
+        Position: {x: 1294, y: 203}
         DialogueText: "\uADF8\uB7FC \uBC14\uB85C \uC2EC\uC0AC\uC9C0\uB97C \uB098\uB220\uC904\uAC8C!"
         PortraitKey: 
         ActorKey: Elisia

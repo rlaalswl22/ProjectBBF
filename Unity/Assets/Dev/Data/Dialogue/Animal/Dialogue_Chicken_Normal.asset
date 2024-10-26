@@ -21,12 +21,12 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 2c190c48-ddd3-4682-8730-add55d9ac5c2
   NodeData:
-  - rid: 1818509224658599938
-  - rid: 1818509224658599939
+  - rid: 3200567900526870528
+  - rid: 3200567900526870529
   references:
     version: 2
     RefIds:
-    - rid: 1818509224658599938
+    - rid: 3200567900526870528
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 2c190c48-ddd3-4682-8730-add55d9ac5c2
@@ -36,7 +36,7 @@ MonoBehaviour:
         DialogueText: "\uB2EC\uAC40\uC744 \uC5BB\uC5C8\uB2E4!"
         PortraitKey: 
         ActorKey: 
-    - rid: 1818509224658599939
+    - rid: 3200567900526870529
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 8df4c982-e2e2-4652-80ef-c812f3f15054
@@ -44,6 +44,6 @@ MonoBehaviour:
         TypeName: Text
         Position: {x: 383, y: 201}
         DialogueText: "\uB4B7\uD0DC\uAC00 \uAE54\uB054\uD558\uACE0 \uC6B8\uC74C\uC18C\uB9AC\uAC00
-          \uAE68\uB057\uD55C\uAC83\uC774 \uAC74\uAC15\uD55C\uAC70 \uAC19\uB2E4!"
+          \uAE68\uB057\uD55C \uAC83\uC774 \uAC74\uAC15\uD55C \uAC83 \uAC19\uB2E4!"
         PortraitKey: 
         ActorKey: Chicken_Normal
