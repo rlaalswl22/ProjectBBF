@@ -8,6 +8,66 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 818979446879402682, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 818979446879402682, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 2.1875
+      objectReference: {fileID: 0}
+    - target: {fileID: 818979446879402682, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 2.8125
+      objectReference: {fileID: 0}
+    - target: {fileID: 818979446879402682, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.1875
+      objectReference: {fileID: 0}
+    - target: {fileID: 818979446879402682, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.8125
+      objectReference: {fileID: 0}
+    - target: {fileID: 3859516298495740257, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: _saveKey
+      value: Ed1_Chapter_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3859516298495740257, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: _actorKey
+      value: Ed1_Chapter_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938030239645781065, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: c88d238c81ee4c24c9f74f38d487e2c4, type: 2}
+    - target: {fileID: 7236962955030520697, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7236962955030520697, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 7844653115320804256, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_Size.x
+      value: 2.1875
+      objectReference: {fileID: 0}
+    - target: {fileID: 7844653115320804256, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_Size.y
+      value: 2.8125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7844653115320804256, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 594c908784874bd4a9c0f74cc8e27984, type: 3}
+    - target: {fileID: 7844653115320804256, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712666892707010204, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_Name
+      value: PActor_Ed1_Template
+      objectReference: {fileID: 0}
     - target: {fileID: 657897982702387281, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
       propertyPath: m_Controller
       value: 
@@ -67,62 +127,6 @@ PrefabInstance:
     - target: {fileID: 6694115529256732025, guid: 8591b6aba3614654f92f9e2352f0d3cc, type: 3}
       propertyPath: _actorKey
       value: Ed1_Chapter_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 818979446879402682, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 818979446879402682, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 2.1875
-      objectReference: {fileID: 0}
-    - target: {fileID: 818979446879402682, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 2.8125
-      objectReference: {fileID: 0}
-    - target: {fileID: 818979446879402682, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 2.1875
-      objectReference: {fileID: 0}
-    - target: {fileID: 818979446879402682, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 2.8125
-      objectReference: {fileID: 0}
-    - target: {fileID: 3859516298495740257, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: _saveKey
-      value: Ed1_Chapter_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3859516298495740257, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: _actorKey
-      value: Ed1_Chapter_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7236962955030520697, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -12.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 7236962955030520697, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 7844653115320804256, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: m_Size.x
-      value: 2.1875
-      objectReference: {fileID: 0}
-    - target: {fileID: 7844653115320804256, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: m_Size.y
-      value: 2.8125
-      objectReference: {fileID: 0}
-    - target: {fileID: 7844653115320804256, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f938ca722a0f28f49bf071e8c8ab738a, type: 3}
-    - target: {fileID: 7844653115320804256, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8712666892707010204, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
-      propertyPath: m_Name
-      value: PActor_Ed1_Template
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
