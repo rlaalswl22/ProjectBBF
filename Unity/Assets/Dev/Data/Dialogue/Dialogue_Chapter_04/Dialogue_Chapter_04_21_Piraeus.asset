@@ -54,23 +54,23 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: e73892e1-d09b-44c9-bfb8-090ed0baa3c3
   NodeData:
-  - rid: 3200567900526870802
-  - rid: 3200567900526870803
-  - rid: 3200567900526870804
-  - rid: 3200567900526870805
-  - rid: 3200567900526870806
-  - rid: 3200567900526870807
-  - rid: 3200567900526870808
-  - rid: 3200567900526870809
-  - rid: 3200567900526870810
-  - rid: 3200567900526870811
-  - rid: 3200567900526870812
-  - rid: 3200567900526870813
-  - rid: 3200567900526870814
+  - rid: 1818509272962826263
+  - rid: 1818509272962826264
+  - rid: 1818509272962826265
+  - rid: 1818509272962826266
+  - rid: 1818509272962826267
+  - rid: 1818509272962826268
+  - rid: 1818509272962826269
+  - rid: 1818509272962826270
+  - rid: 1818509272962826271
+  - rid: 1818509272962826272
+  - rid: 1818509272962826273
+  - rid: 1818509272962826274
+  - rid: 1818509272962826275
   references:
     version: 2
     RefIds:
-    - rid: 3200567900526870802
+    - rid: 1818509272962826263
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 265148b8-44b0-43b6-a4da-0faa1ee00167
@@ -80,7 +80,7 @@ MonoBehaviour:
         DialogueText: "\uADF8\uB798. \uB4E4\uC5B4\uC640."
         PortraitKey: 
         ActorKey: Piraeus_Chapter_2
-    - rid: 3200567900526870803
+    - rid: 1818509272962826264
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 2d5ac2b3-7ed0-4775-944a-8735ed46e48d
@@ -91,8 +91,8 @@ MonoBehaviour:
           \uB6F0\uC9C0\uB9CC \uAC00\uB054 \uB4A4\uC9D1\uB294 \uC77C\uB3C4 \uC0DD\uAE34\uB2E4\uACE0.
           \uC544\uD558\uD558!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 3200567900526870804
+        ActorKey: Piraeus_Chapter_2
+    - rid: 1818509272962826265
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 506c2a31-79af-4715-8e8a-fc699f8a4933
@@ -101,8 +101,8 @@ MonoBehaviour:
         Position: {x: 4400, y: 149}
         DialogueText: "\uADF8\uB7FC \uD589\uC6B4\uC744 \uBE4C\uAC8C!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 3200567900526870805
+        ActorKey: Piraeus_Chapter_2
+    - rid: 1818509272962826266
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 5e7d6382-3c11-4a80-a773-b24c3b9a0ca9
@@ -113,7 +113,7 @@ MonoBehaviour:
           \uCC3E\uC544\uC918."
         PortraitKey: 
         ActorKey: Piraeus_Chapter_2
-    - rid: 3200567900526870806
+    - rid: 1818509272962826267
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 66322edf-1938-4ea3-9def-5c6897396785
@@ -122,8 +122,8 @@ MonoBehaviour:
         Position: {x: 1879, y: 188}
         DialogueText: "\uC5B4\uB54C \uC7AC\uBC0C\uC5B4\uBCF4\uC774\uC9C0 \uC54A\uC544?"
         PortraitKey: 
-        ActorKey: 
-    - rid: 3200567900526870807
+        ActorKey: Piraeus_Chapter_2
+    - rid: 1818509272962826268
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 8c352882-4877-49f4-9d2c-831b2169d7e4
@@ -133,8 +133,8 @@ MonoBehaviour:
         DialogueText: "\uBC30\uD305\uD55C \uAC1C\uAD6C\uB9AC\uAC00 \uC6B0\uC2B9\uD558\uBA74
           \uB3C8\uC744 \uBC30\uB85C \uC5BB\uC744 \uC218 \uC788\uB294 \uAD6C\uC870\uC9C0."
         PortraitKey: 
-        ActorKey: 
-    - rid: 3200567900526870808
+        ActorKey: Piraeus_Chapter_2
+    - rid: 1818509272962826269
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 927b42ff-083f-47e8-9042-96599fbe503d
@@ -146,8 +146,8 @@ MonoBehaviour:
           1 : 2\uBC30<br>\uAC1C\uAD6C\uB9AC 2: 3\uBC30<br>\uAC1C\uAD6C\uB9AC 3 :
           5\uBC30\uC57C. "
         PortraitKey: 
-        ActorKey: 
-    - rid: 3200567900526870809
+        ActorKey: Piraeus_Chapter_2
+    - rid: 1818509272962826270
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: bf1e4c8f-f1d4-4644-90e8-d2c8a9055a74
@@ -162,7 +162,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: fbfd16eeab9739b4c85d5544dd9dff3d, type: 2}
           BoolValue: 0
-    - rid: 3200567900526870810
+    - rid: 1818509272962826271
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: c685cc50-55b1-426e-b6e7-0a3ed9f4f38d
@@ -177,7 +177,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 09d9ee0cb10df0c46815b86692e8f96a, type: 2}
           BoolValue: 0
-    - rid: 3200567900526870811
+    - rid: 1818509272962826272
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: cb33b549-9431-47f3-aaf6-77a770f47c79
@@ -187,8 +187,8 @@ MonoBehaviour:
         DialogueText: "\uB3C8\uC744 \uAC78\uACE0 \uC6D0\uD558\uB294 \uAC1C\uAD6C\uB9AC\uC5D0\uAC8C
           \uBC30\uD305\uD558\uBA74 \uB3FC."
         PortraitKey: 
-        ActorKey: 
-    - rid: 3200567900526870812
+        ActorKey: Piraeus_Chapter_2
+    - rid: 1818509272962826273
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: e73892e1-d09b-44c9-bfb8-090ed0baa3c3
@@ -198,8 +198,8 @@ MonoBehaviour:
         DialogueText: "\uC5EC\uAE30\uB294 \uAC1C\uAD6C\uB9AC\uB4E4\uC744 \uB370\uB9AC\uACE0
           \uB808\uC774\uC2A4\uB97C \uD558\uACE0 \uC788\uC5B4"
         PortraitKey: 
-        ActorKey: 
-    - rid: 3200567900526870813
+        ActorKey: Piraeus_Chapter_2
+    - rid: 1818509272962826274
       type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: f863ba43-357d-4f52-a106-fe12abd11b2f
@@ -209,7 +209,7 @@ MonoBehaviour:
         DialogueText: "\uC774 \uAC8C\uC784, \uD55C\uBC88 \uD574\uBCFC\uB798?"
         PortraitKey: 
         ActorKey: Piraeus_Chapter_2
-    - rid: 3200567900526870814
+    - rid: 1818509272962826275
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: f9cb5c30-b819-4299-bdbe-f0e8a6b5f431
@@ -218,4 +218,4 @@ MonoBehaviour:
         Position: {x: 244, y: 193}
         DialogueText: "\uC624 \uC774 \uC678\uC9C4 \uACF3\uC744 \uC798 \uCC3E\uC544\uC654\uB124."
         PortraitKey: 
-        ActorKey: 
+        ActorKey: Piraeus_Chapter_2
