@@ -6,15 +6,19 @@ using UnityEngine;
 using System.IO;
 using Cysharp.Threading.Tasks;
 using System.Text;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 #if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
+#endif
 
 
 public class SceneCapture : MonoBehaviour
 {
+    [field: SerializeField, HideInInspector] private bool _onPlay;
+    
+#if UNITY_EDITOR
     private Vector2 _offset;
     private Camera _camera;
     private string _filePath;
@@ -25,8 +29,6 @@ public class SceneCapture : MonoBehaviour
     private Vector2Int _iteration;
 
     private int _captureDelay = 1;
-
-    [field: SerializeField, HideInInspector] private bool _onPlay;
 
     public bool OnPlay
     {
@@ -316,5 +318,5 @@ asset.renderScale= 1;
 
         return (false, "");
     }
-}
 #endif
+}

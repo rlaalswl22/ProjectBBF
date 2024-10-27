@@ -94,4 +94,38 @@ public class ItemData : ScriptableObject
     {
         _maxStackCount = Mathf.Max(1, _maxStackCount);
     }
+    
+
+    // Equals 메서드 오버라이드
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+            return false;
+
+        ItemData other = (ItemData)obj;
+        return _itemKey == other._itemKey;
+    }
+
+    // GetHashCode 메서드 오버라이드
+    public override int GetHashCode()
+    {
+        return _itemKey != null ? _itemKey.GetHashCode() : 0;
+    }
+
+    // == 연산자와 != 연산자 오버로딩
+    public static bool operator ==(ItemData lhs, ItemData rhs)
+    {
+        if (ReferenceEquals(lhs, rhs))
+            return true;
+
+        if (lhs is null || rhs is null)
+            return false;
+
+        return lhs.Equals(rhs);
+    }
+
+    public static bool operator !=(ItemData lhs, ItemData rhs)
+    {
+        return !(lhs == rhs);
+    }
 }

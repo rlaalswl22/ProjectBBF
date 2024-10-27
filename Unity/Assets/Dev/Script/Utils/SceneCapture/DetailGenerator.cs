@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 
 #if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [RequireComponent(typeof(SceneCapture), typeof(DetailLoader))]
 public class DetailGenerator : MonoBehaviour
@@ -28,6 +29,13 @@ public class DetailGenerator : MonoBehaviour
     [SerializeField] private Transform _content;
     
     [SerializeField] private bool _onVisualizer;
+
+    [field: SerializeField, HideInInspector]
+    private SceneCapture _capture;
+
+    [field: SerializeField, HideInInspector]
+    private DetailLoader _loader;
+#if UNITY_EDITOR
 
     private float Unit => SceneCaptureUtility.CalculateUnit(_resoultion.x, _ppu);
     private float HalfUnit => Unit * 0.5f;
@@ -53,12 +61,6 @@ public class DetailGenerator : MonoBehaviour
         Loader.Order = _order;
         Loader.Content = _content;
     }
-
-    [field: SerializeField, HideInInspector]
-    private SceneCapture _capture;
-
-    [field: SerializeField, HideInInspector]
-    private DetailLoader _loader;
 
     public SceneCapture Capture
     {
@@ -115,15 +117,5 @@ public class DetailGenerator : MonoBehaviour
         
         SceneCaptureUtility.DrawGizmos(_offset, Unit, _iteration, _colors);
     }
+#endif  
 }
-#else
-
-public class DetailGenerator : MonoBehaviour
-{
-    private void Awake()
-    {
-        Destroy(gameObject);
-    }
-
-}
-#endif

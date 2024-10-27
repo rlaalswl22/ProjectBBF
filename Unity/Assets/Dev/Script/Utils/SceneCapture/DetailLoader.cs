@@ -10,6 +10,7 @@ using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 public class DetailLoader : MonoBehaviour
 {
@@ -27,6 +28,11 @@ public class DetailLoader : MonoBehaviour
         public int Y;
     }
 
+
+    [field: SerializeField, HideInInspector] private List<Item1> _rendererList;
+    
+    
+#if UNITY_EDITOR
     private string _detailsPath;
     private string _mapsPath;
     
@@ -99,8 +105,6 @@ public class DetailLoader : MonoBehaviour
         get => _order;
         set => _order = value;
     }
-
-    [field: SerializeField, HideInInspector] private List<Item1> _rendererList;
 
     public float Unit => SceneCaptureUtility.CalculateUnit(_resolution.x, _ppu);
     
@@ -237,5 +241,5 @@ public class DetailLoader : MonoBehaviour
 
         return sprites;
     }
-}
 #endif
+}
