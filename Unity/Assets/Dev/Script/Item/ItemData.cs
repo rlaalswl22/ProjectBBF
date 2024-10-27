@@ -103,7 +103,7 @@ public class ItemData : ScriptableObject
             return false;
 
         ItemData other = (ItemData)obj;
-        return _itemKey == other._itemKey;
+        return _itemKey == other._itemKey && name == other.name;
     }
 
     // GetHashCode 메서드 오버라이드

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d27462c610d3943a5845eafda00b6d, type: 3}
   m_Name: Item_Farm_Egg
   m_EditorClassIdentifier: 
-  _itemKey: Item_Process_Flour
+  _itemKey: Item_Farm_Egg
   _itemName: "\uACC4\uB780"
   _itemDescription: "\uBE75\uACFC \uCF00\uC774\uD06C\uB97C \uB9CC\uB4DC\uB294 \uAE30\uBCF8\uC801\uC778
     \uC7AC\uB8CC!"
@@ -23,3 +23,5 @@ MonoBehaviour:
   _actionCategoryType: 0
   _actionAnimationType: 0
   _usingActionAudioInfos: []
+  _usePrevWait: 0
+  _useAndWait: 0
