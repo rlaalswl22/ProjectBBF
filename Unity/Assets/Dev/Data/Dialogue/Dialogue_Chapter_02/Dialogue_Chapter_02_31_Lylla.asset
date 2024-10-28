@@ -17,6 +17,9 @@ MonoBehaviour:
   - BaseNodeGuid: 7c32217a-cb22-4bc0-a83f-2c9c1e5c30e0
     PortName: Execute
     TargetNodeGuid: 55d55960-6a2a-4e21-b8e8-1705bf400f9a
+  - BaseNodeGuid: 07c82148-0040-454d-84f3-1d225b41dc5c
+    PortName: Next
+    TargetNodeGuid: ad3158d5-38cf-4715-aabb-e0203843a448
   - BaseNodeGuid: 55d55960-6a2a-4e21-b8e8-1705bf400f9a
     PortName: False
     TargetNodeGuid: 7ee9383f-6273-4f65-bc61-53b11b45af9a
@@ -29,9 +32,12 @@ MonoBehaviour:
   - BaseNodeGuid: 63afd9fc-236d-4d6b-a738-ca795a86e5e7
     PortName: True
     TargetNodeGuid: 7e4a11b7-fb10-41dd-b872-9a9c1ef24847
+  - BaseNodeGuid: 6b62af29-2f21-4056-8ee3-b20d74470a44
+    PortName: Next
+    TargetNodeGuid: ba73fc81-43f5-4008-b760-0b3c3c87d47c
   - BaseNodeGuid: 7e4a11b7-fb10-41dd-b872-9a9c1ef24847
     PortName: Next
-    TargetNodeGuid: ad3158d5-38cf-4715-aabb-e0203843a448
+    TargetNodeGuid: 6b62af29-2f21-4056-8ee3-b20d74470a44
   - BaseNodeGuid: 7ee9383f-6273-4f65-bc61-53b11b45af9a
     PortName: False
     TargetNodeGuid: 63afd9fc-236d-4d6b-a738-ca795a86e5e7
@@ -44,37 +50,61 @@ MonoBehaviour:
   - BaseNodeGuid: ad3158d5-38cf-4715-aabb-e0203843a448
     PortName: Next
     TargetNodeGuid: bae06351-7791-4bb9-97ff-676c3afdebe0
+  - BaseNodeGuid: ba73fc81-43f5-4008-b760-0b3c3c87d47c
+    PortName: "\uADF8\uAC70\uB294 \uBE75\uC774 \uB9DE\uC544...?"
+    TargetNodeGuid: e2f6fb93-8f84-40e3-b54e-f217140af4c1
+  - BaseNodeGuid: ba73fc81-43f5-4008-b760-0b3c3c87d47c
+    PortName: "\uBE75\uC5D0\uC11C \uC5F0\uC131\uC744...?"
+    TargetNodeGuid: e2f6fb93-8f84-40e3-b54e-f217140af4c1
   - BaseNodeGuid: bae06351-7791-4bb9-97ff-676c3afdebe0
     PortName: Next
     TargetNodeGuid: d7695e8a-99d4-4bd8-a80d-93854fb48c4b
   - BaseNodeGuid: d7695e8a-99d4-4bd8-a80d-93854fb48c4b
     PortName: Next
     TargetNodeGuid: abe0c94e-85a3-4391-8681-1abcfc1a3a67
+  - BaseNodeGuid: e2f6fb93-8f84-40e3-b54e-f217140af4c1
+    PortName: Next
+    TargetNodeGuid: 07c82148-0040-454d-84f3-1d225b41dc5c
   NodeData:
-  - rid: 3200567900526870676
-  - rid: 3200567900526870677
-  - rid: 3200567900526870678
-  - rid: 3200567900526870679
-  - rid: 3200567900526870680
-  - rid: 3200567900526870681
-  - rid: 3200567900526870682
-  - rid: 3200567900526870683
-  - rid: 3200567900526870684
-  - rid: 3200567900526870685
+  - rid: 1849335224555012386
+  - rid: 1849335224555012387
+  - rid: 1849335224555012388
+  - rid: 1849335224555012389
+  - rid: 1849335224555012390
+  - rid: 1849335224555012391
+  - rid: 1849335224555012392
+  - rid: 1849335224555012393
+  - rid: 1849335224555012394
+  - rid: 1849335224555012395
+  - rid: 1849335224555012396
+  - rid: 1849335224555012397
+  - rid: 1849335224555012398
+  - rid: 1849335224555012399
   references:
     version: 2
     RefIds:
-    - rid: 3200567900526870676
+    - rid: 1849335224555012386
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 07c82148-0040-454d-84f3-1d225b41dc5c
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 2960, y: 207}
+        DialogueText: "\uB0B4\uAC00 \uBE75\uC744 \uC5F0\uC131\uD558\uB294 \uBC29\uBC95\uC744
+          \uC54C\uB824\uC8FC\uACA0\uB2E4\uB0E5!"
+        PortraitKey: Smi
+        ActorKey: Lylla_Chapter_1
+    - rid: 1849335224555012387
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 3291e3b1-2347-4515-928d-31b162ba26df
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1849, y: 477}
+        Position: {x: 1846, y: 489}
         DialogueText: "\uC7AC\uB8CC\uB97C \uAD6C\uD574\uC624\uB77C\uB0E5!!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 3200567900526870677
+    - rid: 1849335224555012388
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 55d55960-6a2a-4e21-b8e8-1705bf400f9a
@@ -95,7 +125,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 3200567900526870678
+    - rid: 1849335224555012389
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 63afd9fc-236d-4d6b-a738-ca795a86e5e7
@@ -116,18 +146,29 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 3200567900526870679
+    - rid: 1849335224555012390
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 6b62af29-2f21-4056-8ee3-b20d74470a44
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1859, y: 194}
+        DialogueText: "\uBE75\uC5D0 \uAC00\uACF5\uC774 \uCD94\uAC00\uB85C \uB4E4\uC5B4\uAC08
+          \uB54C, \uC0AC\uC6A9\uD558\uB294 \uAE30\uBC95\uC774\uB77C\uB0E5!"
+        PortraitKey: 
+        ActorKey: Lylla_Chapter_1
+    - rid: 1849335224555012391
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7e4a11b7-fb10-41dd-b872-9a9c1ef24847
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1491, y: 172}
-        DialogueText: "\uC774\uBC88\uC5D0\uB294 \uBE75\uC744 \uC5F0\uC131\uD558\uB294
-          \uC5F0\uC131\uBE75\uC744 \uB9CC\uB4DC\uB294 \uBC29\uBC95\uC744 \uC54C\uB824\uC8FC\uACA0\uB2E4\uB0E5!"
+        Position: {x: 1440, y: 192}
+        DialogueText: "\uC774\uBC88\uC5D0\uB294 \uC804\uACFC \uB2E4\uB978 \uD2B9\uC218
+          \uC81C\uC791\uC774 \uC788\uB2E4\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 3200567900526870680
+    - rid: 1849335224555012392
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7ee9383f-6273-4f65-bc61-53b11b45af9a
@@ -148,23 +189,23 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 0}
           BoolValue: 0
-    - rid: 3200567900526870681
+    - rid: 1849335224555012393
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a153253c-4945-428e-835c-40f8cd43f6af
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1601, y: 477}
+        Position: {x: 1532, y: 488}
         DialogueText: "\uC7AC\uB8CC\uAC00 \uC5C6\uB2E4\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 3200567900526870682
+    - rid: 1849335224555012394
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: abe0c94e-85a3-4391-8681-1abcfc1a3a67
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 3089, y: 181}
+        Position: {x: 4545, y: 206}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
@@ -173,23 +214,33 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 2c710d3f59ccd444796d66e4c41c0620, type: 2}
           BoolValue: 0
-    - rid: 3200567900526870683
+    - rid: 1849335224555012395
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: ad3158d5-38cf-4715-aabb-e0203843a448
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1956, y: 181}
+        Position: {x: 3364, y: 203}
         DialogueText: "\uB0A0 \uB530\uB77C\uC624\uB77C\uB0E5!"
+        PortraitKey: Smi
+        ActorKey: Lylla_Chapter_1
+    - rid: 1849335224555012396
+      type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: ba73fc81-43f5-4008-b760-0b3c3c87d47c
+        NodeTitle: Branch
+        TypeName: Branch
+        Position: {x: 2327, y: 196}
+        DialogueText: "\uADF8 \uBC29\uBC95\uC740... \uC5F0\uC131\uC774\uB77C\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 3200567900526870684
+    - rid: 1849335224555012397
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: bae06351-7791-4bb9-97ff-676c3afdebe0
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 2210, y: 181}
+        Position: {x: 3666, y: 206}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
@@ -198,13 +249,13 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: eb2b5ef68b4b1b7458584685ed6812a5, type: 2}
           BoolValue: 0
-    - rid: 3200567900526870685
+    - rid: 1849335224555012398
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d7695e8a-99d4-4bd8-a80d-93854fb48c4b
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 2634, y: 181}
+        Position: {x: 4090, y: 206}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
@@ -213,3 +264,13 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 3feb002ec142d464585c796437d190cf, type: 2}
           BoolValue: 0
+    - rid: 1849335224555012399
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: e2f6fb93-8f84-40e3-b54e-f217140af4c1
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 2651, y: 198}
+        DialogueText: "\uCBE7\uCBE7... \uADF8\uAC83\uB3C4 \uBAA8\uB974\uB0E5?"
+        PortraitKey: 
+        ActorKey: Lylla_Chapter_1

@@ -17,36 +17,50 @@ MonoBehaviour:
   - BaseNodeGuid: a1285f93-f873-4f33-81e1-90a070505a57
     PortName: Execute
     TargetNodeGuid: ebab6be6-beda-45a7-99af-a801acc0e503
-  - BaseNodeGuid: ebab6be6-beda-45a7-99af-a801acc0e503
+  - BaseNodeGuid: 5e6ce851-de6a-447d-b5be-da4ab8012d5e
     PortName: Next
     TargetNodeGuid: 05c0ed12-994b-4f8d-be2c-ae83d11da3b0
+  - BaseNodeGuid: ebab6be6-beda-45a7-99af-a801acc0e503
+    PortName: Next
+    TargetNodeGuid: 5e6ce851-de6a-447d-b5be-da4ab8012d5e
   NodeData:
-  - rid: 3200567900526870629
-  - rid: 3200567900526870630
+  - rid: 1849335224555012429
+  - rid: 1849335224555012430
+  - rid: 1849335224555012431
   references:
     version: 2
     RefIds:
-    - rid: 3200567900526870629
+    - rid: 1849335224555012429
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 05c0ed12-994b-4f8d-be2c-ae83d11da3b0
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 990, y: 200}
+        Position: {x: 1253, y: 184}
         DialogueText: "\uADF8\uB7FC \uC2EC\uC0AC\uC9C0\uB97C \uB098\uB220\uB4DC\uB9AC\uB3C4\uB85D
           \uD558\uACA0\uC2B5\uB2C8\uB2E4!"
         PortraitKey: 
         ActorKey: Ahir_Chapter_1
-    - rid: 3200567900526870630
+    - rid: 1849335224555012430
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 5e6ce851-de6a-447d-b5be-da4ab8012d5e
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 810, y: 197}
+        DialogueText: "\uCC3D\uC758\uC801\uC778 \uC7AC\uBC0C\uB294 \uBE75\uB3C4 \uC88B\uC740
+          \uACB0\uACFC\uAC00 \uC788\uC744\uAC70\uC57C!"
+        PortraitKey: 
+        ActorKey: Elisia
+    - rid: 1849335224555012431
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: ebab6be6-beda-45a7-99af-a801acc0e503
         NodeTitle: Text
         TypeName: Text
         Position: {x: 222, y: 200}
-        DialogueText: "\uC774\uBC88 \uC2EC\uC0AC\uB294 \uD574\uC0B0\uBB3C\uC744 \uD65C\uC6A9\uD574
-          \uBE75\uACFC \uC870\uD654\uB97C \uC774\uB8E8\uC5C8\uB294\uC9C0\uC640<br>\uC5BC\uB9C8\uB098
-          \uCC3D\uC758\uC801\uC778 \uBE75\uC744 \uB9CC\uB4E4\uC5C8\uB294\uC9C0\uB97C
-          \uAE30\uC900\uC73C\uB85C \uBCF4\uC558\uC2B5\uB2C8\uB2E4!"
+        DialogueText: "\uC774\uBC88 \uC2EC\uC0AC\uB294 \uD574\uC0B0\uBB3C\uC744 \uD65C\uC6A9\uB3C4\uC640
+          \uD574\uC0B0\uBB3C\uACFC \uBE75\uC758 \uC870\uD654\uB97C \uC911\uC810\uC801\uC73C\uB85C
+          \uBD24\uC2B5\uB2C8\uB2E4. "
         PortraitKey: 
         ActorKey: Ahir_Chapter_1

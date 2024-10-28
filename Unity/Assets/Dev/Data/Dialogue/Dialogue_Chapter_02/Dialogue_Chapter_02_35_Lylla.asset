@@ -18,20 +18,19 @@ MonoBehaviour:
     PortName: Execute
     TargetNodeGuid: 1db35841-5a6c-44eb-a226-09bf3d5c69d2
   NodeData:
-  - rid: 3200567900526870693
+  - rid: 1849335224555012408
   references:
     version: 2
     RefIds:
-    - rid: 3200567900526870693
+    - rid: 1849335224555012408
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 1db35841-5a6c-44eb-a226-09bf3d5c69d2
         NodeTitle: Text
         TypeName: Text
         Position: {x: 320, y: 191}
-        DialogueText: "\uC5F0\uC131 \uBE75\uC744 \uC644\uC131\uD588\uC73C\uBA74,
-          \uB300\uD68C\uC7A5\uC5D0 \uC788\uB294 \uC544\uD788\uB974\uC5D0\uAC8C \uAC00\uC838\uAC00
-          \uC2EC\uC0AC\uB97C \uBC1B\uC73C\uBA74 \uB41C\uB2E4\uB0E5! \uD589\uC6B4\uC744
-          \uBE48\uB2E4\uB0E5!"
+        DialogueText: "\uBE75\uC744 \uC644\uC131\uD588\uC73C\uBA74, \uB300\uD68C\uC7A5\uC5D0
+          \uC788\uB294 \uC544\uD788\uB974\uC5D0\uAC8C \uAC00\uC838\uAC00 \uC2EC\uC0AC\uB97C
+          \uBC1B\uC73C\uBA74 \uB41C\uB2E4\uB0E5! \uD589\uC6B4\uC744 \uBE48\uB2E4\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
