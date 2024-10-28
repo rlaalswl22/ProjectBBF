@@ -10,44 +10,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ed507e00ab63144f976694caab7934e, type: 3}
-  m_Name: Dialogue_Chapter_01_52_Lylla_NoLock
+  m_Name: Dialogue_Chapter_01_53_1_Lylla
   m_EditorClassIdentifier: 
-  _guid: c5c1a9e85277b104c96be680f3a377db
+  _guid: c108d59154c8f134099d6a2364fa6e73
   NodeLinks:
   - BaseNodeGuid: 7c32217a-cb22-4bc0-a83f-2c9c1e5c30e0
     PortName: Execute
-    TargetNodeGuid: c7bc2d48-2cfd-4684-bb56-d8110ac406b1
-  - BaseNodeGuid: c7bc2d48-2cfd-4684-bb56-d8110ac406b1
+    TargetNodeGuid: a77c6fb1-6d1a-48fc-85e1-51cb897022e8
+  - BaseNodeGuid: a77c6fb1-6d1a-48fc-85e1-51cb897022e8
     PortName: Next
-    TargetNodeGuid: 7a6a5ee9-ab2e-4d2f-b428-e3833380ac1e
+    TargetNodeGuid: a7fda897-14e2-4155-b6bf-b7bc91d55b0d
   NodeData:
-  - rid: 1849335224555012302
-  - rid: 1849335224555012303
+  - rid: 1849335224555012307
+  - rid: 1849335224555012308
   references:
     version: 2
     RefIds:
-    - rid: 1849335224555012302
+    - rid: 1849335224555012307
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: a77c6fb1-6d1a-48fc-85e1-51cb897022e8
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 337, y: 192}
+        DialogueText: "\uAC00\uC790"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 1849335224555012308
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
-        GUID: 7a6a5ee9-ab2e-4d2f-b428-e3833380ac1e
+        GUID: a7fda897-14e2-4155-b6bf-b7bc91d55b0d
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 589, y: 208}
+        Position: {x: 677, y: 206}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
           IntValue: 0
           FloatValue: 0
           StringValue: 
-          ObjectValue: {fileID: 11400000, guid: 3e2ebfd1ec583dc42a0a24fc4f7117ca, type: 2}
+          ObjectValue: {fileID: 11400000, guid: d45852891d147d44783991c7a76c7c31, type: 2}
           BoolValue: 0
-    - rid: 1849335224555012303
-      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
-      data:
-        GUID: c7bc2d48-2cfd-4684-bb56-d8110ac406b1
-        NodeTitle: Text
-        TypeName: Text
-        Position: {x: 244, y: 200}
-        DialogueText: "\uB2E4 \uAD6C\uC6DF\uB0D0? \uAC00\uC790"
-        PortraitKey: 
-        ActorKey: Lylla_Chapter_1

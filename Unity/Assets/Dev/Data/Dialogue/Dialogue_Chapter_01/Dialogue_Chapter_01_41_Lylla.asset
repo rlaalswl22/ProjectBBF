@@ -21,30 +21,29 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: a5b95a9e-9b61-4494-86a1-5ebc8c3ab3e9
   NodeData:
-  - rid: 3200567900526870607
-  - rid: 3200567900526870608
+  - rid: 1849335224555012236
+  - rid: 1849335224555012237
   references:
     version: 2
     RefIds:
-    - rid: 3200567900526870607
+    - rid: 1849335224555012236
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 00f33a18-4e0a-4a8b-bf9b-fe05bc0928ca
         NodeTitle: Text
         TypeName: Text
         Position: {x: 245, y: 191}
-        DialogueText: "\uC9C0\uAE08\uC740 \uD55C \uB208 \uD314 \uC2DC\uAC04\uC774
-          \uC5C6\uB2E4\uB0E5! \uC5B4\uC11C \uC6C0\uC9C1\uC5EC\uB77C\uB0E5! "
+        DialogueText: "\uACC4\uB780\uACFC \uC6B0\uC720\uB97C \uC5BB\uC5C8\uB0E5?"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 3200567900526870608
+    - rid: 1849335224555012237
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a5b95a9e-9b61-4494-86a1-5ebc8c3ab3e9
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 684, y: 179}
-        DialogueText: "\uC7AC\uB8CC\uB97C \uBAA8\uB450 \uC5BB\uC5C8\uC73C\uBA74 \uB098\uD55C\uD14C
-          \uD655\uC778 \uBC1B\uC544\uB77C\uB0E5!"
-        PortraitKey: 
+        Position: {x: 560, y: 188}
+        DialogueText: "\uC544\uC9C1 \uBABB\uC5BB\uC5C8\uB0E5? \uBE68\uB9AC \uC5BB\uACE0
+          \uC598\uAE30\uD558\uB77C\uB0E5!"
+        PortraitKey: Agg
         ActorKey: Lylla_Chapter_1

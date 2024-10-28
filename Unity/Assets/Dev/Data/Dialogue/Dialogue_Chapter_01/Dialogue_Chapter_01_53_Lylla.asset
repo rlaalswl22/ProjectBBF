@@ -17,20 +17,56 @@ MonoBehaviour:
   - BaseNodeGuid: 7c32217a-cb22-4bc0-a83f-2c9c1e5c30e0
     PortName: Execute
     TargetNodeGuid: 77e263b0-831c-46fd-af0a-98eeca7d8538
+  - BaseNodeGuid: 4643e5e9-6183-4779-ba41-7014fa0c3bc3
+    PortName: Next
+    TargetNodeGuid: 05ca6b82-b3c3-44d3-adb2-7ef60c8dbbf9
+  - BaseNodeGuid: 77e263b0-831c-46fd-af0a-98eeca7d8538
+    PortName: Next
+    TargetNodeGuid: 4643e5e9-6183-4779-ba41-7014fa0c3bc3
   NodeData:
-  - rid: 3200567900526870622
+  - rid: 1849335224555012304
+  - rid: 1849335224555012305
+  - rid: 1849335224555012306
   references:
     version: 2
     RefIds:
-    - rid: 3200567900526870622
+    - rid: 1849335224555012304
+      type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 05ca6b82-b3c3-44d3-adb2-7ef60c8dbbf9
+        NodeTitle: Execution
+        TypeName: Execution
+        Position: {x: 1143, y: 206}
+        Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
+        Warps:
+        - Target: Object
+          IntValue: 0
+          FloatValue: 0
+          StringValue: 
+          ObjectValue: {fileID: 11400000, guid: 6a8bd1a99b18c664796d2b77b02f8a6e, type: 2}
+          BoolValue: 0
+    - rid: 1849335224555012305
+      type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 4643e5e9-6183-4779-ba41-7014fa0c3bc3
+        NodeTitle: Execution
+        TypeName: Execution
+        Position: {x: 655, y: 202}
+        Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
+        Warps:
+        - Target: Object
+          IntValue: 0
+          FloatValue: 0
+          StringValue: 
+          ObjectValue: {fileID: 11400000, guid: cf2fd3e3bd553c14d89683ae683008e7, type: 2}
+          BoolValue: 0
+    - rid: 1849335224555012306
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 77e263b0-831c-46fd-af0a-98eeca7d8538
         NodeTitle: Text
         TypeName: Text
         Position: {x: 302, y: 200}
-        DialogueText: "\uBE75\uC744 \uC644\uC131\uD588\uC73C\uBA74 \uB300\uD68C\uC7A5\uC5D0
-          \uC788\uB294 \uC544\uD788\uB974\uC5D0\uAC8C \uAC00\uC838\uAC00 \uC2EC\uC0AC\uB97C
-          \uBC1B\uC73C\uBA74 \uB41C\uB2E4\uB0E5! \uD589\uC6B4\uC744 \uBE48\uB2E4\uB0E5!"
+        DialogueText: "\uC624\uBD84 \uAD6C\uC6CC"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1

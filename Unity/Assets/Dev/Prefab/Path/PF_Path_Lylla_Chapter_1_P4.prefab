@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7778844057589762886
+--- !u!1 &788656316406030184
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2479225413316265780}
-  - component: {fileID: 8458338698405247530}
+  - component: {fileID: 8907984385559697957}
+  - component: {fileID: 2450851473613681625}
   m_Layer: 0
-  m_Name: PF_Path_Lylla_Chapter_1_P1
+  m_Name: PF_Path_Lylla_Chapter_1_P4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2479225413316265780
+--- !u!4 &8907984385559697957
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7778844057589762886}
+  m_GameObject: {fileID: 788656316406030184}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,13 +32,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8458338698405247530
+--- !u!114 &2450851473613681625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7778844057589762886}
+  m_GameObject: {fileID: 788656316406030184}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0cce2f7759bbd74b959671933600ac8, type: 3}
@@ -46,40 +46,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Points:
   - Neighbors:
-    - c0b26b47ebca74f4ca4ed380345fd69c
-    Guid: 894822317b5495d49b287a1853e03b25
+    - 3beef92898cf713468beab5b323734e3
+    Guid: 6a09165da13e03d43a704486b042cdd9
     IsStartPoint: 1
-    Position: {x: -0.88412046, y: -15.765491, z: 0}
+    Position: {x: -0.48718065, y: 25.329521, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
-    - 894822317b5495d49b287a1853e03b25
-    - 
-    Guid: c0b26b47ebca74f4ca4ed380345fd69c
+    - 6a09165da13e03d43a704486b042cdd9
+    - 068a5409c56e4564e8d5fd0b12fc2742
+    Guid: 3beef92898cf713468beab5b323734e3
     IsStartPoint: 0
-    Position: {x: -0.24013329, y: -18.606602, z: 0}
+    Position: {x: -0.4365516, y: 23.515116, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
   - Neighbors:
-    - 
-    - 
-    Guid: 
+    - 3beef92898cf713468beab5b323734e3
+    Guid: 068a5409c56e4564e8d5fd0b12fc2742
     IsStartPoint: 0
-    Position: {x: 18.709595, y: -18.359434, z: 0}
+    Position: {x: -24.105637, y: 23.60033, z: 0}
     _interactiveDecoratedPoint: {fileID: 0}
-  - Neighbors: []
-    Guid: 
-    IsStartPoint: 0
-    Position: {x: 18.712048, y: -18.346413, z: 0}
-    _interactiveDecoratedPoint: {fileID: 0}
-  SelectedGuid: 
+  SelectedGuid: 068a5409c56e4564e8d5fd0b12fc2742
   Edit: 1
   _patrollPoints:
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -0.88412046, y: -15.765491, z: 0}
-    _nextPosition: {x: -0.24013329, y: -18.606602, z: 0}
+    _position: {x: -0.48718065, y: 25.329521, z: 0}
+    _nextPosition: {x: -0.4365516, y: 23.515116, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: -0.24013329, y: -18.606602, z: 0}
-    _nextPosition: {x: 18.709595, y: -18.359434, z: 0}
+    _position: {x: -0.4365516, y: 23.515116, z: 0}
+    _nextPosition: {x: -24.105637, y: 23.60033, z: 0}
   - _interactiveDecoratedPoint: {fileID: 0}
-    _position: {x: 18.709595, y: -18.359434, z: 0}
+    _position: {x: -24.105637, y: 23.60033, z: 0}
     _nextPosition: {x: 0, y: 0, z: 0}
   _loop: 0
