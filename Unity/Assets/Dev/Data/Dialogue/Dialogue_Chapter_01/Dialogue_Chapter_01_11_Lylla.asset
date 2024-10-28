@@ -30,15 +30,15 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: 6805f439-7285-44c5-b633-ffc317d89573
   NodeData:
-  - rid: 3200567900526870557
-  - rid: 3200567900526870558
-  - rid: 3200567900526870559
-  - rid: 3200567900526870560
-  - rid: 3200567900526870561
+  - rid: 1849335222347497472
+  - rid: 1849335222347497473
+  - rid: 1849335222347497474
+  - rid: 1849335222347497475
+  - rid: 1849335222347497476
   references:
     version: 2
     RefIds:
-    - rid: 3200567900526870557
+    - rid: 1849335222347497472
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 45c4c421-a1fd-48e2-a9fe-6908dbe8bd89
@@ -53,7 +53,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: f11db7ef5f818c64eb8184ae5b32d976, type: 2}
           BoolValue: 0
-    - rid: 3200567900526870558
+    - rid: 1849335222347497473
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 6805f439-7285-44c5-b633-ffc317d89573
@@ -65,7 +65,7 @@ MonoBehaviour:
           \uB20C\uB7EC \uB808\uC2DC\uD53C \uBD81\uC744 \uD3BC\uCCD0 \uBCF4\uB77C\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 3200567900526870559
+    - rid: 1849335222347497474
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 68ca18e6-121c-493f-b6a7-f981b45d3d77
@@ -80,7 +80,7 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: cf2fd3e3bd553c14d89683ae683008e7, type: 2}
           BoolValue: 0
-    - rid: 3200567900526870560
+    - rid: 1849335222347497475
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 7633a651-8de7-436b-8556-8ea36d362317
@@ -95,13 +95,13 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 6a8bd1a99b18c664796d2b77b02f8a6e, type: 2}
           BoolValue: 0
-    - rid: 3200567900526870561
+    - rid: 1849335222347497476
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: aa6559ce-c7a3-48e5-a932-448d309e2259
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 260, y: 207}
+        Position: {x: 254, y: 210}
         DialogueText: "\uC77C\uB2E8 \uBE75\uC744 \uB9CC\uB4E4\uAE30 \uC704\uD574
           \uD544\uC694\uD55C \uC7AC\uB8CC\uB97C \uC218\uAE09\uD558\uB7EC \uAC08\uAC70\uB2E4\uB0E5!"
         PortraitKey: 

@@ -1,0 +1,30 @@
+<linker>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="FertilizerItemData" preserve="all" />
+    <type fullname="FertilizerTile" preserve="all" />
+    <type fullname="GrownDefinition" preserve="all" />
+    <type fullname="ItemData" preserve="all" />
+    <type fullname="PlantItemData" preserve="all" />
+    <type fullname="PlantTile" preserve="all" />
+    <type fullname="AnimationActorKey/Action" preserve="nothing" serialized="true" />
+    <type fullname="GrownDefinition/GrowingSet" preserve="nothing" serialized="true" />
+    <type fullname="ItemAudioInfo" preserve="nothing" serialized="true" />
+    <type fullname="ItemTypeInfo" preserve="nothing" serialized="true" />
+    <type fullname="ToolRequireSet" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.LegacyResourcesProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+  </assembly>
+</linker>
