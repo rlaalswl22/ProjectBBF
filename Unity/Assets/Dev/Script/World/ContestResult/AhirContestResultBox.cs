@@ -8,6 +8,7 @@ using UnityEngine;
 public class AhirContestResultBox : BakeryFlowBehaviourBucket
 {
     [SerializeField] private string doOnceKey;
+    [SerializeField] private Animator _ani;
 
     public static ItemData ResultItem { get; private set; }
     
@@ -16,7 +17,17 @@ public class AhirContestResultBox : BakeryFlowBehaviourBucket
     {
         ResultItem = null;
     }
-    
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        if (_ani == false)
+        {
+            _ani = GetComponentInChildren<Animator>();
+        }
+    }
+
     protected override bool CanStore(int index, ItemData itemData)
     {
         if (index != 0) return false;
@@ -55,9 +66,17 @@ public class AhirContestResultBox : BakeryFlowBehaviourBucket
 
     protected override void OnEnter(BakeryFlowObject flowObject, CollisionInteractionMono activator)
     {
+        if (_ani)
+        {
+            _ani.SetTrigger("Open");
+        }
     }
 
     protected override void OnExit(BakeryFlowObject flowObject, CollisionInteractionMono activator)
     {
+        if (_ani)
+        {
+            _ani.SetTrigger("Close");
+        }
     }
 }

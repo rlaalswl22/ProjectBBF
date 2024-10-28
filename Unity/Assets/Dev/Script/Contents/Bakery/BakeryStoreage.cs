@@ -12,6 +12,8 @@ public class BakeryStoreage : BakeryFlowBehaviour
 
     [SerializeField] private List<ItemData> _defaultItems;
 
+    private IEnumerator _coObserveOpen;
+    
     private void Start()
     {
         _storageInventory.OnInit += _ => Init();
@@ -59,16 +61,6 @@ public class BakeryStoreage : BakeryFlowBehaviour
                 pc.Blackboard.IsMoveStopped = false;
                 pc.HudController.Visible = true;
                 pc.Inventory.QuickInvVisible = true;
-
-                if (Visible)
-                {
-                    _ani.SetTrigger("Open");
-                }
-                else
-                {
-                    _ani.SetTrigger("Close");
-                }
-
                 break;
             }
 
@@ -93,19 +85,33 @@ public class BakeryStoreage : BakeryFlowBehaviour
 
         StopAllCoroutines();
         StartCoroutine(CoUpdateInteraction(activator));
-
-        if (Visible)
-        {
-            _ani.SetTrigger("Open");
-        }
-        else
-        {
-            _ani.SetTrigger("Close");
-        }
     }
 
     protected override void OnEnter(BakeryFlowObject flowObject, CollisionInteractionMono activator)
     {
+        if(activator.Owner is not PlayerController pc) return;
+
+        StartCoroutine(_coObserveOpen = CoObserveOpen(flowObject, activator));
+    }
+
+    private IEnumerator CoObserveOpen(BakeryFlowObject flowObject, CollisionInteractionMono activator)
+    {
+        if(activator.Owner is not PlayerController pc) yield break;
+
+        while (true)
+        {
+            if (pc.Interactor.CloserObject == flowObject.Interaction)
+            {
+                _ani.SetTrigger("Open");
+            }
+            else
+            {
+                _ani.SetTrigger("Close");
+            }
+            
+            yield return null;
+        }
+        
     }
 
     protected override void OnExit(BakeryFlowObject flowObject, CollisionInteractionMono activator)
@@ -118,5 +124,10 @@ public class BakeryStoreage : BakeryFlowBehaviour
 
         Visible = false;
         _ani.SetTrigger("Close");
+
+        if (_coObserveOpen is not null)
+        {
+            StopCoroutine(_coObserveOpen);
+        }
     }
 }
