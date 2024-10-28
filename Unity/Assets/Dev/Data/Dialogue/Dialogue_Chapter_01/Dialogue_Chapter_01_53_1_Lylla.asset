@@ -17,32 +17,62 @@ MonoBehaviour:
   - BaseNodeGuid: 7c32217a-cb22-4bc0-a83f-2c9c1e5c30e0
     PortName: Execute
     TargetNodeGuid: a77c6fb1-6d1a-48fc-85e1-51cb897022e8
-  - BaseNodeGuid: a77c6fb1-6d1a-48fc-85e1-51cb897022e8
+  - BaseNodeGuid: 096e099c-90a1-41a1-a67f-1ddfda886e7d
     PortName: Next
     TargetNodeGuid: a7fda897-14e2-4155-b6bf-b7bc91d55b0d
+  - BaseNodeGuid: 9dd0acf6-4b3a-4178-953a-b5acadb9c6a7
+    PortName: Next
+    TargetNodeGuid: 096e099c-90a1-41a1-a67f-1ddfda886e7d
+  - BaseNodeGuid: a77c6fb1-6d1a-48fc-85e1-51cb897022e8
+    PortName: Next
+    TargetNodeGuid: 9dd0acf6-4b3a-4178-953a-b5acadb9c6a7
   NodeData:
-  - rid: 1849335224555012307
-  - rid: 1849335224555012308
+  - rid: 1849335224555012624
+  - rid: 1849335224555012625
+  - rid: 1849335224555012626
+  - rid: 1849335224555012627
   references:
     version: 2
     RefIds:
-    - rid: 1849335224555012307
+    - rid: 1849335224555012624
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 096e099c-90a1-41a1-a67f-1ddfda886e7d
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 933, y: 207}
+        DialogueText: "\uADF8\uB9AC\uACE0 \uB9CC\uC57D \uD569\uACA9\uD558\uBA74 \uAE38\uC548\uB0B4\uB294
+          \uC548\uD574\uC904\uAC70\uB77C\uB0E5! \uC774\uC820 \uADC0\uCC2E\uB2E4\uB0E5."
+        PortraitKey: Agg
+        ActorKey: Lylla_Chapter_1
+    - rid: 1849335224555012625
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 9dd0acf6-4b3a-4178-953a-b5acadb9c6a7
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 661, y: 204}
+        DialogueText: "\uB098\uB9CC \uB530\uB77C\uC624\uB77C\uB0E5!"
+        PortraitKey: Smi
+        ActorKey: Lylla_Chapter_1
+    - rid: 1849335224555012626
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a77c6fb1-6d1a-48fc-85e1-51cb897022e8
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 337, y: 192}
-        DialogueText: "\uAC00\uC790"
+        Position: {x: 256, y: 199}
+        DialogueText: "\uC774\uC81C \uC2EC\uC0AC \uBC1B\uC73C\uB7EC \uC544\uD788\uB974\uC5D0\uAC8C
+          \uAC00\uBA74 \uB41C\uB2E4\uB0E5!"
         PortraitKey: 
-        ActorKey: 
-    - rid: 1849335224555012308
+        ActorKey: Lylla_Chapter_1
+    - rid: 1849335224555012627
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a7fda897-14e2-4155-b6bf-b7bc91d55b0d
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 677, y: 206}
+        Position: {x: 1412, y: 208}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
