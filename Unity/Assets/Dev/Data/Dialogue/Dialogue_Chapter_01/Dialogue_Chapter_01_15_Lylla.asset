@@ -20,15 +20,6 @@ MonoBehaviour:
   - BaseNodeGuid: 41666e0a-5483-478c-9bae-900fe933c7b6
     PortName: Next
     TargetNodeGuid: 91ec739c-f5eb-4044-8d94-0dacbb499674
-  - BaseNodeGuid: 667a7f43-a455-4b44-9b66-46523e764fdb
-    PortName: Next
-    TargetNodeGuid: a7e7b3c8-e980-4ff6-ad31-aced28086a03
-  - BaseNodeGuid: a20899a6-9812-42b9-8d67-5be959bc51dc
-    PortName: True
-    TargetNodeGuid: d9c07c4b-ec5f-41f4-93d2-564017d4d988
-  - BaseNodeGuid: a20899a6-9812-42b9-8d67-5be959bc51dc
-    PortName: False
-    TargetNodeGuid: 41666e0a-5483-478c-9bae-900fe933c7b6
   - BaseNodeGuid: a3ae8760-8d0f-4849-a60b-d62b3a6edfb8
     PortName: Next
     TargetNodeGuid: 723049d1-13d7-4970-b41c-ae75501fdd66
@@ -40,102 +31,62 @@ MonoBehaviour:
     TargetNodeGuid: c8a1811d-80a1-4ff9-b3d5-44f07e8aaedc
   - BaseNodeGuid: c8a1811d-80a1-4ff9-b3d5-44f07e8aaedc
     PortName: Next
-    TargetNodeGuid: 667a7f43-a455-4b44-9b66-46523e764fdb
-  - BaseNodeGuid: d9c07c4b-ec5f-41f4-93d2-564017d4d988
+    TargetNodeGuid: a7e7b3c8-e980-4ff6-ad31-aced28086a03
+  - BaseNodeGuid: f9cdf91c-e7f5-4df9-99da-2ab4879d3514
     PortName: False
     TargetNodeGuid: 41666e0a-5483-478c-9bae-900fe933c7b6
-  - BaseNodeGuid: d9c07c4b-ec5f-41f4-93d2-564017d4d988
+  - BaseNodeGuid: f9cdf91c-e7f5-4df9-99da-2ab4879d3514
     PortName: True
     TargetNodeGuid: bd33f244-cc29-4965-afa0-001fbe08319a
-  - BaseNodeGuid: f9cdf91c-e7f5-4df9-99da-2ab4879d3514
-    PortName: True
-    TargetNodeGuid: a20899a6-9812-42b9-8d67-5be959bc51dc
-  - BaseNodeGuid: f9cdf91c-e7f5-4df9-99da-2ab4879d3514
-    PortName: False
-    TargetNodeGuid: 41666e0a-5483-478c-9bae-900fe933c7b6
   NodeData:
-  - rid: 1849335224555012211
-  - rid: 1849335224555012212
-  - rid: 1849335224555012213
-  - rid: 1849335224555012214
-  - rid: 1849335224555012215
-  - rid: 1849335224555012216
-  - rid: 1849335224555012217
-  - rid: 1849335224555012218
-  - rid: 1849335224555012219
-  - rid: 1849335224555012220
-  - rid: 1849335224555012221
+  - rid: 2427336395099996182
+  - rid: 2427336395099996183
+  - rid: 2427336395099996184
+  - rid: 2427336395099996185
+  - rid: 2427336395099996186
+  - rid: 2427336395099996187
+  - rid: 2427336395099996188
+  - rid: 2427336395099996189
   references:
     version: 2
     RefIds:
-    - rid: 1849335224555012211
+    - rid: 2427336395099996182
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 41666e0a-5483-478c-9bae-900fe933c7b6
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1099, y: 502}
+        Position: {x: 1099.3334, y: 501.99997}
         DialogueText: "\uC7AC\uB8CC\uB97C \uC544\uC9C1 \uC804\uBD80 \uBABB\uAD6C\uD55C
           \uAC83 \uAC19\uB2E4\uB0E5! "
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1849335224555012212
-      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
-      data:
-        GUID: 667a7f43-a455-4b44-9b66-46523e764fdb
-        NodeTitle: Text
-        TypeName: Text
-        Position: {x: 2141, y: 202}
-        DialogueText: "\uB098\uB97C \uC798 \uB530\uB77C\uC624\uB77C\uB0E5!"
-        PortraitKey: 
-        ActorKey: Lylla_Chapter_1
-    - rid: 1849335224555012213
+    - rid: 2427336395099996183
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 723049d1-13d7-4970-b41c-ae75501fdd66
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 3312, y: 211}
+        Position: {x: 3312, y: 210.66667}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
           IntValue: 0
           FloatValue: 0
           StringValue: 
-          ObjectValue: {fileID: 11400000, guid: 8681d319a037b0f4a93c04c345a2ac99, type: 2}
+          ObjectValue: {fileID: 11400000, guid: 60a1a7feeea0714419ad08f0d4dc0e82, type: 2}
           BoolValue: 0
-    - rid: 1849335224555012214
+    - rid: 2427336395099996184
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 91ec739c-f5eb-4044-8d94-0dacbb499674
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1473, y: 504}
+        Position: {x: 1473.3334, y: 503.99997}
         DialogueText: "\uC7AC\uB8CC\uB97C \uC5BB\uACE0 \uB9D0\uD558\uBA74 \uB41C\uB2E4\uB0E5!"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1849335224555012215
-      type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
-      data:
-        GUID: a20899a6-9812-42b9-8d67-5be959bc51dc
-        NodeTitle: Condition
-        TypeName: Condition
-        Position: {x: 703, y: 190}
-        Handler: {fileID: 11400000, guid: 28b9471e6b5357f4d9704dce3bc4427e, type: 2}
-        Warps:
-        - Target: Object
-          IntValue: 0
-          FloatValue: 0
-          StringValue: 
-          ObjectValue: {fileID: 11400000, guid: 4e508e3678b58ff48aa779437da6b13f, type: 2}
-          BoolValue: 0
-        - Target: Int
-          IntValue: 1
-          FloatValue: 0
-          StringValue: 
-          ObjectValue: {fileID: 0}
-          BoolValue: 0
-    - rid: 1849335224555012216
+    - rid: 2427336395099996185
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a3ae8760-8d0f-4849-a60b-d62b3a6edfb8
@@ -150,13 +101,13 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 6b1b352d9fdf9e749b262e6321f7b1bd, type: 2}
           BoolValue: 0
-    - rid: 1849335224555012217
+    - rid: 2427336395099996186
       type: {class: ExecutionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: a7e7b3c8-e980-4ff6-ad31-aced28086a03
         NodeTitle: Execution
         TypeName: Execution
-        Position: {x: 2429, y: 197}
+        Position: {x: 2148.6667, y: 210.66667}
         Handler: {fileID: 11400000, guid: a9d090beb376e594f8301585751d5991, type: 2}
         Warps:
         - Target: Object
@@ -165,56 +116,34 @@ MonoBehaviour:
           StringValue: 
           ObjectValue: {fileID: 11400000, guid: 2c710d3f59ccd444796d66e4c41c0620, type: 2}
           BoolValue: 0
-    - rid: 1849335224555012218
+    - rid: 2427336395099996187
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: bd33f244-cc29-4965-afa0-001fbe08319a
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1461, y: 198}
+        Position: {x: 1461.3334, y: 198}
         DialogueText: "\uC624! \uC804\uBD80 \uC88B\uC740 \uC7AC\uB8CC\uC778\uAC70
           \uAC19\uB2E4\uB0E5! "
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1849335224555012219
+    - rid: 2427336395099996188
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: c8a1811d-80a1-4ff9-b3d5-44f07e8aaedc
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1799, y: 198}
-        DialogueText: "\uADF8\uB7FC \uC81C\uBE75 \uAD6C\uC5ED\uC744 \uC54C\uB824
-          \uC8FC\uACA0\uB2E4\uB0E5!"
+        Position: {x: 1799.3334, y: 198}
+        DialogueText: "\uD53C\uB808\uB124 \uD55C\uD14C \uAC00\uC790"
         PortraitKey: 
         ActorKey: Lylla_Chapter_1
-    - rid: 1849335224555012220
-      type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
-      data:
-        GUID: d9c07c4b-ec5f-41f4-93d2-564017d4d988
-        NodeTitle: Condition
-        TypeName: Condition
-        Position: {x: 1095, y: 190}
-        Handler: {fileID: 11400000, guid: 28b9471e6b5357f4d9704dce3bc4427e, type: 2}
-        Warps:
-        - Target: Object
-          IntValue: 0
-          FloatValue: 0
-          StringValue: 
-          ObjectValue: {fileID: 11400000, guid: 5644dbdd2235fb047a3802affdc701f6, type: 2}
-          BoolValue: 0
-        - Target: Int
-          IntValue: 1
-          FloatValue: 0
-          StringValue: 
-          ObjectValue: {fileID: 0}
-          BoolValue: 0
-    - rid: 1849335224555012221
+    - rid: 2427336395099996189
       type: {class: ConditionNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: f9cdf91c-e7f5-4df9-99da-2ab4879d3514
         NodeTitle: Condition
         TypeName: Condition
-        Position: {x: 303, y: 190}
+        Position: {x: 303.33334, y: 190}
         Handler: {fileID: 11400000, guid: 28b9471e6b5357f4d9704dce3bc4427e, type: 2}
         Warps:
         - Target: Object

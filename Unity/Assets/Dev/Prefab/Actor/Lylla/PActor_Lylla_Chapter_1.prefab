@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 10954268734351799, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -23.34
       objectReference: {fileID: 0}
     - target: {fileID: 10954268734351799, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 10954268734351799, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
       propertyPath: m_LocalPosition.z
@@ -56,6 +56,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PActor_Lylla_Chapter_1
       objectReference: {fileID: 0}
+    - target: {fileID: 4639174668289461720, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
+      propertyPath: _events.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639174668289461720, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
+      propertyPath: _events.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3e2ebfd1ec583dc42a0a24fc4f7117ca, type: 2}
+    - target: {fileID: 4639174668289461720, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
+      propertyPath: _events.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: d45852891d147d44783991c7a76c7c31, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
