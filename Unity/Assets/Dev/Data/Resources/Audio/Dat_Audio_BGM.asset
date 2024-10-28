@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tableKey: BGM
   _group: {fileID: 8434638764406234353, guid: 99661b52a63344feea1f85c6eaaa06c0, type: 2}
-  _list: []
+  _list:
+  - Audio: {fileID: 8300000, guid: a881dd0c8255677429de70e969c57656, type: 3}
+    Key: BGM_InGame
+  - Audio: {fileID: 8300000, guid: c6b9021bd0ca8f840b515f4448291544, type: 3}
+    Key: BGM_Competition

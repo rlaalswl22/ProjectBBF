@@ -34,10 +34,22 @@ public class BlackAlphaScreenDirector : ScreenDirector
         
         var c = Color.black;
         c.a = 0f;
-        return _panel
-            .DOColor(c, _fadeinDuration).SetEase(Ease.Linear)
-            .SetDelay(_waitDuration)
-            .SetId(this)
+
+        var sequence = DOTween.Sequence();
+
+        sequence.Join(
+            _panel
+                .DOColor(c, _fadeinDuration).SetEase(Ease.Linear)
+                .SetDelay(_waitDuration)
+                .SetId(this)
+        );
+        sequence.Join(
+            DOVirtual
+                .Float(0f, 1f, _fadeinDuration, x=> AudioManager.Instance.SetVolume("BGM", x)).SetEase(Ease.OutQuad)
+        );
+
+        return sequence
+            .Play()
             .AsyncWaitForCompletion()
             .AsUniTask()
             .WithCancellation(GlobalCancelation.PlayMode)
@@ -51,9 +63,21 @@ public class BlackAlphaScreenDirector : ScreenDirector
         _panel.color = c;
         
         c.a = 1f;
-        return _panel
+
+        var sequence = DOTween.Sequence();
+
+        sequence.Join(
+            _panel
                 .DOColor(c, _fadeoutDuration).SetEase(Ease.Linear)
                 .SetId(this)
+        );
+        sequence.Join(
+            DOVirtual
+                .Float(1f, 0f, _fadeinDuration, x=> AudioManager.Instance.SetVolume("BGM", x)).SetEase(Ease.InQuad )
+        );
+
+        return sequence
+                .Play()
                 .AsyncWaitForCompletion()
                 .AsUniTask()
                 .WithCancellation(GlobalCancelation.PlayMode)
