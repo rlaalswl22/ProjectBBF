@@ -29,7 +29,7 @@ public class MoveToWorld : MonoBehaviour
         if (obj.TryGetComponent(out PlayerController pc) is false) return;
         if (_initPlayerPosition == false) return;
 
-        var pos = _initPlayerPosition.position;
+        Vector2 pos = _initPlayerPosition.position;
 
         if (_savePosAndWorld)
         {
