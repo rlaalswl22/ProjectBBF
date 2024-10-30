@@ -52,6 +52,7 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
         {
             pc.HudController.Visible = false;
             pc.Inventory.QuickInvVisible = false;
+            pc.Blackboard.IsInteractionStopped = true;
         }
 
     }
@@ -63,6 +64,7 @@ public class DialogueCutSceneController : MonoBehaviour, INotificationReceiver
         {
             pc.HudController.Visible = true;
             pc.Inventory.QuickInvVisible = true;
+            pc.Blackboard.IsInteractionStopped = false;
         }
         
         _director.stopped -= OnStopped;

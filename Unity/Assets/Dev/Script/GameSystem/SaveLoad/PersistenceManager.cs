@@ -43,6 +43,9 @@ namespace ProjectBBF.Persistence
         public static readonly string UserDataExtension = "user";
         public static readonly string GameDataExtension = "save";
         public static readonly string MetadataExtension = "meta";
+
+        public event Action<PersistenceManager> OnGameDataLoaded;
+        public event Action<PersistenceManager> OnGameDataSaved;
         
         public void SaveGameData(Metadata metadata)
         {
@@ -62,6 +65,9 @@ namespace ProjectBBF.Persistence
             
             SaveFile(metadata.SaveFileName, GameDataExtension, buffer);
             SaveMetadata(metadata);
+            
+            
+            OnGameDataSaved?.Invoke(this);
         }
 
         public static void SaveMetadata(Metadata metadata)
@@ -105,10 +111,12 @@ namespace ProjectBBF.Persistence
                     notification.OnLoadedNotify();
                 }
                 
+                OnGameDataLoaded?.Invoke(this);
                 return;
             }
             
             _objGameDataTable = new Dictionary<string, object>();
+            OnGameDataLoaded?.Invoke(this);
         }
 
         public void SaveGameDataCurrentFileName() => SaveGameData(CurrentMetadata);

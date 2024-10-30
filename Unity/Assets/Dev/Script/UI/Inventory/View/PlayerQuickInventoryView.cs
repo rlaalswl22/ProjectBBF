@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ProjectBBF.Persistence;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -14,6 +15,8 @@ public class PlayerQuickInventoryView : MonoBehaviour, IInventoryView
     public int CurrentItemIndex => _currentCursor;
     public int MaxSlotCount => _slots.Length;
 
+    private PlayerBlackboard _blackboard;
+
     private void Awake()
     {
         _cursor.gameObject.SetActive(false);
@@ -21,12 +24,20 @@ public class PlayerQuickInventoryView : MonoBehaviour, IInventoryView
 
     private void OnEnable()
     {
+        OnLoadedData(PersistenceManager.Instance);
+        PersistenceManager.Instance.OnGameDataLoaded += OnLoadedData;
         InputManager.Map.UI.QuickSlotScroll.performed += MoveCursorScroll;
         InputManager.Map.UI.QuickSlotScrollButton.performed += MoveCursorButton;
     }
 
+    private void OnLoadedData(PersistenceManager inst)
+    {
+        _blackboard = inst.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
+    }
+
     private void OnDisable()
     {
+        PersistenceManager.Instance.OnGameDataLoaded -= OnLoadedData;
         InputManager.Map.UI.QuickSlotScroll.performed -= MoveCursorScroll;
         InputManager.Map.UI.QuickSlotScrollButton.performed -= MoveCursorButton;
     }
@@ -39,6 +50,11 @@ public class PlayerQuickInventoryView : MonoBehaviour, IInventoryView
 
     private void MoveCursorScroll(InputAction.CallbackContext ctx)
     {
+        if (_blackboard?.IsInteractionStopped ?? true)
+        {
+            return;
+        }
+        
         float fscrollValue = ctx.ReadValue<float>();
 
         int value = 0;
@@ -59,6 +75,11 @@ public class PlayerQuickInventoryView : MonoBehaviour, IInventoryView
 
     private void MoveCursorButton(InputAction.CallbackContext ctx)
     {
+        if (_blackboard?.IsInteractionStopped ?? true)
+        {
+            return;
+        }
+        
         float fscrollValue = ctx.ReadValue<float>();
 
         int value = Mathf.RoundToInt(fscrollValue);
