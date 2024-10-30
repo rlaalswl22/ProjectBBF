@@ -128,6 +128,13 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
             _audioSource.clip = clip;
             _audioSource.Play();
         }
+        else if (ResolvorType == Resolvor.Additive)
+        {
+            var clip = AudioManager.Instance.GetAudio("SFX", "SFX_Bakery_Baking").clip;
+            _audioSource.clip = clip;
+            _audioSource.Play();
+            _audioSource.loop = true;
+        }
 
         while (true)
         {
@@ -147,6 +154,8 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
                 {
                     _activationUI.SetActive(true);
                 }
+
+                _audioSource.loop = false;
                 yield break;
             }
 
@@ -164,13 +173,11 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         
         yield return null;
         
+        _audioSource.loop = false;
         
         if (tuple.resultItem is not null)
         {
-            if (ResolvorType == Resolvor.Additive)
-            {
-                AudioManager.Instance.PlayOneShot("SFX", "SFX_Bakery_BakingComplete");
-            }
+            AudioManager.Instance.PlayOneShot("SFX", "SFX_Bakery_BakingComplete");
             
             GameSuccess(tuple, pc);
         }

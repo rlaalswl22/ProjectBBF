@@ -18,6 +18,15 @@ public class PlayerPanelButtonGuide : MonoBehaviour, IPointerEnterHandler, IPoin
         }
     }
 
+    private void OnDisable()
+    {
+        if (_toolTipView)
+        {
+            _toolTipView.Visible = false;
+            _toolTipView.Clear();
+        }
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (_toolTipView)

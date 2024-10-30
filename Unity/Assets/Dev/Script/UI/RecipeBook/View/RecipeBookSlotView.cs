@@ -66,11 +66,13 @@ public class RecipeBookSlotView : MonoBehaviour, IPointerClickHandler, IPointerD
     
     public void OnPointerDown(PointerEventData eventData)
     {
+        AudioManager.Instance.PlayOneShot("UI", "UI_MouseOver");
         OnDown?.Invoke(this);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        AudioManager.Instance.PlayOneShot("UI", "UI_MouseOver");
         OnHoverEnter?.Invoke(this);
     }
 

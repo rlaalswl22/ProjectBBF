@@ -233,6 +233,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         
         if (successCount >= SUCCESS_GOAL_COUNT)
         {
+            AudioManager.Instance.PlayOneShot("SFX", "SFX_Bakery_BakingComplete");
             pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down), true);
             yield return new WaitForSeconds(_endWait);
         }
