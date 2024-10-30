@@ -16,17 +16,21 @@ namespace ProjectBBF.Persistence
     {
         public static readonly JsonDescriptor Descriptor = new JsonDescriptor();
 
-        private Dictionary<string, object> _objTable;
+        private Dictionary<string, object> _objGameDataTable;
+        private Dictionary<string, object> _objUserDataTable;
 
         public override void PostInitialize()
         {
-            _objTable = new Dictionary<string, object>();
+            _objGameDataTable = new Dictionary<string, object>();
+            _objUserDataTable = new Dictionary<string, object>();
         }
 
         public override void PostRelease()
         {
-            _objTable.Clear();
-            _objTable = null;
+            _objGameDataTable?.Clear();
+            _objGameDataTable = null;
+            _objUserDataTable?.Clear();
+            _objUserDataTable = null;
         }
 
         public Metadata CurrentMetadata { get; set; } = new()
@@ -42,7 +46,7 @@ namespace ProjectBBF.Persistence
         
         public void SaveGameData(Metadata metadata)
         {
-            var pairs = _objTable
+            var pairs = _objGameDataTable
                 .Where(x => IsDecorated<GameDataAttribute>(x.Value))
                 .Select(x => new KeyValuePair<string, object>(x.Key, x.Value))
                 .ToArray();
@@ -92,9 +96,9 @@ namespace ProjectBBF.Persistence
             if (buffer is not null)
             {
                 var messages = Descriptor.FromBytes(buffer);
-                _objTable = new Dictionary<string, object>(messages);
+                _objGameDataTable = new Dictionary<string, object>(messages);
                 
-                foreach (var obj in _objTable.Values)
+                foreach (var obj in _objGameDataTable.Values)
                 {
                     if (obj is not ISaveLoadNotification notification) continue;
                 
@@ -104,20 +108,41 @@ namespace ProjectBBF.Persistence
                 return;
             }
             
-            _objTable = new Dictionary<string, object>();
+            _objGameDataTable = new Dictionary<string, object>();
         }
 
         public void SaveGameDataCurrentFileName() => SaveGameData(CurrentMetadata);
         public void LoadGameDataCurrentFileName() => LoadGameData(CurrentMetadata.SaveFileName);
         public void SaveUserData()
         {
-            var pairs = _objTable
+            var pairs = _objUserDataTable
                 .Where(x => IsDecorated<UserDataAttribute>(x.Value))
                 .Select(x => new KeyValuePair<string, object>(x.Key, x.Value));
             
             var buffer = Descriptor.ToBytes(pairs);
             
             SaveFile(UserDataFileName, UserDataExtension, buffer);
+        }
+        public void LoadUserData()
+        {
+            var buffer = LoadFile(UserDataFileName, UserDataExtension);
+
+            if (buffer is not null)
+            {
+                var messages = Descriptor.FromBytes(buffer);
+                _objUserDataTable = new Dictionary<string, object>(messages);
+                
+                foreach (var obj in _objUserDataTable.Values)
+                {
+                    if (obj is not ISaveLoadNotification notification) continue;
+                
+                    notification.OnLoadedNotify();
+                }
+                
+                return;
+            }
+            
+            _objUserDataTable = new Dictionary<string, object>();
         }
 
         public static Metadata[] GetAllSaveFileMetadata(bool fullPath = false)
@@ -199,7 +224,7 @@ namespace ProjectBBF.Persistence
                 cachedObj = new T();
                 Debug.Log($"PersistenceManager object 생성(key: {typeof(T)}, type: {key})");
                 
-                _objTable[key] = cachedObj;
+                _objGameDataTable[key] = cachedObj;
             }
 
             if (cachedObj is T t)
@@ -211,14 +236,39 @@ namespace ProjectBBF.Persistence
                 $"Persistence 에러! Key({key}), cachedObject Type({cachedObj.GetType()}), Acquire Type({typeof(T)})");
         }
 
+        public bool TryLoadOrCreateUserData<T>(string key, out T value) where T : new()
+        {
+            bool isCreated = false;
+            
+            object cachedObj = GetCachedPersistenceObjUserData(ref key);
+            if (cachedObj is null)
+            {
+                isCreated = true;
+                cachedObj = new T();
+                Debug.Log($"PersistenceManager object 생성(key: {typeof(T)}, type: {key})");
+                
+                _objGameDataTable[key] = cachedObj;
+            }
+
+            Debug.Assert(cachedObj is T, $"Persistence 에러! Key({key}), cachedObject Type({cachedObj.GetType()}), Acquire Type({typeof(T)})");
+            
+            value = (T)cachedObj;
+
+            return isCreated is false;
+        }
+
         public List<KeyValuePair<string, object>> GetAllData()
         {
-            return _objTable.ToList();
+            return _objGameDataTable.ToList();
         }
 
         public object GetCachedPersistenceObj(ref string key)
         {
-            return _objTable.GetValueOrDefault(key);
+            return _objGameDataTable.GetValueOrDefault(key);
+        }
+        public object GetCachedPersistenceObjUserData(ref string key)
+        {
+            return _objUserDataTable.GetValueOrDefault(key);
         }
     }
 }

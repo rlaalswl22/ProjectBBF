@@ -97,6 +97,7 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
 
             if (result.index == 2)
             {
+                _money = 0;
                 RequestEndGame();
                 break;
             }

@@ -15,19 +15,21 @@ public class PlayerHealthUI : MonoBehaviour
     public bool Visible
     {
         get=> gameObject.activeSelf;
-        set=> gameObject.SetActive(value);
+        set=> gameObject.SetActive(false); // 크로니클 빌드 비활성화
     }
     private void Start()
     {
         _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
+
+        Visible = false;
     }
 
-    private void Update()
-    {
-        float value = _blackboard.Stemina / Mathf.Max(_blackboard.MaxStemina, 0.0001f);
-        _steminaFill.fillAmount = value;
-        
-        value = _blackboard.Energy / Mathf.Max(_blackboard.MaxEnergy, 0.0001f);
-        _energyFill.fillAmount = value;
-    }
+    //private void Update()
+    //{
+    //    float value = _blackboard.Stemina / Mathf.Max(_blackboard.MaxStemina, 0.0001f);
+    //    _steminaFill.fillAmount = value;
+    //    
+    //    value = _blackboard.Energy / Mathf.Max(_blackboard.MaxEnergy, 0.0001f);
+    //    _energyFill.fillAmount = value;
+    //}
 }

@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum GameScreenMode : int
@@ -49,6 +50,8 @@ public class SettingView : MonoBehaviour
     [SerializeField] private TMP_Dropdown _screenModeDropdown;
     [SerializeField] private TMP_Dropdown _resolutionDropdown;
     [SerializeField] private TMP_Dropdown _vsyncDropdown;
+    [SerializeField] private Slider _frameSlider;
+    [SerializeField] private TMP_InputField _frameInputField;
     
     [SerializeField] private GameObject _graphicFrame;
 
@@ -143,6 +146,15 @@ public class SettingView : MonoBehaviour
         }
     }
 
+    public void Add10Frame()
+    {
+        _frameSlider.value += (10f / ScreenManager.Instance.MaxFrameRate);
+    }
+    public void Sub10Frame()
+    {
+        _frameSlider.value += -(10f / ScreenManager.Instance.MaxFrameRate);
+    }
+
     private void OnSliderChanged(TMP_InputField inputField, string mixerGroupKey, float value)
     {
         int v = (int)(value * 100f);
@@ -175,28 +187,52 @@ public class SettingView : MonoBehaviour
     private void OnResolution(int i)
     {
         var resolutions = ScreenManager.Instance.AllResolutions;
-        if (resolutions.Length <= i || i < 0) return;
         
         var resolution = resolutions[i];
         
-        ScreenManager.Instance.SetResolution(resolution.width, resolution.height);
+        ScreenManager.Instance.SetResolution(resolution.x, resolution.y);
         
         _resolutionDropdown.SetValueWithoutNotify(i);
+        
+        if (ScreenManager.Instance)
+        {
+            ScreenManager.Instance.SaveScreenSetting();
+        }
     }
     private void OnScreenMode(int i)
     {
         ScreenManager.Instance.ScreenMode = (FullScreenMode)(i + 1);
         _screenModeDropdown.SetValueWithoutNotify(i);
+        
+        if (ScreenManager.Instance)
+        {
+            ScreenManager.Instance.SaveScreenSetting();
+        }
     }
     private void OnVsync(int i)
     {
-        QualitySettings.vSyncCount = (GameVsync)i == GameVsync.On ? 1 : 0;
+        ScreenManager.Instance.VsyncCount = (GameVsync)i == GameVsync.On ? 1 : 0;
         _vsyncDropdown.SetValueWithoutNotify(i);
+
+        if (ScreenManager.Instance)
+        {
+            ScreenManager.Instance.SaveScreenSetting();
+        }
+    }
+
+    private void OnFrameRate(float v)
+    {
+        _frameSlider.SetValueWithoutNotify(v);
+        _frameInputField.SetTextWithoutNotify($"{(int)(v * ScreenManager.Instance.MaxFrameRate)} / {ScreenManager.Instance.MaxFrameRate}");
+
+        if (ScreenManager.Instance)
+        {
+            ScreenManager.Instance.TargetFrameRate = (int)(v * ScreenManager.Instance.MaxFrameRate);
+        }
     }
 
     public void Init()
     {
-        // graphic
         _globalVolumeSlider.value = 1f;
         _backgroundVolumeSlider.value = 1f;
         _sfxVolumeSlider.value = 1f;
@@ -228,11 +264,13 @@ public class SettingView : MonoBehaviour
 
         
         
-        // init..
+        // graphic
+        OnFrameRate(1f);
+        
         _screenModeDropdown.options = new List<TMP_Dropdown.OptionData>()
         {
-            new TMP_Dropdown.OptionData("전체 창 모드"),
             new TMP_Dropdown.OptionData("전체 화면"),
+            new TMP_Dropdown.OptionData("전체 창 모드"),
             new TMP_Dropdown.OptionData("창 모드"),
         };
 
@@ -250,9 +288,44 @@ public class SettingView : MonoBehaviour
         _screenModeDropdown.onValueChanged.AddListener(OnScreenMode);
         _resolutionDropdown.onValueChanged.AddListener(OnResolution);
         _vsyncDropdown.onValueChanged.AddListener(OnVsync);
+        _frameSlider.onValueChanged.AddListener(OnFrameRate);
 
-        _screenModeDropdown.value = (int)ScreenManager.Instance.ScreenMode - 1;
-        _resolutionDropdown.value = ScreenManager.Instance.AllResolutions.Length - 1;
-        _vsyncDropdown.value = QualitySettings.vSyncCount;
+        _screenModeDropdown.value = Mathf.Max(1, (int)ScreenManager.Instance.ScreenMode) - 1;
+        _vsyncDropdown.value = ScreenManager.Instance.VsyncCount == 0 ? 1 : 0;
+
+        ScreenManager.Instance.OnChangedResolution += OnSceneMgrResChanged;
+
+        OnSceneMgrResChanged(ScreenManager.Instance.CurrentResolution);
+
+    }
+
+    private void OnDestroy()
+    {
+        if (ScreenManager.Instance)
+        {
+            ScreenManager.Instance.OnChangedResolution -= OnSceneMgrResChanged;
+        }
+    }
+
+    private void OnSceneMgrResChanged(Vector2Int targetResolution)
+    {
+        int resIndex = -1;
+        for(int i =0; i<  ScreenManager.Instance.AllResolutions.Count; i++)
+        {
+            var res = ScreenManager.Instance.AllResolutions[i];
+            if (res == targetResolution)
+            {
+                resIndex = i;
+                break;
+            }
+            
+        }
+
+        if (resIndex == -1)
+        {
+            resIndex = ScreenManager.Instance.AllResolutions.Count - 1;
+        }
+
+        _resolutionDropdown.value = resIndex;
     }
 }
