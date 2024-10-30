@@ -17,6 +17,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     private PlayerBlackboard _blackboard;
     private PlayerMove _move;
     private PlayerCoordinate _coordinate;
+    private SpriteRenderer _indicator;
 
     private bool _isAniPrevEventRaised = false;
     private bool _isAniNextEventRaised = false;
@@ -27,6 +28,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         _visual = controller.VisualStrategy;
         _move = controller.MoveStrategy;
         _coordinate = controller.Coordinate;
+        _indicator = controller.InteractorIndicator;
+        _indicator.enabled = false;
         _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
     }
 
@@ -65,7 +68,46 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             _isAniNextEventRaised = true;
         }
     }
-    
+
+    private void LateUpdate()
+    {
+        if (_blackboard.IsInteractionStopped) return;
+
+        ItemData currentData = _controller.Inventory.CurrentItemData;
+
+        if (currentData && (
+                currentData.Info.Contains(ToolType.Hoe) ||
+                currentData.Info.Contains(ToolType.WaterSpray) ||
+                currentData.Info.Contains(ToolType.Fertilizer) ||
+                currentData.Info.Contains(ToolType.Seed) ||
+                currentData.Info.Contains(ToolType.Pickaxe)
+            ))
+        {
+            var obj = FindCloserObject();
+            if (obj == false) return;
+        
+
+            Vector2 clickPoint = Camera.main.ScreenToWorldPoint(InputManager.Map.Player.Look.ReadValue<Vector2>());
+            Vector2 dir = clickPoint - (Vector2)_controller.transform.position;
+            var pos =
+                    (Vector2)_controller.transform.position +
+                    (Vector2)_coordinate.GetDirOffset(_visual.CalculateLookDir(dir, true))
+                ;
+
+            if (obj.TryGetContractInfo(out ObjectContractInfo info) &&
+                info.TryGetBehaviour(out IBOInteractIndicator interactIndicator) &&
+                interactIndicator.CanDraw(pos))
+            {
+                _indicator.enabled = true;
+                _indicator.transform.position = interactIndicator.GetDrawPositionAndSize(pos).position;
+                return;
+            }
+ 
+        }
+
+        _indicator.enabled = false;
+    }
+
     public async UniTask<bool> OnToolAction()
     {
         if (_blackboard.IsInteractionStopped) return false;
@@ -93,9 +135,11 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
                 _isAniPrevEventRaised = false;
                 _isAniNextEventRaised = false;
-                
-                Vector2 dir = _coordinate.GetFrontPureDir();
-                _visual.LookAt(dir, currentData.ActionAnimationType);
+
+                Vector2 clickPoint = Camera.main.ScreenToWorldPoint(InputManager.Map.Player.Look.ReadValue<Vector2>());
+
+                Vector2 dir = clickPoint - (Vector2)_controller.transform.position;
+                _visual.LookAt(dir, currentData.ActionAnimationType, true);
                 
                 PlayAudio(currentData, "Use");
             }
@@ -274,12 +318,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             
         return executedAny;
     }
-
-
-    #region Actor
-
-    #endregion
-
+    
     #region Object
 
     public bool PlantTile(IBOPlantTile action)
@@ -545,7 +584,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         var targetPos = _controller.Coordinate.GetFront();
         var colliders =
-            Physics2D.OverlapCircleAll(targetPos, _controller.InteractionRadius, ~LayerMask.GetMask("Player"));
+            Physics2D.OverlapCircleAll(targetPos, _controller.CoordinateData.Radius, ~LayerMask.GetMask("Player", "Ignore Raycast"));
 
         float minDis = Mathf.Infinity;
         CollisionInteractionMono minInteraction = null;

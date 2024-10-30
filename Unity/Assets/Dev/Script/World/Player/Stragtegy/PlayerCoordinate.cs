@@ -6,11 +6,13 @@ using UnityEngine.Tilemaps;
 
 public class PlayerCoordinate : MonoBehaviour, IPlayerStrategy
 {
-    private PlayerController _controller; 
+    private PlayerController _controller;
+    private PlayerCoordinateData _data;
     
     public void Init(PlayerController controller)
     {
         _controller = controller;
+        _data = _controller.CoordinateData;
     }
 
     public void OnUpdate()
@@ -25,28 +27,35 @@ public class PlayerCoordinate : MonoBehaviour, IPlayerStrategy
         return worldPos + dir;
     }
 
-    public Vector3 GetFrontDir()
+    public Vector2 GetDirOffset(Vector2 direction)
     {
         Vector3 dir = Vector3.zero;
 
-        if (Mathf.Approximately(_controller.MoveStrategy.LastMovedDirection.y, 0f) == false)
+        // 위 아래를 바라보고 있을 떄
+        if (Mathf.Approximately(direction.y, 0f) == false)
         {
-            dir = new Vector3(
-                _controller.MoveStrategy.LastMovedDirection.x + _controller.InteractionDirFactor.x ,
-                _controller.MoveStrategy.LastMovedDirection.y * _controller.InteractionDirFactor.y,
-                0f);
+            float lookDir = Mathf.Sign(direction.y);
+            
+            if (lookDir > 0f) // 위
+            {
+                dir = _data.UpOffset;
+            }
+            else // 아래
+            {
+                dir = _data.DownOffset;
+            }
+            
         }
         else
         {
-            dir = new Vector3(
-                _controller.MoveStrategy.LastMovedDirection.x * _controller.InteractionOffset.x ,
-                _controller.MoveStrategy.LastMovedDirection.y + _controller.InteractionOffset.y,
-                0f);
+            float lookDir = Mathf.Sign(direction.x);
+            dir = new Vector3(lookDir * _data.SideOffset.x, _data.SideOffset.y);
         }
 
         return dir;
     }
 
+    public Vector3 GetFrontDir() => GetDirOffset(_controller.MoveStrategy.LastMovedDirection);
     public Vector3 GetFrontPureDir()
     {
         Vector3 dir = new Vector3
@@ -74,6 +83,6 @@ public class PlayerCoordinate : MonoBehaviour, IPlayerStrategy
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(GetFront(), _controller.InteractionRadius);
+        Gizmos.DrawWireSphere(GetFront(), _data.Radius);
     }
 }

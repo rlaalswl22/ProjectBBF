@@ -46,3 +46,9 @@ public interface IBOCollectPlant : IObjectBehaviour
 {
     public bool Collect(Vector3 worldPos, List<ItemData> itemList);
 }
+
+public interface IBOInteractIndicator : IObjectBehaviour
+{
+    public bool CanDraw(Vector2 position);
+    public (Vector2 position, Vector2 size) GetDrawPositionAndSize(Vector2 position);
+}

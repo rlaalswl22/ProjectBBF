@@ -9,7 +9,7 @@ using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 public class FarmlandTileController : MonoBehaviour, 
-    IBODestoryTile, IBOCultivateTile, IBOPlantTile, IBOFertilizerTile, IBOSprinkleWaterTile, IBOCollectPlant
+    IBODestoryTile, IBOCultivateTile, IBOPlantTile, IBOFertilizerTile, IBOSprinkleWaterTile, IBOCollectPlant, IBOInteractIndicator
 {
     [SerializeField] protected CollisionInteraction _interaction;
     [SerializeField] protected Tilemap _platformTilemap;
@@ -35,6 +35,7 @@ public class FarmlandTileController : MonoBehaviour,
         info.AddBehaivour<IBOFertilizerTile>(this);
         info.AddBehaivour<IBOSprinkleWaterTile>(this);
         info.AddBehaivour<IBOCollectPlant>(this);
+        info.AddBehaivour<IBOInteractIndicator>(this);
     }
 
     private void Update()
@@ -335,6 +336,26 @@ public class FarmlandTileController : MonoBehaviour,
     }
 
     public CollisionInteraction Interaction => _interaction;
+    public bool CanDraw(Vector2 position)
+    {
+        var cellPos = WorldToCell(position);
+        var tile = _platformTilemap.GetTile<TileBase>(cellPos);
+        return tile;
+    }
+
+    public (Vector2 position, Vector2 size) GetDrawPositionAndSize(Vector2 position)
+    {
+        var cellPos = WorldToCell(position);
+        var tile = _platformTilemap.GetTile<TileBase>(cellPos);
+
+        if (tile == false)
+        {
+            return (Vector2.zero, Vector2.zero);
+        }
+
+        return ((Vector2)_platformTilemap.CellToWorld(cellPos) + Vector2.one * 0.5f, Vector2.one);
+    }
+
     public bool Collect(Vector3 worldPos, List<ItemData> itemList)
     {
         var cellPos = WorldToCell(worldPos);

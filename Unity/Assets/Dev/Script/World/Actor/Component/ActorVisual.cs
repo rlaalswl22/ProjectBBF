@@ -105,23 +105,71 @@ public class ActorVisual : ActorComponent
             Debug.Assert(false, "잘못된 Direction Hash: " + aniHash);
         }
     }
+
+    public Vector2 CalculateLookDir(Vector2 toTargetDir, bool ignoreSideUp = false)
+    {
+        if (toTargetDir.sqrMagnitude > 1f)
+        {
+            toTargetDir.Normalize();
+        }
+        
+        // up
+        if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, 90f) * Vector2.right, 30f))
+        {
+            return Vector2.up;
+        }
+        // left
+        else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, 25f) * Vector2.left, 30f))
+        {
+            return Vector2.left;
+        }
+        // leftup
+        else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, -30f) * Vector2.left, 30f))
+        {
+            return ignoreSideUp ? Vector2.left : (Vector2.left + Vector2.up).normalized;
+        }
+        // right
+        else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, -25f) * Vector2.right, 30f))
+        {
+            return Vector2.right;
+        }
+        // rightUp
+        else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, 30f) * Vector2.right, 30f))
+        {
+            return ignoreSideUp ? Vector2.right : (Vector2.right + Vector2.up).normalized;
+        }
+        // down
+        else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, -90f) * Vector2.right, 30f))
+        {
+            return Vector2.down;
+        }
+
+        return Vector2.down;
+    }
     
     public void LookAt(Vector2 toTargetDir, AnimationActorKey.Action movementType, bool ignoreSideUp = false)
     {
         int? actorAniHash = null;
         int? directionAniHash = null;
+
+        if (toTargetDir.sqrMagnitude > 1f)
+        {
+            toTargetDir.Normalize();
+        }
         
         // up
         if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, 90f) * Vector2.right, 30f))
         {
             actorAniHash = AnimationActorKey.GetAniHash(movementType);
             directionAniHash = AnimationActorKey.GetAniHash( AnimationActorKey.Direction.Up);
+            _move.LastMovedDirection = Vector2.up;
         }
         // left
         else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, 25f) * Vector2.left, 30f))
         {
             actorAniHash = AnimationActorKey.GetAniHash(movementType);
             directionAniHash = AnimationActorKey.GetAniHash( AnimationActorKey.Direction.Left);
+            _move.LastMovedDirection = Vector2.left;
         }
         // leftup
         else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, -30f) * Vector2.left, 30f))
@@ -131,6 +179,9 @@ public class ActorVisual : ActorComponent
                 ignoreSideUp is false
                     ? AnimationActorKey.GetAniHash(AnimationActorKey.Direction.LeftUp)
                     : AnimationActorKey.GetAniHash(AnimationActorKey.Direction.Left);
+            
+            
+            _move.LastMovedDirection = ignoreSideUp ? Vector2.left : (Vector2.left + Vector2.up).normalized;
 
         }
         // right
@@ -138,6 +189,7 @@ public class ActorVisual : ActorComponent
         {
             actorAniHash = AnimationActorKey.GetAniHash(movementType);
             directionAniHash = AnimationActorKey.GetAniHash( AnimationActorKey.Direction.Right);
+            _move.LastMovedDirection = Vector2.right;
         }
         // rightUp
         else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, 30f) * Vector2.right, 30f))
@@ -147,18 +199,20 @@ public class ActorVisual : ActorComponent
                 ignoreSideUp is false
                     ? AnimationActorKey.GetAniHash(AnimationActorKey.Direction.RightUp)
                     : AnimationActorKey.GetAniHash(AnimationActorKey.Direction.Right);
+            
+            _move.LastMovedDirection = ignoreSideUp ? Vector2.right : (Vector2.right + Vector2.up).normalized;
         }
         // down
         else if (ContainsDirection(toTargetDir, Quaternion.Euler(0f, 0f, -90f) * Vector2.right, 30f))
         {
             actorAniHash = AnimationActorKey.GetAniHash(movementType);
             directionAniHash = AnimationActorKey.GetAniHash( AnimationActorKey.Direction.Down);
+            _move.LastMovedDirection = Vector2.down;
         }
 
         if (actorAniHash is null) return;
 
 
-        _move.LastMovedDirection = toTargetDir;
         SetLookAtRight(directionAniHash.Value);
         ChangeClip(actorAniHash.Value, directionAniHash.Value);
     }

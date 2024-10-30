@@ -71,6 +71,15 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""89e7c1cc-8831-497c-99a6-c91bcd1d4517"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -170,6 +179,17 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""WinPCScheme"",
                     ""action"": ""Fishing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28834614-1c16-4f05-a3ab-ed4dc2991e9d"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""WinPCScheme"",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -519,6 +539,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
         m_Player_UseItem = m_Player.FindAction("UseItem", throwIfNotFound: true);
         m_Player_Fishing = m_Player.FindAction("Fishing", throwIfNotFound: true);
+        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_DialogueSkip = m_UI.FindAction("DialogueSkip", throwIfNotFound: true);
@@ -598,6 +619,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interaction;
     private readonly InputAction m_Player_UseItem;
     private readonly InputAction m_Player_Fishing;
+    private readonly InputAction m_Player_Look;
     public struct PlayerActions
     {
         private @DefaultKeymap m_Wrapper;
@@ -607,6 +629,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
         public InputAction @UseItem => m_Wrapper.m_Player_UseItem;
         public InputAction @Fishing => m_Wrapper.m_Player_Fishing;
+        public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -631,6 +654,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @Fishing.started += instance.OnFishing;
             @Fishing.performed += instance.OnFishing;
             @Fishing.canceled += instance.OnFishing;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -650,6 +676,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @Fishing.started -= instance.OnFishing;
             @Fishing.performed -= instance.OnFishing;
             @Fishing.canceled -= instance.OnFishing;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -831,6 +860,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         void OnInteraction(InputAction.CallbackContext context);
         void OnUseItem(InputAction.CallbackContext context);
         void OnFishing(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 {
     [field: SerializeField, Foldout("데이터"), OverrideLabel("플레이어 이동 데이터"), MustBeAssigned, DisplayInspector]
     private PlayerMovementData _movementData;
+    [field: SerializeField, Foldout("데이터"), OverrideLabel("플레이어 이동 데이터"), MustBeAssigned, DisplayInspector]
+    private PlayerCoordinateData _coordinateData;
 
     [field: SerializeField, Separator("컴포넌트"), MustBeAssigned, AutoProperty(AutoPropertyMode.Children)]
     private Rigidbody2D _rigidbody;
@@ -46,16 +48,10 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField, MustBeAssigned, InitializationField]
     private SpriteRenderer _bodyRenderer;
 
+    [field: SerializeField, MustBeAssigned, InitializationField]
+    private SpriteRenderer _interactorIndicator;
+
     [field: SerializeField] private List<ItemDataSerializedSet> _testItems;
-    [field: SerializeField] private Vector2 _interactionOffset;
-    [field: SerializeField] private Vector2 _interactionDirFactor;
-    [field: SerializeField] private float _interactionRadius;
-
-    public Vector2 InteractionOffset => _interactionOffset;
-    public float InteractionRadius => _interactionRadius;
-
-    public Vector2 InteractionDirFactor => _interactionDirFactor;
-
     public StateTransitionHandler StateHandler => _stateHandler;
 
     public CollisionInteraction Interaction => _interaction;
@@ -92,8 +88,13 @@ public class PlayerController : MonoBehaviour
     #region Getter/Setter
 
     public PlayerMovementData MovementData => _movementData;
+
+    public PlayerCoordinateData CoordinateData => _coordinateData;
+
     public Rigidbody2D Rigidbody => _rigidbody;
     public Animator Animator => _animator;
+
+    public SpriteRenderer InteractorIndicator => _interactorIndicator;
 
 
     public PlayerMove MoveStrategy { get; private set; }
