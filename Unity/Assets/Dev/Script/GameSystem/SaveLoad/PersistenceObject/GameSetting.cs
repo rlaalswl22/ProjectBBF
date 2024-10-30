@@ -7,11 +7,22 @@ namespace ProjectBBF.Persistence
     [UserData, Serializable]
     public class GameSetting
     {
-        [SerializeField] private float _volumeBGM;
-        [SerializeField] private float _volumeSFX;
-        [SerializeField] private float _volumePlayer;
-        [SerializeField] private float _volumeAnimal;
-        [SerializeField] private float _volumeUI;
+        public class VolumeAttribute : Attribute
+        {
+            public readonly string Key;
+
+            public VolumeAttribute(string key)
+            {
+                Key = key;
+            }
+        }
+        
+        [SerializeField, Volume("Global")] private float _volumeMaster;
+        [SerializeField, Volume("BGM")] private float _volumeBGM;
+        [SerializeField, Volume("SFX")] private float _volumeSFX;
+        [SerializeField, Volume("Player")] private float _volumePlayer;
+        [SerializeField, Volume("Animal")] private float _volumeAnimal;
+        [SerializeField, Volume("UI")] private float _volumeUI;
 
         [SerializeField] private int _vsyncCount;
         [SerializeField] private int _screenMode;

@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using ProjectBBF.Persistence;
 using ProjectBBF.Singleton;
 using UnityEngine;
 using UnityEngine.Audio;
 
-[Singleton(ESingletonType.Global)]
+[Singleton(ESingletonType.Global, 3)]
 public class AudioManager : MonoBehaviourSingleton<AudioManager>
 {
     private const string PATH = "Audio/";
@@ -12,6 +15,8 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     private Dictionary<string, (AudioMixerGroup mixerGroup, AudioSource source, Dictionary<string, AudioClip> dict)> _audioTables;
     private AudioMixer _mixer;
 
+    private Dictionary<string, float> _volumeTable = new();
+    
     public override void PostInitialize()
     {
         _mixer = Resources.Load<AudioMixer>(PATH + "Master");
@@ -19,6 +24,28 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
         var list = Resources.LoadAll<AudioTable>(PATH);
 
         _audioTables = new();
+
+        PersistenceManager.Instance.TryLoadOrCreateUserData("GameSetting", out GameSetting setting);
+
+        var keyValuePairs = setting
+            .GetType()
+            .GetFields(BindingFlags.Public| BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x => x.GetCustomAttribute<GameSetting.VolumeAttribute>() is not null)
+            .Select(x =>
+            {
+                var att = x.GetCustomAttribute<GameSetting.VolumeAttribute>();
+                return new KeyValuePair<string, float>(att.Key, (float)x.GetValue(setting));
+            });
+
+        _volumeTable = new Dictionary<string, float>(keyValuePairs);
+
+        var temp = _volumeTable.ToList();
+        
+        foreach (var pair in temp)
+        {
+            SetVolume(pair.Key, pair.Value);
+        }
+        
 
         foreach (var table in list)
         {
@@ -33,6 +60,29 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
             }
         }
 
+    }
+
+    public void SaveSetting()
+    {
+        PersistenceManager.Instance.TryLoadOrCreateUserData("GameSetting", out GameSetting setting);
+        
+        var keyValuePairs = setting
+            .GetType()
+            .GetFields(BindingFlags.Public| BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x => x.GetCustomAttribute<GameSetting.VolumeAttribute>() is not null)
+            .Select(x =>
+            {
+                var att = x.GetCustomAttribute<GameSetting.VolumeAttribute>();
+                return new KeyValuePair<FieldInfo, string>(x, att.Key);
+            });
+
+        foreach (KeyValuePair<FieldInfo,string> pair in keyValuePairs)
+        {
+            float volume = GetVolume(pair.Value);
+            pair.Key.SetValue(setting, volume);
+        }
+        
+        PersistenceManager.Instance.SaveUserData();
     }
 
     public override void PostRelease()
@@ -139,6 +189,15 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
         value = Mathf.Max(0.001f, value);
         value = Mathf.Log10(value) * 20f;
         
+        
+        if (_volumeTable.ContainsKey(groupKey) is false)
+        {
+            Debug.LogWarning($"group key({groupKey})를 찾지 못함.");
+            return;
+        }
+
+        _volumeTable[groupKey] = value;
+        
         if (_mixer.SetFloat(groupKey,  value) is false)
         {
             Debug.LogWarning($"group key({groupKey})를 찾지 못함.");
@@ -147,13 +206,14 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
 
     public float GetVolume(string groupKey)
     {
-        if (_mixer.GetFloat(groupKey, out float value) is false)
+        if (_volumeTable.TryGetValue(groupKey, out float value) is false)
         {
             Debug.LogWarning($"group key({groupKey})를 찾지 못함.");
             return 0f;
         }
 
-        return Mathf.Pow(value, 10f) * 0.05f;
+        value = Mathf.Pow(10f, value * 0.05f);
+        return value;
     }
 
 }

@@ -24,12 +24,12 @@ public class ScreenManager : MonoBehaviourSingleton<ScreenManager>
         MaxFrameRate = Mathf.RoundToInt((float)Screen.resolutions.Max(x => x.refreshRateRatio.value));
         AllResolutions = resList.Distinct().ToList();
         
-        if (PersistenceManager.Instance.TryLoadOrCreateUserData("Screen_Manager", out GameSetting setting) is false)
+        if (PersistenceManager.Instance.TryLoadOrCreateUserData("GameSetting", out GameSetting setting) is false)
         {
             setting.ScreenMode = (int)FullScreenMode.MaximizedWindow;
             setting.VsyncCount = QualitySettings.vSyncCount;
             setting.Resolution = AllResolutions[^1];
-            setting.RefreshRate = Mathf.RoundToInt((float)Screen.currentResolution.refreshRateRatio.value);
+            setting.RefreshRate = MaxFrameRate;
         }
         else
         {
@@ -46,7 +46,7 @@ public class ScreenManager : MonoBehaviourSingleton<ScreenManager>
     {
     }
 
-    public void SaveScreenSetting()
+    public void SaveSetting()
     {
         _setting.ScreenMode = (int)ScreenMode;
         _setting.VsyncCount = VsyncCount;
@@ -74,10 +74,15 @@ public class ScreenManager : MonoBehaviourSingleton<ScreenManager>
 
     public Vector2Int CurrentResolution { get; private set; }
 
+    private int _targetFrameRate;
     public int TargetFrameRate
     {
-        get => Application.targetFrameRate;
-        set => Application.targetFrameRate = value;
+        get => _targetFrameRate;
+        set
+        {
+            Application.targetFrameRate = value;
+            _targetFrameRate = value;
+        }
     }
 
     public int MaxFrameRate { get; private set; }

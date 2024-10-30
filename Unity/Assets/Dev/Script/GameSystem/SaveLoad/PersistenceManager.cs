@@ -247,7 +247,7 @@ namespace ProjectBBF.Persistence
                 cachedObj = new T();
                 Debug.Log($"PersistenceManager object 생성(key: {typeof(T)}, type: {key})");
                 
-                _objGameDataTable[key] = cachedObj;
+                _objUserDataTable[key] = cachedObj;
             }
 
             Debug.Assert(cachedObj is T, $"Persistence 에러! Key({key}), cachedObject Type({cachedObj.GetType()}), Acquire Type({typeof(T)})");
