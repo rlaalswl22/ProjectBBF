@@ -32,8 +32,14 @@ public class RecipeBookPreviewView : MonoBehaviour
         get => gameObject.activeSelf;
         set
         {
-            if(value is false)
-                _toolTipView.Visible = false;
+            if (value is false)
+            {
+                if (_toolTipView)
+                {
+                    _toolTipView.Clear();
+                    _toolTipView.Visible = false;
+                }
+            }
             
             gameObject.SetActive(value);
         }

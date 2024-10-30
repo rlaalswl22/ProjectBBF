@@ -36,6 +36,12 @@ public class InteractableInventoryView : MonoBehaviour, IInventoryView
             }
             else
             {
+                if (_toolTipView)
+                {
+                    _toolTipView.Clear();
+                    _toolTipView.Visible = false;
+                }
+                
                 OnViewClosed?.Invoke();
             }
         }
