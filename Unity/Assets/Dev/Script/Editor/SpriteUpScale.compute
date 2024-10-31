@@ -1,0 +1,38 @@
+#pragma kernel CSMain
+
+// 텍스처 입력 및 출력
+Texture2D<float4> _InputTexture;          // 원본 텍스처
+RWTexture2D<float4> _OutputTexture;       // 리스케일링된 결과 텍스처
+
+// 원본 텍스처와 리스케일링된 텍스처의 크기
+int _InputWidth;
+int _InputHeight;
+int _NewWidth;
+int _NewHeight;
+float _srgb;
+
+[numthreads(8, 8, 1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    // 현재 쓰레드의 텍스처 좌표를 얻어옵니다.
+    int x = id.x;
+    int y = id.y;
+
+    // 텍스처 경계 내의 픽셀에 대해서만 계산 수행
+    if (x >= _NewWidth || y >= _NewHeight)
+        return;
+
+    // 네어스트 네이버(최단입점) 리스케일링 계산
+    float u = (float(x) + 0.5f) / _NewWidth;
+    float v = (float(y) + 0.5f) / _NewHeight;
+
+    int origX = int(u * _InputWidth);
+    int origY = int(v * _InputHeight);
+
+    // 원본 텍스처에서 픽셀 색상 값을 가져와 출력 텍스처에 기록
+    float4 color = _InputTexture.Load(int3(origX, origY, 0));
+    float a= color.a;
+    color = pow(abs(color), abs(_srgb));
+    // 알파 값을 포함하여 색상 값을 출력 텍스처에 저장
+    _OutputTexture[int2(x, y)] = color;
+}
