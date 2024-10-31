@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class MoveToWorld : MonoBehaviour
 {
+    [SerializeField] private bool _usePrevWorld;
     [SerializeField] private SceneName _scene;
     [SerializeField] private string _directorKey = "BlackAlpha";
     [SerializeField] private bool _fadeOut;
@@ -30,12 +31,21 @@ public class MoveToWorld : MonoBehaviour
         if (_initPlayerPosition == false) return;
 
         Vector2 pos = _initPlayerPosition.position;
+        string scene = _scene;
 
+        if (_usePrevWorld)
+        {
+            scene = pc.Blackboard.PrevWorld;
+        }
+
+        Debug.Assert(string.IsNullOrEmpty(scene) is false);
+        
         if (_savePosAndWorld)
         {
             pc.Blackboard.CurrentPosition = pos;
-            pc.Blackboard.CurrentWorld = _scene.Scene;
+            pc.Blackboard.CurrentWorld = scene;
         }
+
         
         var loaderInst = SceneLoader.Instance;
         var PersistenceInst = PersistenceManager.Instance;
@@ -76,7 +86,7 @@ public class MoveToWorld : MonoBehaviour
         }
             
 
-        _ = await loaderInst.LoadWorldAsync(_scene);
+        _ = await loaderInst.LoadWorldAsync(scene);
             
         if (_fadeIn)
         {

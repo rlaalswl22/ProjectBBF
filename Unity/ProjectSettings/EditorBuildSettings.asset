@@ -9,188 +9,14 @@ EditorBuildSettings:
     path: Assets/Dev/Scene/World/World_MainMenu.unity
     guid: 0b7f0d7b09a2aa54184ea103f92d061b
   - enabled: 1
-    path: Assets/Dev/Scene/World/NoChronicle/World_DaffodilLake_Arakar.unity
-    guid: 2802097b12f5b99479e67706b158964c
-  - enabled: 1
-    path: Assets/Dev/Scene/EntryScene.unity
-    guid: 508b0ea2e3405724599c31bf95dd854c
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/NoChronicle/BMap_DaffodilLake_Arakar.unity
-    guid: a459b398897759c4f9801df8035413bc
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/NoChronicle/VMap_DaffodilLake_Arakar.unity
-    guid: 709811b668b8c374ea43391cbbfbf34e
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/NoChronicle/DMap_DaffodilLake_Arakar.unity
-    guid: 30e5d127f803cd14c95de9311d095080
-  - enabled: 1
-    path: Assets/Dev/Scene/Immutable/Immutable_Playground.unity
-    guid: f598e378b07a88e478563ee48cc1eb37
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/NoChronicle/BMap_Village_Arakar.unity
-    guid: ab283eb51fc88d54c939e7c960971df5
-  - enabled: 1
-    path: Assets/Dev/Scene/World/NoChronicle/World_Village_Arakar.unity
-    guid: 7bd4e3a93e858e4458618d98e77b8888
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/NoChronicle/DMap_Village_Arakar.unity
-    guid: cc9491cd20945a54d9407d34a77246a4
-  - enabled: 1
-    path: Assets/Dev/Scene/World/NoChronicle/World_Beach_Arakar.unity
-    guid: ba3a9d7f76088e84abfbfc83a36ffdd4
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/NoChronicle/BMap_Beach_Arakar.unity
-    guid: 6e1aa9a15c047e84c99187354ba29e68
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/NoChronicle/DMap_Beach_Arakar.unity
-    guid: ca97f96ad570bc94a9fb76d1a25810b0
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/NoChronicle/BMap_Borderland_Arakar.unity
-    guid: 835455493774c37459a426ad237d2b4e
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/NoChronicle/VMap_Village_Arakar.unity
-    guid: eeb89033461e8cf4b8ae3ab36d9bd092
-  - enabled: 1
-    path: Assets/Dev/Scene/World/NoChronicle/World_Borderland_Arakar.unity
-    guid: 577671e3abfa0d345aae74108b2b91e9
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/NoChronicle/DMap_Borderland_Arakar.unity
-    guid: 411861a4ad19dd34c9388d8e0df99d36
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/NoChronicle/VMap_Borderland_Arakar.unity
-    guid: 106757b980785a340a0a071f3b8607e9
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/NoChronicle/VMap_Beach_Arakar.unity
-    guid: 74d3fa2e057476f4d9bd4fd61fbd8db0
-  - enabled: 1
-    path: Assets/Dev/Scene/UnitTest/TestCutScene/World_DaffodiLake_Arakar_CutScene.unity
-    guid: 50ed8563bb3ea264c85c75486b5024bc
-  - enabled: 1
-    path: Assets/Dev/Scene/UnitTest/TestCutScene/DMap_DaffodiLake_Arakar_CutScene.unity
-    guid: 780b02f1b100eaa498bcd0f73d0f597f
-  - enabled: 1
-    path: Assets/Dev/Scene/Immutable/Immutable_Actor.unity
-    guid: 97a795618acdfaa408dd70cee4e3d894
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_MiddleBuild.unity
-    guid: 2662b9092a1d1624b913fdeabb3cc139
+    path: Assets/Dev/Scene/World/World_Festival_Ch_0.unity
+    guid: edd13e89fe68be04e9cbdeced5075dc1
   - enabled: 1
     path: Assets/Dev/Scene/Map/BMap_Festival.unity
     guid: 3d8ff6aa079a0fc41b7d8ed37c3f4314
   - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_MiddleBuild.unity
-    guid: fed615750bb7f374aa27e7f64f8e1daf
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/BMap_MoleMiniGame.unity
-    guid: 82a819df5bc046348ad8f5323cdc7a17
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_MoleMiniGame.unity
-    guid: 6103943d913bfe04882e1e62675fd14a
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Festival_Collision.unity
-    guid: 0f63b3c9ae46db148bf3d66f7241e6d9
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/BMap_Fishing.unity
-    guid: fdbcf1678b30b3341b2bb859a30bb96a
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Fishing_Ch_2.unity
-    guid: 55f2807e004eba847b05a25e733210d2
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_MoleMinigame.unity
-    guid: 2fc317eb3f5c1f64389471b7fb0ce734
-  - enabled: 1
     path: Assets/Dev/Scene/Map/BMap_FestivalDetail.unity
     guid: 5d1b86af68f271f4283e16aa257790ff
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_FishingMinigame_Ch_2.unity
-    guid: 47d6654bc14a5e049b109f9e56dc6aa1
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/BMap_MoleDetail.unity
-    guid: 7f778772d4c5e3b49997b1eee520e5ec
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/BMap_FishingDetail.unity
-    guid: e2b0a9300f74e1949a96b990a30619ce
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_FishingMinigame_Ch_4.unity
-    guid: fa471268c140bda43b59db1bf5df61e8
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Fishing_Ch_4.unity
-    guid: aa734a717bcb12b44a50245756a67fb6
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_Festival_Ch_2.unity
-    guid: c487d13ef99cb374884cad80a76bfcfd
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Ch_2.unity
-    guid: 1d2053bf3d3a73f47b9881d0263c36c6
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Bakery.unity
-    guid: 2bd3874c7ffabed4bb6c4c117bf20eda
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_Festival_Ch_1.unity
-    guid: 6727947fc9648b64894e94a97d42ae24
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Ch_1.unity
-    guid: b4cd806b7dae45045a8beb22130c9072
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_Festival_Ch_3.unity
-    guid: d8a0bafe8d0c3e9459f2c6a934347d5a
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_Festival_Ch_4.unity
-    guid: ace2e0163fac7b64b923618a5b5533e0
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_MoleMinigame_Ch_3.unity
-    guid: 2b90018dabc52f6449b340fd202f9f35
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_MoleMiniGame_Ch_3.unity
-    guid: 217d3fe905ba34a40b2ccd616a1212c6
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_FishingMinigame_Ch_3.unity
-    guid: a0a706b5493e2b747827e456e7230b27
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Fishing_Ch_3.unity
-    guid: bf8baa753a2115e47b6fff8aa94d83b2
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Ch_3.unity
-    guid: f6c04d08dade53340bc703baeefcf530
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Ch_4.unity
-    guid: 404fad5bb8eca7f4db72cbec5ac789e1
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_MoleMinigame_Ch_4.unity
-    guid: 348960fd7bdfe22439719009401a0781
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_MoleMiniGame_Ch_4.unity
-    guid: b8928c256d057ce40ab8fc2ec52abf13
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_Festival_CutScene_Ch_2_Contest.unity
-    guid: 23c2e2ad464b2da4197f5a9e820af120
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Festival_CutScene_Ch_2_Contest.unity
-    guid: f2895d189833a324bb1d09722ae754fb
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_Festival_CutScene_Ch_3_Contest.unity
-    guid: 97a53ebc0bf10c04dbd05c4de9eec32c
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Festival_CutScene_Ch_3_Contest.unity
-    guid: ae0749282f04db1428672885432aa0e5
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_Festival_CutScene_Ch_4_Contest.unity
-    guid: 53d2df84785cc324fa1610cd9ba1dfe1
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Festival_CutScene_Ch_4_Contest.unity
-    guid: 07669e06f2c7abe4b8131ef6c9b9fc45
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_Festival_CutScene_Ch_1_Contest.unity
-    guid: b70d5ef2b6727de49b45b821baf17c38
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Festival_CutScene_Ch_1_Contest.unity
-    guid: ef76d57b13cab294287b8ecd1250de1e
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_Festival_CutScene_Ch_0_Begin.unity
-    guid: bbaeebbcc59f2e544a5ec94d9a366b13
-  - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Festival_CutScene_Ch_0_Begin.unity
-    guid: d5f30d7d3f0535c4492e38283e7c7b5b
   - enabled: 1
     path: Assets/Dev/Scene/Map/VMap_Festival.unity
     guid: 83a80f4cf3ed5854a989b1605e320b43
@@ -201,13 +27,73 @@ EditorBuildSettings:
     path: Assets/Dev/Scene/Map/VMap_FrogMinigame.unity
     guid: 110bf93bac5f4744498c3f5d9775ddd7
   - enabled: 1
-    path: Assets/Dev/Scene/Map/DMap_Fishing_Collision.unity
-    guid: 9c8ee112397b6124daf7425a0293a292
-  - enabled: 1
-    path: Assets/Dev/Scene/World/World_Festival_Ch_0.unity
-    guid: edd13e89fe68be04e9cbdeced5075dc1
+    path: Assets/Dev/Scene/Map/DMap_Festival_Collision.unity
+    guid: 0f63b3c9ae46db148bf3d66f7241e6d9
   - enabled: 1
     path: Assets/Dev/Scene/Map/DMap_Ch_0.unity
     guid: 79a22f0998d699547b4834ac93d37d4b
+  - enabled: 1
+    path: Assets/Dev/Scene/World/World_Festival_Ch_1.unity
+    guid: 6727947fc9648b64894e94a97d42ae24
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/DMap_Bakery.unity
+    guid: 2bd3874c7ffabed4bb6c4c117bf20eda
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/DMap_Ch_1.unity
+    guid: b4cd806b7dae45045a8beb22130c9072
+  - enabled: 1
+    path: Assets/Dev/Scene/World/World_Festival_Ch_2.unity
+    guid: c487d13ef99cb374884cad80a76bfcfd
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/DMap_Ch_2.unity
+    guid: 1d2053bf3d3a73f47b9881d0263c36c6
+  - enabled: 1
+    path: Assets/Dev/Scene/World/World_Festival_CutScene_Ch_0_Begin.unity
+    guid: bbaeebbcc59f2e544a5ec94d9a366b13
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/DMap_Festival_CutScene_Ch_0_Begin.unity
+    guid: d5f30d7d3f0535c4492e38283e7c7b5b
+  - enabled: 1
+    path: Assets/Dev/Scene/World/World_Festival_CutScene_Ch_1_Contest.unity
+    guid: b70d5ef2b6727de49b45b821baf17c38
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/DMap_Festival_CutScene_Ch_1_Contest.unity
+    guid: ef76d57b13cab294287b8ecd1250de1e
+  - enabled: 1
+    path: Assets/Dev/Scene/World/World_Festival_CutScene_Ch_2_Contest.unity
+    guid: 23c2e2ad464b2da4197f5a9e820af120
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/DMap_Festival_CutScene_Ch_2_Contest.unity
+    guid: f2895d189833a324bb1d09722ae754fb
+  - enabled: 1
+    path: Assets/Dev/Scene/World/World_FishingMinigame.unity
+    guid: fa471268c140bda43b59db1bf5df61e8
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/BMap_Fishing.unity
+    guid: fdbcf1678b30b3341b2bb859a30bb96a
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/BMap_FishingDetail.unity
+    guid: e2b0a9300f74e1949a96b990a30619ce
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/DMap_Fishing.unity
+    guid: aa734a717bcb12b44a50245756a67fb6
+  - enabled: 1
+    path: Assets/Dev/Scene/World/World_MoleMinigame.unity
+    guid: 348960fd7bdfe22439719009401a0781
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/BMap_MoleMiniGame.unity
+    guid: 82a819df5bc046348ad8f5323cdc7a17
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/BMap_MoleDetail.unity
+    guid: 7f778772d4c5e3b49997b1eee520e5ec
+  - enabled: 1
+    path: Assets/Dev/Scene/Map/DMap_MoleMiniGame.unity
+    guid: b8928c256d057ce40ab8fc2ec52abf13
+  - enabled: 1
+    path: Assets/Dev/Scene/EntryScene.unity
+    guid: 508b0ea2e3405724599c31bf95dd854c
+  - enabled: 1
+    path: Assets/Dev/Scene/Immutable/Immutable_Playground.unity
+    guid: f598e378b07a88e478563ee48cc1eb37
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: a62db68cd8d5e6b458c6bb98b1b16c22, type: 2}

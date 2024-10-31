@@ -117,8 +117,12 @@ public class RootSceneLoader : MonoBehaviour
                         var t = GameObjectStorage.Instance.StoredObjects.FirstOrDefault(z =>
                             z.GetComponent<PlayerController>());
 
-                        if (t)
+                        if (t.TryGetComponent(out PlayerController pc))
+                        {
                             t.transform.SetXY(root.transform.position);
+                            pc.Blackboard.CurrentWorld = worldSceneName;
+                            pc.Blackboard.CurrentWorld = worldSceneName; // prev 때문에 두번
+                        }
                     }
                 });
                 

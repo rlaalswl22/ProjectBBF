@@ -2446,6 +2446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c6d952562c9d42ae08baec230fcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usePrevWorld: 0
   _scene:
     _sceneAsset: {fileID: 102900000, guid: 47d6654bc14a5e049b109f9e56dc6aa1, type: 3}
     _sceneName: World_FishingMinigame_Ch_2
@@ -3198,6 +3199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c6d952562c9d42ae08baec230fcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usePrevWorld: 0
   _scene:
     _sceneAsset: {fileID: 102900000, guid: 23c2e2ad464b2da4197f5a9e820af120, type: 3}
     _sceneName: World_Festival_CutScene_Ch_2_Contest
@@ -3757,9 +3759,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c6d952562c9d42ae08baec230fcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usePrevWorld: 0
   _scene:
-    _sceneAsset: {fileID: 102900000, guid: 47d6654bc14a5e049b109f9e56dc6aa1, type: 3}
-    _sceneName: World_FishingMinigame_Ch_2
+    _sceneAsset: {fileID: 102900000, guid: fa471268c140bda43b59db1bf5df61e8, type: 3}
+    _sceneName: World_FishingMinigame
   _directorKey: BlackAlpha
   _fadeOut: 1
   _fadeIn: 1

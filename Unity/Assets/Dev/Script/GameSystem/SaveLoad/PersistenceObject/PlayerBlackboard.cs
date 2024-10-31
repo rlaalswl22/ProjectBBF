@@ -8,6 +8,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.AddressableAssets.ResourceLocators;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
+using UnityEngine.Serialization;
 
 
 [GameData]
@@ -66,6 +67,7 @@ public class PlayerBlackboard : ISaveLoadNotification
 
     [SerializeField, Editable] private GridModelSerialized _serializedGridModel;
 
+    [SerializeField, Editable] private string _prevWorld;
 
     public float Stemina
     {
@@ -95,10 +97,19 @@ public class PlayerBlackboard : ISaveLoadNotification
         set => _maxEnergy = value;
     }
 
+    public string PrevWorld
+    {
+        get => _prevWorld;
+        private set => _prevWorld = value;
+    }
     public string CurrentWorld
     {
         get => _currentWorld;
-        set => _currentWorld = value;
+        set
+        {
+            PrevWorld = _currentWorld;
+            _currentWorld = value;
+        }
     }
 
     public Vector2 CurrentPosition
