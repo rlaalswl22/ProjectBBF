@@ -16,6 +16,7 @@ namespace DS.Editor
         private DialogueGraphView _targetGraphView;
         private DialogueContainer _containerCache;
 
+
         private List<Edge> Edges => _targetGraphView.edges.ToList();
         private List<DialogueEditorNode> Nodes => _targetGraphView.nodes.ToList().Cast<DialogueEditorNode>().ToList();
 
@@ -150,7 +151,7 @@ namespace DS.Editor
             ConnectNodes();
         }
         
-        private string ConvertFullToRelativePath(string fullPath)
+        public static string ConvertFullToRelativePath(string fullPath)
         {
             string projectPath = Application.dataPath;
             if (fullPath.StartsWith(projectPath))

@@ -13,6 +13,7 @@ namespace DS.Editor
     public class DialogueGraph : EditorWindow
     {
         private DialogueGraphView _graphView;
+        private Label _titleLabel;
 
         [MenuItem("Dialogue Graph/Editor")]
         public static void OpenDialogueGraphView()
@@ -63,10 +64,23 @@ namespace DS.Editor
             toolbar.Add(CreateNewDialogueButton());
             toolbar.Add(CreateSaveButton());
             toolbar.Add(CreateLoadButton());
+            toolbar.Add(CreateTitle());
             toolbar.styleSheets.Add(styleSheet);
             rootVisualElement.Add(toolbar);
         }
-        
+
+        private VisualElement CreateTitle()
+        {
+            _titleLabel = new Label("title: ");
+            return _titleLabel;
+        }
+
+        private void OnChangeDialogueContainer(string fullPath)
+        {
+            string path = GraphSaveUtility.ConvertFullToRelativePath(fullPath);
+            _titleLabel.text = $"title: {path}";
+        }
+
         private Button CreateNewDialogueButton()
         {
             return new Button(CreateNewDialogue)
@@ -111,6 +125,7 @@ namespace DS.Editor
             
             saveUtility.ClearGraph();
             _graphView.SaveDirectory = String.Empty;
+            OnChangeDialogueContainer(_graphView.SaveDirectory);
         }
 
         private void RequestDataOperation(bool save)
@@ -129,6 +144,7 @@ namespace DS.Editor
                     return;
                 
                 saveUtility.SaveGraph(_graphView.SaveDirectory);
+                OnChangeDialogueContainer(_graphView.SaveDirectory);
             }
             else
             {
@@ -146,7 +162,7 @@ namespace DS.Editor
                     }
                 }
                     
-                string fullPath = EditorUtility.OpenFilePanel("Dialogue Graph", $"{Application.dataPath}/1. Data/Dialogues/", "asset");
+                string fullPath = EditorUtility.OpenFilePanel("Dialogue Graph", $"{Application.dataPath}/1. Data/Dialogue/", "asset");
                 
                 if (string.IsNullOrEmpty(fullPath))
                     return;
@@ -154,6 +170,7 @@ namespace DS.Editor
                 _graphView.SaveDirectory = fullPath;
                 
                 saveUtility.LoadGraph(_graphView.SaveDirectory);
+                OnChangeDialogueContainer(_graphView.SaveDirectory);
             }
         }
     }
