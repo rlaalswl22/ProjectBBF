@@ -7,6 +7,7 @@ using ProjectBBF.Event;
 using ProjectBBF.Persistence;
 using UnityEngine;
 using UnityEngine.Serialization;
+
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
 
 
@@ -18,6 +19,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     private PlayerMove _move;
     private PlayerCoordinate _coordinate;
     private SpriteRenderer _indicator;
+    private SpriteRenderer _itemPreviewRenderer;
 
     private bool _isAniPrevEventRaised = false;
     private bool _isAniNextEventRaised = false;
@@ -30,7 +32,10 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         _coordinate = controller.Coordinate;
         _indicator = controller.InteractorIndicator;
         _indicator.enabled = false;
+        _itemPreviewRenderer = controller.ItemPreviewRenderer;
         _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
+        
+        ItemPreviewSprite = null;
     }
 
     public bool MainInventoryVisible
@@ -69,6 +74,16 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         }
     }
 
+    public Sprite ItemPreviewSprite
+    {
+        get => _itemPreviewRenderer.sprite;
+        set
+        {
+            _itemPreviewRenderer.enabled = value;
+            _itemPreviewRenderer.sprite = value;
+        }
+    }
+
     private void LateUpdate()
     {
         if (_blackboard.IsInteractionStopped) return;
@@ -85,7 +100,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         {
             var obj = FindCloserObject();
             if (obj == false) return;
-        
+
 
             Vector2 clickPoint = Camera.main.ScreenToWorldPoint(InputManager.Map.Player.Look.ReadValue<Vector2>());
             Vector2 dir = clickPoint - (Vector2)_controller.transform.position;
@@ -102,7 +117,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 _indicator.transform.position = interactIndicator.GetDrawPositionAndSize(pos).position;
                 return;
             }
- 
         }
 
         _indicator.enabled = false;
@@ -111,7 +125,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     public async UniTask<bool> OnToolAction()
     {
         if (_blackboard.IsInteractionStopped) return false;
-        
+
         try
         {
             ItemData currentData = _controller.Inventory.CurrentItemData;
@@ -140,7 +154,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
                 Vector2 dir = clickPoint - (Vector2)_controller.transform.position;
                 _visual.LookAt(dir, currentData.ActionAnimationType, true);
-                
+
                 PlayAudio(currentData, "Use");
             }
             else
@@ -152,10 +166,11 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
             if (currentData.UsePrevWait > 0f)
             {
-                await UniTask.Delay((int)(currentData.UsePrevWait * 1000f), DelayType.DeltaTime, PlayerLoopTiming.Update,
+                await UniTask.Delay((int)(currentData.UsePrevWait * 1000f), DelayType.DeltaTime,
+                    PlayerLoopTiming.Update,
                     this.GetCancellationTokenOnDestroy());
             }
-            
+
 
             var interaction = FindCloserObject();
             if (interaction is null)
@@ -169,14 +184,15 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 success = true;
                 goto RE;
             }
-            if(Pickaxe(interaction))
+
+            if (Pickaxe(interaction))
             {
                 success = true;
                 goto RE;
             }
-            
+
             RE:
-            
+
 
             if (success)
             {
@@ -193,9 +209,9 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 await UniTask.Delay((int)(currentData.UseAndWait * 1000f), DelayType.DeltaTime, PlayerLoopTiming.Update,
                     this.GetCancellationTokenOnDestroy());
             }
-            
+
             _move.IsStopped = false;
-            
+
 
             return success;
         }
@@ -205,7 +221,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             _move.IsStopped = false;
             return false;
         }
-        
     }
 
     private void PlayAudio(ItemData itemData, string usingKey)
@@ -213,7 +228,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         if (itemData == false) return;
 
         if (itemData.UseActionUsingActionAudioInfos is null) return;
-        
+
         foreach (var info in itemData.UseActionUsingActionAudioInfos)
         {
             if (info.HasAudio(usingKey))
@@ -226,7 +241,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     public async UniTask<bool> OnCollectAction()
     {
         if (_blackboard.IsInteractionStopped) return false;
-        
+
         try
         {
             var interaction = CloserObject;
@@ -246,9 +261,10 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
                 Vector2 dir = (interaction.transform.position - _controller.transform.position).normalized;
                 _visual.LookAt(dir, AnimationActorKey.Action.Collect);
-                await UniTask.Delay(500, DelayType.DeltaTime, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+                await UniTask.Delay(500, DelayType.DeltaTime, PlayerLoopTiming.Update,
+                    this.GetCancellationTokenOnDestroy());
             }
-            
+
             return executedAny;
         }
         catch (Exception e) when (e is not OperationCanceledException)
@@ -257,10 +273,11 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             return false;
         }
     }
+
     public async UniTask<bool> OnActivateAction()
     {
         if (_blackboard.IsInteractionStopped) return false;
-        
+
         try
         {
             var interaction = CloserObject;
@@ -270,7 +287,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 .CreateSelectState()
                 .Bind<IBAInteractionTrigger>(ActivateTrigger)
                 .Execute(interaction.ContractInfo, out bool executedAny);
-            
+
             return executedAny;
         }
         catch (Exception e) when (e is not OperationCanceledException)
@@ -279,13 +296,14 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             return false;
         }
     }
-    
+
     private bool InteractTrigger(IBAInteractionTrigger arg)
     {
         _controller.StateHandler.TranslateState("EndOfInteraction");
         bool success = arg.Interact(_controller.Interaction);
         return success;
     }
+
     private bool ActivateTrigger(IBAInteractionTrigger arg)
     {
         _controller.StateHandler.TranslateState("EndOfInteraction");
@@ -315,10 +333,10 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             .Bind<IBOCollectTool>(CollectObject)
             .Bind<IBACollectTool>(CollectObject)
             .Execute(interaction.ContractInfo, out bool executedAny);
-            
+
         return executedAny;
     }
-    
+
     #region Object
 
     public bool PlantTile(IBOPlantTile action)
@@ -453,8 +471,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         List<ItemData> items = new List<ItemData>(2);
 
         if (action.Collect(targetPos, items) is false) return false;
-        
-        
+
+
         AudioManager.Instance.PlayOneShot("Player", "Player_Harvest");
 
         foreach (var item in items)
@@ -494,7 +512,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Action.Idle);
             actor.TransitionHandler.TranslateState("ToWait");
         }
-        
+
         ColectObject(list);
 
         return true;
@@ -503,21 +521,21 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     private bool CollectObject(IBACollectTool action)
     {
         ItemData currentData = _controller.Inventory.CurrentItemData;
-        if(currentData == false) return false;
+        if (currentData == false) return false;
 
         bool flag = false;
         foreach (ToolRequireSet toolSet in currentData.Info.Sets)
         {
             if (toolSet is null) continue;
-            
-            if(action.CanCollect(toolSet))
+
+            if (action.CanCollect(toolSet))
             {
                 flag = true;
             }
         }
 
         if (flag is false) return false;
-        
+
         var list = action.Collect();
         if (list is null) return false;
 
@@ -527,7 +545,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Action.Idle);
             actor.TransitionHandler.TranslateState("ToWait");
         }
-        
+
         ColectObject(list);
 
         return true;
@@ -536,21 +554,21 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     private bool CollectObject(IBOCollectTool action)
     {
         ItemData currentData = _controller.Inventory.CurrentItemData;
-        if(currentData == false) return false;
+        if (currentData == false) return false;
 
         bool flag = false;
         foreach (ToolRequireSet toolSet in currentData.Info.Sets)
         {
             if (toolSet is null) continue;
-            
-            if(action.CanCollect(toolSet))
+
+            if (action.CanCollect(toolSet))
             {
                 flag = true;
             }
         }
 
         if (flag is false) return false;
-        
+
         var list = action.Collect();
         if (list is null) return false;
 
@@ -560,7 +578,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Action.Idle);
             actor.TransitionHandler.TranslateState("ToWait");
         }
-        
+
         ColectObject(list);
 
         return true;
@@ -584,7 +602,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         var targetPos = _controller.Coordinate.GetFront();
         var colliders =
-            Physics2D.OverlapCircleAll(targetPos, _controller.CoordinateData.Radius, ~LayerMask.GetMask("Player", "Ignore Raycast"));
+            Physics2D.OverlapCircleAll(targetPos, _controller.CoordinateData.Radius,
+                ~LayerMask.GetMask("Player", "Ignore Raycast"));
 
         float minDis = Mathf.Infinity;
         CollisionInteractionMono minInteraction = null;
@@ -615,7 +634,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         CollisionInteractionMono minObj = null;
 
         int nullCount = 0;
-        
+
         foreach (CollisionInteractionMono obj in _closerObjects)
         {
             if (obj == false)
@@ -623,10 +642,10 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 nullCount++;
                 continue;
             }
-            
+
             float dis = ((Vector2)(obj.transform.position - _controller.transform.position)).sqrMagnitude;
-            
-            if ( dis< minDis)
+
+            if (dis < minDis)
             {
                 minDis = dis;
                 minObj = obj;
@@ -641,7 +660,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
         if (nullCount >= 10)
         {
-            _closerObjects.RemoveAll(x=>x == false);
+            _closerObjects.RemoveAll(x => x == false);
         }
     }
 
@@ -649,6 +668,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         _closerObjects.Add(interaction);
     }
+
     public void RemoveCloserObject(CollisionInteractionMono interaction)
     {
         _closerObjects.Remove(interaction);

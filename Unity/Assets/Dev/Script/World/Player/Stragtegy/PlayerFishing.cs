@@ -57,6 +57,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     private PlayerMove _move;
     private ActorVisual _visual;
     private PlayerBlackboard _blackboard;
+    private PlayerInteracter _interacter;
 
     private bool _currenTurningT = false;
 
@@ -79,6 +80,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         _coordinate = controller.Coordinate;
         _move = controller.MoveStrategy;
         _visual = controller.VisualStrategy;
+        _interacter = controller.Interactor;
 
         _fishingStateRenderer.enabled = false;
         _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
@@ -256,11 +258,14 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
                 inst.DialogueText = $"\"{ctx.Reward.ItemName}\"을(를) 낚았다!";
 
                 AudioManager.Instance.PlayOneShot("SFX", "SFX_Fishing_Completion");
-
+                _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down), true);
+                _interacter.ItemPreviewSprite = ctx.Reward.ItemSprite;
+                ctx.FishVisible = false;
+                
                 await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
                     this.GetCancellationTokenOnDestroy());
                 
-                
+                _interacter.ItemPreviewSprite = null;
                 _invPresenter.QuickInvVisible = true;
                 inst.ResetDialogue();
             }

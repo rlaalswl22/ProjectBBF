@@ -174,15 +174,18 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         yield return null;
         
         _audioSource.loop = false;
+
+        Sprite privewItem;
         
         if (tuple.resultItem is not null)
         {
             AudioManager.Instance.PlayOneShot("SFX", "SFX_Bakery_BakingComplete");
-            
+            privewItem = tuple.resultItem.ItemSprite;
             GameSuccess(tuple, pc);
         }
         else
         {
+            privewItem = tuple.failItem.ItemSprite;
             GameFail(tuple, pc);
         }
         
@@ -191,8 +194,10 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
 
         _panel.SetActive(false);
         pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down), true);
+        pc.Interactor.ItemPreviewSprite = privewItem;
         yield return new WaitForSeconds(_endWait);
-        
+        pc.Interactor.ItemPreviewSprite = null;
+
         pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
         
         

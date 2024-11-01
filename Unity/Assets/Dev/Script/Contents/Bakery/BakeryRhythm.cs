@@ -230,14 +230,13 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         _aniOven.SetBool("Start", false);
         _ovenActivationUI.SetActive(false);
         GameReset();
-        
-        if (successCount >= SUCCESS_GOAL_COUNT)
-        {
-            AudioManager.Instance.PlayOneShot("SFX", "SFX_Bakery_BakingComplete");
-            pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down), true);
-            yield return new WaitForSeconds(_endWait);
-        }
-        
+
+        pc.Interactor.ItemPreviewSprite = successCount >= SUCCESS_GOAL_COUNT ? tuple.resultItem.ItemSprite : tuple.failItem.ItemSprite;
+        AudioManager.Instance.PlayOneShot("SFX", "SFX_Bakery_BakingComplete");
+        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down), true);
+        yield return new WaitForSeconds(_endWait);
+
+        pc.Interactor.ItemPreviewSprite = null;
         pc.Blackboard.IsMoveStopped = false;
         pc.Blackboard.IsInteractionStopped = false;
         pc.MoveStrategy.IsGhost = false;

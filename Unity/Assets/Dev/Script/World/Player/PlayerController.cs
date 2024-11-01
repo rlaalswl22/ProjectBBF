@@ -51,6 +51,9 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField, MustBeAssigned, InitializationField]
     private SpriteRenderer _interactorIndicator;
 
+    [field: SerializeField, MustBeAssigned, InitializationField]
+    private SpriteRenderer _itemPreviewRenderer;
+
     [field: SerializeField] private List<ItemDataSerializedSet> _testItems;
     public StateTransitionHandler StateHandler => _stateHandler;
 
@@ -108,6 +111,8 @@ public class PlayerController : MonoBehaviour
 
     public PlayerInventoryPresenter Inventory { get; private set; }
     public PlayerPannelView PannelView => pannelView;
+
+    public SpriteRenderer ItemPreviewRenderer => _itemPreviewRenderer;
 
     #endregion
 
