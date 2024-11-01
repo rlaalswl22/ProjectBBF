@@ -24,6 +24,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         Right
     }
 
+    [SerializeField] private Transform _fishingPivot;
     [SerializeField] private SpriteRenderer _fishingStateRenderer;
     [SerializeField] private LineRenderer _line;
     [SerializeField] private float _horizontalDirAngle;
@@ -127,11 +128,19 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         _fishingMinigameController = null;
     }
 
+    private bool _lockFishingLine = true;
+    
+    public void BeginFishingLineAni()
+    {
+        _lockFishingLine = false;
+    }
+
     public async UniTask<bool> Fishing()
     {
         if (_blackboard.IsInteractionStopped || _blackboard.IsFishingStopped) return false;
         try
         {
+            _lockFishingLine = true;
             _visual.Animator.SetTrigger("Fishing");
             
             float factor = await _view.Fishing(1f);
@@ -178,10 +187,14 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
                 return false;
             }
 
-            var pos = transform.position + (front * factor * _fishingMaxDistance) + _sideOffset;
+            var pos = _fishingPivot.position + (front * factor * _fishingMaxDistance) + _sideOffset;
             // p1 + ((a * b * c) + d1 * d)
 
             _visual.Animator.SetBool("IsFishing", true);
+            
+            
+            await UniTask.WaitUntil(() => _lockFishingLine is false, PlayerLoopTiming.Update,
+                this.GetCancellationTokenOnDestroy());
             
             Fishing(dir, pos);
             
@@ -257,7 +270,6 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
 
 
             IsFishing = false;
-            _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Right));
             return true;
         }
         catch (Exception e) when (e is not OperationCanceledException)
@@ -271,8 +283,13 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
             IsFishing = false;
             _visual.Animator.SetBool("IsFishing", false);
         }
+        finally
+        {
+            Debug.Log("dsa");
+            _lockFishingLine = true;
+            _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Right), true);
+        }
 
-        _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Right));
 
         return false;
     }
@@ -281,11 +298,11 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     {
         var spline = GetCalculatedSpline(dir, targetPoint);
         float t = 1f;
-        var wPos = transform.position;
+        var wPos = _fishingPivot.position;
 
         _currenTurningT = false;
         _handle.gameObject.SetActive(true);
-        float toTargetPointDis = Vector2.Distance(transform.position, targetPoint);
+        float toTargetPointDis = Vector2.Distance(_fishingPivot.position, targetPoint);
 
         var lineSpline = new Spline();
 
@@ -320,7 +337,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         
         AudioManager.Instance.PlayOneShot("Player", "Player_Fishing_Swing_Rod");
         
-        _handle.position = transform.position;
+        _handle.position = _fishingPivot.position;
         StartCoroutine(_co = _Fishing(direction, targetPosition));
     }
 
@@ -335,7 +352,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         _currenTurningT = false;
 
         var lineSpline = new Spline();
-        float toTargetPointDis = Vector2.Distance(transform.position, targetPoint);
+        float toTargetPointDis = Vector2.Distance(_fishingPivot.position, targetPoint);
 
         while (t <= 1f)
         {
@@ -357,21 +374,21 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
 
         lineSpline.Clear();
         lineSpline.Add(
-            new BezierKnot(transform.position, float3.zero, float3.zero,
+            new BezierKnot(_fishingPivot.position, float3.zero, float3.zero,
                 quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)), TangentMode.AutoSmooth);
         lineSpline.Add(
-            new BezierKnot(transform.position, float3.zero, float3.zero,
+            new BezierKnot(_fishingPivot.position, float3.zero, float3.zero,
                 quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)), TangentMode.AutoSmooth);
         lineSpline.Add(
-            new BezierKnot(transform.position, float3.zero, float3.zero,
+            new BezierKnot(_fishingPivot.position, float3.zero, float3.zero,
                 quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)),
             dir == Direction.Up || dir == Direction.Down ? TangentMode.AutoSmooth : TangentMode.Broken);
 
         lineSpline.SetKnot(0,
-            new BezierKnot(transform.position, float3.zero, float3.zero,
+            new BezierKnot(_fishingPivot.position, float3.zero, float3.zero,
                 quaternion.AxisAngle(new float3(0f, 0f, 1f), 0f)));
 
-        Vector3 toHandleDir = (_handle.position - transform.position);
+        Vector3 toHandleDir = (_handle.position - _fishingPivot.position);
         float t = Mathf.Clamp(Mathf.Abs(toHandleDir.x) - _beginLineLength, 0, _maxLineLength - _beginLineLength) /
                   (_maxLineLength - _beginLineLength);
 
@@ -394,7 +411,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         }
 
         Vector3 middlePos =
-            Vector3.Lerp(transform.position, _handle.position, 0.5f) + Vector3.down * toHandleDis;
+            Vector3.Lerp(_fishingPivot.position, _handle.position, 0.5f) + Vector3.down * toHandleDis;
 
         lineSpline.SetKnot(1,
             new BezierKnot(middlePos, float3.zero, float3.zero,
@@ -421,7 +438,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         Vector3 dirV = Vector3.one;
         float factor = 0f;
 
-        targetPoint = transform.worldToLocalMatrix.MultiplyPoint(targetPoint);
+        targetPoint = _fishingPivot.worldToLocalMatrix.MultiplyPoint(targetPoint);
 
         switch (dir)
         {
@@ -462,7 +479,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         Vector3 startPoint = Vector3.zero;
         Vector3 dirV = Vector3.one;
 
-        targetPoint = transform.worldToLocalMatrix.MultiplyPoint(targetPoint);
+        targetPoint = _fishingPivot.worldToLocalMatrix.MultiplyPoint(targetPoint);
 
 
         switch (dir)

@@ -239,9 +239,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 708701679
+  m_SortingLayer: 2
+  m_SortingOrder: 99
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -654,12 +654,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23fed077076fe4944947ea159b9dda38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fishingPivot: {fileID: 8139728530440152935}
   _fishingStateRenderer: {fileID: 5224079804892061071}
   _line: {fileID: 6651855928972664081}
   _horizontalDirAngle: 50
   _verticalUpFactor: 1
   _verticalDownFactor: 1
-  _speed: 15
+  _speed: 22
   _maxHandleInTagent: 75
   _maxLineLength: 35
   _beginLineLength: 1
@@ -668,7 +669,7 @@ MonoBehaviour:
   _sideOffset: {x: 0, y: -1.8, z: 0}
   _fishingMaxDistance: 15
   _turningT: 0.9
-  _sideMaxY: 8
+  _sideMaxY: 3
   _handle: {fileID: 6363802113969981774}
   _view: {fileID: 808908259159016748}
   _splineContainer: {fileID: 6085147169449383347}
@@ -1054,6 +1055,7 @@ GameObject:
   - component: {fileID: 4072969249312393283}
   - component: {fileID: 7975097241645119651}
   - component: {fileID: 6133982080927662466}
+  - component: {fileID: 2432018473277134644}
   m_Layer: 7
   m_Name: Renderer
   m_TagString: Untagged
@@ -1073,7 +1075,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8139728530440152935}
   m_Father: {fileID: 4303433537959788132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7975097241645119651
@@ -1149,6 +1152,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2432018473277134644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4343325126028486478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb17a874e4d35143971cfbabf823bb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onStartFishingLine:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8611976090592582029}
+        m_TargetAssemblyTypeName: PlayerFishing, Assembly-CSharp
+        m_MethodName: BeginFishingLineAni
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5161597122361415402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,6 +1264,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!1 &7751598736906700831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8139728530440152935}
+  m_Layer: 7
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8139728530440152935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7751598736906700831}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.9799957, y: 0.4199982, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4072969249312393283}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7987320625715315069
 GameObject:
   m_ObjectHideFlags: 0
