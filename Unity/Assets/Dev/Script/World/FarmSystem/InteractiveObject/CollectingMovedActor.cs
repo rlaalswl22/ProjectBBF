@@ -18,6 +18,8 @@ public class CollectingMovedActor : ActorComponent
     [field: SerializeField, InitializationField]
     private CollectingObjectData _collectingData;
 
+    [SerializeField, Header("nullable")] [CanBeNull] private ParticlePlayer _particle;
+
     [SerializeField] private List<ESOVoid> _collectAndRaisingEvents;
     [SerializeField] private UnityEvent<CollectState> _onChangedCollectingState;
 
@@ -110,6 +112,7 @@ public class CollectingMovedActor : ActorComponent
     
     public List<ItemData> Collect()
     {
+        
         if (_collectingData == false) return null;
         if (_collectCount >= CollectingData.MaxCollectCount) return null;
             
@@ -118,6 +121,11 @@ public class CollectingMovedActor : ActorComponent
 
         _collectCount++;
 
+        if (_particle)
+        {
+            _particle.Play();
+        }
+        
         if (string.IsNullOrEmpty(_collectedPlayingAudioGroupKey) is false && 
             string.IsNullOrEmpty(_collectedPlayingAudioKey) is false)
         {
@@ -126,7 +134,6 @@ public class CollectingMovedActor : ActorComponent
             AudioManager.Instance.PlayOneShot(groupKey, audiokey);
         }
 
-        
         foreach (var item in _collectingData.DropItems)
         {
             for (int i = 0; i < item.Count; i++)
