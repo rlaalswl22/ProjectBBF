@@ -119,21 +119,36 @@ public class RecipeBookPreviewView : MonoBehaviour
         bool isUnlocked)
     {
 
-        _resultItemNameText.text = resultItemName;
-        
-        if (isUnlocked)
+        if (_resultItemNameText)
         {
-            _resultItemDescText.text = resultItemDesc;  
+            _resultItemNameText.text = resultItemName;
         }
-        else
+
+        if (_resultItemDescText)
         {
-            _resultItemDescText.text = "???";
+            if (isUnlocked)
+            {
+                _resultItemDescText.text = resultItemDesc;  
+            }
+            else
+            {
+                _resultItemDescText.text = "???";
+            }
         }
         
         // 각 단계 대표 이미지들
-        _resultItemImage.SetData(resultItemSprite.ItemSprite, resultItemSprite, isUnlocked);
-        _bakedBreadResultItemImage.SetData(doughResultItemSprite.ItemSprite, doughResultItemSprite, true);
-        _additiveResultItemImage.SetData(bakedBreadResultItemSprite.ItemSprite, bakedBreadResultItemSprite, true);
+        if (_resultItemImage)
+        {
+            _resultItemImage.SetData(resultItemSprite.ItemSprite, resultItemSprite, isUnlocked);
+        }
+        if (_bakedBreadResultItemImage)
+        {
+            _bakedBreadResultItemImage.SetData(doughResultItemSprite.ItemSprite, doughResultItemSprite, true);
+        }
+        if (_additiveResultItemImage)
+        {
+            _additiveResultItemImage.SetData(bakedBreadResultItemSprite.ItemSprite, bakedBreadResultItemSprite, true);
+        }
         
 
         // 연성 재료 칸
@@ -147,15 +162,22 @@ public class RecipeBookPreviewView : MonoBehaviour
             {
                 for (int i = 0; i < Mathf.Min(_additiveItemImages.Length, additiveItemSprites.Length); i++)
                 {
-                    _additiveItemImages[i].SetData(additiveItemSprites[i].ItemSprite, additiveItemSprites[i], true);
+                    if (_additiveItemImages[i])
+                    {
+                        _additiveItemImages[i].SetData(additiveItemSprites[i].ItemSprite, additiveItemSprites[i], true);
+                    }
                 }
             }
-        
-            _additiveFrame.SetActive(additiveItemSprites is not null);
+
+            if (_additiveFrame)
+            {
+                _additiveFrame.SetActive(additiveItemSprites is not null);
+            }
         }
 
 
         // 반죽 재료 칸
+        if(_doughtRecipeItemImages is not null)
         {
             if (_doughtRecipeItemImages.Length != doughtItemSprites.Length)
             {
@@ -164,30 +186,55 @@ public class RecipeBookPreviewView : MonoBehaviour
         
             for (int i = 0; i < Mathf.Min(_doughtRecipeItemImages.Length, doughtItemSprites.Length); i++)
             {
-                _doughtRecipeItemImages[i].SetData(doughtItemSprites[i].ItemSprite, doughtItemSprites[i], true);
+                if (_doughtRecipeItemImages[i])
+                {
+                    _doughtRecipeItemImages[i].SetData(doughtItemSprites[i].ItemSprite, doughtItemSprites[i], true);
+                }
             }
         }
     }
 
     public void Clear()
     {
-        _resultItemNameText.text = "";
-        _resultItemDescText.text = "";
-        _resultItemImage.Clear();
-
-        _bakedBreadResultItemImage.Clear();
-        _additiveResultItemImage.Clear();
-
-        foreach (var t in _additiveItemImages)
+        if (_resultItemNameText)
         {
-            if(t == false)continue;
-            t.Clear();
+            _resultItemNameText.text = "";
         }
 
-        foreach (var t in _doughtRecipeItemImages)
+        if (_resultItemDescText)
         {
-            if(t == false)continue;
-            t.Clear();
+            _resultItemDescText.text = "";
+        }
+        if (_resultItemImage)
+        {
+            _resultItemImage.Clear();
+        }
+
+        if (_bakedBreadResultItemImage)
+        {
+            _bakedBreadResultItemImage.Clear();
+        }
+        if (_additiveResultItemImage)
+        {
+            _additiveResultItemImage.Clear();
+        }
+
+        if (_additiveItemImages is not null)
+        {
+            foreach (var t in _additiveItemImages)
+            {
+                if(t == false)continue;
+                t.Clear();
+            }
+        }
+
+        if (_doughtRecipeItemImages is not null)
+        {
+            foreach (var t in _doughtRecipeItemImages)
+            {
+                if(t == false)continue;
+                t.Clear();
+            }
         }
     }
 }

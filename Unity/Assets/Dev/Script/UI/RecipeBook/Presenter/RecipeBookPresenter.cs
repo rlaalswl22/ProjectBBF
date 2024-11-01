@@ -4,18 +4,38 @@ using System.Collections.Generic;
 using System.Linq;
 using MyBox;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RecipeBookPresenter : MonoBehaviour
 {
+    [SerializeField] private Button _bookMarkBtn;
     [SerializeField] private BakeryRecipeData _firstSelectedRecipe;
     [SerializeField] private RecipeBookListView _listView;
     [SerializeField] private RecipeBookPreviewView _previewView;
+    [SerializeField] private RecipeBookPreviewView _previewSummaryView;
 
     public RecipeBookListView ListView => _listView;
 
     public RecipeBookPreviewView PreviewView => _previewView;
+    public RecipeBookPreviewView PreviewSummaryView => _previewSummaryView;
 
     public RecipeBookModel Model { get; private set; }
+
+    public BakeryRecipeData CurrentRecipe
+    {
+        get => _currentRecipe;
+        set
+        {
+            _prevRecipe = _currentRecipe;
+            _currentRecipe = value;
+        }
+    }
+
+    public BakeryRecipeData PrevRecipe => _prevRecipe;
+    
+    private BakeryRecipeData _prevRecipe;
+    private BakeryRecipeData _currentRecipe;
+    
 
     public void Awake()
     {
@@ -24,6 +44,24 @@ public class RecipeBookPresenter : MonoBehaviour
         
         _listView.OnSlotClick += OnSlotClicked;
         Model.OnRecipeUnlocked += OnUnlockedChanged;
+
+        _bookMarkBtn.onClick.AddListener(() =>
+        {
+            _previewSummaryView.Clear();
+            
+            if (CurrentRecipe == PrevRecipe && _previewSummaryView.Visible)
+            {
+                _previewSummaryView.Visible = false;
+            }
+            else
+            {
+                if (CurrentRecipe)
+                {
+                    SetView(CurrentRecipe, _previewSummaryView);
+                    _previewSummaryView.Visible = true;
+                }
+            }
+        });
 
         _listView.OnExit += () =>
         {
@@ -47,6 +85,7 @@ public class RecipeBookPresenter : MonoBehaviour
 
         if (_firstSelectedRecipe)
         {
+            CurrentRecipe = _firstSelectedRecipe;
             BakeryRecipeResolver.Instance.RecipeTable.ForEach(x =>
             {
                 if (x.Key == _firstSelectedRecipe.Key)
@@ -92,10 +131,19 @@ public class RecipeBookPresenter : MonoBehaviour
     private void OnSlotClicked(object data)
     {
         if (data is not BakeryRecipeData recipe) return;
-        
+
+        SetView(recipe, _previewView);
+
+        _previewView.Data = recipe;
+    }
+
+    private void SetView(BakeryRecipeData recipe, RecipeBookPreviewView view)
+    {
         bool isUnlocked = Model.IsUnlocked(recipe.Key);
 
-        _previewView.SetView(
+        CurrentRecipe = recipe;
+        
+        view.SetView(
             recipe.ResultItem.ItemName,
             recipe.Description,
             recipe.ResultItem,
@@ -105,7 +153,5 @@ public class RecipeBookPresenter : MonoBehaviour
             recipe.DoughRecipe.Ingredients.Select(x => x).ToArray(),
             isUnlocked
         );
-
-        _previewView.Data = recipe;
     }
 }
