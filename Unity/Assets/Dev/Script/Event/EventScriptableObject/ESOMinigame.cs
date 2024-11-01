@@ -7,6 +7,5 @@ using UnityEngine;
 public class ESOMinigame : ESOVoid
 {
     [SerializeField] private string _minigameKey;
-
     public string MinigameKey => _minigameKey;
 }

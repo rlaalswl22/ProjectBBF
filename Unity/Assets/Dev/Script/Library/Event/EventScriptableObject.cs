@@ -22,7 +22,7 @@ namespace ProjectBBF.Event
     {
         public event Action<T> OnEventRaised;
 
-        public void Raise(T arg)
+        public virtual void Raise(T arg)
         {
             OnEventRaised?.Invoke(arg);
         }
@@ -61,7 +61,7 @@ namespace ProjectBBF.Event
             }
         }
 
-        public void OnEventRaised(TEvent evt)
+        public virtual void OnEventRaised(TEvent evt)
         {
             Response?.Invoke(evt);
         }

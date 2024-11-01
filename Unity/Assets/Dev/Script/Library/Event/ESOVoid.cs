@@ -8,7 +8,7 @@ namespace ProjectBBF.Event
     {
         public event Action OnEventRaised;
 
-        public void Raise()
+        public virtual void Raise()
         {
             OnEventRaised?.Invoke();
         }
