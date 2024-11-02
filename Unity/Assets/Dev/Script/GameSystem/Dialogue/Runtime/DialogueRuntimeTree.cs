@@ -6,10 +6,17 @@ using DS.Runtime;
 using JetBrains.Annotations;
 using UnityEngine;
 
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace DS.Core
 {
     public class DialogueRuntimeTree
     {
+        public string DebugDialogueFileName { get; private set; }
+
         public static DialogueRuntimeTree Build(DialogueContainer container)
         {
             List<DialogueNodeData> datas = container.NodeData;
@@ -21,6 +28,10 @@ namespace DS.Core
 
             var tree = new DialogueRuntimeTree();
             tree.EntryPoint = currentRuntimeNode;
+            
+#if UNITY_EDITOR
+            tree.DebugDialogueFileName = $"file name: {container.name}\npath: {AssetDatabase.GetAssetPath(container.GetInstanceID())}";
+#endif
             
             Debug.Assert(tree.EntryPoint is not null);
 

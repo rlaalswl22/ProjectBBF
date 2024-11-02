@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c6d952562c9d42ae08baec230fcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usePrevWorld: 0
   _scene:
     _sceneAsset: {fileID: 102900000, guid: fa471268c140bda43b59db1bf5df61e8, type: 3}
     _sceneName: World_FishingMinigame
@@ -9103,11 +9104,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2670483527837998343, guid: e05c1e59c6f1d364ab540765e30f7977, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.9742465
+      value: -18.22
       objectReference: {fileID: 0}
     - target: {fileID: 2670483527837998343, guid: e05c1e59c6f1d364ab540765e30f7977, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.145893
+      value: -5.67
       objectReference: {fileID: 0}
     - target: {fileID: 2670483527837998343, guid: e05c1e59c6f1d364ab540765e30f7977, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14470,6 +14471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c6d952562c9d42ae08baec230fcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usePrevWorld: 0
   _scene:
     _sceneAsset: {fileID: 102900000, guid: 348960fd7bdfe22439719009401a0781, type: 3}
     _sceneName: World_MoleMinigame
@@ -15524,6 +15526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c6d952562c9d42ae08baec230fcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usePrevWorld: 0
   _scene:
     _sceneAsset: {fileID: 102900000, guid: b70d5ef2b6727de49b45b821baf17c38, type: 3}
     _sceneName: World_Festival_CutScene_Ch_1_Contest
@@ -15722,6 +15725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c6d952562c9d42ae08baec230fcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usePrevWorld: 0
   _scene:
     _sceneAsset: {fileID: 102900000, guid: fa471268c140bda43b59db1bf5df61e8, type: 3}
     _sceneName: World_FishingMinigame

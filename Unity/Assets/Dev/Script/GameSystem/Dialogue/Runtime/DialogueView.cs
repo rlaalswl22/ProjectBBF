@@ -10,6 +10,12 @@ using DS.Runtime;
 using TMPro;
 using UnityEngine.UI;
 
+
+#if UNITY_EDITOR
+using DS.Core;
+using UnityEditor;
+#endif
+
 public class DialogueView : MonoBehaviour
 {
     [SerializeField] private float _textCompletionDuration = 0.35f;
@@ -17,6 +23,8 @@ public class DialogueView : MonoBehaviour
     [SerializeField] private RectTransform _skipArrow;
     [SerializeField] private TMP_Text _dialogueText;
     [SerializeField] private TMP_Text _displayNameText;
+    [SerializeField] private TMP_Text _debugFileNameText;
+    [SerializeField] private GameObject _debugFileNameFrame;
     [SerializeField] private Image _portrait;
 
     [SerializeField] private float _skipTwinkleDuration = 0.5f;
@@ -38,6 +46,12 @@ public class DialogueView : MonoBehaviour
         get => _dialogueText.text;
         set => _dialogueText.text = value;
     }
+
+    public string DebugFileText
+    {
+        get => _debugFileNameText.text;
+        set => _debugFileNameText.text = value;
+    }
     public string DisplayName
     {
         get => _displayNameText.text;
@@ -55,8 +69,53 @@ public class DialogueView : MonoBehaviour
         _dialogueText.gameObject.SetActive(value);
     }
 
+    private void Update()
+    {
+        #if UNITY_EDITOR
+        _debugFileNameFrame.SetActive(EditorPrefs.GetBool("__DEBUG_PRINT_MODE__"));
+        #endif
+    }
+
+    public void DEBUG_Fouce()
+    {
+#if UNITY_EDITOR
+        string ExtractPath(string input)
+        {
+            // "path: "의 위치를 찾습니다.
+            string keyword = "path: ";
+            int startIndex = input.IndexOf(keyword);
+
+            // "path: "가 존재하지 않으면 빈 문자열을 반환합니다.
+            if (startIndex == -1)
+                return string.Empty;
+
+            // 경로 시작 위치를 "path: " 이후로 이동합니다.
+            startIndex += keyword.Length;
+
+            // 경로의 끝은 줄바꿈이나 문자열의 끝으로 간주합니다.
+            int endIndex = input.IndexOf('\n', startIndex);
+            if (endIndex == -1)
+                endIndex = input.Length;
+
+            // 시작과 끝 위치 사이의 문자열(경로)을 추출하여 반환합니다.
+            return input.Substring(startIndex, endIndex - startIndex).Trim();
+        }
+        
+        var obj = AssetDatabase.LoadAssetAtPath<DialogueContainer>(ExtractPath(DebugFileText));
+        if (obj == false) return;
+        
+        Selection.activeObject = obj;
+        EditorGUIUtility.PingObject(obj);
+#endif
+    }
+
     private void Awake()
     {
+        
+#if UNITY_EDITOR
+        _debugFileNameFrame.SetActive(EditorPrefs.GetBool("__DEBUG_PRINT_MODE__"));
+#endif
+        
         for (int i = 0; i < _fieldContent.childCount; i++)
         {
             var child = _fieldContent.GetChild(i);

@@ -66,14 +66,13 @@ public class GameObjectStorage : MonoBehaviourSingleton<GameObjectStorage>
     private void CheckChangeScenes()
     {
         var inst = SceneLoader.Instance;
-            
+
+
         _sceneTemp.Clear();
-        _sceneTemp.AddRange(inst.LoadedAddtiveScenes);
-        if (inst.IsLoadedImmutableScenes)
+        for (int i = 0; i < SceneManager.sceneCount; i++)
         {
-            _sceneTemp.AddRange(inst.ImmutableSceneTable.Scenes);
+            _sceneTemp.Add(SceneManager.GetSceneAt(i).name);
         }
-        _sceneTemp.Add(inst.CurrentWorldScene);
     }
 
     public void ForEach(Func<GameObject, bool> callback)

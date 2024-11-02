@@ -257,6 +257,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
             if (executedAny)
             {
+                _blackboard.IsInteractionStopped = true;
+                _blackboard.IsMoveStopped = true;
                 _move.ResetVelocity();
 
                 Vector2 dir = (interaction.transform.position - _controller.transform.position).normalized;
@@ -271,6 +273,11 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         {
             Debug.LogException(e);
             return false;
+        }
+        finally
+        {
+            _blackboard.IsInteractionStopped = false;
+            _blackboard.IsMoveStopped = false;
         }
     }
 

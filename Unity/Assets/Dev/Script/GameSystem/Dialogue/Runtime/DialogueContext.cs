@@ -67,17 +67,45 @@ public class DialogueContext
                 var textTree = TextUtil.CreateTextTree(textItem.Text, _processorData);
                 var textTask = TextUtil.DoTextUniTask(_textInput, textTree, _duration, false, _processorData, link.Token);
 
-                await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
+                bool editorPass = false;
+                
+                #if UNITY_EDITOR
+                editorPass = Input.GetKey(KeyCode.X);
+                #endif
+                
+                await UniTask.WaitUntil(() =>
+                    {
+                        bool pass = false;
+                        
+#if UNITY_EDITOR
+                        pass = Input.GetKey(KeyCode.X);
+#endif
+                        pass |= InputManager.Map.UI.DialogueSkip.triggered;
+
+                        return pass;
+                    }, PlayerLoopTiming.Update,
                     link.Token);
+                
 
                 bool skipped = textTask.Status == UniTaskStatus.Pending;
                 link.Cancel();
                 _textInput(textTree.ToString());
                 CurrentNode = textItem.Node.GetNext();
 
-                if (skipped)
+                if (skipped || editorPass)
                 {
-                    await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
+                    await UniTask.WaitUntil(() =>
+                        {
+                            
+                            bool pass = false;
+                        
+#if UNITY_EDITOR
+                            pass = Input.GetKey(KeyCode.X);
+#endif
+                            pass |= InputManager.Map.UI.DialogueSkip.triggered;
+
+                            return pass;
+                        }, PlayerLoopTiming.Update,
                         _source.Token);
                 }
             }
@@ -172,6 +200,7 @@ public class DialogueContext
         _controller = controller;
         _processorData = processorData;
         _source = new();
+        _controller.DebugFileText = tree.DebugDialogueFileName;
         CurrentNode = tree.EntryPoint;
     }
 }

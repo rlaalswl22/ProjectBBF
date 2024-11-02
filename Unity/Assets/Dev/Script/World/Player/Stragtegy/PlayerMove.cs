@@ -158,6 +158,11 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy, IActorMove
 
     private void ChangeClip(Vector2 dir, AnimationActorKey.Action movementType)
     {
+        if (IsStopped)
+        {
+            return;
+        }
+        
         var visual = _controller.VisualStrategy;
 
         AnimationActorKey.Direction direction;
@@ -210,7 +215,7 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy, IActorMove
         
         LastDirection = direction;
         LastMovement = movementType;
-
+        
         var tuple = AnimationActorKey.GetAniHash(movementType, direction);
         visual.ChangeClip(tuple);
     }
@@ -219,6 +224,11 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy, IActorMove
     {
         _rigidbody.velocity = Vector3.zero;
 
+        if (IsStopped)
+        {
+            return;
+        }
+        
         ChangeClip(LastMovedDirection.normalized, AnimationActorKey.Action.Idle);
     }
 }

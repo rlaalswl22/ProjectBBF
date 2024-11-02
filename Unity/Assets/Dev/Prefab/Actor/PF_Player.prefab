@@ -577,7 +577,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 708701679
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 55
   m_Sprite: {fileID: 21300000, guid: 095c3293e9715b34397b8b823c145aaa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -896,6 +896,8 @@ MonoBehaviour:
   _mainInventoryView: {fileID: 0}
   pannelView: {fileID: 0}
   _recipeBookPresenter: {fileID: 0}
+  _recipeSummaryView: {fileID: 0}
+  _questPresenter: {fileID: 0}
   _fishing: {fileID: 8611976090592582029}
   _bodyRenderer: {fileID: 7975097241645119651}
   _interactorIndicator: {fileID: 1762986570092472196}

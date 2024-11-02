@@ -40,6 +40,11 @@ public class DialogueController : MonoBehaviourSingleton<DialogueController>
         get => _view.Visible;
         set => _view.Visible = value;
     }
+    public string DebugFileText
+    {
+        get => _view.DebugFileText;
+        set => _view.DebugFileText = value;
+    }
 
     public bool IsProgress => LastestContext is { CanNext: true };
     

@@ -21,6 +21,31 @@ namespace DS.Editor
             var window = GetWindow<DialogueGraph>();
             window.titleContent = new GUIContent("Dialogue Graph");
         }
+        
+
+        [MenuItem("Dialogue Graph/Debug Print On", false)]
+        private static void OnAutoPlayModeOn()
+        {
+            EditorPrefs.SetBool("__DEBUG_PRINT_MODE__", true);
+        }
+
+        [MenuItem("Dialogue Graph/Debug Print Off", false)]
+        private static void OnAutoPlayModeOff()
+        {
+            EditorPrefs.SetBool("__DEBUG_PRINT_MODE__", false);
+        }
+
+        [MenuItem("Dialogue Graph/Debug Print On", true)]
+        private static bool ValidateOnAutoPlayModeOn()
+        {
+            return EditorPrefs.GetBool("__DEBUG_PRINT_MODE__") is false;
+        }
+
+        [MenuItem("Dialogue Graph/Debug Print Off", true)]
+        private static bool ValidateOnAutoPlayModeOff()
+        {
+            return EditorPrefs.GetBool("__DEBUG_PRINT_MODE__");
+        }
 
         private void OnEnable()
         {
