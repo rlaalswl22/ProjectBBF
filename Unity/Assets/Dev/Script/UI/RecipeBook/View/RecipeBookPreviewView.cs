@@ -10,6 +10,7 @@ using UnityEngine.UI;
 
 public class RecipeBookPreviewView : MonoBehaviour
 {
+    [SerializeField] private bool _canVisibleEmpty = true;
     [SerializeField] private bool _awakeAndDisable = true;
     
     [SerializeField] private RecipeBookSlotView _resultItemImage;
@@ -39,6 +40,12 @@ public class RecipeBookPreviewView : MonoBehaviour
                     _toolTipView.Clear();
                     _toolTipView.Visible = false;
                 }
+            }
+
+            if (_canVisibleEmpty && value)
+            {
+                gameObject.SetActive(true);
+                return;
             }
             
             gameObject.SetActive(value);

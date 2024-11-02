@@ -1697,9 +1697,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5585999270818759730}
     - target: {fileID: 2513654603892107888, guid: 5ec0000e7a5946a4db7720af654bd72e, type: 3}
+      propertyPath: _questPresenter
+      value: 
+      objectReference: {fileID: 481094540}
+    - target: {fileID: 2513654603892107888, guid: 5ec0000e7a5946a4db7720af654bd72e, type: 3}
       propertyPath: _mainInventoryView
       value: 
       objectReference: {fileID: 1712581119805132535}
+    - target: {fileID: 2513654603892107888, guid: 5ec0000e7a5946a4db7720af654bd72e, type: 3}
+      propertyPath: _recipeSummaryView
+      value: 
+      objectReference: {fileID: 2081675409}
     - target: {fileID: 2513654603892107888, guid: 5ec0000e7a5946a4db7720af654bd72e, type: 3}
       propertyPath: _quickInventoryView
       value: 
@@ -5204,6 +5212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee794166556785142a533ca8a6d1093c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canVisibleEmpty: 0
   _awakeAndDisable: 1
   _resultItemImage: {fileID: 607506053}
   _resultItemNameText: {fileID: 0}
@@ -5748,6 +5757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee794166556785142a533ca8a6d1093c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canVisibleEmpty: 1
   _awakeAndDisable: 1
   _resultItemImage: {fileID: 3101385156886264481}
   _resultItemNameText: {fileID: 4600701562421237604}

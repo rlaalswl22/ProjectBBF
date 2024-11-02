@@ -34,6 +34,12 @@ public class QuestPresenter : MonoBehaviour
         }
     }
 
+    public bool Visible
+    {
+        get => gameObject.activeSelf;
+        set => gameObject.SetActive(value);
+    }
+
     private void OnDisable()
     {
         if (QuestManager.Instance)

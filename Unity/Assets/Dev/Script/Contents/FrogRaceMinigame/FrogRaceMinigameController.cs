@@ -62,6 +62,8 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
         Player.Blackboard.IsMoveStopped = true;
         Player.Blackboard.IsInteractionStopped = true;
         Player.Inventory.QuickInvVisible = false;
+        Player.QuestPresenter.Visible = false;
+        Player.RecipeSummaryView.Visible = false;
     }
 
     protected override async UniTask OnTutorial()
@@ -120,6 +122,8 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
     {
         Player.HudController.Visible = false;
         Player.Inventory.QuickInvVisible = false;
+        Player.QuestPresenter.Visible = false;
+        Player.RecipeSummaryView.Visible = false;
         StartCoroutine(CoUpdate());
 
         for (int i = 0; i < _frogs.Count; i++)
@@ -212,6 +216,8 @@ public class FrogRaceMinigameController : MinigameBase<FrogRaceMinigameData>
         Player.Inventory.QuickInvVisible = true;
         Player.HudController.Visible = true;
         Player.HudController.SetAllHudVisible(true);
+        Player.QuestPresenter.Visible = true;
+        Player.RecipeSummaryView.Visible = true;
         
         inst.ResetDialogue();
     }

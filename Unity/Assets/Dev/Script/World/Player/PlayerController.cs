@@ -42,6 +42,12 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Scene)]
     private RecipeBookPresenter _recipeBookPresenter;
 
+    [field: SerializeField, MustBeAssigned, InitializationField]
+    private RecipeBookPreviewView _recipeSummaryView;
+
+    [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Scene)]
+    private QuestPresenter _questPresenter;
+
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
     private PlayerFishing _fishing;
 
@@ -111,6 +117,10 @@ public class PlayerController : MonoBehaviour
 
     public PlayerInventoryPresenter Inventory { get; private set; }
     public PlayerPannelView PannelView => pannelView;
+
+    public RecipeBookPreviewView RecipeSummaryView => _recipeSummaryView;
+
+    public QuestPresenter QuestPresenter => _questPresenter;
 
     public SpriteRenderer ItemPreviewRenderer => _itemPreviewRenderer;
 

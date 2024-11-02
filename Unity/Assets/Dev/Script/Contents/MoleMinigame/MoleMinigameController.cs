@@ -167,6 +167,8 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
         _brain.m_DefaultBlend.m_Style = CinemachineBlendDefinition.Style.Cut;
         
         Player.HudController.Visible = false;
+        Player.QuestPresenter.Visible = false;
+        Player.RecipeSummaryView.Visible = false;
 
         _gameCts = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
         Score = 0;
@@ -293,8 +295,10 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
 
     protected override void OnPreGameEnd(bool isRequestEnd)
     {
-        
         Player.HudController.Visible = true;
+        Player.QuestPresenter.Visible = true;
+        Player.RecipeSummaryView.Visible = true;
+        
         _timerUI.Visible = false;
         _scoreUI.Visible = false;
         _uiPanel.SetActive(false);
@@ -322,6 +326,8 @@ public class MoleMinigameController : MinigameBase<MoleMinigameData>
         _gameCts?.Cancel();
         _gameCts = null;
         Player.HudController.Visible = true;
+        Player.QuestPresenter.Visible = true;
+        Player.RecipeSummaryView.Visible = true;
 
 
         _camera.gameObject.SetActive(false);
