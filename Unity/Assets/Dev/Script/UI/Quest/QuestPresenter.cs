@@ -72,7 +72,9 @@ public class QuestPresenter : MonoBehaviour
     private void CreateView(QuestData data)
     {
         Debug.Assert(_originPrefab);
+        
         var obj = GameObject.Instantiate(_originPrefab, _content, false);
+        obj.gameObject.SetActive(true);
         obj.SetData(data);
         _viewList.Add(obj);
     }

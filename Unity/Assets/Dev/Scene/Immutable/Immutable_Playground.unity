@@ -2349,6 +2349,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6612746533634083157, guid: 67acd69f8d95828448ea654761bed560, type: 3}
+      propertyPath: m_Size
+      value: 0.34553647
+      objectReference: {fileID: 0}
     - target: {fileID: 7074722697132769357, guid: 67acd69f8d95828448ea654761bed560, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6620,14 +6624,6 @@ PrefabInstance:
     - target: {fileID: 2245828602824156881, guid: 001ffe93c7ef7584088526f634a74c59, type: 3}
       propertyPath: m_Name
       value: Quest
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245828602824156881, guid: 001ffe93c7ef7584088526f634a74c59, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6337439920363164884, guid: 001ffe93c7ef7584088526f634a74c59, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -30.68103
       objectReference: {fileID: 0}
     - target: {fileID: 7588541081571689780, guid: 001ffe93c7ef7584088526f634a74c59, type: 3}
       propertyPath: m_Pivot.x
