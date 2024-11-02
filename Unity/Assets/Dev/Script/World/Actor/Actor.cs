@@ -36,6 +36,7 @@ public class Actor : MonoBehaviour, IBANameKey
     [field: SerializeField, Foldout("컴포넌트")] private Animator _animator;
     [field: SerializeField, Foldout("컴포넌트")] private Rigidbody2D _rigid;
     [field: SerializeField, Foldout("컴포넌트")] private NavMeshAgent _agent;
+    [field: SerializeField, Foldout("컴포넌트")] private QuestIndicatorUI _questIndicatorUI;
     
 
     #region Getter/Setter
@@ -68,6 +69,7 @@ public class Actor : MonoBehaviour, IBANameKey
         //* Strategy binding */
         MoveStrategy.Init(this);
         Visual.Init(MoveStrategy, Animator, GetComponentInChildren<SpriteRenderer>());
+        _questIndicatorUI.Init(this);
         
         
         /* Collision interaction */

@@ -37,7 +37,11 @@ public class PlayerQuickInventoryView : MonoBehaviour, IInventoryView
 
     private void OnDisable()
     {
-        PersistenceManager.Instance.OnGameDataLoaded -= OnLoadedData;
+        if (PersistenceManager.Instance)
+        {
+            PersistenceManager.Instance.OnGameDataLoaded -= OnLoadedData;
+        }
+        
         InputManager.Map.UI.QuickSlotScroll.performed -= MoveCursorScroll;
         InputManager.Map.UI.QuickSlotScrollButton.performed -= MoveCursorButton;
     }

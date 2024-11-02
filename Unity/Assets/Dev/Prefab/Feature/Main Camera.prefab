@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1764119130002024794}
   - component: {fileID: 4814672140035156195}
   - component: {fileID: 814489541170161691}
+  - component: {fileID: 2657712415552908328}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -189,10 +190,10 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 1
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
-    m_Style: 1
+    m_Style: 0
     m_Time: 2
     m_CustomCurve:
       serializedVersion: 2
@@ -251,6 +252,18 @@ MonoBehaviour:
   _camera: {fileID: 4398251983486267405}
   _ppu: 16
   _size: 0.32
+--- !u!114 &2657712415552908328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3453160002625475038}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e61e7584cc7ea5489872b8ea5fdd979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4603845935732352448
 GameObject:
   m_ObjectHideFlags: 0
