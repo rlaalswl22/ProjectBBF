@@ -260,7 +260,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
             if (executedAny)
             {
-                _blackboard.IsInteractionStopped = true;
                 _blackboard.IsMoveStopped = true;
                 _move.ResetVelocity();
 
@@ -279,7 +278,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         }
         finally
         {
-            _blackboard.IsInteractionStopped = false;
             _blackboard.IsMoveStopped = false;
         }
     }
