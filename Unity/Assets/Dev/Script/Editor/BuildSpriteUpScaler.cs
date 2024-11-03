@@ -18,9 +18,9 @@ public class BuildSpriteUpScaler
 
     public static readonly string[] Targets = new[]
     {
-        //"Assets/Dev/Art/Sprite",
        "Assets/Dev/Art/Sprite/Building",
        "Assets/Dev/Art/Sprite/Character",
+       "Assets/Dev/Art/Sprite/Animal",
        "Assets/Dev/Art/Sprite/Exterior",
        "Assets/Dev/Art/Sprite/Insoo",
        "Assets/Dev/Art/Sprite/Interior",
@@ -42,7 +42,7 @@ public class BuildSpriteUpScaler
             Texture2D texture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
             Debug.Assert(texture);
 
-            (int newWidth, int newHeight) size = GetNewSize(SCALE, texture);
+            (int newWidth, int newHeight, int scale) size = GetNewSize(SCALE, texture);
             texture = RescaleTexture(texture, size.newWidth, size.newHeight, computeShader);
             
             SaveTextureAsPNG(texture, path);
@@ -56,8 +56,8 @@ public class BuildSpriteUpScaler
             Debug.Assert(texture);
             TextureImporter importer = AssetImporter.GetAtPath(path) as TextureImporter;
             
-            (int newWidth, int newHeight) size = GetNewSize(SCALE, texture);
-            importer.spritePixelsPerUnit *= SCALE;
+            (int newWidth, int newHeight, int scale) size = GetNewSize(SCALE, texture);
+            importer.spritePixelsPerUnit *= size.scale;
             importer.maxTextureSize = GetCloserSize(Mathf.Max(size.newHeight, size.newWidth));
             importer.filterMode = FilterMode.Trilinear;
             if (importer.spriteImportMode == SpriteImportMode.Multiple)
@@ -70,10 +70,10 @@ public class BuildSpriteUpScaler
                 for (int i = 0; i < arr.Length; i++)
                 {
                     Rect rect = arr[i].rect;
-                    rect.x *= SCALE;
-                    rect.y *= SCALE;
-                    rect.width *= SCALE;
-                    rect.height *= SCALE;
+                    rect.x *= size.scale;
+                    rect.y *= size.scale;
+                    rect.width *= size.scale;
+                    rect.height *= size.scale;
                     arr[i].rect = rect;
                 }
                 dataProvider.SetSpriteRects(arr);
@@ -104,9 +104,22 @@ public class BuildSpriteUpScaler
         byte[] bytes = texture.EncodeToPNG();
         File.WriteAllBytes(path, bytes);
     }
-    public static (int newWidth, int newHeight) GetNewSize(int scale, Texture2D texture2D)
+    public static (int newWidth, int newHeight, int scale) GetNewSize(int scale, Texture2D texture2D)
     {
-        return (texture2D.width * scale, texture2D.height * scale);
+        while (true)
+        {
+            if (texture2D.width * scale < 100 || texture2D.height * scale < 100)
+            {
+                scale *= 2;
+            }
+            else
+            {
+                break;
+            }
+        }
+        
+        return (texture2D.width * scale, texture2D.height * scale, scale);
+        
     }
     
     public static Texture2D RescaleTexture(Texture2D inputTexture, int newWidth, int newHeight, ComputeShader rescaleComputeShader)
