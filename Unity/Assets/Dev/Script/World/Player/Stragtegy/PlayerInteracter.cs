@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using MyBox;
 using ProjectBBF.Event;
 using ProjectBBF.Persistence;
 using UnityEngine;
@@ -182,6 +183,8 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
             if (Farmland(interaction))
             {
                 success = true;
+                _controller.HoeEffect.transform.SetXY(_indicator.transform.position);
+                _controller.HoeEffect.Play();
                 goto RE;
             }
 

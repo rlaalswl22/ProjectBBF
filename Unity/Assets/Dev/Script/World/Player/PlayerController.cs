@@ -47,6 +47,9 @@ public class PlayerController : MonoBehaviour
 
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Scene)]
     private QuestPresenter _questPresenter;
+    
+    [field: SerializeField, MustBeAssigned, InitializationField]
+    private ParticlePlayer _hoeEffect;
 
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Children)]
     private PlayerFishing _fishing;
@@ -92,6 +95,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public RecipeBookPresenter RecipeBookPresenter => _recipeBookPresenter;
+
+    public ParticlePlayer HoeEffect => _hoeEffect;
 
 
     #region Getter/Setter
