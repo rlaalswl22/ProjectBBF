@@ -80,6 +80,15 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""InteractionDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b34915d-9e7c-459c-b40f-96bf2043de0a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -190,6 +199,17 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""WinPCScheme"",
                     ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b20bcc4-e830-423b-b584-bf3375a22f14"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""WinPCScheme"",
+                    ""action"": ""InteractionDialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -540,6 +560,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         m_Player_UseItem = m_Player.FindAction("UseItem", throwIfNotFound: true);
         m_Player_Fishing = m_Player.FindAction("Fishing", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_InteractionDialogue = m_Player.FindAction("InteractionDialogue", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_DialogueSkip = m_UI.FindAction("DialogueSkip", throwIfNotFound: true);
@@ -620,6 +641,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_UseItem;
     private readonly InputAction m_Player_Fishing;
     private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_InteractionDialogue;
     public struct PlayerActions
     {
         private @DefaultKeymap m_Wrapper;
@@ -630,6 +652,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         public InputAction @UseItem => m_Wrapper.m_Player_UseItem;
         public InputAction @Fishing => m_Wrapper.m_Player_Fishing;
         public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputAction @InteractionDialogue => m_Wrapper.m_Player_InteractionDialogue;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -657,6 +680,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @InteractionDialogue.started += instance.OnInteractionDialogue;
+            @InteractionDialogue.performed += instance.OnInteractionDialogue;
+            @InteractionDialogue.canceled += instance.OnInteractionDialogue;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -679,6 +705,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @InteractionDialogue.started -= instance.OnInteractionDialogue;
+            @InteractionDialogue.performed -= instance.OnInteractionDialogue;
+            @InteractionDialogue.canceled -= instance.OnInteractionDialogue;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -861,6 +890,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         void OnUseItem(InputAction.CallbackContext context);
         void OnFishing(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnInteractionDialogue(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
