@@ -50,12 +50,10 @@ public class MapPortal : MonoBehaviour
         {
             TimeManager.Instance.Pause();
             
-            c.StateHandler.TranslateState("DoNothing");
             _ = MapPortalManager.Instance.Move(scene, _targetPortalKey, c.transform)
                 .ContinueWith(_ =>
                 {
                     TimeManager.Instance.Resume();
-                    c.StateHandler.TranslateState("EndOfDoNothing");
                 });
         }
     }

@@ -89,6 +89,15 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""b9932d88-c5dd-4510-9918-b8b323a60993"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +221,17 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""action"": ""InteractionDialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6cb42d69-8495-4cf9-ac60-4afcbcb1ad27"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""WinPCScheme"",
+                    ""action"": ""UseTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -277,6 +297,15 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""name"": ""SlotQuickMove"",
                     ""type"": ""Button"",
                     ""id"": ""5f5fc189-3d99-4baa-933c-6b1b570ec556"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd6bdf23-29d2-4986-a85c-3553c60afe10"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -481,6 +510,17 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""action"": ""SlotQuickMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b2cb61b-a88a-4837-8cb7-967453ec9391"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""WinPCScheme"",
+                    ""action"": ""CloseUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -561,6 +601,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         m_Player_Fishing = m_Player.FindAction("Fishing", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_InteractionDialogue = m_Player.FindAction("InteractionDialogue", throwIfNotFound: true);
+        m_Player_UseTool = m_Player.FindAction("UseTool", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_DialogueSkip = m_UI.FindAction("DialogueSkip", throwIfNotFound: true);
@@ -570,6 +611,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         m_UI_Setting = m_UI.FindAction("Setting", throwIfNotFound: true);
         m_UI_RecipeBook = m_UI.FindAction("RecipeBook", throwIfNotFound: true);
         m_UI_SlotQuickMove = m_UI.FindAction("SlotQuickMove", throwIfNotFound: true);
+        m_UI_CloseUI = m_UI.FindAction("CloseUI", throwIfNotFound: true);
         // Minigame
         m_Minigame = asset.FindActionMap("Minigame", throwIfNotFound: true);
         m_Minigame_BakeryKeyPressed = m_Minigame.FindAction("BakeryKeyPressed", throwIfNotFound: true);
@@ -642,6 +684,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fishing;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_InteractionDialogue;
+    private readonly InputAction m_Player_UseTool;
     public struct PlayerActions
     {
         private @DefaultKeymap m_Wrapper;
@@ -653,6 +696,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         public InputAction @Fishing => m_Wrapper.m_Player_Fishing;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @InteractionDialogue => m_Wrapper.m_Player_InteractionDialogue;
+        public InputAction @UseTool => m_Wrapper.m_Player_UseTool;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -683,6 +727,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @InteractionDialogue.started += instance.OnInteractionDialogue;
             @InteractionDialogue.performed += instance.OnInteractionDialogue;
             @InteractionDialogue.canceled += instance.OnInteractionDialogue;
+            @UseTool.started += instance.OnUseTool;
+            @UseTool.performed += instance.OnUseTool;
+            @UseTool.canceled += instance.OnUseTool;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -708,6 +755,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @InteractionDialogue.started -= instance.OnInteractionDialogue;
             @InteractionDialogue.performed -= instance.OnInteractionDialogue;
             @InteractionDialogue.canceled -= instance.OnInteractionDialogue;
+            @UseTool.started -= instance.OnUseTool;
+            @UseTool.performed -= instance.OnUseTool;
+            @UseTool.canceled -= instance.OnUseTool;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -736,6 +786,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Setting;
     private readonly InputAction m_UI_RecipeBook;
     private readonly InputAction m_UI_SlotQuickMove;
+    private readonly InputAction m_UI_CloseUI;
     public struct UIActions
     {
         private @DefaultKeymap m_Wrapper;
@@ -747,6 +798,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         public InputAction @Setting => m_Wrapper.m_UI_Setting;
         public InputAction @RecipeBook => m_Wrapper.m_UI_RecipeBook;
         public InputAction @SlotQuickMove => m_Wrapper.m_UI_SlotQuickMove;
+        public InputAction @CloseUI => m_Wrapper.m_UI_CloseUI;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -777,6 +829,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @SlotQuickMove.started += instance.OnSlotQuickMove;
             @SlotQuickMove.performed += instance.OnSlotQuickMove;
             @SlotQuickMove.canceled += instance.OnSlotQuickMove;
+            @CloseUI.started += instance.OnCloseUI;
+            @CloseUI.performed += instance.OnCloseUI;
+            @CloseUI.canceled += instance.OnCloseUI;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -802,6 +857,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @SlotQuickMove.started -= instance.OnSlotQuickMove;
             @SlotQuickMove.performed -= instance.OnSlotQuickMove;
             @SlotQuickMove.canceled -= instance.OnSlotQuickMove;
+            @CloseUI.started -= instance.OnCloseUI;
+            @CloseUI.performed -= instance.OnCloseUI;
+            @CloseUI.canceled -= instance.OnCloseUI;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -891,6 +949,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         void OnFishing(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnInteractionDialogue(InputAction.CallbackContext context);
+        void OnUseTool(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -901,6 +960,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         void OnSetting(InputAction.CallbackContext context);
         void OnRecipeBook(InputAction.CallbackContext context);
         void OnSlotQuickMove(InputAction.CallbackContext context);
+        void OnCloseUI(InputAction.CallbackContext context);
     }
     public interface IMinigameActions
     {

@@ -36,6 +36,11 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
         OnGameRelease();
 
         Player.Fishing.BindFishingController(this);
+        Player.Blackboard.IsMoveStopped = true;
+        Player.Blackboard.IsFishingStopped = false;
+        Player.HudController.Visible = false;
+        Player.VisualStrategy.LookAt(Vector2.right, AnimationActorKey.Action.Idle);
+        Player.MoveStrategy.LastMovedDirection = Vector2.right;
 
         float sum = Data.Rewards.Sum(x => x.Percentage);
 
@@ -56,10 +61,6 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
     {
         _timerUI.Visible = true;
         _uiPanel.SetActive(true);
-        Player.Blackboard.IsMoveStopped = true;
-        Player.HudController.Visible = false;
-        Player.VisualStrategy.LookAt(Vector2.right, AnimationActorKey.Action.Idle);
-        Player.MoveStrategy.LastMovedDirection = Vector2.right;
         StartCoroutine(CoTimer());
     }
 
@@ -86,7 +87,7 @@ public class FishingMinigameController : MinigameBase<FishingMinigameData>
 
     protected override UniTask OnGameEnd(bool isRequestEnd)
     {
-        
+        Player.Blackboard.IsFishingStopped = true;
         if (isRequestEnd) return UniTask.CompletedTask;
         return UniTask.CompletedTask;;
     }

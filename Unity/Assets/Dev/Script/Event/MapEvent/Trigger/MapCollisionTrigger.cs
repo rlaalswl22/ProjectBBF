@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MapCollisionTrigger : MapTriggerBase
 {
-    private void OnEnter(ActorContractInfo info)
+    private void OnEnter(BaseContractInfo info)
     {
         if (info.Interaction.Owner is PlayerController pc)
         {
@@ -17,11 +17,11 @@ public class MapCollisionTrigger : MapTriggerBase
     protected override void Awake()
     {
         base.Awake();
-        Interaction.OnContractActor += OnEnter;
+        Interaction.OnContract += OnEnter;
     }
 
     private void OnDestroy()
     {
-        Interaction.OnContractActor -= OnEnter;
+        Interaction.OnContract -= OnEnter;
     }
 }

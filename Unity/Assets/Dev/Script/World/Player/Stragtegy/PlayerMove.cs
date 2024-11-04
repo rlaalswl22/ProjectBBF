@@ -98,11 +98,17 @@ public class PlayerMove : MonoBehaviour, IPlayerStrategy, IActorMove
             yield return null;
         }
     }
-    
+
+    private void Update()
+    {
+        OnMove();
+    }
+
     public void OnMove()
     {
         if (IsStopped)
         {
+            ResetVelocity();
             return;
         }
         var input = _movementAction.ReadValue<Vector2>();

@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "UseTool",
+                    "type": "Button",
+                    "id": "b9932d88-c5dd-4510-9918-b8b323a60993",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -190,6 +199,17 @@
                     "action": "InteractionDialogue",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6cb42d69-8495-4cf9-ac60-4afcbcb1ad27",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WinPCScheme",
+                    "action": "UseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -255,6 +275,15 @@
                     "name": "SlotQuickMove",
                     "type": "Button",
                     "id": "5f5fc189-3d99-4baa-933c-6b1b570ec556",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CloseUI",
+                    "type": "Button",
+                    "id": "dd6bdf23-29d2-4986-a85c-3553c60afe10",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -457,6 +486,17 @@
                     "processors": "",
                     "groups": "WinPCScheme",
                     "action": "SlotQuickMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b2cb61b-a88a-4837-8cb7-967453ec9391",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WinPCScheme",
+                    "action": "CloseUI",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

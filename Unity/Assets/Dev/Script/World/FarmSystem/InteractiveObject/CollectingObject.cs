@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CollisionInteraction))]
-public class CollectingObject : MonoBehaviour, IBOCollect
+public class CollectingObject : MonoBehaviour, IBOInteractive
 {
     #region Properties
     [field: SerializeField, InitializationField, MustBeAssigned, AutoProperty] 
@@ -38,34 +38,38 @@ public class CollectingObject : MonoBehaviour, IBOCollect
         var info = ObjectContractInfo.Create(() => gameObject);
         _interaction.SetContractInfo(info, this);
 
-        info.AddBehaivour<IBOCollect>(this);
+        info.AddBehaivour<IBOInteractive>(this);
     }
     
-    public List<ItemData> Collect()
+    public void UpdateInteract(CollisionInteractionMono caller)
     {
-        if (_isCollected) return null;
+        if (caller.Owner is not PlayerController pc) return;
+        if (InputManager.Map.Player.Interaction.triggered is false) return;
+
+        Collect(pc);
+    }
+
+    public void Collect(PlayerController pc)
+    {
+        if (_isCollected) return;
         _isCollected = true;
+
+        Vector2 dir = Interaction.transform.position - pc.transform.position;
+        pc.Interactor.WaitForPickupAnimation(dir);
         
         _renderer.sprite = _data.CollectedSprite;
 
         AudioManager.Instance.PlayOneShot("Player", "Player_Getting_Item");
 
-        List<ItemData> list = new List<ItemData>(_data.DropItems.Count);
-
         foreach (CollectingObjectData.Item item in _data.DropItems)
         {
-            for (int i = 0; i < item.Count; i++)
-            {
-                list.Add(item.Data);
-            }
+            pc.Inventory.Model.PushItem(item.Data, item.Count);
         }
 
         if (_isCollected)
         {
             _onStateCollected.Invoke();
         }
-
-        return list;
     }
 
     [ButtonMethod]

@@ -11,31 +11,6 @@ public class ObjectContractInfo : BaseContractT<IObjectBehaviour, ObjectContract
 {
     
 }
-public class ActorContractInfo : BaseContractT<IActorBehaviour, ActorContractInfo>
-{
-    
-}
-public class ClickContractInfo: BaseContractInfo
-{
-    public int MouseButtonNumber;
-    public EClickContractType clickType;
-    public override IBaseBehaviour GetBehaviourOrNull(Type type)
-    {
-        return null;
-    }
-}
-public class ListeningContractInfo: BaseContractT<INoBehaviour, ListeningContractInfo>
-{
-    
-}
-
-public enum EClickContractType
-{
-    OneClick,
-    DoubleClick,
-    Pressed
-}
-
 
 
 public abstract class BaseContractInfo

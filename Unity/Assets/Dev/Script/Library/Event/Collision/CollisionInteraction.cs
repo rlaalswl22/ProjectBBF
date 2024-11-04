@@ -8,12 +8,8 @@ namespace ProjectBBF.Event
     public class CollisionInteraction : CollisionInteractionMono
     {
         public override object Owner { get; internal set; }
-        public override event Action<ActorContractInfo> OnContractActor;
-        public override event Action<ObjectContractInfo> OnContractObject;
-        public override event Action<ClickContractInfo> OnContractClick;
-        public override event Action<ActorContractInfo> OnExitActor;
-        public override event Action<ObjectContractInfo> OnExitObject;
-        public override event Action<ClickContractInfo> OnExitClick;
+        public override event Action<BaseContractInfo> OnContract;
+        public override event Action<BaseContractInfo> OnExit;
 
         public override LayerMask TargetLayerMask => _targetLayerMask;
         public override bool ListeningOnly => _listeningOnly;
@@ -54,43 +50,25 @@ namespace ProjectBBF.Event
         {
             Debug.Assert(info != null, "ContractInfo can't be null");
             
-            switch (info)
+            if (info is ObjectContractInfo objectContractInfo)
             {
-                case ActorContractInfo actorContractInfo:
-                    OnContractActor?.Invoke(actorContractInfo);
-                    break;
-                case ClickContractInfo clickContractInfo:
-                    OnContractClick?.Invoke(clickContractInfo);
-                    break;
-                case ObjectContractInfo objectContractInfo:
-                    OnContractObject?.Invoke(objectContractInfo);
-                    break;
+                OnContract?.Invoke(objectContractInfo);
             }
         }
 
         public override void DeActivate(BaseContractInfo info)
         {
             Debug.Assert(info != null, "ContractInfo can't be null");
-            
-            switch (info)
+            if (info is ObjectContractInfo objectContractInfo)
             {
-                case ActorContractInfo actorContractInfo:
-                    OnExitActor?.Invoke(actorContractInfo);
-                    break;
-                case ClickContractInfo clickContractInfo:
-                    OnExitClick?.Invoke(clickContractInfo);
-                    break;
-                case ObjectContractInfo objectContractInfo:
-                    OnExitObject?.Invoke(objectContractInfo);
-                    break;
-            } 
+                OnExit?.Invoke(objectContractInfo);
+            }
         }
 
         public override void ClearContractEvent()
         {
-            OnContractActor = null;
-            OnContractObject = null;
-            OnContractClick = null;
+            OnContract = null;
+            OnExit = null;
         }
 
         private CollisionBridge _collisionBridge;

@@ -6,7 +6,7 @@ using ProjectBBF.Event;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MoleGameObject : MonoBehaviour, IBACollectTool
+public class MoleGameObject : MonoBehaviour, IBOInteractiveTool
 {
     [SerializeField] private ParticleSystem _hitEffect;
     [SerializeField] private ParticleSystem _ringEffect;
@@ -32,10 +32,10 @@ public class MoleGameObject : MonoBehaviour, IBACollectTool
 
     private void Awake()
     {
-        var info = ActorContractInfo.Create(()=> gameObject);
+        var info = ObjectContractInfo.Create(()=> gameObject);
         Interaction.SetContractInfo(info, this);
 
-        info.AddBehaivour<IBACollectTool>(this);
+        info.AddBehaivour<IBOInteractiveTool>(this);
     }
 
     public void Init(MoleMinigameData data, MoleMinigameData.Mole moleData)
@@ -113,13 +113,10 @@ public class MoleGameObject : MonoBehaviour, IBACollectTool
         return obj;
     }
 
-    public bool CanCollect(ToolRequireSet toolSet)
+    public void UpdateInteract(CollisionInteractionMono caller)
     {
-        return ToolTypeUtil.Contains(toolSet, _data.RequireTools);
-    }
-
-    public List<ItemData> Collect()
-    {
+        if (caller.Owner is not PlayerController) return;
+        
         IsHit = true;
         _cts?.Cancel();
         _cts = null;
@@ -127,6 +124,10 @@ public class MoleGameObject : MonoBehaviour, IBACollectTool
         AudioManager.Instance.PlayOneShot("Animal", "Animal_Mole_Hitted");
         _hitEffect.Play();
         _ringEffect.Play();
-        return new List<ItemData>(0);
+    }
+
+    public bool IsVaildTool(ToolRequireSet toolSet)
+    {
+        return ToolTypeUtil.Contains(toolSet, _data.RequireTools);
     }
 }

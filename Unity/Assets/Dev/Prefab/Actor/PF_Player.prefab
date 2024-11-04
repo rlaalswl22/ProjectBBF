@@ -842,9 +842,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4303433537959788132}
   - component: {fileID: 2513654603892107888}
-  - component: {fileID: 2645362918304912930}
-  - component: {fileID: 4878991871154345875}
-  - component: {fileID: 5116270920433190897}
   - component: {fileID: 1588533005212955071}
   - component: {fileID: 7572382422008762205}
   - component: {fileID: 5484448434690136902}
@@ -891,7 +888,7 @@ MonoBehaviour:
   _coordinateData: {fileID: 11400000, guid: f82f64b4afde3434da15a50536ee610d, type: 2}
   _rigidbody: {fileID: 1588533005212955071}
   _animator: {fileID: 6133982080927662466}
-  _stateHandler: {fileID: 4878991871154345875}
+  _stateHandler: {fileID: 0}
   _interaction: {fileID: 5484448434690136902}
   _quickInventoryView: {fileID: 0}
   _mainInventoryView: {fileID: 0}
@@ -911,53 +908,6 @@ MonoBehaviour:
     Count: 1
   - Item: {fileID: 11400000, guid: 20e804168d99ff84f94e08bd942bf631, type: 2}
     Count: 1
---- !u!114 &2645362918304912930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3562478230321807320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"PlayerController","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"PlayerController,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"StateTransitionHandler","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"StateTransitionHandler,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences:
-    - {fileID: 2513654603892107888}
-    - {fileID: 4878991871154345875}
---- !u!114 &4878991871154345875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3562478230321807320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b31d3c3d984a4395f986435ba4f45d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5116270920433190897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3562478230321807320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efe58df89b5b74a97a123b5ed2b70422, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: b5af98244c2a3664a9e44b4d591ce202, type: 2}
 --- !u!50 &1588533005212955071
 Rigidbody2D:
   serializedVersion: 4

@@ -15,10 +15,3 @@ public interface IObjectBehaviour : IBaseBehaviour
 {
     
 }
-public interface IActorBehaviour : IBaseBehaviour
-{
-}
-
-public interface INoBehaviour : IBaseBehaviour
-{
-}

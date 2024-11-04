@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using MyBox;
 using ProjectBBF.Event;
 using ProjectBBF.Persistence;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
@@ -14,16 +16,22 @@ using UnityEngine.Serialization;
 
 public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 {
+    /** 컨트롤 필드 */
     private PlayerController _controller;
+
     private ActorVisual _visual;
     private PlayerBlackboard _blackboard;
     private PlayerMove _move;
     private PlayerCoordinate _coordinate;
     private SpriteRenderer _indicator;
     private SpriteRenderer _itemPreviewRenderer;
+    private bool _isAnyUIVisible;
 
-    private bool _isAniPrevEventRaised = false;
-    private bool _isAniNextEventRaised = false;
+    /** Interaction 필드 */
+    private List<CollisionInteractionMono> _closerObjects = new(5);
+
+    public CollisionInteractionMono CloserObject { get; private set; }
+    public event Action<CollisionInteractionMono> OnChangedCloserObject;
 
     public void Init(PlayerController controller)
     {
@@ -35,9 +43,11 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         _indicator.enabled = false;
         _itemPreviewRenderer = controller.ItemPreviewRenderer;
         _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
-        
+
         ItemPreviewSprite = null;
     }
+
+    #region Properties
 
     public bool MainInventoryVisible
     {
@@ -51,30 +61,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         set => _controller.Inventory.QuickInvVisible = value;
     }
 
-    public void OnAnimationBeginEvent(string key)
-    {
-        if (key == "Begin")
-        {
-            _isAniPrevEventRaised = false;
-        }
-        else if (key == "End")
-        {
-            _isAniNextEventRaised = false;
-        }
-    }
-
-    public void OnAnimationEndEvent(string key)
-    {
-        if (key == "Begin")
-        {
-            _isAniPrevEventRaised = true;
-        }
-        else if (key == "End")
-        {
-            _isAniNextEventRaised = true;
-        }
-    }
-
     public Sprite ItemPreviewSprite
     {
         get => _itemPreviewRenderer.sprite;
@@ -85,10 +71,66 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         }
     }
 
-    private void LateUpdate()
-    {
-        if (_blackboard.IsInteractionStopped) return;
+    #endregion
 
+    #region Wait Methods
+
+    public async UniTask WaitForSecondAsync(float sec, CancellationToken token = default)
+    {
+        token = CancellationTokenSource.CreateLinkedTokenSource(token, this.GetCancellationTokenOnDestroy()).Token;
+
+        _blackboard.IsInteractionStopped = true;
+        _blackboard.IsMoveStopped = true;
+
+        _ = await UniTask
+            .Delay((int)(sec * 1000f), DelayType.DeltaTime, PlayerLoopTiming.Update, token)
+            .SuppressCancellationThrow();
+
+        _blackboard.IsInteractionStopped = false;
+        _blackboard.IsMoveStopped = false;
+    }
+
+    public void WaitForSecond(float sec)
+    {
+        _ = WaitForSecondAsync(sec);
+    }
+
+    public void WaitForDefault()
+    {
+        WaitForSecond(0.3f);
+    }
+
+    public void WaitForPickupAnimation(Vector2 dir)
+    {
+        _visual.LookAt(dir, AnimationActorKey.Action.Collect, true);
+        WaitForSecond(0.3f);
+    }
+
+    #endregion
+
+    #region Public Method
+
+    public void AddCloserObject(CollisionInteractionMono interaction)
+    {
+        _closerObjects.Add(interaction);
+    }
+
+    public void RemoveCloserObject(CollisionInteractionMono interaction)
+    {
+        _closerObjects.Remove(interaction);
+    }
+
+    public bool ContainsCloserObject(CollisionInteractionMono interaction)
+    {
+        return _closerObjects.Contains(interaction);
+    }
+
+    #endregion
+
+    #region Private Method
+
+    private void CalcultateIndicatorPosition()
+    {
         ItemData currentData = _controller.Inventory.CurrentItemData;
 
         if (currentData && (
@@ -123,6 +165,87 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         _indicator.enabled = false;
     }
 
+    private void CalculateCloseObject()
+    {
+        float minDis = Mathf.Infinity;
+        CollisionInteractionMono minObj = null;
+
+        int nullCount = 0;
+
+        foreach (CollisionInteractionMono obj in _closerObjects)
+        {
+            if (obj == false)
+            {
+                nullCount++;
+                continue;
+            }
+
+            float dis = ((Vector2)(obj.transform.position - _controller.transform.position)).sqrMagnitude;
+
+            if (dis < minDis)
+            {
+                minDis = dis;
+                minObj = obj;
+            }
+        }
+
+        if (CloserObject != minObj)
+        {
+            CloserObject = minObj;
+            OnChangedCloserObject?.Invoke(CloserObject);
+        }
+
+        if (nullCount >= 10)
+        {
+            _closerObjects.RemoveAll(x => x == false);
+        }
+    }
+
+    private void PlayAudio(ItemData itemData, string usingKey)
+    {
+        if (itemData == false) return;
+
+        if (itemData.UseActionUsingActionAudioInfos is null) return;
+
+        foreach (var info in itemData.UseActionUsingActionAudioInfos)
+        {
+            if (info.HasAudio(usingKey))
+            {
+                AudioManager.Instance.PlayOneShot(info.MixerGroupKey, info.AudioKey);
+            }
+        }
+    }
+
+    public CollisionInteractionMono FindCloserObject()
+    {
+        var targetPos = _controller.Coordinate.GetFront();
+        var colliders =
+            Physics2D.OverlapCircleAll(targetPos, _controller.CoordinateData.Radius,
+                ~LayerMask.GetMask("Player", "Ignore Raycast"));
+
+        float minDis = Mathf.Infinity;
+        CollisionInteractionMono minInteraction = null;
+        foreach (var col in colliders)
+        {
+            if (col.TryGetComponent(out CollisionInteractionMono interaction)
+               )
+            {
+                float dis = (transform.position - col.transform.position).sqrMagnitude;
+                if (dis < minDis)
+                {
+                    minInteraction = interaction;
+                    minDis = dis;
+                }
+            }
+        }
+
+        return minInteraction;
+    }
+
+    #endregion
+
+    #region Callback Method
+
     public async UniTask<bool> OnToolAction()
     {
         if (_blackboard.IsInteractionStopped) return false;
@@ -147,9 +270,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 _move.ResetVelocity();
                 _move.IsStopped = true;
                 _blackboard.Energy--;
-
-                _isAniPrevEventRaised = false;
-                _isAniNextEventRaised = false;
 
                 Vector2 clickPoint = Camera.main.ScreenToWorldPoint(InputManager.Map.Player.Look.ReadValue<Vector2>());
 
@@ -188,7 +308,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
                 goto RE;
             }
 
-            if (Pickaxe(interaction))
+            if (ToolCollect(interaction))
             {
                 success = true;
                 goto RE;
@@ -226,98 +346,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         }
     }
 
-    private void PlayAudio(ItemData itemData, string usingKey)
-    {
-        if (itemData == false) return;
-
-        if (itemData.UseActionUsingActionAudioInfos is null) return;
-
-        foreach (var info in itemData.UseActionUsingActionAudioInfos)
-        {
-            if (info.HasAudio(usingKey))
-            {
-                AudioManager.Instance.PlayOneShot(info.MixerGroupKey, info.AudioKey);
-            }
-        }
-    }
-
-    public async UniTask<bool> OnCollectAction()
-    {
-        if (_blackboard.IsInteractionStopped) return false;
-
-        try
-        {
-            var interaction = CloserObject;
-            if (interaction == false) return false;
-
-            CollisionInteractionUtil
-                .CreateSelectState()
-                .Bind<IBOCollectPlant>(CollectPlant)
-                .Bind<IBOCollect>(CollectObject)
-                .Bind<IBACollect>(CollectObject)
-                .Bind<IBAInteractionTrigger>(InteractTrigger)
-                .Execute(interaction.ContractInfo, out bool executedAny);
-
-            if (executedAny)
-            {
-                _blackboard.IsMoveStopped = true;
-                _move.ResetVelocity();
-
-                Vector2 dir = (interaction.transform.position - _controller.transform.position).normalized;
-                _visual.LookAt(dir, AnimationActorKey.Action.Collect);
-                await UniTask.Delay(500, DelayType.DeltaTime, PlayerLoopTiming.Update,
-                    this.GetCancellationTokenOnDestroy());
-            }
-
-            return executedAny;
-        }
-        catch (Exception e) when (e is not OperationCanceledException)
-        {
-            Debug.LogException(e);
-            return false;
-        }
-        finally
-        {
-            _blackboard.IsMoveStopped = false;
-        }
-    }
-
-    public async UniTask<bool> OnActivateAction()
-    {
-        if (_blackboard.IsInteractionStopped) return false;
-
-        try
-        {
-            var interaction = CloserObject;
-            if (interaction == false) return false;
-
-            CollisionInteractionUtil
-                .CreateSelectState()
-                .Bind<IBAInteractionTrigger>(ActivateTrigger)
-                .Execute(interaction.ContractInfo, out bool executedAny);
-
-            return executedAny;
-        }
-        catch (Exception e) when (e is not OperationCanceledException)
-        {
-            Debug.LogException(e);
-            return false;
-        }
-    }
-
-    private bool InteractTrigger(IBAInteractionTrigger arg)
-    {
-        _controller.StateHandler.TranslateState("EndOfInteraction");
-        bool success = arg.Interact(_controller.Interaction);
-        return success;
-    }
-
-    private bool ActivateTrigger(IBAInteractionTrigger arg)
-    {
-        _controller.StateHandler.TranslateState("EndOfInteraction");
-        bool success = arg.Activate(_controller.Interaction);
-        return success;
-    }
+    private void OnInteractObject(IBOInteractive obj) => obj.UpdateInteract(_controller.Interaction);
 
     private bool Farmland(CollisionInteractionMono interaction)
     {
@@ -333,19 +362,16 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         return executedAny;
     }
 
-    private bool Pickaxe(CollisionInteractionMono interaction)
+    private bool ToolCollect(CollisionInteractionMono interaction)
     {
         CollisionInteractionUtil
             .CreateSelectState()
             .Bind<IBOCollectPlant>(CollectPlant)
-            .Bind<IBOCollectTool>(CollectObject)
-            .Bind<IBACollectTool>(CollectObject)
+            .Bind<IBOInteractiveTool>(CollectObject)
             .Execute(interaction.ContractInfo, out bool executedAny);
 
         return executedAny;
     }
-
-    #region Object
 
     public bool PlantTile(IBOPlantTile action)
     {
@@ -475,6 +501,9 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         var targetPos = _controller.Coordinate.GetFront();
         var data = _controller.Inventory.CurrentItemData;
+        
+        WaitForDefault();
+        _visual.LookAt(targetPos - _controller.transform.position, AnimationActorKey.Action.Plant, true);
 
         List<ItemData> items = new List<ItemData>(2);
 
@@ -493,197 +522,154 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         return true;
     }
 
-    private bool CollectObject(IBOCollect action)
+    private bool CollectObject(IBOInteractiveTool action)
     {
-        var list = action.Collect();
-        if (list is null) return false;
+        var itemData = _controller.Inventory.CurrentItemData;
+        if (itemData == false) return false;
 
-        if (action.Interaction.Owner is Actor actor)
+        foreach (ToolRequireSet set in itemData.Info.Sets)
         {
-            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Action.Idle);
-            actor.TransitionHandler.TranslateState("ToWait");
-        }
-
-        ColectObject(list);
-
-        return true;
-    }
-
-    private bool CollectObject(IBACollect action)
-    {
-        var list = action.Collect();
-        if (list is null) return false;
-
-
-        if (action.Interaction.Owner is Actor actor)
-        {
-            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Action.Idle);
-            actor.TransitionHandler.TranslateState("ToWait");
-        }
-
-        ColectObject(list);
-
-        return true;
-    }
-
-    private bool CollectObject(IBACollectTool action)
-    {
-        ItemData currentData = _controller.Inventory.CurrentItemData;
-        if (currentData == false) return false;
-
-        bool flag = false;
-        foreach (ToolRequireSet toolSet in currentData.Info.Sets)
-        {
-            if (toolSet is null) continue;
-
-            if (action.CanCollect(toolSet))
+            if (action.IsVaildTool(set))
             {
-                flag = true;
+                action.UpdateInteract(_controller.Interaction);
+                return true;
             }
         }
 
-        if (flag is false) return false;
 
-        var list = action.Collect();
-        if (list is null) return false;
-
-
-        if (action.Interaction.Owner is Actor actor)
-        {
-            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Action.Idle);
-            actor.TransitionHandler.TranslateState("ToWait");
-        }
-
-        ColectObject(list);
-
-        return true;
+        return false;
     }
 
-    private bool CollectObject(IBOCollectTool action)
+    private bool IsTriggeredUIAny =>
+        InputManager.Map.UI.Inventory.triggered ||
+        InputManager.Map.UI.Setting.triggered ||
+        InputManager.Map.UI.RecipeBook.triggered ||
+        InputManager.Map.UI.CloseUI.triggered;
+
+    private async UniTask OnUIInventory()
     {
-        ItemData currentData = _controller.Inventory.CurrentItemData;
-        if (currentData == false) return false;
+        _ = await UniTask
+            .NextFrame(PlayerLoopTiming.PostLateUpdate, this.GetCancellationTokenOnDestroy())
+            .SuppressCancellationThrow();
 
-        bool flag = false;
-        foreach (ToolRequireSet toolSet in currentData.Info.Sets)
-        {
-            if (toolSet is null) continue;
+        _controller.PannelView.ViewState = PlayerPannelView.ViewType.Inv;
+        _controller.Blackboard.IsMoveStopped = true;
+        _controller.Blackboard.IsInteractionStopped = true;
+        _controller.QuestPresenter.Visible = true;
+        _isAnyUIVisible = true;
 
-            if (action.CanCollect(toolSet))
-            {
-                flag = true;
-            }
-        }
+        _ = await UniTask
+            .WaitUntil(() => IsTriggeredUIAny, PlayerLoopTiming.PostLateUpdate,
+                this.GetCancellationTokenOnDestroy())
+            .SuppressCancellationThrow();
 
-        if (flag is false) return false;
-
-        var list = action.Collect();
-        if (list is null) return false;
-
-
-        if (action.Interaction.Owner is Actor actor)
-        {
-            actor.Visual.LookAt(transform.position - actor.transform.position, AnimationActorKey.Action.Idle);
-            actor.TransitionHandler.TranslateState("ToWait");
-        }
-
-        ColectObject(list);
-
-        return true;
+        _controller.PannelView.ViewState = PlayerPannelView.ViewType.Close;
+        _controller.Blackboard.IsMoveStopped = false;
+        _controller.Blackboard.IsInteractionStopped = false;
+        _isAnyUIVisible = false;
     }
 
-    private void ColectObject(List<ItemData> items)
+    private async UniTask OnUISetting()
     {
-        if (items is null) return;
+        _ = await UniTask
+            .NextFrame(PlayerLoopTiming.PostLateUpdate, this.GetCancellationTokenOnDestroy())
+            .SuppressCancellationThrow();
 
-        foreach (ItemData item in items)
-        {
-            _controller.Inventory.Model.PushItem(item, 1);
-        }
+        _controller.PannelView.ViewState = PlayerPannelView.ViewType.Setting;
+        _controller.Blackboard.IsMoveStopped = true;
+        _controller.Blackboard.IsInteractionStopped = true;
+        _controller.RecipeBookPresenter.PreviewSummaryView.Visible = false;
+        _controller.QuestPresenter.Visible = false;
+        _isAnyUIVisible = true;
 
-        _controller.Inventory.Refresh();
+        _ = await UniTask
+            .WaitUntil(() => IsTriggeredUIAny, PlayerLoopTiming.PostLateUpdate,
+                this.GetCancellationTokenOnDestroy())
+            .SuppressCancellationThrow();
+
+        _controller.PannelView.ViewState = PlayerPannelView.ViewType.Close;
+        _controller.Blackboard.IsMoveStopped = false;
+        _controller.Blackboard.IsInteractionStopped = false;
+        if (_controller.RecipeBookPresenter.PreviewSummaryView.Data is not null)
+            _controller.RecipeBookPresenter.PreviewSummaryView.Visible = true;
+        _controller.QuestPresenter.Visible = true;
+        _isAnyUIVisible = false;
+    }
+
+    private async UniTask OnUIRecipe()
+    {
+        _ = await UniTask
+            .NextFrame(PlayerLoopTiming.PostLateUpdate, this.GetCancellationTokenOnDestroy())
+            .SuppressCancellationThrow();
+
+        _controller.PannelView.ViewState = PlayerPannelView.ViewType.Close;
+        _controller.Blackboard.IsMoveStopped = true;
+        _controller.Blackboard.IsInteractionStopped = true;
+        _controller.RecipeBookPresenter.ListView.Visible = true;
+        _controller.RecipeBookPresenter.PreviewView.Visible = true;
+        _isAnyUIVisible = true;
+
+        _ = await UniTask
+            .WaitUntil(() => IsTriggeredUIAny, PlayerLoopTiming.PostLateUpdate,
+                this.GetCancellationTokenOnDestroy())
+            .SuppressCancellationThrow();
+
+        _controller.Blackboard.IsMoveStopped = false;
+        _controller.Blackboard.IsInteractionStopped = false;
+        _controller.RecipeBookPresenter.ListView.Visible = false;
+        _controller.RecipeBookPresenter.PreviewView.Visible = false;
+        _isAnyUIVisible = false;
     }
 
     #endregion
 
-    public CollisionInteractionMono FindCloserObject()
-    {
-        var targetPos = _controller.Coordinate.GetFront();
-        var colliders =
-            Physics2D.OverlapCircleAll(targetPos, _controller.CoordinateData.Radius,
-                ~LayerMask.GetMask("Player", "Ignore Raycast"));
-
-        float minDis = Mathf.Infinity;
-        CollisionInteractionMono minInteraction = null;
-        foreach (var col in colliders)
-        {
-            if (col.TryGetComponent(out CollisionInteractionMono interaction)
-               )
-            {
-                float dis = (transform.position - col.transform.position).sqrMagnitude;
-                if (dis < minDis)
-                {
-                    minInteraction = interaction;
-                    minDis = dis;
-                }
-            }
-        }
-
-        return minInteraction;
-    }
-
-    private List<CollisionInteractionMono> _closerObjects = new(5);
-    public CollisionInteractionMono CloserObject { get; private set; }
-    public event Action<CollisionInteractionMono> OnChangedCloserObject;
+    #region Unity Method
 
     private void Update()
     {
-        float minDis = Mathf.Infinity;
-        CollisionInteractionMono minObj = null;
+        CalculateCloseObject();
+        CalcultateIndicatorPosition();
 
-        int nullCount = 0;
+        if (_blackboard.IsInteractionStopped) return;
 
-        foreach (CollisionInteractionMono obj in _closerObjects)
+        if (CloserObject)
         {
-            if (obj == false)
+            CollisionInteractionUtil
+                .CreateState()
+                .Bind<IBOInteractive>(OnInteractObject)
+                .Execute(CloserObject.ContractInfo);
+        }
+
+        if (_isAnyUIVisible is false)
+        {
+            if (InputManager.Map.UI.Inventory.triggered)
             {
-                nullCount++;
-                continue;
+                _ = OnUIInventory();
             }
 
-            float dis = ((Vector2)(obj.transform.position - _controller.transform.position)).sqrMagnitude;
-
-            if (dis < minDis)
+            if (InputManager.Map.UI.Setting.triggered)
             {
-                minDis = dis;
-                minObj = obj;
+                _ = OnUISetting();
+            }
+
+            if (InputManager.Map.UI.RecipeBook.triggered)
+            {
+                _ = OnUIRecipe();
             }
         }
 
-        if (CloserObject != minObj)
+        if (InputManager.Map.Player.UseTool.triggered)
         {
-            CloserObject = minObj;
-            OnChangedCloserObject?.Invoke(CloserObject);
+            var itemData = _controller.Inventory.CurrentItemData;
+            if (_controller.Fishing.IsFishing is false && itemData && itemData.Info.Contains(ToolType.FishingRod))
+            {
+                _ = _controller.Fishing.Fishing();
+                return;
+            }
+
+            _ = OnToolAction();
         }
-
-        if (nullCount >= 10)
-        {
-            _closerObjects.RemoveAll(x => x == false);
-        }
     }
 
-    public void AddCloserObject(CollisionInteractionMono interaction)
-    {
-        _closerObjects.Add(interaction);
-    }
-
-    public void RemoveCloserObject(CollisionInteractionMono interaction)
-    {
-        _closerObjects.Remove(interaction);
-    }
-
-    public bool ContainsCloserObject(CollisionInteractionMono interaction)
-    {
-        return _closerObjects.Contains(interaction);
-    }
+    #endregion
 }

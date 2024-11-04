@@ -7,7 +7,7 @@ using ProjectBBF.Event;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class StateTransitionHandler : MonoBehaviour, IBAStateTransfer
+public class StateTransitionHandler : MonoBehaviour, IBOStateTransfer
 {
     public delegate bool Callback();
 

@@ -21,7 +21,6 @@ public class GameEventPage
         if (controller == false) return;
 
         var loader = SceneLoader.Instance;
-        controller.StateHandler.TranslateState("DoNothing");
         
         TimeManager.Instance.Pause();
 
@@ -29,11 +28,7 @@ public class GameEventPage
             .WorkDirectorAsync(false)
             .ContinueWith(async _ => await loader.UnloadAllMapAsync())
             .ContinueWith(async _ => await loader.UnloadImmutableScenesAsync())
-            .ContinueWith(_ =>
-            {
-                controller.StateHandler.TranslateState("EndOfDoNothing");
-            })
-            .ContinueWith(async ()=> await loader.LoadAllMapAsync())
+            .ContinueWith(async _ => await loader.LoadAllMapAsync())
             .ContinueWith(async _ => await loader.LoadImmutableScenesAsync())
             .ContinueWith(PlayerReset)
             .ContinueWith(async () => await loader.WorkDirectorAsync(true))

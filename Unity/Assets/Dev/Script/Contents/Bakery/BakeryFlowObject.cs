@@ -7,7 +7,7 @@ using ProjectBBF.Event;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class BakeryFlowObject : MonoBehaviour, IBAInteractionTrigger
+public class BakeryFlowObject : MonoBehaviour, IBOInteractive
 {
     [field: SerializeField, AutoProperty, MustBeAssigned, InitializationField]
     private FadeinoutObject _fadeObject;
@@ -27,10 +27,10 @@ public class BakeryFlowObject : MonoBehaviour, IBAInteractionTrigger
 
     private void Awake()
     {
-        var info = ActorContractInfo.Create(() => gameObject);
+        var info = ObjectContractInfo.Create(() => gameObject);
         _fadeObject.Interaction.SetContractInfo(info, this);
 
-        info.AddBehaivour<IBAInteractionTrigger>(this);
+        info.AddBehaivour<IBOInteractive>(this);
 
         _fadeObject.OnEnter += x =>
         {
@@ -43,6 +43,17 @@ public class BakeryFlowObject : MonoBehaviour, IBAInteractionTrigger
         };
     }
 
+    public void UpdateInteract(CollisionInteractionMono caller)
+    {
+        if (InputManager.Map.Player.Interaction.triggered)
+        {
+            Interact(caller);
+        }
+        else if (InputManager.Map.Minigame.BakeryKeyPressed.triggered)
+        {
+            Activate(caller);
+        }
+    }
     public bool Interact(CollisionInteractionMono caller)
     {
         if (caller.Owner is not PlayerController pc) return false;

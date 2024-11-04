@@ -60,18 +60,6 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     private PlayerInteracter _interacter;
 
     private bool _currenTurningT = false;
-
-    public bool CanFishing
-    {
-        get
-        {
-            ItemData curItem = _invPresenter.CurrentItemData;
-            if (curItem is null) return false;
-
-            return curItem.Info.Contains(ToolType.FishingRod);
-        }
-    }
-
     public bool IsFishing { get; private set; }
 
     public void Init(PlayerController controller)
@@ -142,18 +130,18 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         if (_blackboard.IsInteractionStopped || _blackboard.IsFishingStopped) return false;
         try
         {
+            IsFishing = true;
             _lockFishingLine = true;
             _visual.Animator.SetTrigger("Fishing");
-            
+
             float factor = await _view.Fishing(1f);
             var front = _coordinate.GetFrontPureDir();
             Direction dir;
 
             factor = Mathf.Max(0.2f, factor);
-            
-            
 
-            IsFishing = true;
+
+
 
             switch (_move.LastDirection)
             {
@@ -184,28 +172,26 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
             }
 
             // TODO: 크로니클 용
-            if (dir != Direction.Right)
-            {
-                return false;
-            }
-
+            dir = Direction.Right;
+            front = Vector3.right;
+            
             var pos = _fishingPivot.position + (front * factor * _fishingMaxDistance) + _sideOffset;
             // p1 + ((a * b * c) + d1 * d)
 
             _visual.Animator.SetBool("IsFishing", true);
-            
-            
+
+
             await UniTask.WaitUntil(() => _lockFishingLine is false, PlayerLoopTiming.Update,
                 this.GetCancellationTokenOnDestroy());
-            
+
             Fishing(dir, pos);
-            
+
 
             CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(
                 this.GetCancellationTokenOnDestroy()
             );
 
-            
+
             await UniTask.WaitUntil(() => _co is null, PlayerLoopTiming.Update,
                 this.GetCancellationTokenOnDestroy());
 
@@ -218,8 +204,9 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
                 _visual.Animator.SetBool("IsFishing", false);
                 await UnFishing(dir, pos, ctx?.FishTransform);
                 ctx?.Release();
-                
-                _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Right));
+
+                _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle,
+                    AnimationActorKey.Direction.Right));
                 return false;
             }
 
@@ -227,7 +214,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
             ctx.OnBeginBite += (x) =>
             {
                 _fishingStateRenderer.enabled = true;
-                
+
                 AudioManager.Instance.PlayOneShot("SFX", "SFX_Fishing_Biting_Bait");
             };
             ctx.OnEndBite += (x) => { _fishingStateRenderer.enabled = false; };
@@ -252,25 +239,31 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
             if (ctx.IsTiming)
             {
                 _invPresenter.QuickInvVisible = false;
-                
+
                 var inst = DialogueController.Instance;
                 inst.Visible = true;
                 inst.DialogueText = $"\"{ctx.Reward.ItemName}\"을(를) 낚았다!";
 
                 AudioManager.Instance.PlayOneShot("SFX", "SFX_Fishing_Completion");
-                _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down), true);
+                _visual.ChangeClip(
+                    AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete,
+                        AnimationActorKey.Direction.Down), true);
                 _interacter.ItemPreviewSprite = ctx.Reward.ItemSprite;
                 ctx.FishVisible = false;
-                
+
+
                 await UniTask.WaitUntil(() => InputManager.Map.UI.DialogueSkip.triggered, PlayerLoopTiming.Update,
                     this.GetCancellationTokenOnDestroy());
                 
+                await UniTask.NextFrame(PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+
                 _interacter.ItemPreviewSprite = null;
                 _invPresenter.QuickInvVisible = true;
                 inst.ResetDialogue();
             }
+
             ctx.Resume();
-            
+
             ctx.Release();
 
 
@@ -285,14 +278,15 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         {
             _handle.gameObject.SetActive(false);
             _line.gameObject.SetActive(false);
-            IsFishing = false;
             _visual.Animator.SetBool("IsFishing", false);
         }
         finally
         {
             Debug.Log("dsa");
             _lockFishingLine = true;
-            _visual.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Right), true);
+            IsFishing = false;
+            _visual.ChangeClip(
+                AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Right), true);
         }
 
 

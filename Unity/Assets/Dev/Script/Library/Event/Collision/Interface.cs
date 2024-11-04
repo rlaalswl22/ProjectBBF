@@ -6,12 +6,8 @@ namespace  ProjectBBF.Event
 {
 public interface ICollisionInteraction : IEventSystemHandler
     {
-        public event Action<ActorContractInfo> OnContractActor;
-        public event Action<ObjectContractInfo> OnContractObject;
-        public event Action<ClickContractInfo> OnContractClick;
-        public event Action<ActorContractInfo> OnExitActor;
-        public event Action<ObjectContractInfo> OnExitObject;
-        public event Action<ClickContractInfo> OnExitClick;
+        public event Action<BaseContractInfo> OnContract;
+        public event Action<BaseContractInfo> OnExit;
         
         public LayerMask TargetLayerMask { get; }
         public bool ListeningOnly { get; }
@@ -33,12 +29,8 @@ public interface ICollisionInteraction : IEventSystemHandler
     public abstract class CollisionInteractionMono : MonoBehaviour, ICollisionInteraction
     {
         public abstract object Owner { get; internal set; }
-        public abstract event Action<ActorContractInfo> OnContractActor;
-        public abstract event Action<ObjectContractInfo> OnContractObject;
-        public abstract event Action<ClickContractInfo> OnContractClick;
-        public abstract event Action<ActorContractInfo> OnExitActor;
-        public abstract event Action<ObjectContractInfo> OnExitObject;
-        public abstract event Action<ClickContractInfo> OnExitClick;
+        public abstract event Action<BaseContractInfo> OnContract;
+        public abstract event Action<BaseContractInfo> OnExit;
         public abstract LayerMask TargetLayerMask { get; }
         public abstract bool ListeningOnly { get; }
         public abstract bool DetectedOnly { get; }

@@ -13,7 +13,8 @@ public class LyllaNpc : ActorProxy
         _favorability.Init(Owner);
 
         ContractInfo
-            .AddBehaivour<IBADialogue>(_favorability)
+            .AddBehaivour<IBODialogue>(_favorability)
+            .AddBehaivour<IBOInteractive>(_favorability)
             ;
     }
 

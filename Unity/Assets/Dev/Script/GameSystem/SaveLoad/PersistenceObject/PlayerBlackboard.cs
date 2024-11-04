@@ -63,7 +63,7 @@ public class PlayerBlackboard : ISaveLoadNotification
     
     public bool IsMoveStopped { get; set; }
     public bool IsInteractionStopped { get; set; }
-    public bool IsFishingStopped { get; set; }
+    public bool IsFishingStopped { get; set; } = true;
 
     [SerializeField, Editable] private GridModelSerialized _serializedGridModel;
 

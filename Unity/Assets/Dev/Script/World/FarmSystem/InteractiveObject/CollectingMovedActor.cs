@@ -41,27 +41,56 @@ public class CollectingMovedActor : ActorComponent
 
     public UnityEvent<CollectState> OnChangedCollectingState => _onChangedCollectingState;
 
-    private class ToolBehaviour : IBACollectTool
+    private class ToolBehaviour : IBOInteractiveTool
     {
         public CollectingMovedActor _actorCom;
         public CollisionInteraction Interaction { get; set; }
-        public bool CanCollect(ToolRequireSet toolSet)
+        public bool IsVaildTool(ToolRequireSet toolSet)
         {
             return ToolTypeUtil.Contains(_actorCom._collectingData.RequireSet, toolSet);
         }
 
-        public List<ItemData> Collect() => _actorCom.Collect();
+        public void UpdateInteract(CollisionInteractionMono caller)
+        {
+            if (caller.Owner is not PlayerController pc) return;
+            if (pc.Inventory.CurrentItemData == null) return;
+
+            foreach (ToolRequireSet toolSet in pc.Inventory.CurrentItemData.Info.Sets)
+            {
+                var list = _actorCom.Collect();
+
+                if (list is null) return;
+
+                foreach (ItemData item in list)
+                {
+                    pc.Inventory.Model.PushItem(item, 1);
+                }
+                    
+                return;
+            }
+        }
     }
-    private class CollectBehaviour : IBACollect
+    private class CollectBehaviour : IBOInteractive
     {
         public CollectingMovedActor _actorCom;
         public CollisionInteraction Interaction { get; set; }
+        public void UpdateInteract(CollisionInteractionMono caller)
+        {
+            if (caller.Owner is not PlayerController pc) return;
+            if (pc.Inventory.CurrentItemData == null) return;
 
+            var list = _actorCom.Collect();
 
-        public List<ItemData> Collect() => _actorCom.Collect();
+            if (list is null) return;
+
+            foreach (ItemData item in list)
+            {
+                pc.Inventory.Model.PushItem(item, 1);
+            }
+        }
     }
 
-    public IActorBehaviour CreateCollectProxyOrNull()
+    public IObjectBehaviour CreateCollectProxyOrNull()
     {
         if (CollectingData)
         {

@@ -15,10 +15,6 @@ public class PlayerCoordinate : MonoBehaviour, IPlayerStrategy
         _data = _controller.CoordinateData;
     }
 
-    public void OnUpdate()
-    {
-    }
-
     public Vector3 GetFront()
     {
         var worldPos = _controller.transform.position;

@@ -13,7 +13,7 @@ public class MapTriggerBase : MonoBehaviour
     private CollisionInteraction _interaction;
 
     public CollisionInteraction Interaction => _interaction;
-    public ActorContractInfo ContractInfo => Interaction.ContractInfo as ActorContractInfo;
+    public ObjectContractInfo ContractInfo => Interaction.ContractInfo as ObjectContractInfo;
     
     public event Action<CollisionInteractionMono> OnTrigger;
 
@@ -25,7 +25,7 @@ public class MapTriggerBase : MonoBehaviour
 
     protected virtual void Awake()
     {
-        var info = ActorContractInfo.Create(() => this);
+        var info = ObjectContractInfo.Create(() => this);
         Interaction.SetContractInfo(info, this);
     }
 }

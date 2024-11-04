@@ -24,14 +24,14 @@ public class Animal : ActorProxy
 
         var collect = _collectingMovedActor.CreateCollectProxyOrNull();
 
-        ContractInfo.AddBehaivour<IBADialogue>(_favorablity);
-        if (collect is IBACollect)
+        ContractInfo.AddBehaivour<IBODialogue>(_favorablity);
+        if (collect is IBOInteractiveTool)
         {
-            ContractInfo.AddBehaivour<IBACollect>(collect);
+            ContractInfo.AddBehaivour<IBOInteractiveTool>(collect);
         }
-        else if (collect is IBACollectTool)
+        else if (collect is IBOInteractive)
         {
-            ContractInfo.AddBehaivour<IBACollectTool>(collect);
+            ContractInfo.AddBehaivour<IBOInteractive>(collect);
         }
         
         

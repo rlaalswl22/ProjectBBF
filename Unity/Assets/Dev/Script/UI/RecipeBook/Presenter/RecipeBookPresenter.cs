@@ -35,7 +35,6 @@ public class RecipeBookPresenter : MonoBehaviour
     
     private BakeryRecipeData _prevRecipe;
     private BakeryRecipeData _currentRecipe;
-    
 
     public void Awake()
     {
@@ -62,14 +61,6 @@ public class RecipeBookPresenter : MonoBehaviour
                 }
             }
         });
-
-        _listView.OnExit += () =>
-        {
-            if (GameObjectStorage.Instance.TryGetPlayerController(out var pc))
-            {
-                pc.StateHandler.TranslateState("EndOfUIInteraction");
-            }
-        };
 
         foreach (var data in resolver.RecipeTable.Values)
         {

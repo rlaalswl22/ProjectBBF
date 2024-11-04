@@ -4,30 +4,26 @@ using System.Collections.Generic;
 using MyBox;
 using ProjectBBF.Event;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public interface IBAInteractionTrigger: IActorBehaviour
+public class MapInteractionTrigger : MapTriggerBase, IBOInteractive
 {
-    public bool Interact(CollisionInteractionMono caller);
-    public bool Activate(CollisionInteractionMono caller);
-}
-
-public class MapInteractionTrigger : MapTriggerBase, IBAInteractionTrigger
-{
-    public bool Interact(CollisionInteractionMono caller)
-    {
-        Trigger(caller);
-
-        return true;
-    }
-
-    public bool Activate(CollisionInteractionMono caller)
-    {
-        return false;
-    }
+    [SerializeField] private InputAction _triggerInput;
 
     protected override void Awake()
     {
         base.Awake();
-        ContractInfo.AddBehaivour<IBAInteractionTrigger>(this);
+
+        ContractInfo.AddBehaivour<IBOInteractive>(this);
+    }
+
+    public void UpdateInteract(CollisionInteractionMono caller)
+    {
+        if (_triggerInput is null) return;
+
+        if (_triggerInput.triggered)
+        {
+            Trigger(caller);
+        }
     }
 }

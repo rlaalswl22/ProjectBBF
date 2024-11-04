@@ -25,9 +25,6 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
 
     [field: SerializeField, MustBeAssigned, AutoProperty(AutoPropertyMode.Children)]
-    private StateTransitionHandler _stateHandler;
-
-    [field: SerializeField, MustBeAssigned, AutoProperty(AutoPropertyMode.Children)]
     private CollisionInteraction _interaction;
 
     [field: SerializeField, MustBeAssigned, InitializationField, AutoProperty(AutoPropertyMode.Scene)]
@@ -64,7 +61,6 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer _itemPreviewRenderer;
 
     [field: SerializeField] private List<ItemDataSerializedSet> _testItems;
-    public StateTransitionHandler StateHandler => _stateHandler;
 
     public CollisionInteraction Interaction => _interaction;
     public PlayerBlackboard Blackboard { get; private set; }
@@ -144,10 +140,8 @@ public class PlayerController : MonoBehaviour
         GameObjectStorage.Instance.AddGameObject(gameObject);
 
 
-        var info = ActorContractInfo.Create(() => gameObject);
+        var info = ObjectContractInfo.Create(() => gameObject);
         Interaction.SetContractInfo(info, this);
-
-        StateHandler.Init(Interaction);
     }
 
     private void Start()

@@ -26,29 +26,25 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
         _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
     }
 
-    public bool CanDialogueAction
+    public bool CanDialogueAction(CollisionInteractionMono caller)
     {
-        get
+        if (_blackboard.IsInteractionStopped) return false;
+
+        var interaction = caller;
+        if (interaction is null) return false;
+
+        if (interaction.TryGetContractInfo(out ObjectContractInfo actorInfo) &&
+            actorInfo.TryGetBehaviour(out IBODialogue dialogue))
         {
-            if (_blackboard.IsInteractionStopped) return false;
-            
-            var interaction = FindCloserObject();
-            if (interaction is null) return false;
-
-
-            if (interaction.TryGetContractInfo(out ActorContractInfo actorInfo) &&
-                actorInfo.TryGetBehaviour(out IBADialogue dialogue))
+            if (dialogue.PeekDialogueEvent().IsEmpty)
             {
-                if (dialogue.PeekDialogueEvent().IsEmpty)
-                {
-                    return false;
-                }
-
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         }
+
+        return false;
     }
 
     public async UniTask<bool> OnDialogueAction()
@@ -86,9 +82,9 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
             if (caller is null) return false;
 
 
-            if (caller.TryGetContractInfo(out ActorContractInfo actorInfo) &&
-                actorInfo.TryGetBehaviour(out IBADialogue dialogue) &&
-                dialogue.PeekDialogueEvent().IsEmpty)
+            if (caller.TryGetContractInfo(out ObjectContractInfo actorInfo) &&
+                actorInfo.TryGetBehaviour(out IBODialogue dialogueActor) &&
+                 dialogueActor.PeekDialogueEvent().IsEmpty)
             {
                 return false;
             }
@@ -173,11 +169,11 @@ public class PlayerDialogue : MonoBehaviour, IPlayerStrategy
 
     private async UniTask<bool> BranchDialogue(CollisionInteractionMono interaction)
     {
-        if (interaction.TryGetContractInfo(out ActorContractInfo actorInfo) &&
-            actorInfo.TryGetBehaviour(out IBADialogue dialogue))
+        if (interaction.TryGetContractInfo(out ObjectContractInfo actorInfo) &&
+            actorInfo.TryGetBehaviour(out IBODialogue dialogue))
         {
-            var stateTransfer = actorInfo.GetBehaviourOrNull<IBAStateTransfer>();
-            var nameKey = actorInfo.GetBehaviourOrNull<IBANameKey>();
+            var stateTransfer = actorInfo.GetBehaviourOrNull<IBOStateTransfer>();
+            var nameKey = actorInfo.GetBehaviourOrNull<IBONameKey>();
 
             var dialogueEvent = dialogue.DequeueDialogueEvent();
 

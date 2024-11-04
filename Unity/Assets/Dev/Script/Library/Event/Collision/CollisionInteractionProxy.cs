@@ -16,35 +16,15 @@ namespace ProjectBBF.Event
         
         internal CollisionInteraction MainInteraction;
 
-        public override event Action<ActorContractInfo> OnContractActor
+        public override event Action<BaseContractInfo> OnContract
         {
-            add => MainInteraction.OnContractActor += value;
-            remove => MainInteraction.OnContractActor -= value;
+            add => MainInteraction.OnContract += value;
+            remove => MainInteraction.OnContract -= value;
         }
-        public override event Action<ObjectContractInfo> OnContractObject
+        public override event Action<BaseContractInfo> OnExit
         {
-            add => MainInteraction.OnContractObject += value;
-            remove => MainInteraction.OnContractObject -= value;
-        }
-        public override event Action<ClickContractInfo> OnContractClick
-        {
-            add => MainInteraction.OnContractClick += value;
-            remove => MainInteraction.OnContractClick -= value;
-        }
-        public override event Action<ActorContractInfo> OnExitActor
-        {
-            add => MainInteraction.OnExitActor += value;
-            remove => MainInteraction.OnExitActor -= value;
-        }
-        public override event Action<ObjectContractInfo> OnExitObject
-        {
-            add => MainInteraction.OnExitObject += value;
-            remove => MainInteraction.OnExitObject -= value;
-        }
-        public override event Action<ClickContractInfo> OnExitClick
-        {
-            add => MainInteraction.OnExitClick += value;
-            remove => MainInteraction.OnExitClick -= value;
+            add => MainInteraction.OnExit+= value;
+            remove => MainInteraction.OnExit -= value;
         }
 
         public override LayerMask TargetLayerMask => MainInteraction.TargetLayerMask;

@@ -123,8 +123,6 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal, IMi
         try
         {
             DialogueController.Instance.ResetDialogue();
-            Player.StateHandler.TranslateState("EndOfInteractionDialogue");
-            Player.StateHandler.TranslateState("ToDialogue");
             
             if (_beginFadeOut)
                 await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
@@ -138,7 +136,6 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal, IMi
                 await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
 
             await OnTutorial();
-            Player.StateHandler.TranslateState("EndOfDialogue");
 
             if (_isRequestEnd is false)
             {
@@ -149,14 +146,6 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal, IMi
             {
                 await UniTask.Yield(PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
             }
-
-
-            if (_isRequestEnd)
-            {
-                Player.StateHandler.TranslateState("EndOfInteractionDialogue");
-            }
-
-            Player.StateHandler.TranslateState("ToDialogue");
             if(_endFadeOut)
                 await SceneLoader.Instance.WorkDirectorAsync(false, Data.DirectorKey);
             
@@ -167,7 +156,6 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal, IMi
             OnPreGameEndEvent?.Invoke();
             if(_endFadeIn)
                 await SceneLoader.Instance.WorkDirectorAsync(true, Data.DirectorKey);
-            Player.StateHandler.TranslateState("EndOfDialogue");
 
             await OnGameEnd(_isRequestEnd);
             OnGameEndEvent?.Invoke();
@@ -214,11 +202,7 @@ public abstract class MinigameBase<T> : MonoBehaviour, IMinigameEventSignal, IMi
         if (container == false) return UniTask.CompletedTask;
 
         DialogueController.Instance.ResetDialogue();
-        Player.StateHandler.TranslateState("ToDialogue");
-        return Player.Dialogue.RunDialogue(container, ProcessorData.Default).ContinueWith(_ =>
-        {
-            Player.StateHandler.TranslateState("EndOfDialogue");
-        });
+        return Player.Dialogue.RunDialogue(container, ProcessorData.Default);
     }
 
     protected abstract void OnGameInit();

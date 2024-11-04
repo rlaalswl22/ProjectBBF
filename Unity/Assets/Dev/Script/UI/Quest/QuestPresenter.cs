@@ -15,7 +15,7 @@ public class QuestPresenter : MonoBehaviour
 
     private List<QuestView> _viewList = new(5);
 
-    private void OnEnable()
+    private void Start()
     {
         QuestManager.Instance.ESO.OnEventRaised += QuestUpdate;
         
@@ -40,7 +40,7 @@ public class QuestPresenter : MonoBehaviour
         set => gameObject.SetActive(value);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         if (QuestManager.Instance)
         {

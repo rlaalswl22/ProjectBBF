@@ -92,15 +92,7 @@ public class MapCutSceneEventReceiver : MonoBehaviour
 
             if (_afterContainer)
             {
-                PlayerController.StateHandler.TranslateState("ToDialogue");
-                _ = PlayerController.Dialogue.RunDialogue(_afterContainer, ProcessorData.Default).ContinueWith(_ =>
-                {
-                    PlayerController.StateHandler.TranslateState("EndOfDialogue");
-                });
-            }
-            else
-            {
-                PlayerController.StateHandler.TranslateState("EndOfCutScene");
+                _ = PlayerController.Dialogue.RunDialogue(_afterContainer, ProcessorData.Default);
             }
 
             persistence.IsPlayedCutScene = false;
@@ -136,7 +128,6 @@ public class MapCutSceneEventReceiver : MonoBehaviour
 
             if (_beforeContainer)
             {
-                PlayerController.StateHandler.TranslateState("ToDialogue");
                 _ = PlayerController.Dialogue.RunDialogue(_beforeContainer, ProcessorData.Default)
                     .ContinueWith(s =>LoadScene(_playerController));
             }
@@ -150,7 +141,6 @@ public class MapCutSceneEventReceiver : MonoBehaviour
     private void LoadScene(PlayerController pc)
     {
         var loaderInst = SceneLoader.Instance;
-        PlayerController.StateHandler.TranslateState("ToCutScene");
         TimeManager.Instance.Pause();
         var xy = pc.Blackboard.CurrentPosition;
         

@@ -12,7 +12,7 @@ using UnityEngine.AI;
 
 
 [RequireComponent(typeof(CollisionInteraction))]
-public class Actor : MonoBehaviour, IBANameKey
+public class Actor : MonoBehaviour, IBONameKey
 {
     [field: SerializeField, Foldout("데이터"), MustBeAssigned, InitializationField]
     private string _actorKey;
@@ -73,9 +73,9 @@ public class Actor : MonoBehaviour, IBANameKey
         
         
         /* Collision interaction */
-        var info = ActorContractInfo.Create(() => gameObject);
-        info.AddBehaivour<IBANameKey>(this);
-        info.AddBehaivour<IBAStateTransfer>(_transitionHandler);
+        var info = ObjectContractInfo.Create(() => gameObject);
+        info.AddBehaivour<IBONameKey>(this);
+        info.AddBehaivour<IBOStateTransfer>(_transitionHandler);
         
         _interaction.SetContractInfo(info, this);
         

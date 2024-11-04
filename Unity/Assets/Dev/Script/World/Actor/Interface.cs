@@ -8,7 +8,7 @@ using UnityEngine;
 public abstract class ActorProxy : MonoBehaviour
 {
     public Actor Owner { get; private set; }
-    public ActorContractInfo ContractInfo => Owner.Interaction.ContractInfo as ActorContractInfo;
+    public ObjectContractInfo ContractInfo => Owner.Interaction.ContractInfo as ObjectContractInfo;
 
     public void Init(Actor actor)
     {
@@ -56,7 +56,7 @@ public struct DialogueEvent
 
     public bool IsEmpty => Container == false;
 }
-public interface IBADialogue : IActorBehaviour
+public interface IBODialogue : IObjectBehaviour
 {
     
     /// <summary>
@@ -75,12 +75,13 @@ public interface IBADialogue : IActorBehaviour
     public DialogueEvent PeekDialogueEvent(); 
 }
 
-public interface IBANameKey : IActorBehaviour
+
+public interface IBONameKey : IObjectBehaviour
 {
     public string ActorKey { get; }
 }
 
-public interface IBAStateTransfer : IActorBehaviour
+public interface IBOStateTransfer : IObjectBehaviour
 {
     public void TranslateState(string stateKey);
 }

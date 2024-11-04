@@ -10,7 +10,8 @@ public class Npc : ActorProxy
         _favorablity.Init(Owner);
 
         ContractInfo
-            .AddBehaivour<IBADialogue>(_favorablity)
+            .AddBehaivour<IBODialogue>(_favorablity)
+            .AddBehaivour<IBOInteractive>(_favorablity)
             ;
     }
 

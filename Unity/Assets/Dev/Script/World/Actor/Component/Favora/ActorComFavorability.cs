@@ -4,7 +4,7 @@ using ProjectBBF.Event;
 using ProjectBBF.Persistence;
 using UnityEngine;
 
-public abstract class ActorComFavorability : ActorComponent, IBADialogue
+public abstract class ActorComFavorability : ActorComponent, IBODialogue, IBOInteractive
 {
     public CollisionInteraction Interaction { get; private set; }
 
@@ -34,6 +34,14 @@ public abstract class ActorComFavorability : ActorComponent, IBADialogue
             }
         );
         _processorData = new ProcessorData(table);
+    }
+    public void UpdateInteract(CollisionInteractionMono caller)
+    {
+        if (caller.Owner is not PlayerController pc) return;
+        if (InputManager.Map.Player.InteractionDialogue.triggered)
+        {
+            _ = pc.Dialogue.RunDialogueFromInteraction(Interaction);
+        }
     }
 
     public abstract DialogueEvent DequeueDialogueEvent();
