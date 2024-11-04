@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed507e00ab63144f976694caab7934e, type: 3}
+  m_Name: Dialogue_Chapter_01_Elisia
+  m_EditorClassIdentifier: 
+  _guid: a540793a346bc014ebefec1d9b2871f3
+  NodeLinks:
+  - BaseNodeGuid: 9b0c3bcf-2503-4f86-b823-485c7b2262b2
+    PortName: Execute
+    TargetNodeGuid: de1b0ffc-6cc8-4b05-a094-9138b32a74ef
+  - BaseNodeGuid: 07fd693c-1793-4af7-8f87-4dcf82f80c40
+    PortName: Next
+    TargetNodeGuid: 5dbcd433-827f-4d7c-a907-c1045418ed34
+  - BaseNodeGuid: 461d1de8-f4ff-4fb8-bde1-a7b9ce46f3df
+    PortName: Next
+    TargetNodeGuid: db17df36-db63-429b-af53-cecd2c2dd1d0
+  - BaseNodeGuid: 5c6726f7-47d6-42b3-9ff8-2f73c1a5b93b
+    PortName: Next
+    TargetNodeGuid: 07fd693c-1793-4af7-8f87-4dcf82f80c40
+  - BaseNodeGuid: db17df36-db63-429b-af53-cecd2c2dd1d0
+    PortName: Next
+    TargetNodeGuid: 27af86ff-c3e2-4f83-ae6c-3aaa71caa309
+  - BaseNodeGuid: de1b0ffc-6cc8-4b05-a094-9138b32a74ef
+    PortName: "\uC548\uB155"
+    TargetNodeGuid: 5c6726f7-47d6-42b3-9ff8-2f73c1a5b93b
+  - BaseNodeGuid: de1b0ffc-6cc8-4b05-a094-9138b32a74ef
+    PortName: "\uAE30\uBD84 \uC88B\uC740 \uC77C\uC774 \uC788\uC5B4?"
+    TargetNodeGuid: f1bbe743-d74e-4874-823a-157eb6d2950c
+  - BaseNodeGuid: f1bbe743-d74e-4874-823a-157eb6d2950c
+    PortName: Next
+    TargetNodeGuid: 461d1de8-f4ff-4fb8-bde1-a7b9ce46f3df
+  NodeData:
+  - rid: 6083855218489950304
+  - rid: 6083855218489950308
+  - rid: 6083855218489950309
+  - rid: 6083855218489950305
+  - rid: 6083855218489950306
+  - rid: 6083855218489950310
+  - rid: 6083855218489950307
+  - rid: 6083855218489950311
+  references:
+    version: 2
+    RefIds:
+    - rid: 6083855218489950304
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 07fd693c-1793-4af7-8f87-4dcf82f80c40
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 949, y: 66}
+        DialogueText: "\uADF8 \uBA54\uC774\uB098\uAC00 \uCD94\uCC9C\uD55C\uB9CC\uD07C
+          \uAE30\uB300\uD558\uACE0 \uC788\uB2E4\uACE0!!"
+        PortraitKey: 
+        ActorKey: Elisia
+    - rid: 6083855218489950305
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 5c6726f7-47d6-42b3-9ff8-2f73c1a5b93b
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 538, y: 67}
+        DialogueText: "\uC774\uAC70 \uC774\uBC88\uC5D0 \uBA54\uC774\uB098\uC758 \uCD9C\uC804\uD55C
+          {player}\uC544\uB2C8\uC57C?"
+        PortraitKey: 
+        ActorKey: Elisia
+    - rid: 6083855218489950306
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 5dbcd433-827f-4d7c-a907-c1045418ed34
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1333, y: 66}
+        DialogueText: "\uBB3C\uB860 \uC2EC\uC0AC\uC704\uC6D0\uC774\uB2C8 \uACF5\uC815\uD558\uAC8C
+          \uD3C9\uAC00\uD560\uAC70\uC57C! \uCEAC\uD558\uD558\uD558\uD558\uD558!!"
+        PortraitKey: 
+        ActorKey: Elisia
+    - rid: 6083855218489950307
+      type: {class: BranchNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: de1b0ffc-6cc8-4b05-a094-9138b32a74ef
+        NodeTitle: Branch
+        TypeName: Branch
+        Position: {x: 206, y: 198}
+        DialogueText: "\uCEAC\uD558\uD558\uD558\uD558! \uC88B\uAD6C\uB9CC!!"
+        PortraitKey: Smi
+        ActorKey: Elisia
+    - rid: 6083855218489950308
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 27af86ff-c3e2-4f83-ae6c-3aaa71caa309
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1430, y: 278}
+        DialogueText: "\uB300\uD68C\uB2C8 \uC7AC\uBC0C\uB294 \uBE75\uB3C4 \uBA39\uC744
+          \uC218 \uC788\uC744 \uAC70 \uC544\uB2C8\uC57C! \uCEAC\uD558\uD558\uD558\uD558!!"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 6083855218489950309
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 461d1de8-f4ff-4fb8-bde1-a7b9ce46f3df
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 846, y: 277}
+        DialogueText: "\uC220\uACFC \uCD95\uC81C\uB294 \uCD5C\uACE0\uC9C0!"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 6083855218489950310
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: db17df36-db63-429b-af53-cecd2c2dd1d0
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1124, y: 279}
+        DialogueText: "\uCD5C\uACE0\uC758 \uC990\uAE38\uAC70\uB9AC \uC544\uB2C8\uACA0\uC5B4?"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 6083855218489950311
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: f1bbe743-d74e-4874-823a-157eb6d2950c
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 600, y: 277}
+        DialogueText: "\uCEAC\uD558\uD558\uD558\uD558!"
+        PortraitKey: 
+        ActorKey: 
