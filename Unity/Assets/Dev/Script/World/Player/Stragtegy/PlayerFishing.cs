@@ -24,6 +24,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         Right
     }
 
+    [SerializeField] private Color _fishingFloatColorBelowWater;
     [SerializeField] private Transform _fishingPivot;
     [SerializeField] private SpriteRenderer _fishingStateRenderer;
     [SerializeField] private LineRenderer _line;
@@ -46,6 +47,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
     [SerializeField] private float _sideMaxY;
 
     [SerializeField] private Transform _handle;
+    [SerializeField] private SpriteRenderer _fishingFloatRenderer;
     [SerializeField] private FishingView _view;
 
     [SerializeField] private SplineContainer _splineContainer;
@@ -304,6 +306,7 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         float toTargetPointDis = Vector2.Distance(_fishingPivot.position, targetPoint);
 
         var lineSpline = new Spline();
+        _fishingFloatRenderer.color = Color.white;
 
         while (t > 0f)
         {
@@ -352,6 +355,8 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
 
         var lineSpline = new Spline();
         float toTargetPointDis = Vector2.Distance(_fishingPivot.position, targetPoint);
+        
+        _fishingFloatRenderer.color = Color.white;
 
         while (t <= 1f)
         {
@@ -363,6 +368,8 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
             DrawLine(lineSpline, dir, targetPoint, t);
             yield return null;
         }
+
+        _fishingFloatRenderer.color = _fishingFloatColorBelowWater;
 
         _co = null;
     }
