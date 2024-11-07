@@ -236,13 +236,6 @@ public class SettingView : MonoBehaviour
     public void Init()
     {
 
-        _globalVolumeSlider.value = AudioManager.Instance.GetVolume("Global");
-        _backgroundVolumeSlider.value = AudioManager.Instance.GetVolume("BGM");
-        _sfxVolumeSlider.value = AudioManager.Instance.GetVolume("SFX");
-        _uiVolumeSlider.value = AudioManager.Instance.GetVolume("UI");
-        _playerVolumeSlider.value = AudioManager.Instance.GetVolume("Player");
-        _animalVolumeSlider.value = AudioManager.Instance.GetVolume("Animal");
-
         // sound
         _globalVolumeSlider.onValueChanged.AddListener(x=> OnSliderChanged(_globalVolumeInputField, "Global", x));
         _backgroundVolumeSlider.onValueChanged.AddListener(x=> OnSliderChanged(_backgroundVolumeInputField, "BGM", x));
@@ -258,6 +251,13 @@ public class SettingView : MonoBehaviour
         _playerVolumeInputField.onEndEdit.AddListener(x => OnInputFieldChanged(_playerVolumeSlider, _playerVolumeInputField, x));
         _animalVolumeInputField.onEndEdit.AddListener(x => OnInputFieldChanged(_animalVolumeSlider, _animalVolumeInputField, x));
         
+
+        _globalVolumeSlider.value = AudioManager.Instance.GetVolume("Global");
+        _backgroundVolumeSlider.value = AudioManager.Instance.GetVolume("BGM");
+        _sfxVolumeSlider.value = AudioManager.Instance.GetVolume("SFX");
+        _uiVolumeSlider.value = AudioManager.Instance.GetVolume("UI");
+        _playerVolumeSlider.value = AudioManager.Instance.GetVolume("Player");
+        _animalVolumeSlider.value = AudioManager.Instance.GetVolume("Animal");
         
         // graphic
         OnFrameRate(ScreenManager.Instance.TargetFrameRate / (float)ScreenManager.Instance.MaxFrameRate);

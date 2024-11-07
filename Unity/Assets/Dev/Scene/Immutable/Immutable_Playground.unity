@@ -5242,10 +5242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c992c6b29e21420d8f2b6eeb8bead963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvas: {fileID: 481094539}
-  _boundsFactor: {x: 2.28, y: 2.28}
-  _distanceFactor: {x: 0.2, y: 0.2}
-  _isScreenSpace: 1
 --- !u!1001 &2134910219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9939,7 +9935,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -14.7, y: -342.1}
+  m_AnchoredPosition: {x: -4.6, y: -2.2}
   m_SizeDelta: {x: 247.5529, y: 70.8067}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &3897615100497515925
@@ -11971,7 +11967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &5777441551745404012
 GameObject:
   m_ObjectHideFlags: 0
@@ -14203,7 +14199,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -10, y: -14}
-  m_SizeDelta: {x: 337.5, y: 415.625}
+  m_SizeDelta: {x: 315.625, y: 75}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &7951223277321785163
 MonoBehaviour:
@@ -14332,10 +14328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c992c6b29e21420d8f2b6eeb8bead963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvas: {fileID: 0}
-  _boundsFactor: {x: 1, y: 1}
-  _distanceFactor: {x: 0.28, y: 0.28}
-  _isScreenSpace: 1
 --- !u!114 &8110498061409165846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15305,10 +15297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c992c6b29e21420d8f2b6eeb8bead963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvas: {fileID: 1297245973018193388}
-  _boundsFactor: {x: 1, y: 1}
-  _distanceFactor: {x: 0.28, y: 0.28}
-  _isScreenSpace: 1
 --- !u!224 &9002219657503380291
 RectTransform:
   m_ObjectHideFlags: 0
