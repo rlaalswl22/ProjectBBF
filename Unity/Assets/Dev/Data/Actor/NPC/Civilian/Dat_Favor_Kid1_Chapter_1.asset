@@ -10,22 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94576a3af06543efac7d22c9a606f6fb, type: 3}
-  m_Name: Dat_Favor_Elisia
+  m_Name: Dat_Favor_Kid1_Chapter_1
   m_EditorClassIdentifier: 
-  _actorKey: Elisia
-  _actorName: "\uC5D8\uB9AC\uC2DC\uC544"
+  _actorKey: Kid1_Chapter_1
+  _actorName: "\uC5D0\uB374"
   _defaultPortraitKey: Default
   _favorabilityEvent:
     _eventItems:
-    - _container: {fileID: 11400000, guid: c9a24324f9c0f0a4ebc6a5bfd7ddd667, type: 2}
+    - _container: {fileID: 11400000, guid: 8f1827f21ae1c9444a1d68a1d97b1c54, type: 2}
       _favorablity: 0
       _once: 0
       _branchType: 2
   _portraitTable:
     _list:
     - Key: Default
-      Portrait: {fileID: 21300000, guid: bc1032db861ba424884f8bdbe9ea1d87, type: 3}
-    - Key: Smi
-      Portrait: {fileID: 21300000, guid: e901c8b6f6de7f245b00393dba7024d8, type: 3}
-    - Key: Agg
-      Portrait: {fileID: 21300000, guid: 5ecdac2240a26234fbeca7b7ab61ad55, type: 3}
+      Portrait: {fileID: 21300000, guid: 171055555a673d74eb4ce097ea91c11d, type: 3}
