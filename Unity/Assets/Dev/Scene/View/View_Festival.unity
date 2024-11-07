@@ -154,14 +154,22 @@ MonoBehaviour:
   _loadImmutableScene: 1
   _scenes:
   - View_Festival
-  - BMap_Festival
-  - BMap_FestivalDetail
-  - BMap_FrogMiniGame
+  - BMap_Festival_Ground
+  - BMap_Festival_A
+  - BMap_Festival_B
+  - BMap_Festival_C
+  - BMap_Festival_D
+  - BMap_Festival_E
+  - BMap_Festival_F
   ChildScenesToLoadConfig:
   - {fileID: 102900000, guid: e9e101f52d0cc2a4294348a7ba3f0a8e, type: 3}
-  - {fileID: 102900000, guid: 3d8ff6aa079a0fc41b7d8ed37c3f4314, type: 3}
-  - {fileID: 102900000, guid: 5d1b86af68f271f4283e16aa257790ff, type: 3}
-  - {fileID: 102900000, guid: 344ec74386dd9f240b35c4fc6e8bea4d, type: 3}
+  - {fileID: 102900000, guid: cd717e05df778ae43b8c1ffe09425bb5, type: 3}
+  - {fileID: 102900000, guid: 524bb913b0dcdd94286989aa31c4b083, type: 3}
+  - {fileID: 102900000, guid: d926fb13d73bfdb4a9f56a69712fee89, type: 3}
+  - {fileID: 102900000, guid: 6bed8039b174f974a9fcb35e8386c94e, type: 3}
+  - {fileID: 102900000, guid: d2533d45674348347951eb6273db1ae9, type: 3}
+  - {fileID: 102900000, guid: 3ae422e117479f64e985c34adcdef8cd, type: 3}
+  - {fileID: 102900000, guid: 1cd7a342d93a73e4c9421d57f24d65ec, type: 3}
 --- !u!4 &835607302
 Transform:
   m_ObjectHideFlags: 0
