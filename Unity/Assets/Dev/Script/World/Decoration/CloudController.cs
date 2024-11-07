@@ -32,6 +32,10 @@ public class CloudController : MonoBehaviour
 
     private IEnumerator CoUpdate()
     {
+        _cloudTransform.gameObject.SetActive(false);
+        yield return new WaitForSecondsRealtime(0.1f);
+        _cloudTransform.gameObject.SetActive(true);
+
         _t = 0f;
         Vector3 beginPos = _backupPos;
         Vector3 endPos = beginPos + new Vector3(_distance, 0f, 0f);
