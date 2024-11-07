@@ -28,6 +28,8 @@ namespace ProjectBBF.Persistence
         [SerializeField] private int _screenMode;
         [SerializeField] private Vector2Int _resolution;
         [SerializeField] private int _refreshRate;
+        [SerializeField] private float _renderScale;
+
 
         public float VolumeBGM
         {
@@ -80,6 +82,12 @@ namespace ProjectBBF.Persistence
         {
             get => _refreshRate;
             set => _refreshRate = value;
+        }
+
+        public float RenderScale
+        {
+            get => _renderScale;
+            set => _renderScale = value;
         }
     }
 }

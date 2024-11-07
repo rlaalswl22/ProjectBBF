@@ -1126,6 +1126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1547053934400648040}
   - component: {fileID: 6455935375207278313}
+  - component: {fileID: 7716849495684960111}
   m_Layer: 6
   m_Name: SliderItem
   m_TagString: Untagged
@@ -1166,6 +1167,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8390124240442309746}
   m_CullTransparentMesh: 1
+--- !u!114 &7716849495684960111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390124240442309746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4a6f61a88149ef9a3f9352c6ad4019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onChangedValue:
+    m_PersistentCalls:
+      m_Calls: []
+  _key: 
+  _inputField: {fileID: 4762904430354206114}
+  _slider: {fileID: 8553564231977874247}
 --- !u!1 &8506152493383652880
 GameObject:
   m_ObjectHideFlags: 0

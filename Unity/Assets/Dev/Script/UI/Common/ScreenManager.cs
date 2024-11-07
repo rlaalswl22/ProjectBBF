@@ -5,6 +5,8 @@ using System.Linq;
 using ProjectBBF.Persistence;
 using ProjectBBF.Singleton;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 [Singleton(ESingletonType.Global, 2)]
@@ -30,6 +32,7 @@ public class ScreenManager : MonoBehaviourSingleton<ScreenManager>
             setting.VsyncCount = QualitySettings.vSyncCount;
             setting.Resolution = AllResolutions[^1];
             setting.RefreshRate = MaxFrameRate;
+            setting.RenderScale = 1f;
         }
         else
         {
@@ -37,6 +40,7 @@ public class ScreenManager : MonoBehaviourSingleton<ScreenManager>
             ScreenMode = (FullScreenMode)setting.ScreenMode;
             TargetFrameRate = setting.RefreshRate;
             VsyncCount = setting.VsyncCount;
+            RenderScale = setting.RenderScale;
         }
 
         _setting = setting;
@@ -52,6 +56,7 @@ public class ScreenManager : MonoBehaviourSingleton<ScreenManager>
         _setting.VsyncCount = VsyncCount;
         _setting.Resolution = CurrentResolution;
         _setting.RefreshRate = TargetFrameRate;
+        _setting.RenderScale = RenderScale;
         
         PersistenceManager.Instance.SaveUserData();
     }
@@ -70,6 +75,23 @@ public class ScreenManager : MonoBehaviourSingleton<ScreenManager>
             _screenMode = value;
         }
     }
+
+    public float RenderScale
+    {
+        get
+        {
+            var urpAsset = (UniversalRenderPipelineAsset)GraphicsSettings.renderPipelineAsset;
+            return urpAsset.renderScale;
+        }
+        set
+        {
+            var urpAsset = (UniversalRenderPipelineAsset)GraphicsSettings.renderPipelineAsset;
+            urpAsset.renderScale = Mathf.Clamp(value, 0.1f, MaxRenderScale);
+        }
+    }
+
+    public float MaxRenderScale => 2f;
+
     private int _resolutionIndex;
 
     public Vector2Int CurrentResolution { get; private set; }

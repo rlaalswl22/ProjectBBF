@@ -17,6 +17,8 @@ public class BlackAlphaScreenDirector : ScreenDirector
 
     public override string Key => _key;
 
+    private float _savedVolume;
+
     public override bool Enabled
     {
         get => gameObject.activeSelf;
@@ -31,7 +33,7 @@ public class BlackAlphaScreenDirector : ScreenDirector
     public override UniTask Fadein()
     {
         _panel.color = Color.black;
-        
+
         var c = Color.black;
         c.a = 0f;
 
@@ -44,15 +46,19 @@ public class BlackAlphaScreenDirector : ScreenDirector
                 .SetId(this)
         );
         sequence.Join(
-            DOVirtual
-                .Float(0f, 1f, _fadeinDuration, x=> AudioManager.Instance.SetVolume("BGM", x)).SetEase(Ease.OutQuad)
+            DOVirtual.Float(
+                    0f,
+                    _savedVolume,
+                    _fadeinDuration,
+                    x => AudioManager.Instance.SetVolume("BGM", x))
+                .SetEase(Ease.OutQuad)
         );
 
         return sequence
-            .Play()
-            .AsyncWaitForCompletion()
-            .AsUniTask()
-            .WithCancellation(GlobalCancelation.PlayMode)
+                .Play()
+                .AsyncWaitForCompletion()
+                .AsUniTask()
+                .WithCancellation(GlobalCancelation.PlayMode)
             ;
     }
 
@@ -61,10 +67,11 @@ public class BlackAlphaScreenDirector : ScreenDirector
         var c = Color.black;
         c.a = 0f;
         _panel.color = c;
-        
+
         c.a = 1f;
 
         var sequence = DOTween.Sequence();
+        _savedVolume = AudioManager.Instance.GetVolume("BGM");
 
         sequence.Join(
             _panel
@@ -72,8 +79,12 @@ public class BlackAlphaScreenDirector : ScreenDirector
                 .SetId(this)
         );
         sequence.Join(
-            DOVirtual
-                .Float(1f, 0f, _fadeinDuration, x=> AudioManager.Instance.SetVolume("BGM", x)).SetEase(Ease.InQuad )
+            DOVirtual.Float(
+                    _savedVolume, 
+                    0f,
+                    _fadeinDuration, 
+                    x => AudioManager.Instance.SetVolume("BGM", x))
+                .SetEase(Ease.InQuad)
         );
 
         return sequence

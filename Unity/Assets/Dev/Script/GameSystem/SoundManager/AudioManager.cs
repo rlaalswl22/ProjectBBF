@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     private AudioMixer _mixer;
 
     private Dictionary<string, float> _volumeTable = new();
+
+    public event Action<string, float> OnChangedVolume; 
     
     public override void PostInitialize()
     {
@@ -186,6 +189,7 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
 
     public void SetVolume(string groupKey, float value)
     {
+        float originValue = value;
         value = Mathf.Max(0.001f, value);
         value = Mathf.Log10(value) * 20f;
         
@@ -197,6 +201,7 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
         }
 
         _volumeTable[groupKey] = value;
+        OnChangedVolume?.Invoke(groupKey, originValue);
         
         if (_mixer.SetFloat(groupKey,  value) is false)
         {
