@@ -7,9 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using ProjectBBF.Persistence;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestPresenter : MonoBehaviour
 {
+    [SerializeField] private Canvas _canvas;
     [SerializeField] private Transform _content;
     [SerializeField] private QuestView _originPrefab;
 

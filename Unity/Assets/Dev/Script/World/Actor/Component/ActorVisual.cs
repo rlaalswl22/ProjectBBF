@@ -58,7 +58,6 @@ public class ActorVisual : ActorComponent
         
         if (force is false && _beforeActionHash == actionAniHash && _beforeDirectionHash == directionAniHash) return;
 
-        print(actionAniHash);
         _beforeActionHash = actionAniHash;
         _beforeDirectionHash = directionAniHash;
         _animator.SetTrigger(actionAniHash);

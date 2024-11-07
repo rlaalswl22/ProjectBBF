@@ -18,6 +18,8 @@ public class QuestManager : MonoBehaviourSingleton<QuestManager>
     public const string ESO_PATH = "Event/ESO_Quest";
     
     public ESOQuest ESO { get; private set; }
+    
+    public List<QuestIndicatorObstacleUI> IndicatorObstacleList { get; private set; }
 
     public override void PostInitialize()
     {
@@ -27,11 +29,16 @@ public class QuestManager : MonoBehaviourSingleton<QuestManager>
         Table = new Dictionary<string, QuestData>(arr.Select(x => new KeyValuePair<string, QuestData>(x.QuestKey, x)));
         
         Debug.Assert(ESO);
+
+        IndicatorObstacleList = new(5);
     }
 
     public override void PostRelease()
     {
         Table?.Clear();
         Table = null;
+        
+        IndicatorObstacleList?.Clear();
+        IndicatorObstacleList = null;
     }
 }

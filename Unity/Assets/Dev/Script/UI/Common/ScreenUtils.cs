@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -89,7 +90,6 @@ public static class ScreenUtils
         var dir = GetOverlappedDirectionScreen(orthogonalPos, boundSize, cameraScaledPixelSize);
         var cameraSize = new Vector2(cameraScaledPixelSize.x, cameraScaledPixelSize.y);
 
-        
         if ((dir & Direction.Left) == Direction.Left)
         {
             orthogonalPos.x = -cameraSize.x * 0.5f + boundSize.x * 0.5f;
@@ -105,6 +105,46 @@ public static class ScreenUtils
         if ((dir & Direction.Down) == Direction.Down)
         {
             orthogonalPos.y = -cameraSize.y * 0.5f + boundSize.y * 0.5f;
+        }
+
+        return orthogonalPos;
+    }
+
+    public static Vector2 ToValidPosition(Vector2 boundSize, Vector3 orthogonalPos, Vector2 lookAtOrthogonalPos, Bounds targetBounds, Vector2 distanceFactor)
+    {
+        var myBounds = new Bounds(orthogonalPos, boundSize);
+        var pivotBounds = new Bounds(lookAtOrthogonalPos, boundSize);
+        
+        if (targetBounds.Intersects(myBounds))
+        {
+            bool flip = pivotBounds.Intersects(targetBounds);
+            
+            float dis1 = 0f;
+            float dis2 = 0f;
+            Vector2 dir = ((Vector2)orthogonalPos - lookAtOrthogonalPos).normalized;
+            if (Mathf.Approximately(dir.sqrMagnitude, 0f))
+            {
+                dir = (Vector2.zero - lookAtOrthogonalPos).normalized;
+            }
+            
+            Ray ray = new Ray((Vector2)lookAtOrthogonalPos + dir * 9999f, -dir);
+            if (targetBounds.IntersectRay(ray, out dis1) is false) return orthogonalPos;
+
+            if (flip)
+            {
+                dir = (Vector2.zero - (Vector2)lookAtOrthogonalPos).normalized;
+                ray = new Ray(Vector3.zero, -dir);
+                if (targetBounds.IntersectRay(ray, out dis1) is false) return orthogonalPos;
+            }
+            
+            Vector2 closerPoint = ray.origin + ray.direction * dis1;
+
+            Ray ray2 = new Ray(myBounds.center, flip is false ? (lookAtOrthogonalPos - closerPoint).normalized : dir);
+            if (myBounds.IntersectRay(ray2, out dis2) is false) return orthogonalPos;
+
+
+            return closerPoint + distanceFactor * (ray2.direction * dis2 * (flip ? -1f : 1f));
+
         }
 
         return orthogonalPos;

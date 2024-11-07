@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using MyBox;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Canvas))]
 public class QuestIndicatorUI : ActorComponent
 {
+    [SerializeField] private Color _fadeUiColor;
     [SerializeField] private float _duration = 1f;
     [SerializeField] private ESOQuest _esoQuest;
     [SerializeField] private GameObject _renderer;
@@ -47,6 +49,9 @@ public class QuestIndicatorUI : ActorComponent
     private void Awake()
     {
         _canvas = GetComponent<Canvas>();
+        
+        RectTransform boundTransform = _renderer.transform as RectTransform;
+        _savedScale = boundTransform.localScale;
     }
 
     private void OnDestroy()
@@ -78,6 +83,7 @@ public class QuestIndicatorUI : ActorComponent
         
     }
 
+    private Vector2 _savedScale;
     private void UpdatePosition(bool isWorldCanvas)
     {
         RectTransform boundTransform = _renderer.transform as RectTransform;
@@ -88,23 +94,53 @@ public class QuestIndicatorUI : ActorComponent
         Debug.Assert(_renderer);
         Debug.Assert(_pivot);
 
+        float scaleFactor = isWorldCanvas ? (0.5f * camera.scaledPixelHeight / camera.orthographicSize) : 1f;
+        scaleFactor *= _canvas.scaleFactor;
+
         Vector2 cameraScaledSize = new Vector2(camera.scaledPixelWidth, camera.scaledPixelHeight);
-        Vector2 boundSize = boundTransform.rect.size * boundTransform.lossyScale *
-                            ((isWorldCanvas ? (0.5f * camera.scaledPixelHeight / camera.orthographicSize) : 1f) *
-                             _canvas.scaleFactor);
+        Vector2 boundSize = boundTransform.rect.size * boundTransform.lossyScale * scaleFactor;
         Vector2 pos = camera.WorldToScreenPoint(_pivot.position);
         pos = ScreenUtils.ScreenToOrthogonal(pos, cameraScaledSize);
+
         pos = ScreenUtils.ToValidPosition(
             boundSize,
             cameraScaledSize,
             pos
         );
+        
+        if (QuestManager.Instance)
+        {
+            foreach (QuestIndicatorObstacleUI obstacle in QuestManager.Instance.IndicatorObstacleList)
+            {
+                if (Input.GetKey(KeyCode.C))
+                {
+                    if (obstacle.IsFadingOut() is false)
+                    {
+                        obstacle.FadeOut(0.2f, 0.2f);
+                        DOTween.Kill(this);
+                        boundTransform.DOScale(_savedScale * 1.5f, 0.3f).SetId(this).SetLoops(-1, LoopType.Yoyo);
+                    }
+                }
+                else
+                {
+                    if (obstacle.IsFadingIn() is false)
+                    {
+                        DOTween.Kill(this);
+                        obstacle.FadeIn(0.2f);
+                        boundTransform.DOScale(_savedScale, 0.3f).SetId(this);
+                    }
+                }
+            }
+        }
+        
         pos = ScreenUtils.OrthogonalToScreen(pos, cameraScaledSize);
 
         if (isWorldCanvas)
         {
             pos = camera.ScreenToWorldPoint(pos);
         }
+
+
 
         boundTransform.position = Vector2.Lerp(boundTransform.position, pos, Time.deltaTime / _duration);
     }

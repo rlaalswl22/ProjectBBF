@@ -17,6 +17,14 @@ PrefabInstance:
       value: Tester_Quest_0
       objectReference: {fileID: 0}
     - target: {fileID: 5081332623763283446, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: factor.x
+      value: 2.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081332623763283446, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: factor.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081332623763283446, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
       propertyPath: _targetQuestList.Array.size
       value: 1
       objectReference: {fileID: 0}
