@@ -73,6 +73,8 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         _interacter = controller.Interactor;
 
         _fishingStateRenderer.enabled = false;
+        
+        _handle.gameObject.SetActive(false);
         _blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
     }
 

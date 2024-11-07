@@ -666,14 +666,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23fed077076fe4944947ea159b9dda38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fishingFloatColorBelowWater: {r: 0, g: 0, b: 0, a: 0}
+  _fishingFloatColorBelowWater: {r: 0.5529412, g: 0.6745098, b: 0.7529412, a: 0.7019608}
   _fishingPivot: {fileID: 8139728530440152935}
   _fishingStateRenderer: {fileID: 5224079804892061071}
   _line: {fileID: 6651855928972664081}
   _horizontalDirAngle: 50
   _verticalUpFactor: 1
   _verticalDownFactor: 1
-  _speed: 22
+  _speed: 15
   _maxHandleInTagent: 75
   _maxLineLength: 35
   _beginLineLength: 1
