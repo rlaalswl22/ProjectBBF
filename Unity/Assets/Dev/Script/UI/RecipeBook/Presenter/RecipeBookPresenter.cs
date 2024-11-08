@@ -128,7 +128,9 @@ public class RecipeBookPresenter : MonoBehaviour
 
         SetView(recipe, _previewView);
 
-        if (data == _previewSummaryView.Data)
+        bool isSameData = data == _previewSummaryView.Data;
+        _bookMark.IsBookmarked = isSameData;
+        if (isSameData)
         {
             SetView(_firstSelectedRecipe, _previewSummaryView);
         }
