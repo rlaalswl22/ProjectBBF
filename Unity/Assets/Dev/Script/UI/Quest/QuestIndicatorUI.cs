@@ -5,6 +5,7 @@ using System.Linq;
 using DG.Tweening;
 using MyBox;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Canvas))]
@@ -24,6 +25,9 @@ public class QuestIndicatorUI : ActorComponent
     private bool _isWorldCanvas;
     private Tweener _scaleTweener;
 
+    private InputAction _keyAction;
+    private bool _keyFlag;
+    
     private Camera CachedCamera
     {
         get
@@ -53,6 +57,17 @@ public class QuestIndicatorUI : ActorComponent
         
         RectTransform boundTransform = _renderer.transform as RectTransform;
         _savedScale = boundTransform.localScale;
+
+        _keyAction = InputManager.Map.UI.ForcusQuestMarker;
+    }
+
+    private void OnKeyDown(InputAction.CallbackContext obj)
+    {
+        _keyFlag = true;
+    }
+    private void OnKeyUp(InputAction.CallbackContext obj)
+    {
+        _keyFlag = true;
     }
 
     private void OnDestroy()
@@ -113,20 +128,25 @@ public class QuestIndicatorUI : ActorComponent
         
         if (QuestManager.Instance)
         {
-            foreach (QuestIndicatorObstacleUI obstacle in QuestManager.Instance.IndicatorObstacleList)
+            if (_keyAction.ReadValue<float>() > 0f && _keyFlag is false)
             {
-                if (Input.GetKeyDown(KeyCode.C))
+                foreach (QuestIndicatorObstacleUI obstacle in QuestManager.Instance.IndicatorObstacleList)
                 {
                     obstacle.DoFade(0.2f, 0.2f);
                     _scaleTweener?.Kill();
                     _scaleTweener = boundTransform.DOScale(_savedScale * 1.5f, 0.3f).SetId(this).SetLoops(-1, LoopType.Yoyo);
                 }
-                else if(Input.GetKeyUp(KeyCode.C))
+                _keyFlag = true;
+            }
+            else if(_keyAction.ReadValue<float>() <= 0f && _keyFlag)
+            {
+                foreach (QuestIndicatorObstacleUI obstacle in QuestManager.Instance.IndicatorObstacleList)
                 {
                     obstacle.DoFade(1f, 0.2f);
                     _scaleTweener?.Kill();
                     _scaleTweener = boundTransform.DOScale(_savedScale, 0.3f).SetId(this);
                 }
+                _keyFlag = false;
             }
         }
         

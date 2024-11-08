@@ -310,6 +310,15 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ForcusQuestMarker"",
+                    ""type"": ""Button"",
+                    ""id"": ""11e2254d-f19f-46c2-b8a1-86171e8aef32"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -521,6 +530,17 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
                     ""action"": ""CloseUI"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c902205d-3ee7-4910-872f-83674acf3adb"",
+                    ""path"": ""<Keyboard>/#(Q)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""WinPCScheme"",
+                    ""action"": ""ForcusQuestMarker"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -612,6 +632,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         m_UI_RecipeBook = m_UI.FindAction("RecipeBook", throwIfNotFound: true);
         m_UI_SlotQuickMove = m_UI.FindAction("SlotQuickMove", throwIfNotFound: true);
         m_UI_CloseUI = m_UI.FindAction("CloseUI", throwIfNotFound: true);
+        m_UI_ForcusQuestMarker = m_UI.FindAction("ForcusQuestMarker", throwIfNotFound: true);
         // Minigame
         m_Minigame = asset.FindActionMap("Minigame", throwIfNotFound: true);
         m_Minigame_BakeryKeyPressed = m_Minigame.FindAction("BakeryKeyPressed", throwIfNotFound: true);
@@ -787,6 +808,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_RecipeBook;
     private readonly InputAction m_UI_SlotQuickMove;
     private readonly InputAction m_UI_CloseUI;
+    private readonly InputAction m_UI_ForcusQuestMarker;
     public struct UIActions
     {
         private @DefaultKeymap m_Wrapper;
@@ -799,6 +821,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         public InputAction @RecipeBook => m_Wrapper.m_UI_RecipeBook;
         public InputAction @SlotQuickMove => m_Wrapper.m_UI_SlotQuickMove;
         public InputAction @CloseUI => m_Wrapper.m_UI_CloseUI;
+        public InputAction @ForcusQuestMarker => m_Wrapper.m_UI_ForcusQuestMarker;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -832,6 +855,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @CloseUI.started += instance.OnCloseUI;
             @CloseUI.performed += instance.OnCloseUI;
             @CloseUI.canceled += instance.OnCloseUI;
+            @ForcusQuestMarker.started += instance.OnForcusQuestMarker;
+            @ForcusQuestMarker.performed += instance.OnForcusQuestMarker;
+            @ForcusQuestMarker.canceled += instance.OnForcusQuestMarker;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -860,6 +886,9 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
             @CloseUI.started -= instance.OnCloseUI;
             @CloseUI.performed -= instance.OnCloseUI;
             @CloseUI.canceled -= instance.OnCloseUI;
+            @ForcusQuestMarker.started -= instance.OnForcusQuestMarker;
+            @ForcusQuestMarker.performed -= instance.OnForcusQuestMarker;
+            @ForcusQuestMarker.canceled -= instance.OnForcusQuestMarker;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -961,6 +990,7 @@ public partial class @DefaultKeymap: IInputActionCollection2, IDisposable
         void OnRecipeBook(InputAction.CallbackContext context);
         void OnSlotQuickMove(InputAction.CallbackContext context);
         void OnCloseUI(InputAction.CallbackContext context);
+        void OnForcusQuestMarker(InputAction.CallbackContext context);
     }
     public interface IMinigameActions
     {
