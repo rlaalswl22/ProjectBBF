@@ -42,7 +42,8 @@ public class RecipeBookPreviewView : MonoBehaviour
                 }
             }
 
-            if (_canVisibleEmpty is false && value)
+            // _canVisibleEmpty가 참이가 설정된 데이터가 없으면 활성화되지 않도록
+            if (_canVisibleEmpty is false && value && Data is null)
             {
                 gameObject.SetActive(false);
                 return;
@@ -126,6 +127,9 @@ public class RecipeBookPreviewView : MonoBehaviour
         bool isUnlocked)
     {
 
+        // unlocked 기능은 deprecated됨
+        isUnlocked = true;
+        
         if (_resultItemNameText)
         {
             _resultItemNameText.text = resultItemName;

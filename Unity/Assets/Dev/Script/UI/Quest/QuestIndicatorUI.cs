@@ -22,6 +22,7 @@ public class QuestIndicatorUI : ActorComponent
     private Actor _actor;
     private Canvas _canvas;
     private bool _isWorldCanvas;
+    private Tweener _scaleTweener;
 
     private Camera CachedCamera
     {
@@ -56,6 +57,8 @@ public class QuestIndicatorUI : ActorComponent
 
     private void OnDestroy()
     {
+        _scaleTweener?.Kill();
+        
         if (_esoQuest == false) return;
         
         _esoQuest.OnEventRaised -= OnEventRaised;
@@ -112,23 +115,17 @@ public class QuestIndicatorUI : ActorComponent
         {
             foreach (QuestIndicatorObstacleUI obstacle in QuestManager.Instance.IndicatorObstacleList)
             {
-                if (Input.GetKey(KeyCode.C))
+                if (Input.GetKeyDown(KeyCode.C))
                 {
-                    if (obstacle.IsFadingOut() is false)
-                    {
-                        obstacle.FadeOut(0.2f, 0.2f);
-                        DOTween.Kill(this);
-                        boundTransform.DOScale(_savedScale * 1.5f, 0.3f).SetId(this).SetLoops(-1, LoopType.Yoyo);
-                    }
+                    obstacle.DoFade(0.2f, 0.2f);
+                    _scaleTweener?.Kill();
+                    _scaleTweener = boundTransform.DOScale(_savedScale * 1.5f, 0.3f).SetId(this).SetLoops(-1, LoopType.Yoyo);
                 }
-                else
+                else if(Input.GetKeyUp(KeyCode.C))
                 {
-                    if (obstacle.IsFadingIn() is false)
-                    {
-                        DOTween.Kill(this);
-                        obstacle.FadeIn(0.2f);
-                        boundTransform.DOScale(_savedScale, 0.3f).SetId(this);
-                    }
+                    obstacle.DoFade(1f, 0.2f);
+                    _scaleTweener?.Kill();
+                    _scaleTweener = boundTransform.DOScale(_savedScale, 0.3f).SetId(this);
                 }
             }
         }

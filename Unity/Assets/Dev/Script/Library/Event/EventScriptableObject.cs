@@ -17,7 +17,7 @@ namespace ProjectBBF.Event
         public abstract void Release();
     }
 
-    public abstract class ESOGeneric<T> : ScriptableObject
+    public abstract class ESOGeneric<T> : EventScriptableObject
         where T : IEvent
     {
         public event Action<T> OnEventRaised;
@@ -27,7 +27,7 @@ namespace ProjectBBF.Event
             OnEventRaised?.Invoke(arg);
         }
 
-        public void Release()
+        public override void Release()
         {
             OnEventRaised = null;
         }

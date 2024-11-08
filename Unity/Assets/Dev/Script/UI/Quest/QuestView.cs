@@ -80,4 +80,10 @@ public class QuestView : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(CoAnimate(false, true));
     }
+
+    private void OnDestroy()
+    {
+        _tweener?.Kill();
+        _tweener = null;
+    }
 }

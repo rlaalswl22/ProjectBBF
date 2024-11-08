@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class RecipeBookPresenter : MonoBehaviour
 {
-    [SerializeField] private Button _bookMarkBtn;
+    [SerializeField] private RecipeBookMarkerView _bookMark;
     [SerializeField] private BakeryRecipeData _firstSelectedRecipe;
     [SerializeField] private RecipeBookListView _listView;
     [SerializeField] private RecipeBookPreviewView _previewView;
@@ -44,20 +44,23 @@ public class RecipeBookPresenter : MonoBehaviour
         _listView.OnSlotClick += OnSlotClicked;
         Model.OnRecipeUnlocked += OnUnlockedChanged;
 
-        _bookMarkBtn.onClick.AddListener(() =>
+        _bookMark.Button.onClick.AddListener(() =>
         {
             _previewSummaryView.Clear();
             
             if (CurrentRecipe == PrevRecipe && _previewSummaryView.Visible)
             {
                 _previewSummaryView.Visible = false;
+                _bookMark.IsBookmarked = false;
             }
             else
             {
                 if (CurrentRecipe)
                 {
                     SetView(CurrentRecipe, _previewSummaryView);
+                    _previewSummaryView.Data = CurrentRecipe;
                     _previewSummaryView.Visible = true;
+                    _bookMark.IsBookmarked = true;
                 }
             }
         });
@@ -124,6 +127,11 @@ public class RecipeBookPresenter : MonoBehaviour
         if (data is not BakeryRecipeData recipe) return;
 
         SetView(recipe, _previewView);
+
+        if (data == _previewSummaryView.Data)
+        {
+            SetView(_firstSelectedRecipe, _previewSummaryView);
+        }
 
         _previewView.Data = recipe;
     }

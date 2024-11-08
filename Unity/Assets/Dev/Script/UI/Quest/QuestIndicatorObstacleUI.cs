@@ -1,8 +1,12 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;  // DOTween 네임스페이스 추가
+using DG.Tweening;
+using MyBox; // DOTween 네임스페이스 추가
 
 [RequireComponent(typeof(RectTransform))]
 public class QuestIndicatorObstacleUI : MonoBehaviour
@@ -10,59 +14,74 @@ public class QuestIndicatorObstacleUI : MonoBehaviour
     private Tween _currentTextTween;
     private Tween _currentImageTween;
 
-    private bool isFadingIn = false; // 현재 FadeIn 상태인지 여부
-    private bool isFadingOut = false; // 현재 FadeOut 상태인지 여부
+    public bool IsFadeAnimating { get; private set; }
 
-    // FadeIn (Alpha 0 -> 1)
-    public void FadeIn(float duration)
+    [SerializeField] private List<Graphic> _renderComList;
+    private float _currentAlpha = 1f;
+
+    [ButtonMethod]
+    private void Bind()
     {
-        // TMP_Text가 있는 경우 FadeIn
-        TMP_Text tmpText = GetComponent<TMP_Text>();
-        if (tmpText != null && !isFadingIn && !isFadingOut)
-        {
-            isFadingIn = true;
-            tmpText.DOFade(1f, duration).OnKill(() => isFadingIn = false); // 애니메이션 종료 시 상태 복구
-        }
+        Queue<Transform> queue = new(2);
+        queue.Enqueue(transform);
+        _renderComList = new(2);
 
-        // Image가 있는 경우 FadeIn
-        Image image = GetComponent<Image>();
-        if (image != null && !isFadingIn && !isFadingOut)
+        while (queue.Any())
         {
-            isFadingIn = true;
-            image.DOFade(1f, duration).OnKill(() => isFadingIn = false); // 애니메이션 종료 시 상태 복구
-        }
-    }
+            var targetTransform = queue.Dequeue();
+            if (targetTransform != transform && targetTransform.TryGetComponent(out QuestIndicatorObstacleUI _))
+            {
+                continue;
+            }
+            
+            var comArr = targetTransform.GetComponents<Graphic>();
+            _renderComList.AddRange(comArr);
 
-    // FadeOut (Alpha 1 -> 0)
-    public void FadeOut(float fadeAlpha, float duration)
-    {
-        // TMP_Text가 있는 경우 FadeOut
-        TMP_Text tmpText = GetComponent<TMP_Text>();
-        if (tmpText != null && !isFadingIn && !isFadingOut)
-        {
-            isFadingOut = true;
-            tmpText.DOFade(fadeAlpha, duration).OnKill(() => isFadingOut = false); // 애니메이션 종료 시 상태 복구
-        }
-
-        // Image가 있는 경우 FadeOut
-        Image image = GetComponent<Image>();
-        if (image != null && !isFadingIn && !isFadingOut)
-        {
-            isFadingOut = true;
-            image.DOFade(fadeAlpha, duration).OnKill(() => isFadingOut = false); // 애니메이션 종료 시 상태 복구
+            foreach (Transform childTransform in targetTransform)
+            {
+                queue.Enqueue(childTransform);
+            }
         }
     }
 
-    // 현재 FadeIn 상태인지 확인
-    public bool IsFadingIn()
+    private void OnValidate()
     {
-        return isFadingIn;
+        Bind();
     }
 
-    // 현재 FadeOut 상태인지 확인
-    public bool IsFadingOut()
+    public void DoFade(float fadeAlpha, float duration)
     {
-        return isFadingOut;
+        StopAllCoroutines();
+        StartCoroutine(CoDoFade(fadeAlpha, duration));
+    }
+
+    private IEnumerator CoDoFade(float endAlpha, float duration)
+    {
+        float t = 0f;
+        IsFadeAnimating = true;
+        while (true)
+        {
+            foreach (MaskableGraphic com in _renderComList)
+            {
+                if (com)
+                {
+                    com.SetAlpha(_currentAlpha);
+                }
+            }
+
+            if (t >= 1f)
+            {
+                IsFadeAnimating = false;
+                break;
+            }
+
+            t += Time.deltaTime / duration;
+            _currentAlpha = Mathf.Lerp(_currentAlpha, endAlpha, t);
+
+            yield return null;
+        }
+        
+        IsFadeAnimating = false;
     }
 
     private void OnEnable()

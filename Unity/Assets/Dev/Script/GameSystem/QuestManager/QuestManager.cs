@@ -28,6 +28,7 @@ public class QuestManager : MonoBehaviourSingleton<QuestManager>
 
         Table = new Dictionary<string, QuestData>(arr.Select(x => new KeyValuePair<string, QuestData>(x.QuestKey, x)));
         
+        
         Debug.Assert(ESO);
 
         IndicatorObstacleList = new(5);

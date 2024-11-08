@@ -49,6 +49,8 @@ public class RecipeBookSlotView : MonoBehaviour, IPointerClickHandler, IPointerD
 
     public void SetUnlocked(bool isUnlocked)
     {
+        // unlocked 기능은 deprecated됨
+        isUnlocked = true;
         _itemImage.color = isUnlocked ? Color.white : Color.black;
     }
 
