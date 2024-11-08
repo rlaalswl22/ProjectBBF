@@ -209,6 +209,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnTriggerArgEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _interaction: {fileID: 24362161}
 --- !u!114 &24362161
 MonoBehaviour:
@@ -13467,6 +13470,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTriggerEvent:
     m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1197405958}
+        m_TargetAssemblyTypeName: MapDialogueEventReceiver, Assembly-CSharp
+        m_MethodName: UpdateInteract
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: ProjectBBF.Event.CollisionInteractionMono,
+            IndieLINY.Event
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerArgEvent:
+    m_PersistentCalls:
       m_Calls: []
   _interaction: {fileID: 1197405960}
 --- !u!114 &1197405960
@@ -14952,6 +14971,9 @@ MonoBehaviour:
   OnTriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnTriggerArgEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _interaction: {fileID: 1822826642}
   _esoVoid: {fileID: 11400000, guid: d400863343bf5494b8dca5276d4d997f, type: 2}
 --- !u!114 &1822826642
@@ -15315,6 +15337,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnTriggerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerArgEvent:
     m_PersistentCalls:
       m_Calls: []
   _interaction: {fileID: 1899874118}
@@ -15776,6 +15801,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnTriggerArgEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _interaction: {fileID: 2003462637}
 --- !u!114 &2003462637
 MonoBehaviour:

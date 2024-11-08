@@ -13,7 +13,7 @@ public class MapDialogueEventPersistence
 {
     public bool IsPlayed;
 }
-public class MapDialogueEventReceiver : MonoBehaviour, IBOInteractive
+public class MapDialogueEventReceiver : MonoBehaviour, IBODialogue
 {
     [SerializeField] private MapTriggerBase _trigger;
     [SerializeField] private string _eventKey;
@@ -22,11 +22,6 @@ public class MapDialogueEventReceiver : MonoBehaviour, IBOInteractive
     [SerializeField] private DialogueContainer _container;
 
     public CollisionInteraction Interaction => _trigger.Interaction;
-    public void UpdateInteract(CollisionInteractionMono caller)
-    {
-        throw new NotImplementedException();
-    }
-
     public DialogueEvent DequeueDialogueEvent()
     {
         var data = PersistenceManager.Instance.LoadOrCreate<MapDialogueEventPersistence>(_eventKey);
@@ -67,7 +62,11 @@ public class MapDialogueEventReceiver : MonoBehaviour, IBOInteractive
         if (_trigger)
         {
             _trigger.OnTrigger += Play; 
-           // _trigger.ContractInfo.AddBehaivour<IBADialogue>(this);
+        }
+        
+        if(Interaction.ContractInfo is ObjectContractInfo info)
+        {
+            info.AddBehaivour<IBODialogue>(this);
         }
 
     }

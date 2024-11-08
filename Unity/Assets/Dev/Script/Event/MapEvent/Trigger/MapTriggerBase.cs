@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class MapTriggerBase : MonoBehaviour
 {
     [SerializeField] private UnityEvent OnTriggerEvent;
+    [SerializeField] private UnityEvent<CollisionInteractionMono> OnTriggerArgEvent;
     
     [field: SerializeField, AutoProperty] 
     private CollisionInteraction _interaction;
@@ -21,6 +22,7 @@ public class MapTriggerBase : MonoBehaviour
     {
         OnTrigger?.Invoke(caller);
         OnTriggerEvent?.Invoke();
+        OnTriggerArgEvent?.Invoke(caller);
     }
 
     protected virtual void Awake()

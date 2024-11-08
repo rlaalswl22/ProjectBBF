@@ -42,9 +42,9 @@ public class RecipeBookPreviewView : MonoBehaviour
                 }
             }
 
-            if (_canVisibleEmpty && value)
+            if (_canVisibleEmpty is false && value)
             {
-                gameObject.SetActive(true);
+                gameObject.SetActive(false);
                 return;
             }
             
