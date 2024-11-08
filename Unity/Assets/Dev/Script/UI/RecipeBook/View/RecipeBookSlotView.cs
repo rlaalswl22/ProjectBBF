@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class RecipeBookSlotView : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
     [SerializeField] private Image _itemImage;
+    [SerializeField] private RecipeBookMarkerView _markerView;
     
     private Button _button;
     
@@ -27,6 +28,10 @@ public class RecipeBookSlotView : MonoBehaviour, IPointerClickHandler, IPointerD
     private void Awake()
     {
         _button = GetComponent<Button>();
+        if (_markerView)
+        {
+            _markerView.gameObject.SetActive(false);
+        }
 
         if (_button == false)
         {
@@ -41,10 +46,22 @@ public class RecipeBookSlotView : MonoBehaviour, IPointerClickHandler, IPointerD
 
     public void SetData(Sprite sprite, object data, bool isUnlocked)
     {
+        UpdateBookmark(data);
+        
         Data = data;
         Sprite = sprite;
 
         SetUnlocked(isUnlocked);
+    }
+
+    public void UpdateBookmark(object data)
+    {
+        if (_markerView)
+        {
+            bool isSameData = data == Data;
+            _markerView.IsBookmarked = isSameData;
+            _markerView.gameObject.SetActive(isSameData);
+        }
     }
 
     public void SetUnlocked(bool isUnlocked)

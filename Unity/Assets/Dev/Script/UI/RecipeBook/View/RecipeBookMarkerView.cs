@@ -10,22 +10,24 @@ public class RecipeBookMarkerView : MonoBehaviour
 {
     [SerializeField] private Sprite _enabledSprite;
     [SerializeField] private Sprite _disabledSprite;
-    
+
     private Button _button;
-
-    private void Awake()
+    public Button Button
     {
-        _button = GetComponent<Button>();
-        Debug.Assert(_button);
-    }
+        get
+        {
+            if(_button == false)
+            {
+                _button = GetComponent<Button>();
+                Debug.Assert(_button);
+            }
 
-    public Button Button => _button;
+            return _button;
+        }
+    }
 
     public bool IsBookmarked
     {
-        set
-        {
-            _button.image.sprite = value ? _enabledSprite : _disabledSprite;
-        }
+        set => Button.image.sprite = value ? _enabledSprite : _disabledSprite;
     }
 }

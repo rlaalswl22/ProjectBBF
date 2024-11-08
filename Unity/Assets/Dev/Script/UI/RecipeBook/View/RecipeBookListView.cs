@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ProjectBBF.Event;
 using UnityEngine;
 using UnityEngine.UI;
@@ -94,6 +95,11 @@ public class RecipeBookListView : MonoBehaviour
         slot.OnHoverEnter += OnSlotEnter;
         slot.OnHoverExit += OnSlotExit;
         _slots.Add(slot);
+    }
+
+    public void UpdateBookmark(object recipeData)
+    {
+        _slots.ForEach(x=>x.UpdateBookmark(recipeData));
     }
 
     private void OnSlotExit(RecipeBookSlotView obj)

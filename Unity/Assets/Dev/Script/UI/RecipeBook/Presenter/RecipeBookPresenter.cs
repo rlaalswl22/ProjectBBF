@@ -52,6 +52,7 @@ public class RecipeBookPresenter : MonoBehaviour
             {
                 _previewSummaryView.Visible = false;
                 _bookMark.IsBookmarked = false;
+                _listView.UpdateBookmark(null);
             }
             else
             {
@@ -61,8 +62,11 @@ public class RecipeBookPresenter : MonoBehaviour
                     _previewSummaryView.Data = CurrentRecipe;
                     _previewSummaryView.Visible = true;
                     _bookMark.IsBookmarked = true;
+                    _listView.UpdateBookmark(CurrentRecipe);
                 }
             }
+            
+        
         });
 
         foreach (var data in resolver.RecipeTable.Values)
