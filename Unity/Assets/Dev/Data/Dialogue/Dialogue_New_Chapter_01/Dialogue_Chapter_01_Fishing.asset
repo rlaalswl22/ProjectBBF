@@ -27,53 +27,53 @@ MonoBehaviour:
     PortName: Next
     TargetNodeGuid: f2f52428-b22b-4800-85ae-926adb120e97
   NodeData:
-  - rid: 6083855307422826644
-  - rid: 6083855307422826647
-  - rid: 6083855307422826645
-  - rid: 6083855307422826646
+  - rid: 6083855335741980692
+  - rid: 6083855335741980693
+  - rid: 6083855335741980694
+  - rid: 6083855335741980695
   references:
     version: 2
     RefIds:
-    - rid: 6083855307422826644
+    - rid: 6083855335741980692
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: 900a353f-5e0a-4ce4-8e2e-ccaa500bb178
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 213, y: 199}
+        Position: {x: 353, y: 196}
         DialogueText: "\uB09A\uC2DC\uD130\uC5D0 \uC5B4\uC11C \uC640!"
         PortraitKey: 
         ActorKey: 
-    - rid: 6083855307422826645
-      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
-      data:
-        GUID: f2f52428-b22b-4800-85ae-926adb120e97
-        NodeTitle: Text
-        TypeName: Text
-        Position: {x: 924, y: 199}
-        DialogueText: "\uBB3C \uBC18, \uACE0\uAE30 \uBC18\uC774\uB77C \uC2E4\uB825\uC774
-          \uC5C6\uC5B4\uB3C4 \uB09A\uAE30 \uC26C\uC6B8 \uAC78?"
-        PortraitKey: 
-        ActorKey: 
-    - rid: 6083855307422826646
-      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
-      data:
-        GUID: fb1b907c-e9f6-4318-8b83-c76f049c454b
-        NodeTitle: Text
-        TypeName: Text
-        Position: {x: 519, y: 199}
-        DialogueText: "\uC774 \uACF3\uC740 \uC5EC\uB7EC \uBB3C\uACE0\uAE30\uB97C
-          \uC5BB\uC744 \uC218 \uC788\uB294 \uB09A\uC2DC\uD130\uC57C!"
-        PortraitKey: 
-        ActorKey: 
-    - rid: 6083855307422826647
+    - rid: 6083855335741980693
       type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
       data:
         GUID: d9f0c131-ee13-491e-88fa-d05f7871b1f1
         NodeTitle: Text
         TypeName: Text
-        Position: {x: 1334, y: 200}
+        Position: {x: 1436, y: 197}
         DialogueText: "\uB09A\uC2DC\uB300\uB3C4 \uAC00\uC9C0\uACE0 \uC788\uB124!
           \uD55C \uBC88 \uB09A\uC544\uBD10!"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 6083855335741980694
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: f2f52428-b22b-4800-85ae-926adb120e97
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1026, y: 196}
+        DialogueText: "\uBB3C \uBC18, \uACE0\uAE30 \uBC18\uC774\uB77C \uC2E4\uB825\uC774
+          \uC5C6\uC5B4\uB3C4 \uB09A\uAE30 \uC26C\uC6B8 \uAC78?"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 6083855335741980695
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: fb1b907c-e9f6-4318-8b83-c76f049c454b
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 621, y: 196}
+        DialogueText: "\uC774 \uACF3\uC740 \uC5EC\uB7EC \uBB3C\uACE0\uAE30\uB97C
+          \uC5BB\uC744 \uC218 \uC788\uB294 \uB09A\uC2DC\uD130\uC57C!"
         PortraitKey: 
         ActorKey: 

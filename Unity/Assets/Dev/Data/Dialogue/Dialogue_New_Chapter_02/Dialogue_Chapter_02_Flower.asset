@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed507e00ab63144f976694caab7934e, type: 3}
+  m_Name: Dialogue_Chapter_02_Flower
+  m_EditorClassIdentifier: 
+  _guid: 6aa50652932df794d9cb79f17409e401
+  NodeLinks:
+  - BaseNodeGuid: fbd6df75-f77d-4b83-9cb3-2f685f9d2458
+    PortName: Execute
+    TargetNodeGuid: 4fb47bac-7b1b-4ccc-99af-0a52d0e945b8
+  - BaseNodeGuid: 066a2b4c-f6bf-4362-ba90-f7b2bdaaaf1d
+    PortName: Next
+    TargetNodeGuid: bdd50b1d-ae70-4fe9-a0c4-12fa365df6f9
+  - BaseNodeGuid: 20c19593-d110-4e89-a4a0-4e8ee9022687
+    PortName: Next
+    TargetNodeGuid: 066a2b4c-f6bf-4362-ba90-f7b2bdaaaf1d
+  - BaseNodeGuid: 4fb47bac-7b1b-4ccc-99af-0a52d0e945b8
+    PortName: Next
+    TargetNodeGuid: 5b6d3306-599b-41cb-98e8-0edbbf06907c
+  - BaseNodeGuid: 5b6d3306-599b-41cb-98e8-0edbbf06907c
+    PortName: Next
+    TargetNodeGuid: 20c19593-d110-4e89-a4a0-4e8ee9022687
+  - BaseNodeGuid: bdd50b1d-ae70-4fe9-a0c4-12fa365df6f9
+    PortName: Next
+    TargetNodeGuid: f6ca1b73-3b90-467c-958d-2973493e6936
+  - BaseNodeGuid: f6ca1b73-3b90-467c-958d-2973493e6936
+    PortName: Next
+    TargetNodeGuid: 41f17f86-87bd-426a-94b8-0df4f5f527d9
+  NodeData:
+  - rid: 6083855310640644885
+  - rid: 6083855310640644886
+  - rid: 6083855310640644887
+  - rid: 6083855310640644888
+  - rid: 6083855310640644889
+  - rid: 6083855310640644890
+  - rid: 6083855310640644891
+  references:
+    version: 2
+    RefIds:
+    - rid: 6083855310640644885
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 066a2b4c-f6bf-4362-ba90-f7b2bdaaaf1d
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1216, y: 198}
+        DialogueText: "\uC544, \uADF8\uB7AC\uB098..."
+        PortraitKey: 
+        ActorKey: Flower_Chapter_1
+    - rid: 6083855310640644886
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 20c19593-d110-4e89-a4a0-4e8ee9022687
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 933, y: 200}
+        DialogueText: "\uB108 \uC608\uC120 \uAD11\uD0C8\uD588\uC796\uC544!"
+        PortraitKey: 
+        ActorKey: Hospital_Chapter_1
+    - rid: 6083855310640644887
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 41f17f86-87bd-426a-94b8-0df4f5f527d9
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 2391, y: 202}
+        DialogueText: "(\uCE68\uC744 \uB2E6\uC73C\uBA70 \uBB34\uC12D\uAC8C \uB5A0\uB4E4\uACE0
+          \uC788\uB2E4)"
+        PortraitKey: 
+        ActorKey: 
+    - rid: 6083855310640644888
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 4fb47bac-7b1b-4ccc-99af-0a52d0e945b8
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 221, y: 202}
+        DialogueText: "\uC774\uBC88 \uB300\uD68C\uB294 \uCE74\uB80C\uC774 \uC6B0\uC2B9\uD560\uAC70\uC57C!!"
+        PortraitKey: 
+        ActorKey: Hospital_Chapter_1
+    - rid: 6083855310640644889
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: 5b6d3306-599b-41cb-98e8-0edbbf06907c
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 559, y: 205}
+        DialogueText: "\uC544\uB2C8\uC694! \uC774\uBC88 \uB300\uD68C\uB294 \uC81C\uAC00
+          \uC811\uC218\uD569\uB2C8\uB2E4!!"
+        PortraitKey: 
+        ActorKey: Flower_Chapter_1
+    - rid: 6083855310640644890
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: bdd50b1d-ae70-4fe9-a0c4-12fa365df6f9
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1490, y: 203}
+        DialogueText: "\uADF8\uAC74 \uADF8\uB807\uACE0 \uC6B0\uB9AC \uC904\uB9AC\uC548\uC774
+          \uC0AC\uD68C\uD558\uB294 \uAC70 \uBD24\uC5B4?"
+        PortraitKey: 
+        ActorKey: Hospital_Chapter_1
+    - rid: 6083855310640644891
+      type: {class: TextNodeData, ns: DS.Runtime, asm: Assembly-CSharp}
+      data:
+        GUID: f6ca1b73-3b90-467c-958d-2973493e6936
+        NodeTitle: Text
+        TypeName: Text
+        Position: {x: 1907, y: 204}
+        DialogueText: "\uADF8 \uC18C\uB144\uAC19\uC740 \uAFC0 \uBCF4\uC774\uC2A4...
+          \uC5EC\uC7A5\uC2DC\uD0A4\uBA74 \uC644\uBCBD\uD55C... \uD5E4\uD5E4... \uD5E4\uD5E4\uD5E4....!"
+        PortraitKey: 
+        ActorKey: Hospital_Chapter_1
