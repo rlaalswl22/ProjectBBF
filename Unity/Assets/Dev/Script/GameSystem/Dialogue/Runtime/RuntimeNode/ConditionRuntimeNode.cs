@@ -26,7 +26,7 @@ namespace DS.Runtime
             => new ConditionItem(this, () =>
             {
                 var rtv = Handler.Execute(Args);
-                Debug.Assert(rtv is bool);
+                Debug.Assert(rtv is bool, $"rtv is not bool ({rtv?.GetType().ToString() ?? "it is null"})");
 
                 return (bool)rtv ? TrueNode : FalseNode;
             });

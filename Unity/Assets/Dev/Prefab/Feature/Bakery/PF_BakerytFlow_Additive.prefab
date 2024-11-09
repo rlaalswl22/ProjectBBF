@@ -297,8 +297,18 @@ MonoBehaviour:
   _audioSource: {fileID: 3094106701969401017}
   _esoQuest: {fileID: 11400000, guid: 06ad3c3083ef1164f917cf17f2bacdc5, type: 2}
   _questAdditiveData: {fileID: 11400000, guid: f908d181e8ce3cc449214eb13b4252c0, type: 2}
-  _questOvenData: {fileID: 11400000, guid: 4411a6de6c191334399382ff6a406118, type: 2}
   _questDoughData: {fileID: 11400000, guid: a1b47396b7b37e040b32038e9b5b4a54, type: 2}
+  _questLyllaTutorialFail: {fileID: 11400000, guid: 4a03d10813b0db0489e05dce2f3a379b, type: 2}
+  _questLyllaTutorialSuccess: {fileID: 11400000, guid: 8c295664dffefa94fbf010bc985c6028, type: 2}
+  _questTutoOthers:
+  - {fileID: 11400000, guid: 4a03d10813b0db0489e05dce2f3a379b, type: 2}
+  - {fileID: 11400000, guid: 8c295664dffefa94fbf010bc985c6028, type: 2}
+  - {fileID: 11400000, guid: ad7b1b4eeeacffa4e89f2982a4f1eb0a, type: 2}
+  - {fileID: 11400000, guid: 6dda34f88a15f7947840d17b485e74c7, type: 2}
+  - {fileID: 11400000, guid: ce2fec0a9dd3ab34bae6abd65424aa7a, type: 2}
+  - {fileID: 11400000, guid: f5f9c58ebde07464fa675223b90c000a, type: 2}
+  - {fileID: 11400000, guid: 4411a6de6c191334399382ff6a406118, type: 2}
+  - {fileID: 11400000, guid: a1b47396b7b37e040b32038e9b5b4a54, type: 2}
   _activationUI: {fileID: 3318604741385387889}
   _particleSystem: {fileID: 6285200998441920618}
 --- !u!82 &3094106701969401017

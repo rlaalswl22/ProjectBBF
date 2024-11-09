@@ -12,6 +12,7 @@ using UnityEngine.Serialization;
 [Serializable]
 public enum QuestType
 {
+    NotExist,
     Create,
     Complete,
     Cancele,
@@ -60,6 +61,17 @@ public class QuestManager : MonoBehaviourSingleton<QuestManager>
         IndicatorObstacleList = null;
     }
 
+    public QuestType GetQuestState(string key)
+    {
+        if (_persistence.QuestTable.TryGetValue(key, out var curType))
+        {
+            return curType;
+        }
+
+        return QuestType.NotExist;
+    }
+
+    public QuestType GetQuestState(QuestData questData) => GetQuestState(questData.QuestKey);
     public bool ChangeQuestState(string key, QuestType type)
     {
         if (QuestDataTable.TryGetValue(key, out QuestData value))

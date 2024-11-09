@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 10954268734351799, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.46
       objectReference: {fileID: 0}
     - target: {fileID: 10954268734351799, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 21.81
       objectReference: {fileID: 0}
     - target: {fileID: 10954268734351799, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
       propertyPath: m_LocalPosition.z
@@ -56,6 +56,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: PActor_Lylla_Chapter_0
       objectReference: {fileID: 0}
+    - target: {fileID: 2507577790391228216, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
+      propertyPath: _targetQuestList.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2507577790391228216, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
+      propertyPath: _targetQuestList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4a03d10813b0db0489e05dce2f3a379b, type: 2}
+    - target: {fileID: 2507577790391228216, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
+      propertyPath: _targetQuestList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c295664dffefa94fbf010bc985c6028, type: 2}
+    - target: {fileID: 2507577790391228216, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
+      propertyPath: _targetQuestList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: ad7b1b4eeeacffa4e89f2982a4f1eb0a, type: 2}
+    - target: {fileID: 2507577790391228216, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
+      propertyPath: _targetQuestList.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6dda34f88a15f7947840d17b485e74c7, type: 2}
+    - target: {fileID: 2507577790391228216, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
+      propertyPath: _targetQuestList.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: ce2fec0a9dd3ab34bae6abd65424aa7a, type: 2}
+    - target: {fileID: 2507577790391228216, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
+      propertyPath: _targetQuestList.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: f5f9c58ebde07464fa675223b90c000a, type: 2}
     - target: {fileID: 4639174668289461720, guid: e68535e250563ad4a9ec86e250154c24, type: 3}
       propertyPath: _events.Array.size
       value: 1

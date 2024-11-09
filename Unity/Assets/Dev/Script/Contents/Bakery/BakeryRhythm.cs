@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using MyBox;
@@ -18,9 +19,10 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
     [SerializeField] private GameObject _activationUI;
     [SerializeField] private AudioSource _source;
     [SerializeField] private ESOQuest _esoQuest;
-    [SerializeField] private QuestData _questDoughData;
     [SerializeField] private QuestData _questOvenData;
-    [SerializeField] private QuestData _questAdditiveData;
+    [SerializeField] private QuestData _questLyllaTutorialFail;
+    [SerializeField] private QuestData _questLyllaTutorialSuccess;
+    [SerializeField] private List<QuestData> _questTutoOthers;
     
     [SerializeField] private float _roundTripInterval;
     [SerializeField] private Transform _playPoint;
@@ -281,36 +283,62 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
             pc.RecipeBookPresenter.Model.Add(tuple.recipe.Key);
         }
 
-        if (_esoQuest && _questOvenData && _questAdditiveData)
+        if (_esoQuest )
         {
-            _esoQuest.Raise(new QuestEvent()
+            if (_questOvenData)
             {
-                Type = QuestType.Complete,
-                QuestKey = _questOvenData.QuestKey
-            });
-            _esoQuest.Raise(new QuestEvent()
+                _esoQuest.Raise(new QuestEvent()
+                {
+                    Type = QuestType.Complete,
+                    QuestKey = _questOvenData.QuestKey
+                });
+            }
+
+            bool flag = false;
+            foreach (QuestData questData in _questTutoOthers)
             {
-                Type = QuestType.Create,
-                QuestKey = _questAdditiveData.QuestKey
-            });
+                flag |= QuestManager.Instance.GetQuestState(questData) is QuestType.Create;
+            }
+
+            if (_questLyllaTutorialSuccess)
+            {
+                _esoQuest.Raise(new QuestEvent()
+                {
+                    QuestKey = _questLyllaTutorialSuccess.QuestKey,
+                    Type = QuestType.Create
+                });
+            }
         }
     }
     private void GameFail((ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipe)tuple, PlayerController pc)
     {
-        if (_esoQuest && _questOvenData && _questDoughData)
+        if (_esoQuest)
         {
-            _esoQuest.Raise(new QuestEvent()
+            if (_questOvenData)
             {
-                Type = QuestType.Cancele,
-                QuestKey = _questOvenData.QuestKey
-            });
-            _esoQuest.Raise(new QuestEvent()
+                _esoQuest.Raise(new QuestEvent()
+                {
+                    Type = QuestType.Cancele,
+                    QuestKey = _questOvenData.QuestKey
+                });
+            }
+            
+
+            bool flag = false;
+            foreach (QuestData questData in _questTutoOthers)
             {
-                Type = QuestType.Create,
-                QuestKey = _questDoughData.QuestKey
-            });
+                flag |= QuestManager.Instance.GetQuestState(questData) is QuestType.Create;
+            }
+
+            if (_questLyllaTutorialFail)
+            {
+                _esoQuest.Raise(new QuestEvent()
+                {
+                    QuestKey = _questLyllaTutorialFail.QuestKey,
+                    Type = QuestType.Create
+                });
+            }
         }
-        
         if (tuple.failItem == false) return;
         
         bool success = pc.Inventory.Model.PushItem(tuple.failItem, 1)is 0;

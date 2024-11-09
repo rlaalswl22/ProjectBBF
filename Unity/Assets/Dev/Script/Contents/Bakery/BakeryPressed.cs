@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using MyBox;
 using ProjectBBF.Event;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class BakeryPressed: BakeryFlowBehaviourBucket
+public class BakeryPressed : BakeryFlowBehaviourBucket
 {
     [SerializeField] private float _endWait;
     [SerializeField] private GameObject _panel;
@@ -17,8 +19,10 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private ESOQuest _esoQuest;
     [SerializeField] private QuestData _questAdditiveData;
-    [SerializeField] private QuestData _questOvenData;
     [SerializeField] private QuestData _questDoughData;
+    [SerializeField] private QuestData _questLyllaTutorialFail;
+    [SerializeField] private QuestData _questLyllaTutorialSuccess;
+    [SerializeField] private List<QuestData> _questTutoOthers;
     [SerializeField] private GameObject _activationUI;
     [SerializeField] private GameObject _particleSystem;
 
@@ -32,10 +36,10 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
     private void SetParticleVisible(bool value)
     {
         if (_particleSystem == false) return;
-        
+
         _particleSystem.SetActive(value);
         if (value is false) return;
-        
+
         foreach (var particle in _particleSystem.GetComponentsInChildren<ParticleSystem>())
         {
             particle.Play();
@@ -62,7 +66,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
                 return;
             }
         }
-        
+
         _activationUI.SetActive(true);
     }
 
@@ -85,15 +89,15 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
     {
         float t = 0f;
         InputAction keyAction = InputManager.Map.Minigame.BakeryKeyPressed;
-        
+
         _panel.SetActive(true);
         _fillImage.fillAmount = 0f;
         AnimationActorKey.Action aniAction;
-        
-        
+
+
         _activationUI.SetActive(false);
 
-        
+
         SetParticleVisible(true);
 
         switch (ResolvorType)
@@ -145,7 +149,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
             if (keyAction.IsPressed() is false)
             {
                 GameReset();
-                
+
                 pc.MoveStrategy.IsStopped = false;
                 pc.Blackboard.IsInteractionStopped = false;
                 QuestIndicator.Visible = true;
@@ -153,7 +157,9 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
                 pc.MoveStrategy.IsGhost = false;
                 pc.transform.position = _revertPoint.position;
                 pc.transform.SetZ(backupPcZ);
-                pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
+                pc.VisualStrategy.ChangeClip(
+                    AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down),
+                    true);
 
                 if (_activationUI.activeSelf == false)
                 {
@@ -175,13 +181,13 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
 
             yield return null;
         }
-        
+
         yield return null;
-        
+
         _audioSource.loop = false;
 
         Sprite privewItem;
-        
+
         if (tuple.resultItem is not null)
         {
             AudioManager.Instance.PlayOneShot("SFX", "SFX_Bakery_BakingComplete");
@@ -193,19 +199,22 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
             privewItem = tuple.failItem.ItemSprite;
             GameFail(tuple, pc);
         }
-        
+
         pc.MoveStrategy.IsGhost = false;
         pc.transform.position = _revertPoint.position;
 
         _panel.SetActive(false);
-        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down), true);
+        pc.VisualStrategy.ChangeClip(
+            AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete,
+                AnimationActorKey.Direction.Down), true);
         pc.Interactor.ItemPreviewSprite = privewItem;
         yield return new WaitForSeconds(_endWait);
         pc.Interactor.ItemPreviewSprite = null;
 
-        pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
-        
-        
+        pc.VisualStrategy.ChangeClip(
+            AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
+
+
         QuestIndicator.Visible = true;
         pc.Blackboard.IsMoveStopped = false;
         pc.Blackboard.IsInteractionStopped = false;
@@ -225,13 +234,15 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         _audioSource.Stop();
     }
 
-    private void GameSuccess((ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipeData) tuple, PlayerController pc)
+    private void GameSuccess(
+        (ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipeData) tuple,
+        PlayerController pc)
     {
         if (tuple.resultItem == false) return;
-        
+
         bool success = pc.Inventory.Model.PushItem(tuple.resultItem, 1) is 0;
         if (success is false) return;
-        
+
 
         if (tuple.recipeData)
         {
@@ -248,47 +259,85 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
                     QuestKey = _questAdditiveData.QuestKey
                 });
             }
-            if (ResolvorType == Resolvor.Dough && _questOvenData && _questDoughData)
+
+            if (ResolvorType == Resolvor.Dough && _questDoughData)
             {
-                _esoQuest.Raise(new QuestEvent
-                {
-                    Type = QuestType.Create,
-                    QuestKey = _questOvenData.QuestKey
-                });
                 _esoQuest.Raise(new QuestEvent
                 {
                     Type = QuestType.Complete,
                     QuestKey = _questDoughData.QuestKey
                 });
             }
+
+            bool flag = false;
+            foreach (QuestData questData in _questTutoOthers)
+            {
+                flag |= QuestManager.Instance.GetQuestState(questData) is QuestType.Create;
+            }
+
+            if (_questLyllaTutorialSuccess)
+            {
+                if (flag is false)
+                {
+                    _esoQuest.Raise(new QuestEvent
+                    {
+                        Type = QuestType.Create,
+                        QuestKey = _questLyllaTutorialSuccess.QuestKey
+                    });
+                }
+            }
         }
+
         ClearBucket();
     }
-    private void GameFail((ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipeData) tuple, PlayerController pc)
+
+    private void GameFail((ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipeData) tuple,
+        PlayerController pc)
     {
         if (_esoQuest)
         {
-            // 연성 단계고, 연성과 오븐 퀘스트 데이터를 찾을 수 있다면 퀘스트 발행/실패 처리
-            if (ResolvorType == Resolvor.Additive && _questAdditiveData && _questOvenData)
+            if (ResolvorType == Resolvor.Additive && _questAdditiveData)
             {
-                _esoQuest.Raise(new QuestEvent
-                {
-                    Type = QuestType.Create,
-                    QuestKey = _questOvenData.QuestKey
-                });
                 _esoQuest.Raise(new QuestEvent
                 {
                     Type = QuestType.Cancele,
                     QuestKey = _questAdditiveData.QuestKey
                 });
             }
+
+            if (ResolvorType == Resolvor.Dough && _questDoughData)
+            {
+                _esoQuest.Raise(new QuestEvent
+                {
+                    Type = QuestType.Cancele,
+                    QuestKey = _questDoughData.QuestKey
+                });
+            }
+
+            bool flag = false;
+            foreach (QuestData questData in _questTutoOthers)
+            {
+                flag |= QuestManager.Instance.GetQuestState(questData) is QuestType.Create;
+            }
+
+            if (_questLyllaTutorialFail)
+            {
+                if (flag is false)
+                {
+                    _esoQuest.Raise(new QuestEvent()
+                    {
+                        QuestKey = _questLyllaTutorialFail.QuestKey,
+                        Type = QuestType.Create
+                    });
+                }
+            }
         }
-        
+
         if (tuple.failItem == false) return;
-        
+
         bool success = pc.Inventory.Model.PushItem(tuple.failItem, 1) is 0;
         if (success is false) return;
-        
+
         ClearBucket();
     }
 }

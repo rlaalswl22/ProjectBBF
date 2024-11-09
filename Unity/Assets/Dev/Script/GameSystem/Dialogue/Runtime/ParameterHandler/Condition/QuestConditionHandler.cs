@@ -10,9 +10,7 @@ namespace DS.Runtime
     {
         protected override object OnExecute(string arg0, int arg1)
         {
-            var obj = PersistenceManager.Instance.LoadOrCreate<QuestPersistence>(QuestManager.PERSISTENCE_KEY);
-
-            if (obj.QuestTable.TryGetValue(arg0, out var value))
+            if (QuestManager.Instance)
             {
                 QuestType type;
                 
@@ -28,14 +26,15 @@ namespace DS.Runtime
                         type = QuestType.Cancele;
                         break;
                     case 3:
-                        return value is QuestType.Cancele or QuestType.Complete;
-                    case 4: // 퀘스트가 발행됐는지 검사
-                        return true;
+                        return QuestManager.Instance.GetQuestState(arg0) is QuestType.Cancele or QuestType.Complete;
+                    case 4:
+                        type = QuestType.NotExist;
+                        break;
                     default:
                         return false;
                 }
                 
-                return type == value;
+                return type == QuestManager.Instance.GetQuestState(arg0);
             }
             
             return false;
