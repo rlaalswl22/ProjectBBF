@@ -32,6 +32,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
     public CollisionInteractionMono CloserObject { get; private set; }
     public event Action<CollisionInteractionMono> OnChangedCloserObject;
+    public Vector2 IndicatedPosition => _indicator.transform.position;
 
     public void Init(PlayerController controller)
     {
@@ -79,6 +80,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     {
         token = CancellationTokenSource.CreateLinkedTokenSource(token, this.GetCancellationTokenOnDestroy()).Token;
 
+        _move.ResetVelocity();
         _blackboard.IsInteractionStopped = true;
         _blackboard.IsMoveStopped = true;
 
@@ -245,105 +247,30 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     #endregion
 
     #region Callback Method
-
+    
     public async UniTask<bool> OnToolAction()
     {
         if (_blackboard.IsInteractionStopped) return false;
 
         try
         {
-            ItemData currentData = _controller.Inventory.CurrentItemData;
+            ItemData data = _controller.Inventory.CurrentItemData;
+            if (data == false) return false;
 
-            if (currentData && (
-                    currentData.Info.Contains(ToolType.Hoe) ||
-                    currentData.Info.Contains(ToolType.WaterSpray) ||
-                    currentData.Info.Contains(ToolType.Fertilizer) ||
-                    currentData.Info.Contains(ToolType.Seed) ||
-                    currentData.Info.Contains(ToolType.Pickaxe)
-                ))
+            foreach (PlayerItemBehaviour behaviour in data.PlayerItemBehaviours)
             {
-                if (_blackboard.Energy < 1)
-                {
-                    return false;
-                }
-
-                _move.ResetVelocity();
-                _move.IsStopped = true;
-                _blackboard.Energy--;
-
-                Vector2 clickPoint = Camera.main.ScreenToWorldPoint(InputManager.Map.Player.Look.ReadValue<Vector2>());
-
-                Vector2 dir = clickPoint - (Vector2)_controller.transform.position;
-                _visual.LookAt(dir, currentData.ActionAnimationType, true);
-
-                PlayAudio(currentData, "Use");
+                await behaviour.DoAction(_controller, data, this.GetCancellationTokenOnDestroy());
             }
-            else
-            {
-                return false;
-            }
-
-            bool success = false;
-
-            if (currentData.UsePrevWait > 0f)
-            {
-                await UniTask.Delay((int)(currentData.UsePrevWait * 1000f), DelayType.DeltaTime,
-                    PlayerLoopTiming.Update,
-                    this.GetCancellationTokenOnDestroy());
-            }
-
-
-            var interaction = FindCloserObject();
-            if (interaction is null)
-            {
-                success = false;
-                goto RE;
-            }
-
-            if (Farmland(interaction))
-            {
-                success = true;
-                _controller.HoeEffect.transform.SetXY(_indicator.transform.position);
-                _controller.HoeEffect.Play();
-                goto RE;
-            }
-
-            if (ToolCollect(interaction))
-            {
-                success = true;
-                goto RE;
-            }
-
-            RE:
-
-
-            if (success)
-            {
-                PlayAudio(currentData, "Use_Success");
-            }
-            else
-            {
-                PlayAudio(currentData, "Use_Fail");
-            }
-
-
-            if (currentData.UseAndWait > 0f)
-            {
-                await UniTask.Delay((int)(currentData.UseAndWait * 1000f), DelayType.DeltaTime, PlayerLoopTiming.Update,
-                    this.GetCancellationTokenOnDestroy());
-            }
-
-            _move.IsStopped = false;
-
-
-            return success;
         }
         catch (Exception e) when (e is not OperationCanceledException)
         {
             Debug.LogException(e);
-            _move.IsStopped = false;
-            return false;
         }
+        finally
+        {
+        }
+        
+        return false;
     }
 
     private void OnInteractObject(IBOInteractive obj) => obj.UpdateInteract(_controller.Interaction);
@@ -660,13 +587,6 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
         if (InputManager.Map.Player.UseTool.triggered)
         {
-            var itemData = _controller.Inventory.CurrentItemData;
-            if (_controller.Fishing.IsFishing is false && itemData && itemData.Info.Contains(ToolType.FishingRod))
-            {
-                _ = _controller.Fishing.Fishing();
-                return;
-            }
-
             _ = OnToolAction();
         }
     }

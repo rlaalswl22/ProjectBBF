@@ -28,6 +28,8 @@ public interface IBOPlantTile : IObjectBehaviour
     /// <param name="worldPos">타일의 world position</param>
     /// <returns>아이템을 타일에 심는데 성공했는지 여부</returns>
     public bool Plant(Vector3 worldPos, GrownDefinition definition);
+
+    public bool CanPlant(Vector3 worldPos);
 }
 public interface IBOCultivateTile : IObjectBehaviour
 {

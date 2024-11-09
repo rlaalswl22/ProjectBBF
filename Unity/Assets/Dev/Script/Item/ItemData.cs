@@ -65,6 +65,9 @@ public class ItemData : ScriptableObject
     [field: SerializeField, Header("건들 ㄴㄴ")]
     private ItemAudioInfo[] _usingActionAudioInfos;
 
+    [field: SerializeField, Header("비헤비어")]
+    private List<PlayerItemBehaviour> _playerItemBehaviours;
+
     [SerializeField]
     private float _usePrevWait;
     [SerializeField]
@@ -88,6 +91,8 @@ public class ItemData : ScriptableObject
     public float UsePrevWait => _usePrevWait;
 
     public float UseAndWait => _useAndWait;
+
+    public List<PlayerItemBehaviour> PlayerItemBehaviours => _playerItemBehaviours;
 
 
     private void OnValidate()

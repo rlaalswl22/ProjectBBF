@@ -248,6 +248,8 @@ public class FarmlandTileController : MonoBehaviour,
         return plantTile is null && cultivationTile is not null;
     }
 
+    public bool CanPlant(Vector3 worldPos) => CanPlant(WorldToCell(worldPos));
+
     public bool CanPlantFertilizer(Vector3Int cellPos)
     {
         if (_platformTilemap.GetTile<CultivationTile>(cellPos) == false) return false;

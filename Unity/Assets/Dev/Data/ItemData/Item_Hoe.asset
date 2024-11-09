@@ -28,5 +28,7 @@ MonoBehaviour:
   - _usingKey: Use
     _mixerGroupKey: Player
     _audioKey: Player_Tool_Using_Hoe
+  _playerItemBehaviours:
+  - {fileID: 11400000, guid: c6c81c4061f53d64a8b9d9e5fb8cdd79, type: 2}
   _usePrevWait: 0.2
   _useAndWait: 0.4

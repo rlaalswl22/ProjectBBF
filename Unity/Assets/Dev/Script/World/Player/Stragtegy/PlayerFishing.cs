@@ -286,7 +286,6 @@ public class PlayerFishing : MonoBehaviour, IPlayerStrategy
         }
         finally
         {
-            Debug.Log("dsa");
             _lockFishingLine = true;
             IsFishing = false;
             _visual.ChangeClip(
