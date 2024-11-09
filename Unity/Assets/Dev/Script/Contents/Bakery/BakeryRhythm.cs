@@ -17,7 +17,10 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
     [SerializeField] private GameObject _ovenActivationUI;
     [SerializeField] private GameObject _activationUI;
     [SerializeField] private AudioSource _source;
-    [SerializeField] private ESOVoid _esoSuccess;
+    [SerializeField] private ESOQuest _esoQuest;
+    [SerializeField] private QuestData _questDoughData;
+    [SerializeField] private QuestData _questOvenData;
+    [SerializeField] private QuestData _questAdditiveData;
     
     [SerializeField] private float _roundTripInterval;
     [SerializeField] private Transform _playPoint;
@@ -141,6 +144,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         
         _activationUI.SetActive(false);
         _ovenActivationUI.SetActive(true);
+        QuestIndicator.Visible = false;
         pc.Blackboard.IsMoveStopped = true;
         pc.Blackboard.IsInteractionStopped = true;
         pc.transform.position = (Vector2)_playPoint.position;
@@ -236,6 +240,7 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
         pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Bakery_Additive_Complete, AnimationActorKey.Direction.Down), true);
         yield return new WaitForSeconds(_endWait);
 
+        QuestIndicator.Visible = true;
         pc.Interactor.ItemPreviewSprite = null;
         pc.Blackboard.IsMoveStopped = false;
         pc.Blackboard.IsInteractionStopped = false;
@@ -276,13 +281,36 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
             pc.RecipeBookPresenter.Model.Add(tuple.recipe.Key);
         }
 
-        if (_esoSuccess)
+        if (_esoQuest && _questOvenData && _questAdditiveData)
         {
-            _esoSuccess.Raise();
+            _esoQuest.Raise(new QuestEvent()
+            {
+                Type = QuestType.Complete,
+                QuestKey = _questOvenData.QuestKey
+            });
+            _esoQuest.Raise(new QuestEvent()
+            {
+                Type = QuestType.Create,
+                QuestKey = _questAdditiveData.QuestKey
+            });
         }
     }
     private void GameFail((ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipe)tuple, PlayerController pc)
     {
+        if (_esoQuest && _questOvenData && _questDoughData)
+        {
+            _esoQuest.Raise(new QuestEvent()
+            {
+                Type = QuestType.Cancele,
+                QuestKey = _questOvenData.QuestKey
+            });
+            _esoQuest.Raise(new QuestEvent()
+            {
+                Type = QuestType.Create,
+                QuestKey = _questDoughData.QuestKey
+            });
+        }
+        
         if (tuple.failItem == false) return;
         
         bool success = pc.Inventory.Model.PushItem(tuple.failItem, 1)is 0;

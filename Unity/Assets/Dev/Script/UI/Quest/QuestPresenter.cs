@@ -54,7 +54,7 @@ public class QuestPresenter : MonoBehaviour
     {
         if (QuestManager.Instance == false) return;
 
-        var data = QuestManager.Instance.Table.GetValueOrDefault(evt.QuestKey);
+        var data = QuestManager.Instance.QuestDataTable.GetValueOrDefault(evt.QuestKey);
         if (data == false)
         {
             Debug.LogError($"존재하지 않는 QuestData, key({evt.QuestKey})");
@@ -90,6 +90,11 @@ public class QuestPresenter : MonoBehaviour
     private void RemoveView(string key)
     {
         int index = _viewList.FindIndex(x => x && x.Data & x.Data.QuestKey == key);
+        if (index == -1)
+        {
+            return;
+        }
+        
         _viewList[index].DestroySelf();
         _viewList.RemoveAt(index);
     }

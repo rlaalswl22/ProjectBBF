@@ -261,6 +261,9 @@ MonoBehaviour:
   OnTriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnTriggerArgEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _interaction: {fileID: 174119884}
 --- !u!114 &174119884
 MonoBehaviour:
@@ -355,11 +358,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8951546433969896750, guid: 6c9f0f806ce875941b6cf3cd0fd79fe0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.39
+      value: -4.46
       objectReference: {fileID: 0}
     - target: {fileID: 8951546433969896750, guid: 6c9f0f806ce875941b6cf3cd0fd79fe0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -31.99
+      value: 21.81
       objectReference: {fileID: 0}
     - target: {fileID: 7588404696700822959, guid: ae6e1232fb269c244b1658688b731096, type: 3}
       propertyPath: m_LocalPosition.x
@@ -545,6 +548,9 @@ MonoBehaviour:
   OnTriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnTriggerArgEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _interaction: {fileID: 1420644734}
 --- !u!114 &1420644734
 MonoBehaviour:
@@ -612,6 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c6d952562c9d42ae08baec230fcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usePrevWorld: 0
   _scene:
     _sceneAsset: {fileID: 102900000, guid: bbaeebbcc59f2e544a5ec94d9a366b13, type: 3}
     _sceneName: World_Festival_CutScene_Ch_0_Begin
@@ -650,6 +657,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnTriggerArgEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _interaction: {fileID: 1473615945}
 --- !u!114 &1473615945
 MonoBehaviour:
@@ -826,6 +836,9 @@ MonoBehaviour:
   OnTriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnTriggerArgEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _interaction: {fileID: 1476568878}
 --- !u!114 &1476568878
 MonoBehaviour:
@@ -975,6 +988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c6d952562c9d42ae08baec230fcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usePrevWorld: 0
   _scene:
     _sceneAsset: {fileID: 102900000, guid: 2fc317eb3f5c1f64389471b7fb0ce734, type: 3}
     _sceneName: World_MoleMinigame
@@ -1198,6 +1212,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnTriggerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerArgEvent:
     m_PersistentCalls:
       m_Calls: []
   _interaction: {fileID: 1822826642}

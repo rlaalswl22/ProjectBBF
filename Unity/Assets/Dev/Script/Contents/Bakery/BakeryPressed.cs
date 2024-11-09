@@ -15,7 +15,10 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
     [SerializeField] private Transform _playPoint;
     [SerializeField] private Transform _revertPoint;
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private ESOVoid _esoSuccess;
+    [SerializeField] private ESOQuest _esoQuest;
+    [SerializeField] private QuestData _questAdditiveData;
+    [SerializeField] private QuestData _questOvenData;
+    [SerializeField] private QuestData _questDoughData;
     [SerializeField] private GameObject _activationUI;
     [SerializeField] private GameObject _particleSystem;
 
@@ -112,6 +115,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
 
         pc.Blackboard.IsMoveStopped = true;
         pc.Blackboard.IsInteractionStopped = true;
+        QuestIndicator.Visible = false;
         float backupPcZ = pc.transform.position.z;
         pc.transform.position = _playPoint.position;
         pc.MoveStrategy.ResetVelocity();
@@ -144,6 +148,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
                 
                 pc.MoveStrategy.IsStopped = false;
                 pc.Blackboard.IsInteractionStopped = false;
+                QuestIndicator.Visible = true;
                 pc.MoveStrategy.ResetVelocity();
                 pc.MoveStrategy.IsGhost = false;
                 pc.transform.position = _revertPoint.position;
@@ -201,6 +206,7 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         pc.VisualStrategy.ChangeClip(AnimationActorKey.GetAniHash(AnimationActorKey.Action.Idle, AnimationActorKey.Direction.Down), true);
         
         
+        QuestIndicator.Visible = true;
         pc.Blackboard.IsMoveStopped = false;
         pc.Blackboard.IsInteractionStopped = false;
         pc.MoveStrategy.ResetVelocity();
@@ -231,14 +237,53 @@ public class BakeryPressed: BakeryFlowBehaviourBucket
         {
             pc.RecipeBookPresenter.Model.Add(tuple.recipeData.Key);
         }
-        
-        if(_esoSuccess)
-            _esoSuccess.Raise();
-        
+
+        if (_esoQuest)
+        {
+            if (ResolvorType == Resolvor.Additive && _questAdditiveData)
+            {
+                _esoQuest.Raise(new QuestEvent
+                {
+                    Type = QuestType.Complete,
+                    QuestKey = _questAdditiveData.QuestKey
+                });
+            }
+            if (ResolvorType == Resolvor.Dough && _questOvenData && _questDoughData)
+            {
+                _esoQuest.Raise(new QuestEvent
+                {
+                    Type = QuestType.Create,
+                    QuestKey = _questOvenData.QuestKey
+                });
+                _esoQuest.Raise(new QuestEvent
+                {
+                    Type = QuestType.Complete,
+                    QuestKey = _questDoughData.QuestKey
+                });
+            }
+        }
         ClearBucket();
     }
     private void GameFail((ItemData failItem, ItemData resultItem, float duration, BakeryRecipeData recipeData) tuple, PlayerController pc)
     {
+        if (_esoQuest)
+        {
+            // 연성 단계고, 연성과 오븐 퀘스트 데이터를 찾을 수 있다면 퀘스트 발행/실패 처리
+            if (ResolvorType == Resolvor.Additive && _questAdditiveData && _questOvenData)
+            {
+                _esoQuest.Raise(new QuestEvent
+                {
+                    Type = QuestType.Create,
+                    QuestKey = _questOvenData.QuestKey
+                });
+                _esoQuest.Raise(new QuestEvent
+                {
+                    Type = QuestType.Cancele,
+                    QuestKey = _questAdditiveData.QuestKey
+                });
+            }
+        }
+        
         if (tuple.failItem == false) return;
         
         bool success = pc.Inventory.Model.PushItem(tuple.failItem, 1) is 0;

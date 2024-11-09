@@ -27,13 +27,17 @@ namespace DS.Runtime
                     case 2:
                         type = QuestType.Cancele;
                         break;
+                    case 3:
+                        return value is QuestType.Cancele or QuestType.Complete;
+                    case 4: // 퀘스트가 발행됐는지 검사
+                        return true;
                     default:
                         return false;
                 }
                 
                 return type == value;
             }
-
+            
             return false;
         }
     }

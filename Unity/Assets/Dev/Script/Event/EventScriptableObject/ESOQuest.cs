@@ -4,12 +4,6 @@ using ProjectBBF.Event;
 using ProjectBBF.Persistence;
 using UnityEngine;
 
-public enum QuestType
-{
-    Create,
-    Complete,
-    Cancele,
-}
 public struct QuestEvent : IEvent
 {
     public string QuestKey;
@@ -21,12 +15,15 @@ public class ESOQuest : ESOGeneric<QuestEvent>
 {
     public override void Raise(QuestEvent arg)
     {
-        base.Raise(arg);
-
-        if (PersistenceManager.Instance)
+        if (QuestManager.Instance)
         {
-            var obj = PersistenceManager.Instance.LoadOrCreate<QuestPersistence>(QuestManager.PERSISTENCE_KEY);
-            obj.QuestTable[arg.QuestKey] = arg.Type;
+            bool success = QuestManager.Instance.ChangeQuestState(arg.QuestKey, arg.Type);
+
+            if (success)
+            {
+                base.Raise(arg);
+            }
         }
+        
     }
 }

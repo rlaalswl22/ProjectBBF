@@ -20,13 +20,14 @@ public class QuestIndicatorUI : ActorComponent
     [SerializeField] private List<QuestData> _targetQuestList;
 
     private Camera _cachedCamera;
-    private Actor _actor;
     private Canvas _canvas;
     private bool _isWorldCanvas;
     private Tweener _scaleTweener;
 
     private InputAction _keyAction;
     private bool _keyFlag;
+
+    private bool _isRaised;
     
     private Camera CachedCamera
     {
@@ -40,12 +41,16 @@ public class QuestIndicatorUI : ActorComponent
             return _cachedCamera;
         }
     }
+
+    public bool Visible
+    {
+        get => gameObject.activeSelf && _isRaised;
+        set => gameObject.SetActive(value && _isRaised);
+    }
     
-    public void Init(Actor actor)
+    public void Init()
     {
         if (_esoQuest == false) return;
-
-        _actor = actor;
 
         _esoQuest.OnEventRaised += OnEventRaised;
         gameObject.SetActive(false);
@@ -92,10 +97,13 @@ public class QuestIndicatorUI : ActorComponent
         
         if (obj.Type is QuestType.Create)
         {
+            _isRaised = true;
             gameObject.SetActive(true);
         }
         else if(obj.Type is QuestType.Cancele or QuestType.Complete)
         {
+
+            _isRaised = false;
             gameObject.SetActive(false);
         }
         

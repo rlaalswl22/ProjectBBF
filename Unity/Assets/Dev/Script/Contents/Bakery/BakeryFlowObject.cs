@@ -73,11 +73,16 @@ public abstract class BakeryFlowBehaviour : MonoBehaviour
 {
     [field: SerializeField, AutoProperty, MustBeAssigned, InitializationField]
     private BakeryFlowObject _flowObject;
+    
+    [field: SerializeField, MustBeAssigned, InitializationField]
+    private QuestIndicatorUI _questIndicator;
 
     public CollisionInteraction Interaction => _flowObject.Interaction;
     public BakeryFlowObject FlowObject => _flowObject;
 
     public FadeinoutObject FadeObject => FlowObject.FadeObject;
+
+    public QuestIndicatorUI QuestIndicator => _questIndicator;
 
     protected virtual void Awake()
     {
@@ -85,6 +90,11 @@ public abstract class BakeryFlowBehaviour : MonoBehaviour
         _flowObject.OnInteraction += OnInteraction;
         _flowObject.OnEnter += OnEnter;
         _flowObject.OnExit += OnExit;
+
+        if (_questIndicator)
+        {
+            _questIndicator.Init();
+        }
     }
 
     protected virtual void OnDestroy()
