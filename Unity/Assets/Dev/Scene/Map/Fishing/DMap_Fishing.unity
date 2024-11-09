@@ -943,6 +943,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnTriggerArgEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _interaction: {fileID: 513213901}
 --- !u!114 &513213901
 MonoBehaviour:
@@ -1346,10 +1349,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c6d952562c9d42ae08baec230fcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _usePrevWorld: 0
+  _usePrevWorld: 1
   _scene:
     _sceneAsset: {fileID: 102900000, guid: ace2e0163fac7b64b923618a5b5533e0, type: 3}
-    _sceneName: World_Festival_Ch_4
+    _sceneName: 
   _directorKey: BlackAlpha
   _fadeOut: 1
   _fadeIn: 1
@@ -2309,7 +2312,7 @@ MonoBehaviour:
   _usePrevWorld: 0
   _scene:
     _sceneAsset: {fileID: 102900000, guid: 53d2df84785cc324fa1610cd9ba1dfe1, type: 3}
-    _sceneName: World_Festival_CutScene_Ch_4_Contest
+    _sceneName: 
   _directorKey: BlackAlpha
   _fadeOut: 1
   _fadeIn: 1
@@ -3038,6 +3041,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnTriggerArgEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _interaction: {fileID: 2007764353}
 --- !u!114 &2007764353
 MonoBehaviour:
