@@ -3,11 +3,12 @@
 
 using System;
 using System.Collections.Generic;
+using ProjectBBF.Event;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class Animal : ActorProxy
+public class Animal : ActorProxy, IBOInteractive
 {
     [SerializeField] private ActorFavorablity _favorablity;
     [SerializeField] private CollectingMovedActor _collectingMovedActor;
@@ -16,6 +17,16 @@ public class Animal : ActorProxy
     [SerializeField] private List<RuntimeAnimatorController> _collectedAnimations; 
     [SerializeField] private List<RuntimeAnimatorController> _defaultAnimations; 
 
+
+    public CollisionInteraction Interaction => Owner.Interaction;
+    private IBOInteractive _collectBehaviour;
+    public void UpdateInteract(CollisionInteractionMono caller)
+    {
+        if (_collectBehaviour is null) return;
+        
+        _collectBehaviour.UpdateInteract(caller);
+        _favorablity.UpdateInteract(caller);
+    }
     protected override void OnInit()
     {
         _favorablity.Init(Owner);
@@ -25,13 +36,16 @@ public class Animal : ActorProxy
         var collect = _collectingMovedActor.CreateCollectProxyOrNull();
 
         ContractInfo.AddBehaivour<IBODialogue>(_favorablity);
+        
+        // IBOInteractiveTool이면 대화 안 되도록 처리
         if (collect is IBOInteractiveTool)
         {
             ContractInfo.AddBehaivour<IBOInteractiveTool>(collect);
         }
         else if (collect is IBOInteractive)
         {
-            ContractInfo.AddBehaivour<IBOInteractive>(collect);
+            _collectBehaviour = collect as IBOInteractive;
+            ContractInfo.AddBehaivour<IBOInteractive>(this);
         }
         
         

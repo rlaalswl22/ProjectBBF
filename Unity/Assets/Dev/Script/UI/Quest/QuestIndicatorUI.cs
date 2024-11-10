@@ -28,6 +28,8 @@ public class QuestIndicatorUI : ActorComponent
     private bool _keyFlag;
 
     private bool _isRaised;
+
+    private HashSet<string> _createdQuestHashset = new HashSet<string>();
     
     private Camera CachedCamera
     {
@@ -99,10 +101,13 @@ public class QuestIndicatorUI : ActorComponent
         {
             _isRaised = true;
             gameObject.SetActive(true);
+            _ = _createdQuestHashset.Add(obj.QuestKey);
         }
         else if(obj.Type is QuestType.Cancele or QuestType.Complete)
         {
-
+            _ = _createdQuestHashset.Remove(obj.QuestKey);
+            if (_createdQuestHashset.Any()) return;
+            
             _isRaised = false;
             gameObject.SetActive(false);
         }
