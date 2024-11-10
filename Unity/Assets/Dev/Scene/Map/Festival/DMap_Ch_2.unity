@@ -2669,7 +2669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: e17c9a71b04374b45b7bfe3272ac0747, type: 2}
   _event: {fileID: 11400000, guid: 09d9ee0cb10df0c46815b86692e8f96a, type: 2}
-  _endEvent: {fileID: 11400000, guid: b3d6cf76e201bce4d830e768573efc33, type: 2}
+  _endEvent: {fileID: 0}
   _playerStartPoint: {fileID: 368461831}
   _playerEndPoint: {fileID: 1712711091}
   _beginFadeOut: 1
@@ -2682,7 +2682,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnESOMinigameEnd:
-  - {fileID: 11400000, guid: fbfd16eeab9739b4c85d5544dd9dff3d, type: 2}
+  - {fileID: 0}
   _camera: {fileID: 1591313971}
   _tracks:
   - {fileID: 601491784}
@@ -3372,6 +3372,14 @@ PrefabInstance:
     - target: {fileID: 4654251629137900466, guid: cc1d4a49cf5697c49a6ee3b14dc6a8b5, type: 3}
       propertyPath: m_LocalPosition.y
       value: 8.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7236962955030520697, guid: cc1d4a49cf5697c49a6ee3b14dc6a8b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -65.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7236962955030520697, guid: cc1d4a49cf5697c49a6ee3b14dc6a8b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 68.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
