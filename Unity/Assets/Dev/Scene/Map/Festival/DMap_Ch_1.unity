@@ -9339,6 +9339,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 243572834}
     m_Modifications:
+    - target: {fileID: 6831985246652744609, guid: 98e907586cceb9d4eaab2e66f8266b07, type: 3}
+      propertyPath: _targetQuestList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831985246652744609, guid: 98e907586cceb9d4eaab2e66f8266b07, type: 3}
+      propertyPath: _targetQuestList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6b7c56c40b17d9d40ae17c2de837720f, type: 2}
+    - target: {fileID: 6831985246652744609, guid: 98e907586cceb9d4eaab2e66f8266b07, type: 3}
+      propertyPath: _targetQuestList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 24721ac563d703b4d941bd484a489464, type: 2}
+    - target: {fileID: 6831985246652744609, guid: 98e907586cceb9d4eaab2e66f8266b07, type: 3}
+      propertyPath: _targetQuestList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f00d506a98027144858836c4584379c, type: 2}
     - target: {fileID: 6970744409334368459, guid: 98e907586cceb9d4eaab2e66f8266b07, type: 3}
       propertyPath: m_Name
       value: PActor_Lylla_Chapter_1
@@ -9599,6 +9615,18 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 5081332623763283446, guid: 30351b92093bb5a47a9862e4da821d2d, type: 3}
+      propertyPath: _targetQuestList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081332623763283446, guid: 30351b92093bb5a47a9862e4da821d2d, type: 3}
+      propertyPath: _targetQuestList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4381741a01554be47a479d823a287909, type: 2}
+    - target: {fileID: 5081332623763283446, guid: 30351b92093bb5a47a9862e4da821d2d, type: 3}
+      propertyPath: _targetQuestList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b8889f8fc399494ab6ad8776e90e3f3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10759,13 +10787,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 243572834}
     m_Modifications:
+    - target: {fileID: 3859516298495740257, guid: c87389ccd59091b4b91ff67f9b495792, type: 3}
+      propertyPath: _actorKey
+      value: Drunken1_Chapter_1
+      objectReference: {fileID: 0}
     - target: {fileID: 7236962955030520697, guid: c87389ccd59091b4b91ff67f9b495792, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.77
+      value: -44.81
       objectReference: {fileID: 0}
     - target: {fileID: 7236962955030520697, guid: c87389ccd59091b4b91ff67f9b495792, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.49
+      value: 4.24
       objectReference: {fileID: 0}
     - target: {fileID: 7236962955030520697, guid: c87389ccd59091b4b91ff67f9b495792, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13771,7 +13803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: e17c9a71b04374b45b7bfe3272ac0747, type: 2}
   _event: {fileID: 11400000, guid: 09d9ee0cb10df0c46815b86692e8f96a, type: 2}
-  _endEvent: {fileID: 11400000, guid: b3d6cf76e201bce4d830e768573efc33, type: 2}
+  _endEvent: {fileID: 0}
   _playerStartPoint: {fileID: 541260966}
   _playerEndPoint: {fileID: 2082440240}
   _beginFadeOut: 1
@@ -13784,7 +13816,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnESOMinigameEnd:
-  - {fileID: 11400000, guid: fbfd16eeab9739b4c85d5544dd9dff3d, type: 2}
+  - {fileID: 0}
   _camera: {fileID: 1122543818}
   _tracks:
   - {fileID: 1828065024}
@@ -14536,11 +14568,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7236962955030520697, guid: c87389ccd59091b4b91ff67f9b495792, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.27
+      value: -18.9
       objectReference: {fileID: 0}
     - target: {fileID: 7236962955030520697, guid: c87389ccd59091b4b91ff67f9b495792, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.7
+      value: 3.64
       objectReference: {fileID: 0}
     - target: {fileID: 7236962955030520697, guid: c87389ccd59091b4b91ff67f9b495792, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15050,6 +15082,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 243572834}
     m_Modifications:
+    - target: {fileID: 2167339233071478716, guid: 09374162a70db5043b71f7a4ed0f0ef2, type: 3}
+      propertyPath: _targetQuestList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2167339233071478716, guid: 09374162a70db5043b71f7a4ed0f0ef2, type: 3}
+      propertyPath: _targetQuestList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f00d506a98027144858836c4584379c, type: 2}
+    - target: {fileID: 2167339233071478716, guid: 09374162a70db5043b71f7a4ed0f0ef2, type: 3}
+      propertyPath: _targetQuestList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4381741a01554be47a479d823a287909, type: 2}
     - target: {fileID: 2341580389982026966, guid: 09374162a70db5043b71f7a4ed0f0ef2, type: 3}
       propertyPath: m_Name
       value: PAnimal_Goat_Good
@@ -15115,6 +15159,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 243572834}
     m_Modifications:
+    - target: {fileID: 3859516298495740257, guid: c87389ccd59091b4b91ff67f9b495792, type: 3}
+      propertyPath: _actorKey
+      value: Drunken2_Chapter_1
+      objectReference: {fileID: 0}
     - target: {fileID: 7236962955030520697, guid: c87389ccd59091b4b91ff67f9b495792, type: 3}
       propertyPath: m_LocalPosition.x
       value: -39.58

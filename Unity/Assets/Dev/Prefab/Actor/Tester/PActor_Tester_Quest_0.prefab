@@ -80,6 +80,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1690357312, guid: 016a9ab04494a874fa46797a09062ff6, type: 3}
+    - target: {fileID: 7894455029090729042, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_Sources.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894455029090729042, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
+      propertyPath: m_Sources.Array.data[0].weight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8712666892707010204, guid: b8677df67c7367d48b06acbee2f4ec4d, type: 3}
       propertyPath: m_Name
       value: PActor_Tester_Quest_0
