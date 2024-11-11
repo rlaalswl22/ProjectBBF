@@ -119,6 +119,11 @@ namespace ProjectBBF.Persistence
             OnGameDataLoaded?.Invoke(this);
         }
 
+        public void NewGameDataCurrentFileName()
+        {
+            _objGameDataTable.Clear();
+            OnGameDataLoaded?.Invoke(this);
+        }
         public void SaveGameDataCurrentFileName() => SaveGameData(CurrentMetadata);
         public void LoadGameDataCurrentFileName() => LoadGameData(CurrentMetadata.SaveFileName);
         public void SaveUserData()

@@ -302,11 +302,14 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 
             if (_questLyllaTutorialSuccess)
             {
-                _esoQuest.Raise(new QuestEvent()
+                if (flag is false)
                 {
-                    QuestKey = _questLyllaTutorialSuccess.QuestKey,
-                    Type = QuestType.Create
-                });
+                    _esoQuest.Raise(new QuestEvent()
+                    {
+                        QuestKey = _questLyllaTutorialSuccess.QuestKey,
+                        Type = QuestType.Create
+                    });
+                }
             }
         }
     }
@@ -332,11 +335,14 @@ public class BakeryRhythm : BakeryFlowBehaviourBucket, IObjectBehaviour
 
             if (_questLyllaTutorialFail)
             {
-                _esoQuest.Raise(new QuestEvent()
+                if (flag is false)
                 {
-                    QuestKey = _questLyllaTutorialFail.QuestKey,
-                    Type = QuestType.Create
-                });
+                    _esoQuest.Raise(new QuestEvent()
+                    {
+                        QuestKey = _questLyllaTutorialFail.QuestKey,
+                        Type = QuestType.Create
+                    }); 
+                }
             }
         }
         if (tuple.failItem == false) return;

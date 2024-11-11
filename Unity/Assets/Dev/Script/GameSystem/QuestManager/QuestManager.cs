@@ -44,12 +44,18 @@ public class QuestManager : MonoBehaviourSingleton<QuestManager>
         
         if (PersistenceManager.Instance)
         {
+            PersistenceManager.Instance.OnGameDataLoaded += OnLoaded;
             _persistence = PersistenceManager.Instance.LoadOrCreate<QuestPersistence>(QuestManager.PERSISTENCE_KEY);
         }
         
         Debug.Assert(ESO);
 
         IndicatorObstacleList = new(5);
+    }
+
+    private void OnLoaded(PersistenceManager obj)
+    {
+        _persistence = obj.LoadOrCreate<QuestPersistence>(QuestManager.PERSISTENCE_KEY);
     }
 
     public override void PostRelease()

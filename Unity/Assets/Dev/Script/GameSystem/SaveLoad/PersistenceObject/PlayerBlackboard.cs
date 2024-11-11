@@ -50,6 +50,7 @@ public class PlayerBlackboard : ISaveLoadNotification
 
     [SerializeField, Editable] private string _currentWorld;
     [SerializeField, Editable] private Vector2 _currentPosition;
+    [SerializeField, Editable] private bool _isPositionSaved;
 
     [SerializeField, Editable] private int _money = 500;
 
@@ -68,6 +69,8 @@ public class PlayerBlackboard : ISaveLoadNotification
     [SerializeField, Editable] private GridModelSerialized _serializedGridModel;
 
     [SerializeField, Editable] private string _prevWorld;
+
+    public event Action<PlayerBlackboard> OnSaved;
 
     public float Stemina
     {
@@ -112,10 +115,16 @@ public class PlayerBlackboard : ISaveLoadNotification
         }
     }
 
+    public bool IsPositionSaved => _isPositionSaved;
+
     public Vector2 CurrentPosition
     {
         get => _currentPosition;
-        set => _currentPosition = value;
+        set
+        {
+            _currentPosition = value;
+            _isPositionSaved = true;
+        }
     }
 
     public int Money
@@ -156,6 +165,8 @@ public class PlayerBlackboard : ISaveLoadNotification
 
     public void OnSavedNotify()
     {
+        OnSaved?.Invoke(this);
+        
         if (Inventory?.Model is null) return;
 
         using var e = Inventory.Model.GetEnumerator();

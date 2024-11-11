@@ -15,9 +15,9 @@ namespace ProjectBBF.Persistence
             public QuestType Type;
         }
         
-        [SerializeField] private List<Set> _questKeyList;
+        [SerializeField] private List<Set> _questKeyList = new();
 
-        public Dictionary<string, QuestType> QuestTable = new();
+        public Dictionary<string, QuestType> QuestTable { get; private set; } = new();
 
         public void OnSavedNotify()
         {

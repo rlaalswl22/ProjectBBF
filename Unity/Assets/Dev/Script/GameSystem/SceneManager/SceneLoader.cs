@@ -190,33 +190,43 @@ public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
 
     public async UniTask<bool> WorkDirectorAsync(bool fadeIn, string key = null)
     {
-        if (key is null)
+        try
         {
-            key = DefaultDirectorKey;
-        }
-        if (_directors.TryGetValue(key, out var director) == false)
-        {
-            Debug.LogError($"SceneLoader에서 Director key({key})를 찾을 수 없습니다.");
-            return false;
-        }
-        
-        Debug.Assert(director is not null);
+            if (key is null)
+            {
+                key = DefaultDirectorKey;
+            }
 
-        if (fadeIn)
-        {
-            director.Enabled = true;
-            await director.Fadein();
-            director.Enabled = false;
-            FadeinComplete?.Invoke();
+            if (_directors.TryGetValue(key, out var director) == false)
+            {
+                Debug.LogError($"SceneLoader에서 Director key({key})를 찾을 수 없습니다.");
+                return false;
+            }
+
+            Debug.Assert(director is not null);
+
+            if (fadeIn)
+            {
+                director.Enabled = true;
+                await director.Fadein();
+                director.Enabled = false;
+                FadeinComplete?.Invoke();
+            }
+            else
+            {
+                director.Enabled = true;
+                await director.Fadeout();
+                FadeoutComplete?.Invoke();
+            }
+
+            return true;
         }
-        else
+        catch (Exception e) when (e is not OperationCanceledException)
         {
-            director.Enabled = true;
-            await director.Fadeout();
-            FadeoutComplete?.Invoke();
+            Debug.LogException(e);
         }
 
-        return true;
+        return false;
     }
     
     public async UniTask<bool> LoadWorldAsync(string worldSceneName)

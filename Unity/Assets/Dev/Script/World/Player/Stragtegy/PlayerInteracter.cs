@@ -247,7 +247,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
     #endregion
 
     #region Callback Method
-    
+
     public async UniTask<bool> OnToolAction()
     {
         if (_blackboard.IsInteractionStopped) return false;
@@ -269,7 +269,7 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         finally
         {
         }
-        
+
         return false;
     }
 
@@ -283,9 +283,13 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
     private async UniTask OnUIInventory()
     {
-        _ = await UniTask
+        bool canceled = false;
+
+        canceled = await UniTask
             .NextFrame(PlayerLoopTiming.PostLateUpdate, this.GetCancellationTokenOnDestroy())
             .SuppressCancellationThrow();
+
+        if (canceled) return;
 
         _controller.PannelView.ViewState = PlayerPannelView.ViewType.Inv;
         _controller.Blackboard.IsMoveStopped = true;
@@ -293,10 +297,12 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         _controller.QuestPresenter.Visible = true;
         _isAnyUIVisible = true;
 
-        _ = await UniTask
+        canceled = await UniTask
             .WaitUntil(() => IsTriggeredUIAny, PlayerLoopTiming.PostLateUpdate,
                 this.GetCancellationTokenOnDestroy())
             .SuppressCancellationThrow();
+
+        if (canceled) return;
 
         _controller.PannelView.ViewState = PlayerPannelView.ViewType.Close;
         _controller.Blackboard.IsMoveStopped = false;
@@ -306,9 +312,13 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
     private async UniTask OnUISetting()
     {
-        _ = await UniTask
+        bool canceled = false;
+
+        canceled = await UniTask
             .NextFrame(PlayerLoopTiming.PostLateUpdate, this.GetCancellationTokenOnDestroy())
             .SuppressCancellationThrow();
+
+        if (canceled) return;
 
         _controller.PannelView.ViewState = PlayerPannelView.ViewType.Setting;
         _controller.Blackboard.IsMoveStopped = true;
@@ -317,10 +327,13 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         _controller.QuestPresenter.Visible = false;
         _isAnyUIVisible = true;
 
-        _ = await UniTask
+
+        canceled = await UniTask
             .WaitUntil(() => IsTriggeredUIAny, PlayerLoopTiming.PostLateUpdate,
                 this.GetCancellationTokenOnDestroy())
             .SuppressCancellationThrow();
+
+        if (canceled) return;
 
         _controller.PannelView.ViewState = PlayerPannelView.ViewType.Close;
         _controller.Blackboard.IsMoveStopped = false;
@@ -333,9 +346,13 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
 
     private async UniTask OnUIRecipe()
     {
-        _ = await UniTask
+        bool canceled = false;
+
+        canceled = await UniTask
             .NextFrame(PlayerLoopTiming.PostLateUpdate, this.GetCancellationTokenOnDestroy())
             .SuppressCancellationThrow();
+
+        if (canceled) return;
 
         _controller.PannelView.ViewState = PlayerPannelView.ViewType.Close;
         _controller.Blackboard.IsMoveStopped = true;
@@ -344,10 +361,13 @@ public class PlayerInteracter : MonoBehaviour, IPlayerStrategy
         _controller.RecipeBookPresenter.PreviewView.Visible = true;
         _isAnyUIVisible = true;
 
-        _ = await UniTask
+
+        canceled = await UniTask
             .WaitUntil(() => IsTriggeredUIAny, PlayerLoopTiming.PostLateUpdate,
                 this.GetCancellationTokenOnDestroy())
             .SuppressCancellationThrow();
+
+        if (canceled) return;
 
         _controller.Blackboard.IsMoveStopped = false;
         _controller.Blackboard.IsInteractionStopped = false;

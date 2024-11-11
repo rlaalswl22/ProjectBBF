@@ -56,6 +56,18 @@ public class QuestIndicatorUI : ActorComponent
 
         _esoQuest.OnEventRaised += OnEventRaised;
         gameObject.SetActive(false);
+        foreach (QuestData questData in _targetQuestList)
+        {
+            if (questData)
+            {
+                if (QuestManager.Instance && QuestManager.Instance.GetQuestState(questData.QuestKey) == QuestType.Create)
+                {
+                    _isRaised = true;
+                    Visible = true;
+                    _createdQuestHashset.Add(questData.QuestKey);
+                }
+            }
+        }
     }
 
     private void Awake()
@@ -119,9 +131,9 @@ public class QuestIndicatorUI : ActorComponent
     {
         RectTransform boundTransform = _renderer.transform as RectTransform;
         Camera camera = CachedCamera;
+        if (camera == false) return;
         
         Debug.Assert(boundTransform);
-        Debug.Assert(camera);
         Debug.Assert(_renderer);
         Debug.Assert(_pivot);
 

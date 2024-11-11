@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using MyBox;
 using ProjectBBF.Event;
 using ProjectBBF.Persistence;
@@ -126,7 +127,6 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer ItemPreviewRenderer => _itemPreviewRenderer;
 
     #endregion
-
     private void Awake()
     {
         MoveStrategy = Bind<PlayerMove>();
@@ -144,9 +144,15 @@ public class PlayerController : MonoBehaviour
         Interaction.SetContractInfo(info, this);
     }
 
+    private void OnSaved(PlayerBlackboard blackboard)
+    {
+        blackboard.CurrentPosition = transform.position;
+    }
+
     private void Start()
     {
         Blackboard = PersistenceManager.Instance.LoadOrCreate<PlayerBlackboard>("Player_Blackboard");
+        Blackboard.OnSaved += OnSaved;
 
         GridInventoryModel model = Blackboard.CreateInventoryModelModel();
         
@@ -178,6 +184,11 @@ public class PlayerController : MonoBehaviour
         Blackboard.MaxStemina = _movementData.DefaultStemina;
         Blackboard.Stemina = _movementData.DefaultStemina;
         Blackboard.Inventory = Inventory;
+
+        if (Blackboard.IsPositionSaved)
+        {
+           transform.position = Blackboard.CurrentPosition;
+        }
     }
 
     private void OnDestroy()
@@ -186,6 +197,9 @@ public class PlayerController : MonoBehaviour
         {
             GameObjectStorage.Instance.RemoveGameObject(gameObject);
         }
+        
+        
+        Blackboard.OnSaved -= OnSaved;
     }
 
     private T Bind<T>() where T : MonoBehaviour, IPlayerStrategy

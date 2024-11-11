@@ -40,7 +40,7 @@ public class MainMenuPresenter : MonoBehaviour
             PlayerName = charName
         };
         
-        PersistenceManager.Instance.SaveGameDataCurrentFileName();
+        PersistenceManager.Instance.NewGameDataCurrentFileName();
         
         //TODO: 축제 씬 완성되면 여기를 수정
         SceneLoader.Instance.WorkDirectorAsync(false, "BlackAlpha")

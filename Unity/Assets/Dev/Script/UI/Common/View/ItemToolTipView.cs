@@ -116,6 +116,8 @@ public class ItemToolTipView : MonoBehaviour
     public static Vector2 OrthogonalToScreen(Vector2 screenPoint)
     {
         Camera cam = Camera.main;
+        if (cam == false) return default;
+        
         var cameraSize = new Vector2(cam.scaledPixelWidth, cam.scaledPixelHeight);
         return new Vector3
         (
@@ -126,6 +128,8 @@ public class ItemToolTipView : MonoBehaviour
     public static Vector2 ScreenToOrthogonal(Vector2 screenPoint)
     {
         Camera cam = Camera.main;
+        if (cam == false) return default;
+        
         var cameraSize = new Vector2(cam.scaledPixelWidth, cam.scaledPixelHeight);
         return new Vector3
         (
@@ -137,6 +141,8 @@ public class ItemToolTipView : MonoBehaviour
     public Vector2 ToValidPosition(Vector3 orthogonalPos)
     {
         Camera cam = Camera.main;
+        if (cam == false) return orthogonalPos;
+        
         var size = _boundTransform.rect.size;
         var dir = GetOverlappedDirectionScreen(orthogonalPos, size);
         var cameraSize = new Vector2(cam.scaledPixelWidth, cam.scaledPixelHeight);
